@@ -17,7 +17,7 @@ class IndexScreenController extends GetxController {
   var drawerController = ZoomDrawerController();
 
   List screenPages = [
-    HomeScreen(),
+    ShopAndGroomingScreen(),
     ShopAndGroomingScreen(),
     HomeScreen(),
     HomeScreen(),

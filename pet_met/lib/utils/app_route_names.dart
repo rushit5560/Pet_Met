@@ -9,6 +9,7 @@ class AppRouteNames {
   static const String userProfileEditRoute = "/userProfileEdit";
   static const String uploadPetRoute = "/uploadPet";
   static const String shopDetailsScreenRoute = "/shopDetailsScreen";
+  static const String petVetsAndNgoDetailsScreenRoute = "/petVetsAndNgoDetailsScreenRoute";
   // static const String homeRoute = "/home";
   // static const String homeRoute = "/home";
 }

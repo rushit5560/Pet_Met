@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/pet_vets_and_ngo_screen_controller.dart';
+import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:sizer/sizer.dart';
 
@@ -25,7 +26,7 @@ class VetsAndNgoListModule extends StatelessWidget {
   Widget _vetsAndNgoListTile(String shopName) {
     return GestureDetector(
       onTap: () {
-        // Get.toNamed(AppRouteNames.shopDetailsScreenRoute);
+        Get.toNamed(AppRouteNames.petVetsAndNgoDetailsScreenRoute);
       },
       child: Container(
         decoration: BoxDecoration(

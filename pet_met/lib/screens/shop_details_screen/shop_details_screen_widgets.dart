@@ -17,11 +17,12 @@ class BannerImageModule extends StatelessWidget {
     return Container(
       width: screenController.size.width,
       height: screenController.size.height * 0.030.h,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
+      decoration: BoxDecoration(
+        image: const DecorationImage(
           image: AssetImage(AppImages.shopDetailsImg),
           fit: BoxFit.cover,
         ),
+          borderRadius: BorderRadius.circular(15),
       ),
       // child: Image.asset(AppImages.shopDetailsImg,
       // fit: BoxFit.cover,),
@@ -105,8 +106,8 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
         ),
 
         Container(
-          height: screenController.size.width * 0.020.w,
-          width: screenController.size.width * 0.020.w,
+          height: screenController.size.width * 0.018.w,
+          width: screenController.size.width * 0.018.w,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             color: AppColors.accentColor,
@@ -117,8 +118,8 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
         ).commonSymmetricPadding(horizontal: 2),
 
         Container(
-          height: screenController.size.width * 0.020.w,
-          width: screenController.size.width * 0.020.w,
+          height: screenController.size.width * 0.018.w,
+          width: screenController.size.width * 0.018.w,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             color: AppColors.accentColor,
@@ -129,8 +130,8 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
         ).commonSymmetricPadding(horizontal: 2),
 
         Container(
-          height: screenController.size.width * 0.020.w,
-          width: screenController.size.width * 0.020.w,
+          height: screenController.size.width * 0.018.w,
+          width: screenController.size.width * 0.018.w,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             color: AppColors.accentColor,
@@ -141,8 +142,8 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
         ).commonSymmetricPadding(horizontal: 2),
 
         Container(
-          height: screenController.size.width * 0.020.w,
-          width: screenController.size.width * 0.020.w,
+          height: screenController.size.width * 0.018.w,
+          width: screenController.size.width * 0.018.w,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             color: AppColors.accentColor,
