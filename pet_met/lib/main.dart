@@ -33,8 +33,7 @@ class MyApp extends StatelessWidget {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           theme: appThemeData,
-          defaultTransition: Transition.size,
-          initialRoute: AppRouteNames.initialRoute,
+          initialRoute: AppRouteNames.splashRoute,
           getPages: AppRoutes().routes,
         );
       },

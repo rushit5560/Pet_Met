@@ -25,36 +25,55 @@ class CustomLightTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: fieldController,
-      validator: validator,
-      textInputAction: textInputAction,
-      keyboardType: textInputType,
-      style: TextStyle(
-        color: AppColors.blackTextColor,
-        fontSize: 13.sp,
-        fontWeight: FontWeight.w400,
-        decoration: TextDecoration.none,
-      ),
-      decoration: InputDecoration(
-        fillColor: AppColors.whiteColor,
-        filled: true,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 15),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+    return Stack(
+      children: [
+        Container(
+          height: height,
+          width: width,
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.greyTextColor.withOpacity(0.25),
+                blurRadius: 35,
+                spreadRadius: 1,
+                offset: const Offset(0, 0),
+              ),
+            ],
+          ),
         ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+        TextFormField(
+          controller: fieldController,
+          validator: validator,
+          textInputAction: textInputAction,
+          keyboardType: textInputType,
+          style: TextStyle(
+            color: AppColors.blackTextColor,
+            fontSize: 13.sp,
+            fontWeight: FontWeight.w400,
+            decoration: TextDecoration.none,
+          ),
+          decoration: InputDecoration(
+            fillColor: AppColors.whiteColor,
+            filled: true,
+            contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+            ),
+            hintText: hintText,
+            hintStyle: TextStyle(
+              color: AppColors.greyTextColor,
+              fontSize: 13.sp,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
         ),
-        hintText: hintText,
-        hintStyle: TextStyle(
-          color: AppColors.greyTextColor,
-          fontSize: 13.sp,
-          fontWeight: FontWeight.w400,
-        ),
-      ),
+      ],
     );
   }
 }

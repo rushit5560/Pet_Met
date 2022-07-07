@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:pet_met/controllers/home_controller.dart';
 import 'package:pet_met/controllers/index_screen_controller.dart';
 import 'package:pet_met/screens/home_screen/widgets/home_screen_widgets.dart';
+import 'package:pet_met/screens/index_screen/widgets/index_screen_widgets.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_passfield.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
 import 'package:pet_met/utils/themedata.dart';
@@ -37,7 +38,8 @@ class IndexScreenState extends State<IndexScreen> {
       androidCloseOnBackTap: true,
       mainScreenTapClose: true,
       moveMenuScreen: false,
-      shrinkMainScreen: false,
+      // shrinkMainScreen: true,
+      // sh
       style: DrawerStyle.defaultStyle,
       controller: controller.drawerController,
       menuBackgroundColor: AppColors.whiteColor,
@@ -67,7 +69,7 @@ class IndexScreenState extends State<IndexScreen> {
               });
             },
             backgroundColor: AppColors.accentColor,
-            borderRadius: const BorderRadius.all(const Radius.circular(20)),
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
             //new
             hasInk: true, //new, gives a cute ink effect
             inkColor:
@@ -180,7 +182,7 @@ class IndexScreenState extends State<IndexScreen> {
               ),
               Align(
                 alignment: Alignment.centerLeft,
-                child: Image.asset("assets/images/bg_shade.png"),
+                child: Image.asset("assets/shades/bg_shade_left.png"),
               ),
               controller.screenPages[controller.selectedbottomIndex.value],
             ],

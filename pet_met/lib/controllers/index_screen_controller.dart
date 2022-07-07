@@ -10,7 +10,7 @@ class IndexScreenController extends GetxController {
 
   RxBool isOpened = false.obs;
 
-  RxInt selectedbottomIndex = 0.obs;
+  RxInt selectedbottomIndex = 2.obs;
 
   var drawerController = ZoomDrawerController();
 

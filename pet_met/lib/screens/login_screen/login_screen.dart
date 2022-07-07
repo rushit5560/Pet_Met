@@ -9,6 +9,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../utils/app_colors.dart';
 import '../../controllers/login_controller.dart';
+import '../../utils/common_widgets/background_widgets.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -26,9 +27,11 @@ class LoginScreen extends StatelessWidget {
             alignment: Alignment.topRight,
             child: Image.asset("assets/images/logintopright.png"),
           ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Image.asset("assets/images/bg_shade.png"),
+          BackGroundLeftShadow(
+            height: controller.size.height * 0.3,
+            width: controller.size.height * 0.3,
+            topPad: controller.size.height * 0.28,
+            leftPad: -controller.size.width * 0.15,
           ),
           Positioned(
             top: controller.size.height * 0.06,

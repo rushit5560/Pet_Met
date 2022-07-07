@@ -8,6 +8,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../utils/app_colors.dart';
 import '../../controllers/onboarding_controller.dart';
+import '../../utils/common_widgets/background_widgets.dart';
 import '../../utils/common_widgets/custom_light_passfield.dart';
 import '../../utils/common_widgets/custom_light_textfield.dart';
 import '../../utils/validations.dart';
@@ -28,9 +29,11 @@ class RegisterScreen extends StatelessWidget {
             alignment: Alignment.topRight,
             child: Image.asset("assets/images/logintopright.png"),
           ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Image.asset("assets/images/bg_shade.png"),
+          BackGroundLeftShadow(
+            height: controller.size.height * 0.3,
+            width: controller.size.height * 0.3,
+            topPad: controller.size.height * 0.28,
+            leftPad: -controller.size.width * 0.15,
           ),
           Positioned(
             top: controller.size.height * 0.06,
@@ -163,83 +166,7 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   // SizedBox(height: controller.size.height * 0.1),
                   Spacer(),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //   children: [
-                  //     Expanded(
-                  //       child: Container(
-                  //         height: controller.size.height * 0.065,
-                  //         decoration: BoxDecoration(
-                  //           color: AppColors.whiteColor,
-                  //           borderRadius: BorderRadius.circular(12),
-                  //           boxShadow: [
-                  //             BoxShadow(
-                  //               color: AppColors.greyTextColor.withOpacity(0.2),
-                  //               spreadRadius: 15,
-                  //               blurRadius: 20,
-                  //               offset: const Offset(0, 5),
-                  //             ),
-                  //           ],
-                  //         ),
-                  //         child: Row(
-                  //           mainAxisAlignment: MainAxisAlignment.center,
-                  //           children: [
-                  //             Image.asset(
-                  //               "assets/images/gmailicon.png",
-                  //               height: 25,
-                  //             ),
-                  //             const SizedBox(width: 15),
-                  //             Text(
-                  //               "Gmail",
-                  //               style: TextStyle(
-                  //                 color: AppColors.accentTextColor,
-                  //                 fontSize: 12.sp,
-                  //                 fontWeight: FontWeight.bold,
-                  //               ),
-                  //             )
-                  //           ],
-                  //         ),
-                  //       ),
-                  //     ),
-                  //     SizedBox(width: 15),
-                  //     Expanded(
-                  //       child: Container(
-                  //         height: controller.size.height * 0.065,
-                  //         decoration: BoxDecoration(
-                  //           color: AppColors.whiteColor,
-                  //           borderRadius: BorderRadius.circular(12),
-                  //           boxShadow: [
-                  //             BoxShadow(
-                  //               color: AppColors.greyTextColor.withOpacity(0.2),
-                  //               spreadRadius: 15,
-                  //               blurRadius: 20,
-                  //               offset: const Offset(0, 5),
-                  //             ),
-                  //           ],
-                  //         ),
-                  //         child: Row(
-                  //           mainAxisAlignment: MainAxisAlignment.center,
-                  //           children: [
-                  //             Image.asset(
-                  //               "assets/images/fbicon.png",
-                  //               height: 25,
-                  //             ),
-                  //             const SizedBox(width: 15),
-                  //             Text(
-                  //               "Facebook",
-                  //               style: TextStyle(
-                  //                 color: AppColors.accentTextColor,
-                  //                 fontSize: 12.sp,
-                  //                 fontWeight: FontWeight.bold,
-                  //               ),
-                  //             )
-                  //           ],
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
-                  // SizedBox(height: controller.size.height * 0.12),
+
                   Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -254,7 +181,7 @@ class RegisterScreen extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          // Get.toNamed(AppRouteNames.registerRoute);
+                          Get.back();
                         },
                         child: Text(
                           "Login",

@@ -5,58 +5,76 @@ import 'package:sizer/sizer.dart';
 
 import '../../../controllers/home_controller.dart';
 
-class BuildMenu extends StatelessWidget {
-  BuildMenu({
+class DogDisplayWidget extends StatelessWidget {
+  const DogDisplayWidget({
     Key? key,
   }) : super(key: key);
 
-  final controller = Get.find<HomeController>();
-
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Stack(
-        children: [
-          Align(
-            alignment: Alignment.topRight,
-            child: Image.asset("assets/images/logintopright.png"),
+    final size = Get.size;
+    return Stack(
+      alignment: Alignment.centerRight,
+      children: [
+        Container(
+          height: size.width * 0.38,
+          width: size.width * 0.43,
+          margin: EdgeInsets.only(right: 10),
+          decoration: BoxDecoration(
+            color: AppColors.whiteColor,
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(12),
+              bottomRight: Radius.circular(12),
+            ),
           ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Image.asset("assets/images/bg_shade.png"),
-          ),
-          Positioned(
-            top: controller.size.height * 0.03,
-            left: controller.size.width * 0.1,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(
-                  "assets/images/user_ellipse.png",
-                  width: 40,
-                  height: 40,
-                  // width: controller.size.width * 0.05,
+                Text(
+                  "Sola",
+                  style: TextStyle(
+                    color: AppColors.accentTextColor,
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                const SizedBox(width: 15),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                // SizedBox(height: 4),
+                Text(
+                  "AccoAdyssinian Dog",
+                  style: TextStyle(
+                    color: AppColors.blackTextColor.withOpacity(0.6),
+                    fontSize: 10.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                SizedBox(height: 12),
+                Text(
+                  "Female, 2 Years Old",
+                  style: TextStyle(
+                    color: AppColors.greyTextColor,
+                    fontSize: 11.sp,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                SizedBox(height: 25),
+                Row(
                   children: [
-                    Text(
-                      "Miroslava Savitskaya",
-                      style: TextStyle(
-                        color: AppColors.accentTextColor,
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    SizedBox(width: 3),
+                    Image.asset(
+                      "assets/icons/location.png",
+                      height: 16,
+                      color: AppColors.blackTextColor.withOpacity(0.6),
                     ),
+                    SizedBox(width: 8),
                     Text(
-                      "Active Status",
+                      "Distance: 3.6 km",
                       style: TextStyle(
-                        color: AppColors.greyTextColor,
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w400,
+                        color: AppColors.blackTextColor.withOpacity(0.6),
+                        fontSize: 10.sp,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
@@ -64,234 +82,25 @@ class BuildMenu extends StatelessWidget {
               ],
             ),
           ),
-          SingleChildScrollView(
-            padding:
-                EdgeInsets.only(top: controller.size.height * 0.18, left: 5),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                drawerListTile(
-                  onTap: () {},
-                  leading: Image.asset(
-                    "assets/icons/home.png",
-                    height: 24,
-                  ),
-                  titleWidget: Text(
-                    "Home",
-                    style: TextStyle(
-                      color: AppColors.accentTextColor,
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              height: size.height * 0.25,
+              width: size.width * 0.45,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(12),
                 ),
-                drawerListTile(
-                  onTap: () {},
-                  leading: Image.asset(
-                    "assets/icons/adoption.png",
-                    color: AppColors.greyTextColor,
-                    height: 24,
-                  ),
-                  titleWidget: Text(
-                    "Pet Care",
-                    style: TextStyle(
-                      color: AppColors.greyTextColor,
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
+                image: DecorationImage(
+                  image: AssetImage("assets/images/dog1.png"),
                 ),
-                drawerListTile(
-                  onTap: () {},
-                  leading: Image.asset(
-                    "assets/icons/phone.png",
-                    color: AppColors.greyTextColor,
-                    height: 24,
-                  ),
-                  titleWidget: Text(
-                    "Support",
-                    style: TextStyle(
-                      color: AppColors.greyTextColor,
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-                drawerListTile(
-                  onTap: () {},
-                  leading: Image.asset(
-                    "assets/icons/about.png",
-                    color: AppColors.greyTextColor,
-                    height: 24,
-                  ),
-                  titleWidget: Text(
-                    "About",
-                    style: TextStyle(
-                      color: AppColors.greyTextColor,
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-                drawerListTile(
-                  onTap: () {},
-                  leading: Image.asset(
-                    "assets/icons/question.png",
-                    color: AppColors.greyTextColor,
-                    height: 24,
-                  ),
-                  titleWidget: Text(
-                    "Faq",
-                    style: TextStyle(
-                      color: AppColors.greyTextColor,
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-                drawerListTile(
-                  onTap: () {},
-                  leading: Image.asset(
-                    "assets/icons/lock.png",
-                    color: AppColors.greyTextColor,
-                    height: 24,
-                  ),
-                  titleWidget: Text(
-                    "Privacy Policy",
-                    style: TextStyle(
-                      color: AppColors.greyTextColor,
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-                drawerListTile(
-                  onTap: () {},
-                  leading: Image.asset(
-                    "assets/icons/share.png",
-                    color: AppColors.greyTextColor,
-                    height: 24,
-                  ),
-                  titleWidget: Text(
-                    "Share App",
-                    style: TextStyle(
-                      color: AppColors.greyTextColor,
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-                drawerListTile(
-                  onTap: () {},
-                  leading: Image.asset(
-                    "assets/icons/delete.png",
-                    color: AppColors.greyTextColor,
-                    height: 24,
-                  ),
-                  titleWidget: Text(
-                    "Delete Account",
-                    style: TextStyle(
-                      color: AppColors.greyTextColor,
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-                drawerListTile(
-                  onTap: () {},
-                  leading: Image.asset(
-                    "assets/icons/star.png",
-                    color: AppColors.greyTextColor,
-                    height: 24,
-                  ),
-                  titleWidget: Text(
-                    "Rate App",
-                    style: TextStyle(
-                      color: AppColors.greyTextColor,
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Positioned(
-            bottom: controller.size.height * 0.08,
-            left: 20,
-            child: IntrinsicHeight(
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          "assets/icons/paintboard.png",
-                          height: 28,
-                        ),
-                        const SizedBox(width: 12),
-                        Text(
-                          "Theme",
-                          style: TextStyle(
-                            color: AppColors.greyTextColor,
-                            fontSize: 13.sp,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  const SizedBox(
-                    height: 20,
-                    child: VerticalDivider(
-                      color: AppColors.greyTextColor,
-                      thickness: 1.5,
-                      width: 10,
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Row(
-                      children: [
-                        Text(
-                          "Logout",
-                          style: TextStyle(
-                            color: AppColors.greyTextColor,
-                            fontSize: 13.sp,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
               ),
             ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget drawerListTile({
-    Function()? onTap,
-    Widget? leading,
-    Widget? titleWidget,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: ListTile(
-        onTap: onTap,
-        leading: leading,
-        minLeadingWidth: 15,
-        title: titleWidget,
-        dense: true,
-        style: ListTileStyle.list,
-      ),
+          ],
+        ),
+      ],
     );
   }
 }
