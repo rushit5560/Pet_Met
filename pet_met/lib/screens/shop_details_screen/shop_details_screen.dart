@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pet_met/controllers/shop_details_screen_controller/shop_details_screen_controller.dart';
+import 'package:pet_met/controllers/shop_details_screen_controller.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
 import 'package:pet_met/utils/enums.dart';

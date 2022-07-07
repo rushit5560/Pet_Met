@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pet_met/controllers/shop_and_grooming_screen_controller/shop_and_grooming_screen_controller.dart';
+import 'package:pet_met/controllers/shop_and_grooming_screen_controller.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/background_widgets.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
