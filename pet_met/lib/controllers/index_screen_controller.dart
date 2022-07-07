@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/screens/home_screen/home_screen.dart';
+import 'package:pet_met/screens/shop_and_grooming_screen/shop_and_grooming_screen.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 
 class IndexScreenController extends GetxController {
@@ -16,7 +17,7 @@ class IndexScreenController extends GetxController {
 
   List screenPages = [
     HomeScreen(),
-    HomeScreen(),
+    ShopAndGroomingScreen(),
     HomeScreen(),
     HomeScreen(),
     HomeScreen(),
