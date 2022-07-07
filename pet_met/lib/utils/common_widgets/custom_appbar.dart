@@ -21,13 +21,20 @@ class CustomAppBar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Left Side Button Module
-          SizedBox(
-            height: 25,
-            width: 25,
-            child: appBarOption == AppBarOption.singleBackButtonOption
-                ? Image.asset(AppIcons.backButtonImg)
-                : Container(),
-          ).commonAllSidePadding(padding: 10),
+          GestureDetector(
+            onTap: () {
+              if(appBarOption == AppBarOption.singleBackButtonOption) {
+                Get.back();
+              }
+            },
+            child: SizedBox(
+              height: 25,
+              width: 25,
+              child: appBarOption == AppBarOption.singleBackButtonOption
+                  ? Image.asset(AppIcons.backButtonImg)
+                  : Container(),
+            ).commonAllSidePadding(padding: 10),
+          ),
 
 
 

@@ -3,6 +3,7 @@ import 'package:pet_met/screens/home_screen/home_screen.dart';
 import 'package:pet_met/screens/index_screen/index_screen.dart';
 import 'package:pet_met/screens/login_screen/login_screen.dart';
 import 'package:pet_met/screens/register_screen/register_screen.dart';
+import 'package:pet_met/screens/shop_details_screen/shop_details_screen.dart';
 import 'package:pet_met/screens/upload_pet_screen/upload_pet_screen.dart';
 import 'package:pet_met/screens/user_profile_edit_screen/user_profile_edit_screen.dart';
 
@@ -66,6 +67,13 @@ class AppRoutes {
       name: AppRouteNames.uploadPetRoute,
       page: () => UploadPetScreen(),
       transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+
+    GetPage(
+      name: AppRouteNames.shopDetailsScreenRoute,
+      page: () => ShopDetailsScreen(),
+      transition: Transition.zoom,
       transitionDuration: const Duration(milliseconds: 500),
     ),
   ];
