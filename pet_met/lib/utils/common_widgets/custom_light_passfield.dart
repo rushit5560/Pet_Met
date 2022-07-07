@@ -9,12 +9,18 @@ class CustomLightPassField extends StatefulWidget {
     this.height,
     this.width,
     this.hintText,
+    this.textInputAction,
+    this.validator,
+    this.textInputType,
   }) : super(key: key);
 
   final TextEditingController? fieldController;
   final double? height;
   final double? width;
   final String? hintText;
+  final String? Function(String?)? validator;
+  final TextInputAction? textInputAction;
+  final TextInputType? textInputType;
 
   @override
   State<CustomLightPassField> createState() => _CustomLightPassFieldState();
@@ -25,54 +31,53 @@ class _CustomLightPassFieldState extends State<CustomLightPassField> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: widget.height,
-      width: widget.width,
-      decoration: BoxDecoration(
-        color: AppColors.whiteColor,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.greyTextColor.withOpacity(0.2),
-            spreadRadius: 15,
-            blurRadius: 20,
-            offset: const Offset(0, 5),
-          ),
-        ],
+    return TextFormField(
+      obscureText: obscureText,
+      controller: widget.fieldController,
+      validator: widget.validator,
+      textInputAction: widget.textInputAction,
+      keyboardType: widget.textInputType,
+      style: TextStyle(
+        color: AppColors.blackTextColor,
+        fontSize: 13.sp,
+        fontWeight: FontWeight.w400,
+        decoration: TextDecoration.none,
       ),
-      child: Center(
-        child: TextFormField(
-          obscureText: obscureText,
-          controller: widget.fieldController,
-          decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(
-              horizontal: 15,
-              vertical: widget.height! * 0.25,
-            ),
-            border: InputBorder.none,
-            focusedBorder: InputBorder.none,
-            enabledBorder: InputBorder.none,
-            errorBorder: InputBorder.none,
-            disabledBorder: InputBorder.none,
-            hintText: widget.hintText,
-            hintStyle: TextStyle(
-              color: AppColors.greyTextColor,
-              fontSize: 13.sp,
-              fontWeight: FontWeight.w400,
-            ),
-            suffixIcon: IconButton(
-              onPressed: () {
-                setState(() {
-                  obscureText = !obscureText;
-                });
-              },
-              icon: Icon(
-                obscureText
-                    ? Icons.remove_red_eye_outlined
-                    : Icons.remove_red_eye_rounded,
-                color: AppColors.greyTextColor,
-              ),
-            ),
+      decoration: InputDecoration(
+        fillColor: AppColors.whiteColor,
+        filled: true,
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: 15,
+          vertical: widget.height! * 0.25,
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+        ),
+        // enabledBorder: InputBorder.none,
+        // errorBorder: InputBorder.none,
+        // disabledBorder: InputBorder.none,
+        hintText: widget.hintText,
+        hintStyle: TextStyle(
+          color: AppColors.greyTextColor,
+          fontSize: 13.sp,
+          fontWeight: FontWeight.w400,
+        ),
+        suffixIcon: IconButton(
+          onPressed: () {
+            setState(() {
+              obscureText = !obscureText;
+            });
+          },
+          icon: Icon(
+            obscureText
+                ? Icons.remove_red_eye_outlined
+                : Icons.remove_red_eye_rounded,
+            color: AppColors.greyTextColor,
           ),
         ),
       ),

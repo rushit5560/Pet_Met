@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:pet_met/screens/splash/splash_screen.dart';
 
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/app_routes.dart';
+import 'package:pet_met/utils/themedata.dart';
 import 'package:sizer/sizer.dart';
 
 void main() {
@@ -32,16 +32,10 @@ class MyApp extends StatelessWidget {
       builder: (context, orientation, deviceType) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            primarySwatch: Colors.purple,
-            fontFamily: "Lato",
-          ),
-          defaultTransition: Transition.cupertinoDialog,
-          smartManagement: SmartManagement.full,
+          theme: appThemeData,
+          defaultTransition: Transition.size,
           initialRoute: AppRouteNames.initialRoute,
           getPages: AppRoutes().routes,
-          home: SplashScreen(),
         );
       },
     );

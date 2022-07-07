@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 
@@ -11,10 +13,10 @@ class SplashController extends GetxController {
   }
 
   redirectNextScreen() {
-    return Future.delayed(
+    return Timer(
       const Duration(milliseconds: 2500),
       () {
-        Get.toNamed(AppRouteNames.onboardingRoute);
+        Get.offNamed(AppRouteNames.onboardingRoute);
       },
     );
   }

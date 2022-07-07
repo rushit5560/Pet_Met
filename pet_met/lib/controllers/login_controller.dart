@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../utils/app_route_names.dart';
+
 class LoginController extends GetxController {
   final size = Get.size;
 
   var mailController = TextEditingController();
   var passController = TextEditingController();
   var selectedPageIndex = 0.obs;
+
+  final formKey = GlobalKey<FormState>();
 
   List<OnBoardingInfo> onBoardingPages = [
     OnBoardingInfo(
@@ -31,6 +35,22 @@ class LoginController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+  }
+
+  submitLoginForm() {
+    if (formKey.currentState!.validate()) {
+      try {
+        ScaffoldMessenger.of(Get.context!).showSnackBar(
+          SnackBar(
+            content: Text("Form Submitted"),
+            duration: Duration(seconds: 3),
+          ),
+        );
+        Get.toNamed(AppRouteNames.indexScreenRoute);
+      } catch (e) {
+        throw e;
+      }
+    }
   }
 }
 

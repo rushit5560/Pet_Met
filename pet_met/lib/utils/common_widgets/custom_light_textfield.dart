@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:sizer/sizer.dart';
 
@@ -9,49 +10,49 @@ class CustomLightTextField extends StatelessWidget {
     this.height,
     this.width,
     this.hintText,
+    this.validator,
+    this.textInputType,
+    this.textInputAction,
   }) : super(key: key);
 
   final TextEditingController? fieldController;
   final double? height;
   final double? width;
   final String? hintText;
+  final String? Function(String?)? validator;
+  final TextInputAction? textInputAction;
+  final TextInputType? textInputType;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      width: width,
-      decoration: BoxDecoration(
-        color: AppColors.whiteColor,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.greyTextColor.withOpacity(0.2),
-            spreadRadius: 15,
-            blurRadius: 20,
-            offset: const Offset(0, 5),
-          ),
-        ],
+    return TextFormField(
+      controller: fieldController,
+      validator: validator,
+      textInputAction: textInputAction,
+      keyboardType: textInputType,
+      style: TextStyle(
+        color: AppColors.blackTextColor,
+        fontSize: 13.sp,
+        fontWeight: FontWeight.w400,
+        decoration: TextDecoration.none,
       ),
-      child: Center(
-        child: TextFormField(
-          controller: fieldController,
-          decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(
-              horizontal: 15,
-            ),
-            border: InputBorder.none,
-            focusedBorder: InputBorder.none,
-            enabledBorder: InputBorder.none,
-            errorBorder: InputBorder.none,
-            disabledBorder: InputBorder.none,
-            hintText: hintText,
-            hintStyle: TextStyle(
-              color: AppColors.greyTextColor,
-              fontSize: 13.sp,
-              fontWeight: FontWeight.w400,
-            ),
-          ),
+      decoration: InputDecoration(
+        fillColor: AppColors.whiteColor,
+        filled: true,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+        ),
+        hintText: hintText,
+        hintStyle: TextStyle(
+          color: AppColors.greyTextColor,
+          fontSize: 13.sp,
+          fontWeight: FontWeight.w400,
         ),
       ),
     );
