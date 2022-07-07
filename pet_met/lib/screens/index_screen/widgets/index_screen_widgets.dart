@@ -4,14 +4,22 @@ import 'package:pet_met/utils/app_route_names.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../controllers/home_controller.dart';
+import '../../../controllers/index_screen_controller.dart';
 import '../../../utils/app_colors.dart';
 
-class BuildMenu extends StatelessWidget {
+class BuildMenu extends StatefulWidget {
   BuildMenu({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<BuildMenu> createState() => _BuildMenuState();
+}
+
+class _BuildMenuState extends State<BuildMenu> {
   final controller = Get.find<HomeController>();
+
+  final indexController = Get.find<IndexScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -153,6 +161,7 @@ class BuildMenu extends StatelessWidget {
                 ),
                 drawerListTile(
                   onTap: () {
+                    indexController.drawerController.close!();
                     Get.toNamed(AppRouteNames.privacyPolicyScreenRoute);
                   },
                   leading: Image.asset(
@@ -186,7 +195,129 @@ class BuildMenu extends StatelessWidget {
                   ),
                 ),
                 drawerListTile(
-                  onTap: () {},
+                  onTap: () async {
+                    return showDialog(
+                      barrierColor: AppColors.accentColor.withOpacity(0.3),
+                      context: context,
+                      builder: (ctx) => Dialog(
+                        backgroundColor: AppColors.whiteColor,
+                        shape: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 0,
+                            color: Colors.transparent,
+                          ),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 15,
+                            vertical: 25,
+                          ),
+                          height: controller.size.height * 0.28,
+                          width: controller.size.width * 0.8,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              const Icon(
+                                Icons.delete_forever,
+                                color: AppColors.redColor,
+                                size: 50,
+                              ),
+                              const SizedBox(height: 20),
+                              Text(
+                                "You want to delete account Permenetly.",
+                                textAlign: TextAlign.center,
+                                maxLines: 2,
+                                style: TextStyle(
+                                  color: AppColors.accentTextColor,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 15.sp,
+                                  height: 1.2,
+                                ),
+                              ),
+                              const SizedBox(height: 20),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      primary: AppColors.accentColor,
+                                      minimumSize:
+                                          Size(controller.size.width * 0.3, 35),
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 16),
+                                      shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(12),
+                                        ),
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "Yes",
+                                        style: TextStyle(
+                                          color: AppColors.whiteColor,
+                                          fontSize: 13.sp,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: controller.size.width * 0.05,
+                                  ),
+                                  ElevatedButton(
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Color(0xFFC4C4C4),
+                                      minimumSize:
+                                          Size(controller.size.width * 0.3, 35),
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 16),
+                                      shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(12),
+                                        ),
+                                      ),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "Close",
+                                        style: TextStyle(
+                                          color: AppColors.blackTextColor,
+                                          fontSize: 13.sp,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        // title: Text("Show Alert Dialog Box"),
+                        // content: Text("You have raised a Alert Dialog Box"),
+                        // actions: <Widget>[
+                        //   FlatButton(
+                        //     onPressed: () {
+                        //       Navigator.of(ctx).pop();
+                        //     },
+                        //     child: Text("Ok"),
+                        //   ),
+                        // ],
+                      ),
+                    );
+                  },
                   leading: Image.asset(
                     "assets/icons/delete.png",
                     color: AppColors.greyTextColor,
@@ -202,7 +333,9 @@ class BuildMenu extends StatelessWidget {
                   ),
                 ),
                 drawerListTile(
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(AppRouteNames.rateAppRoute);
+                  },
                   leading: Image.asset(
                     "assets/icons/star.png",
                     color: AppColors.greyTextColor,

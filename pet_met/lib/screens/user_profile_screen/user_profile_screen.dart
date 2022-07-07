@@ -186,7 +186,7 @@ class UserProfileScreen extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
-                              children: const [
+                              children: [
                                 ContactContainerWidget(
                                   imagePath: "assets/images/info_green.png",
                                 ),
@@ -195,8 +195,13 @@ class UserProfileScreen extends StatelessWidget {
                                   imagePath: "assets/images/phone_green.png",
                                 ),
                                 SizedBox(width: 20),
-                                ContactContainerWidget(
-                                  imagePath: "assets/images/locate_green.png",
+                                GestureDetector(
+                                  onTap: () {
+                                    Get.toNamed(AppRouteNames.addressRoute);
+                                  },
+                                  child: ContactContainerWidget(
+                                    imagePath: "assets/images/locate_green.png",
+                                  ),
                                 ),
                               ],
                             ),
@@ -209,7 +214,7 @@ class UserProfileScreen extends StatelessWidget {
                             child: Row(
                               children: [
                                 Text(
-                                  "Dog Owner Feild",
+                                  "Dog Owner Field",
                                   style: TextStyle(
                                     color: AppColors.accentTextColor,
                                     fontSize: 13.sp,
@@ -220,19 +225,19 @@ class UserProfileScreen extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            height: controller.size.width * 0.16,
+                            height: 8.h,
                             child: ListView.separated(
                               scrollDirection: Axis.horizontal,
                               itemCount: controller.dogsTopList.length,
                               separatorBuilder: (context, index) {
-                                return const SizedBox(width: 10);
+                                return const SizedBox(width: 8);
                               },
                               itemBuilder: (context, index) {
                                 return Stack(
                                   children: [
                                     Container(
-                                      height: controller.size.width * 0.16,
-                                      width: controller.size.width * 0.16,
+                                      height: 8.h,
+                                      width: 7.h,
                                       margin: const EdgeInsets.only(
                                           bottom: 5, right: 5),
                                       decoration: BoxDecoration(
@@ -251,16 +256,22 @@ class UserProfileScreen extends StatelessWidget {
                                         ? Positioned(
                                             right: 0,
                                             bottom: 0,
-                                            child: Container(
-                                              height: 15,
-                                              width: 15,
-                                              decoration: const BoxDecoration(
-                                                  color: Colors.green,
-                                                  shape: BoxShape.circle),
-                                              child: const Icon(
-                                                Icons.add,
-                                                color: AppColors.whiteColor,
-                                                size: 12,
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                Get.toNamed(AppRouteNames
+                                                    .uploadPetRoute);
+                                              },
+                                              child: Container(
+                                                height: 15,
+                                                width: 15,
+                                                decoration: const BoxDecoration(
+                                                    color: Colors.green,
+                                                    shape: BoxShape.circle),
+                                                child: const Icon(
+                                                  Icons.add,
+                                                  color: AppColors.whiteColor,
+                                                  size: 12,
+                                                ),
                                               ),
                                             ),
                                           )

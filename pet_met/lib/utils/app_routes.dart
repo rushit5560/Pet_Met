@@ -1,10 +1,12 @@
 import 'package:get/get.dart';
+import 'package:pet_met/screens/address_screen/address_screen.dart';
 import 'package:pet_met/screens/home_screen/home_screen.dart';
 import 'package:pet_met/screens/index_screen/index_screen.dart';
 import 'package:pet_met/screens/login_screen/login_screen.dart';
 import 'package:pet_met/screens/pet_trainers_details_screen/pet_trainers_details_screen.dart';
 import 'package:pet_met/screens/pet_vets_and_ngo_details_screen/pet_vets_and_ngo_details_screen.dart';
 import 'package:pet_met/screens/privacy_policy_screen/privacy_policy_screen.dart';
+import 'package:pet_met/screens/rate_app_screen/rate_app_screen.dart';
 import 'package:pet_met/screens/register_screen/register_screen.dart';
 import 'package:pet_met/screens/shop_details_screen/shop_details_screen.dart';
 import 'package:pet_met/screens/upload_pet_screen/upload_pet_screen.dart';
@@ -72,31 +74,39 @@ class AppRoutes {
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 500),
     ),
-
     GetPage(
-      name: AppRouteNames.shopDetailsScreenRoute,
-      page: () => ShopDetailsScreen(),
-      transition: Transition.zoom,
+      name: AppRouteNames.rateAppRoute,
+      page: () => RateAppScreen(),
+      transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 500),
     ),
-
     GetPage(
       name: AppRouteNames.petVetsAndNgoDetailsScreenRoute,
       page: () => PetVetsAndNgoDetailsScreen(),
       transition: Transition.zoom,
       transitionDuration: const Duration(milliseconds: 500),
     ),
-
     GetPage(
       name: AppRouteNames.petTrainerDetailsScreenRoute,
       page: () => PetTrainersDetailsScreen(),
       transition: Transition.zoom,
       transitionDuration: const Duration(milliseconds: 500),
     ),
-
     GetPage(
       name: AppRouteNames.privacyPolicyScreenRoute,
       page: () => PrivacyPolicyScreen(),
+      transition: Transition.zoom,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: AppRouteNames.addressRoute,
+      page: () => AddressScreen(),
+      transition: Transition.zoom,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: AppRouteNames.shopDetailsScreenRoute,
+      page: () => ShopDetailsScreen(),
       transition: Transition.zoom,
       transitionDuration: const Duration(milliseconds: 500),
     ),

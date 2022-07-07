@@ -22,7 +22,6 @@ class VetsAndNgoListModule extends StatelessWidget {
     ).commonAllSidePadding(padding: 10);
   }
 
-
   Widget _vetsAndNgoListTile(String shopName) {
     return GestureDetector(
       onTap: () {
@@ -81,5 +80,4 @@ class VetsAndNgoListModule extends StatelessWidget {
       ).commonAllSidePadding(padding: 10),
     );
   }
-
 }
