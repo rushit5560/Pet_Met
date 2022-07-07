@@ -4,6 +4,7 @@ import 'package:pet_met/screens/index_screen/index_screen.dart';
 import 'package:pet_met/screens/login_screen/login_screen.dart';
 import 'package:pet_met/screens/pet_trainers_details_screen/pet_trainers_details_screen.dart';
 import 'package:pet_met/screens/pet_vets_and_ngo_details_screen/pet_vets_and_ngo_details_screen.dart';
+import 'package:pet_met/screens/privacy_policy_screen/privacy_policy_screen.dart';
 import 'package:pet_met/screens/register_screen/register_screen.dart';
 import 'package:pet_met/screens/shop_details_screen/shop_details_screen.dart';
 import 'package:pet_met/screens/upload_pet_screen/upload_pet_screen.dart';
@@ -89,6 +90,13 @@ class AppRoutes {
     GetPage(
       name: AppRouteNames.petTrainerDetailsScreenRoute,
       page: () => PetTrainersDetailsScreen(),
+      transition: Transition.zoom,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+
+    GetPage(
+      name: AppRouteNames.privacyPolicyScreenRoute,
+      page: () => PrivacyPolicyScreen(),
       transition: Transition.zoom,
       transitionDuration: const Duration(milliseconds: 500),
     ),

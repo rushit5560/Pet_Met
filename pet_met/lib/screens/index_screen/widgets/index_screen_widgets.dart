@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pet_met/utils/app_route_names.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../controllers/home_controller.dart';
@@ -151,7 +152,9 @@ class BuildMenu extends StatelessWidget {
                   ),
                 ),
                 drawerListTile(
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(AppRouteNames.privacyPolicyScreenRoute);
+                  },
                   leading: Image.asset(
                     "assets/icons/lock.png",
                     color: AppColors.greyTextColor,
