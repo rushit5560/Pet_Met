@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/screens/home_screen/home_screen.dart';
+import 'package:pet_met/screens/pet_meeting_and_breading_screen/pet_meeting_and_breading_screen.dart';
 import 'package:pet_met/screens/pet_trainers_screen/pet_trainers_screen.dart';
 import 'package:pet_met/screens/pet_vets_and_ngo_screen/pet_vets_and_ngo_screen.dart';
 import 'package:pet_met/screens/shop_and_grooming_screen/shop_and_grooming_screen.dart';
@@ -21,7 +22,7 @@ class IndexScreenController extends GetxController {
     ShopAndGroomingScreen(),
     PetTrainersScreen(),
     HomeScreen(),
-    HomeScreen(),
+    PetMeetingAndBreadingScreen(),
     PetVetsAndNgoScreen(),
   ];
 

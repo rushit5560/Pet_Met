@@ -3,8 +3,11 @@ import 'package:pet_met/screens/address_screen/address_screen.dart';
 import 'package:pet_met/screens/home_screen/home_screen.dart';
 import 'package:pet_met/screens/index_screen/index_screen.dart';
 import 'package:pet_met/screens/login_screen/login_screen.dart';
+
 import 'package:pet_met/screens/order_placed_screen/order_placed_screen.dart';
 import 'package:pet_met/screens/payment_failed_screen/payment_failed_screen.dart';
+import 'package:pet_met/screens/pet_meeting_and_breading_screen/pet_meeting_and_breading_screen.dart';
+
 import 'package:pet_met/screens/pet_trainers_details_screen/pet_trainers_details_screen.dart';
 import 'package:pet_met/screens/pet_vets_and_ngo_details_screen/pet_vets_and_ngo_details_screen.dart';
 import 'package:pet_met/screens/privacy_policy_screen/privacy_policy_screen.dart';
@@ -130,6 +133,13 @@ class AppRoutes {
     GetPage(
       name: AppRouteNames.paymentFailedRoute,
       page: () => PaymentFailedScreen(),
+      transition: Transition.zoom,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+
+    GetPage(
+      name: AppRouteNames.petMeetingAndBreadingScreenRoute,
+      page: () => PetMeetingAndBreadingScreen(),
       transition: Transition.zoom,
       transitionDuration: const Duration(milliseconds: 500),
     ),

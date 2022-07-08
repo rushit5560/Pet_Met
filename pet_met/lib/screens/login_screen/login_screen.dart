@@ -35,8 +35,10 @@ class LoginScreen extends StatelessWidget {
               leftPad: -controller.size.width * 0.15,
             ),
             Positioned(
+
               top: controller.size.height * 0.03,
               left: controller.size.width * 0.1,
+
               child: Image.asset(
                 "assets/images/petmet_logo.png",
                 width: controller.size.width * 0.25,
@@ -51,7 +53,9 @@ class LoginScreen extends StatelessWidget {
                 key: controller.formKey,
                 child: Column(
                   children: [
+
                     SizedBox(height: controller.size.height * 0.2),
+
                     Row(
                       children: [
                         Text(
@@ -59,6 +63,7 @@ class LoginScreen extends StatelessWidget {
                           style: TextStyle(
                             color: AppColors.accentTextColor,
                             fontSize: 22.sp,
+
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -77,7 +82,9 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ],
                     ),
+
                     SizedBox(height: 6.h),
+
                     CustomLightTextField(
                       fieldController: controller.mailController,
                       height: controller.size.height * 0.065,
@@ -167,6 +174,7 @@ class LoginScreen extends StatelessWidget {
                                 BoxShadow(
                                   color:
                                       AppColors.greyTextColor.withOpacity(0.2),
+
                                   spreadRadius: 15,
                                   blurRadius: 20,
                                   offset: const Offset(0, 5),
@@ -224,6 +232,7 @@ class LoginScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 4.h),
+
                     GestureDetector(
                       onTap: () {
                         controller.submitLoginForm();
@@ -250,6 +259,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 2.5.h),
+
                   ],
                 ),
               ),

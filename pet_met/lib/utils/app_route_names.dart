@@ -14,6 +14,7 @@ class AppRouteNames {
   static const String petTrainerDetailsScreenRoute =
       "/petTrainerDetailsScreenRoute";
   static const String privacyPolicyScreenRoute = "/privacyPolicyScreenRoute";
+  static const String petMeetingAndBreadingScreenRoute = "/petMeetingAndBreadingScreenRoute";
 
   static const String rateAppRoute = "/rateApp";
   static const String addressRoute = "/address";
