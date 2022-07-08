@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:pet_met/controllers/home_controller.dart';
 import 'package:pet_met/controllers/index_screen_controller.dart';
 import 'package:pet_met/screens/home_screen/widgets/home_screen_widgets.dart';
+import 'package:pet_met/screens/order_details_screen/order_details_screen.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_passfield.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
@@ -82,6 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Expanded(
               child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -92,6 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: ListView.separated(
                           scrollDirection: Axis.horizontal,
                           itemCount: controller.dogsTopList.length,
+                          physics: const BouncingScrollPhysics(),
                           separatorBuilder: (context, index) {
                             return const SizedBox(width: 10);
                           },
@@ -177,7 +180,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ],
                       ),
-                      DogDisplayWidget(),
+                      DogDisplayWidget(
+                        onTap: () {
+                          Get.toNamed(AppRouteNames.orderDetailsRoute);
+                        },
+                      ),
                       SizedBox(height: 10),
                       DogDisplayWidget(),
                     ],

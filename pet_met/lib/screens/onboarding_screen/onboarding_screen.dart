@@ -41,73 +41,75 @@ class OnboardingScreen extends StatelessWidget {
                 // width: controller.size.width,
               ),
             ),
-            PageView.builder(
-              controller: controller.pageController,
-              onPageChanged: controller.selectedPageIndex,
-              itemCount: controller.onBoardingPages.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  padding: EdgeInsets.symmetric(horizontal: 30),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(height: 10.h),
-                      // Spacer(),
-                      Image.asset(
-                        controller.onBoardingPages[index].imageAsset,
-                        height: 40.h,
-                      ),
-                      // SizedBox(height: 35.h),
-                      SizedBox(height: 9.h),
-                      Row(
-                        children: [
-                          Image.asset(
-                            controller.onBoardingPages[index].logo,
-                            width: 25.w,
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 4.h),
-                      Row(
-                        children: [
-                          Container(
-                            width: controller.size.width * 0.7,
-                            child: Text(
-                              controller.onBoardingPages[index].title,
-                              style: TextStyle(
-                                color: AppColors.blackTextColor,
-                                fontSize: 18.sp,
-                                fontWeight: FontWeight.bold,
-                                height: 1.2,
+            SafeArea(
+              child: PageView.builder(
+                controller: controller.pageController,
+                onPageChanged: controller.selectedPageIndex,
+                itemCount: controller.onBoardingPages.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    padding: EdgeInsets.symmetric(horizontal: 30),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 6.h),
+                        // Spacer(),
+                        Image.asset(
+                          controller.onBoardingPages[index].imageAsset,
+                          height: 40.h,
+                        ),
+                        // SizedBox(height: 35.h),
+                        SizedBox(height: 9.h),
+                        Row(
+                          children: [
+                            Image.asset(
+                              controller.onBoardingPages[index].logo,
+                              width: 25.w,
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 4.h),
+                        Row(
+                          children: [
+                            Container(
+                              width: controller.size.width * 0.7,
+                              child: Text(
+                                controller.onBoardingPages[index].title,
+                                style: TextStyle(
+                                  color: AppColors.blackTextColor,
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.bold,
+                                  height: 1.2,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 18),
-                      Row(
-                        children: [
-                          Container(
-                            width: controller.size.width * 0.8,
-                            child: Text(
-                              controller.onBoardingPages[index].description,
-                              //textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 11.sp,
-                                color: AppColors.greyTextColor,
-                                fontWeight: FontWeight.w400,
-                                height: 1.4,
+                          ],
+                        ),
+                        SizedBox(height: 18),
+                        Row(
+                          children: [
+                            Container(
+                              width: controller.size.width * 0.8,
+                              child: Text(
+                                controller.onBoardingPages[index].description,
+                                //textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 11.sp,
+                                  color: AppColors.greyTextColor,
+                                  fontWeight: FontWeight.w400,
+                                  height: 1.4,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Spacer(),
-                    ],
-                  ),
-                );
-              },
+                          ],
+                        ),
+                        Spacer(),
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),

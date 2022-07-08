@@ -1,6 +1,6 @@
 class AppRouteNames {
   static const String splashRoute = "/";
-  static const String onboardingRoute = "/onboarding";
+  static const String onBoardingRoute = "/onBoarding";
   static const String loginRoute = "/login";
   static const String registerRoute = "/register";
   static const String indexScreenRoute = "/index";
@@ -19,4 +19,9 @@ class AppRouteNames {
   static const String addressRoute = "/address";
   // static const String homeRoute = "/home";
   // static const String homeRoute = "/home";
+
+  // payment process routes
+  static const String orderDetailsRoute = "/orderDetails";
+  static const String orderPlacedRoute = "/orderPlaced";
+  static const String paymentFailedRoute = "/paymentFailed";
 }

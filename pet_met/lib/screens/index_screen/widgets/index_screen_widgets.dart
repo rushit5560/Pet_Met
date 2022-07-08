@@ -37,40 +37,46 @@ class _BuildMenuState extends State<BuildMenu> {
           Positioned(
             top: controller.size.height * 0.03,
             left: controller.size.width * 0.1,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset(
-                  "assets/images/user_ellipse.png",
-                  width: 40,
-                  height: 40,
-                  // width: controller.size.width * 0.05,
-                ),
-                const SizedBox(width: 15),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Miroslava Savitskaya",
-                      style: TextStyle(
-                        color: AppColors.accentTextColor,
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.bold,
+            child: GestureDetector(
+              onTap: () {
+                indexController.drawerController.close!();
+                Get.toNamed(AppRouteNames.userProfileRoute);
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    "assets/images/user_ellipse.png",
+                    width: 40,
+                    height: 40,
+                    // width: controller.size.width * 0.05,
+                  ),
+                  const SizedBox(width: 15),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Miroslava Savitskaya",
+                        style: TextStyle(
+                          color: AppColors.accentTextColor,
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    Text(
-                      "Active Status",
-                      style: TextStyle(
-                        color: AppColors.greyTextColor,
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w400,
+                      Text(
+                        "Active Status",
+                        style: TextStyle(
+                          color: AppColors.greyTextColor,
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
           SingleChildScrollView(

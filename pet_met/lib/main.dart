@@ -10,7 +10,7 @@ import 'package:sizer/sizer.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
+    SystemUiOverlayStyle(
       systemNavigationBarColor: AppColors.whiteColor,
       statusBarColor: AppColors.whiteColor,
       statusBarBrightness: Brightness.light,

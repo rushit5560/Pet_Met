@@ -14,72 +14,74 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFFFFFF),
-      body: Stack(
-        children: [
-          Container(
-            color: AppColors.accentColor.withOpacity(0.15),
-            width: controller.size.width,
-            height: controller.size.height,
-            child: Column(
-              children: [
-                SizedBox(height: 12.h),
-                Image.asset(
-                  "assets/images/splash_peoples1.png",
-                  fit: BoxFit.cover,
-                  width: 95.w,
-                ),
-                // Spacer(),
-                SizedBox(height: 8.h),
-                Image.asset(
-                  "assets/images/petmet_logo.png",
-                  fit: BoxFit.cover,
-                  width: 38.w,
-                ),
-                const SizedBox(height: 15),
-                Image.asset(
-                  "assets/images/petomate_text.png",
-                  fit: BoxFit.cover,
-                  width: 25.w,
-                ),
-
-                const SizedBox(height: 20),
-                Text(
-                  "``Your Personal pet Companion.,,",
-                  style: TextStyle(
-                    fontSize: 11.sp,
-                    color: AppColors.greyTextColor,
-                    fontWeight: FontWeight.w600,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Container(
+              color: AppColors.accentColor.withOpacity(0.15),
+              width: controller.size.width,
+              height: controller.size.height,
+              child: Column(
+                children: [
+                  SizedBox(height: 12.h),
+                  Image.asset(
+                    "assets/images/splash_peoples1.png",
+                    fit: BoxFit.cover,
+                    width: 95.w,
                   ),
-                ),
+                  // Spacer(),
+                  SizedBox(height: 8.h),
+                  Image.asset(
+                    "assets/images/petmet_logo.png",
+                    fit: BoxFit.cover,
+                    width: 38.w,
+                  ),
+                  const SizedBox(height: 15),
+                  Image.asset(
+                    "assets/images/petomate_text.png",
+                    fit: BoxFit.cover,
+                    width: 25.w,
+                  ),
 
-                const Spacer(flex: 3),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Image.asset(
-                      "assets/images/accent_cube.png",
-                      fit: BoxFit.cover,
+                  const SizedBox(height: 20),
+                  Text(
+                    "``Your Personal pet Companion.,,",
+                    style: TextStyle(
+                      fontSize: 11.sp,
+                      color: AppColors.greyTextColor,
+                      fontWeight: FontWeight.w600,
                     ),
-                    SizedBox(width: 12.w),
-                  ],
-                ),
-                const Spacer(flex: 2),
-                Text(
-                  "Adopt and sell pet on a smartphone. Easily to use and\ncute interface",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 10.sp,
-                    color: AppColors.blackTextColor,
-                    fontWeight: FontWeight.w400,
-                    height: 1.5,
                   ),
-                ),
-                const SizedBox(height: 40),
-              ],
+
+                  const Spacer(flex: 3),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Image.asset(
+                        "assets/images/accent_cube.png",
+                        fit: BoxFit.cover,
+                      ),
+                      SizedBox(width: 12.w),
+                    ],
+                  ),
+                  const Spacer(flex: 2),
+                  Text(
+                    "Adopt and sell pet on a smartphone. Easily to use and\ncute interface",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 10.sp,
+                      color: AppColors.blackTextColor,
+                      fontWeight: FontWeight.w400,
+                      height: 1.5,
+                    ),
+                  ),
+                  const SizedBox(height: 40),
+                ],
+              ),
             ),
-          ),
-          backgroundWaveShape(controller),
-        ],
+            backgroundWaveShape(controller),
+          ],
+        ),
       ),
     );
   }
