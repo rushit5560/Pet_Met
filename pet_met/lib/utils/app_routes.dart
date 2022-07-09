@@ -1,11 +1,16 @@
 import 'package:get/get.dart';
+import 'package:pet_met/screens/about_screen/about_screen.dart';
+import 'package:pet_met/screens/add_address_screen/add_address_screen.dart';
 import 'package:pet_met/screens/address_screen/address_screen.dart';
+import 'package:pet_met/screens/faq_screen/faq_screen.dart';
+import 'package:pet_met/screens/forgot_password_screen/forgot_password_screen.dart';
 import 'package:pet_met/screens/home_screen/home_screen.dart';
 import 'package:pet_met/screens/index_screen/index_screen.dart';
 import 'package:pet_met/screens/login_screen/login_screen.dart';
 
 import 'package:pet_met/screens/order_placed_screen/order_placed_screen.dart';
 import 'package:pet_met/screens/payment_failed_screen/payment_failed_screen.dart';
+import 'package:pet_met/screens/pet_care_info_screen/pet_care_info_screen.dart';
 import 'package:pet_met/screens/pet_meeting_and_breading_screen/pet_meeting_and_breading_screen.dart';
 
 import 'package:pet_met/screens/pet_trainers_details_screen/pet_trainers_details_screen.dart';
@@ -21,7 +26,10 @@ import 'package:pet_met/utils/app_route_names.dart';
 
 import '../screens/onboarding_screen/onboarding_screen.dart';
 import '../screens/order_details_screen/order_details_screen.dart';
+import '../screens/pet_meeting_details_screen/pet_meeting_details_screen.dart';
+import '../screens/pet_meeting_list_screen/pet_meeting_list_screen.dart';
 import '../screens/splash_screen/splash_screen.dart';
+import '../screens/support_screen/support_screen.dart';
 import '../screens/user_profile_screen/user_profile_screen.dart';
 
 class AppRoutes {
@@ -113,6 +121,55 @@ class AppRoutes {
     GetPage(
       name: AppRouteNames.shopDetailsScreenRoute,
       page: () => ShopDetailsScreen(),
+      transition: Transition.native,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: AppRouteNames.addAddressRoute,
+      page: () => AddAddressScreen(),
+      transition: Transition.native,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: AppRouteNames.forgotPassRoute,
+      page: () => ForgotPasswordScreen(),
+      transition: Transition.native,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: AppRouteNames.petCareInfoRoute,
+      page: () => PetCareInfoScreen(),
+      transition: Transition.native,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: AppRouteNames.supportRoute,
+      page: () => SupportScreen(),
+      transition: Transition.native,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: AppRouteNames.aboutRoute,
+      page: () => AboutScreen(),
+      transition: Transition.native,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: AppRouteNames.faqRoute,
+      page: () => FaqScreen(),
+      transition: Transition.native,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+
+    GetPage(
+      name: AppRouteNames.petMeetingListScreenRoute,
+      page: () => PetMeetingListScreen(),
+      transition: Transition.native,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: AppRouteNames.petMeetingDetailsScreenRoute,
+      page: () => PetMeetingDetailsScreen(),
       transition: Transition.native,
       transitionDuration: const Duration(milliseconds: 500),
     ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/address_controller.dart';
+import 'package:pet_met/utils/app_route_names.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../utils/app_colors.dart';
@@ -34,7 +35,8 @@ class AddressScreen extends StatelessWidget {
             Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+                  padding: const EdgeInsets.only(
+                      top: 20, left: 20, right: 20, bottom: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -55,175 +57,216 @@ class AddressScreen extends StatelessWidget {
                   child: SingleChildScrollView(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 25, vertical: 20),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 8),
-                          Text(
-                            "Addresses",
-                            style: TextStyle(
-                              color: AppColors.accentTextColor,
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.bold,
+                          horizontal: 25, vertical: 15),
+                      child: Container(
+                        height: 75.h,
+                        width: double.infinity,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // const SizedBox(height: 8),
+                            Text(
+                              "Addresses",
+                              style: TextStyle(
+                                color: AppColors.accentTextColor,
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 45),
-                          Container(
-                            height: controller.size.height / 4,
-                            width: double.infinity,
-                            child: ListView.builder(
-                              itemCount: controller.addressList.length,
-                              itemBuilder: (context, index) {
-                                return Container(
-                                  // height: 50,
-                                  margin: EdgeInsets.only(bottom: 20),
-                                  width: double.infinity,
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 15, horizontal: 20),
-                                  decoration: BoxDecoration(
-                                    color: AppColors.whiteColor,
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(12),
-                                    ),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: AppColors.greyTextColor
-                                            .withOpacity(0.25),
-                                        blurRadius: 35,
-                                        spreadRadius: 1,
-                                        offset: const Offset(0, 0),
+                            // Spacer(),
+                            const SizedBox(height: 35),
+                            Container(
+                              height: 12.h * controller.addressList.length,
+                              width: double.infinity,
+                              child: ListView.builder(
+                                itemCount: controller.addressList.length,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    margin: EdgeInsets.only(bottom: 20),
+                                    width: double.infinity,
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 15, horizontal: 20),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.whiteColor,
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(12),
                                       ),
-                                    ],
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: AppColors.greyTextColor
+                                              .withOpacity(0.25),
+                                          blurRadius: 35,
+                                          spreadRadius: 1,
+                                          offset: const Offset(0, 0),
+                                        ),
+                                      ],
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              controller
+                                                  .addressList[index].title!,
+                                              style: TextStyle(
+                                                color: AppColors.blackTextColor,
+                                                fontSize: 13.sp,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            // SizedBox(height: 8),
+                                            Text(
+                                              controller
+                                                  .addressList[index].address!,
+                                              style: TextStyle(
+                                                color: AppColors.greyTextColor,
+                                                fontSize: 11.sp,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Container(
+                                          height: 40,
+                                          width: 40,
+                                          child: Checkbox(
+                                            checkColor:
+                                                AppColors.blackTextColor,
+                                            activeColor: AppColors.blackColor,
+                                            fillColor: MaterialStateProperty
+                                                .resolveWith<Color>(
+                                              (Set<MaterialState> states) {
+                                                if (states.contains(
+                                                    MaterialState.selected))
+                                                  return AppColors.whiteColor;
+                                                return AppColors
+                                                    .greyTextColor; // Use the default value.
+                                              },
+                                            ),
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(4))),
+                                            value:
+                                                controller.slectedAddress.value,
+                                            onChanged: (val) {
+                                              controller.slectedAddress.value =
+                                                  !controller
+                                                      .slectedAddress.value;
+                                            },
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            Container(
+                              height: 50,
+                              width: double.infinity,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10),
+                              decoration: BoxDecoration(
+                                color: AppColors.whiteColor,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(12),
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: AppColors.greyTextColor
+                                        .withOpacity(0.25),
+                                    blurRadius: 35,
+                                    spreadRadius: 1,
+                                    offset: const Offset(0, 0),
                                   ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            controller
-                                                .addressList[index].title!,
-                                            style: TextStyle(
-                                              color: AppColors.blackTextColor,
-                                              fontSize: 13.sp,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                          Text(
-                                            controller
-                                                .addressList[index].address!,
-                                            style: TextStyle(
-                                              color: AppColors.greyTextColor,
-                                              fontSize: 11.sp,
-                                              fontWeight: FontWeight.w400,
-                                            ),
+                                ],
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Add New Address",
+                                    style: TextStyle(
+                                      color: AppColors.blackTextColor,
+                                      fontSize: 13.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Get.toNamed(
+                                          AppRouteNames.addAddressRoute);
+                                    },
+                                    child: Container(
+                                      height: 25,
+                                      width: 25,
+                                      decoration: BoxDecoration(
+                                        color: AppColors.accentColor,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(8),
+                                        ),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: AppColors.accentColor
+                                                .withOpacity(0.25),
+                                            blurRadius: 35,
+                                            spreadRadius: 1,
+                                            offset: const Offset(0, 0),
                                           ),
                                         ],
                                       ),
-                                      Container(
-                                        height: 40,
-                                        width: 40,
-                                        child: Checkbox(
-                                          checkColor: AppColors.blackTextColor,
-                                          activeColor: AppColors.blackColor,
-                                          fillColor: MaterialStateProperty
-                                              .resolveWith<Color>(
-                                            (Set<MaterialState> states) {
-                                              if (states.contains(
-                                                  MaterialState.selected))
-                                                return AppColors.whiteColor;
-                                              return AppColors
-                                                  .greyTextColor; // Use the default value.
-                                            },
-                                          ),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(4))),
-                                          value:
-                                              controller.slectedAddress.value,
-                                          onChanged: (val) {
-                                            controller.slectedAddress.value =
-                                                !controller
-                                                    .slectedAddress.value;
-                                          },
+                                      child: Center(
+                                        child: Icon(
+                                          Icons.add,
+                                          color: AppColors.whiteColor,
                                         ),
-                                      )
-                                    ],
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                          Container(
-                            height: 50,
-                            width: double.infinity,
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 10),
-                            decoration: BoxDecoration(
-                              color: AppColors.whiteColor,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(12),
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color:
-                                      AppColors.greyTextColor.withOpacity(0.25),
-                                  blurRadius: 35,
-                                  spreadRadius: 1,
-                                  offset: const Offset(0, 0),
-                                ),
-                              ],
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Add New Address",
-                                  style: TextStyle(
-                                    color: AppColors.blackTextColor,
-                                    fontSize: 13.sp,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Container(
-                                  height: 25,
-                                  width: 25,
-                                  decoration: BoxDecoration(
-                                    color: AppColors.accentColor,
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(8),
-                                    ),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: AppColors.accentColor
-                                            .withOpacity(0.25),
-                                        blurRadius: 35,
-                                        spreadRadius: 1,
-                                        offset: const Offset(0, 0),
                                       ),
-                                    ],
-                                  ),
-                                  child: Center(
-                                    child: Icon(
-                                      Icons.add,
-                                      color: AppColors.whiteColor,
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
+                            Spacer(),
+                            // SizedBox(height: 2.5.h),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: GestureDetector(
+                    onTap: () {
+                      // controller.submitLoginForm();
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 60,
+                      decoration: const BoxDecoration(
+                        color: AppColors.accentColor,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(12),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Next",
+                          style: TextStyle(
+                            color: AppColors.whiteColor,
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.w600,
                           ),
-                        ],
+                        ),
                       ),
                     ),
                   ),

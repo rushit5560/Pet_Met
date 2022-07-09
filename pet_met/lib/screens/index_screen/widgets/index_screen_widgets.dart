@@ -102,7 +102,9 @@ class _BuildMenuState extends State<BuildMenu> {
                   ),
                 ),
                 drawerListTile(
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(AppRouteNames.petCareInfoRoute);
+                  },
                   leading: Image.asset(
                     "assets/icons/adoption.png",
                     color: AppColors.greyTextColor,
@@ -118,7 +120,9 @@ class _BuildMenuState extends State<BuildMenu> {
                   ),
                 ),
                 drawerListTile(
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(AppRouteNames.supportRoute);
+                  },
                   leading: Image.asset(
                     "assets/icons/phone.png",
                     color: AppColors.greyTextColor,
@@ -134,7 +138,9 @@ class _BuildMenuState extends State<BuildMenu> {
                   ),
                 ),
                 drawerListTile(
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(AppRouteNames.aboutRoute);
+                  },
                   leading: Image.asset(
                     "assets/icons/about.png",
                     color: AppColors.greyTextColor,
@@ -150,7 +156,9 @@ class _BuildMenuState extends State<BuildMenu> {
                   ),
                 ),
                 drawerListTile(
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(AppRouteNames.faqRoute);
+                  },
                   leading: Image.asset(
                     "assets/icons/question.png",
                     color: AppColors.greyTextColor,

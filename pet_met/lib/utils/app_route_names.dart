@@ -14,12 +14,19 @@ class AppRouteNames {
   static const String petTrainerDetailsScreenRoute =
       "/petTrainerDetailsScreenRoute";
   static const String privacyPolicyScreenRoute = "/privacyPolicyScreenRoute";
-  static const String petMeetingAndBreadingScreenRoute = "/petMeetingAndBreadingScreenRoute";
+  static const String petMeetingAndBreadingScreenRoute =
+      "/petMeetingAndBreadingScreenRoute";
 
   static const String rateAppRoute = "/rateApp";
   static const String addressRoute = "/address";
-  // static const String homeRoute = "/home";
-  // static const String homeRoute = "/home";
+  static const String addAddressRoute = "/addAddress";
+  static const String forgotPassRoute = "/forgotPass";
+  static const String petCareInfoRoute = "/petCareInfo";
+  static const String supportRoute = "/support";
+  static const String aboutRoute = "/about";
+  static const String faqRoute = "/faq";
+  static const String petMeetingListScreenRoute = "/petMeetingList";
+  static const String petMeetingDetailsScreenRoute = "/petMeetingDetails";
 
   // payment process routes
   static const String orderDetailsRoute = "/orderDetails";

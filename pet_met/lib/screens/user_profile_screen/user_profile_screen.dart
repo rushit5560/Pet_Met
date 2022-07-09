@@ -40,7 +40,7 @@ class UserProfileScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       GestureDetector(
                         onTap: () {
@@ -51,7 +51,17 @@ class UserProfileScreen extends StatelessWidget {
                           width: controller.size.width * 0.07,
                         ),
                       ),
-                      SizedBox(),
+                      GestureDetector(
+                        onTap: () {
+                          Get.toNamed(AppRouteNames.forgotPassRoute);
+                        },
+                        child: Icon(
+                          Icons.edit_note_rounded,
+                          color: AppColors.accentColor,
+                          size: 7.w,
+                        ),
+                      ),
+                      // SizedBox(),
                     ],
                   ),
                 ),
