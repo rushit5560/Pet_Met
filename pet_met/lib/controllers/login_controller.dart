@@ -6,8 +6,8 @@ import '../utils/app_route_names.dart';
 class LoginController extends GetxController {
   final size = Get.size;
 
-  var mailController = TextEditingController();
-  var passController = TextEditingController();
+  var mailController = TextEditingController(text: "test@gmail.com");
+  var passController = TextEditingController(text: "Admin@123");
   var selectedPageIndex = 0.obs;
 
   final formKey = GlobalKey<FormState>();

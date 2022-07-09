@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/pet_meeting_and_breading_screen_controller.dart';
 import 'package:pet_met/utils/app_colors.dart';
+import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_functions/hide_keyboard.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:sizer/sizer.dart';
@@ -178,22 +179,27 @@ class MeetYourLovedOneButtonModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 60,
-      decoration: const BoxDecoration(
-        color: AppColors.accentTextColor,
-        borderRadius: BorderRadius.all(
-          Radius.circular(12),
+    return GestureDetector(
+      onTap: () {
+        Get.toNamed(AppRouteNames.petMeetingListScreenRoute);
+      },
+      child: Container(
+        width: double.infinity,
+        height: 60,
+        decoration: const BoxDecoration(
+          color: AppColors.accentTextColor,
+          borderRadius: BorderRadius.all(
+            Radius.circular(12),
+          ),
         ),
-      ),
-      child: Center(
-        child: Text(
-          "Meet Your Loved One",
-          style: TextStyle(
-            color: AppColors.whiteColor,
-            fontSize: 15.sp,
-            fontWeight: FontWeight.w600,
+        child: Center(
+          child: Text(
+            "Meet Your Loved One",
+            style: TextStyle(
+              color: AppColors.whiteColor,
+              fontSize: 15.sp,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ),
       ),
