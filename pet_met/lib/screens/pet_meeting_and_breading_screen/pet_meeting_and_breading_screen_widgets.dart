@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/pet_meeting_and_breading_screen_controller.dart';
@@ -83,3 +84,122 @@ class MeetingAndBreadingSearchFieldModule extends StatelessWidget {
     );
   }
 }
+
+class PetCategoriesTextModule extends StatelessWidget {
+  const PetCategoriesTextModule({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      "Pet Categories",
+      style: TextStyle(
+          color: AppColors.accentTextColor,
+          fontWeight: FontWeight.bold,
+          fontSize: 12.sp
+      ),
+    );
+  }
+}
+
+class PetCategoriesListModule extends StatelessWidget {
+  PetCategoriesListModule({Key? key}) : super(key: key);
+  final screenController = Get.find<PetMeetingAndBreadingScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: 5,
+      shrinkWrap: true,
+      physics: const BouncingScrollPhysics(),
+      itemBuilder: (context, i) {
+        return _petCategoryListTile();
+      },
+    );
+  }
+
+
+  Widget _petCategoryListTile() {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        color: Colors.white,
+      ),
+      child: ExpandablePanel(
+        header: Text(
+            "Dog",
+          style: TextStyle(
+            fontSize: 13.sp
+          ),
+        ).commonSymmetricPadding(horizontal: 10),
+        theme: const ExpandableThemeData(
+          animationDuration: Duration(milliseconds: 500),
+          headerAlignment: ExpandablePanelHeaderAlignment.center
+        ),
+        collapsed: Container(),
+        expanded: ListView.builder(
+          itemCount: 10,
+          shrinkWrap: true,
+          physics: const BouncingScrollPhysics(),
+          itemBuilder: (context, i) {
+            return Row(
+              children: [
+                Obx(
+                  ()=> Checkbox(
+                      value: screenController.checkBoxValue.value,
+                      onChanged: (value) {
+                        screenController.checkBoxValue.value
+                        = !screenController.checkBoxValue.value;
+                      }),
+                ),
+                const Text(
+                  "German Shepherd dog",
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            );
+          },
+        ),
+      ).commonSymmetricPadding(vertical: 5),
+    ).commonSymmetricPadding(vertical: 5);
+    /*return ExpansionTile(
+      // backgroundColor: Colors.white,
+      collapsedBackgroundColor: Colors.white,
+
+      title: Text("Dog"),
+      children: [],
+    );*/
+  }
+
+}
+
+class MeetYourLovedOneButtonModule extends StatelessWidget {
+  const MeetYourLovedOneButtonModule({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 60,
+      decoration: const BoxDecoration(
+        color: AppColors.accentTextColor,
+        borderRadius: BorderRadius.all(
+          Radius.circular(12),
+        ),
+      ),
+      child: Center(
+        child: Text(
+          "Meet Your Loved One",
+          style: TextStyle(
+            color: AppColors.whiteColor,
+            fontSize: 15.sp,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+

@@ -7,4 +7,9 @@ class PetMeetingAndBreadingScreenController extends GetxController {
   final size = Get.size;
 
   TextEditingController searchFieldController = TextEditingController();
+
+  RxBool checkBoxValue = false.obs;
+
+
+
 }

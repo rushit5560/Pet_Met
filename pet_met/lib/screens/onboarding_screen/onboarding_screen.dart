@@ -1,19 +1,17 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:sizer/sizer.dart';
-
 import '../../../utils/app_colors.dart';
 import '../../controllers/onboarding_controller.dart';
 
+
+
 class OnboardingScreen extends StatelessWidget {
   OnboardingScreen({Key? key}) : super(key: key);
+  final controller = Get.put(OnboardingController());
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(OnboardingController());
     return Scaffold(
       body: Container(
         height: Get.height,
@@ -53,14 +51,14 @@ class OnboardingScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(height: 6.h),
+                        SizedBox(height: 5.h),
                         // Spacer(),
                         Image.asset(
                           controller.onBoardingPages[index].imageAsset,
                           height: 40.h,
                         ),
                         // SizedBox(height: 35.h),
-                        SizedBox(height: 9.h),
+                        SizedBox(height: 8.h),
                         Row(
                           children: [
                             Image.asset(
@@ -69,7 +67,7 @@ class OnboardingScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 4.h),
+                        SizedBox(height: 3.h),
                         Row(
                           children: [
                             Container(
@@ -78,7 +76,7 @@ class OnboardingScreen extends StatelessWidget {
                                 controller.onBoardingPages[index].title,
                                 style: TextStyle(
                                   color: AppColors.blackTextColor,
-                                  fontSize: 18.sp,
+                                  fontSize: 17.sp,
                                   fontWeight: FontWeight.bold,
                                   height: 1.2,
                                 ),
@@ -86,7 +84,7 @@ class OnboardingScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 18),
+                        SizedBox(height: 1.5.h),
                         Row(
                           children: [
                             Container(
@@ -95,7 +93,7 @@ class OnboardingScreen extends StatelessWidget {
                                 controller.onBoardingPages[index].description,
                                 //textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  fontSize: 11.sp,
+                                  fontSize: 10.sp,
                                   color: AppColors.greyTextColor,
                                   fontWeight: FontWeight.w400,
                                   height: 1.4,
@@ -116,7 +114,8 @@ class OnboardingScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  SizedBox(height: 24.h),
+                  SizedBox(height: 20.h),
+                  // Dot Indicator
                   Row(
                     children: List.generate(
                       controller.onBoardingPages.length,
@@ -143,7 +142,8 @@ class OnboardingScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 4.h),
+                  SizedBox(height: 2.h),
+                  // Next Button
                   GestureDetector(
                     onTap: controller.forwardAction,
                     child: Container(
