@@ -20,7 +20,7 @@ class OnboardingScreen extends StatelessWidget {
 
         decoration: const BoxDecoration(
           // borderRadius: BorderRadius.circular(20),
-          color: AppColors.whiteColor,
+          color: AppColors.whiteColor
         ),
         child: Stack(
           alignment: Alignment.topCenter,
