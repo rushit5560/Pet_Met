@@ -40,12 +40,12 @@ class LoginController extends GetxController {
   submitLoginForm() {
     if (formKey.currentState!.validate()) {
       try {
-        ScaffoldMessenger.of(Get.context!).showSnackBar(
-          SnackBar(
-            content: Text("Form Submitted"),
-            duration: Duration(seconds: 3),
-          ),
-        );
+        // ScaffoldMessenger.of(Get.context!).showSnackBar(
+        //   SnackBar(
+        //     content: Text("Form Submitted"),
+        //     duration: Duration(seconds: 3),
+        //   ),
+        // );
         Get.toNamed(AppRouteNames.indexScreenRoute);
       } catch (e) {
         throw e;

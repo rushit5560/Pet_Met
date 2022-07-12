@@ -75,49 +75,50 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                           const SizedBox(height: 25),
                           GestureDetector(
                             onTap: () {
-                              showModalBottomSheet<void>(
-                                context: context,
-                                constraints: null,
-                                builder: (BuildContext context) {
-                                  return Container(
-                                    height: controller.size.height * 0.15,
-                                    child: Column(
-                                      children: [
-                                        ListTile(
-                                          onTap: getFromCamera,
-                                          contentPadding: EdgeInsets.only(
-                                              left:
-                                                  controller.size.width * 0.1),
-                                          title: Text(
-                                            "Select Image From Camera",
-                                            style: TextStyle(
-                                              color: AppColors.blackTextColor
-                                                  .withOpacity(0.7),
-                                              fontSize: 13.sp,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                        ListTile(
-                                          contentPadding: EdgeInsets.only(
-                                              left:
-                                                  controller.size.width * 0.1),
-                                          onTap: getFromGallery,
-                                          title: Text(
-                                            "Select Image From Gallery",
-                                            style: TextStyle(
-                                              color: AppColors.blackTextColor
-                                                  .withOpacity(0.7),
-                                              fontSize: 13.sp,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  );
-                                },
-                              );
+                              Get.toNamed(AppRouteNames.loadFileRoute);
+                              // showModalBottomSheet<void>(
+                              //   context: context,
+                              //   constraints: null,
+                              //   builder: (BuildContext context) {
+                              //     return Container(
+                              //       height: controller.size.height * 0.15,
+                              //       child: Column(
+                              //         children: [
+                              //           ListTile(
+                              //             onTap: getFromCamera,
+                              //             contentPadding: EdgeInsets.only(
+                              //                 left:
+                              //                     controller.size.width * 0.1),
+                              //             title: Text(
+                              //               "Select Image From Camera",
+                              //               style: TextStyle(
+                              //                 color: AppColors.blackTextColor
+                              //                     .withOpacity(0.7),
+                              //                 fontSize: 13.sp,
+                              //                 fontWeight: FontWeight.w600,
+                              //               ),
+                              //             ),
+                              //           ),
+                              //           ListTile(
+                              //             contentPadding: EdgeInsets.only(
+                              //                 left:
+                              //                     controller.size.width * 0.1),
+                              //             onTap: getFromGallery,
+                              //             title: Text(
+                              //               "Select Image From Gallery",
+                              //               style: TextStyle(
+                              //                 color: AppColors.blackTextColor
+                              //                     .withOpacity(0.7),
+                              //                 fontSize: 13.sp,
+                              //                 fontWeight: FontWeight.w600,
+                              //               ),
+                              //             ),
+                              //           ),
+                              //         ],
+                              //       ),
+                              //     );
+                              //   },
+                              // );
                             },
                             child: Container(
                               height: controller.size.height * 0.2,

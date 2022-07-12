@@ -4,8 +4,6 @@ import 'package:sizer/sizer.dart';
 import '../../../utils/app_colors.dart';
 import '../../controllers/onboarding_controller.dart';
 
-
-
 class OnboardingScreen extends StatelessWidget {
   OnboardingScreen({Key? key}) : super(key: key);
   final controller = Get.put(OnboardingController());
@@ -67,7 +65,7 @@ class OnboardingScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        SizedBox(height: 3.h),
+                        SizedBox(height: 5.h),
                         Row(
                           children: [
                             Container(
@@ -93,7 +91,7 @@ class OnboardingScreen extends StatelessWidget {
                                 controller.onBoardingPages[index].description,
                                 //textAlign: TextAlign.center,
                                 style: TextStyle(
-                                  fontSize: 10.sp,
+                                  fontSize: 11.sp,
                                   color: AppColors.greyTextColor,
                                   fontWeight: FontWeight.w400,
                                   height: 1.4,
@@ -142,7 +140,7 @@ class OnboardingScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 2.h),
+                  SizedBox(height: 2.5.h),
                   // Next Button
                   GestureDetector(
                     onTap: controller.forwardAction,

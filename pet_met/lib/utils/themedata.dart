@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 const accentPrimaryValue = 0xFF41E0DD;
 
+const transColor = 0x00FFFFFF;
 const MaterialColor primarySwatch = const MaterialColor(
-  accentPrimaryValue,
+  transColor,
   const <int, Color>{
     50: const Color(0xFFc6f6f5),
     100: const Color(0xFFb3f3f1),

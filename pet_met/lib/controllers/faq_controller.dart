@@ -16,17 +16,15 @@ class FaqController extends GetxController {
 
   var drawerController = ZoomDrawerController();
 
-  List<AddressModel> addressList = [
-    AddressModel(
-      title: "Honduras",
-      address: "1691 Vetug Boulevard",
-      isChecked: true,
-    ),
-    AddressModel(
-      title: "Mavlohige",
-      address: "272 Wecdo Heights",
-      isChecked: false,
-    ),
+  List questionsList = [
+    "How They Work, and Why They’re Important",
+    "What are the costs and benefits of pet microchips",
+    "ind out the details and why you should consider getting one for your dog.",
+    "What’s the best thing you can do for your cat who might wander off?",
+    "How Does a Pet Microchip Work?",
+    "Do I Need a Microchip?",
+    "The needle is a little bigger, but the pain is minimal and the process is usually quick.",
+    "Anesthesia is not needed, so this can be done at your vet’s office.",
   ];
 
   @override

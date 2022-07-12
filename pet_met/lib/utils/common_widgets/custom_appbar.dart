@@ -6,7 +6,9 @@ import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({Key? key, this.appBarOption = AppBarOption.none, this.title = ""}) : super(key: key);
+  const CustomAppBar(
+      {Key? key, this.appBarOption = AppBarOption.none, this.title = ""})
+      : super(key: key);
 
   final String title;
   final AppBarOption appBarOption;
@@ -23,7 +25,7 @@ class CustomAppBar extends StatelessWidget {
           // Left Side Button Module
           GestureDetector(
             onTap: () {
-              if(appBarOption == AppBarOption.singleBackButtonOption) {
+              if (appBarOption == AppBarOption.singleBackButtonOption) {
                 Get.back();
               }
             },
@@ -33,14 +35,12 @@ class CustomAppBar extends StatelessWidget {
               child: appBarOption == AppBarOption.singleBackButtonOption
                   ? Image.asset(AppIcons.backButtonImg)
                   : Container(),
-            ).commonAllSidePadding(padding: 10),
+            ).commonSymmetricPadding(horizontal: 20, vertical: 15),
           ),
-
-
 
           // Title Text Module
           Text(
-              title,
+            title,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(
@@ -50,13 +50,11 @@ class CustomAppBar extends StatelessWidget {
             ),
           ),
 
-
           // Right Side Button Module
           SizedBox(
             height: 25,
             width: 25,
           ).commonAllSidePadding(padding: 10),
-
         ],
       ),
     );
