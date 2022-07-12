@@ -16,7 +16,6 @@ import 'package:pet_met/screens/pet_activity_screen/pet_activity_screen.dart';
 import 'package:pet_met/screens/pet_care_info_screen/pet_care_info_screen.dart';
 import 'package:pet_met/screens/pet_meeting_and_breading_screen/pet_meeting_and_breading_screen.dart';
 import 'package:pet_met/screens/pet_pricing_screen/pet_pricing_screen.dart';
-import 'package:pet_met/screens/pet_tracker_pricing_screen/pet_tracker_pricing_screen.dart';
 
 import 'package:pet_met/screens/pet_trainers_details_screen/pet_trainers_details_screen.dart';
 import 'package:pet_met/screens/pet_vets_and_ngo_details_screen/pet_vets_and_ngo_details_screen.dart';
@@ -33,6 +32,7 @@ import '../screens/onboarding_screen/onboarding_screen.dart';
 import '../screens/order_details_screen/order_details_screen.dart';
 import '../screens/pet_meeting_details_screen/pet_meeting_details_screen.dart';
 import '../screens/pet_meeting_list_screen/pet_meeting_list_screen.dart';
+import '../screens/pet_tracker_pricing_screen/pet_tracker_pricing_screen.dart';
 import '../screens/splash_screen/splash_screen.dart';
 import '../screens/support_screen/support_screen.dart';
 import '../screens/user_profile_screen/user_profile_screen.dart';
