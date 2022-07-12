@@ -8,7 +8,8 @@ import 'shop_and_grooming_screen_widgets.dart';
 
 class ShopAndGroomingScreen extends StatelessWidget {
   ShopAndGroomingScreen({Key? key}) : super(key: key);
-  final shopAndGroomingScreenController = Get.put(ShopAndGroomingScreenController());
+  final shopAndGroomingScreenController =
+      Get.put(ShopAndGroomingScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -20,18 +21,16 @@ class ShopAndGroomingScreen extends StatelessWidget {
             alignment: Alignment.topRight,
             child: Image.asset(AppImages.tealBackgroundImg),
           ),
-
           BackGroundLeftShadow(
             height: shopAndGroomingScreenController.size.height * 0.3,
             width: shopAndGroomingScreenController.size.height * 0.3,
             topPad: shopAndGroomingScreenController.size.height * 0.28,
             leftPad: -shopAndGroomingScreenController.size.width * 0.15,
           ),
-
           SafeArea(
             child: Column(
               children: [
-                const CustomAppBar(title: "Shop & Grooming"),
+                CustomAppBar(title: "Shop & Grooming"),
                 Expanded(child: ShopListModule()),
               ],
             ),

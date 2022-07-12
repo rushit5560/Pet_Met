@@ -34,8 +34,9 @@ class PetTrackerPricingScreen extends StatelessWidget {
             ),
             Column(
               children: [
-                const CustomAppBar(
+                CustomAppBar(
                   appBarOption: AppBarOption.singleBackButtonOption,
+                  title: "Pet Tracker Pricing",
                 ),
                 Expanded(
                   child: SingleChildScrollView(
@@ -45,19 +46,19 @@ class PetTrackerPricingScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           // const SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Pet Tracker Pricing",
-                                style: TextStyle(
-                                  color: AppColors.accentTextColor,
-                                  fontSize: 17.sp,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.start,
+                          //   children: [
+                          //     Text(
+                          //       "Pet Tracker Pricing",
+                          //       style: TextStyle(
+                          //         color: AppColors.accentTextColor,
+                          //         fontSize: 17.sp,
+                          //         fontWeight: FontWeight.bold,
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
                           SizedBox(height: controller.size.height * 0.25),
                           Container(
                             height: controller.size.height * 0.435,
@@ -205,7 +206,7 @@ class PetTrackerPriceModule extends StatelessWidget {
                 children: [
                   Positioned(
                     left: 6,
-                    top: 25,
+                    top: 2,
                     child: Text(
                       "₹",
                       style: TextStyle(

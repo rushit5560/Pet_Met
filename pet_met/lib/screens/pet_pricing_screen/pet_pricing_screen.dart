@@ -35,8 +35,9 @@ class PetPricingScreen extends StatelessWidget {
             ),
             Column(
               children: [
-                const CustomAppBar(
+                CustomAppBar(
                   appBarOption: AppBarOption.singleBackButtonOption,
+                  title: "Pet Tracker",
                 ),
                 Expanded(
                   child: SingleChildScrollView(
@@ -46,18 +47,18 @@ class PetPricingScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           // const SizedBox(height: 10),
-                          Row(
-                            children: [
-                              Text(
-                                "Pet Tracker",
-                                style: TextStyle(
-                                  color: AppColors.accentTextColor,
-                                  fontSize: 17.sp,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
+                          // Row(
+                          //   children: [
+                          //     Text(
+                          //       "Pet Tracker",
+                          //       style: TextStyle(
+                          //         color: AppColors.accentTextColor,
+                          //         fontSize: 17.sp,
+                          //         fontWeight: FontWeight.bold,
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
                           SizedBox(height: controller.size.height * 0.25),
                           Container(
                             height: controller.size.height * 0.4,
@@ -137,8 +138,8 @@ class PetTrackerPriceModule extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       children: [
         Container(
-          height: controller.size.height * 0.34,
-          width: controller.size.width * 0.43,
+          height: controller.size.height * 0.345,
+          width: controller.size.width * 0.425,
           decoration: const BoxDecoration(
             color: AppColors.whiteColor,
             borderRadius: BorderRadius.all(
@@ -146,7 +147,7 @@ class PetTrackerPriceModule extends StatelessWidget {
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.only(top: controller.size.height * 0.045),
+            padding: EdgeInsets.only(top: controller.size.height * 0.04),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,

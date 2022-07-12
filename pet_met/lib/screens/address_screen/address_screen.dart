@@ -6,6 +6,8 @@ import 'package:sizer/sizer.dart';
 
 import '../../utils/app_colors.dart';
 import '../../utils/common_widgets/background_widgets.dart';
+import '../../utils/common_widgets/custom_appbar.dart';
+import '../../utils/enums.dart';
 
 class AddressScreen extends StatelessWidget {
   final controller = Get.put(AddressController());
@@ -34,25 +36,29 @@ class AddressScreen extends StatelessWidget {
             ),
             Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                      top: 20, left: 20, right: 20, bottom: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Image.asset(
-                          "assets/icons/left_back_arrow.png",
-                          width: controller.size.width * 0.07,
-                        ),
-                      ),
-                      const SizedBox(),
-                    ],
-                  ),
+                CustomAppBar(
+                  appBarOption: AppBarOption.singleBackButtonOption,
+                  title: "Addresses",
                 ),
+                // Padding(
+                //   padding: const EdgeInsets.only(
+                //       top: 20, left: 20, right: 20, bottom: 20),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.start,
+                //     children: [
+                //       GestureDetector(
+                //         onTap: () {
+                //           Get.back();
+                //         },
+                //         child: Image.asset(
+                //           "assets/icons/left_back_arrow.png",
+                //           width: controller.size.width * 0.07,
+                //         ),
+                //       ),
+                //       const SizedBox(),
+                //     ],
+                //   ),
+                // ),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Padding(
@@ -66,14 +72,14 @@ class AddressScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             // const SizedBox(height: 8),
-                            Text(
-                              "Addresses",
-                              style: TextStyle(
-                                color: AppColors.accentTextColor,
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                            // Text(
+                            //   "Addresses",
+                            //   style: TextStyle(
+                            //     color: AppColors.accentTextColor,
+                            //     fontSize: 20.sp,
+                            //     fontWeight: FontWeight.bold,
+                            //   ),
+                            // ),
                             // Spacer(),
                             const SizedBox(height: 35),
                             Container(

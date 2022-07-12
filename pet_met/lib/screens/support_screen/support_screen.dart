@@ -10,8 +10,10 @@ import 'package:sizer/sizer.dart';
 import '../../../utils/app_colors.dart';
 import '../../controllers/onboarding_controller.dart';
 import '../../utils/common_widgets/background_widgets.dart';
+import '../../utils/common_widgets/custom_appbar.dart';
 import '../../utils/common_widgets/custom_light_passfield.dart';
 import '../../utils/common_widgets/custom_light_textfield.dart';
+import '../../utils/enums.dart';
 import '../../utils/validations.dart';
 
 class SupportScreen extends StatelessWidget {
@@ -43,25 +45,28 @@ class SupportScreen extends StatelessWidget {
             ),
             Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                      top: 20, left: 20, right: 20, bottom: 15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Image.asset(
-                          "assets/icons/left_back_arrow.png",
-                          width: controller.size.width * 0.07,
-                        ),
-                      ),
-                      const SizedBox(),
-                    ],
-                  ),
+                CustomAppBar(
+                  appBarOption: AppBarOption.singleBackButtonOption,
                 ),
+                // Padding(
+                //   padding: const EdgeInsets.only(
+                //       top: 20, left: 20, right: 20, bottom: 15),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.start,
+                //     children: [
+                //       GestureDetector(
+                //         onTap: () {
+                //           Get.back();
+                //         },
+                //         child: Image.asset(
+                //           "assets/icons/left_back_arrow.png",
+                //           width: controller.size.width * 0.07,
+                //         ),
+                //       ),
+                //       const SizedBox(),
+                //     ],
+                //   ),
+                // ),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Padding(

@@ -23,10 +23,9 @@ class ShopDetailsScreen extends StatelessWidget {
               alignment: Alignment.topRight,
               child: Image.asset(AppImages.tealBackgroundImg),
             ),
-
             Column(
               children: [
-                const CustomAppBar(
+                CustomAppBar(
                   appBarOption: AppBarOption.singleBackButtonOption,
                 ),
                 // SizedBox(height: 2.w),
@@ -36,25 +35,30 @@ class ShopDetailsScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         BannerImageModule(),
-                        SizedBox(height: shopDetailsScreenController.size.height * 0.003.w),
+                        SizedBox(
+                            height: shopDetailsScreenController.size.height *
+                                0.003.w),
                         OffersModule(),
-
-                        SizedBox(height: shopDetailsScreenController.size.height * 0.005.w),
+                        SizedBox(
+                            height: shopDetailsScreenController.size.height *
+                                0.005.w),
                         ShopNameAndSocialMediaButtonModule(),
-
-                        SizedBox(height: shopDetailsScreenController.size.height * 0.005.w),
+                        SizedBox(
+                            height: shopDetailsScreenController.size.height *
+                                0.005.w),
                         ShopPlaceTimePaymentModule(),
-
-                        SizedBox(height: shopDetailsScreenController.size.height * 0.005.w),
+                        SizedBox(
+                            height: shopDetailsScreenController.size.height *
+                                0.005.w),
                         MeetingAvailabilityModule(),
-
-                        SizedBox(height: shopDetailsScreenController.size.height * 0.005.w),
+                        SizedBox(
+                            height: shopDetailsScreenController.size.height *
+                                0.005.w),
                         OverViewModule(),
                       ],
                     ),
                   ),
                 ),
-
               ],
             ),
           ],

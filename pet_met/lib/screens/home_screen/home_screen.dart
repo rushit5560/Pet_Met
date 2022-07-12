@@ -18,6 +18,8 @@ import 'package:sizer/sizer.dart';
 import '../../../utils/app_colors.dart';
 import '../../controllers/login_controller.dart';
 import '../../utils/common_widgets/background_widgets.dart';
+import '../../utils/common_widgets/custom_appbar.dart';
+import '../../utils/enums.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -28,7 +30,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final controller = Get.put(HomeController());
-  final indexController = Get.find<IndexScreenController>();
+  final indexController = Get.put(IndexScreenController());
+  // final indexController = Get.find<IndexScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -48,39 +51,57 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 12, left: 20, right: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        indexController.drawerController.open!();
-                      });
-                    },
-                    child: Image.asset(
-                      "assets/icons/drawer_icon.png",
-                      color: AppColors.blackTextColor,
-                      width: controller.size.width * 0.07,
-                    ),
-                  ),
-                  Image.asset(
-                    "assets/images/petmet_logo.png",
-                    width: controller.size.width * 0.25,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.toNamed(AppRouteNames.userProfileRoute);
-                    },
-                    child: Image.asset(
-                      "assets/images/user_ellipse.png",
-                      width: controller.size.width * 0.12,
-                    ),
-                  ),
-                ],
+            CustomAppBar(
+              title: "User Categories",
+              appBarOption: AppBarOption.drawerButtonOption,
+              isTitleText: false,
+              centerWidget: Image.asset(
+                "assets/images/petmet_logo.png",
+                width: controller.size.width * 0.25,
+              ),
+              trailingWidget: GestureDetector(
+                onTap: () {
+                  Get.toNamed(AppRouteNames.userProfileRoute);
+                },
+                child: Image.asset(
+                  "assets/images/user_ellipse.png",
+                  width: controller.size.width * 0.12,
+                ),
               ),
             ),
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 12, left: 20, right: 20),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       GestureDetector(
+            //         onTap: () {
+            //           setState(() {
+            //             indexController.drawerController.open!();
+            //           });
+            //         },
+            //         child: Image.asset(
+            //           "assets/icons/drawer_icon.png",
+            //           color: AppColors.blackTextColor,
+            //           width: controller.size.width * 0.07,
+            //         ),
+            //       ),
+            //       Image.asset(
+            //         "assets/images/petmet_logo.png",
+            //         width: controller.size.width * 0.25,
+            //       ),
+            //       GestureDetector(
+            //         onTap: () {
+            //           Get.toNamed(AppRouteNames.userProfileRoute);
+            //         },
+            //         child: Image.asset(
+            //           "assets/images/user_ellipse.png",
+            //           width: controller.size.width * 0.12,
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             Expanded(
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),

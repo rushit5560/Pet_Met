@@ -3,10 +3,12 @@ import 'package:get/get.dart';
 import 'package:pet_met/controllers/address_controller.dart';
 import 'package:pet_met/controllers/order_details_controller.dart';
 import 'package:pet_met/utils/app_route_names.dart';
+import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../utils/app_colors.dart';
 import '../../utils/common_widgets/background_widgets.dart';
+import '../../utils/enums.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
   OrderDetailsScreen({Key? key}) : super(key: key);
@@ -38,23 +40,9 @@ class OrderDetailsScreen extends StatelessWidget {
             ),
             Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Image.asset(
-                          "assets/icons/left_back_arrow.png",
-                          width: controller.size.width * 0.07,
-                        ),
-                      ),
-                      const SizedBox(),
-                    ],
-                  ),
+                CustomAppBar(
+                  appBarOption: AppBarOption.singleBackButtonOption,
+                  title: "Order Details",
                 ),
                 Expanded(
                   child: SingleChildScrollView(
@@ -67,19 +55,19 @@ class OrderDetailsScreen extends StatelessWidget {
                         children: [
                           Column(
                             children: [
-                              const SizedBox(height: 8),
-                              Row(
-                                children: [
-                                  Text(
-                                    "Order Details",
-                                    style: TextStyle(
-                                      color: AppColors.accentTextColor,
-                                      fontSize: 20.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                              // const SizedBox(height: 8),
+                              // Row(
+                              //   children: [
+                              //     Text(
+                              //       "Order Details",
+                              //       style: TextStyle(
+                              //         color: AppColors.accentTextColor,
+                              //         fontSize: 20.sp,
+                              //         fontWeight: FontWeight.bold,
+                              //       ),
+                              //     ),
+                              //   ],
+                              // ),
                               SizedBox(height: 4.h),
                               // const SizedBox(height: 15),
                               Row(

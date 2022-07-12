@@ -12,8 +12,10 @@ import 'package:sizer/sizer.dart';
 import '../../../utils/app_colors.dart';
 import '../../controllers/onboarding_controller.dart';
 import '../../utils/common_widgets/background_widgets.dart';
+import '../../utils/common_widgets/custom_appbar.dart';
 import '../../utils/common_widgets/custom_light_passfield.dart';
 import '../../utils/common_widgets/custom_light_textfield.dart';
+import '../../utils/enums.dart';
 import '../../utils/validations.dart';
 
 class FaqScreen extends StatelessWidget {
@@ -45,25 +47,29 @@ class FaqScreen extends StatelessWidget {
             ),
             Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                      top: 20, left: 20, right: 20, bottom: 15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Image.asset(
-                          "assets/icons/left_back_arrow.png",
-                          width: controller.size.width * 0.07,
-                        ),
-                      ),
-                      const SizedBox(),
-                    ],
-                  ),
+                CustomAppBar(
+                  appBarOption: AppBarOption.singleBackButtonOption,
+                  title: "Faq",
                 ),
+                // Padding(
+                //   padding: const EdgeInsets.only(
+                //       top: 20, left: 20, right: 20, bottom: 15),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.start,
+                //     children: [
+                //       GestureDetector(
+                //         onTap: () {
+                //           Get.back();
+                //         },
+                //         child: Image.asset(
+                //           "assets/icons/left_back_arrow.png",
+                //           width: controller.size.width * 0.07,
+                //         ),
+                //       ),
+                //       const SizedBox(),
+                //     ],
+                //   ),
+                // ),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Padding(
@@ -76,15 +82,15 @@ class FaqScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             // SizedBox(height: 1.h),
-                            Text(
-                              "Faq",
-                              style: TextStyle(
-                                color: AppColors.accentTextColor,
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(height: 3.h),
+                            // Text(
+                            //   "Faq",
+                            //   style: TextStyle(
+                            //     color: AppColors.accentTextColor,
+                            //     fontSize: 20.sp,
+                            //     fontWeight: FontWeight.bold,
+                            //   ),
+                            // ),
+                            // SizedBox(height: 1.h),
                             Expanded(
                               child: Container(
                                 height: 80.h,
@@ -126,7 +132,7 @@ class FaqScreen extends StatelessWidget {
   Widget faqQuestionsListItem(int index) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(12),
         color: Colors.white,
       ),
       child: ExpandablePanel(
@@ -141,8 +147,11 @@ class FaqScreen extends StatelessWidget {
             animationDuration: Duration(milliseconds: 500),
             headerAlignment: ExpandablePanelHeaderAlignment.center),
         collapsed: Container(),
-        expanded: Text(
-            "With tens of thousands of satisfied clients nationwide, we’ve earned a solid reputation as the most trusted and reliable pet care service in the country. And it isn’t just Fetch as a company. "),
+        expanded: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          child: Text(
+              "With tens of thousands of satisfied clients nationwide, we’ve earned a solid reputation as the most trusted and reliable pet care service in the country. And it isn’t just Fetch as a company. "),
+        ),
       ).commonSymmetricPadding(vertical: 5),
     ).commonSymmetricPadding(vertical: 5);
     /*return ExpansionTile(

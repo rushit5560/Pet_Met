@@ -6,6 +6,8 @@ import 'package:sizer/sizer.dart';
 
 import '../../../utils/app_colors.dart';
 import '../../utils/common_widgets/background_widgets.dart';
+import '../../utils/common_widgets/custom_appbar.dart';
+import '../../utils/enums.dart';
 
 class AboutScreen extends StatelessWidget {
   AboutScreen({Key? key}) : super(key: key);
@@ -36,25 +38,29 @@ class AboutScreen extends StatelessWidget {
             ),
             Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                      top: 20, left: 20, right: 20, bottom: 15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Image.asset(
-                          "assets/icons/left_back_arrow.png",
-                          width: controller.size.width * 0.07,
-                        ),
-                      ),
-                      const SizedBox(),
-                    ],
-                  ),
+                CustomAppBar(
+                  appBarOption: AppBarOption.singleBackButtonOption,
+                  title: "Pet'o Care",
                 ),
+                // Padding(
+                //   padding: const EdgeInsets.only(
+                //       top: 20, left: 20, right: 20, bottom: 15),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.start,
+                //     children: [
+                //       GestureDetector(
+                //         onTap: () {
+                //           Get.back();
+                //         },
+                //         child: Image.asset(
+                //           "assets/icons/left_back_arrow.png",
+                //           width: controller.size.width * 0.07,
+                //         ),
+                //       ),
+                //       const SizedBox(),
+                //     ],
+                //   ),
+                // ),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Padding(
@@ -67,15 +73,15 @@ class AboutScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             // SizedBox(height: 1.h),
-                            Text(
-                              "Pet'o Care",
-                              style: TextStyle(
-                                color: AppColors.accentTextColor,
-                                fontSize: 20.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(height: 3.h),
+                            // Text(
+                            //   "Pet'o Care",
+                            //   style: TextStyle(
+                            //     color: AppColors.accentTextColor,
+                            //     fontSize: 20.sp,
+                            //     fontWeight: FontWeight.bold,
+                            //   ),
+                            // ),
+                            SizedBox(height: 1.h),
                             Expanded(
                               child: Container(
                                 height: 80.h,

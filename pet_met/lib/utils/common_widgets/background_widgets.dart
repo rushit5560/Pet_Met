@@ -70,7 +70,7 @@ class BackGroundRightShadow extends StatelessWidget {
               offset: Offset(0, 1),
               blurRadius: 28,
               spreadRadius: 25,
-              color: AppColors.accentColor.withOpacity(0.15),
+              color: AppColors.accentColor.withOpacity(0.1),
             ),
           ],
         ),

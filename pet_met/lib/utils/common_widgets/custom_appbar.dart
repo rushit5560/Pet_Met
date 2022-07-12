@@ -5,18 +5,30 @@ import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 
+import '../../controllers/index_screen_controller.dart';
+
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar(
-      {Key? key, this.appBarOption = AppBarOption.none, this.title = ""})
-      : super(key: key);
+  CustomAppBar({
+    Key? key,
+    this.appBarOption = AppBarOption.none,
+    this.title = "",
+    this.centerWidget,
+    this.trailingWidget,
+    this.isTitleText = true,
+  }) : super(key: key);
 
   final String title;
+  bool? isTitleText;
+  Widget? centerWidget;
+  Widget? trailingWidget;
   final AppBarOption appBarOption;
+  final indexController = Get.put(IndexScreenController());
 
   @override
   Widget build(BuildContext context) {
+    final size = Get.size;
     return SizedBox(
-      height: 55,
+      height: size.height * 0.065,
       width: Get.width,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -27,36 +39,51 @@ class CustomAppBar extends StatelessWidget {
             onTap: () {
               if (appBarOption == AppBarOption.singleBackButtonOption) {
                 Get.back();
+              } else if (appBarOption == AppBarOption.drawerButtonOption) {
+                indexController.drawerController.open!();
+              } else {
+                null;
               }
             },
             child: SizedBox(
               height: 25,
               width: 25,
-              child: appBarOption == AppBarOption.singleBackButtonOption
-                  ? Image.asset(AppIcons.backButtonImg)
-                  : Container(),
+              child: leadingWidget(),
             ).commonSymmetricPadding(horizontal: 20, vertical: 15),
           ),
 
           // Title Text Module
-          Text(
-            title,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
-              fontSize: 25,
-              color: AppColors.accentTextColor,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          isTitleText!
+              ? Text(
+                  title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 25,
+                    color: AppColors.accentTextColor,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+              : centerWidget!,
 
           // Right Side Button Module
           SizedBox(
-            height: 25,
-            width: 25,
-          ).commonAllSidePadding(padding: 10),
+            // height: 25,
+            // width: 25,
+            child: trailingWidget,
+          ).commonSymmetricPadding(horizontal: 20, vertical: 8),
         ],
       ),
     );
+  }
+
+  leadingWidget() {
+    if (appBarOption == AppBarOption.singleBackButtonOption) {
+      return Image.asset(AppIcons.backButtonImg);
+    } else if (appBarOption == AppBarOption.drawerButtonOption) {
+      return Image.asset(AppIcons.drawerButtonImg);
+    } else {
+      return Container();
+    }
   }
 }

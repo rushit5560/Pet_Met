@@ -34,8 +34,9 @@ class MettingAddressInfoScreen extends StatelessWidget {
             ),
             Column(
               children: [
-                const CustomAppBar(
+                CustomAppBar(
                   appBarOption: AppBarOption.singleBackButtonOption,
+                  title: "Metting Address Info",
                 ),
                 Expanded(
                   child: SingleChildScrollView(
@@ -45,19 +46,19 @@ class MettingAddressInfoScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           // const SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Metting Address Info",
-                                style: TextStyle(
-                                  color: AppColors.accentTextColor,
-                                  fontSize: 17.sp,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.start,
+                          //   children: [
+                          //     Text(
+                          //       "Metting Address Info",
+                          //       style: TextStyle(
+                          //         color: AppColors.accentTextColor,
+                          //         fontSize: 17.sp,
+                          //         fontWeight: FontWeight.bold,
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
                           SizedBox(height: controller.size.height * 0.25),
                           Container(
                             height: controller.size.height * 0.435,

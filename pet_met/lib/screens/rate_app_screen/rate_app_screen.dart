@@ -7,6 +7,8 @@ import 'package:sizer/sizer.dart';
 
 import '../../utils/app_colors.dart';
 import '../../utils/common_widgets/background_widgets.dart';
+import '../../utils/common_widgets/custom_appbar.dart';
+import '../../utils/enums.dart';
 import '../../utils/validations.dart';
 
 class RateAppScreen extends StatelessWidget {
@@ -38,24 +40,28 @@ class RateAppScreen extends StatelessWidget {
             ),
             Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Image.asset(
-                          "assets/icons/left_back_arrow.png",
-                          width: controller.size.width * 0.07,
-                        ),
-                      ),
-                      const SizedBox(),
-                    ],
-                  ),
+                CustomAppBar(
+                  title: "Rate App",
+                  appBarOption: AppBarOption.singleBackButtonOption,
                 ),
+                // Padding(
+                //   padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.start,
+                //     children: [
+                //       GestureDetector(
+                //         onTap: () {
+                //           Get.back();
+                //         },
+                //         child: Image.asset(
+                //           "assets/icons/left_back_arrow.png",
+                //           width: controller.size.width * 0.07,
+                //         ),
+                //       ),
+                //       const SizedBox(),
+                //     ],
+                //   ),
+                // ),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Padding(
@@ -65,15 +71,15 @@ class RateAppScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(height: 8),
-                          Text(
-                            "Rate your App",
-                            style: TextStyle(
-                              color: AppColors.accentTextColor,
-                              fontSize: 20.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+                          // const SizedBox(height: 8),
+                          // Text(
+                          //   "Rate your App",
+                          //   style: TextStyle(
+                          //     color: AppColors.accentTextColor,
+                          //     fontSize: 20.sp,
+                          //     fontWeight: FontWeight.bold,
+                          //   ),
+                          // ),
                           const SizedBox(height: 45),
                           Container(
                             height: controller.size.height * 0.4,

@@ -22,22 +22,18 @@ class PetTrainersScreen extends StatelessWidget {
               alignment: Alignment.topRight,
               child: Image.asset(AppImages.tealBackgroundImg),
             ),
-
             BackGroundLeftShadow(
               height: petTrainersScreenController.size.height * 0.3,
               width: petTrainersScreenController.size.height * 0.3,
               topPad: petTrainersScreenController.size.height * 0.28,
               leftPad: -petTrainersScreenController.size.width * 0.15,
             ),
-
             Column(
               children: [
-                const CustomAppBar(title: "Pet Tracker"),
-
+                CustomAppBar(title: "Pet Tracker"),
                 Expanded(child: PetTrainerListModule()),
               ],
             ),
-
           ],
         ),
       ),

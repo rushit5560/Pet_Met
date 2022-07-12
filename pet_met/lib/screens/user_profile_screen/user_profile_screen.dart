@@ -7,6 +7,8 @@ import 'package:sizer/sizer.dart';
 
 import '../../utils/app_colors.dart';
 import '../../utils/common_widgets/background_widgets.dart';
+import '../../utils/common_widgets/custom_appbar.dart';
+import '../../utils/enums.dart';
 
 class UserProfileScreen extends StatelessWidget {
   UserProfileScreen({Key? key}) : super(key: key);
@@ -37,34 +39,48 @@ class UserProfileScreen extends StatelessWidget {
             ),
             Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Image.asset(
-                          "assets/icons/left_back_arrow.png",
-                          width: controller.size.width * 0.07,
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.toNamed(AppRouteNames.forgotPassRoute);
-                        },
-                        child: Icon(
-                          Icons.edit_note_rounded,
-                          color: AppColors.accentColor,
-                          size: 7.w,
-                        ),
-                      ),
-                      // SizedBox(),
-                    ],
+                CustomAppBar(
+                  appBarOption: AppBarOption.singleBackButtonOption,
+                  title: "Profile",
+                  trailingWidget: GestureDetector(
+                    onTap: () {
+                      Get.toNamed(AppRouteNames.forgotPassRoute);
+                    },
+                    child: Icon(
+                      Icons.edit_note_rounded,
+                      color: AppColors.accentColor,
+                      size: 7.w,
+                    ),
                   ),
                 ),
+                // Padding(
+                //   padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       GestureDetector(
+                //         onTap: () {
+                //           Get.back();
+                //         },
+                //         child: Image.asset(
+                //           "assets/icons/left_back_arrow.png",
+                //           width: controller.size.width * 0.07,
+                //         ),
+                //       ),
+                //       GestureDetector(
+                //         onTap: () {
+                //           Get.toNamed(AppRouteNames.forgotPassRoute);
+                //         },
+                //         child: Icon(
+                //           Icons.edit_note_rounded,
+                //           color: AppColors.accentColor,
+                //           size: 7.w,
+                //         ),
+                //       ),
+                //       // SizedBox(),
+                //     ],
+                //   ),
+                // ),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Padding(

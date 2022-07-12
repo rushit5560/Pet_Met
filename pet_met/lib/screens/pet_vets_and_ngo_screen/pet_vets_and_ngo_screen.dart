@@ -9,7 +9,8 @@ import 'pet_vets_and_ngo_screen_Widgets.dart';
 
 class PetVetsAndNgoScreen extends StatelessWidget {
   PetVetsAndNgoScreen({Key? key}) : super(key: key);
-  final petVetsAndNgoScreenController = Get.put(PetVetsAndNgoScreenController());
+  final petVetsAndNgoScreenController =
+      Get.put(PetVetsAndNgoScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -22,22 +23,18 @@ class PetVetsAndNgoScreen extends StatelessWidget {
               alignment: Alignment.topRight,
               child: Image.asset(AppImages.tealBackgroundImg),
             ),
-
             BackGroundLeftShadow(
               height: petVetsAndNgoScreenController.size.height * 0.3,
               width: petVetsAndNgoScreenController.size.height * 0.3,
               topPad: petVetsAndNgoScreenController.size.height * 0.28,
               leftPad: -petVetsAndNgoScreenController.size.width * 0.15,
             ),
-
             Column(
               children: [
-                const CustomAppBar(title: "Pet Vets & NGO"),
-
+                CustomAppBar(title: "Pet Vets & NGO"),
                 Expanded(child: VetsAndNgoListModule()),
               ],
             ),
-
           ],
         ),
       ),

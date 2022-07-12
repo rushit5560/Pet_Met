@@ -33,7 +33,7 @@ class PetActivityScreen extends StatelessWidget {
             ),
             Column(
               children: [
-                const CustomAppBar(
+                CustomAppBar(
                   appBarOption: AppBarOption.singleBackButtonOption,
                 ),
                 Expanded(

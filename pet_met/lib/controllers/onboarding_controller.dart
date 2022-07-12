@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pet_met/screens/user_category_screen/user_category_screen.dart';
+import 'package:pet_met/utils/app_route_names.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -17,7 +17,7 @@ class OnboardingController extends GetxController {
     if (isLastPage) {
       setOnBoardingValue();
       //Get.off(() => LoginScreen());
-      Get.off(() => UserCategoryScreen());
+      Get.offNamed(AppRouteNames.userCategoriesScreenRoute);
     } else {
       pageController.nextPage(
         duration: 300.milliseconds,

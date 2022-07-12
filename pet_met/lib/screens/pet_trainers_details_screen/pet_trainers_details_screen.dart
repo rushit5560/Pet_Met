@@ -10,8 +10,8 @@ import 'pet_trainers_details_screen_widgets.dart';
 
 class PetTrainersDetailsScreen extends StatelessWidget {
   PetTrainersDetailsScreen({Key? key}) : super(key: key);
-  final petTrainersDetailsScreenController
-  = Get.put(PetTrainersDetailsScreenController());
+  final petTrainersDetailsScreenController =
+      Get.put(PetTrainersDetailsScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -23,36 +23,37 @@ class PetTrainersDetailsScreen extends StatelessWidget {
               alignment: Alignment.topRight,
               child: Image.asset(AppImages.tealBackgroundImg),
             ),
-
             Column(
               children: [
-                const CustomAppBar(
+                CustomAppBar(
                   appBarOption: AppBarOption.singleBackButtonOption,
                 ),
-
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
                         PetTrainerBannerImageModule(),
-                        SizedBox(height: petTrainersDetailsScreenController.size.height * 0.005.w),
+                        SizedBox(
+                            height:
+                                petTrainersDetailsScreenController.size.height *
+                                    0.005.w),
                         PetTrainerNameAndSocialMediaButtonModule(),
-
-                        SizedBox(height: petTrainersDetailsScreenController.size.height * 0.005.w),
+                        SizedBox(
+                            height:
+                                petTrainersDetailsScreenController.size.height *
+                                    0.005.w),
                         PetTrainerPlaceTimePaymentModule(),
-
-                        SizedBox(height: petTrainersDetailsScreenController.size.height * 0.005.w),
+                        SizedBox(
+                            height:
+                                petTrainersDetailsScreenController.size.height *
+                                    0.005.w),
                         PetTrainerOverViewModule(),
                       ],
                     ),
                   ),
                 ),
-
-
               ],
             ),
-
-
           ],
         ),
       ),

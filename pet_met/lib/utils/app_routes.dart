@@ -24,6 +24,7 @@ import 'package:pet_met/screens/rate_app_screen/rate_app_screen.dart';
 import 'package:pet_met/screens/register_screen/register_screen.dart';
 import 'package:pet_met/screens/shop_details_screen/shop_details_screen.dart';
 import 'package:pet_met/screens/upload_pet_screen/upload_pet_screen.dart';
+import 'package:pet_met/screens/user_categories_screen/user_categories_screen.dart';
 import 'package:pet_met/screens/user_profile_edit_screen/user_profile_edit_screen.dart';
 
 import 'package:pet_met/utils/app_route_names.dart';
@@ -205,6 +206,12 @@ class AppRoutes {
     GetPage(
       name: AppRouteNames.petMettingInfoRoute,
       page: () => MettingAddressInfoScreen(),
+      transition: Transition.native,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+    GetPage(
+      name: AppRouteNames.userCategoriesScreenRoute,
+      page: () => const UserCategoriesScreen(),
       transition: Transition.native,
       transitionDuration: const Duration(milliseconds: 500),
     ),

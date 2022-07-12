@@ -10,8 +10,8 @@ import 'pet_vets_and_ngo_details_screen_widgets.dart';
 
 class PetVetsAndNgoDetailsScreen extends StatelessWidget {
   PetVetsAndNgoDetailsScreen({Key? key}) : super(key: key);
-  final petVetsAndNgoDetailsScreenController
-  = Get.put(PetVetsAndNgoDetailsScreenController());
+  final petVetsAndNgoDetailsScreenController =
+      Get.put(PetVetsAndNgoDetailsScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -19,42 +19,41 @@ class PetVetsAndNgoDetailsScreen extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-
             Align(
               alignment: Alignment.topRight,
               child: Image.asset(AppImages.tealBackgroundImg),
             ),
-
             Column(
               children: [
-                const CustomAppBar(
+                CustomAppBar(
                   appBarOption: AppBarOption.singleBackButtonOption,
                 ),
-
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-
                         BannerImageModule(),
-                        SizedBox(height: petVetsAndNgoDetailsScreenController.size.height * 0.005.w),
+                        SizedBox(
+                            height: petVetsAndNgoDetailsScreenController
+                                    .size.height *
+                                0.005.w),
                         VetAndNgoNameAndSocialMediaButtonModule(),
-
-                        SizedBox(height: petVetsAndNgoDetailsScreenController.size.height * 0.005.w),
+                        SizedBox(
+                            height: petVetsAndNgoDetailsScreenController
+                                    .size.height *
+                                0.005.w),
                         VetAndNgoPlaceTimePaymentModule(),
-
-                        SizedBox(height: petVetsAndNgoDetailsScreenController.size.height * 0.005.w),
+                        SizedBox(
+                            height: petVetsAndNgoDetailsScreenController
+                                    .size.height *
+                                0.005.w),
                         OverViewModule(),
-
                       ],
                     ),
                   ),
                 ),
-
               ],
             ),
-
-
           ],
         ),
       ),
