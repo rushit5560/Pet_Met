@@ -32,7 +32,7 @@ class BackGroundLeftShadow extends StatelessWidget {
               offset: Offset(0, 1),
               blurRadius: 50,
               spreadRadius: 30,
-              color: AppColors.accentColor.withOpacity(0.15),
+              color: AppColors.accentColor.withOpacity(0.1),
             ),
           ],
         ),

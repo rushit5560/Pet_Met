@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/metting_address_info_controller.dart';
-import 'package:pet_met/controllers/pet_pricing_controller.dart';
 import 'package:pet_met/controllers/pet_tracker_pricing_controller.dart';
 
 import 'package:pet_met/utils/app_images.dart';
@@ -13,9 +12,9 @@ import 'package:sizer/sizer.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 
-class PetPricingScreen extends StatelessWidget {
-  PetPricingScreen({Key? key}) : super(key: key);
-  final controller = Get.put(PetPricingController());
+class MettingAddressInfoScreen extends StatelessWidget {
+  MettingAddressInfoScreen({Key? key}) : super(key: key);
+  final controller = Get.put(MettingAddressInfoController());
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +46,10 @@ class PetPricingScreen extends StatelessWidget {
                         children: [
                           // const SizedBox(height: 10),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                "Pet Tracker",
+                                "Metting Address Info",
                                 style: TextStyle(
                                   color: AppColors.accentTextColor,
                                   fontSize: 17.sp,
@@ -60,21 +60,10 @@ class PetPricingScreen extends StatelessWidget {
                           ),
                           SizedBox(height: controller.size.height * 0.25),
                           Container(
-                            height: controller.size.height * 0.4,
+                            height: controller.size.height * 0.435,
                             width: double.infinity,
-                            child: Row(
-                              children: [
-                                PetTrackerPriceModule(
-                                  controller: controller,
-                                  index: 0,
-                                ),
-                                SizedBox(width: 15),
-                                PetTrackerPriceModule(
-                                  controller: controller,
-                                  index: 1,
-                                ),
-                              ],
-                            ),
+                            child:
+                                PetTrackerPriceModule(controller: controller),
                           ),
                         ],
                       ),
@@ -90,46 +79,13 @@ class PetPricingScreen extends StatelessWidget {
   }
 }
 
-// class PetTrackerPlanListModule extends StatelessWidget {
-//   PetTrackerPlanListModule({
-//     Key? key,
-//     required this.controller,
-//   }) : super(key: key);
-//   final PetPricingController controller;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       height: controller.size.height * 0.4,
-//       width: double.infinity,
-//       child: ListView.separated(
-//         itemCount: controller.petTrackerList.length,
-//         scrollDirection: Axis.horizontal,
-//         itemBuilder: (context, index) {
-//           return PetTrackerPriceModule(
-//             controller: controller,
-//             index: index,
-//           );
-//         },
-//         separatorBuilder: (ctx, ind) {
-//           return const SizedBox(
-//             width: 20,
-//           );
-//         },
-//       ),
-//     );
-//   }
-// }
-
 class PetTrackerPriceModule extends StatelessWidget {
   const PetTrackerPriceModule({
     Key? key,
     required this.controller,
-    required this.index,
   }) : super(key: key);
 
-  final PetPricingController controller;
-  final int index;
+  final MettingAddressInfoController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -137,8 +93,8 @@ class PetTrackerPriceModule extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       children: [
         Container(
-          height: controller.size.height * 0.34,
-          width: controller.size.width * 0.43,
+          height: controller.size.height * 0.38,
+          width: controller.size.width * 0.75,
           decoration: const BoxDecoration(
             color: AppColors.whiteColor,
             borderRadius: BorderRadius.all(
@@ -146,7 +102,7 @@ class PetTrackerPriceModule extends StatelessWidget {
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.only(top: controller.size.height * 0.045),
+            padding: EdgeInsets.only(top: controller.size.height * 0.05),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -171,7 +127,7 @@ class PetTrackerPriceModule extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      controller.petTrackerList[index].planType!.toUpperCase(),
+                      "Basic",
                       style: TextStyle(
                         color: AppColors.accentTextColor,
                         fontSize: 13.sp,
@@ -191,7 +147,7 @@ class PetTrackerPriceModule extends StatelessWidget {
                     )
                   ],
                 ),
-                SizedBox(height: 8),
+                SizedBox(height: 12),
                 Column(
                   children: [
                     PetTrackingDetailsCheckModule(),
@@ -199,17 +155,12 @@ class PetTrackerPriceModule extends StatelessWidget {
                     PetTrackingDetailsCheckModule(),
                   ],
                 ),
+                SizedBox(height: 12),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
-                      onPressed: () {
-                        if (index == 0) {
-                          Get.toNamed(AppRouteNames.petMettingInfoRoute);
-                        } else if (index == 1) {
-                          Get.toNamed(AppRouteNames.petTrackerPricingRoute);
-                        }
-                      },
+                      onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         primary: AppColors.accentColor,
                         fixedSize: Size(100, 35),
@@ -266,9 +217,7 @@ class PetTrackerPriceModule extends StatelessWidget {
                   ),
                   Center(
                     child: Text(
-                      controller.petTrackerList[index].price
-                          .toString()
-                          .toUpperCase(),
+                      "150",
                       style: TextStyle(
                         color: AppColors.whiteColor,
                         fontSize: 14.sp,
@@ -312,7 +261,7 @@ class PetTrackingDetailsCheckModule extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = Get.size;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -336,12 +285,12 @@ class PetTrackingDetailsCheckModule extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                width: size.width * 0.33,
+                width: size.width * 0.58,
                 child: Text(
-                  "With tens of thousands of satisfied clients ",
+                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
                   style: TextStyle(
                     color: AppColors.greyTextColor,
-                    fontSize: 8.sp,
+                    fontSize: 8.5.sp,
                     fontWeight: FontWeight.w400,
                   ),
                 ),

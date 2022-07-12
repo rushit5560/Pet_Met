@@ -71,29 +71,34 @@ class SupportScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          SizedBox(height: 3.h),
-                          Image.asset("assets/images/women_objects.png"),
+                          SizedBox(height: 4.h),
+                          Image.asset(
+                            "assets/images/women_objects.png",
+                            width: 80.w,
+                          ),
                           SizedBox(height: 5.h),
                           Text(
                             "Support",
                             style: TextStyle(
                               color: AppColors.accentTextColor,
-                              fontSize: 20.sp,
+                              fontSize: 24.sp,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          SizedBox(height: 3.h),
-                          Row(
-                            children: [
-                              Text(
-                                "Support",
-                                style: TextStyle(
-                                  color: AppColors.accentTextColor,
-                                  fontSize: 20.sp,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
+                          SizedBox(height: 5.h),
+                          contactInfoRow(
+                            imageAsset: "assets/icons/email_icon.png",
+                            textdata: "Support@petomate.com",
+                          ),
+                          SizedBox(height: 2.4.h),
+                          contactInfoRow(
+                            imageAsset: "assets/icons/call_icon.png",
+                            textdata: "+91 98725 25571",
+                          ),
+                          SizedBox(height: 2.4.h),
+                          contactInfoRow(
+                            imageAsset: "assets/icons/whatsapp_icon.png",
+                            textdata: "+91 98725 12345",
                           ),
                         ],
                       ),
@@ -105,6 +110,32 @@ class SupportScreen extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Widget contactInfoRow({
+    final imageAsset,
+    final textdata,
+  }) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Image.asset(
+          imageAsset,
+          height: 20,
+          color: AppColors.blackTextColor,
+        ),
+        SizedBox(width: 15),
+        Text(
+          textdata,
+          style: TextStyle(
+            color: AppColors.blackTextColor,
+            fontSize: 12.sp,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
     );
   }
 }

@@ -27,6 +27,12 @@ class AppRouteNames {
   static const String supportRoute = "/support";
   static const String aboutRoute = "/about";
   static const String faqRoute = "/faq";
+  static const String loadFileRoute = "/loadFile";
+  static const String petActivityRoute = "/petActivity";
+  static const String petPricingRoute = "/petPricing";
+  static const String petTrackerPricingRoute = "/petTrackerPricing";
+  static const String petMettingInfoRoute = "/petMettingInfo";
+
   static const String petMeetingListScreenRoute = "/petMeetingList";
   static const String petMeetingDetailsScreenRoute = "/petMeetingDetails";
 
