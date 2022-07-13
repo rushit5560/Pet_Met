@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pet_met/services/providers/dark_theme_provider.dart';
+import 'package:pet_met/utils/theme_preferences.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../../utils/app_colors.dart';
 import '../../controllers/onboarding_controller.dart';
@@ -10,30 +13,31 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var themeProvider = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
-      body: Container(
-        height: Get.height,
-        width: Get.width,
-        // margin: EdgeInsets.only(left: 20, right: 20),
-
-        decoration: const BoxDecoration(
-          // borderRadius: BorderRadius.circular(20),
-          color: AppColors.whiteColor
-        ),
+      body: SafeArea(
         child: Stack(
           alignment: Alignment.topCenter,
           children: [
             Align(
               alignment: Alignment.topCenter,
               child: Image.asset(
-                "assets/images/onboardbgshape.png",
+                themeProvider.darkTheme
+                    ? "assets/images/onboard_bgshape_dark.png"
+                    : "assets/images/onboard_bgshape_light.png",
                 width: controller.size.width,
               ),
             ),
             Align(
               alignment: Alignment.topRight,
               child: Image.asset(
-                "assets/images/onboardtopright.png",
+                themeProvider.darkTheme
+                    ? "assets/images/onboardtop_path_dark.png"
+                    : "assets/images/onboardtop_path_light.png",
+
+                color: themeProvider.darkTheme
+                    ? AppColors.darkThemeColor
+                    : AppColors.whiteColor,
                 // width: controller.size.width,
               ),
             ),
@@ -73,7 +77,9 @@ class OnboardingScreen extends StatelessWidget {
                               child: Text(
                                 controller.onBoardingPages[index].title,
                                 style: TextStyle(
-                                  color: AppColors.blackTextColor,
+                                  color: themeProvider.darkTheme
+                                      ? AppColors.whiteColor
+                                      : AppColors.blackTextColor,
                                   fontSize: 17.sp,
                                   fontWeight: FontWeight.bold,
                                   height: 1.2,
@@ -126,13 +132,15 @@ class OnboardingScreen extends StatelessWidget {
                             shape: BoxShape.circle,
                           ),
                           child: Container(
-                            margin: const EdgeInsets.all(5),
+                            margin: const EdgeInsets.all(8),
                             width: 10,
                             height: 10,
                             decoration: BoxDecoration(
                               color: controller.selectedPageIndex.value == index
                                   ? AppColors.accentColor
-                                  : Colors.grey.shade200,
+                                  : themeProvider.darkTheme
+                                      ? AppColors.whiteColor.withOpacity(0.2)
+                                      : Colors.grey.shade200,
                               shape: BoxShape.circle,
                             ),
                           ),
@@ -140,7 +148,7 @@ class OnboardingScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 2.5.h),
+                  SizedBox(height: 4.h),
                   // Next Button
                   GestureDetector(
                     onTap: controller.forwardAction,

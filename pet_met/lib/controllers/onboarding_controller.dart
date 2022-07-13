@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/utils/app_route_names.dart';
+import 'package:provider/provider.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../screens/login_screen/login_screen.dart';
+import '../services/providers/dark_theme_provider.dart';
 
 class OnboardingController extends GetxController {
   final size = Get.size;
@@ -26,28 +28,9 @@ class OnboardingController extends GetxController {
     }
   }
 
-  List<OnBoardingInfo> onBoardingPages = [
-    OnBoardingInfo(
-      logo: "assets/images/petmet_logo.png",
-      imageAsset: "assets/images/splash_peoples2.png",
-      title: 'Find the Pet you love on around you easily',
-      description:
-          'You can buy a pet easily with this app. This app is connected to million people',
-    ),
-    OnBoardingInfo(
-      logo: "assets/images/petmet_logo.png",
-      imageAsset: "assets/images/splash_dogs1.png",
-      title: 'Sell Your Pet on your smartphone.',
-      description:
-          'Sell your pet in one smartphone. Message and call with buyer with safety order',
-    ),
-    OnBoardingInfo(
-      logo: "assets/images/petmet_logo.png",
-      imageAsset: "assets/images/splash_peoples3.png",
-      title: 'Get Started to Find your lovely friends',
-      description: 'meet your pet and get the happy daya of the day',
-    ),
-  ];
+  var themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
+
+  List<OnBoardingInfo> onBoardingPages = [];
 
   goToLoginScreen() => Get.offAll(() => LoginScreen());
 
@@ -62,6 +45,35 @@ class OnboardingController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+
+    onBoardingPages = [
+      OnBoardingInfo(
+        logo: "assets/images/petmet_logo.png",
+        imageAsset: themeProvider.darkTheme
+            ? "assets/images/splash_peoples2_dark.png"
+            : "assets/images/splash_peoples2_light.png",
+        title: 'Find the Pet you love on around you easily',
+        description:
+            'You can buy a pet easily with this app. This app is connected to million people',
+      ),
+      OnBoardingInfo(
+        logo: "assets/images/petmet_logo.png",
+        imageAsset: themeProvider.darkTheme
+            ? "assets/images/splash_dogs1_dark.png"
+            : "assets/images/splash_dogs1_light.png",
+        title: 'Sell Your Pet on your smartphone.',
+        description:
+            'Sell your pet in one smartphone. Message and call with buyer with safety order',
+      ),
+      OnBoardingInfo(
+        logo: "assets/images/petmet_logo.png",
+        imageAsset: themeProvider.darkTheme
+            ? "assets/images/splash_peoples3_dark.png"
+            : "assets/images/splash_peoples3_light.png",
+        title: 'Get Started to Find your lovely friends',
+        description: 'meet your pet and get the happy daya of the day',
+      ),
+    ];
   }
 }
 

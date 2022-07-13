@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/user_categories_controller.dart';
 import 'package:pet_met/utils/app_route_names.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 import '../../utils/common_widgets/custom_appbar.dart';
@@ -19,6 +21,8 @@ class UserCategoriesScreen extends StatefulWidget {
 class _UserCategoriesScreenState extends State<UserCategoriesScreen> {
   final controller = Get.put(UserCategoriesController());
 
+  final themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -33,7 +37,9 @@ class _UserCategoriesScreenState extends State<UserCategoriesScreen> {
             ),
             Align(
               alignment: Alignment.topRight,
-              child: Image.asset("assets/images/logintopright.png"),
+              child: Image.asset(themeProvider.darkTheme
+                  ? "assets/images/path_top_right_dark.png"
+                  : "assets/images/path_top_right_light.png"),
             ),
             Obx(
               () => controller.isLoading.value

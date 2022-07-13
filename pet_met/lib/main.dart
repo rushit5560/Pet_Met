@@ -11,14 +11,20 @@ import 'package:pet_met/utils/theme_preferences.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  var darkTheme = await DarkThemePreference().getTheme();
+
   SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      systemNavigationBarColor: AppColors.whiteColor,
-      statusBarColor: AppColors.whiteColor,
-      statusBarBrightness: Brightness.light,
-      statusBarIconBrightness: Brightness.dark,
-      systemNavigationBarIconBrightness: Brightness.dark,
+    SystemUiOverlayStyle(
+      systemNavigationBarColor:
+          darkTheme ? AppColors.darkThemeColor : AppColors.whiteColor,
+      statusBarColor:
+          darkTheme ? AppColors.darkThemeColor : AppColors.whiteColor,
+      statusBarBrightness: darkTheme ? Brightness.dark : Brightness.light,
+      statusBarIconBrightness: darkTheme ? Brightness.light : Brightness.dark,
+      systemNavigationBarIconBrightness:
+          darkTheme ? Brightness.light : Brightness.dark,
     ),
   );
   SystemChrome.setPreferredOrientations(
@@ -27,7 +33,9 @@ void main() {
       DeviceOrientation.portraitDown,
     ],
   );
-  runApp(const MyApp());
+  runApp(
+    const MyApp(),
+  );
 }
 
 class MyApp extends StatefulWidget {

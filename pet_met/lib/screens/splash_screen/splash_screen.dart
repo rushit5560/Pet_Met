@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:pet_met/utils/app_colors.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../controllers/splash_controller.dart';
+import '../../services/providers/dark_theme_provider.dart';
 
 class SplashScreen extends StatelessWidget {
   SplashScreen({Key? key}) : super(key: key);
 
   final controller = Get.put(SplashController());
   @override
+  final themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: const Color(0xFFFFFFFF),
@@ -25,7 +28,9 @@ class SplashScreen extends StatelessWidget {
                 children: [
                   SizedBox(height: 12.h),
                   Image.asset(
-                    "assets/images/splash_peoples1.png",
+                    themeProvider.darkTheme
+                        ? "assets/images/splash_peoples1_dark.png"
+                        : "assets/images/splash_peoples1_light.png",
                     fit: BoxFit.cover,
                     width: 95.w,
                   ),
@@ -48,7 +53,9 @@ class SplashScreen extends StatelessWidget {
                     "``Your Personal pet Companion.,,",
                     style: TextStyle(
                       fontSize: 11.sp,
-                      color: AppColors.greyTextColor,
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.greyTextColor,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -70,7 +77,9 @@ class SplashScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 10.sp,
-                      color: AppColors.blackTextColor,
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor.withOpacity(0.4)
+                          : AppColors.blackTextColor,
                       fontWeight: FontWeight.w400,
                       height: 1.5,
                     ),
@@ -94,60 +103,121 @@ class SplashScreen extends StatelessWidget {
         child: Container(
           width: controller.size.width + 16,
           // height: controller.size.height * 0.5,
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Image.asset(
-                    "assets/images/Group-4.png",
-                  ),
-                  Image.asset(
-                    "assets/images/Group-2.png",
-                  ),
-                  Image.asset(
-                    "assets/images/Group-3.png",
-                  ),
-                  Image.asset(
-                    "assets/images/Group-1.png",
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Image.asset(
-                    "assets/images/Group-4.png",
-                  ),
-                  Image.asset(
-                    "assets/images/Group-2.png",
-                  ),
-                  Image.asset(
-                    "assets/images/Group-3.png",
-                  ),
-                  Image.asset(
-                    "assets/images/Group-1.png",
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Image.asset(
-                    "assets/images/Group-4.png",
-                  ),
-                  Image.asset(
-                    "assets/images/Group-2.png",
-                  ),
-                  Image.asset(
-                    "assets/images/Group-3.png",
-                  ),
-                  Image.asset(
-                    "assets/images/Group-1.png",
-                  ),
-                ],
-              ),
-            ],
-          ),
+          child: themeProvider.darkTheme
+              ? darkThemeBottomShapes()
+              : lightThemeBottomShapes(),
         ),
       ),
+    );
+  }
+
+  lightThemeBottomShapes() {
+    return Column(
+      children: [
+        Row(
+          children: [
+            Image.asset(
+              "assets/images/Group-4-light.png",
+            ),
+            Image.asset(
+              "assets/images/Group-2-light.png",
+            ),
+            Image.asset(
+              "assets/images/Group-3-light.png",
+            ),
+            Image.asset(
+              "assets/images/Group-1-light.png",
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Image.asset(
+              "assets/images/Group-4-light.png",
+            ),
+            Image.asset(
+              "assets/images/Group-2-light.png",
+            ),
+            Image.asset(
+              "assets/images/Group-3-light.png",
+            ),
+            Image.asset(
+              "assets/images/Group-1-light.png",
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Image.asset(
+              "assets/images/Group-4-light.png",
+            ),
+            Image.asset(
+              "assets/images/Group-2-light.png",
+            ),
+            Image.asset(
+              "assets/images/Group-3-light.png",
+            ),
+            Image.asset(
+              "assets/images/Group-1-light.png",
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  darkThemeBottomShapes() {
+    return Column(
+      children: [
+        Row(
+          children: [
+            Image.asset(
+              "assets/images/group-4-dark.png",
+            ),
+            Image.asset(
+              "assets/images/group-2-dark.png",
+            ),
+            Image.asset(
+              "assets/images/group-3-dark.png",
+            ),
+            Image.asset(
+              "assets/images/group-1-dark.png",
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Image.asset(
+              "assets/images/group-4-dark.png",
+            ),
+            Image.asset(
+              "assets/images/group-2-dark.png",
+            ),
+            Image.asset(
+              "assets/images/group-3-dark.png",
+            ),
+            Image.asset(
+              "assets/images/group-1-dark.png",
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Image.asset(
+              "assets/images/group-4-dark.png",
+            ),
+            Image.asset(
+              "assets/images/group-2-dark.png",
+            ),
+            Image.asset(
+              "assets/images/group-3-dark.png",
+            ),
+            Image.asset(
+              "assets/images/group-1-dark.png",
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
