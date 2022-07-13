@@ -9,6 +9,7 @@ import 'package:pet_met/screens/index_screen/index_screen.dart';
 import 'package:pet_met/screens/load_file_screen/load_file_screen.dart';
 import 'package:pet_met/screens/login_screen/login_screen.dart';
 import 'package:pet_met/screens/metting_address_info_screen/metting_address_info_screen.dart';
+import 'package:pet_met/screens/ngo_user_profile_screen/ngo_user_profile_screen.dart';
 
 import 'package:pet_met/screens/order_placed_screen/order_placed_screen.dart';
 import 'package:pet_met/screens/payment_failed_screen/payment_failed_screen.dart';
@@ -23,6 +24,8 @@ import 'package:pet_met/screens/privacy_policy_screen/privacy_policy_screen.dart
 import 'package:pet_met/screens/rate_app_screen/rate_app_screen.dart';
 import 'package:pet_met/screens/register_screen/register_screen.dart';
 import 'package:pet_met/screens/shop_details_screen/shop_details_screen.dart';
+import 'package:pet_met/screens/shop_user_profile_screen/shop_user_profile_screen.dart';
+import 'package:pet_met/screens/trainers_and_users_profile_screen/trainers_and_user_profile_screen.dart';
 import 'package:pet_met/screens/upload_pet_screen/upload_pet_screen.dart';
 import 'package:pet_met/screens/user_categories_screen/user_categories_screen.dart';
 import 'package:pet_met/screens/user_profile_edit_screen/user_profile_edit_screen.dart';
@@ -239,6 +242,27 @@ class AppRoutes {
     GetPage(
       name: AppRouteNames.petMeetingAndBreadingScreenRoute,
       page: () => PetMeetingAndBreadingScreen(),
+      transition: Transition.native,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+
+    GetPage(
+      name: AppRouteNames.shopUserProfileScreenRoute,
+      page: () => ShopUserProfileScreen(),
+      transition: Transition.native,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+
+    GetPage(
+      name: AppRouteNames.ngoUserProfileScreenRoute,
+      page: () => NgoUserProfileScreen(),
+      transition: Transition.native,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+
+    GetPage(
+      name: AppRouteNames.trainersAndUsersScreenRoute,
+      page: () => TrainersAndUserProfileScreenController(),
       transition: Transition.native,
       transitionDuration: const Duration(milliseconds: 500),
     ),

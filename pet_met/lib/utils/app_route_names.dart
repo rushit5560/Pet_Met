@@ -40,4 +40,8 @@ class AppRouteNames {
   static const String orderDetailsRoute = "/orderDetails";
   static const String orderPlacedRoute = "/orderPlaced";
   static const String paymentFailedRoute = "/paymentFailed";
+
+  static const String shopUserProfileScreenRoute = "/shopUserProfile";
+  static const String ngoUserProfileScreenRoute = "/ngoUserProfile";
+  static const String trainersAndUsersScreenRoute = "/trainersAndUserprofile";
 }
