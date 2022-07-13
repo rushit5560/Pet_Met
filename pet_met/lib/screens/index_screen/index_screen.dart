@@ -10,7 +10,7 @@ import 'package:pet_met/screens/home_screen/widgets/home_screen_widgets.dart';
 import 'package:pet_met/screens/index_screen/widgets/index_screen_widgets.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_passfield.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
-import 'package:pet_met/utils/themedata.dart';
+import 'package:pet_met/utils/theme_preferences.dart';
 import 'package:pet_met/utils/validations.dart';
 
 import 'package:sizer/sizer.dart';
@@ -59,7 +59,7 @@ class IndexScreenState extends State<IndexScreen> {
       mainScreen: SafeArea(
         child: Scaffold(
           resizeToAvoidBottomInset: false,
-          backgroundColor: AppColors.whiteColor,
+          // backgroundColor: AppColors.whiteColor,
           bottomNavigationBar: BubbleBottomBar(
             opacity: 0.2,
             currentIndex: controller.selectedbottomIndex.value,

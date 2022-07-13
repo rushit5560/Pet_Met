@@ -1,10 +1,14 @@
+import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/utils/app_route_names.dart';
+import 'package:pet_met/utils/theme_preferences.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../controllers/home_controller.dart';
 import '../../../controllers/index_screen_controller.dart';
+import '../../../services/providers/dark_theme_provider.dart';
 import '../../../utils/app_colors.dart';
 
 class BuildMenu extends StatefulWidget {
@@ -23,6 +27,7 @@ class _BuildMenuState extends State<BuildMenu> {
 
   @override
   Widget build(BuildContext context) {
+    final themeChange = Provider.of<DarkThemeProvider>(context);
     return SafeArea(
       child: Stack(
         children: [
@@ -428,7 +433,8 @@ class _BuildMenuState extends State<BuildMenu> {
               ),
               const SizedBox(height: 20),
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 25, horizontal: 25),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 25, horizontal: 25),
                 child: IntrinsicHeight(
                   child: Row(
                     children: [
@@ -436,10 +442,23 @@ class _BuildMenuState extends State<BuildMenu> {
                         onTap: () {},
                         child: Row(
                           children: [
-                            Image.asset(
-                              "assets/icons/paintboard.png",
-                              height: 28,
+                            DayNightSwitcher(
+                              isDarkModeEnabled: themeChange.darkTheme,
+                              onStateChanged: (val) async {
+                                print("theme is changed  : " + val.toString());
+
+                                themeChange.darkTheme = val;
+                                var themeIs =
+                                    await DarkThemePreference().getTheme();
+
+                                print("theme is " + themeIs.toString());
+                              },
                             ),
+
+                            // Image.asset(
+                            //   "assets/icons/paintboard.png",
+                            //   height: 28,
+                            // ),
                             const SizedBox(width: 12),
                             Text(
                               "Theme",

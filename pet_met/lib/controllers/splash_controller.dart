@@ -14,7 +14,7 @@ class SplashController extends GetxController {
 
   redirectNextScreen() {
     return Timer(
-      const Duration(milliseconds: 2500),
+      const Duration(milliseconds: 250000),
       () {
         Get.offNamed(AppRouteNames.onBoardingRoute);
       },

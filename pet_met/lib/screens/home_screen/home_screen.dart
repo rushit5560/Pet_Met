@@ -10,7 +10,7 @@ import 'package:pet_met/screens/order_details_screen/order_details_screen.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_passfield.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
-import 'package:pet_met/utils/themedata.dart';
+import 'package:pet_met/utils/theme_preferences.dart';
 import 'package:pet_met/utils/validations.dart';
 
 import 'package:sizer/sizer.dart';
