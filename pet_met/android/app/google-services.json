@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "427960837590",
+    "project_id": "pet-o-mate",
+    "storage_bucket": "pet-o-mate.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:427960837590:android:658560204b43e62e79f077",
+        "android_client_info": {
+          "package_name": "com.example.pet_met"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "427960837590-e53g7o5isrdp0huv2a87qgija182ho34.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJVizipIE2uf49qic3_mo55B-cmKBNCXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "427960837590-e53g7o5isrdp0huv2a87qgija182ho34.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

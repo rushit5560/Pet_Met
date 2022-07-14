@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pet_met/models/login_screen_model/login_model.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:http/http.dart' as http;
@@ -65,8 +67,57 @@ class LoginController extends GetxController {
       }
     } catch (e) {
       log('');
+
+    } catch(e) {
+      log('User Login Api Error ::: $e');
     } finally {
       isLoading(false);
     }
   }
+  
+  Future signInWithGoogleFunction() async {
+    isLoading(true);
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+    googleSignIn.signOut();
+    final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
+    if (googleSignInAccount != null) {
+      final GoogleSignInAuthentication googleSignInAuthentication =
+      await googleSignInAccount.authentication;
+      final AuthCredential authCredential = GoogleAuthProvider.credential(
+          idToken: googleSignInAuthentication.idToken,
+          accessToken: googleSignInAuthentication.accessToken);
+
+      // Getting users credential
+      UserCredential result = await auth.signInWithCredential(authCredential);
+      // User? user = result.user;
+      log("Email: ${result.user!.email}");
+      log("Username: ${result.user!.displayName}");
+      log("User Id: ${result.user!.uid}");
+
+      //login = prefs.getString('userId');
+      //print(login);
+      if (result != null) {
+        String userName = result.user!.displayName!;
+        String email = result.user!.email!;
+        mailController.text = email;
+        passController.text = passController.text;
+
+        await userLoginFunction();
+
+        // prefs.setString('userId', result.user!.uid);
+        // prefs.setString('userName', result.user!.displayName!);
+        // prefs.setString('email', result.user!.email!);
+        // prefs.setString('photo', result.user!.photoURL!);
+        // prefs.setBool('isLoggedIn', false);
+
+        // Get.offAll(() => IndexScreen());
+
+      }
+    }
+    isLoading(false);
+  }
+
 }
+
