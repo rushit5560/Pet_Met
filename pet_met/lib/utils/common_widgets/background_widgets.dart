@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
+import '../../services/providers/dark_theme_provider.dart';
 import '../app_colors.dart';
 
 class BackGroundLeftShadow extends StatelessWidget {
@@ -18,6 +20,7 @@ class BackGroundLeftShadow extends StatelessWidget {
   final leftPad;
   @override
   Widget build(BuildContext context) {
+    var themeProvider = Provider.of<DarkThemeProvider>(context);
     return Positioned(
       top: topPad,
       left: leftPad,
@@ -32,7 +35,9 @@ class BackGroundLeftShadow extends StatelessWidget {
               offset: Offset(0, 1),
               blurRadius: 50,
               spreadRadius: 30,
-              color: AppColors.accentColor.withOpacity(0.1),
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor.withOpacity(0.05)
+                  : AppColors.accentColor.withOpacity(0.1),
             ),
           ],
         ),
@@ -56,6 +61,7 @@ class BackGroundRightShadow extends StatelessWidget {
   final rightPad;
   @override
   Widget build(BuildContext context) {
+    var themeProvider = Provider.of<DarkThemeProvider>(context);
     return Positioned(
       top: topPad,
       right: rightPad,
@@ -70,7 +76,9 @@ class BackGroundRightShadow extends StatelessWidget {
               offset: Offset(0, 1),
               blurRadius: 28,
               spreadRadius: 25,
-              color: AppColors.accentColor.withOpacity(0.1),
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor.withOpacity(0.05)
+                  : AppColors.accentColor.withOpacity(0.1),
             ),
           ],
         ),

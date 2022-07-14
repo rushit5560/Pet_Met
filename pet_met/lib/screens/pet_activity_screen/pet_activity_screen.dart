@@ -59,8 +59,10 @@ class PetActivityScreen extends StatelessWidget {
                           width: double.infinity,
                           height: controller.size.height * 0.35,
                           margin: const EdgeInsets.symmetric(horizontal: 20),
-                          decoration: const BoxDecoration(
-                            color: AppColors.whiteColor,
+                          decoration: BoxDecoration(
+                            color: themeProvider.darkTheme
+                                ? AppColors.darkThemeBoxColor
+                                : AppColors.whiteColor,
                             borderRadius: BorderRadius.all(
                               Radius.circular(12),
                             ),
@@ -138,7 +140,9 @@ class PetTrackingDetailsCheckModule extends StatelessWidget {
               Text(
                 titleText,
                 style: TextStyle(
-                  color: AppColors.blackTextColor,
+                  color: themeProvider.darkTheme
+                      ? AppColors.whiteColor
+                      : AppColors.blackTextColor,
                   fontSize: 12.sp,
                   fontWeight: FontWeight.w400,
                 ),
@@ -147,9 +151,11 @@ class PetTrackingDetailsCheckModule extends StatelessWidget {
               Text(
                 detailsText,
                 style: TextStyle(
-                  color: AppColors.greyTextColor,
+                  color: themeProvider.darkTheme
+                      ? AppColors.whiteColor
+                      : AppColors.blackTextColor,
                   fontSize: 12.sp,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w300,
                 ),
               ),
             ],

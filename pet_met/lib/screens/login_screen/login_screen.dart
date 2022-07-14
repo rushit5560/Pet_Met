@@ -1,32 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_passfield.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
 import 'package:pet_met/utils/validations.dart';
+import 'package:provider/provider.dart';
 
 import 'package:sizer/sizer.dart';
 
 import '../../../utils/app_colors.dart';
 import '../../controllers/login_controller.dart';
+import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
 
   final controller = Get.put(LoginController());
+
+  final themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: AppColors.whiteColor,
+      // backgroundColor: AppColors.whiteColor,
       body: SafeArea(
         child: Stack(
           alignment: Alignment.topCenter,
           children: [
             Align(
               alignment: Alignment.topRight,
-              child: Image.asset("assets/images/logintopright.png"),
+              child: Image.asset(themeProvider.darkTheme
+                  ? "assets/images/path_top_right_dark.png"
+                  : "assets/images/path_top_right_light.png"),
             ),
             BackGroundLeftShadow(
               height: controller.size.height * 0.3,
@@ -35,10 +42,8 @@ class LoginScreen extends StatelessWidget {
               leftPad: -controller.size.width * 0.15,
             ),
             Positioned(
-
               top: controller.size.height * 0.03,
               left: controller.size.width * 0.1,
-
               child: Image.asset(
                 "assets/images/petmet_logo.png",
                 width: controller.size.width * 0.25,
@@ -53,7 +58,6 @@ class LoginScreen extends StatelessWidget {
                 key: controller.formKey,
                 child: Column(
                   children: [
-
                     SizedBox(height: controller.size.height * 0.2),
 
                     Row(
@@ -63,7 +67,6 @@ class LoginScreen extends StatelessWidget {
                           style: TextStyle(
                             color: AppColors.accentTextColor,
                             fontSize: 22.sp,
-
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -75,7 +78,9 @@ class LoginScreen extends StatelessWidget {
                         Text(
                           "Login With Your Account To continue",
                           style: TextStyle(
-                            color: AppColors.greyTextColor,
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor.withOpacity(0.75)
+                                : AppColors.greyTextColor,
                             fontSize: 11.sp,
                             fontWeight: FontWeight.w400,
                           ),
@@ -109,12 +114,14 @@ class LoginScreen extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            // Get.toNamed();
+                            Get.toNamed(AppRouteNames.forgotPassRoute);
                           },
                           child: Text(
                             "Forgot Password ?",
                             style: TextStyle(
-                              color: AppColors.blackTextColor.withOpacity(0.7),
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor.withOpacity(0.75)
+                                  : AppColors.blackTextColor.withOpacity(0.7),
                               fontSize: 11.sp,
                               fontWeight: FontWeight.w400,
                             ),
@@ -122,44 +129,77 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ],
                     ),
+                    SizedBox(height: 20),
+                    Divider(
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor.withOpacity(0.55)
+                          : AppColors.blackTextColor.withOpacity(0.55),
+                      // height: 1,
+                      thickness: 0.5,
+                    ),
+                    SizedBox(height: 20),
+                    Row(
+                      children: [
+                        Text(
+                          "Login With Gmail or Facebook",
+                          style: TextStyle(
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor.withOpacity(0.75)
+                                : AppColors.blackTextColor.withOpacity(0.7),
+                            fontSize: 11.sp,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
                     // SizedBox(height: controller.size.height * 0.1),
-                    Spacer(),
+                    // Spacer(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Expanded(
-                          child: Container(
-                            height: controller.size.height * 0.065,
-                            decoration: BoxDecoration(
-                              color: AppColors.whiteColor,
-                              borderRadius: BorderRadius.circular(12),
-                              boxShadow: [
-                                BoxShadow(
-                                  color:
-                                      AppColors.greyTextColor.withOpacity(0.2),
-                                  spreadRadius: 15,
-                                  blurRadius: 20,
-                                  offset: const Offset(0, 5),
-                                ),
-                              ],
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  "assets/images/gmailicon.png",
-                                  height: 25,
-                                ),
-                                const SizedBox(width: 15),
-                                Text(
-                                  "Gmail",
-                                  style: TextStyle(
-                                    color: AppColors.accentTextColor,
-                                    fontSize: 12.sp,
-                                    fontWeight: FontWeight.bold,
+                          child: GestureDetector(
+                            onTap: () {
+                              // controller.signInWithGoogleFunction();
+                            },
+                            child: Container(
+                              height: controller.size.height * 0.065,
+                              decoration: BoxDecoration(
+                                color: themeProvider.darkTheme
+                                    ? AppColors.darkThemeColor
+                                    : AppColors.whiteColor,
+                                borderRadius: BorderRadius.circular(12),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: themeProvider.darkTheme
+                                        ? AppColors.blackColor.withOpacity(0.25)
+                                        : AppColors.greyTextColor
+                                            .withOpacity(0.25),
+                                    spreadRadius: 1,
+                                    blurRadius: 15,
+                                    offset: const Offset(4, 4),
                                   ),
-                                )
-                              ],
+                                ],
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset(
+                                    "assets/images/gmailicon.png",
+                                    height: 25,
+                                  ),
+                                  const SizedBox(width: 15),
+                                  Text(
+                                    "Gmail",
+                                    style: TextStyle(
+                                      color: AppColors.accentTextColor,
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -168,15 +208,18 @@ class LoginScreen extends StatelessWidget {
                           child: Container(
                             height: controller.size.height * 0.065,
                             decoration: BoxDecoration(
-                              color: AppColors.whiteColor,
+                              color: themeProvider.darkTheme
+                                  ? AppColors.darkThemeColor
+                                  : AppColors.whiteColor,
                               borderRadius: BorderRadius.circular(12),
                               boxShadow: [
                                 BoxShadow(
-                                  color:
-                                      AppColors.greyTextColor.withOpacity(0.2),
-
-                                  spreadRadius: 15,
-                                  blurRadius: 20,
+                                  color: themeProvider.darkTheme
+                                      ? AppColors.blackColor.withOpacity(0.25)
+                                      : AppColors.greyTextColor
+                                          .withOpacity(0.25),
+                                  spreadRadius: 1,
+                                  blurRadius: 15,
                                   offset: const Offset(0, 5),
                                 ),
                               ],
@@ -211,11 +254,14 @@ class LoginScreen extends StatelessWidget {
                         Text(
                           "Don't Have An Account yet? ",
                           style: TextStyle(
-                            color: AppColors.greyTextColor,
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor.withOpacity(0.75)
+                                : AppColors.greyTextColor,
                             fontSize: 11.sp,
                             fontWeight: FontWeight.w400,
                           ),
                         ),
+                        SizedBox(width: 5),
                         GestureDetector(
                           onTap: () {
                             Get.toNamed(AppRouteNames.registerRoute);
@@ -233,33 +279,43 @@ class LoginScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 4.h),
 
-                    GestureDetector(
-                      onTap: () {
-                        controller.submitLoginForm();
-                      },
-                      child: Container(
-                        width: double.infinity,
-                        height: 60,
-                        decoration: const BoxDecoration(
-                          color: AppColors.accentColor,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(12),
-                          ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Login",
-                            style: TextStyle(
-                              color: AppColors.whiteColor,
-                              fontSize: 15.sp,
-                              fontWeight: FontWeight.w600,
+                    Obx(
+                      () => controller.isLoading.value
+                          ? SizedBox(
+                              // width: double.infinity,
+                              height: 60,
+                              child: LoadingAnimationWidget.staggeredDotsWave(
+                                color: AppColors.accentTextColor,
+                                size: 40,
+                              ),
+                            )
+                          : GestureDetector(
+                              onTap: () async {
+                                await controller.submitLoginForm();
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                height: 60,
+                                decoration: const BoxDecoration(
+                                  color: AppColors.accentColor,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(12),
+                                  ),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "Login",
+                                    style: TextStyle(
+                                      color: AppColors.whiteColor,
+                                      fontSize: 15.sp,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
                     ),
                     SizedBox(height: 2.5.h),
-
                   ],
                 ),
               ),

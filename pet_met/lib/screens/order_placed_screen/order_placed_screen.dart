@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/order_placed_controller.dart';
+import 'package:pet_met/screens/address_screen/address_screen_widgets.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:sizer/sizer.dart';
 
@@ -66,6 +67,21 @@ class OrderPlacedScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: AppColors.accentTextColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20.sp,
+                        height: 1.4),
+                  ),
+                ),
+                SizedBox(height: 3.h),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  child: Text(
+                    "Thank You for your Order. Your Order Has be proccess. You can check the proccess on the status order",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.greyTextColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 20.sp,
                         height: 1.4),

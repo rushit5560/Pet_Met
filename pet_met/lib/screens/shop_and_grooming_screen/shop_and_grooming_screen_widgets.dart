@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/shop_and_grooming_screen_controller.dart';
+import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../services/providers/dark_theme_provider.dart';
 
 class ShopListModule extends StatelessWidget {
   ShopListModule({Key? key}) : super(key: key);
   final screenController = Get.find<ShopAndGroomingScreenController>();
+
+  var themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +36,14 @@ class ShopListModule extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: Colors.white,
+          color: themeProvider.darkTheme
+              ? AppColors.darkThemeColor
+              : AppColors.whiteColor,
           boxShadow: [
             BoxShadow(
               color: Colors.grey.shade300,
-              blurRadius: 5,
+              blurRadius: 1,
+              spreadRadius: 1,
               blurStyle: BlurStyle.outer,
             ),
           ],
@@ -61,15 +70,20 @@ class ShopListModule extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 12.sp,
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.blackTextColor,
                     ),
                   ),
                   SizedBox(height: 1.w),
-                  const Text(
+                  Text(
                     "Beside Kantilal Jewellers, Saragam Shopping Center, U 11-12, Anmol Complex Near, Surat 395007",
                     maxLines: 4,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      color: Colors.grey,
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.blackTextColor,
                     ),
                   ),
                 ],

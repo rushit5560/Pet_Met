@@ -7,24 +7,19 @@ import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/app_routes.dart';
 import 'package:pet_met/utils/styles.dart';
-import 'package:pet_met/utils/theme_preferences.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  var darkTheme = await DarkThemePreference().getTheme();
 
   SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(
-      systemNavigationBarColor:
-          darkTheme ? AppColors.darkThemeColor : AppColors.whiteColor,
-      statusBarColor:
-          darkTheme ? AppColors.darkThemeColor : AppColors.whiteColor,
-      statusBarBrightness: darkTheme ? Brightness.dark : Brightness.light,
-      statusBarIconBrightness: darkTheme ? Brightness.light : Brightness.dark,
-      systemNavigationBarIconBrightness:
-          darkTheme ? Brightness.light : Brightness.dark,
+    const SystemUiOverlayStyle(
+      systemNavigationBarColor: AppColors.blackColor,
+      statusBarColor: AppColors.blackColor,
+      statusBarBrightness: Brightness.light,
+      statusBarIconBrightness: Brightness.light,
+      systemNavigationBarIconBrightness: Brightness.light,
     ),
   );
   SystemChrome.setPreferredOrientations(

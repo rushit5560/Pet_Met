@@ -34,7 +34,9 @@ class PrivacyPolicyScreen extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: Colors.white,
+                      color: themeProvider.darkTheme
+                          ? AppColors.darkThemeBoxColor
+                          : AppColors.whiteColor,
                     ),
                     child: Column(
                       children: [
@@ -49,17 +51,22 @@ class PrivacyPolicyScreen extends StatelessWidget {
                         SizedBox(
                             height: privacyPolicyScreenController.size.height *
                                 0.001.h),
-                        const Text(
-                            "Certain information including your IP address, domain name is collected through cookies and similar "
-                            "technologies for a limited purpose. This is to learn which parts of our site you are visiting and to "
-                            "improve user experience next time you visit our site. We do not link the information to anything personally "
-                            "identifiable, meaning while a user’s session is tracked, the users remain anonymous. Only aggregated statistics"
-                            " are captured to make the web site more informative and useful to the visitors."
-                            "Our site’s inquiry form requires you to give us contact information such as your name and email address. "
-                            "We may use this contact information to send you information about our "
-                            "company services and the continuous upgrades in our offerings. In the event that you choose to not receive "
-                            "such emails, please use the unsubscribe button and we will ensure that the information emails are stopped. "
-                            "Of course, you are welcome to opt to reenter our mail list at any time in the future."),
+                        Text(
+                          "Certain information including your IP address, domain name is collected through cookies and similar "
+                          "technologies for a limited purpose. This is to learn which parts of our site you are visiting and to "
+                          "improve user experience next time you visit our site. We do not link the information to anything personally "
+                          "identifiable, meaning while a user’s session is tracked, the users remain anonymous. Only aggregated statistics"
+                          " are captured to make the web site more informative and useful to the visitors."
+                          "Our site’s inquiry form requires you to give us contact information such as your name and email address. "
+                          "We may use this contact information to send you information about our "
+                          "company services and the continuous upgrades in our offerings. In the event that you choose to not receive "
+                          "such emails, please use the unsubscribe button and we will ensure that the information emails are stopped. "
+                          "Of course, you are welcome to opt to reenter our mail list at any time in the future.",
+                          style: TextStyle(
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor),
+                        ),
                       ],
                     ).commonAllSidePadding(padding: 20),
                   ).commonAllSidePadding(padding: 35),

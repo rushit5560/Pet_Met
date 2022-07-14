@@ -5,6 +5,7 @@ class AppColors {
   static const Color blackColor = Color(0xFF000000);
   static const Color redColor = Color(0xFFFF0000);
   static const Color blueColor = Color(0xFFFF0000);
+  static const Color greyColor = Color.fromARGB(255, 126, 126, 126);
   // static const Color redColor = Color(0xFFFF0000);
   // static const Color redColor = Color(0xFFFF0000);
   static const Color accentColor = Color(0xFF41E0DD);
@@ -15,4 +16,5 @@ class AppColors {
 
   //theme colors
   static const Color darkThemeColor = Color.fromARGB(255, 37, 37, 39);
+  static const Color darkThemeBoxColor = Color.fromARGB(255, 45, 44, 47);
 }

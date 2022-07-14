@@ -8,8 +8,10 @@ import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_functions/hide_keyboard.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../services/providers/dark_theme_provider.dart';
 
 class MeetingAndBreadingSearchFieldModule extends StatelessWidget {
   MeetingAndBreadingSearchFieldModule({Key? key}) : super(key: key);
@@ -17,6 +19,7 @@ class MeetingAndBreadingSearchFieldModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var themeProvider = Provider.of<DarkThemeProvider>(context);
     return Stack(
       children: [
         Container(
@@ -46,7 +49,9 @@ class MeetingAndBreadingSearchFieldModule extends StatelessWidget {
             decoration: TextDecoration.none,
           ),
           decoration: InputDecoration(
-            fillColor: AppColors.whiteColor,
+            fillColor: themeProvider.darkTheme
+                ? AppColors.darkThemeColor
+                : AppColors.whiteColor,
             filled: true,
             contentPadding: const EdgeInsets.symmetric(horizontal: 15),
             border: OutlineInputBorder(
@@ -59,7 +64,9 @@ class MeetingAndBreadingSearchFieldModule extends StatelessWidget {
             ),
             hintText: "Search",
             hintStyle: TextStyle(
-              color: AppColors.greyTextColor,
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor.withOpacity(0.75)
+                  : AppColors.greyTextColor,
               fontSize: 13.sp,
               fontWeight: FontWeight.w400,
             ),
@@ -70,14 +77,13 @@ class MeetingAndBreadingSearchFieldModule extends StatelessWidget {
               },
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: AppColors.accentTextColor
-                ),
+                    borderRadius: BorderRadius.circular(10),
+                    color: AppColors.accentTextColor),
                 child: const Icon(
                   Icons.search_rounded,
                   color: Colors.white,
                 ).commonAllSidePadding(padding: 5),
-              ).commonAllSidePadding(padding: 5),
+              ).commonAllSidePadding(padding: 8),
             ),
           ),
         ),
@@ -96,8 +102,7 @@ class PetCategoriesTextModule extends StatelessWidget {
       style: TextStyle(
           color: AppColors.accentTextColor,
           fontWeight: FontWeight.bold,
-          fontSize: 12.sp
-      ),
+          fontSize: 12.sp),
     );
   }
 }
@@ -105,6 +110,7 @@ class PetCategoriesTextModule extends StatelessWidget {
 class PetCategoriesListModule extends StatelessWidget {
   PetCategoriesListModule({Key? key}) : super(key: key);
   final screenController = Get.find<PetMeetingAndBreadingScreenController>();
+  var themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -118,24 +124,29 @@ class PetCategoriesListModule extends StatelessWidget {
     );
   }
 
-
   Widget _petCategoryListTile() {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.white,
+        color:
+            themeProvider.darkTheme ? AppColors.darkThemeColor : Colors.white,
       ),
       child: ExpandablePanel(
         header: Text(
-            "Dog",
+          "Dog",
           style: TextStyle(
-            fontSize: 13.sp
+            fontSize: 13.sp,
+            color: themeProvider.darkTheme
+                ? AppColors.whiteColor
+                : AppColors.blackTextColor,
           ),
-        ).commonSymmetricPadding(horizontal: 10),
-        theme: const ExpandableThemeData(
-          animationDuration: Duration(milliseconds: 500),
-          headerAlignment: ExpandablePanelHeaderAlignment.center
-        ),
+        ).commonSymmetricPadding(horizontal: 12),
+        theme: ExpandableThemeData(
+            iconColor: themeProvider.darkTheme
+                ? AppColors.whiteColor
+                : AppColors.greyTextColor,
+            animationDuration: Duration(milliseconds: 500),
+            headerAlignment: ExpandablePanelHeaderAlignment.center),
         collapsed: Container(),
         expanded: ListView.builder(
           itemCount: 10,
@@ -145,17 +156,31 @@ class PetCategoriesListModule extends StatelessWidget {
             return Row(
               children: [
                 Obx(
-                  ()=> Checkbox(
-                      value: screenController.checkBoxValue.value,
-                      onChanged: (value) {
-                        screenController.checkBoxValue.value
-                        = !screenController.checkBoxValue.value;
-                      }),
+                  () => Checkbox(
+                    checkColor: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.greyTextColor,
+                    activeColor: AppColors.greyTextColor,
+                    fillColor: MaterialStateProperty.all(
+                      AppColors.greyColor,
+                    ),
+                    focusColor: AppColors.greyColor,
+                    value: screenController.checkBoxValue.value,
+                    onChanged: (value) {
+                      screenController.checkBoxValue.value =
+                          !screenController.checkBoxValue.value;
+                    },
+                  ),
                 ),
-                const Text(
+                Text(
                   "German Shepherd dog",
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.blackTextColor,
+                  ),
                 ),
               ],
             );
@@ -171,7 +196,6 @@ class PetCategoriesListModule extends StatelessWidget {
       children: [],
     );*/
   }
-
 }
 
 class MeetYourLovedOneButtonModule extends StatelessWidget {
@@ -206,6 +230,3 @@ class MeetYourLovedOneButtonModule extends StatelessWidget {
     );
   }
 }
-
-
-

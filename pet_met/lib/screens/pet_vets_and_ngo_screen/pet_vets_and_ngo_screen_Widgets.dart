@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/pet_vets_and_ngo_screen_controller.dart';
+import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../services/providers/dark_theme_provider.dart';
 
 class VetsAndNgoListModule extends StatelessWidget {
   VetsAndNgoListModule({Key? key}) : super(key: key);
   final screenController = Get.find<PetVetsAndNgoScreenController>();
+
+  var themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +36,9 @@ class VetsAndNgoListModule extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: Colors.white,
+          color: themeProvider.darkTheme
+              ? AppColors.darkThemeColor
+              : AppColors.whiteColor,
           boxShadow: [
             BoxShadow(
               color: Colors.grey.shade300,

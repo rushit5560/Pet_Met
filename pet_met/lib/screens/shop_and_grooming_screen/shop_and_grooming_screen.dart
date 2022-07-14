@@ -31,7 +31,9 @@ class ShopAndGroomingScreen extends StatelessWidget {
             child: Column(
               children: [
                 CustomAppBar(title: "Shop & Grooming"),
-                Expanded(child: ShopListModule()),
+                Expanded(
+                  child: ShopListModule(),
+                ),
               ],
             ),
           ),

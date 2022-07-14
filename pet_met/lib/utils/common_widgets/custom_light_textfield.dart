@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pet_met/utils/app_colors.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../services/providers/dark_theme_provider.dart';
 
 class CustomLightTextField extends StatelessWidget {
   const CustomLightTextField({
@@ -25,6 +28,7 @@ class CustomLightTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<DarkThemeProvider>(context);
     return Stack(
       children: [
         Container(
@@ -34,9 +38,11 @@ class CustomLightTextField extends StatelessWidget {
             color: Colors.transparent,
             boxShadow: [
               BoxShadow(
-                color: AppColors.greyTextColor.withOpacity(0.25),
-                blurRadius: 35,
-                spreadRadius: 1,
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor.withOpacity(0.05)
+                    : AppColors.greyTextColor.withOpacity(0.05),
+                blurRadius: 10,
+                spreadRadius: 0.1,
                 offset: const Offset(0, 0),
               ),
             ],
@@ -48,13 +54,17 @@ class CustomLightTextField extends StatelessWidget {
           textInputAction: textInputAction,
           keyboardType: textInputType,
           style: TextStyle(
-            color: AppColors.blackTextColor,
+            color: themeProvider.darkTheme
+                ? AppColors.whiteColor
+                : AppColors.blackTextColor,
             fontSize: 13.sp,
             fontWeight: FontWeight.w400,
             decoration: TextDecoration.none,
           ),
           decoration: InputDecoration(
-            fillColor: AppColors.whiteColor,
+            fillColor: themeProvider.darkTheme
+                ? AppColors.darkThemeBoxColor
+                : AppColors.whiteColor,
             filled: true,
             contentPadding: const EdgeInsets.symmetric(horizontal: 15),
             border: OutlineInputBorder(
@@ -67,7 +77,9 @@ class CustomLightTextField extends StatelessWidget {
             ),
             hintText: hintText,
             hintStyle: TextStyle(
-              color: AppColors.greyTextColor,
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.blackTextColor,
               fontSize: 13.sp,
               fontWeight: FontWeight.w400,
             ),

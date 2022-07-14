@@ -30,7 +30,7 @@ class PetTrainersScreen extends StatelessWidget {
             ),
             Column(
               children: [
-                CustomAppBar(title: "Pet Tracker"),
+                CustomAppBar(title: "Pet Trainers"),
                 Expanded(child: PetTrainerListModule()),
               ],
             ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/register_controller.dart';
 import 'package:pet_met/controllers/support_controller.dart';
+import 'package:pet_met/utils/app_images.dart';
 
 import 'package:sizer/sizer.dart';
 
@@ -41,7 +42,7 @@ class SupportScreen extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.topRight,
-              child: Image.asset("assets/images/logintopright.png"),
+              child: Image.asset(AppImages.tealBackgroundImg),
             ),
             Column(
               children: [
@@ -78,7 +79,9 @@ class SupportScreen extends StatelessWidget {
                         children: [
                           SizedBox(height: 4.h),
                           Image.asset(
-                            "assets/images/women_objects.png",
+                            themeProvider.darkTheme
+                                ? "assets/images/women_objects_dark.png"
+                                : "assets/images/women_objects_light.png",
                             width: 80.w,
                           ),
                           SizedBox(height: 5.h),
@@ -129,13 +132,17 @@ class SupportScreen extends StatelessWidget {
         Image.asset(
           imageAsset,
           height: 20,
-          color: AppColors.blackTextColor,
+          color: themeProvider.darkTheme
+              ? AppColors.whiteColor
+              : AppColors.blackTextColor,
         ),
         SizedBox(width: 15),
         Text(
           textdata,
           style: TextStyle(
-            color: AppColors.blackTextColor,
+            color: themeProvider.darkTheme
+                ? AppColors.whiteColor
+                : AppColors.blackTextColor,
             fontSize: 12.sp,
             fontWeight: FontWeight.bold,
           ),

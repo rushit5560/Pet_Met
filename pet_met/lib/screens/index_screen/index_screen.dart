@@ -12,11 +12,13 @@ import 'package:pet_met/utils/common_widgets/custom_light_passfield.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
 import 'package:pet_met/utils/theme_preferences.dart';
 import 'package:pet_met/utils/validations.dart';
+import 'package:provider/provider.dart';
 
 import 'package:sizer/sizer.dart';
 
 import '../../../utils/app_colors.dart';
 import '../../controllers/login_controller.dart';
+import '../../services/providers/dark_theme_provider.dart';
 
 class IndexScreen extends StatefulWidget {
   IndexScreen({Key? key}) : super(key: key);
@@ -31,6 +33,8 @@ class IndexScreenState extends State<IndexScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var themeProvider = Provider.of<DarkThemeProvider>(context);
+
     return ZoomDrawer(
       angle: 0.0,
       borderRadius: 15,
@@ -38,6 +42,7 @@ class IndexScreenState extends State<IndexScreen> {
       androidCloseOnBackTap: true,
       mainScreenTapClose: true,
       moveMenuScreen: false,
+
       // shrinkMainScreen: true,
       // sh
       style: DrawerStyle.defaultStyle,
@@ -49,7 +54,9 @@ class IndexScreenState extends State<IndexScreen> {
       reverseDuration: const Duration(milliseconds: 400),
       boxShadow: [
         BoxShadow(
-          color: AppColors.greyTextColor.withOpacity(0.5),
+          color: themeProvider.darkTheme
+              ? AppColors.greyTextColor.withOpacity(0.15)
+              : AppColors.greyTextColor.withOpacity(0.5),
           spreadRadius: 1,
           blurRadius: 20,
           offset: const Offset(-10, 15), // changes position of shadow
@@ -68,16 +75,23 @@ class IndexScreenState extends State<IndexScreen> {
                 controller.selectedbottomIndex.value = ind!;
               });
             },
-            backgroundColor: AppColors.accentColor,
-            borderRadius: const BorderRadius.all(Radius.circular(20)),
+            backgroundColor: themeProvider.darkTheme
+                ? AppColors.darkThemeColor
+                : AppColors.accentColor,
+            borderRadius: const BorderRadius.all(
+              Radius.circular(20),
+            ),
             //new
             hasInk: true, //new, gives a cute ink effect
-            inkColor:
-                Colors.black12, //optional, uses theme color if not specified
+            inkColor: themeProvider.darkTheme
+                ? AppColors.accentColor.withOpacity(0.12)
+                : Colors.black12, //optional, uses theme color if not specified
             tilesPadding: const EdgeInsets.symmetric(vertical: 8),
             items: <BubbleBottomBarItem>[
               BubbleBottomBarItem(
-                backgroundColor: AppColors.blackTextColor,
+                backgroundColor: themeProvider.darkTheme
+                    ? AppColors.accentTextColor.withOpacity(0.2)
+                    : AppColors.blackTextColor,
                 icon: Image.asset(
                   "assets/icons/mate-branding_icon.png",
                   color: AppColors.whiteColor,
@@ -92,11 +106,13 @@ class IndexScreenState extends State<IndexScreen> {
                 ),
                 title: const Text(
                   "Mate",
-                  style: const TextStyle(color: AppColors.whiteColor),
+                  style: TextStyle(color: AppColors.whiteColor),
                 ),
               ),
               BubbleBottomBarItem(
-                backgroundColor: AppColors.blackTextColor,
+                backgroundColor: themeProvider.darkTheme
+                    ? AppColors.accentTextColor.withOpacity(0.2)
+                    : AppColors.blackTextColor,
                 icon: Image.asset(
                   "assets/icons/trainging_icon.png",
                   color: AppColors.whiteColor,
@@ -111,11 +127,15 @@ class IndexScreenState extends State<IndexScreen> {
                 ),
                 title: const Text(
                   "Play",
-                  style: const TextStyle(color: AppColors.whiteColor),
+                  style: const TextStyle(
+                    color: AppColors.whiteColor,
+                  ),
                 ),
               ),
               BubbleBottomBarItem(
-                backgroundColor: AppColors.blackTextColor,
+                backgroundColor: themeProvider.darkTheme
+                    ? AppColors.accentTextColor.withOpacity(0.2)
+                    : AppColors.blackTextColor,
                 icon: Image.asset(
                   "assets/icons/home.png",
                   color: AppColors.whiteColor,
@@ -134,7 +154,9 @@ class IndexScreenState extends State<IndexScreen> {
                 ),
               ),
               BubbleBottomBarItem(
-                backgroundColor: AppColors.blackTextColor,
+                backgroundColor: themeProvider.darkTheme
+                    ? AppColors.accentTextColor.withOpacity(0.2)
+                    : AppColors.blackTextColor,
                 icon: Image.asset(
                   "assets/icons/location_icon.png",
                   color: AppColors.whiteColor,
@@ -153,7 +175,9 @@ class IndexScreenState extends State<IndexScreen> {
                 ),
               ),
               BubbleBottomBarItem(
-                backgroundColor: AppColors.blackTextColor,
+                backgroundColor: themeProvider.darkTheme
+                    ? AppColors.accentTextColor.withOpacity(0.2)
+                    : AppColors.blackTextColor,
                 icon: Image.asset(
                   "assets/icons/doctor_icon.png",
                   color: AppColors.whiteColor,
@@ -178,7 +202,9 @@ class IndexScreenState extends State<IndexScreen> {
             children: [
               Align(
                 alignment: Alignment.topRight,
-                child: Image.asset("assets/images/logintopright.png"),
+                child: Image.asset(themeProvider.darkTheme
+                    ? "assets/images/path_top_right_dark.png"
+                    : "assets/images/path_top_right_light.png"),
               ),
               Align(
                 alignment: Alignment.centerLeft,

@@ -33,7 +33,6 @@ class LoginController extends GetxController {
     }
   }
 
-
   Future<void> userLoginFunction() async {
     isLoading(true);
     String url = ApiUrl.loginApi;
@@ -41,8 +40,8 @@ class LoginController extends GetxController {
 
     try {
       Map<String, dynamic> data = {
-        "email" : mailController.text.trim().toLowerCase(),
-        "password" : passController.text.trim()
+        "email": mailController.text.trim().toLowerCase(),
+        "password": passController.text.trim()
       };
       log("data : $data");
 
@@ -52,26 +51,22 @@ class LoginController extends GetxController {
       LoginModel loginModel = LoginModel.fromJson(json.decode(response.body));
       isSuccessStatus = loginModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         // User Data Set in Prefs
         await userPreference.setUserDetails(
-          userId: loginModel.data.id,
-          userName: loginModel.data.name,
-          userEmail: loginModel.data.email,
-          userProfileImage: loginModel.data.image
-        );
+            userId: loginModel.data.id,
+            userName: loginModel.data.name,
+            userEmail: loginModel.data.email,
+            userProfileImage: loginModel.data.image);
         // Going to Index Screen
         Get.toNamed(AppRouteNames.indexScreenRoute);
       } else {
         Fluttertoast.showToast(msg: loginModel.error);
       }
-
-    } catch(e) {
+    } catch (e) {
       log('');
     } finally {
       isLoading(false);
     }
   }
-
-
 }

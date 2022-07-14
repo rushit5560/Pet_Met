@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/pet_trainers_screen_controller.dart';
+import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-
+import '../../services/providers/dark_theme_provider.dart';
 
 class PetTrainerListModule extends StatelessWidget {
   PetTrainerListModule({Key? key}) : super(key: key);
   final screenController = Get.find<PetTrainersScreenController>();
+
+  var themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +28,6 @@ class PetTrainerListModule extends StatelessWidget {
     ).commonAllSidePadding(padding: 10);
   }
 
-
   Widget _petTrainerListTile(String shopName) {
     return GestureDetector(
       onTap: () {
@@ -33,11 +36,14 @@ class PetTrainerListModule extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: Colors.white,
-          boxShadow: [
+          color:
+              themeProvider.darkTheme ? AppColors.darkThemeColor : Colors.white,
+          boxShadow: const [
             BoxShadow(
-              color: Colors.grey.shade300,
-              blurRadius: 5,
+              color: Colors.grey,
+              blurRadius: 2,
+              spreadRadius: 1,
+              offset: Offset(0, 0),
               blurStyle: BlurStyle.outer,
             ),
           ],
@@ -64,15 +70,20 @@ class PetTrainerListModule extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 12.sp,
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.blackTextColor,
                     ),
                   ),
                   SizedBox(height: 1.w),
-                  const Text(
+                  Text(
                     "Beside Kantilal Jewellers, Saragam Shopping Center, U 11-12, Anmol Complex Near, Surat 395007",
                     maxLines: 4,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      color: Colors.grey,
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.blackTextColor,
                     ),
                   ),
                 ],
@@ -83,5 +94,4 @@ class PetTrainerListModule extends StatelessWidget {
       ).commonAllSidePadding(padding: 10),
     );
   }
-
 }

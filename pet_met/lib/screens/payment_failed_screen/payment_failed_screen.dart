@@ -4,6 +4,7 @@ import 'package:pet_met/controllers/payment_failed_controller.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../utils/app_colors.dart';
+import '../../utils/app_images.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 
 class PaymentFailedScreen extends StatelessWidget {
@@ -66,7 +67,9 @@ class PaymentFailedScreen extends StatelessWidget {
                       "Please try a different payment method.",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: AppColors.greyTextColor,
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.greyTextColor,
                         fontWeight: FontWeight.w400,
                         fontSize: 10.sp,
                         height: 1.4,

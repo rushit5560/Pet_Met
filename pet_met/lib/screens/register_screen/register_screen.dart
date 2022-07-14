@@ -2,12 +2,15 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pet_met/controllers/register_controller.dart';
+import 'package:provider/provider.dart';
 
 import 'package:sizer/sizer.dart';
 
 import '../../../utils/app_colors.dart';
 import '../../controllers/onboarding_controller.dart';
+import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 import '../../utils/common_widgets/custom_light_passfield.dart';
 import '../../utils/common_widgets/custom_light_textfield.dart';
@@ -17,18 +20,22 @@ class RegisterScreen extends StatelessWidget {
   RegisterScreen({Key? key}) : super(key: key);
 
   final controller = Get.put(RegisterController());
+
+  final themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: AppColors.whiteColor,
+      // backgroundColor: AppColors.whiteColor,
       body: SafeArea(
         child: Stack(
           alignment: Alignment.topCenter,
           children: [
             Align(
               alignment: Alignment.topRight,
-              child: Image.asset("assets/images/logintopright.png"),
+              child: Image.asset(themeProvider.darkTheme
+                  ? "assets/images/path_top_right_dark.png"
+                  : "assets/images/path_top_right_light.png"),
             ),
             BackGroundLeftShadow(
               height: controller.size.height * 0.3,
@@ -72,7 +79,9 @@ class RegisterScreen extends StatelessWidget {
                         Text(
                           "Create a Account to start Using",
                           style: TextStyle(
-                            color: AppColors.greyTextColor,
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor.withOpacity(0.75)
+                                : AppColors.greyTextColor,
                             fontSize: 11.sp,
                             fontWeight: FontWeight.w400,
                           ),
@@ -117,15 +126,18 @@ class RegisterScreen extends StatelessWidget {
                             height: 40,
                             width: 40,
                             child: Checkbox(
-                              checkColor: AppColors.blackTextColor,
-                              activeColor: AppColors.blackColor,
+                              checkColor: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor,
+                              activeColor: AppColors.whiteColor,
                               fillColor:
                                   MaterialStateProperty.resolveWith<Color>(
                                 (Set<MaterialState> states) {
-                                  if (states.contains(MaterialState.selected))
-                                    return AppColors.whiteColor;
-                                  return AppColors
-                                      .greyTextColor; // Use the default value.
+                                  if (states.contains(MaterialState.selected)) {
+                                    return AppColors.greyColor;
+                                    // the default value.
+                                  }
+                                  return AppColors.greyColor;
                                 },
                               ),
                               shape: RoundedRectangleBorder(
@@ -145,7 +157,9 @@ class RegisterScreen extends StatelessWidget {
                           child: RichText(
                             text: TextSpan(
                               style: TextStyle(
-                                color: AppColors.greyTextColor,
+                                color: themeProvider.darkTheme
+                                    ? AppColors.whiteColor.withOpacity(0.75)
+                                    : AppColors.greyTextColor,
                                 fontSize: 11.sp,
                                 fontWeight: FontWeight.w400,
                               ),
@@ -154,9 +168,12 @@ class RegisterScreen extends StatelessWidget {
                                 TextSpan(
                                   text: "term and Condition & privacy Police",
                                   style: TextStyle(
-                                    color: AppColors.blackTextColor
-                                        .withOpacity(0.8),
-                                    fontSize: 12.sp,
+                                    color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.blackTextColor
+                                            .withOpacity(0.8),
+                                    fontSize: 11.sp,
+                                    height: 1.5,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
@@ -176,7 +193,9 @@ class RegisterScreen extends StatelessWidget {
                         Text(
                           "Already have an account? ",
                           style: TextStyle(
-                            color: AppColors.greyTextColor,
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor.withOpacity(0.75)
+                                : AppColors.greyTextColor,
                             fontSize: 11.sp,
                             fontWeight: FontWeight.w400,
                           ),
@@ -197,30 +216,41 @@ class RegisterScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 4.h),
-                    GestureDetector(
-                      onTap: () {
-                        controller.submitRegisterForm();
-                      },
-                      child: Container(
-                        width: double.infinity,
-                        height: 60,
-                        decoration: const BoxDecoration(
-                          color: AppColors.accentColor,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(12),
-                          ),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Create Account",
-                            style: TextStyle(
-                              color: AppColors.whiteColor,
-                              fontSize: 15.sp,
-                              fontWeight: FontWeight.w600,
+                    Obx(
+                      () => controller.isLoading.value
+                          ? SizedBox(
+                              // width: double.infinity,
+                              height: 60,
+                              child: LoadingAnimationWidget.staggeredDotsWave(
+                                color: AppColors.accentTextColor,
+                                size: 40,
+                              ),
+                            )
+                          : GestureDetector(
+                              onTap: () {
+                                controller.submitRegisterForm();
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                height: 60,
+                                decoration: const BoxDecoration(
+                                  color: AppColors.accentColor,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(12),
+                                  ),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "Create Account",
+                                    style: TextStyle(
+                                      color: AppColors.whiteColor,
+                                      fontSize: 15.sp,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
                     ),
                     SizedBox(height: 2.5.h),
                   ],

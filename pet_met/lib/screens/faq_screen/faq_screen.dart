@@ -17,6 +17,7 @@ import '../../utils/common_widgets/custom_light_passfield.dart';
 import '../../utils/common_widgets/custom_light_textfield.dart';
 import '../../utils/enums.dart';
 import '../../utils/validations.dart';
+import 'faq_screen_widgets.dart';
 
 class FaqScreen extends StatelessWidget {
   FaqScreen({Key? key}) : super(key: key);
@@ -41,10 +42,7 @@ class FaqScreen extends StatelessWidget {
               topPad: controller.size.height * 0.45,
               rightPad: -controller.size.width * 0.25,
             ),
-            Align(
-              alignment: Alignment.topRight,
-              child: Image.asset("assets/images/logintopright.png"),
-            ),
+            const BackgroundCurve(),
             Column(
               children: [
                 CustomAppBar(
@@ -70,56 +68,7 @@ class FaqScreen extends StatelessWidget {
                 //     ],
                 //   ),
                 // ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 25, vertical: 10),
-                      child: Container(
-                        height: 86.h,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            // SizedBox(height: 1.h),
-                            // Text(
-                            //   "Faq",
-                            //   style: TextStyle(
-                            //     color: AppColors.accentTextColor,
-                            //     fontSize: 20.sp,
-                            //     fontWeight: FontWeight.bold,
-                            //   ),
-                            // ),
-                            // SizedBox(height: 1.h),
-                            Expanded(
-                              child: Container(
-                                height: 80.h,
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 8, vertical: 15),
-                                width: double.infinity,
-                                // decoration: BoxDecoration(
-                                //   // color: AppColors.whiteColor,
-                                //   borderRadius: BorderRadius.all(
-                                //     Radius.circular(12),
-                                //   ),
-                                // ),
-                                child: ListView.separated(
-                                  itemCount: 10,
-                                  itemBuilder: (ctx, ind) {
-                                    return faqQuestionsListItem(ind);
-                                  },
-                                  separatorBuilder: (ctx, ind) {
-                                    return SizedBox(height: 1.5.h);
-                                  },
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                FaqListModule(),
                 // const SizedBox(height: 15),
               ],
             ),
@@ -129,37 +78,37 @@ class FaqScreen extends StatelessWidget {
     );
   }
 
-  Widget faqQuestionsListItem(int index) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: Colors.white,
-      ),
-      child: ExpandablePanel(
-        header: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          child: Text(
-            controller.questionsList[index],
-            style: TextStyle(fontSize: 13.sp),
-          ).commonSymmetricPadding(horizontal: 10),
-        ),
-        theme: const ExpandableThemeData(
-            animationDuration: Duration(milliseconds: 500),
-            headerAlignment: ExpandablePanelHeaderAlignment.center),
-        collapsed: Container(),
-        expanded: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          child: Text(
-              "With tens of thousands of satisfied clients nationwide, we’ve earned a solid reputation as the most trusted and reliable pet care service in the country. And it isn’t just Fetch as a company. "),
-        ),
-      ).commonSymmetricPadding(vertical: 5),
-    ).commonSymmetricPadding(vertical: 5);
-    /*return ExpansionTile(
-      // backgroundColor: Colors.white,
-      collapsedBackgroundColor: Colors.white,
+  // Widget faqQuestionsListItem(int index) {
+  //   return Container(
+  //     decoration: BoxDecoration(
+  //       borderRadius: BorderRadius.circular(12),
+  //       color: Colors.white,
+  //     ),
+  //     child: ExpandablePanel(
+  //       header: Padding(
+  //         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+  //         child: Text(
+  //           controller.questionsList[index],
+  //           style: TextStyle(fontSize: 13.sp),
+  //         ).commonSymmetricPadding(horizontal: 10),
+  //       ),
+  //       theme: const ExpandableThemeData(
+  //           animationDuration: Duration(milliseconds: 500),
+  //           headerAlignment: ExpandablePanelHeaderAlignment.center),
+  //       collapsed: Container(),
+  //       expanded: Padding(
+  //         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+  //         child: Text(
+  //             "With tens of thousands of satisfied clients nationwide, we’ve earned a solid reputation as the most trusted and reliable pet care service in the country. And it isn’t just Fetch as a company. "),
+  //       ),
+  //     ).commonSymmetricPadding(vertical: 5),
+  //   ).commonSymmetricPadding(vertical: 5);
+  //   /*return ExpansionTile(
+  //     // backgroundColor: Colors.white,
+  //     collapsedBackgroundColor: Colors.white,
 
-      title: Text("Dog"),
-      children: [],
-    );*/
-  }
+  //     title: Text("Dog"),
+  //     children: [],
+  //   );*/
+  // }
 }

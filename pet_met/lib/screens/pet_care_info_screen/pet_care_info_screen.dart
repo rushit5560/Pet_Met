@@ -3,6 +3,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pet_met/utils/app_images.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import 'package:pet_met/controllers/pet_care_info_controller.dart';
@@ -10,12 +12,14 @@ import 'package:pet_met/controllers/register_controller.dart';
 
 import '../../../utils/app_colors.dart';
 import '../../controllers/onboarding_controller.dart';
+import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 import '../../utils/common_widgets/custom_appbar.dart';
 import '../../utils/common_widgets/custom_light_passfield.dart';
 import '../../utils/common_widgets/custom_light_textfield.dart';
 import '../../utils/enums.dart';
 import '../../utils/validations.dart';
+import 'pet_care_info_screen_widgets.dart';
 
 class PetCareInfoScreen extends StatelessWidget {
   PetCareInfoScreen({Key? key}) : super(key: key);
@@ -42,7 +46,7 @@ class PetCareInfoScreen extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.topRight,
-              child: Image.asset("assets/images/logintopright.png"),
+              child: Image.asset(AppImages.tealBackgroundImg),
             ),
             Column(
               children: [
@@ -90,70 +94,7 @@ class PetCareInfoScreen extends StatelessWidget {
                             //   ),
                             // ),
                             SizedBox(height: 1.h),
-                            Container(
-                              height: controller.size.height * 0.85,
-                              child: ListView.separated(
-                                itemCount: controller.petCareInfosList.length,
-                                separatorBuilder: (ctx, ind) {
-                                  return SizedBox(
-                                    height: 2.5.h,
-                                  );
-                                },
-                                itemBuilder: (ctx, ind) {
-                                  return Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        height: 20,
-                                        width: 20,
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: AppColors.accentTextColor,
-                                        ),
-                                        child: const Icon(
-                                          Icons.check,
-                                          color: AppColors.whiteColor,
-                                          size: 15,
-                                        ),
-                                      ),
-                                      SizedBox(width: 10),
-                                      Expanded(
-                                          child: Container(
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              controller
-                                                  .petCareInfosList[ind].name!,
-                                              style: TextStyle(
-                                                color: AppColors.blackTextColor,
-                                                fontSize: 12.sp,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            SizedBox(height: 10),
-                                            Text(
-                                              controller.petCareInfosList[ind]
-                                                  .description!,
-                                              style: TextStyle(
-                                                color: AppColors.greyTextColor,
-                                                fontSize: 12.sp,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      )),
-                                    ],
-                                  );
-                                },
-                              ),
-                            ),
+                            Expanded(child: PetCareListModule()),
                           ],
                         ),
                       ),

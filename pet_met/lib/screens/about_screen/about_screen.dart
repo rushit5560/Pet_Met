@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/about_controller.dart';
+import 'package:pet_met/screens/about_screen/about_screen_widgets.dart';
 
 import 'package:sizer/sizer.dart';
 
@@ -32,10 +33,7 @@ class AboutScreen extends StatelessWidget {
               topPad: controller.size.height * 0.45,
               rightPad: -controller.size.width * 0.25,
             ),
-            Align(
-              alignment: Alignment.topRight,
-              child: Image.asset("assets/images/logintopright.png"),
-            ),
+            const BackgroundCurve(),
             Column(
               children: [
                 CustomAppBar(
@@ -82,109 +80,8 @@ class AboutScreen extends StatelessWidget {
                             //   ),
                             // ),
                             SizedBox(height: 1.h),
-                            Expanded(
-                              child: Container(
-                                height: 80.h,
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 15, vertical: 15),
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: AppColors.whiteColor,
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(12),
-                                  ),
-                                ),
-                                child: SingleChildScrollView(
-                                  physics: const BouncingScrollPhysics(),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "About",
-                                        style: TextStyle(
-                                          color: AppColors.accentTextColor,
-                                          fontSize: 15.sp,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      SizedBox(height: 2.h),
-                                      Text(
-                                        "With tens of thousands of satisfied clients nationwide, we’ve earned a solid reputation as the most trusted and reliable pet care service in the country. And it isn’t just Fetch as a company. ",
-                                        style: TextStyle(
-                                          color: AppColors.greyTextColor,
-                                          fontSize: 11.sp,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                      SizedBox(height: 1.5.h),
-                                      Text(
-                                        "With tens of thousands of satisfied clients nationwide, we’ve earned a solid reputation as the most trusted and reliable pet care service in the country. And it isn’t just Fetch as a company. ",
-                                        style: TextStyle(
-                                          color: AppColors.greyTextColor,
-                                          fontSize: 11.sp,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                      SizedBox(height: 1.5.h),
-                                      Text(
-                                        "With tens of thousands of satisfied clients nationwide, we’ve earned a solid reputation as the most trusted and reliable pet care service in the country. And it isn’t just Fetch as a company. ",
-                                        style: TextStyle(
-                                          color: AppColors.greyTextColor,
-                                          fontSize: 11.sp,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                      SizedBox(height: 1.5.h),
-                                      Text(
-                                        "With tens of thousands of satisfied clients nationwide, we’ve earned a solid reputation as the most trusted and reliable pet care service in the country. And it isn’t just Fetch as a company. ",
-                                        style: TextStyle(
-                                          color: AppColors.greyTextColor,
-                                          fontSize: 11.sp,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                      SizedBox(height: 1.5.h),
-                                      Text(
-                                        "With tens of thousands of satisfied clients nationwide, we’ve earned a solid reputation as the most trusted and reliable pet care service in the country. And it isn’t just Fetch as a company. ",
-                                        style: TextStyle(
-                                          color: AppColors.greyTextColor,
-                                          fontSize: 11.sp,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                      SizedBox(height: 1.5.h),
-                                      Text(
-                                        "With tens of thousands of satisfied clients nationwide, we’ve earned a solid reputation as the most trusted and reliable pet care service in the country. And it isn’t just Fetch as a company. ",
-                                        style: TextStyle(
-                                          color: AppColors.greyTextColor,
-                                          fontSize: 11.sp,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                      SizedBox(height: 1.5.h),
-                                      Text(
-                                        "With tens of thousands of satisfied clients nationwide, we’ve earned a solid reputation as the most trusted and reliable pet care service in the country. And it isn’t just Fetch as a company. ",
-                                        style: TextStyle(
-                                          color: AppColors.greyTextColor,
-                                          fontSize: 11.sp,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                      SizedBox(height: 1.5.h),
-                                      Text(
-                                        "With tens of thousands of satisfied clients nationwide, we’ve earned a solid reputation as the most trusted and reliable pet care service in the country. And it isn’t just Fetch as a company. ",
-                                        style: TextStyle(
-                                          color: AppColors.greyTextColor,
-                                          fontSize: 11.sp,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
+                            const Expanded(
+                              child: AboutUsModule(),
                             ),
                           ],
                         ),

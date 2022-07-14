@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/services/providers/dark_theme_provider.dart';
+import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:pet_met/utils/theme_preferences.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -17,10 +18,10 @@ class OnboardingScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Stack(
-          alignment: Alignment.topCenter,
+          alignment: Alignment.bottomCenter,
           children: [
-            Align(
-              alignment: Alignment.topCenter,
+            Positioned(
+              top: -20,
               child: Image.asset(
                 themeProvider.darkTheme
                     ? "assets/images/onboard_bgshape_dark.png"
@@ -34,7 +35,6 @@ class OnboardingScreen extends StatelessWidget {
                 themeProvider.darkTheme
                     ? "assets/images/onboardtop_path_dark.png"
                     : "assets/images/onboardtop_path_light.png",
-
                 color: themeProvider.darkTheme
                     ? AppColors.darkThemeColor
                     : AppColors.whiteColor,
@@ -42,84 +42,89 @@ class OnboardingScreen extends StatelessWidget {
               ),
             ),
             SafeArea(
-              child: PageView.builder(
-                controller: controller.pageController,
-                onPageChanged: controller.selectedPageIndex,
-                itemCount: controller.onBoardingPages.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(height: 5.h),
-                        // Spacer(),
-                        Image.asset(
-                          controller.onBoardingPages[index].imageAsset,
-                          height: 40.h,
-                        ),
-                        // SizedBox(height: 35.h),
-                        SizedBox(height: 8.h),
-                        Row(
-                          children: [
-                            Image.asset(
-                              controller.onBoardingPages[index].logo,
-                              width: 25.w,
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 5.h),
-                        Row(
-                          children: [
-                            Container(
-                              width: controller.size.width * 0.7,
-                              child: Text(
-                                controller.onBoardingPages[index].title,
-                                style: TextStyle(
-                                  color: themeProvider.darkTheme
-                                      ? AppColors.whiteColor
-                                      : AppColors.blackTextColor,
-                                  fontSize: 17.sp,
-                                  fontWeight: FontWeight.bold,
-                                  height: 1.2,
-                                ),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: PageView.builder(
+                      controller: controller.pageController,
+                      onPageChanged: controller.selectedPageIndex,
+                      itemCount: controller.onBoardingPages.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          // padding: const EdgeInsets.symmetric(horizontal: 30),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              // SizedBox(height: 5.h),
+                              // Spacer(),
+                              Image.asset(
+                                controller.onBoardingPages[index].imageAsset,
+                                height: 40.h,
+                              ).commonSymmetricPadding(horizontal: 30),
+                              // SizedBox(height: 35.h),
+                              SizedBox(height: 9.h),
+                              Row(
+                                children: [
+                                  Image.asset(
+                                    controller.onBoardingPages[index].logo,
+                                    width: 25.w,
+                                  ),
+                                ],
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 1.5.h),
-                        Row(
-                          children: [
-                            Container(
-                              width: controller.size.width * 0.8,
-                              child: Text(
-                                controller.onBoardingPages[index].description,
-                                //textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 11.sp,
-                                  color: AppColors.greyTextColor,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.4,
-                                ),
+                              SizedBox(height: 4.h),
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: controller.size.width * 0.6,
+                                    child: Text(
+                                      controller.onBoardingPages[index].title,
+                                      style: TextStyle(
+                                        color: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                            : AppColors.blackTextColor,
+                                        fontSize: 17.sp,
+                                        fontWeight: FontWeight.bold,
+                                        height: 1.2,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ],
-                        ),
-                        Spacer(),
-                      ],
+                              SizedBox(height: 1.5.h),
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: controller.size.width * 0.6,
+                                    child: Text(
+                                      controller
+                                          .onBoardingPages[index].description,
+                                      //textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 11.sp,
+                                        color: AppColors.greyTextColor,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.4,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Spacer(),
+                            ],
+                          ),
+                        );
+                      },
                     ),
-                  );
-                },
-              ),
+                  ),
+                ],
+              ).commonSymmetricPadding(horizontal: 30, vertical: 15),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+            Align(
+              alignment: Alignment.bottomCenter,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  SizedBox(height: 20.h),
-                  // Dot Indicator
                   Row(
                     children: List.generate(
                       controller.onBoardingPages.length,
@@ -177,7 +182,7 @@ class OnboardingScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 1.h),
                 ],
-              ),
+              ).commonSymmetricPadding(horizontal: 30, vertical: 15),
             ),
           ],
         ),

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../controllers/home_controller.dart';
+import '../../../services/providers/dark_theme_provider.dart';
 
 class DogDisplayWidget extends StatelessWidget {
   const DogDisplayWidget({
@@ -16,6 +18,7 @@ class DogDisplayWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var themeProvider = Provider.of<DarkThemeProvider>(context);
     final size = Get.size;
     return GestureDetector(
       onTap: onTap,
@@ -26,22 +29,26 @@ class DogDisplayWidget extends StatelessWidget {
             child: Container(
               height: size.height * 0.25,
               width: size.width * 0.45,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(12),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(
+                  const Radius.circular(12),
                 ),
-                image: DecorationImage(
-                  image: AssetImage("assets/images/dog1.png"),
-                  fit: BoxFit.cover
-                ),
+                color: themeProvider.darkTheme
+                    ? AppColors.darkThemeBoxColor
+                    : AppColors.whiteColor,
+                image: const DecorationImage(
+                    image: AssetImage("assets/images/dog1.png"),
+                    fit: BoxFit.cover),
               ),
             ),
           ),
           Expanded(
             // flex: 55,
             child: Container(
-              decoration: const BoxDecoration(
-                color: AppColors.whiteColor,
+              decoration: BoxDecoration(
+                color: themeProvider.darkTheme
+                    ? AppColors.darkThemeBoxColor
+                    : AppColors.whiteColor,
                 borderRadius: BorderRadius.only(
                   topRight: Radius.circular(12),
                   bottomRight: Radius.circular(12),
@@ -62,41 +69,48 @@ class DogDisplayWidget extends StatelessWidget {
                   Text(
                     "AccoAdyssinian Dog",
                     style: TextStyle(
-                      color: AppColors.blackTextColor.withOpacity(0.6),
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.blackTextColor.withOpacity(0.6),
                       fontSize: 10.sp,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Text(
                     "Female, 2 Years Old",
                     style: TextStyle(
-                      color: AppColors.greyTextColor,
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor.withOpacity(0.65)
+                          : AppColors.greyTextColor,
                       fontSize: 11.sp,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  SizedBox(height: 25),
+                  const SizedBox(height: 25),
                   Row(
                     children: [
-                      SizedBox(width: 3),
+                      const SizedBox(width: 3),
                       Image.asset(
                         "assets/icons/location.png",
                         height: 16,
-                        color: AppColors.blackTextColor.withOpacity(0.6),
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor.withOpacity(0.65)
+                            : AppColors.blackTextColor.withOpacity(0.6),
                       ),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                       Text(
                         "Distance: 3.6 km",
                         style: TextStyle(
-                          color: AppColors.blackTextColor.withOpacity(0.6),
+                          color: themeProvider.darkTheme
+                              ? AppColors.whiteColor.withOpacity(0.65)
+                              : AppColors.blackTextColor.withOpacity(0.6),
                           fontSize: 10.sp,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],
                   ),
-
                 ],
               ).commonSymmetricPadding(horizontal: 12, vertical: 14),
             ),
@@ -196,5 +210,126 @@ class DogDisplayWidget extends StatelessWidget {
         ],
       ),
     );*/
+  }
+}
+
+class PetListModule extends StatelessWidget {
+  PetListModule({Key? key}) : super(key: key);
+
+  final controller = Get.find<HomeController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: controller.size.width * 0.16,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemCount: controller.dogsTopList.length,
+        physics: const BouncingScrollPhysics(),
+        separatorBuilder: (context, index) {
+          return const SizedBox(width: 10);
+        },
+        itemBuilder: (context, index) {
+          return Stack(
+            children: [
+              Container(
+                height: controller.size.width * 0.16,
+                width: controller.size.width * 0.16,
+                margin: const EdgeInsets.only(bottom: 5, right: 5),
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(
+                        controller.dogsTopList[index],
+                      ),
+                      fit: BoxFit.cover),
+                  color: AppColors.greyTextColor,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(8),
+                  ),
+                ),
+              ),
+              index == 0
+                  ? Positioned(
+                      right: 0,
+                      bottom: 0,
+                      child: Container(
+                        height: 15,
+                        width: 15,
+                        decoration: const BoxDecoration(
+                            color: Colors.green, shape: BoxShape.circle),
+                        child: const Icon(
+                          Icons.add,
+                          color: AppColors.whiteColor,
+                          size: 12,
+                        ),
+                      ),
+                    )
+                  : const SizedBox()
+            ],
+          );
+        },
+      ),
+    );
+  }
+}
+
+class BannerModule extends StatelessWidget {
+  BannerModule({Key? key}) : super(key: key);
+
+  final controller = Get.find<HomeController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: controller.size.height * 0.2,
+      width: double.infinity,
+      decoration: const BoxDecoration(
+        image: DecorationImage(image: AssetImage("assets/icons/dogbanner.png")),
+        borderRadius: BorderRadius.all(
+          Radius.circular(12),
+        ),
+      ),
+    );
+  }
+}
+
+class PetShopAndGroomingText extends StatelessWidget {
+  PetShopAndGroomingText({Key? key}) : super(key: key);
+
+  final controller = Get.find<HomeController>();
+
+  @override
+  Widget build(BuildContext context) {
+    var themeProvider = Provider.of<DarkThemeProvider>(context);
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Container(
+          height: 35,
+          width: controller.size.width * 0.36,
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          decoration: BoxDecoration(
+            color: themeProvider.darkTheme
+                ? AppColors.darkThemeColor
+                : AppColors.whiteColor,
+            borderRadius: const BorderRadius.all(
+              Radius.circular(10),
+            ),
+          ),
+          child: Center(
+            child: Text(
+              "Pet Shop & Grooming",
+              style: TextStyle(
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.accentTextColor,
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }

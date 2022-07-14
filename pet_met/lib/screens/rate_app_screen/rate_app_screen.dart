@@ -3,8 +3,10 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/rate_app_controller.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 import '../../utils/common_widgets/custom_appbar.dart';
@@ -15,6 +17,8 @@ class RateAppScreen extends StatelessWidget {
   RateAppScreen({Key? key}) : super(key: key);
 
   final controller = Get.put(RateAppController());
+
+  var themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +40,9 @@ class RateAppScreen extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.topRight,
-              child: Image.asset("assets/images/logintopright.png"),
+              child: Image.asset(themeProvider.darkTheme
+                  ? "assets/images/path_top_right_dark.png"
+                  : "assets/images/path_top_right_light.png"),
             ),
             Column(
               children: [
@@ -84,70 +90,107 @@ class RateAppScreen extends StatelessWidget {
                           Container(
                             height: controller.size.height * 0.4,
                             width: double.infinity,
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 20, vertical: 15),
                             decoration: BoxDecoration(
-                              color: AppColors.whiteColor,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(12),
+                              color: themeProvider.darkTheme
+                                  ? AppColors.darkThemeBoxColor
+                                  : AppColors.whiteColor,
+                              borderRadius: const BorderRadius.all(
+                                const Radius.circular(12),
                               ),
                             ),
                             child: Column(
                               children: [
-                                SizedBox(height: 20),
+                                const SizedBox(height: 20),
                                 RatingBar.builder(
                                   initialRating: 3,
                                   itemCount: 5,
                                   itemBuilder: (context, index) {
                                     switch (index) {
                                       case 0:
-                                        return Icon(
+                                        return const Icon(
                                           Icons.sentiment_very_dissatisfied,
                                           color: AppColors.accentColor,
                                         );
                                       case 1:
-                                        return Icon(
+                                        return const Icon(
                                           Icons.sentiment_dissatisfied,
                                           color: AppColors.accentColor,
                                         );
                                       case 2:
-                                        return Icon(
+                                        return const Icon(
                                           Icons.sentiment_neutral,
                                           color: AppColors.accentColor,
                                         );
                                       case 3:
-                                        return Icon(
+                                        return const Icon(
                                           Icons.sentiment_satisfied,
                                           color: AppColors.accentColor,
                                         );
                                       case 4:
-                                        return Icon(
+                                        return const Icon(
                                           Icons.sentiment_very_satisfied,
                                           color: AppColors.accentColor,
                                         );
                                     }
-                                    return SizedBox();
+                                    return const SizedBox();
                                   },
                                   onRatingUpdate: (rating) {
                                     print(rating);
                                   },
                                 ),
-                                SizedBox(height: 8),
+                                const SizedBox(height: 8),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text("1"),
-                                    SizedBox(width: 30),
-                                    Text("2"),
-                                    SizedBox(width: 30),
-                                    Text("3"),
-                                    SizedBox(width: 30),
-                                    Text("4"),
-                                    SizedBox(width: 30),
-                                    Text("5"),
+                                    Text(
+                                      "1",
+                                      style: TextStyle(
+                                        color: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                            : AppColors.blackTextColor,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 32),
+                                    Text(
+                                      "2",
+                                      style: TextStyle(
+                                        color: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                            : AppColors.blackTextColor,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 32),
+                                    Text(
+                                      "3",
+                                      style: TextStyle(
+                                        color: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                            : AppColors.blackTextColor,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 32),
+                                    Text(
+                                      "4",
+                                      style: TextStyle(
+                                        color: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                            : AppColors.blackTextColor,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 32),
+                                    Text(
+                                      "5",
+                                      style: TextStyle(
+                                        color: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                            : AppColors.blackTextColor,
+                                      ),
+                                    ),
                                   ],
                                 ),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 TextFormField(
                                   maxLines: null,
                                   decoration: InputDecoration(
@@ -161,10 +204,15 @@ class RateAppScreen extends StatelessWidget {
                                       borderSide: const BorderSide(
                                           width: 0, style: BorderStyle.none),
                                     ),
+                                    fillColor: themeProvider.darkTheme
+                                        ? AppColors.greyColor.withOpacity(1)
+                                        : AppColors.greyColor.withOpacity(0.12),
                                     hintText:
                                         "Leave Your Feedback Here (Optional)",
                                     hintStyle: TextStyle(
-                                      color: AppColors.greyTextColor,
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor
+                                          : AppColors.greyTextColor,
                                       fontSize: 13.sp,
                                       fontWeight: FontWeight.w400,
                                     ),
@@ -178,16 +226,18 @@ class RateAppScreen extends StatelessWidget {
                                     decoration: TextDecoration.none,
                                   ),
                                 ),
-                                SizedBox(height: 30),
+                                const SizedBox(height: 32),
                                 Text(
                                   "Your feedback is private and will not be shared with your client",
                                   style: TextStyle(
-                                    color: AppColors.greyTextColor,
+                                    color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.greyTextColor,
                                     fontSize: 11.sp,
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
-                                SizedBox(height: 30),
+                                const SizedBox(height: 32),
                                 Container(
                                   height: 35,
                                   width: controller.size.width * 0.4,

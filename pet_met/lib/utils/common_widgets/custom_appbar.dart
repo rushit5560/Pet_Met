@@ -4,8 +4,10 @@ import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
+import 'package:provider/provider.dart';
 
 import '../../controllers/index_screen_controller.dart';
+import '../../services/providers/dark_theme_provider.dart';
 
 class CustomAppBar extends StatelessWidget {
   CustomAppBar({
@@ -23,6 +25,8 @@ class CustomAppBar extends StatelessWidget {
   Widget? trailingWidget;
   final AppBarOption appBarOption;
   final indexController = Get.put(IndexScreenController());
+
+  final themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -79,9 +83,16 @@ class CustomAppBar extends StatelessWidget {
 
   leadingWidget() {
     if (appBarOption == AppBarOption.singleBackButtonOption) {
-      return Image.asset(AppIcons.backButtonImg);
+      return Image.asset(
+        AppIcons.backButtonImg,
+      );
     } else if (appBarOption == AppBarOption.drawerButtonOption) {
-      return Image.asset(AppIcons.drawerButtonImg);
+      return Image.asset(
+        AppIcons.drawerButtonImg,
+        color: themeProvider.darkTheme
+            ? AppColors.whiteColor
+            : AppColors.blackTextColor.withOpacity(0.8),
+      );
     } else {
       return Container();
     }

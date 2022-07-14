@@ -23,7 +23,6 @@ class UserCategoriesController extends GetxController {
     Get.offNamed(AppRouteNames.loginRoute);
   }
 
-
   var boolsList = [];
 
   List userTypeCategories = [
