@@ -7,6 +7,7 @@ import 'user_details.dart';
 class UserPreference {
   UserDetails userDetails = UserDetails();
 
+  String isUserLoggedInKey = "isUserLoggedInKey";
   String roleIdKey = 'categoryIdKey';
   String userIdKey = "userIdKey";
   String userNameKey = "userNameKey";
@@ -36,16 +37,19 @@ class UserPreference {
     prefs.setString(userNameKey, userName);
     prefs.setString(userEmailKey, userEmail);
     prefs.setString(userProfileImageKey, userProfileImage);
+    prefs.setBool(isUserLoggedInKey, true);
 
     userDetails.userId = prefs.getInt(userIdKey) ?? 0;
     userDetails.userName = prefs.getString(userNameKey) ?? "";
     userDetails.userEmail = prefs.getString(userEmailKey) ?? "";
     userDetails.userProfileImage = prefs.getString(userProfileImageKey) ?? "";
+    userDetails.isUserLoggedIn = prefs.getBool(isUserLoggedInKey) ?? false;
 
     log("userId : ${userDetails.userId}");
     log("userName : ${userDetails.userName}");
     log("userEmail : ${userDetails.userEmail}");
     log("userProfileImage : ${userDetails.userProfileImage}");
+    log("isUserLoggedIn : ${userDetails.isUserLoggedIn}");
 
 
   }
