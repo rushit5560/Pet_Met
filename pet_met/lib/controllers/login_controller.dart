@@ -1,63 +1,77 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'dart:convert';
+import 'dart:developer';
 
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
+import 'package:pet_met/models/login_screen_model/login_model.dart';
+import 'package:pet_met/utils/api_url.dart';
+import 'package:http/http.dart' as http;
+import 'package:pet_met/utils/user_preference.dart';
 import '../utils/app_route_names.dart';
 
 class LoginController extends GetxController {
+  RxBool isLoading = false.obs;
+  RxBool isSuccessStatus = false.obs;
   final size = Get.size;
 
-  var mailController = TextEditingController(text: "test@gmail.com");
-  var passController = TextEditingController(text: "Admin@123");
+  var mailController = TextEditingController();
+  var passController = TextEditingController();
   var selectedPageIndex = 0.obs;
+
+  UserPreference userPreference = UserPreference();
 
   final formKey = GlobalKey<FormState>();
 
-  List<OnBoardingInfo> onBoardingPages = [
-    OnBoardingInfo(
-      imageAsset: "assets/images/splash_peoples2.png",
-      title: 'Find the Pet you love on around you easily',
-      description:
-          'You can buy a pet easily with this app. This app is connected to million people',
-    ),
-    OnBoardingInfo(
-      imageAsset: "assets/images/splash_dogs1.png",
-      title: 'Sell Your Pet on your smartphone.',
-      description:
-          'Sell your pet in one smartphone. Message and call with buyer with safety order',
-    ),
-    OnBoardingInfo(
-      imageAsset: "assets/images/splash_peoples3.png",
-      title: 'Get Started to Find your lovely friends',
-      description: 'meet your pet and get the happy daya of the day',
-    ),
-  ];
-
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  submitLoginForm() {
+  Future<void> submitLoginForm() async {
     if (formKey.currentState!.validate()) {
       try {
-        // ScaffoldMessenger.of(Get.context!).showSnackBar(
-        //   SnackBar(
-        //     content: Text("Form Submitted"),
-        //     duration: Duration(seconds: 3),
-        //   ),
-        // );
-        Get.toNamed(AppRouteNames.indexScreenRoute);
+        await userLoginFunction();
       } catch (e) {
         throw e;
       }
     }
   }
-}
 
-class OnBoardingInfo {
-  final imageAsset;
-  final title;
-  final description;
 
-  OnBoardingInfo({this.imageAsset, this.title, this.description});
+  Future<void> userLoginFunction() async {
+    isLoading(true);
+    String url = ApiUrl.loginApi;
+    log('Login Api Url : $url');
+
+    try {
+      Map<String, dynamic> data = {
+        "email" : mailController.text.trim().toLowerCase(),
+        "password" : passController.text.trim()
+      };
+      log("data : $data");
+
+      http.Response response = await http.post(Uri.parse(url), body: data);
+      log("Login Api Response : ${response.body}");
+
+      LoginModel loginModel = LoginModel.fromJson(json.decode(response.body));
+      isSuccessStatus = loginModel.success.obs;
+
+      if(isSuccessStatus.value) {
+        // User Data Set in Prefs
+        await userPreference.setUserDetails(
+          userId: loginModel.data.id,
+          userName: loginModel.data.name,
+          userEmail: loginModel.data.email,
+          userProfileImage: loginModel.data.image
+        );
+        // Going to Index Screen
+        Get.toNamed(AppRouteNames.indexScreenRoute);
+      } else {
+        Fluttertoast.showToast(msg: loginModel.error);
+      }
+
+    } catch(e) {
+      log('');
+    } finally {
+      isLoading(false);
+    }
+  }
+
+
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/user_categories_controller.dart';
 import 'package:pet_met/utils/app_route_names.dart';
@@ -46,10 +47,7 @@ class _UserCategoriesScreenState extends State<UserCategoriesScreen> {
                   ? const Center(child: CircularProgressIndicator())
                   : Column(
                       children: [
-                        CustomAppBar(
-                          title: "User Categories",
-                          appBarOption: AppBarOption.singleBackButtonOption,
-                        ),
+                        CustomAppBar(title: "User Categories"),
                         // Padding(
                         //   padding: const EdgeInsets.only(
                         //       top: 20, left: 20, right: 20, bottom: 15),
@@ -110,27 +108,17 @@ class _UserCategoriesScreenState extends State<UserCategoriesScreen> {
                                               Transform.scale(
                                                 scale: 1.2,
                                                 child: Checkbox(
-                                                  shape:
-                                                      const RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.all(
+                                                  shape: const RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.all(
                                                       Radius.circular(5.0),
                                                     ),
                                                   ),
-                                                  value: controller
-                                                      .boolsList[index].value,
-                                                  checkColor:
-                                                      AppColors.whiteColor,
-                                                  activeColor:
-                                                      AppColors.greyTextColor,
-
-                                                  fillColor:
-                                                      MaterialStateProperty.all(
-                                                    AppColors.greyTextColor,
-                                                  ),
-                                                  focusColor:
-                                                      AppColors.greyTextColor,
-
+                                                  value: controller.boolsList[index].value,
+                                                  checkColor: AppColors.whiteColor,
+                                                  activeColor: AppColors.greyTextColor,
+                                                  fillColor: MaterialStateProperty.all(
+                                                    AppColors.greyTextColor),
+                                                  focusColor: AppColors.greyTextColor,
                                                   // overlayColor:
                                                   //     MaterialStateProperty.all(
                                                   //   AppColors.greyTextColor,
@@ -139,67 +127,38 @@ class _UserCategoriesScreenState extends State<UserCategoriesScreen> {
                                                     controller.isLoading(true);
 
                                                     if (index == 0) {
-                                                      controller
-                                                          .individualPetBool(
-                                                              true);
-                                                      controller
-                                                          .petShoopsGroomingBool(
-                                                              false);
-                                                      controller
-                                                          .petvetsandNgoBool(
-                                                              false);
-                                                      controller
-                                                          .petTrainerAndBreederBool(
-                                                              false);
+                                                      controller.individualPetBool(true);
+                                                      controller.petShoopsGroomingBool(false);
+                                                      controller.petvetsandNgoBool(false);
+                                                      controller.petTrainerAndBreederBool(false);
+                                                      controller.roleId = 1;
                                                     } else if (index == 1) {
-                                                      controller
-                                                          .individualPetBool(
-                                                              false);
-                                                      controller
-                                                          .petShoopsGroomingBool(
-                                                              true);
-                                                      controller
-                                                          .petvetsandNgoBool(
-                                                              false);
-                                                      controller
-                                                          .petTrainerAndBreederBool(
-                                                              false);
+                                                      controller.individualPetBool(false);
+                                                      controller.petShoopsGroomingBool(true);
+                                                      controller.petvetsandNgoBool(false);
+                                                      controller.petTrainerAndBreederBool(false);
+                                                      controller.roleId = 2;
                                                     } else if (index == 2) {
-                                                      controller
-                                                          .individualPetBool(
-                                                              false);
-                                                      controller
-                                                          .petShoopsGroomingBool(
-                                                              false);
-                                                      controller
-                                                          .petvetsandNgoBool(
-                                                              true);
-                                                      controller
-                                                          .petTrainerAndBreederBool(
-                                                              false);
+                                                      controller.individualPetBool(false);
+                                                      controller.petShoopsGroomingBool(false);
+                                                      controller.petvetsandNgoBool(true);
+                                                      controller.petTrainerAndBreederBool(false);
+                                                      controller.roleId = 3;
                                                     } else if (index == 3) {
-                                                      controller
-                                                          .individualPetBool(
-                                                              false);
-                                                      controller
-                                                          .petShoopsGroomingBool(
-                                                              false);
-                                                      controller
-                                                          .petvetsandNgoBool(
-                                                              false);
-                                                      controller
-                                                          .petTrainerAndBreederBool(
-                                                              true);
+                                                      controller.individualPetBool(false);
+                                                      controller.petShoopsGroomingBool(false);
+                                                      controller.petvetsandNgoBool(false);
+                                                      controller.petTrainerAndBreederBool(true);
+                                                      controller.roleId = 4;
                                                     }
 
                                                     controller.isLoading(false);
                                                   },
                                                 ),
                                               ),
-                                              SizedBox(width: 10),
+                                              const SizedBox(width: 10),
                                               Text(
-                                                controller
-                                                    .userTypeCategories[index],
+                                                controller.userTypeCategories[index],
                                                 style: TextStyle(
                                                   color:
                                                       AppColors.blackTextColor,
@@ -217,19 +176,25 @@ class _UserCategoriesScreenState extends State<UserCategoriesScreen> {
                                       itemCount: 4,
                                     ),
                                   ),
-                                  SizedBox(height: 20),
+                                  const SizedBox(height: 20),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       ElevatedButton(
-                                        onPressed: () {
-                                          Get.offNamed(
-                                              AppRouteNames.indexScreenRoute);
+                                        onPressed: () async {
+                                          if(controller.individualPetBool.value == false
+                                          && controller.petShoopsGroomingBool.value == false
+                                          && controller.petvetsandNgoBool.value == false
+                                          && controller.petTrainerAndBreederBool.value == false) {
+                                           Fluttertoast.showToast(msg: "Please select category!");
+                                          } else {
+                                            await controller.setRoleIdInPrefs();
+                                          }
                                         },
                                         style: ElevatedButton.styleFrom(
                                           primary: AppColors.accentColor,
-                                          fixedSize: Size(100, 45),
-                                          shape: RoundedRectangleBorder(
+                                          fixedSize: const Size(100, 45),
+                                          shape: const RoundedRectangleBorder(
                                             borderRadius: BorderRadius.all(
                                               Radius.circular(12),
                                             ),

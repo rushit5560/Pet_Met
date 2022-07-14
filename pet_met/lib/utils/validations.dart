@@ -45,7 +45,7 @@ class Validations {
 
   String? validatePassword(String value) {
     if (value.isEmpty) {
-      return "password is required";
+      return "Password is required";
     } else if (value.length < 6) {
       return "Length should be 6 character";
     } else {

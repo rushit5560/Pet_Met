@@ -8,6 +8,9 @@ class AppImages {
   static const shopAndGroomingImg = root + "shop_grooming.png";
   static const shopDetailsImg = root + "shop_details.png";
   static const phoneCallImg = root + "phone_green.png";
+  static const fbImg = root + "fb.png";
+  static const instaImg = root + "insta.png";
+  static const whatsappImg = root + "whatsapp.png";
 }
 
 class AppIcons {

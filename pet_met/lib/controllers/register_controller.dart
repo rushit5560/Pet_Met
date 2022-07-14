@@ -1,9 +1,19 @@
+import 'dart:convert';
+import 'dart:developer';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:pet_met/models/register_screen_model/register_model.dart';
+import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_route_names.dart';
+import 'package:pet_met/utils/user_details.dart';
+import 'package:pet_met/utils/user_preference.dart';
 
 class RegisterController extends GetxController {
+  RxBool isLoading = false.obs;
+  RxBool isSuccessStatus = false.obs;
   final size = Get.size;
 
   TextEditingController mailController = TextEditingController();
@@ -11,22 +21,72 @@ class RegisterController extends GetxController {
   TextEditingController passController = TextEditingController();
 
   RxBool selectedTerms = false.obs;
+  UserDetails userDetails = UserDetails();
+  UserPreference userPreference = UserPreference();
 
   final formKey = GlobalKey<FormState>();
 
-  submitRegisterForm() {
+  submitRegisterForm() async {
     if (formKey.currentState!.validate()) {
       try {
+        await userRegisterFunction();
         // ScaffoldMessenger.of(Get.context!).showSnackBar(
         //   SnackBar(
         //     content: Text("Form Submitted"),
         //     duration: Duration(seconds: 3),
         //   ),
         // );
-        Get.toNamed(AppRouteNames.indexScreenRoute);
       } catch (e) {
         throw e;
       }
+    }
+  }
+
+
+  /// User Registration
+  Future<void> userRegisterFunction() async {
+    isLoading(true);
+    String url = ApiUrl.registerApi;
+    log("Register Api Url : $url");
+
+    try {
+      Map<String, dynamic> data = {
+        "email" : mailController.text.trim().toLowerCase(),
+        "password" : passController.text.trim(),
+        "c_password" : passController.text.trim(),
+        "categoryID" : "${userDetails.roleId}",
+        "name" : nameController.text.trim()
+      };
+      log("Body Data : $data");
+
+      http.Response response = await http.post(Uri.parse(url), body: data);
+
+      RegisterModel registerModel = RegisterModel.fromJson(json.decode(response.body));
+      isSuccessStatus = registerModel.success.obs;
+
+      if(isSuccessStatus.value) {
+        log("isSuccessStatus : ${isSuccessStatus.value}");
+
+        // User Data Set in Prefs
+        await userPreference.setUserDetails(
+            userId: registerModel.data[0].id,
+            userName: registerModel.data[0].name,
+            userEmail: registerModel.data[0].email,
+            userProfileImage: registerModel.data[0].image
+        );
+        // Going to Index Screen
+        Get.toNamed(AppRouteNames.indexScreenRoute);
+      } else {
+        Fluttertoast.showToast(msg: "${registerModel.error.email}");
+      }
+
+
+
+
+    } catch(e) {
+      log("User Registration Error ::: $e");
+    }finally {
+      isLoading(false);
     }
   }
 
