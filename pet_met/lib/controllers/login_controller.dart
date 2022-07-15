@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -24,6 +25,9 @@ class LoginController extends GetxController {
   UserPreference userPreference = UserPreference();
 
   final formKey = GlobalKey<FormState>();
+
+  FacebookUserProfile? profile;
+  final FacebookLogin  plugin = FacebookLogin(debug: true);
 
   Future<void> submitLoginForm() async {
     if (formKey.currentState!.validate()) {
@@ -74,7 +78,7 @@ class LoginController extends GetxController {
       isLoading(false);
     }
   }
-  
+
   Future signInWithGoogleFunction() async {
     isLoading(true);
     // SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -101,8 +105,9 @@ class LoginController extends GetxController {
       if (result != null) {
         String userName = result.user!.displayName!;
         String email = result.user!.email!;
+        //String password = passController.text.trim();
         mailController.text = email;
-        passController.text = passController.text;
+        //passController.text = password;
 
         await userLoginFunction();
 
@@ -117,6 +122,63 @@ class LoginController extends GetxController {
       }
     }
     isLoading(false);
+  }
+
+  Future signInWithFacebookFunction() async {
+    await plugin.logIn(
+      permissions: [
+        FacebookPermission.publicProfile,
+        FacebookPermission.email,
+      ],
+    );
+
+    await subPartOfFacebookLogin();
+    await plugin.logOut();
+
+  }
+
+  subPartOfFacebookLogin() async {
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    final plugin1 = plugin;
+    final token = await plugin1.accessToken;
+
+    String? email;
+    String? imageUrl;
+
+    if (token != null) {
+      log("token===$token");
+      profile = await plugin1.getUserProfile();
+      log("profile===$profile");
+      if (token.permissions.contains(FacebookPermission.email.name)) {
+        email = await plugin1.getUserEmail();
+        mailController.text = email!;
+      }
+      imageUrl = await plugin1.getProfileImageUrl(width: 100);
+      if(profile != null) {
+        if(profile!.userId.isNotEmpty) {
+
+          //String userName = profile!.name!;
+         // String userName = profile!.name!;
+          mailController.text = email!;
+          //passwordFieldController.text = "${userNameFieldController.text}@123";
+
+          await userLoginFunction();
+
+
+          // prefs.setString('userId', profile!.userId);
+          // prefs.setString('userName', profile!.firstName!);
+          // prefs.setString('email', email!);
+          // prefs.setString('photo', imageUrl!.toString());
+
+          // String ? userId = prefs.getString('userId');
+          // String ? uName = prefs.getString('userName');
+          // String ? uEmail = prefs.getString('email');
+          // String ? uPhotoUrl = prefs.getString('photo');
+          // log('id: $userId, username : $uName, email : $uEmail, photo : $uPhotoUrl');
+        }
+      }
+
+    }
   }
 
 }

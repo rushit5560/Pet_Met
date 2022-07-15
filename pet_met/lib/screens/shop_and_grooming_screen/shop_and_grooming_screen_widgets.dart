@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/shop_and_grooming_screen_controller.dart';
+import 'package:pet_met/models/shop_and_grooming_screen_model/all_shop_model.dart';
+import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
+import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:provider/provider.dart';
@@ -18,20 +21,22 @@ class ShopListModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: screenController.shopList.length,
+      itemCount: screenController.shopsList.length,
       shrinkWrap: true,
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, i) {
-        String shopName = screenController.shopList[i];
-        return _shopListTile(shopName);
+        ShopData shopSingleItem = screenController.shopsList[i];
+        return _shopListTile(shopSingleItem);
       },
     ).commonAllSidePadding(padding: 10);
   }
 
-  Widget _shopListTile(String shopName) {
+  Widget _shopListTile(ShopData shopSingleItem) {
+    String imgUrl = ApiUrl.apiImagePath + shopSingleItem.showimg;
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRouteNames.shopDetailsScreenRoute);
+        Get.toNamed(AppRouteNames.shopDetailsScreenRoute,
+          arguments: shopSingleItem);
       },
       child: Container(
         decoration: BoxDecoration(
@@ -51,12 +56,18 @@ class ShopListModule extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              width: 22.w,
-              height: 22.w,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: Colors.grey,
-              ),
+              width: 70,
+              height: 65,
+              // decoration: BoxDecoration(
+              //   borderRadius: BorderRadius.circular(30),
+              //   color: Colors.grey,
+              // ),
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+              child: Image.network(imgUrl,
+              errorBuilder: (context, er, ob){
+                return Image.asset(AppImages.petMetLogoImg);
+              })),
             ),
             SizedBox(width: 3.w),
             Expanded(
@@ -64,7 +75,7 @@ class ShopListModule extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    shopName,
+                    shopSingleItem.shopename,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -77,7 +88,7 @@ class ShopListModule extends StatelessWidget {
                   ),
                   SizedBox(height: 1.w),
                   Text(
-                    "Beside Kantilal Jewellers, Saragam Shopping Center, U 11-12, Anmol Complex Near, Surat 395007",
+                    shopSingleItem.address,
                     maxLines: 4,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(

@@ -160,8 +160,8 @@ class LoginScreen extends StatelessWidget {
                       children: [
                         Expanded(
                           child: GestureDetector(
-                            onTap: () {
-                              // controller.signInWithGoogleFunction();
+                            onTap: () async {
+                               await controller.signInWithGoogleFunction();
                             },
                             child: Container(
                               height: controller.size.height * 0.065,
@@ -205,42 +205,47 @@ class LoginScreen extends StatelessWidget {
                         ),
                         SizedBox(width: 15),
                         Expanded(
-                          child: Container(
-                            height: controller.size.height * 0.065,
-                            decoration: BoxDecoration(
-                              color: themeProvider.darkTheme
-                                  ? AppColors.darkThemeColor
-                                  : AppColors.whiteColor,
-                              borderRadius: BorderRadius.circular(12),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: themeProvider.darkTheme
-                                      ? AppColors.blackColor.withOpacity(0.25)
-                                      : AppColors.greyTextColor
-                                          .withOpacity(0.25),
-                                  spreadRadius: 1,
-                                  blurRadius: 15,
-                                  offset: const Offset(0, 5),
-                                ),
-                              ],
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  "assets/images/fbicon.png",
-                                  height: 25,
-                                ),
-                                const SizedBox(width: 15),
-                                Text(
-                                  "Facebook",
-                                  style: TextStyle(
-                                    color: AppColors.accentTextColor,
-                                    fontSize: 12.sp,
-                                    fontWeight: FontWeight.bold,
+                          child: GestureDetector(
+                            onTap: ()async {
+                              await controller.signInWithFacebookFunction();
+                            },
+                            child: Container(
+                              height: controller.size.height * 0.065,
+                              decoration: BoxDecoration(
+                                color: themeProvider.darkTheme
+                                    ? AppColors.darkThemeColor
+                                    : AppColors.whiteColor,
+                                borderRadius: BorderRadius.circular(12),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: themeProvider.darkTheme
+                                        ? AppColors.blackColor.withOpacity(0.25)
+                                        : AppColors.greyTextColor
+                                            .withOpacity(0.25),
+                                    spreadRadius: 1,
+                                    blurRadius: 15,
+                                    offset: const Offset(0, 5),
                                   ),
-                                )
-                              ],
+                                ],
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset(
+                                    "assets/images/fbicon.png",
+                                    height: 25,
+                                  ),
+                                  const SizedBox(width: 15),
+                                  Text(
+                                    "Facebook",
+                                    style: TextStyle(
+                                      color: AppColors.accentTextColor,
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),

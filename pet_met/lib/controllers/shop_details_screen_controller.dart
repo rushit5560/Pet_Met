@@ -1,27 +1,23 @@
-import 'dart:convert';
-import 'dart:developer';
-import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
-import 'package:pet_met/models/shop_details_screen_models/shop_details_model.dart';
-import 'package:pet_met/utils/api_url.dart';
+import 'package:pet_met/models/shop_and_grooming_screen_model/all_shop_model.dart';
 
 class ShopDetailsScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
   final size = Get.size;
 
-  ShopDetails shopDetails = ShopDetails();
+  ShopData shopDetails = Get.arguments;
 
 
   /// Get Shop Details
-  Future<void> getShopDetailsFunction() async {
+  /*Future<void> getShopDetailsFunction() async {
     isLoading(true);
     String url = ApiUrl.shopDetailsApi;
     log("Shop Details Api Url : $url");
 
     try {
       Map<String, dynamic> data = {
-        "id" : "1"
+        "id" : "$shopId"
       };
       http.Response response = await http.post(Uri.parse(url), body: data);
       log("Shop Details Api Response : ${response.body}");
@@ -30,7 +26,7 @@ class ShopDetailsScreenController extends GetxController {
 
       if(isSuccessStatus.value) {
         shopDetails = shopDetailsModel.data;
-        log("shopDetails : $shopDetails");
+        log("shopDetails : ${shopDetails.showimg}");
       } else {
         log("Shop Details Api Else");
       }
@@ -40,6 +36,13 @@ class ShopDetailsScreenController extends GetxController {
       isLoading(false);
     }
 
-  }
+  }*/
+
+  /*@override
+  void onInit() async{
+    // TODO: implement onInit
+    super.onInit();
+    await getShopDetailsFunction();
+  }*/
 
 }

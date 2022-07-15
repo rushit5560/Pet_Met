@@ -1,5 +1,7 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:provider/provider.dart';
@@ -280,13 +282,104 @@ class BannerModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    /*return Container(
       height: controller.size.height * 0.2,
       width: double.infinity,
       decoration: const BoxDecoration(
         image: DecorationImage(image: AssetImage("assets/icons/dogbanner.png")),
         borderRadius: BorderRadius.all(
           Radius.circular(12),
+        ),
+      ),
+    );*/
+    return Column(
+      children: [
+        CarouselSlider.builder(
+          itemCount: controller.bannerList.length,
+          itemBuilder: (context, index, realIndex) {
+            // final imgUrl = ApiUrl.apiImagePath +
+            //     controller.bannerList[index].brandImage;
+            return _imageModule(index);
+          },
+          options: CarouselOptions(
+            height: 165,
+            autoPlay: true,
+            viewportFraction: 1,
+            onPageChanged: (index, reason) {
+              controller.activeIndex.value = index;
+            },
+          ),
+        ),
+        // SizedBox(height: 8),
+        // ImageBannerIndicator(),
+      ],
+    );
+  }
+
+  Widget _imageModule(int index) {
+    return Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Colors.grey,
+            image: DecorationImage(
+              image: NetworkImage(ApiUrl.apiImagePath + controller.bannerList[index].brandImage),
+              fit: BoxFit.cover,
+            ),
+          ),
+        ),
+        Container(
+          padding: EdgeInsets.only(left: 10),
+          alignment: Alignment.centerLeft,
+          child: Row(
+            children: [
+              Expanded(
+                flex: 1,
+                child: Text(
+                  controller.bannerList[index].brandName,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Container(),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class ImageBannerIndicator extends StatelessWidget {
+  ImageBannerIndicator({Key? key}) : super(key: key);
+  final controller = Get.find<HomeController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+          () => Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: List.generate(
+          controller.bannerList.length,
+              (index) => Container(
+            margin: EdgeInsets.all(4),
+            width: 10,
+            height: 10,
+            decoration: BoxDecoration(
+              color: controller.activeIndex.value == index
+                  ? AppColors.accentTextColor
+                  : Colors.grey,
+              shape: BoxShape.circle,
+            ),
+          ),
         ),
       ),
     );

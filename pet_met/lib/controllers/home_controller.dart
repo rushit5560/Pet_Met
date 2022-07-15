@@ -8,6 +8,7 @@ import 'package:pet_met/utils/api_url.dart';
 
 
 class HomeController extends GetxController {
+  var activeIndex = 0.obs;
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
   final size = Get.size;

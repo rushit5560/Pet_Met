@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/shop_details_screen_controller.dart';
+import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
@@ -19,13 +20,20 @@ class BannerImageModule extends StatelessWidget {
       width: screenController.size.width,
       height: screenController.size.height * 0.030.h,
       decoration: BoxDecoration(
-        image: const DecorationImage(
-          image: AssetImage(AppImages.shopDetailsImg),
-          fit: BoxFit.cover,
-        ),
-        borderRadius: BorderRadius.circular(15),
+        // image: DecorationImage(
+        //   image: NetworkImage(ApiUrl.apiImagePath + screenController.shopDetails.showimg),
+        //   fit: BoxFit.cover,
+        // ),
+        // borderRadius: BorderRadius.circular(15),
       ),
-      // child: Image.asset(AppImages.AppImages.shopDetailsImg,
+       child: ClipRRect(
+         borderRadius: BorderRadius.circular(15),
+         child: Image.network(ApiUrl.apiImagePath + screenController.shopDetails.showimg,
+             fit: BoxFit.cover,
+         errorBuilder: (context, er, ob){
+           return Image.asset(AppImages.petMetLogoImg);
+         },),
+       ),
       // fit: BoxFit.cover,),
     ).commonSymmetricPadding(horizontal: 15);
   }
@@ -48,12 +56,12 @@ class OffersModule extends StatelessWidget {
         SizedBox(
           height: screenController.size.width * 0.18,
           child: ListView.builder(
-            itemCount: 10,
+            itemCount: screenController.shopDetails.offersimages.length,
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, i) {
-              return _offerListTile();
+              return _offerListTile(i);
             },
           ),
         ),
@@ -61,20 +69,17 @@ class OffersModule extends StatelessWidget {
     ).commonSymmetricPadding(horizontal: 15);
   }
 
-  Widget _offerListTile() {
+  Widget _offerListTile(int i) {
     return Container(
       height: screenController.size.width * 0.18,
       width: screenController.size.width * 0.18,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage(
-              AppImages.shopDetailsImg,
-            ),
-            fit: BoxFit.cover),
-        color: AppColors.greyTextColor,
-        borderRadius: BorderRadius.all(
-          Radius.circular(8),
-        ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: Image.network(ApiUrl.apiImagePath + screenController.shopDetails.offersimages[i],
+        fit: BoxFit.cover,
+        errorBuilder: (context, er, da){
+          return Image.asset(AppImages.petMetLogoImg);
+        }),
       ),
     ).commonSymmetricPadding(horizontal: 5);
   }
@@ -90,7 +95,7 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
       children: [
         Expanded(
           child: Text(
-            "Skylos The Pet Shop",
+            screenController.shopDetails.shopename,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
@@ -173,7 +178,7 @@ class ShopPlaceTimePaymentModule extends StatelessWidget {
             SizedBox(width: screenController.size.width * 0.008.w),
             Expanded(
               child: Text(
-                "Shop No-10, Besides Decent Hotel, Jay Complex, Anand Mahal Road, surat 395006",
+                screenController.shopDetails.address,
                 style: TextStyle(
                   color: themeProvider.darkTheme
                       ? AppColors.whiteColor
@@ -199,13 +204,26 @@ class ShopPlaceTimePaymentModule extends StatelessWidget {
             ),
             SizedBox(width: screenController.size.width * 0.008.w),
             Expanded(
-              child: Text(
-                "Open Closes 6PM",
-                style: TextStyle(
-                  color: themeProvider.darkTheme
-                      ? AppColors.whiteColor
-                      : AppColors.blackTextColor,
-                ),
+              child: Row(
+                children: [
+                  Text(
+                    "Open:"+ screenController.shopDetails.shopopen,
+                    style: TextStyle(
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.blackTextColor,
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Text(
+                    "Close:"+ screenController.shopDetails.shopclose,
+                    style: TextStyle(
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.blackTextColor,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
@@ -262,12 +280,13 @@ class MeetingAvailabilityModule extends StatelessWidget {
         SizedBox(
           height: screenController.size.width * 0.15,
           child: ListView.builder(
-            itemCount: 10,
+            itemCount: screenController.shopDetails.meetingimages.length,
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, i) {
-              return _meetingAvailabilityListTile();
+              String imgUrl = ApiUrl.apiImagePath + screenController.shopDetails.meetingimages[i];
+              return _meetingAvailabilityListTile(imgUrl);
             },
           ),
         ),
@@ -275,21 +294,28 @@ class MeetingAvailabilityModule extends StatelessWidget {
     ).commonSymmetricPadding(horizontal: 15);
   }
 
-  Widget _meetingAvailabilityListTile() {
+  Widget _meetingAvailabilityListTile(String imgUrl) {
     return Container(
       height: screenController.size.width * 0.15,
       width: screenController.size.width * 0.15,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage(
-              AppImages.shopDetailsImg,
-            ),
-            fit: BoxFit.cover),
-        color: AppColors.greyTextColor,
-        borderRadius: BorderRadius.all(
-          Radius.circular(8),
-        ),
-      ),
+      // decoration: const BoxDecoration(
+      //   // image: DecorationImage(
+      //   //     image: AssetImage(
+      //   //       AppImages.shopDetailsImg,
+      //   //     ),
+      //   //     fit: BoxFit.cover),
+      //   color: AppColors.greyTextColor,
+      //   borderRadius: BorderRadius.all(
+      //     Radius.circular(8),
+      //   ),
+      // ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+          child: Image.network(imgUrl, 
+              fit: BoxFit.fill,
+          errorBuilder: (context, er, data){
+            return Image.asset(AppImages.petMetLogoImg);
+          }),),
     ).commonSymmetricPadding(horizontal: 5);
   }
 }

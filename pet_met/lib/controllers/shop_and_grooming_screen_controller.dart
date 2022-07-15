@@ -22,6 +22,7 @@ class ShopAndGroomingScreenController extends GetxController {
     
     try {
       http.Response response = await http.get(Uri.parse(url));
+      log('Get All Shop Response: ${response.body}');
       AllShopModel allShopModel = AllShopModel.fromJson(json.decode(response.body));
 
       isSuccessStatus = allShopModel.success.obs;
