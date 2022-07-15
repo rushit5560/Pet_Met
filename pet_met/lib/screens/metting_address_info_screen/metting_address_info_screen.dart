@@ -11,6 +11,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../utils/app_colors.dart';
 import '../../utils/common_widgets/background_widgets.dart';
+import '../metting_address_info_screen/metting_address_info_screen_widgets.dart';
 
 class MettingAddressInfoScreen extends StatelessWidget {
   MettingAddressInfoScreen({Key? key}) : super(key: key);
@@ -28,10 +29,7 @@ class MettingAddressInfoScreen extends StatelessWidget {
               topPad: controller.size.height * 0.38,
               leftPad: -controller.size.width * 0.15,
             ),
-            Align(
-              alignment: Alignment.topRight,
-              child: Image.asset(AppImages.tealBackgroundImg),
-            ),
+            BackgroundImage(),
             Column(
               children: [
                 CustomAppBar(

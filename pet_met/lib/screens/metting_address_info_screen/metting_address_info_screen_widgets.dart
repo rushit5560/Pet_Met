@@ -6,6 +6,18 @@ import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:sizer/sizer.dart';
 
+class BackgroundImage extends StatelessWidget {
+  const BackgroundImage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.topRight,
+      child: Image.asset(AppImages.tealBackgroundImg),
+    );
+  }
+}
+
 class PetTrainerBannerImageModule extends StatelessWidget {
   PetTrainerBannerImageModule({Key? key}) : super(key: key);
   final screenController = Get.find<PetTrainersDetailsScreenController>();
