@@ -30,7 +30,7 @@ class ShopAndGroomingScreenController extends GetxController {
       if(isSuccessStatus.value) {
         shopsList.clear();
         shopsList.addAll(allShopModel.data);
-        log("shopList Length : ${shopList.length}");
+        log("shopList Length : ${shopsList.length}");
       } else {
         log("Get All Shop Api Else");
       }
@@ -41,20 +41,6 @@ class ShopAndGroomingScreenController extends GetxController {
       isLoading(false);
     }
   }
-
-
-  List<String> shopList = [
-    "Skylos The Pet Shop",
-    "The Muster Pet Zone",
-    "One Stop Pet Shop",
-    "Dog Club Pet",
-    "Dogclub pet Shop",
-    "Skylos The Pet Shop",
-    "The Muster Pet Zone",
-    "One Stop Pet Shop",
-    "Dog Club Pet",
-    "Dogclub pet Shop"
-  ];
 
 
   @override

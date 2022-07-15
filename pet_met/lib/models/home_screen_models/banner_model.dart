@@ -30,48 +30,84 @@ class BannerModel {
 
 class BannerData {
   BannerData({
-    required this.brandId,
-    required this.brandName,
-    required this.brandImage,
-    required this.sortOrder,
+    required this.bannerId,
+    required this.title,
+    // required this.sortOrder,
+    // required this.url,
+    // required this.bannerGroupId,
+    // required this.containerName,
+    required this.viewPageCount,
+    // required this.bannerGroupBannerGroupId,
+    // required this.link,
+    required this.image,
+    required this.imagePath,
+    required this.content,
+    required this.position,
     required this.isActive,
     // required this.createdDate,
-    // required this.updatedDate,
+    // required this.modifiedDate,
     // required this.createdBy,
     // required this.modifiedBy,
   });
 
-  int brandId;
-  String brandName;
-  String brandImage;
-  String sortOrder;
+  int bannerId;
+  String title;
+  // dynamic sortOrder;
+  // dynamic url;
+  // dynamic bannerGroupId;
+  // dynamic containerName;
+  int viewPageCount;
+  // dynamic bannerGroupBannerGroupId;
+  // dynamic link;
+  String image;
+  String imagePath;
+  String content;
+  int position;
   int isActive;
   // DateTime createdDate;
-  // DateTime updatedDate;
+  // dynamic modifiedDate;
   // int createdBy;
-  // int modifiedBy;
+  // dynamic modifiedBy;
 
   factory BannerData.fromJson(Map<String, dynamic> json) => BannerData(
-    brandId: json["brandID"] ?? 0,
-    brandName: json["brandName"] ?? "",
-    brandImage: json["brandImage"] ?? "",
-    sortOrder: json["sort_order"] ?? "",
+    bannerId: json["banner_id"] ?? 0,
+    title: json["title"] ?? "",
+    // sortOrder: json["sort_order"],
+    // url: json["url"],
+    // bannerGroupId: json["banner_group_id"],
+    // containerName: json["container_name"],
+    viewPageCount: json["view_page_count"] ?? 0,
+    // bannerGroupBannerGroupId: json["banner_group_banner_group_id"],
+    // link: json["link"],
+    image: json["image"] ?? "",
+    imagePath: json["image_path"] ?? "",
+    content: json["content"] ?? "",
+    position: json["position"] ?? 0,
     isActive: json["is_active"] ?? 0,
     // createdDate: DateTime.parse(json["created_date"]),
-    // updatedDate: json["updated_date"] == null ? null : DateTime.parse(json["updated_date"]),
+    // modifiedDate: json["modified_date"],
     // createdBy: json["created_by"],
-    // modifiedBy: json["modified_by"] == null ? null : json["modified_by"],
+    // modifiedBy: json["modified_by"],
   );
 
   Map<String, dynamic> toJson() => {
-    "brandID": brandId,
-    "brandName": brandName,
-    "brandImage": brandImage,
-    "sort_order": sortOrder,
+    "banner_id": bannerId,
+    "title": title,
+    // "sort_order": sortOrder,
+    // "url": url,
+    // "banner_group_id": bannerGroupId,
+    // "container_name": containerName,
+    "view_page_count": viewPageCount,
+    // "banner_group_banner_group_id": bannerGroupBannerGroupId,
+    // "link": link,
+    "image": image,
+    "image_path": imagePath,
+    "content": content,
+    "position": position,
     "is_active": isActive,
     // "created_date": createdDate.toIso8601String(),
-    // "updated_date": updatedDate == null ? null : updatedDate.toIso8601String(),
+    // "modified_date": modifiedDate,
     // "created_by": createdBy,
-    // "modified_by": modifiedBy == null ? null : modifiedBy,
+    // "modified_by": modifiedBy,
   };
 }

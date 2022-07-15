@@ -77,9 +77,28 @@ class HomeController extends GetxController {
       log("Banner Api Error ::: $e");
     } finally {
       isLoading(false);
+      // await getAllPetFunction();
     }
-
   }
+
+  /// Get All Pets
+  /*Future<void> getAllPetFunction() async {
+    isLoading(true);
+    String url = ApiUrl.getAllPetApi;
+    log("All Pet Api Url : $url");
+
+    try {
+      http.Response response = await http.get(Uri.parse(url));
+      log("Get All Pet Api response : ${response.body}");
+
+
+
+    } catch(e) {
+      log("Get All Pet Api Error ::: $e");
+    } finally {
+      isLoading(false);
+    }
+  }*/
 
   @override
   void onInit() {

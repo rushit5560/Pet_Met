@@ -55,7 +55,7 @@ class DogDisplayWidget extends StatelessWidget {
                 color: themeProvider.darkTheme
                     ? AppColors.darkThemeBoxColor
                     : AppColors.whiteColor,
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(12),
                   bottomRight: Radius.circular(12),
                 ),
@@ -226,7 +226,7 @@ class PetListModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: controller.size.width * 0.16,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
@@ -328,23 +328,23 @@ class BannerModule extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             color: Colors.grey,
             image: DecorationImage(
-              image: NetworkImage(ApiUrl.apiImagePath + controller.bannerList[index].brandImage),
+              image: NetworkImage(ApiUrl.apiImagePath + controller.bannerList[index].imagePath),
               fit: BoxFit.cover,
             ),
           ),
         ),
         Container(
-          padding: EdgeInsets.only(left: 10),
+          padding: const EdgeInsets.only(left: 10),
           alignment: Alignment.centerLeft,
           child: Row(
             children: [
               Expanded(
                 flex: 1,
                 child: Text(
-                  controller.bannerList[index].brandName,
+                  controller.bannerList[index].title,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -358,7 +358,7 @@ class BannerModule extends StatelessWidget {
           ),
         ),
       ],
-    );
+    ).commonSymmetricPadding(horizontal: 20);
   }
 }
 
@@ -374,7 +374,7 @@ class ImageBannerIndicator extends StatelessWidget {
         children: List.generate(
           controller.bannerList.length,
               (index) => Container(
-            margin: EdgeInsets.all(4),
+            margin: const EdgeInsets.all(4),
             width: 10,
             height: 10,
             decoration: BoxDecoration(
