@@ -149,7 +149,7 @@ class PaymentDetailsModule extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Image.asset(
-                "assets/images/visa_image.png",
+                AppImages.visaImg,
                 // height: 8.w,
                 width: 12.w,
               ),
@@ -241,7 +241,7 @@ class OrderDetailsModule extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Image.asset(
-                  "assets/images/image_placeholder2.png",
+                  AppImages.gallery2Img,
                   // height: 8.w,
                   width: 22.w,
                 ),

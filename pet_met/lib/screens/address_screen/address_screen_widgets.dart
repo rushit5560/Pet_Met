@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/address_controller.dart';
 import 'package:pet_met/utils/app_colors.dart';
+import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -18,9 +19,7 @@ class BackgroundCurve extends StatelessWidget {
     return Align(
       alignment: Alignment.topRight,
       child: Image.asset(
-        themeProvider.darkTheme
-            ? "assets/images/path_top_right_dark.png"
-            : "assets/images/path_top_right_light.png",
+        AppImages.tealBackgroundImg,
       ),
     );
   }

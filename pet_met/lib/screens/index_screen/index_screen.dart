@@ -8,6 +8,7 @@ import 'package:pet_met/controllers/home_controller.dart';
 import 'package:pet_met/controllers/index_screen_controller.dart';
 import 'package:pet_met/screens/home_screen/widgets/home_screen_widgets.dart';
 import 'package:pet_met/screens/index_screen/widgets/index_screen_widgets.dart';
+import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_passfield.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
 import 'package:pet_met/utils/theme_preferences.dart';
@@ -93,13 +94,13 @@ class IndexScreenState extends State<IndexScreen> {
                     ? AppColors.accentTextColor.withOpacity(0.2)
                     : AppColors.blackTextColor,
                 icon: Image.asset(
-                  "assets/icons/mate-branding_icon.png",
+                  AppIcons.bottomBar1Img,
                   color: AppColors.whiteColor,
                   width: 40,
                   height: 40,
                 ),
                 activeIcon: Image.asset(
-                  "assets/icons/mate-branding_icon.png",
+                  AppIcons.bottomBar1Img,
                   color: AppColors.whiteColor,
                   width: 40,
                   height: 40,
@@ -114,13 +115,13 @@ class IndexScreenState extends State<IndexScreen> {
                     ? AppColors.accentTextColor.withOpacity(0.2)
                     : AppColors.blackTextColor,
                 icon: Image.asset(
-                  "assets/icons/trainging_icon.png",
+                  AppIcons.bottomBar2Img,
                   color: AppColors.whiteColor,
                   width: 28,
                   height: 28,
                 ),
                 activeIcon: Image.asset(
-                  "assets/icons/trainging_icon.png",
+                  AppIcons.bottomBar2Img,
                   color: AppColors.whiteColor,
                   width: 28,
                   height: 28,
@@ -137,13 +138,13 @@ class IndexScreenState extends State<IndexScreen> {
                     ? AppColors.accentTextColor.withOpacity(0.2)
                     : AppColors.blackTextColor,
                 icon: Image.asset(
-                  "assets/icons/home.png",
+                  AppIcons.bottomBar3Img,
                   color: AppColors.whiteColor,
                   width: 28,
                   height: 28,
                 ),
                 activeIcon: Image.asset(
-                  "assets/icons/home.png",
+                  AppIcons.bottomBar3Img,
                   color: AppColors.whiteColor,
                   width: 28,
                   height: 28,
@@ -158,13 +159,13 @@ class IndexScreenState extends State<IndexScreen> {
                     ? AppColors.accentTextColor.withOpacity(0.2)
                     : AppColors.blackTextColor,
                 icon: Image.asset(
-                  "assets/icons/location_icon.png",
+                  AppIcons.bottomBar4Img,
                   color: AppColors.whiteColor,
                   width: 28,
                   height: 28,
                 ),
                 activeIcon: Image.asset(
-                  "assets/icons/location_icon.png",
+                  AppIcons.bottomBar4Img,
                   color: AppColors.whiteColor,
                   width: 28,
                   height: 28,
@@ -179,13 +180,13 @@ class IndexScreenState extends State<IndexScreen> {
                     ? AppColors.accentTextColor.withOpacity(0.2)
                     : AppColors.blackTextColor,
                 icon: Image.asset(
-                  "assets/icons/doctor_icon.png",
+                  AppIcons.bottomBar5Img,
                   color: AppColors.whiteColor,
                   width: 28,
                   height: 28,
                 ),
                 activeIcon: Image.asset(
-                  "assets/icons/doctor_icon.png",
+                  AppIcons.bottomBar5Img,
                   color: AppColors.whiteColor,
                   width: 28,
                   height: 28,
@@ -202,13 +203,11 @@ class IndexScreenState extends State<IndexScreen> {
             children: [
               Align(
                 alignment: Alignment.topRight,
-                child: Image.asset(themeProvider.darkTheme
-                    ? "assets/images/path_top_right_dark.png"
-                    : "assets/images/path_top_right_light.png"),
+                child: Image.asset(AppImages.tealBackgroundImg),
               ),
               Align(
                 alignment: Alignment.centerLeft,
-                child: Image.asset("assets/shades/bg_shade_left.png"),
+                child: Image.asset(AppShades.bgShadeLeftImg),
               ),
               controller.screenPages[controller.selectedbottomIndex.value],
             ],

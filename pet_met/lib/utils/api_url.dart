@@ -7,5 +7,5 @@ class ApiUrl {
   static const bannerApi = apiMainPath + "/banner";
   static const getAllShopApi = apiMainPath + "/getallshop";
   static const shopDetailsApi = apiMainPath + "/shopdetails";
-  static const getAllTrainerApi = apiMainPath + "getalltrainer";
+  static const getAllTrainerApi = apiMainPath + "/getalltrainer";
 }

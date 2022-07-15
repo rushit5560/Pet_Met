@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/rate_app_controller.dart';
+import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -40,9 +41,9 @@ class RateAppScreen extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.topRight,
-              child: Image.asset(themeProvider.darkTheme
-                  ? "assets/images/path_top_right_dark.png"
-                  : "assets/images/path_top_right_light.png"),
+              child: Image.asset(
+                AppImages.tealBackgroundImg
+              ),
             ),
             Column(
               children: [
@@ -88,7 +89,7 @@ class RateAppScreen extends StatelessWidget {
                           // ),
                           const SizedBox(height: 45),
                           Container(
-                            height: controller.size.height * 0.4,
+                            //height: controller.size.height * 0.4,
                             width: double.infinity,
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 20, vertical: 15),

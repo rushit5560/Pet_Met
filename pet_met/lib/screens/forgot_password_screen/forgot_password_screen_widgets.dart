@@ -30,7 +30,7 @@ class BackButtonModule extends StatelessWidget {
         Get.back();
       },
       child: Image.asset(
-        "assets/icons/left_back_arrow.png",
+        AppIcons.backButtonImg,
         width: controller.size.width * 0.07,
       ),
     );

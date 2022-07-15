@@ -19,7 +19,7 @@ class PetTrainersScreenController extends GetxController {
     log("Get All Trainers Api Url : $url");
 
     try {
-      http.Response response = await http.post(Uri.parse(url));
+      http.Response response = await http.get(Uri.parse(url));
       log("Get All Trainer Response : ${response.body}");
 
       AllTrainerModel allTrainerModel = AllTrainerModel.fromJson(json.decode(response.body));

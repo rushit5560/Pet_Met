@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/user_categories_controller.dart';
+import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -38,9 +39,7 @@ class _UserCategoriesScreenState extends State<UserCategoriesScreen> {
             ),
             Align(
               alignment: Alignment.topRight,
-              child: Image.asset(themeProvider.darkTheme
-                  ? "assets/images/path_top_right_dark.png"
-                  : "assets/images/path_top_right_light.png"),
+              child: Image.asset(AppImages.tealBackgroundImg),
             ),
             Obx(
               () => controller.isLoading.value

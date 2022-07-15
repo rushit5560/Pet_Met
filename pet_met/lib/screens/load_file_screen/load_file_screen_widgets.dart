@@ -57,7 +57,7 @@ class _LoadFileModuleState extends State<LoadFileModule> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
-              "assets/images/folder_yellow.png",
+              AppImages.galleryImg,
               height: controller.size.height * 0.055,
             ),
           ],
@@ -88,7 +88,7 @@ class _LoadFileModuleState extends State<LoadFileModule> {
           children: [
             const SizedBox(height: 5),
             Image.asset(
-              "assets/images/camera_green.png",
+              AppImages.cameraImg,
               height: controller.size.height * 0.055,
             ),
             const SizedBox(height: 10),

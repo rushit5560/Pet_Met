@@ -79,9 +79,7 @@ class SupportScreen extends StatelessWidget {
                         children: [
                           SizedBox(height: 4.h),
                           Image.asset(
-                            themeProvider.darkTheme
-                                ? "assets/images/women_objects_dark.png"
-                                : "assets/images/women_objects_light.png",
+                            AppImages.supportWomenImg,
                             width: 80.w,
                           ),
                           SizedBox(height: 5.h),
@@ -95,17 +93,17 @@ class SupportScreen extends StatelessWidget {
                           ),
                           SizedBox(height: 5.h),
                           contactInfoRow(
-                            imageAsset: "assets/icons/email_icon.png",
+                            imageAsset: AppIcons.emailImg,
                             textdata: "Support@petomate.com",
                           ),
                           SizedBox(height: 2.4.h),
                           contactInfoRow(
-                            imageAsset: "assets/icons/call_icon.png",
+                            imageAsset: AppIcons.callIconImg,
                             textdata: "+91 98725 25571",
                           ),
                           SizedBox(height: 2.4.h),
                           contactInfoRow(
-                            imageAsset: "assets/icons/whatsapp_icon.png",
+                            imageAsset: AppIcons.whatsappImg,
                             textdata: "+91 98725 12345",
                           ),
                         ],

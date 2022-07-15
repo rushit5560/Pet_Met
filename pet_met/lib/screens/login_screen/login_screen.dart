@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:pet_met/screens/login_screen/login_screen_widget.dart';
+import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_passfield.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
@@ -29,26 +31,15 @@ class LoginScreen extends StatelessWidget {
         child: Stack(
           alignment: Alignment.topCenter,
           children: [
-            Align(
-              alignment: Alignment.topRight,
-              child: Image.asset(themeProvider.darkTheme
-                  ? "assets/images/path_top_right_dark.png"
-                  : "assets/images/path_top_right_light.png"),
-            ),
+            const BackgroundImage(),
             BackGroundLeftShadow(
               height: controller.size.height * 0.3,
               width: controller.size.height * 0.3,
               topPad: controller.size.height * 0.28,
               leftPad: -controller.size.width * 0.15,
             ),
-            Positioned(
-              top: controller.size.height * 0.03,
-              left: controller.size.width * 0.1,
-              child: Image.asset(
-                "assets/images/petmet_logo.png",
-                width: controller.size.width * 0.25,
-              ),
-            ),
+            PetMetLogoModule(),
+
             Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: controller.size.width * 0.07,
@@ -59,6 +50,7 @@ class LoginScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(height: controller.size.height * 0.2),
+
 
                     Row(
                       children: [
@@ -186,7 +178,7 @@ class LoginScreen extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Image.asset(
-                                    "assets/images/gmailicon.png",
+                                    AppImages.googleImg,
                                     height: 25,
                                   ),
                                   const SizedBox(width: 15),
@@ -232,7 +224,7 @@ class LoginScreen extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Image.asset(
-                                    "assets/images/fbicon.png",
+                                    AppImages.facebookImg,
                                     height: 25,
                                   ),
                                   const SizedBox(width: 15),

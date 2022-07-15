@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/controllers/load_file_controller.dart';
+import 'package:pet_met/utils/app_images.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../../utils/app_colors.dart';
@@ -48,25 +49,6 @@ class _LoadFileScreenState extends State<LoadFileScreen> {
                   title: "Explorer",
                   appBarOption: AppBarOption.singleBackButtonOption,
                 ),
-                // Padding(
-                //   padding: const EdgeInsets.only(
-                //       top: 20, left: 20, right: 20, bottom: 20),
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.start,
-                //     children: [
-                //       GestureDetector(
-                //         onTap: () {
-                //           Get.back();
-                //         },
-                //         child: Image.asset(
-                //           "assets/icons/left_back_arrow.png",
-                //           width: controller.size.width * 0.07,
-                //         ),
-                //       ),
-                //       const SizedBox(),
-                //     ],
-                //   ),
-                // ),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Padding(
@@ -76,26 +58,6 @@ class _LoadFileScreenState extends State<LoadFileScreen> {
                         children: [
                           SizedBox(height: 1.h),
                           LoadFileModule(),
-                          // Row(
-                          //   children: [
-                          //     Text(
-                          //       "Explorer",
-                          //       style: TextStyle(
-                          //         color: AppColors.accentTextColor,
-                          //         fontSize: 20.sp,
-                          //         fontWeight: FontWeight.bold,
-                          //       ),
-                          //     ),
-                          //   ],
-                          // ),
-                          // SizedBox(height: 3.h),
-                          // Row(
-                          //   children: [
-                          //     takePictureModule(),
-                          //     const SizedBox(width: 20),
-                          //     folderDisplayModule(),
-                          //   ],
-                          // )
                         ],
                       ),
                     ),
@@ -129,7 +91,7 @@ class _LoadFileScreenState extends State<LoadFileScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
-              "assets/images/folder_yellow.png",
+              AppImages.galleryImg,
               height: controller.size.height * 0.055,
             ),
           ],
@@ -160,7 +122,7 @@ class _LoadFileScreenState extends State<LoadFileScreen> {
           children: [
             const SizedBox(height: 5),
             Image.asset(
-              "assets/images/camera_green.png",
+              AppImages.cameraImg,
               height: controller.size.height * 0.055,
             ),
             const SizedBox(height: 10),

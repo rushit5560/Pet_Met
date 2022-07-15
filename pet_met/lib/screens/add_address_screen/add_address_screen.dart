@@ -45,24 +45,6 @@ class AddAddressScreen extends StatelessWidget {
                   appBarOption: AppBarOption.singleBackButtonOption,
                   title: "Add New Address",
                 ),
-                // Padding(
-                //   padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.start,
-                //     children: [
-                //       GestureDetector(
-                //         onTap: () {
-                //           Get.back();
-                //         },
-                //         child: Image.asset(
-                //           "assets/icons/left_back_arrow.png",
-                //           width: controller.size.width * 0.07,
-                //         ),
-                //       ),
-                //       const SizedBox(),
-                //     ],
-                //   ),
-                // ),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Padding(
@@ -74,15 +56,6 @@ class AddAddressScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // const SizedBox(height: 8),
-                            // Text(
-                            //   "Add New Address",
-                            //   style: TextStyle(
-                            //     color: AppColors.accentTextColor,
-                            //     fontSize: 20.sp,
-                            //     fontWeight: FontWeight.bold,
-                            //   ),
-                            // ),
                             SizedBox(height: 4.h),
                             // const SizedBox(height: 15),
                             TextFieldSection(

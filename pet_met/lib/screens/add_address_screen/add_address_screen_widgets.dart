@@ -99,7 +99,7 @@ class AddAddressByLocation extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                "assets/images/image_placeholder.png",
+                AppImages.googleMapImg,
                 height: 8.w,
               ),
               SizedBox(width: 5.w),

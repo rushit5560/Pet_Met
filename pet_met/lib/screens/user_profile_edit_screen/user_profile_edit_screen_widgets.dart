@@ -110,9 +110,7 @@ class UploadImageModule extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Image.asset(
-                        themeProvider.darkTheme
-                            ? "assets/images/camera_placeholder_dark.png"
-                            : "assets/images/camera_placeholder_light.png",
+                        AppImages.cameraPlaceHolderImg,
                         height: 65,
                       ),
                       const SizedBox(height: 20),

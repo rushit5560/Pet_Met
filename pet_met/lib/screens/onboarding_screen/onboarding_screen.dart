@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/services/providers/dark_theme_provider.dart';
+import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:pet_met/utils/theme_preferences.dart';
 import 'package:provider/provider.dart';
@@ -23,18 +24,14 @@ class OnboardingScreen extends StatelessWidget {
             Positioned(
               top: -20,
               child: Image.asset(
-                themeProvider.darkTheme
-                    ? "assets/images/onboard_bgshape_dark.png"
-                    : "assets/images/onboard_bgshape_light.png",
+                AppImages.onboardBackImgImg,
                 width: controller.size.width,
               ),
             ),
             Align(
               alignment: Alignment.topRight,
               child: Image.asset(
-                themeProvider.darkTheme
-                    ? "assets/images/onboardtop_path_dark.png"
-                    : "assets/images/onboardtop_path_light.png",
+                AppImages.onboardPathImg,
                 color: themeProvider.darkTheme
                     ? AppColors.darkThemeColor
                     : AppColors.whiteColor,

@@ -5,6 +5,7 @@ import 'package:flutter_zoom_drawer/config.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/models/home_screen_models/banner_model.dart';
 import 'package:pet_met/utils/api_url.dart';
+import 'package:pet_met/utils/app_images.dart';
 
 
 class HomeController extends GetxController {
@@ -19,16 +20,16 @@ class HomeController extends GetxController {
   var drawerController = ZoomDrawerController();
 
   List dogsTopList = [
-    "assets/icons/dog1.png",
-    "assets/icons/dog1.png",
-    "assets/icons/dog1.png",
-    "assets/icons/dog1.png",
-    "assets/icons/dog1.png",
-    "assets/icons/dog1.png",
-    "assets/icons/dog1.png",
-    "assets/icons/dog1.png",
-    "assets/icons/dog1.png",
-    "assets/icons/dog1.png",
+    AppImages.petImg,
+    AppImages.petImg,
+    AppImages.petImg,
+    AppImages.petImg,
+    AppImages.petImg,
+    AppImages.petImg,
+    AppImages.petImg,
+    AppImages.petImg,
+    AppImages.petImg,
+    AppImages.petImg,
   ];
 
   // toggleMenu([bool end = false]) {

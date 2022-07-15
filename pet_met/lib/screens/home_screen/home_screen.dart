@@ -5,6 +5,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pet_met/controllers/home_controller.dart';
 import 'package:pet_met/controllers/index_screen_controller.dart';
 import 'package:pet_met/screens/home_screen/widgets/home_screen_widgets.dart';
+import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:provider/provider.dart';
 
@@ -52,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   appBarOption: AppBarOption.drawerButtonOption,
                   isTitleText: false,
                   centerWidget: Image.asset(
-                    "assets/images/petmet_logo.png",
+                    AppImages.petMetLogoImg,
                     width: controller.size.width * 0.25,
                   ),
                   trailingWidget: GestureDetector(
@@ -60,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Get.toNamed(AppRouteNames.userProfileRoute);
                     },
                     child: Image.asset(
-                      "assets/images/user_ellipse.png",
+                      AppImages.userProfileImg,
                       width: controller.size.width * 0.12,
                     ),
                   ),

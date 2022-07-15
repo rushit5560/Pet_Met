@@ -61,7 +61,7 @@ class _BuildMenuState extends State<BuildMenu> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Image.asset(
-                          "assets/images/user_ellipse.png",
+                          AppImages.userProfileImg,
                           width: 40,
                           height: 40,
                           // width: controller.size.width * 0.05,
@@ -115,7 +115,7 @@ class _BuildMenuState extends State<BuildMenu> {
                               indexController.drawerController.close!();
                             },
                             leading: Image.asset(
-                              "assets/icons/home.png",
+                              AppIcons.bottomBar3Img,
                               height: 22,
                             ),
                             titleWidget: Text(
@@ -133,7 +133,7 @@ class _BuildMenuState extends State<BuildMenu> {
                               Get.toNamed(AppRouteNames.petCareInfoRoute);
                             },
                             leading: Image.asset(
-                              "assets/icons/adoption.png",
+                              AppIcons.adoptionImg,
                               color: themeProvider.darkTheme
                                   ? AppColors.whiteColor
                                   : themeProvider.darkTheme
@@ -158,7 +158,7 @@ class _BuildMenuState extends State<BuildMenu> {
                               Get.toNamed(AppRouteNames.supportRoute);
                             },
                             leading: Image.asset(
-                              "assets/icons/phone.png",
+                              AppIcons.supportImg,
                               color: themeProvider.darkTheme
                                   ? AppColors.whiteColor
                                   : AppColors.greyTextColor,
@@ -181,7 +181,7 @@ class _BuildMenuState extends State<BuildMenu> {
                               Get.toNamed(AppRouteNames.aboutRoute);
                             },
                             leading: Image.asset(
-                              "assets/icons/about.png",
+                              AppIcons.aboutImg,
                               color: themeProvider.darkTheme
                                   ? AppColors.whiteColor
                                   : AppColors.greyTextColor,
@@ -204,7 +204,7 @@ class _BuildMenuState extends State<BuildMenu> {
                               Get.toNamed(AppRouteNames.faqRoute);
                             },
                             leading: Image.asset(
-                              "assets/icons/question.png",
+                              AppIcons.faqImg,
                               color: themeProvider.darkTheme
                                   ? AppColors.whiteColor
                                   : AppColors.greyTextColor,
@@ -228,7 +228,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                   AppRouteNames.privacyPolicyScreenRoute);
                             },
                             leading: Image.asset(
-                              "assets/icons/lock.png",
+                              AppIcons.privacyPolicyImg,
                               color: themeProvider.darkTheme
                                   ? AppColors.whiteColor
                                   : AppColors.greyTextColor,
@@ -250,7 +250,7 @@ class _BuildMenuState extends State<BuildMenu> {
                               indexController.drawerController.close!();
                             },
                             leading: Image.asset(
-                              "assets/icons/share.png",
+                              AppIcons.shareImg,
                               color: themeProvider.darkTheme
                                   ? AppColors.whiteColor
                                   : AppColors.greyTextColor,
@@ -405,7 +405,7 @@ class _BuildMenuState extends State<BuildMenu> {
                               );
                             },
                             leading: Image.asset(
-                              "assets/icons/delete.png",
+                              AppIcons.deleteImg,
                               color: themeProvider.darkTheme
                                   ? AppColors.whiteColor
                                   : AppColors.greyTextColor,
@@ -428,7 +428,7 @@ class _BuildMenuState extends State<BuildMenu> {
                               Get.toNamed(AppRouteNames.rateAppRoute);
                             },
                             leading: Image.asset(
-                              "assets/icons/star.png",
+                             AppIcons.rateImg,
                               color: themeProvider.darkTheme
                                   ? AppColors.whiteColor
                                   : AppColors.greyTextColor,
@@ -451,7 +451,7 @@ class _BuildMenuState extends State<BuildMenu> {
                               Get.toNamed(AppRouteNames.petActivityRoute);
                             },
                             leading: Image.asset(
-                              "assets/icons/star.png",
+                              AppIcons.rateImg,
                               color: themeProvider.darkTheme
                                   ? AppColors.whiteColor
                                   : AppColors.greyTextColor,
@@ -474,7 +474,7 @@ class _BuildMenuState extends State<BuildMenu> {
                               Get.toNamed(AppRouteNames.petPricingRoute);
                             },
                             leading: Image.asset(
-                              "assets/icons/star.png",
+                              AppIcons.rateImg,
                               color: themeProvider.darkTheme
                                   ? AppColors.whiteColor
                                   : AppColors.greyTextColor,

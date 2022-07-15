@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pet_met/controllers/register_controller.dart';
+import 'package:pet_met/utils/app_images.dart';
 import 'package:provider/provider.dart';
 
 import 'package:sizer/sizer.dart';
@@ -33,9 +34,9 @@ class RegisterScreen extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.topRight,
-              child: Image.asset(themeProvider.darkTheme
-                  ? "assets/images/path_top_right_dark.png"
-                  : "assets/images/path_top_right_light.png"),
+              child: Image.asset(
+                AppImages.tealBackgroundImg
+              ),
             ),
             BackGroundLeftShadow(
               height: controller.size.height * 0.3,
@@ -47,7 +48,7 @@ class RegisterScreen extends StatelessWidget {
               top: controller.size.height * 0.03,
               left: controller.size.width * 0.1,
               child: Image.asset(
-                "assets/images/petmet_logo.png",
+                AppImages.petMetLogoImg,
                 width: controller.size.width * 0.25,
               ),
             ),

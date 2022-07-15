@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/pet_trainers_screen_controller.dart';
+import 'package:pet_met/models/pet_trainers_screen_models/all_trainer_model.dart';
+import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
+import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:provider/provider.dart';
@@ -18,20 +21,22 @@ class PetTrainerListModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: screenController.petTrainersList.length,
+      itemCount: screenController.trainersList.length,
       shrinkWrap: true,
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, i) {
-        String shopName = screenController.petTrainersList[i];
-        return _petTrainerListTile(shopName);
+        Trainers trainerSingleItem = screenController.trainersList[i];
+        return _petTrainerListTile(trainerSingleItem);
       },
     ).commonAllSidePadding(padding: 10);
   }
 
-  Widget _petTrainerListTile(String shopName) {
+  Widget _petTrainerListTile(Trainers trainerSingleItem) {
+    String imgUrl = ApiUrl.apiImagePath + trainerSingleItem.showimg;
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRouteNames.petTrainerDetailsScreenRoute);
+        Get.toNamed(AppRouteNames.petTrainerDetailsScreenRoute,
+            arguments: trainerSingleItem);
       },
       child: Container(
         decoration: BoxDecoration(
@@ -51,12 +56,18 @@ class PetTrainerListModule extends StatelessWidget {
         child: Row(
           children: [
             Container(
-              width: 22.w,
-              height: 22.w,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: Colors.grey,
-              ),
+              width: 70,
+              height: 65,
+              // decoration: BoxDecoration(
+              //   borderRadius: BorderRadius.circular(30),
+              //   color: Colors.grey,
+              // ),
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.network(imgUrl,
+                      errorBuilder: (context, er, ob){
+                        return Image.asset(AppImages.petMetLogoImg);
+                      })),
             ),
             SizedBox(width: 3.w),
             Expanded(
@@ -64,7 +75,7 @@ class PetTrainerListModule extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    shopName,
+                    trainerSingleItem.shopename,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -77,7 +88,7 @@ class PetTrainerListModule extends StatelessWidget {
                   ),
                   SizedBox(height: 1.w),
                   Text(
-                    "Beside Kantilal Jewellers, Saragam Shopping Center, U 11-12, Anmol Complex Near, Surat 395007",
+                    trainerSingleItem.address,
                     maxLines: 4,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(

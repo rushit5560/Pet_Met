@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:pet_met/utils/app_colors.dart';
+import 'package:pet_met/utils/app_images.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -28,22 +29,20 @@ class SplashScreen extends StatelessWidget {
                 children: [
                   SizedBox(height: 12.h),
                   Image.asset(
-                    themeProvider.darkTheme
-                        ? "assets/images/splash_peoples1_dark.png"
-                        : "assets/images/splash_peoples1_light.png",
+                    AppImages.splashLogoImg,
                     fit: BoxFit.cover,
                     width: 95.w,
                   ),
                   // Spacer(),
                   SizedBox(height: 8.h),
                   Image.asset(
-                    "assets/images/petmet_logo.png",
+                    AppImages.petMetLogoImg,
                     fit: BoxFit.cover,
                     width: 38.w,
                   ),
                   const SizedBox(height: 15),
                   Image.asset(
-                    "assets/images/petomate_text.png",
+                    AppImages.petMateTextImg,
                     fit: BoxFit.cover,
                     width: 25.w,
                   ),
@@ -65,7 +64,7 @@ class SplashScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Image.asset(
-                        "assets/images/accent_cube.png",
+                        AppImages.cubeImg,
                         fit: BoxFit.cover,
                       ),
                       SizedBox(width: 12.w),
@@ -172,48 +171,48 @@ class SplashScreen extends StatelessWidget {
         Row(
           children: [
             Image.asset(
-              "assets/images/group-4-dark.png",
+              AppImages.darkWave4Img,
             ),
             Image.asset(
-              "assets/images/group-2-dark.png",
+              AppImages.darkWave2Img,
             ),
             Image.asset(
-              "assets/images/group-3-dark.png",
+              AppImages.darkWave3Img,
             ),
             Image.asset(
-              "assets/images/group-1-dark.png",
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Image.asset(
-              "assets/images/group-4-dark.png",
-            ),
-            Image.asset(
-              "assets/images/group-2-dark.png",
-            ),
-            Image.asset(
-              "assets/images/group-3-dark.png",
-            ),
-            Image.asset(
-              "assets/images/group-1-dark.png",
+              AppImages.darkWave1Img,
             ),
           ],
         ),
         Row(
           children: [
             Image.asset(
-              "assets/images/group-4-dark.png",
+              AppImages.darkWave4Img,
             ),
             Image.asset(
-              "assets/images/group-2-dark.png",
+              AppImages.darkWave2Img,
             ),
             Image.asset(
-              "assets/images/group-3-dark.png",
+              AppImages.darkWave3Img,
             ),
             Image.asset(
-              "assets/images/group-1-dark.png",
+              AppImages.darkWave1Img,
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Image.asset(
+              AppImages.darkWave4Img,
+            ),
+            Image.asset(
+              AppImages.darkWave2Img,
+            ),
+            Image.asset(
+              AppImages.darkWave3Img,
+            ),
+            Image.asset(
+              AppImages.darkWave1Img,
             ),
           ],
         ),

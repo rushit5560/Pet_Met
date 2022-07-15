@@ -49,7 +49,7 @@ class ProfileImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      "assets/images/image_placeholder.png",
+      AppImages.googleMapImg,
       height: controller.size.width * 0.35,
     );
   }
@@ -96,7 +96,7 @@ class ProfileDetailsModule extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                "assets/images/locate_home.png",
+                AppImages.locateHomeImg,
                 height: 15,
               ),
               const SizedBox(width: 10),
@@ -200,20 +200,20 @@ class ContactInfoModule extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            ContactContainerWidget(
-              imagePath: "assets/images/info_green.png",
+            const ContactContainerWidget(
+              imagePath: AppImages.infoGreenImg,
             ),
-            SizedBox(width: 20),
-            ContactContainerWidget(
-              imagePath: "assets/images/phone_green.png",
+            const SizedBox(width: 20),
+            const ContactContainerWidget(
+              imagePath: AppImages.phoneGreenImg,
             ),
             SizedBox(width: 20),
             GestureDetector(
               onTap: () {
                 Get.toNamed(AppRouteNames.addressRoute);
               },
-              child: ContactContainerWidget(
-                imagePath: "assets/images/locate_green.png",
+              child: const ContactContainerWidget(
+                imagePath: AppImages.locateGreenImg,
               ),
             ),
           ],
@@ -349,7 +349,7 @@ class AboutModule extends StatelessWidget {
                 ),
               ),
               Image.asset(
-                "assets/images/edit_black_icon.png",
+                AppImages.editIconImg,
                 height: 25,
                 color: themeProvider.darkTheme
                     ? Colors.grey

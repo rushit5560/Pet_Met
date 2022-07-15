@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:pet_met/controllers/ngo_user_profile_screen_controller.dart';
 import 'package:pet_met/controllers/shop_user_profile_screen_controller.dart';
 import 'package:pet_met/utils/app_colors.dart';
+import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
 import 'package:pet_met/utils/validations.dart';
@@ -17,7 +18,7 @@ class BackgroundImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.topRight,
-      child: Image.asset("assets/images/logintopright.png"),
+      child: Image.asset(AppImages.tealBackgroundImg),
     );
   }
 }
@@ -39,7 +40,7 @@ class BackArrow extends StatelessWidget {
               Get.back();
             },
             child: Image.asset(
-              "assets/icons/left_back_arrow.png",
+              AppIcons.backButtonImg,
               width: screenController.size.width * 0.07,
             ),
           ),
@@ -136,7 +137,7 @@ class UploadImageModule extends StatelessWidget {
             CrossAxisAlignment.center,
             children: [
               Image.asset(
-                "assets/images/camera_placeholder.png",
+                AppImages.cameraPlaceHolderImg,
                 height: 65,
               ),
               const SizedBox(height: 20),

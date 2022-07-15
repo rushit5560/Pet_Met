@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
+import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -32,16 +33,19 @@ class DogDisplayWidget extends StatelessWidget {
               height: size.height * 0.25,
               width: size.width * 0.45,
               decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(
-                  const Radius.circular(12),
-                ),
+                // borderRadius: const BorderRadius.all(
+                //   const Radius.circular(12),
+                // ),
                 color: themeProvider.darkTheme
                     ? AppColors.darkThemeBoxColor
                     : AppColors.whiteColor,
-                image: const DecorationImage(
-                    image: AssetImage("assets/images/dog1.png"),
-                    fit: BoxFit.cover),
+                // image: const DecorationImage(
+                //     image: AssetImage("assets/images/dog1.png"),
+                //     fit: BoxFit.cover),
               ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                  child: Image.asset(AppImages.petImg, fit: BoxFit.cover,)),
             ),
           ),
           Expanded(
@@ -94,7 +98,7 @@ class DogDisplayWidget extends StatelessWidget {
                     children: [
                       const SizedBox(width: 3),
                       Image.asset(
-                        "assets/icons/location.png",
+                        AppIcons.locationImg,
                         height: 16,
                         color: themeProvider.darkTheme
                             ? AppColors.whiteColor.withOpacity(0.65)

@@ -41,7 +41,7 @@ class PetActivityScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         Image.asset(
-                          "assets/images/pets_playing.png",
+                          AppImages.petActivityImg,
                           width: controller.size.width * 0.85,
                         ),
                         const SizedBox(height: 10),

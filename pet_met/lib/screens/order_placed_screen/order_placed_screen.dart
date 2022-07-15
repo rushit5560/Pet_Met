@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/order_placed_controller.dart';
-import 'package:pet_met/screens/address_screen/address_screen_widgets.dart';
 import 'package:pet_met/utils/app_colors.dart';
+import 'package:pet_met/utils/app_images.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../utils/common_widgets/background_widgets.dart';
@@ -44,7 +44,7 @@ class OrderPlacedScreen extends StatelessWidget {
                   children: [
                     SizedBox(width: 52.w),
                     Image.asset(
-                      "assets/images/dog_love_sign.png",
+                      AppImages.heartImg,
                       height: 10.h,
                     ),
                   ],
@@ -54,7 +54,7 @@ class OrderPlacedScreen extends StatelessWidget {
                   children: [
                     SizedBox(width: 20.w),
                     Image.asset(
-                      "assets/images/dog_sitting_1.png",
+                      AppImages.dogSittingImg,
                       height: 28.h,
                     ),
                   ],

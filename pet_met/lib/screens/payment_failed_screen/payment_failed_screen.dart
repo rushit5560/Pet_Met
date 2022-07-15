@@ -44,7 +44,7 @@ class PaymentFailedScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.asset(
-                    "assets/images/sad_red_emoji.png",
+                    AppImages.sadEmojiImg,
                     height: 15.h,
                   ),
                   SizedBox(height: 2.h),
