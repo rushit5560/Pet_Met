@@ -69,15 +69,21 @@ class VetsAndNgoListModule extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 12.sp,
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.blackTextColor,
                     ),
                   ),
                   SizedBox(height: 1.w),
-                  const Text(
+                  Text(
                     "Beside Kantilal Jewellers, Saragam Shopping Center, U 11-12, Anmol Complex Near, Surat 395007",
                     maxLines: 4,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      color: Colors.grey,
+                      fontWeight: FontWeight.w300,
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.blackTextColor,
                     ),
                   ),
                 ],
