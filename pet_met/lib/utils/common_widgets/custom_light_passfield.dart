@@ -59,6 +59,9 @@ class _CustomLightPassFieldState extends State<CustomLightPassField> {
           controller: widget.fieldController,
           validator: widget.validator,
           textInputAction: widget.textInputAction,
+          cursorColor: themeProvider.darkTheme
+              ? AppColors.whiteColor
+              : AppColors.accentTextColor,
           keyboardType: widget.textInputType,
           style: TextStyle(
             color: themeProvider.darkTheme
@@ -90,7 +93,9 @@ class _CustomLightPassFieldState extends State<CustomLightPassField> {
             // disabledBorder: InputBorder.none,
             hintText: widget.hintText,
             hintStyle: TextStyle(
-              color: AppColors.greyTextColor,
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.greyTextColor,
               fontSize: 13.sp,
               fontWeight: FontWeight.w400,
             ),

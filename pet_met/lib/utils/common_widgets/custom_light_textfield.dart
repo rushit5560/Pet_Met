@@ -53,6 +53,9 @@ class CustomLightTextField extends StatelessWidget {
           validator: validator,
           textInputAction: textInputAction,
           keyboardType: textInputType,
+          cursorColor: themeProvider.darkTheme
+          ? AppColors.whiteColor
+          : AppColors.accentTextColor,
           style: TextStyle(
             color: themeProvider.darkTheme
                 ? AppColors.whiteColor
@@ -79,7 +82,7 @@ class CustomLightTextField extends StatelessWidget {
             hintStyle: TextStyle(
               color: themeProvider.darkTheme
                   ? AppColors.whiteColor
-                  : AppColors.blackTextColor,
+                  : AppColors.greyTextColor,
               fontSize: 13.sp,
               fontWeight: FontWeight.w400,
             ),

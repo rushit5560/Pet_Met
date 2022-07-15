@@ -68,7 +68,7 @@ class FaqScreen extends StatelessWidget {
                 //     ],
                 //   ),
                 // ),
-                FaqListModule(),
+                Expanded(child: FaqListModule()),
                 // const SizedBox(height: 15),
               ],
             ),

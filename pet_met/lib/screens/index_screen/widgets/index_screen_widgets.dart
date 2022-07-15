@@ -289,15 +289,15 @@ class _BuildMenuState extends State<BuildMenu> {
                                     ),
                                   ),
                                   child: Container(
-                                    padding: EdgeInsets.symmetric(
+                                    padding: const EdgeInsets.symmetric(
                                       horizontal: 15,
                                       vertical: 25,
                                     ),
-                                    height: controller.size.height * 0.3,
+                                    height: controller.size.height * 0.35,
                                     width: controller.size.width * 0.8,
                                     child: Column(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                          MainAxisAlignment.spaceEvenly,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
@@ -306,9 +306,9 @@ class _BuildMenuState extends State<BuildMenu> {
                                           color: AppColors.redColor,
                                           size: 60,
                                         ),
-                                        const SizedBox(height: 20),
+                                        // const SizedBox(height: 20),
                                         Text(
-                                          "You want to delete account Permenetly.",
+                                          "You want to delete account Permanently.",
                                           textAlign: TextAlign.center,
                                           maxLines: 2,
                                           style: TextStyle(
@@ -318,7 +318,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                             height: 1.2,
                                           ),
                                         ),
-                                        const SizedBox(height: 20),
+                                        // const SizedBox(height: 20),
                                         Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
@@ -333,7 +333,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                                   controller.size.width * 0.3,
                                                   30,
                                                 ),
-                                                padding: EdgeInsets.symmetric(
+                                                padding: const EdgeInsets.symmetric(
                                                     horizontal: 16),
                                                 shape:
                                                     const RoundedRectangleBorder(
@@ -370,7 +370,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                                 minimumSize: Size(
                                                     controller.size.width * 0.3,
                                                     30),
-                                                padding: EdgeInsets.symmetric(
+                                                padding: const EdgeInsets.symmetric(
                                                     horizontal: 16),
                                                 shape:
                                                     const RoundedRectangleBorder(

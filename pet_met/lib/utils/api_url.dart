@@ -9,10 +9,14 @@ class ApiUrl {
   // static const shopDetailsApi = apiMainPath + "/shopdetails";
   static const getAllTrainerApi = apiMainPath + "/getalltrainer";
 
-  static const getAllPetApi = apiMainPath + "getallpet";
-  static const getAllVetAndNgoApi = apiMainPath + "getallvetandngo";
-  static const getAllCategory = apiMainPath + "category";
-  static const getAllSubCategory = apiMainPath + "sub_category";
-
+  static const getAllPetApi = apiMainPath + "/getallpet";
+  static const getAllVetAndNgoApi = apiMainPath + "/getallvetandngo";
+  static const getAllCategoryApi = apiMainPath + "/category";
+  static const getAllSubCategoryApi = apiMainPath + "/sub_category";
+  static const getAllPlanApi = apiMainPath + "/getallplan";
+  static const aboutApi = apiMainPath + "/about";
+  static const supportApi = apiMainPath + "/support";
+  static const faqApi = apiMainPath + "/faq";
+  static const privacypolicyApi = apiMainPath + "/privacypolicy";
 
 }

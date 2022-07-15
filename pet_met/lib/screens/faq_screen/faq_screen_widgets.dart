@@ -27,28 +27,16 @@ class FaqListModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-      child: Container(
-        height: 86.h,
-        // padding: EdgeInsets.symmetric(horizontal: 8, vertical: 15),
-        width: double.infinity,
-        // decoration: BoxDecoration(
-        //   // color: AppColors.whiteColor,
-        //   borderRadius: BorderRadius.all(
-        //     Radius.circular(12),
-        //   ),
-        // ),
-        child: ListView.separated(
-          itemCount: controller.questionsList.length,
-          itemBuilder: (ctx, ind) {
-            return faqQuestionsListItem(ind);
-          },
-          separatorBuilder: (ctx, ind) {
-            return SizedBox(height: 1.5.h);
-          },
-        ),
-      ),
+    return ListView.separated(
+      itemCount: controller.questionsList.length,
+      shrinkWrap: true,
+      physics: const BouncingScrollPhysics(),
+      itemBuilder: (ctx, ind) {
+        return faqQuestionsListItem(ind);
+      },
+      separatorBuilder: (ctx, ind) {
+        return SizedBox(height: 1.5.h);
+      },
     );
   }
 
@@ -73,9 +61,14 @@ class FaqListModule extends StatelessWidget {
             ),
           ).commonSymmetricPadding(horizontal: 10),
         ),
-        theme: const ExpandableThemeData(
-            animationDuration: Duration(milliseconds: 500),
-            headerAlignment: ExpandablePanelHeaderAlignment.center),
+        theme: ExpandableThemeData(
+            animationDuration: const Duration(milliseconds: 500),
+            headerAlignment: ExpandablePanelHeaderAlignment.center,
+         iconColor: themeProvider.darkTheme
+             ? AppColors.whiteColor
+             : AppColors.blackTextColor,
+
+        ),
         collapsed: Container(),
         expanded: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
