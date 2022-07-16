@@ -72,7 +72,8 @@ class RegisterController extends GetxController {
             userId: registerModel.data[0].id,
             userName: registerModel.data[0].name,
             userEmail: registerModel.data[0].email,
-            userProfileImage: registerModel.data[0].image
+            userProfileImage: registerModel.data[0].image,
+          token: registerModel.data[0].rememberToken,
         );
         // Going to Index Screen
         Get.toNamed(AppRouteNames.indexScreenRoute);

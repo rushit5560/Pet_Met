@@ -1,3 +1,5 @@
+import 'package:pet_met/utils/user_details.dart';
+
 class ApiUrl {
   static const apiMainPath = "https://petomate.com/patomateadmin/api";
   static const apiImagePath = "https://petomate.com/patomateadmin/";
@@ -17,6 +19,21 @@ class ApiUrl {
   static const aboutApi = apiMainPath + "/about";
   static const supportApi = apiMainPath + "/support";
   static const faqApi = apiMainPath + "/faq";
-  static const privacypolicyApi = apiMainPath + "/privacypolicy";
+  static const privacyPolicyApi = apiMainPath + "/privacypolicy";
+
+}
+
+class ApiHeader {
+  UserDetails userDetails = UserDetails();
+
+  Map<String, dynamic> apiHeader() {
+
+    Map<String, String> header = <String, String>{
+      'token': userDetails.userToken
+    };
+
+    return header;
+  }
+
 
 }

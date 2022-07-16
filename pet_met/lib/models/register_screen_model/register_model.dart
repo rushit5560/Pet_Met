@@ -38,7 +38,7 @@ class RegisterData {
     required this.name,
     required this.email,
     // required this.emailVerifiedAt,
-    // required this.rememberToken,
+    required this.rememberToken,
     required this.image,
     required this.country,
     required this.state,
@@ -56,7 +56,7 @@ class RegisterData {
   String name;
   String email;
   // dynamic emailVerifiedAt;
-  // String rememberToken;
+  String rememberToken;
   String image;
   int country;
   int state;
@@ -74,7 +74,7 @@ class RegisterData {
     name: json["name"] ?? "",
     email: json["email"] ?? "",
     // emailVerifiedAt: json["email_verified_at"],
-    // rememberToken: json["remember_token"],
+    rememberToken: json["remember_token"] ?? "",
     image: json["image"] ?? "",
     country: json["country"] ?? 0,
     state: json["state"] ?? 0,
@@ -93,7 +93,7 @@ class RegisterData {
     "name": name,
     "email": email,
     // "email_verified_at": emailVerifiedAt,
-    // "remember_token": rememberToken,
+    "remember_token": rememberToken,
     "image": image,
     "country": country,
     "state": state,
