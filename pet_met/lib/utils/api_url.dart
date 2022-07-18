@@ -26,7 +26,7 @@ class ApiUrl {
 class ApiHeader {
   UserDetails userDetails = UserDetails();
 
-  Map<String, dynamic> apiHeader() {
+  Map<String, String> apiHeader() {
 
     Map<String, String> header = <String, String>{
       'token': userDetails.userToken

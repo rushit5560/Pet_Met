@@ -10,6 +10,7 @@ import 'package:pet_met/screens/shop_and_grooming_screen/shop_and_grooming_scree
 import 'package:pet_met/utils/app_route_names.dart';
 
 class IndexScreenController extends GetxController {
+  RxBool isLoading = false.obs;
   final size = Get.size;
 
   RxBool isOpened = false.obs;
@@ -26,8 +27,8 @@ class IndexScreenController extends GetxController {
     PetVetsAndNgoScreen(),
   ];
 
-  @override
-  void onInit() {
-    super.onInit();
+  userLogOutFunction() async {
+
   }
+
 }

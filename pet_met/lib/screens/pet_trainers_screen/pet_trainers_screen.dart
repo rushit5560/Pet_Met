@@ -7,6 +7,7 @@ import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/background_widgets.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
+import 'package:pet_met/utils/enums.dart';
 
 import 'pet_trainers_screen_widgets.dart';
 
@@ -33,7 +34,8 @@ class PetTrainersScreen extends StatelessWidget {
             ),
             Column(
               children: [
-                CustomAppBar(title: "Pet Trainers"),
+                CustomAppBar(title: "Pet Trainers",
+                    appBarOption: AppBarOption.drawerButtonOption),
                 Expanded(
                     child: petTrainersScreenController.isLoading.value
                     ? const CustomAnimationLoader()

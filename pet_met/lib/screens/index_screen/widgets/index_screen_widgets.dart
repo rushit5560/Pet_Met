@@ -104,7 +104,7 @@ class _BuildMenuState extends State<BuildMenu> {
                       left: 5,
                       right: controller.size.width * 0.48,
                     ),
-                    physics: ClampingScrollPhysics(),
+                    physics: const ClampingScrollPhysics(),
                     child: Container(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -556,7 +556,9 @@ class _BuildMenuState extends State<BuildMenu> {
                         ),
                         const SizedBox(width: 10),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+
+                          },
                           child: Row(
                             children: [
                               Text(

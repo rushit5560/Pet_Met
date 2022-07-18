@@ -102,23 +102,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 //   ),
                 // ),
                 Expanded(
-                  child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    child: Obx(
-                      () => controller.isLoading.value
-                          ? Center(
+                  child: Obx(
+                    () => controller.isLoading.value
+                        ? Center(
                             child: SizedBox(
-                                // width: double.infinity,
-                                height: 60,
-                                child: LoadingAnimationWidget.staggeredDotsWave(
-                                  color: AppColors.accentTextColor,
-                                  size: 40,
-                                ),
+                              // width: double.infinity,
+                              height: 60,
+                              child: LoadingAnimationWidget.staggeredDotsWave(
+                                color: AppColors.accentTextColor,
+                                size: 40,
                               ),
+                            ),
                           )
-                          : Column(
+                        : SingleChildScrollView(
+                            physics: const BouncingScrollPhysics(),
+                            child: Column(
                               children: [
-                                PetListModule().commonSymmetricPadding(horizontal: 20),
+                                PetListModule()
+                                    .commonSymmetricPadding(horizontal: 20),
                                 // Container(
                                 //   height: controller.size.width * 0.16,
                                 //   child: ListView.separated(
@@ -188,7 +189,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 //   ),
                                 // ),
                                 const SizedBox(height: 10),
-                                PetShopAndGroomingText().commonSymmetricPadding(horizontal: 20),
+                                PetShopAndGroomingText()
+                                    .commonSymmetricPadding(horizontal: 20),
                                 // Row(
                                 //   mainAxisAlignment: MainAxisAlignment.end,
                                 //   children: [
@@ -235,10 +237,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   },
                                 ).commonSymmetricPadding(horizontal: 20),
                                 const SizedBox(height: 10),
-                                const DogDisplayWidget().commonSymmetricPadding(horizontal: 20),
+                                const DogDisplayWidget()
+                                    .commonSymmetricPadding(horizontal: 20),
                               ],
                             ).commonSymmetricPadding(vertical: 20),
-                    ),
+                          ),
                   ),
                 )
               ],

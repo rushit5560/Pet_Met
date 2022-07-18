@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pet_met/controllers/index_screen_controller.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
@@ -33,9 +36,9 @@ class DogDisplayWidget extends StatelessWidget {
               height: size.height * 0.25,
               width: size.width * 0.45,
               decoration: BoxDecoration(
-                // borderRadius: const BorderRadius.all(
-                //   const Radius.circular(12),
-                // ),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(12),
+                ),
                 color: themeProvider.darkTheme
                     ? AppColors.darkThemeBoxColor
                     : AppColors.whiteColor,
@@ -351,9 +354,7 @@ class BannerModule extends StatelessWidget {
                   ),
                 ),
               ),
-              Expanded(
-                child: Container(),
-              ),
+              Expanded(child: Container()),
             ],
           ),
         ),
@@ -394,6 +395,7 @@ class PetShopAndGroomingText extends StatelessWidget {
   PetShopAndGroomingText({Key? key}) : super(key: key);
 
   final controller = Get.find<HomeController>();
+  final indexController = Get.find<IndexScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -401,27 +403,35 @@ class PetShopAndGroomingText extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Container(
-          height: 35,
-          width: controller.size.width * 0.36,
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          decoration: BoxDecoration(
-            color: themeProvider.darkTheme
-                ? AppColors.darkThemeColor
-                : AppColors.whiteColor,
-            borderRadius: const BorderRadius.all(
-              Radius.circular(10),
+        GestureDetector(
+          onTap: () {
+            indexController.isLoading(true);
+            indexController.selectedbottomIndex.value = 0;
+            indexController.isLoading(false);
+            log("indexController.selectedbottomIndex.value : ${indexController.selectedbottomIndex.value}");
+          },
+          child: Container(
+            height: 35,
+            width: controller.size.width * 0.40,
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            decoration: BoxDecoration(
+              color: themeProvider.darkTheme
+                  ? AppColors.darkThemeColor
+                  : AppColors.whiteColor,
+              borderRadius: const BorderRadius.all(
+                Radius.circular(10),
+              ),
             ),
-          ),
-          child: Center(
-            child: Text(
-              "Pet Shop & Grooming",
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.accentTextColor,
-                fontSize: 12,
-                fontWeight: FontWeight.w400,
+            child: Center(
+              child: Text(
+                "Pet Shop & Grooming",
+                style: TextStyle(
+                  color: themeProvider.darkTheme
+                      ? AppColors.whiteColor
+                      : AppColors.accentTextColor,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             ),
           ),

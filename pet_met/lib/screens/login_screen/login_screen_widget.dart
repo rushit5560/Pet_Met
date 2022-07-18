@@ -127,30 +127,30 @@ class LoginModule extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 20),
-            Divider(
-              color: themeProvider.darkTheme
-                  ? AppColors.whiteColor.withOpacity(0.55)
-                  : AppColors.blackTextColor.withOpacity(0.55),
-              // height: 1,
-              thickness: 0.5,
-            ),
-            SizedBox(height: 20),
-            Row(
-              children: [
-                Text(
-                  "Login With Gmail or Facebook",
-                  style: TextStyle(
-                    color: themeProvider.darkTheme
-                        ? AppColors.whiteColor.withOpacity(0.75)
-                        : AppColors.blackTextColor.withOpacity(0.7),
-                    fontSize: 11.sp,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
+            // SizedBox(height: 20),
+            // Divider(
+            //   color: themeProvider.darkTheme
+            //       ? AppColors.whiteColor.withOpacity(0.55)
+            //       : AppColors.blackTextColor.withOpacity(0.55),
+            //   // height: 1,
+            //   thickness: 0.5,
+            // ),
+            // SizedBox(height: 20),
+            // Row(
+            //   children: [
+            //     Text(
+            //       "Login With Gmail or Facebook",
+            //       style: TextStyle(
+            //         color: themeProvider.darkTheme
+            //             ? AppColors.whiteColor.withOpacity(0.75)
+            //             : AppColors.blackTextColor.withOpacity(0.7),
+            //         fontSize: 11.sp,
+            //         fontWeight: FontWeight.w400,
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            const SizedBox(height: 45),
             // SizedBox(height: controller.size.height * 0.1),
             // Spacer(),
             Row(
@@ -201,7 +201,7 @@ class LoginModule extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: 15),
+                const SizedBox(width: 15),
                 Expanded(
                   child: GestureDetector(
                     onTap: ()async {
@@ -250,7 +250,7 @@ class LoginModule extends StatelessWidget {
               ],
             ),
             // SizedBox(height: controller.size.height * 0.12),
-            Spacer(),
+            const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

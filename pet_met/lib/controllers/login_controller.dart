@@ -70,9 +70,6 @@ class LoginController extends GetxController {
       } else {
         Fluttertoast.showToast(msg: loginModel.error);
       }
-    } catch (e) {
-      log('');
-
     } catch(e) {
       log('User Login Api Error ::: $e');
     } finally {

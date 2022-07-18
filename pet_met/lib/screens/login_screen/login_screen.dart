@@ -4,6 +4,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pet_met/screens/login_screen/login_screen_widget.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
+import 'package:pet_met/utils/common_functions/hide_keyboard.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_passfield.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
 import 'package:pet_met/utils/validations.dart';
@@ -27,21 +28,23 @@ class LoginScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       // backgroundColor: AppColors.whiteColor,
-      body: SafeArea(
-        child: Stack(
-          alignment: Alignment.topCenter,
-          children: [
-            const BackgroundImage(),
-            BackGroundLeftShadow(
-              height: controller.size.height * 0.3,
-              width: controller.size.height * 0.3,
-              topPad: controller.size.height * 0.28,
-              leftPad: -controller.size.width * 0.15,
-            ),
-            PetMetLogoModule(),
+      body: GestureDetector(
+        onTap: () => hideKeyboard(),
+        child: SafeArea(
+          child: Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              const BackgroundImage(),
+              BackGroundLeftShadow(
+                height: controller.size.height * 0.3,
+                width: controller.size.height * 0.3,
+                topPad: controller.size.height * 0.28,
+                leftPad: -controller.size.width * 0.15,
+              ),
+              PetMetLogoModule(),
 
 
-            LoginModule()
+              LoginModule()
 // =======
 //             Padding(
 //               padding: EdgeInsets.symmetric(
@@ -321,7 +324,8 @@ class LoginScreen extends StatelessWidget {
 //               ),
 //             )
 // >>>>>>> Stashed changes
-          ],
+            ],
+          ),
         ),
       ),
     );

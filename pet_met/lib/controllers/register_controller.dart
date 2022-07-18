@@ -26,18 +26,23 @@ class RegisterController extends GetxController {
 
   final formKey = GlobalKey<FormState>();
 
+  /// Form Submit Validator
   submitRegisterForm() async {
     if (formKey.currentState!.validate()) {
-      try {
-        await userRegisterFunction();
-        // ScaffoldMessenger.of(Get.context!).showSnackBar(
-        //   SnackBar(
-        //     content: Text("Form Submitted"),
-        //     duration: Duration(seconds: 3),
-        //   ),
-        // );
-      } catch (e) {
-        throw e;
+      if(selectedTerms.value == false) {
+        Fluttertoast.showToast(msg: "Please agree with terms and condition");
+      } else {
+        try {
+          await userRegisterFunction();
+          // ScaffoldMessenger.of(Get.context!).showSnackBar(
+          //   SnackBar(
+          //     content: Text("Form Submitted"),
+          //     duration: Duration(seconds: 3),
+          //   ),
+          // );
+        } catch (e) {
+          throw e;
+        }
       }
     }
   }
@@ -66,33 +71,27 @@ class RegisterController extends GetxController {
 
       if(isSuccessStatus.value) {
         log("isSuccessStatus : ${isSuccessStatus.value}");
+        Fluttertoast.showToast(msg: registerModel.messege);
 
         // User Data Set in Prefs
-        await userPreference.setUserDetails(
+        /*await userPreference.setUserDetails(
             userId: registerModel.data[0].id,
             userName: registerModel.data[0].name,
             userEmail: registerModel.data[0].email,
             userProfileImage: registerModel.data[0].image,
           token: registerModel.data[0].rememberToken,
-        );
-        // Going to Index Screen
-        Get.toNamed(AppRouteNames.indexScreenRoute);
+        );*/
+
+        // Going to Login Screen
+        // Get.offAndToNamed(AppRouteNames.loginRoute);
+        Get.back();
       } else {
         Fluttertoast.showToast(msg: "${registerModel.error.email}");
       }
-
-
-
-
     } catch(e) {
       log("User Registration Error ::: $e");
     }finally {
       isLoading(false);
     }
-  }
-
-  @override
-  void onInit() {
-    super.onInit();
   }
 }

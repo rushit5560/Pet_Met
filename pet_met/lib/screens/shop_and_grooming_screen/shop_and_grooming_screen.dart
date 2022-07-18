@@ -6,6 +6,7 @@ import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/background_widgets.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
+import 'package:pet_met/utils/enums.dart';
 import 'shop_and_grooming_screen_widgets.dart';
 
 class ShopAndGroomingScreen extends StatelessWidget {
@@ -32,7 +33,9 @@ class ShopAndGroomingScreen extends StatelessWidget {
           SafeArea(
             child: Column(
               children: [
-                CustomAppBar(title: "Shop & Grooming"),
+                CustomAppBar(title: "Shop & Grooming",
+                appBarOption: AppBarOption.drawerButtonOption,
+                ),
                 Expanded(
                   child: shopAndGroomingScreenController.isLoading.value ?
                   SizedBox(

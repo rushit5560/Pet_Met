@@ -13,9 +13,12 @@ class HomeController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
   final size = Get.size;
+  ApiHeader apiHeader = ApiHeader();
 
   RxBool isOpened = false.obs;
   List<BannerData> bannerList = [];
+
+
 
   var drawerController = ZoomDrawerController();
 
@@ -58,7 +61,10 @@ class HomeController extends GetxController {
     log("Banner Api Url : $url");
 
     try {
-      http.Response response = await http.get(Uri.parse(url));
+
+      Map<String, String> header = apiHeader.apiHeader();
+
+      http.Response response = await http.get(Uri.parse(url), headers: header);
       log("Banner Api Response : ${response.body}");
 
       BannerModel bannerModel = BannerModel.fromJson(json.decode(response.body));

@@ -10,6 +10,7 @@ class ShopAndGroomingScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
   final size = Get.size;
+  ApiHeader apiHeader = ApiHeader();
 
   List<ShopData> shopsList = [];
 
@@ -21,7 +22,9 @@ class ShopAndGroomingScreenController extends GetxController {
     log("All Shop Api Url : $url");
     
     try {
-      http.Response response = await http.get(Uri.parse(url));
+      Map<String, String> header = apiHeader.apiHeader();
+
+      http.Response response = await http.get(Uri.parse(url), headers: header);
       log('Get All Shop Response: ${response.body}');
       AllShopModel allShopModel = AllShopModel.fromJson(json.decode(response.body));
 

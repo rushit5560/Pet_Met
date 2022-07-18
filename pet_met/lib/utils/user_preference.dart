@@ -55,7 +55,8 @@ class UserPreference {
     log("userProfileImage : ${userDetails.userProfileImage}");
     log("userToken : ${userDetails.userToken}");
     log("isUserLoggedIn : ${userDetails.isUserLoggedIn}");
-
-
   }
+
+  /// Logout
+
 }
