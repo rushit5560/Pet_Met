@@ -16,10 +16,13 @@ class ApiUrl {
   static const getAllCategoryApi = apiMainPath + "/category";
   static const getAllSubCategoryApi = apiMainPath + "/sub_category";
   static const getAllPlanApi = apiMainPath + "/getallplan";
-  static const aboutApi = apiMainPath + "/about";
-  static const supportApi = apiMainPath + "/support";
   static const faqApi = apiMainPath + "/faq";
-  static const privacyPolicyApi = apiMainPath + "/privacypolicy";
+
+  // Cms
+  static const privacyPolicyApi = apiMainPath + "/cms/2";
+  static const petCareApi = apiMainPath + "cms/5";
+  static const supportApi = apiMainPath + "/cms/4";
+  static const aboutApi = apiMainPath + "/cms/3";
 
 }
 
