@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/pet_care_info_controller.dart';
 import 'package:pet_met/utils/app_colors.dart';
@@ -15,7 +16,42 @@ class PetCareListModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            controller.title,
+            style: TextStyle(
+              color: AppColors.accentTextColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 12.sp,
+            ),
+          ),
+          SizedBox(
+              height: controller.size.height *
+                  0.001.h),
+          Html(
+            data: controller.description,
+            style: {
+              "body": Style(
+                textDecorationColor: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.blackTextColor,
+                // color: themeProvider.darkTheme
+                //     ? AppColors.whiteColor
+                //     : AppColors.blackTextColor,
+                // textDecorationColor: themeProvider.darkTheme
+                //     ? AppColors.whiteColor
+                //     : AppColors.blackTextColor,
+              ),
+            },
+          ),
+        ],
+      ),
+    );
+    /*return SizedBox(
       //height: controller.size.height * 0.85,
       child: ListView.separated(
         itemCount: controller.petCareInfosList.length,
@@ -42,9 +78,9 @@ class PetCareListModule extends StatelessWidget {
                   size: 15,
                 ),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Expanded(
-                  child: Container(
+                  child: SizedBox(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,7 +95,7 @@ class PetCareListModule extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Text(
                       controller.petCareInfosList[ind].description!,
                       style: TextStyle(
@@ -77,6 +113,6 @@ class PetCareListModule extends StatelessWidget {
           );
         },
       ),
-    );
+    );*/
   }
 }

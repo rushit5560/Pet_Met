@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/utils/app_images.dart';
+import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -74,33 +75,38 @@ class PetCareInfoScreen extends StatelessWidget {
                 //   ),
                 // ),
                 Expanded(
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 20, right: 20, top: 10, bottom: 15),
-                      child: Container(
-                        height: 86.h,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            // SizedBox(height: 1.h),
-                            // Text(
-                            //   "Pet Care",
-                            //   style: TextStyle(
-                            //     color: AppColors.accentTextColor,
-                            //     fontSize: 20.sp,
-                            //     fontWeight: FontWeight.bold,
-                            //   ),
-                            // ),
-                            SizedBox(height: 1.h),
-                            Expanded(child: PetCareListModule()),
-                          ],
+                    child: Obx(
+                      ()=> controller.isLoading.value
+                          ? const CustomAnimationLoader()
+                          :  SingleChildScrollView(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 20, right: 20, top: 10, bottom: 15),
+                          child: Container(
+                            height: 86.h,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                // SizedBox(height: 1.h),
+                                // Text(
+                                //   "Pet Care",
+                                //   style: TextStyle(
+                                //     color: AppColors.accentTextColor,
+                                //     fontSize: 20.sp,
+                                //     fontWeight: FontWeight.bold,
+                                //   ),
+                                // ),
+                                SizedBox(height: 1.h),
+                                Expanded(child: PetCareListModule()),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
+
                 // const SizedBox(height: 15),
               ],
             ),

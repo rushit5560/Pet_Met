@@ -20,7 +20,7 @@ class ApiUrl {
 
   // Cms
   static const privacyPolicyApi = apiMainPath + "/cms/2";
-  static const petCareApi = apiMainPath + "cms/5";
+  static const petCareApi = apiMainPath + "/cms/5";
   static const supportApi = apiMainPath + "/cms/4";
   static const aboutApi = apiMainPath + "/cms/3";
 
