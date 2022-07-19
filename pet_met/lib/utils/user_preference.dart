@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'user_details.dart';
 
 class UserPreference {
-  UserDetails userDetails = UserDetails();
+  // UserDetails userDetails = UserDetails();
 
   String isUserLoggedInKey = "isUserLoggedInKey";
   String userTokenKey = "userTokenKey";
@@ -21,7 +21,7 @@ class UserPreference {
   Future<void> setRoleId(int value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setInt(roleIdKey, value);
-    userDetails.roleId = prefs.getInt(roleIdKey) ?? 0;
+    UserDetails.roleId = prefs.getInt(roleIdKey) ?? 0;
     log("RoleIdKey : ${prefs.getInt(roleIdKey)}");
   }
 
@@ -42,19 +42,19 @@ class UserPreference {
     prefs.setString(userTokenKey, token);
     prefs.setBool(isUserLoggedInKey, true);
 
-    userDetails.userId = prefs.getInt(userIdKey) ?? 0;
-    userDetails.userName = prefs.getString(userNameKey) ?? "";
-    userDetails.userEmail = prefs.getString(userEmailKey) ?? "";
-    userDetails.userProfileImage = prefs.getString(userProfileImageKey) ?? "";
-    userDetails.userToken = prefs.getString(userTokenKey) ?? "";
-    userDetails.isUserLoggedIn = prefs.getBool(isUserLoggedInKey) ?? false;
+    UserDetails.userId = prefs.getInt(userIdKey) ?? 0;
+    UserDetails.userName = prefs.getString(userNameKey) ?? "";
+    UserDetails.userEmail = prefs.getString(userEmailKey) ?? "";
+    UserDetails.userProfileImage = prefs.getString(userProfileImageKey) ?? "";
+    UserDetails.userToken = prefs.getString(userTokenKey) ?? "";
+    UserDetails.isUserLoggedIn = prefs.getBool(isUserLoggedInKey) ?? false;
 
-    log("userId : ${userDetails.userId}");
-    log("userName : ${userDetails.userName}");
-    log("userEmail : ${userDetails.userEmail}");
-    log("userProfileImage : ${userDetails.userProfileImage}");
-    log("userToken : ${userDetails.userToken}");
-    log("isUserLoggedIn : ${userDetails.isUserLoggedIn}");
+    log("userId : ${UserDetails.userId}");
+    log("userName : ${UserDetails.userName}");
+    log("userEmail : ${UserDetails.userEmail}");
+    log("userProfileImage : ${UserDetails.userProfileImage}");
+    log("userToken : ${UserDetails.userToken}");
+    log("isUserLoggedIn : ${UserDetails.isUserLoggedIn}");
   }
 
   /// Logout

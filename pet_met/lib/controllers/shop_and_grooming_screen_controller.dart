@@ -22,9 +22,10 @@ class ShopAndGroomingScreenController extends GetxController {
     log("All Shop Api Url : $url");
     
     try {
-      Map<String, String> header = apiHeader.apiHeader();
+      // Map<String, String> header = apiHeader.apiHeader();
+      // log("Header : $header");
 
-      http.Response response = await http.get(Uri.parse(url), headers: header);
+      http.Response response = await http.get(Uri.parse(url), /*headers: header*/);
       log('Get All Shop Response: ${response.body}');
       AllShopModel allShopModel = AllShopModel.fromJson(json.decode(response.body));
 

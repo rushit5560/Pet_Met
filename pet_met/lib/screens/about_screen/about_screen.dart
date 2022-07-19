@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/about_controller.dart';
 import 'package:pet_met/screens/about_screen/about_screen_widgets.dart';
+import 'package:pet_met/utils/common_widgets/loader.dart';
 
 import 'package:sizer/sizer.dart';
 
@@ -41,33 +42,35 @@ class AboutScreen extends StatelessWidget {
                   title: "Pet'o Care",
                 ),
                 Expanded(
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 25, vertical: 10),
-                      child: Container(
-                        height: 86.h,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            // SizedBox(height: 1.h),
-                            // Text(
-                            //   "Pet'o Care",
-                            //   style: TextStyle(
-                            //     color: AppColors.accentTextColor,
-                            //     fontSize: 20.sp,
-                            //     fontWeight: FontWeight.bold,
-                            //   ),
-                            // ),
-                            SizedBox(height: 1.h),
-                            const Expanded(
-                              child: AboutUsModule(),
+                  child: Obx(
+                    () => controller.isLoading.value
+                        ? const CustomAnimationLoader()
+                        : SingleChildScrollView(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 25, vertical: 10),
+                              child: Container(
+                                height: 86.h,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    // SizedBox(height: 1.h),
+                                    // Text(
+                                    //   "Pet'o Care",
+                                    //   style: TextStyle(
+                                    //     color: AppColors.accentTextColor,
+                                    //     fontSize: 20.sp,
+                                    //     fontWeight: FontWeight.bold,
+                                    //   ),
+                                    // ),
+                                    SizedBox(height: 1.h),
+                                    Expanded(child: AboutUsModule()),
+                                  ],
+                                ),
+                              ),
                             ),
-                          ],
-                        ),
-                      ),
-                    ),
+                          ),
                   ),
                 ),
                 // const SizedBox(height: 15),

@@ -36,7 +36,7 @@ class PetTrainerListModule extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Get.toNamed(AppRouteNames.petTrainerDetailsScreenRoute,
-            arguments: trainerSingleItem);
+            arguments: trainerSingleItem.id);
       },
       child: Container(
         decoration: BoxDecoration(

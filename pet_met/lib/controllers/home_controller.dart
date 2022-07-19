@@ -63,6 +63,7 @@ class HomeController extends GetxController {
     try {
 
       Map<String, String> header = apiHeader.apiHeader();
+      log("header : $header");
 
       http.Response response = await http.get(Uri.parse(url), headers: header);
       log("Banner Api Response : ${response.body}");

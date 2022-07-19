@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
-import 'package:pet_met/screens/index_screen/index_screen.dart';
-import 'package:pet_met/screens/login_screen/login_screen.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
@@ -25,12 +23,13 @@ class SplashController extends GetxController {
     bool onboardingValue = prefs.getBool('onboarding') ?? false;
 
     /// Set User value in Local from Prefs
-    userDetails.roleId = prefs.getInt(userPreference.roleIdKey) ?? 1001;
-    userDetails.isUserLoggedIn = prefs.getBool(userPreference.isUserLoggedInKey) ?? false;
-    userDetails.userId = prefs.getInt(userPreference.userIdKey) ?? 0;
-    userDetails.userName = prefs.getString(userPreference.userNameKey) ?? "";
-    userDetails.userEmail = prefs.getString(userPreference.userEmailKey) ?? "";
-    userDetails.userProfileImage = prefs.getString(userPreference.userProfileImageKey) ?? "";
+    UserDetails.roleId = prefs.getInt(userPreference.roleIdKey) ?? 1001;
+    UserDetails.isUserLoggedIn = prefs.getBool(userPreference.isUserLoggedInKey) ?? false;
+    UserDetails.userId = prefs.getInt(userPreference.userIdKey) ?? 0;
+    UserDetails.userName = prefs.getString(userPreference.userNameKey) ?? "";
+    UserDetails.userEmail = prefs.getString(userPreference.userEmailKey) ?? "";
+    UserDetails.userProfileImage = prefs.getString(userPreference.userProfileImageKey) ?? "";
+    UserDetails.userToken = prefs.getString(userPreference.userTokenKey) ?? "";
 
 
     return Timer(
@@ -38,14 +37,14 @@ class SplashController extends GetxController {
       () {
         if(onboardingValue == false) {
           Get.offNamed(AppRouteNames.onBoardingRoute);
-        } else if(userDetails.isUserLoggedIn == true) {
+        } else if(UserDetails.isUserLoggedIn == true) {
           Get.offNamed(AppRouteNames.indexScreenRoute);
           // Get.off(() => IndexScreen(),
           //   transition: Transition.native,
           //   duration: const Duration(milliseconds: 500),
           // );
 
-        } else if(userDetails.isUserLoggedIn == false) {
+        } else if(UserDetails.isUserLoggedIn == false) {
           Get.offNamed(AppRouteNames.loginRoute);
           // Get.off(() => LoginScreen(),
           //   transition: Transition.native,

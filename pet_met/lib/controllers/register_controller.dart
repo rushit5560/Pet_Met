@@ -59,19 +59,20 @@ class RegisterController extends GetxController {
         "email" : mailController.text.trim().toLowerCase(),
         "password" : passController.text.trim(),
         "c_password" : passController.text.trim(),
-        "categoryID" : "${userDetails.roleId}",
+        "categoryID" : "${UserDetails.roleId}",
         "name" : nameController.text.trim()
       };
       log("Body Data : $data");
 
       http.Response response = await http.post(Uri.parse(url), body: data);
+      log("response : ${response.body}");
 
       RegisterModel registerModel = RegisterModel.fromJson(json.decode(response.body));
-      isSuccessStatus = registerModel.success.obs;
+      isSuccessStatus = registerModel.success!.obs;
 
       if(isSuccessStatus.value) {
         log("isSuccessStatus : ${isSuccessStatus.value}");
-        Fluttertoast.showToast(msg: registerModel.messege);
+        Fluttertoast.showToast(msg: registerModel.messege!);
 
         // User Data Set in Prefs
         /*await userPreference.setUserDetails(
@@ -86,7 +87,7 @@ class RegisterController extends GetxController {
         // Get.offAndToNamed(AppRouteNames.loginRoute);
         Get.back();
       } else {
-        Fluttertoast.showToast(msg: "${registerModel.error.email}");
+        Fluttertoast.showToast(msg: "Email already taken");
       }
     } catch(e) {
       log("User Registration Error ::: $e");

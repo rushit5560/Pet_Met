@@ -64,7 +64,8 @@ class LoginController extends GetxController {
             userName: loginModel.data.name,
             userEmail: loginModel.data.email,
             userProfileImage: loginModel.data.image,
-        token: loginModel.data.rememberToken,);
+            token: loginModel.data.rememberToken,
+        );
         // Going to Index Screen
         Get.toNamed(AppRouteNames.indexScreenRoute);
       } else {

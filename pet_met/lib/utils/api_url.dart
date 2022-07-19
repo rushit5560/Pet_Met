@@ -9,7 +9,8 @@ class ApiUrl {
   static const bannerApi = apiMainPath + "/banner";
   static const getAllShopApi = apiMainPath + "/getallshop";
   // static const shopDetailsApi = apiMainPath + "/shopdetails";
-  static const getAllTrainerApi = apiMainPath + "/getalltrainer";
+  static const getAllTrainerApi = apiMainPath + "/trainer";
+  static const getTrainerDetailsApi = apiMainPath + "/trainerdetails";
 
   static const getAllPetApi = apiMainPath + "/getallpet";
   static const getAllVetAndNgoApi = apiMainPath + "/getallvetandngo";
@@ -27,12 +28,12 @@ class ApiUrl {
 }
 
 class ApiHeader {
-  UserDetails userDetails = UserDetails();
+  // UserDetails userDetails = UserDetails();
 
   Map<String, String> apiHeader() {
 
     Map<String, String> header = <String, String>{
-      'token': userDetails.userToken
+      'token': UserDetails.userToken
     };
 
     return header;
