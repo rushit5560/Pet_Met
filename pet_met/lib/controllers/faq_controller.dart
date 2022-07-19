@@ -1,20 +1,58 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:get/get.dart';
-import 'package:pet_met/screens/home_screen/home_screen.dart';
-import 'package:pet_met/screens/shop_and_grooming_screen/shop_and_grooming_screen.dart';
-import 'package:pet_met/utils/app_route_names.dart';
+import 'package:http/http.dart' as http;
+import 'package:pet_met/models/faq_screen_models/faq_model.dart';
+import 'package:pet_met/utils/api_url.dart';
 
 class FaqController extends GetxController {
+  RxBool isLoading = false.obs;
+  RxBool isSuccessStatus = false.obs;
   final size = Get.size;
 
   RxBool isOpened = false.obs;
+  ApiHeader apiHeader = ApiHeader();
+
+  List<FaqData> faqList = [];
 
   RxInt selectedbottomIndex = 2.obs;
   RxBool slectedAddress = true.obs;
 
   var drawerController = ZoomDrawerController();
+
+
+  Future<void> getFaqFunction() async {
+    isLoading(true);
+    String url = ApiUrl.faqApi;
+    log("Faq Api Url : $url");
+
+    try {
+      Map<String, String> header = apiHeader.apiHeader();
+
+      http.Response response = await http.get(Uri.parse(url), headers: header);
+      log("Support Api Response : ${response.body}");
+
+      FaqModel faqModel = FaqModel.fromJson(json.decode(response.body));
+      isSuccessStatus = faqModel.success.obs;
+
+      if(isSuccessStatus.value) {
+        faqList.clear();
+        faqList.addAll(faqModel.data);
+        log('faqList : ${faqList.length}');
+      } else {
+        log("Support Function Else");
+      }
+
+
+    } catch(e) {
+      log("Support Function Api Error ::: $e");
+    } finally {
+      isLoading(false);
+    }
+  }
 
   List questionsList = [
     "How They Work, and Why They’re Important",
@@ -30,6 +68,7 @@ class FaqController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+    getFaqFunction();
   }
 }
 
