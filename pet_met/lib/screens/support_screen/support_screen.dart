@@ -1,21 +1,18 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
-import 'package:pet_met/controllers/register_controller.dart';
 import 'package:pet_met/controllers/support_controller.dart';
+import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_images.dart';
-
+import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../../utils/app_colors.dart';
-import '../../controllers/onboarding_controller.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 import '../../utils/common_widgets/custom_appbar.dart';
-import '../../utils/common_widgets/custom_light_passfield.dart';
-import '../../utils/common_widgets/custom_light_textfield.dart';
 import '../../utils/enums.dart';
-import '../../utils/validations.dart';
+
 
 class SupportScreen extends StatelessWidget {
   SupportScreen({Key? key}) : super(key: key);
@@ -69,46 +66,63 @@ class SupportScreen extends StatelessWidget {
                 //   ),
                 // ),
                 Expanded(
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 25, vertical: 10),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(height: 4.h),
-                          Image.asset(
-                            AppImages.supportWomenImg,
-                            width: 80.w,
-                          ),
-                          SizedBox(height: 5.h),
-                          Text(
-                            "Support",
-                            style: TextStyle(
-                              color: AppColors.accentTextColor,
-                              fontSize: 24.sp,
-                              fontWeight: FontWeight.bold,
+                  child: Obx(
+                    () => controller.isLoading.value
+                        ? const CustomAnimationLoader()
+                        : SingleChildScrollView(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 25, vertical: 10),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  SizedBox(height: 4.h),
+                                  Image.network(
+                                    ApiUrl.apiImagePath + controller.supportData.featuredimage!,
+                                    width: 80.w,
+                                    errorBuilder: (context, obj, st) {
+                                      return Image.asset(AppImages.petMetLogoImg, height: 80.w);
+                                    },
+                                  ),
+                                  SizedBox(height: 5.h),
+                                  Text(
+                                    controller.supportData.title!,
+                                    style: TextStyle(
+                                      color: AppColors.accentTextColor,
+                                      fontSize: 24.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  SizedBox(height: 5.h),
+                                  Html(
+                                    data: controller.supportData.content!,
+                                    style: {
+                                      "body": Style(
+                                        textDecorationColor: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                            : AppColors.blackTextColor,
+                                      ),
+                                    },
+                                  ),
+                                  /*contactInfoRow(
+                                    imageAsset: AppIcons.emailImg,
+                                    textdata: "Support@petomate.com",
+                                  ),
+                                  SizedBox(height: 2.4.h),
+                                  contactInfoRow(
+                                    imageAsset: AppIcons.callIconImg,
+                                    textdata: "+91 98725 25571",
+                                  ),
+                                  SizedBox(height: 2.4.h),
+                                  contactInfoRow(
+                                    imageAsset: AppIcons.whatsappImg,
+                                    textdata: "+91 98725 12345",
+                                  ),*/
+                                ],
+                              ),
                             ),
                           ),
-                          SizedBox(height: 5.h),
-                          contactInfoRow(
-                            imageAsset: AppIcons.emailImg,
-                            textdata: "Support@petomate.com",
-                          ),
-                          SizedBox(height: 2.4.h),
-                          contactInfoRow(
-                            imageAsset: AppIcons.callIconImg,
-                            textdata: "+91 98725 25571",
-                          ),
-                          SizedBox(height: 2.4.h),
-                          contactInfoRow(
-                            imageAsset: AppIcons.whatsappImg,
-                            textdata: "+91 98725 12345",
-                          ),
-                        ],
-                      ),
-                    ),
                   ),
                 ),
               ],
