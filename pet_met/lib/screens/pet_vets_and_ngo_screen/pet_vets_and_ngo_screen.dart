@@ -4,6 +4,7 @@ import 'package:pet_met/controllers/pet_vets_and_ngo_screen_controller.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/background_widgets.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
+import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/enums.dart';
 
 import 'pet_vets_and_ngo_screen_Widgets.dart';
@@ -36,7 +37,11 @@ class PetVetsAndNgoScreen extends StatelessWidget {
                   title: "Pet Vets & NGO",
                   appBarOption: AppBarOption.drawerButtonOption,
                 ),
-                Expanded(child: VetsAndNgoListModule()),
+                Expanded(
+                    child: petVetsAndNgoScreenController.isLoading.value
+                    ? const CustomAnimationLoader()
+                    : VetsAndNgoListModule(),
+                ),
               ],
             ),
           ],
