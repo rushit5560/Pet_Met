@@ -7,9 +7,10 @@ import 'user_details.dart';
 class UserPreference {
   // UserDetails userDetails = UserDetails();
 
+  String roleIdKey = 'categoryIdKey';
+
   String isUserLoggedInKey = "isUserLoggedInKey";
   String userTokenKey = "userTokenKey";
-  String roleIdKey = 'categoryIdKey';
   String userIdKey = "userIdKey";
   String userNameKey = "userNameKey";
   String userEmailKey = "userEmailKey";
@@ -58,5 +59,24 @@ class UserPreference {
   }
 
   /// Logout
+  Future<void> removeUserDetails() async {
+    // Set Default Value in Prefs
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool(isUserLoggedInKey, false);
+    prefs.setString(userTokenKey, "");
+    prefs.setInt(userIdKey, 0);
+    prefs.setString(userNameKey, "");
+    prefs.setString(userEmailKey, "");
+    prefs.setString(userProfileImageKey, "");
 
+    // Get Default Value From Prefs
+    UserDetails.userId = prefs.getInt(userIdKey) ?? 0;
+    UserDetails.userName = prefs.getString(userNameKey) ?? "";
+    UserDetails.userEmail = prefs.getString(userEmailKey) ?? "";
+    UserDetails.userProfileImage = prefs.getString(userProfileImageKey) ?? "";
+    UserDetails.userToken = prefs.getString(userTokenKey) ?? "";
+    UserDetails.isUserLoggedIn = prefs.getBool(isUserLoggedInKey) ?? false;
+
+
+  }
 }
