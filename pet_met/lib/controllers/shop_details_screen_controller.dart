@@ -1,32 +1,39 @@
+import 'dart:convert';
+import 'dart:developer';
+import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
-import 'package:pet_met/models/shop_and_grooming_screen_model/all_shop_model.dart';
+import 'package:pet_met/models/shop_details_screen_models/shop_details_model.dart';
+import 'package:pet_met/utils/api_url.dart';
 
 class ShopDetailsScreenController extends GetxController {
+  int shopId = Get.arguments;
+
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
   final size = Get.size;
 
-  ShopData shopDetails = Get.arguments;
+
+  ApiHeader apiHeader = ApiHeader();
+
+  ShopData shopData = ShopData();
 
 
   /// Get Shop Details
-  /*Future<void> getShopDetailsFunction() async {
+  Future<void> getShopDetailsFunction() async {
     isLoading(true);
-    String url = ApiUrl.shopDetailsApi;
+    String url = ApiUrl.shopDetailsApi + "/$shopId";
     log("Shop Details Api Url : $url");
 
     try {
-      Map<String, dynamic> data = {
-        "id" : "$shopId"
-      };
-      http.Response response = await http.post(Uri.parse(url), body: data);
+      Map<String, String> header = apiHeader.apiHeader();
+      http.Response response = await http.get(Uri.parse(url), headers: header);
       log("Shop Details Api Response : ${response.body}");
       ShopDetailsModel shopDetailsModel = ShopDetailsModel.fromJson(json.decode(response.body));
       isSuccessStatus = shopDetailsModel.success.obs;
 
       if(isSuccessStatus.value) {
-        shopDetails = shopDetailsModel.data;
-        log("shopDetails : ${shopDetails.showimg}");
+        shopData = shopDetailsModel.data;
+        log("shopDetails : ${shopData.showimg}");
       } else {
         log("Shop Details Api Else");
       }
@@ -36,13 +43,12 @@ class ShopDetailsScreenController extends GetxController {
       isLoading(false);
     }
 
-  }*/
+  }
 
-  /*@override
+  @override
   void onInit() async{
-    // TODO: implement onInit
     super.onInit();
     await getShopDetailsFunction();
-  }*/
+  }
 
 }

@@ -36,7 +36,7 @@ class ShopListModule extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Get.toNamed(AppRouteNames.shopDetailsScreenRoute,
-          arguments: shopSingleItem);
+          arguments: shopSingleItem.id);
       },
       child: Container(
         decoration: BoxDecoration(

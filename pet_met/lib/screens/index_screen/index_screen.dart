@@ -2,24 +2,16 @@ import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/home_controller.dart';
 import 'package:pet_met/controllers/index_screen_controller.dart';
-import 'package:pet_met/screens/home_screen/widgets/home_screen_widgets.dart';
 import 'package:pet_met/screens/index_screen/widgets/index_screen_widgets.dart';
 import 'package:pet_met/utils/app_images.dart';
-import 'package:pet_met/utils/common_widgets/custom_light_passfield.dart';
-import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
-import 'package:pet_met/utils/theme_preferences.dart';
-import 'package:pet_met/utils/validations.dart';
 import 'package:provider/provider.dart';
-
-import 'package:sizer/sizer.dart';
-
 import '../../../utils/app_colors.dart';
-import '../../controllers/login_controller.dart';
 import '../../services/providers/dark_theme_provider.dart';
+
+
 
 class IndexScreen extends StatefulWidget {
   IndexScreen({Key? key}) : super(key: key);
@@ -73,10 +65,10 @@ class IndexScreenState extends State<IndexScreen> {
             // backgroundColor: AppColors.whiteColor,
             bottomNavigationBar: BubbleBottomBar(
               opacity: 0.2,
-              currentIndex: controller.selectedbottomIndex.value,
+              currentIndex: controller.selectedBottomIndex.value,
               onTap: (ind) {
                 setState(() {
-                  controller.selectedbottomIndex.value = ind!;
+                  controller.selectedBottomIndex.value = ind!;
                 });
               },
               backgroundColor: themeProvider.darkTheme
@@ -214,7 +206,7 @@ class IndexScreenState extends State<IndexScreen> {
                   alignment: Alignment.centerLeft,
                   child: Image.asset(AppShades.bgShadeLeftImg),
                 ),
-                controller.screenPages[controller.selectedbottomIndex.value],
+                controller.screenPages[controller.selectedBottomIndex.value],
               ],
             ),
           ),

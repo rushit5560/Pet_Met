@@ -406,9 +406,9 @@ class PetShopAndGroomingText extends StatelessWidget {
         GestureDetector(
           onTap: () {
             indexController.isLoading(true);
-            indexController.selectedbottomIndex.value = 0;
+            indexController.selectedBottomIndex.value = 0;
             indexController.isLoading(false);
-            log("indexController.selectedbottomIndex.value : ${indexController.selectedbottomIndex.value}");
+            log("indexController.selectedbottomIndex.value : ${indexController.selectedBottomIndex.value}");
           },
           child: Container(
             height: 35,

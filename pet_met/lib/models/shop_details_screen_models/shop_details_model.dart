@@ -9,27 +9,31 @@ class ShopDetailsModel {
     required this.success,
     required this.data,
     required this.message,
+    this.error,
   });
 
   bool success;
-  ShopDetails data;
+  ShopData data;
   String message;
+  String? error;
 
   factory ShopDetailsModel.fromJson(Map<String, dynamic> json) => ShopDetailsModel(
     success: json["success"] ?? false,
-    data: ShopDetails.fromJson(json["data"] ?? {}),
+    data: ShopData.fromJson(json["data"] ?? {}),
     message: json["message"] ?? "",
+    error: json["error"] ?? "",
   );
 
   Map<String, dynamic> toJson() => {
     "success": success,
     "data": data.toJson(),
     "message": message,
+    "error": error,
   };
 }
 
-class ShopDetails {
-  ShopDetails({
+class ShopData {
+  ShopData({
     this.id,
     this.shopename,
     this.address,
@@ -44,10 +48,10 @@ class ShopDetails {
     this.meetingimages,
     this.sortorder,
     this.status,
-    this.createdBy,
-    // required this.modifiedBy,
-    // required this.createdDate,
-    // required this.modifiedDate,
+    // this.createdBy,
+    // this.modifiedBy,
+    // this.createdDate,
+    // this.modifiedDate,
   });
 
   int? id;
@@ -64,12 +68,12 @@ class ShopDetails {
   List<String>? meetingimages;
   String? sortorder;
   String? status;
-  int? createdBy;
+  // int createdBy;
   // dynamic modifiedBy;
   // DateTime createdDate;
   // dynamic modifiedDate;
 
-  factory ShopDetails.fromJson(Map<String, dynamic> json) => ShopDetails(
+  factory ShopData.fromJson(Map<String, dynamic> json) => ShopData(
     id: json["id"] ?? 0,
     shopename: json["shopename"] ?? "",
     address: json["address"] ?? "",
@@ -84,7 +88,7 @@ class ShopDetails {
     meetingimages: List<String>.from(json["meetingimages"].map((x) => x ?? "")),
     sortorder: json["sortorder"] ?? "",
     status: json["status"] ?? "",
-    createdBy: json["created_by"] ?? 0,
+    // createdBy: json["created_by"],
     // modifiedBy: json["modified_by"],
     // createdDate: DateTime.parse(json["created_date"]),
     // modifiedDate: json["modified_date"],
@@ -105,7 +109,7 @@ class ShopDetails {
     "meetingimages": List<dynamic>.from(meetingimages!.map((x) => x)),
     "sortorder": sortorder,
     "status": status,
-    "created_by": createdBy,
+    // "created_by": createdBy,
     // "modified_by": modifiedBy,
     // "created_date": createdDate.toIso8601String(),
     // "modified_date": modifiedDate,

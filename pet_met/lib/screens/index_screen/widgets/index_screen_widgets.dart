@@ -556,8 +556,8 @@ class _BuildMenuState extends State<BuildMenu> {
                         ),
                         const SizedBox(width: 10),
                         GestureDetector(
-                          onTap: () {
-
+                          onTap: () async {
+                            await indexController.userLogOutFunction();
                           },
                           child: Row(
                             children: [
