@@ -159,7 +159,7 @@ class LoginModule extends StatelessWidget {
                 Expanded(
                   child: GestureDetector(
                     onTap: () async {
-                      await controller.signInWithGoogleFunction();
+                      // await controller.signInWithGoogleFunction();
                     },
                     child: Container(
                       height: controller.size.height * 0.065,
@@ -205,7 +205,7 @@ class LoginModule extends StatelessWidget {
                 Expanded(
                   child: GestureDetector(
                     onTap: ()async {
-                      await controller.signInWithFacebookFunction();
+                      // await controller.signInWithFacebookFunction();
                     },
                     child: Container(
                       height: controller.size.height * 0.065,

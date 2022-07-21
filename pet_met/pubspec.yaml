@@ -47,10 +47,10 @@ dependencies:
   datepicker_dropdown: ^0.0.6
   shared_preferences: ^2.0.15
   flutter_zoom_drawer: ^3.0.2
-  google_sign_in: ^5.3.1
-  firebase_auth: ^3.3.17
-  firebase_core: ^1.16.0
-  flutter_login_facebook: ^1.4.1
+  # google_sign_in: ^5.3.1
+  # firebase_auth: ^3.3.17
+  # firebase_core: ^1.16.0
+  # flutter_login_facebook: ^1.4.1
   loading_animation_widget: ^1.2.0+2
   carousel_slider: ^4.0.0
   flutter_html: ^2.2.1
