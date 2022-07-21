@@ -7,6 +7,7 @@ import 'package:pet_met/controllers/index_screen_controller.dart';
 import 'package:pet_met/screens/home_screen/widgets/home_screen_widgets.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
+import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:provider/provider.dart';
 
@@ -103,17 +104,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 // ),
                 Expanded(
                   child: Obx(
-                    () => controller.isLoading.value
-                        ? Center(
-                            child: SizedBox(
-                              // width: double.infinity,
-                              height: 60,
-                              child: LoadingAnimationWidget.staggeredDotsWave(
-                                color: AppColors.accentTextColor,
-                                size: 40,
-                              ),
-                            ),
-                          )
+                    () => controller.isLoading.value &&
+                            controller.allPetListModel.data!.isEmpty &&
+                            controller.bannerList.isEmpty
+                        ? const CustomAnimationLoader()
                         : SingleChildScrollView(
                             physics: const BouncingScrollPhysics(),
                             child: Column(
@@ -230,14 +224,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 //     ),
                                 //   ],
                                 // ),
-                                DogDisplayWidget(
-                                  onTap: () {
-                                    Get.toNamed(
-                                        AppRouteNames.orderDetailsRoute);
-                                  },
-                                ).commonSymmetricPadding(horizontal: 20),
-                                const SizedBox(height: 10),
-                                const DogDisplayWidget()
+                                AllPetsListModule()
                                     .commonSymmetricPadding(horizontal: 20),
                               ],
                             ).commonSymmetricPadding(vertical: 20),

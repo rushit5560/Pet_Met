@@ -115,7 +115,7 @@ class PetCategoriesListModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 5,
+      itemCount: screenController.petCategoriesModel.data!.length,
       shrinkWrap: true,
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, i) {
@@ -133,7 +133,7 @@ class PetCategoriesListModule extends StatelessWidget {
       ),
       child: ExpandablePanel(
         header: Text(
-          "Dog",
+          screenController.categoriesData.mainCategoryID!.categoryName ?? "Dog",
           style: TextStyle(
             fontSize: 13.sp,
             color: themeProvider.darkTheme
@@ -199,7 +199,8 @@ class PetCategoriesListModule extends StatelessWidget {
 }
 
 class MeetYourLovedOneButtonModule extends StatelessWidget {
-  const MeetYourLovedOneButtonModule({Key? key}) : super(key: key);
+  MeetYourLovedOneButtonModule({Key? key}) : super(key: key);
+  final screenController = Get.find<PetMeetingAndBreadingScreenController>();
 
   @override
   Widget build(BuildContext context) {

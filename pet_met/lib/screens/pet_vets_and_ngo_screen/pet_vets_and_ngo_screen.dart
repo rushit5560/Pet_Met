@@ -38,9 +38,9 @@ class PetVetsAndNgoScreen extends StatelessWidget {
                   appBarOption: AppBarOption.drawerButtonOption,
                 ),
                 Expanded(
-                    child: petVetsAndNgoScreenController.isLoading.value
-                    ? const CustomAnimationLoader()
-                    : VetsAndNgoListModule(),
+                  child: petVetsAndNgoScreenController.isLoading.value
+                      ? const CustomAnimationLoader()
+                      : VetsAndNgoListModule(),
                 ),
               ],
             ),

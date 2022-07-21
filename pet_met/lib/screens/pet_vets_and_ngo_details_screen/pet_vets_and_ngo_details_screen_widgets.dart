@@ -38,7 +38,7 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
       children: [
         Expanded(
           child: Text(
-            "People For Animals",
+            screenController.vetsNgoDetailsData.name!,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
@@ -119,7 +119,7 @@ class VetAndNgoPlaceTimePaymentModule extends StatelessWidget {
             SizedBox(width: screenController.size.width * 0.008.w),
             Expanded(
               child: Text(
-                "Shop No-10, Besides Decent Hotel, Jay Complex, Anand Mahal Road, surat 395006",
+                screenController.vetsNgoDetailsData.address!,
                 style: TextStyle(
                   color: themeProvider.darkTheme
                       ? AppColors.whiteColor

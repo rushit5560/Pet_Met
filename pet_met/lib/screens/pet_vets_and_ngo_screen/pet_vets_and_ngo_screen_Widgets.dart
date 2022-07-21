@@ -35,7 +35,10 @@ class VetsAndNgoListModule extends StatelessWidget {
     String imgUrl = ApiUrl.apiImagePath + vetAndNgoData.showimg;
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRouteNames.petVetsAndNgoDetailsScreenRoute);
+        Get.toNamed(
+          AppRouteNames.petVetsAndNgoDetailsScreenRoute,
+          arguments: vetAndNgoData.id,
+        );
       },
       child: Container(
         decoration: BoxDecoration(

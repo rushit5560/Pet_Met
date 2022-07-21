@@ -8,6 +8,7 @@ import 'package:pet_met/screens/pet_pricing_screen/pet_pricing_screen_widgets.da
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
+import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/enums.dart';
 import 'package:sizer/sizer.dart';
 
@@ -40,45 +41,60 @@ class PetPricingScreen extends StatelessWidget {
                   appBarOption: AppBarOption.singleBackButtonOption,
                   title: "Pet Tracker",
                 ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 10),
-                      child: Column(
-                        children: [
-                          // const SizedBox(height: 10),
-                          // Row(
-                          //   children: [
-                          //     Text(
-                          //       "Pet Tracker",
-                          //       style: TextStyle(
-                          //         color: AppColors.accentTextColor,
-                          //         fontSize: 17.sp,
-                          //         fontWeight: FontWeight.bold,
-                          //       ),
-                          //     ),
-                          //   ],
-                          // ),
-                          SizedBox(height: controller.size.height * 0.25),
-                          Container(
-                            height: controller.size.height * 0.4,
-                            width: double.infinity,
-                            child: Row(
-                              children: [
-                                PetTrackerPriceModule(
-                                  index: 0,
-                                ),
-                                const SizedBox(width: 15),
-                                PetTrackerPriceModule(
-                                  index: 1,
-                                ),
-                              ],
+                Obx(
+                  () => Expanded(
+                    child: controller.isLoading.value
+                        ? const CustomAnimationLoader()
+                        : SingleChildScrollView(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 10),
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                      height: controller.size.height * 0.25),
+                                  Container(
+                                    height: controller.size.height * 0.4,
+                                    width: double.infinity,
+                                    child: ListView.separated(
+                                      itemBuilder: (context, index) {
+                                        return PetTrackerPriceModule(
+                                          index: index,
+                                          petPriceText: controller
+                                              .planData[index].rs
+                                              .toString(),
+                                          overviewText: controller
+                                              .planData[index].overview!,
+                                          planDays: controller
+                                              .planData[index].days
+                                              .toString(),
+                                          planType:
+                                              controller.planData[index].name!,
+                                        );
+                                      },
+                                      separatorBuilder: (context, ind) {
+                                        return SizedBox(width: 12);
+                                      },
+                                      itemCount: 2,
+                                      scrollDirection: Axis.horizontal,
+                                    ),
+
+                                    // Row(
+                                    //   children: [
+                                    //     PetTrackerPriceModule(
+                                    //       index: 0,
+                                    //     ),
+                                    //     const SizedBox(width: 15),
+                                    //     PetTrackerPriceModule(
+                                    //       index: 1,
+                                    //     ),
+                                    //   ],
+                                    // ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ],
-                      ),
-                    ),
                   ),
                 ),
               ],

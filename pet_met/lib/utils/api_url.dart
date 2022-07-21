@@ -14,9 +14,14 @@ class ApiUrl {
 
   static const getAllPetApi = apiMainPath + "/getallpet";
   static const getAllVetAndNgoApi = apiMainPath + "/getallvetandngo";
+  static const getAllVetAndNgoDetailsApi = apiMainPath + "/vetandngodetails";
+
   static const getAllCategoryApi = apiMainPath + "/category";
   static const getAllSubCategoryApi = apiMainPath + "/sub_category";
+  static const getCategoryAndSubCategoryApi =
+      apiMainPath + "/categoryandsubcategory";
   static const getAllPlanApi = apiMainPath + "/getallplan";
+  static const getPlanDetailsApi = apiMainPath + "/plandetails";
   static const faqApi = apiMainPath + "/faq";
 
   // Cms
@@ -24,20 +29,16 @@ class ApiUrl {
   static const petCareApi = apiMainPath + "/cms/5";
   static const supportApi = apiMainPath + "/cms/4";
   static const aboutApi = apiMainPath + "/cms/3";
-
 }
 
 class ApiHeader {
   // UserDetails userDetails = UserDetails();
 
   Map<String, String> apiHeader() {
-
     Map<String, String> header = <String, String>{
       'token': UserDetails.userToken
     };
 
     return header;
   }
-
-
 }

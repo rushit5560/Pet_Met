@@ -4,6 +4,7 @@ import 'package:pet_met/controllers/pet_meeting_and_breading_screen_controller.d
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/background_widgets.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
+import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:sizer/sizer.dart';
 import 'pet_meeting_and_breading_screen_widgets.dart';
@@ -36,27 +37,31 @@ class PetMeetingAndBreadingScreen extends StatelessWidget {
 
               // Body Part
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    MeetingAndBreadingSearchFieldModule(),
-                    SizedBox(
-                        height:
-                            petMeetingAndBreadingScreenController.size.height *
-                                0.002.h),
-                    const PetCategoriesTextModule(),
-                    SizedBox(
-                        height:
-                            petMeetingAndBreadingScreenController.size.height *
-                                0.002.h),
-                    Expanded(child: PetCategoriesListModule()),
-                    SizedBox(
-                        height:
-                            petMeetingAndBreadingScreenController.size.height *
-                                0.002.h),
-                    MeetYourLovedOneButtonModule(),
-                  ],
-                ).commonAllSidePadding(padding: 20),
+                child: Obx(
+                  () => petMeetingAndBreadingScreenController.isLoading.value
+                      ? const CustomAnimationLoader()
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            MeetingAndBreadingSearchFieldModule(),
+                            SizedBox(
+                                height: petMeetingAndBreadingScreenController
+                                        .size.height *
+                                    0.002.h),
+                            const PetCategoriesTextModule(),
+                            SizedBox(
+                                height: petMeetingAndBreadingScreenController
+                                        .size.height *
+                                    0.002.h),
+                            Expanded(child: PetCategoriesListModule()),
+                            SizedBox(
+                                height: petMeetingAndBreadingScreenController
+                                        .size.height *
+                                    0.002.h),
+                            MeetYourLovedOneButtonModule(),
+                          ],
+                        ).commonAllSidePadding(padding: 20),
+                ),
               ),
             ],
           ),

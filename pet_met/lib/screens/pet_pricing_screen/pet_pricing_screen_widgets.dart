@@ -11,10 +11,19 @@ class PetTrackerPriceModule extends StatelessWidget {
     Key? key,
     //required this.controller,
     required this.index,
+    required this.overviewText,
+    required this.petPriceText,
+    required this.planDays,
+    required this.planType,
   }) : super(key: key);
 
   //final PetPricingController controller;
   final int index;
+
+  final String overviewText;
+  final String planDays;
+  final String petPriceText;
+  final String planType;
 
   final controller = Get.find<PetPricingController>();
 
@@ -24,7 +33,7 @@ class PetTrackerPriceModule extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       children: [
         Container(
-          height: controller.size.height * 0.345,
+          height: controller.size.height * 0.35,
           width: controller.size.width * 0.425,
           decoration: BoxDecoration(
             color: themeProvider.darkTheme
@@ -35,32 +44,33 @@ class PetTrackerPriceModule extends StatelessWidget {
             ),
           ),
           child: Padding(
-            padding: EdgeInsets.only(top: controller.size.height * 0.04),
+            padding: EdgeInsets.only(top: controller.size.height * 0.08),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Row(
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 5),
-                      height: 18,
-                      width: 18,
-                      child: const Center(
-                        child: Icon(
-                          Icons.check,
-                          color: AppColors.whiteColor,
-                          size: 12,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                // Row(
+                //   children: [
+                //     Container(
+                //       margin: const EdgeInsets.symmetric(horizontal: 5),
+                //       height: 18,
+                //       width: 18,
+                //       child: const Center(
+                //         child: Icon(
+                //           Icons.check,
+                //           color: AppColors.whiteColor,
+                //           size: 12,
+                //         ),
+                //       ),
+                //     ),
+                //   ],
+                // ),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      controller.petTrackerList[index].planType!.toUpperCase(),
+                      planType,
                       style: TextStyle(
                         color: themeProvider.darkTheme
                             ? AppColors.whiteColor
@@ -85,20 +95,31 @@ class PetTrackerPriceModule extends StatelessWidget {
                 SizedBox(height: 8),
                 Column(
                   children: [
-                    PetTrackingDetailsCheckModule(),
-                    PetTrackingDetailsCheckModule(),
+                    PetTrackingDetailsCheckModule(
+                      detailsText: overviewText,
+                    ),
+                    PetTrackingDetailsCheckModule(
+                      detailsText: "Valid for $planDays days",
+                    ),
                     PetTrackingDetailsCheckModule(),
                   ],
                 ),
+                SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
                       onPressed: () {
                         if (index == 0) {
-                          Get.toNamed(AppRouteNames.petMettingInfoRoute);
+                          Get.toNamed(
+                            AppRouteNames.petTrackerPricingRoute,
+                            arguments: controller.planData[index].id,
+                          );
                         } else if (index == 1) {
-                          Get.toNamed(AppRouteNames.petTrackerPricingRoute);
+                          Get.toNamed(
+                            AppRouteNames.petTrackerPricingRoute,
+                            arguments: controller.planData[index].id,
+                          );
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -151,7 +172,7 @@ class PetTrackerPriceModule extends StatelessWidget {
                 children: [
                   Positioned(
                     left: 12,
-                    top: 24,
+                    top: 25,
                     child: Text(
                       "₹",
                       style: TextStyle(
@@ -161,30 +182,32 @@ class PetTrackerPriceModule extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Center(
-                    child: Text(
-                      controller.petTrackerList[index].price
-                          .toString()
-                          .toUpperCase(),
-                      style: TextStyle(
-                        color: AppColors.whiteColor,
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.bold,
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 24, top: 8),
+                      child: Text(
+                        petPriceText.toString().toUpperCase(),
+                        style: TextStyle(
+                          color: AppColors.whiteColor,
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
-                  Positioned(
-                    bottom: 15,
-                    right: 12,
-                    child: Text(
-                      "/Year",
-                      style: TextStyle(
-                        color: AppColors.whiteColor,
-                        fontSize: 8.sp,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
+                  // Positioned(
+                  //   bottom: 15,
+                  //   right: 12,
+                  //   child: Text(
+                  //     "/Year",
+                  //     style: TextStyle(
+                  //       color: AppColors.whiteColor,
+                  //       fontSize: 8.sp,
+                  //       fontWeight: FontWeight.w400,
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -198,18 +221,16 @@ class PetTrackerPriceModule extends StatelessWidget {
 class PetTrackingDetailsCheckModule extends StatelessWidget {
   const PetTrackingDetailsCheckModule({
     Key? key,
-    this.titleText,
     this.detailsText,
   }) : super(key: key);
 
-  final titleText;
   final detailsText;
 
   @override
   Widget build(BuildContext context) {
     final size = Get.size;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 1),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -235,7 +256,9 @@ class PetTrackingDetailsCheckModule extends StatelessWidget {
               Container(
                 width: size.width * 0.33,
                 child: Text(
-                  "With tens of thousands of satisfied clients ",
+                  detailsText == null
+                      ? "With tens of thousands of satisfied clients "
+                      : detailsText,
                   style: TextStyle(
                     color: themeProvider.darkTheme
                         ? AppColors.whiteColor

@@ -102,6 +102,7 @@ class AppRoutes {
       page: () => RateAppScreen(),
       transition: Transition.native,
       transitionDuration: const Duration(milliseconds: 500),
+
     ),
     GetPage(
       name: AppRouteNames.petVetsAndNgoDetailsScreenRoute,

@@ -14,6 +14,26 @@ import 'package:sizer/sizer.dart';
 import '../../../controllers/home_controller.dart';
 import '../../../services/providers/dark_theme_provider.dart';
 
+class AllPetsListModule extends StatelessWidget {
+  AllPetsListModule({Key? key}) : super(key: key);
+
+  final HomeController homeController = Get.find<HomeController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return const DogDisplayWidget();
+      },
+      separatorBuilder: (ctx, index) {
+        return const SizedBox(height: 15);
+      },
+      itemCount: homeController.allPetListModel.data!.length,
+    );
+  }
+}
+
 class DogDisplayWidget extends StatelessWidget {
   const DogDisplayWidget({
     Key? key,
@@ -47,8 +67,11 @@ class DogDisplayWidget extends StatelessWidget {
                 //     fit: BoxFit.cover),
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                  child: Image.asset(AppImages.petImg, fit: BoxFit.cover,)),
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.asset(
+                    AppImages.petImg,
+                    fit: BoxFit.cover,
+                  )),
             ),
           ),
           Expanded(
@@ -331,7 +354,8 @@ class BannerModule extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             color: Colors.grey,
             image: DecorationImage(
-              image: NetworkImage(ApiUrl.apiImagePath + controller.bannerList[index].imagePath),
+              image: NetworkImage(
+                  ApiUrl.apiImagePath + controller.bannerList[index].imagePath),
               fit: BoxFit.cover,
             ),
           ),
@@ -370,11 +394,11 @@ class ImageBannerIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-          () => Row(
+      () => Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: List.generate(
           controller.bannerList.length,
-              (index) => Container(
+          (index) => Container(
             margin: const EdgeInsets.all(4),
             width: 10,
             height: 10,
