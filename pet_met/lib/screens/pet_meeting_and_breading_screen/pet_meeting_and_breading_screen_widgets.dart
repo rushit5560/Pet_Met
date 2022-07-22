@@ -4,6 +4,7 @@ import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/pet_meeting_and_breading_screen_controller.dart';
+import 'package:pet_met/models/pet_meeting_and_breading_screen_models/category_and_sub_category_model.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_functions/hide_keyboard.dart';
@@ -115,16 +116,17 @@ class PetCategoriesListModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: screenController.petCategoriesModel.data!.length,
+      itemCount: screenController.catAndSubCatList.length,
       shrinkWrap: true,
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, i) {
-        return _petCategoryListTile();
+        CatAndSubCatData singleItem = screenController.catAndSubCatList[i];
+        return _petCategoryListTile(singleItem);
       },
     );
   }
 
-  Widget _petCategoryListTile() {
+  Widget _petCategoryListTile(CatAndSubCatData singleItem) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -133,7 +135,7 @@ class PetCategoriesListModule extends StatelessWidget {
       ),
       child: ExpandablePanel(
         header: Text(
-          screenController.categoriesData.mainCategoryID!.categoryName ?? "Dog",
+          singleItem.mainCategoryId.categoryName,
           style: TextStyle(
             fontSize: 13.sp,
             color: themeProvider.darkTheme
@@ -145,18 +147,18 @@ class PetCategoriesListModule extends StatelessWidget {
             iconColor: themeProvider.darkTheme
                 ? AppColors.whiteColor
                 : AppColors.greyTextColor,
-            animationDuration: Duration(milliseconds: 500),
+            animationDuration: const Duration(milliseconds: 500),
             headerAlignment: ExpandablePanelHeaderAlignment.center),
         collapsed: Container(),
         expanded: ListView.builder(
-          itemCount: 10,
+          itemCount: singleItem.subCategory.length,
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
           itemBuilder: (context, i) {
+            int id = singleItem.subCategory[i].categoryId;
             return Row(
               children: [
-                Obx(
-                  () => Checkbox(
+               Checkbox(
                     checkColor: themeProvider.darkTheme
                         ? AppColors.whiteColor
                         : AppColors.greyTextColor,
@@ -165,15 +167,31 @@ class PetCategoriesListModule extends StatelessWidget {
                       AppColors.greyColor,
                     ),
                     focusColor: AppColors.greyColor,
-                    value: screenController.checkBoxValue.value,
+                    value: singleItem.subCategory[i].isSelected,
                     onChanged: (value) {
-                      screenController.checkBoxValue.value =
-                          !screenController.checkBoxValue.value;
+                      screenController.isLoading(true);
+                      for(int i = 0; i < screenController.catAndSubCatList.length; i++) {
+
+                        for(int j = 0; j < singleItem.subCategory.length; j++) {
+
+                          if(singleItem.subCategory[j].categoryId == id) {
+                            singleItem.subCategory[j].isSelected = true;
+                            screenController.selectedSubCatId = singleItem.subCategory[j].categoryId.toString();
+                            // log("${singleItem.subCategory[j].categoryId}");
+                            // log(singleItem.subCategory[j].categoryName);
+                          } else {
+                            singleItem.subCategory[j].isSelected = false;
+                          }
+
+                        }
+
+                      }
+                      screenController.isLoading(false);
+
                     },
                   ),
-                ),
                 Text(
-                  "German Shepherd dog",
+                  singleItem.subCategory[i].categoryName,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -206,7 +224,8 @@ class MeetYourLovedOneButtonModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRouteNames.petMeetingListScreenRoute);
+        log("Selected Sub cat Id : ${screenController.selectedSubCatId}");
+        // Get.toNamed(AppRouteNames.petMeetingListScreenRoute);
       },
       child: Container(
         width: double.infinity,

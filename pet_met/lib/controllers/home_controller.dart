@@ -82,10 +82,8 @@ class HomeController extends GetxController {
     }
   }
 
-  AllPetData allPetData = AllPetData();
-  AllPetListModel allPetListModel = AllPetListModel();
 
-  Future<void> getAllPetFunction() async {
+ /* Future<void> getAllPetFunction() async {
     isLoading(true);
     String url = ApiUrl.getAllPetApi;
 
@@ -109,7 +107,7 @@ class HomeController extends GetxController {
     } finally {
       isLoading(false);
     }
-  }
+  }*/
 
   /// Get All Pets
   /*Future<void> getAllPetFunction() async {
@@ -134,11 +132,11 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
     getAllBannerFunction();
-    getAllPetFunction();
+    // getAllPetFunction();
   }
 }
 
-class AllPetListModel {
+/*class AllPetListModel {
   bool? success;
   List<AllPetData>? data;
   String? message;
@@ -329,4 +327,4 @@ class SubCategory {
     data['modified_by'] = this.modifiedBy;
     return data;
   }
-}
+}*/

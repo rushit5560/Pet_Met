@@ -12,12 +12,12 @@ class CategoryAndSubCategoryModel {
   });
 
   bool success;
-  List<Datum> data;
+  List<CatAndSubCatData> data;
   String message;
 
   factory CategoryAndSubCategoryModel.fromJson(Map<String, dynamic> json) => CategoryAndSubCategoryModel(
     success: json["success"] ?? false,
-    data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x ?? {}))),
+    data: List<CatAndSubCatData>.from(json["data"].map((x) => CatAndSubCatData.fromJson(x ?? {}))),
     message: json["message"] ?? "",
   );
 
@@ -28,8 +28,8 @@ class CategoryAndSubCategoryModel {
   };
 }
 
-class Datum {
-  Datum({
+class CatAndSubCatData {
+  CatAndSubCatData({
     required this.mainCategoryId,
     required this.subCategory,
   });
@@ -37,7 +37,7 @@ class Datum {
   MainCategoryId mainCategoryId;
   List<SubCategoryId> subCategory;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory CatAndSubCatData.fromJson(Map<String, dynamic> json) => CatAndSubCatData(
     mainCategoryId: MainCategoryId.fromJson(json["main_categoryID"] ?? {}),
     subCategory: List<SubCategoryId>.from(json["sub_category"].map((x) => SubCategoryId.fromJson(x ?? {}))),
   );
@@ -124,6 +124,7 @@ class SubCategoryId {
     // required this.parent,
     required this.sortOrder,
     required this.isActive,
+    required this.isSelected,
     // required this.createdDate,
     // required this.updatedDate,
     // required this.createdBy,
@@ -140,6 +141,7 @@ class SubCategoryId {
   // dynamic parent;
   String sortOrder;
   int isActive;
+  bool isSelected;
   // DateTime createdDate;
   // dynamic updatedDate;
   // int createdBy;
@@ -156,6 +158,7 @@ class SubCategoryId {
     // parent: json["parent"],
     sortOrder: json["sort_order"] ?? "",
     isActive: json["is_active"] ?? 0,
+    isSelected: false
     // createdDate: DateTime.parse(json["created_date"]),
     // updatedDate: json["updated_date"],
     // createdBy: json["created_by"],

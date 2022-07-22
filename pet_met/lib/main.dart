@@ -31,9 +31,9 @@ Future<void> main() async {
       DeviceOrientation.portraitDown,
     ],
   );
-  runApp(
-    const MyApp(),
-  );
+
+  runApp(const MyApp());
+
 }
 
 class MyApp extends StatefulWidget {
@@ -48,7 +48,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getCurrentAppTheme();
   }

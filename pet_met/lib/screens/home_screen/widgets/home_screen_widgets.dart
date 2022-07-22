@@ -14,7 +14,7 @@ import 'package:sizer/sizer.dart';
 import '../../../controllers/home_controller.dart';
 import '../../../services/providers/dark_theme_provider.dart';
 
-class AllPetsListModule extends StatelessWidget {
+/*class AllPetsListModule extends StatelessWidget {
   AllPetsListModule({Key? key}) : super(key: key);
 
   final HomeController homeController = Get.find<HomeController>();
@@ -32,7 +32,7 @@ class AllPetsListModule extends StatelessWidget {
       itemCount: homeController.allPetListModel.data!.length,
     );
   }
-}
+}*/
 
 class DogDisplayWidget extends StatelessWidget {
   const DogDisplayWidget({

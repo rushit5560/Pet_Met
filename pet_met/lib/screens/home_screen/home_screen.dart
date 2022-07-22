@@ -104,9 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 // ),
                 Expanded(
                   child: Obx(
-                    () => controller.isLoading.value &&
-                            controller.allPetListModel.data!.isEmpty &&
-                            controller.bannerList.isEmpty
+                    () => controller.isLoading.value
                         ? const CustomAnimationLoader()
                         : SingleChildScrollView(
                             physics: const BouncingScrollPhysics(),
@@ -114,118 +112,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 PetListModule()
                                     .commonSymmetricPadding(horizontal: 20),
-                                // Container(
-                                //   height: controller.size.width * 0.16,
-                                //   child: ListView.separated(
-                                //     scrollDirection: Axis.horizontal,
-                                //     itemCount: controller.dogsTopList.length,
-                                //     physics: const BouncingScrollPhysics(),
-                                //     separatorBuilder: (context, index) {
-                                //       return const SizedBox(width: 10);
-                                //     },
-                                //     itemBuilder: (context, index) {
-                                //       return Stack(
-                                //         children: [
-                                //           Container(
-                                //             height: controller.size.width * 0.16,
-                                //             width: controller.size.width * 0.16,
-                                //             margin: const EdgeInsets.only(
-                                //                 bottom: 5, right: 5),
-                                //             decoration: BoxDecoration(
-                                //               image: DecorationImage(
-                                //                   image: AssetImage(
-                                //                     controller.dogsTopList[index],
-                                //                   ),
-                                //                   fit: BoxFit.cover),
-                                //               color: AppColors.greyTextColor,
-                                //               borderRadius: const BorderRadius.all(
-                                //                 Radius.circular(8),
-                                //               ),
-                                //             ),
-                                //           ),
-                                //           index == 0
-                                //               ? Positioned(
-                                //                   right: 0,
-                                //                   bottom: 0,
-                                //                   child: Container(
-                                //                     height: 15,
-                                //                     width: 15,
-                                //                     decoration: const BoxDecoration(
-                                //                         color:
-                                //                             AppColors.accentTextColor,
-                                //                         shape: BoxShape.circle),
-                                //                     child: const Icon(
-                                //                       Icons.add,
-                                //                       color: AppColors.whiteColor,
-                                //                       size: 12,
-                                //                     ),
-                                //                   ),
-                                //                 )
-                                //               : const SizedBox()
-                                //         ],
-                                //       );
-                                //     },
-                                //   ),
-                                // ),
                                 SizedBox(
-                                    height: controller.size.height * 0.025),
+                                  height: controller.size.height * 0.025,
+                                ),
                                 BannerModule(),
-                                // Container(
-                                //   height: controller.size.height * 0.2,
-                                //   width: double.infinity,
-                                //   decoration: const BoxDecoration(
-                                //     image: DecorationImage(
-                                //         image:
-                                //             AssetImage("assets/icons/dogbanner.png")),
-                                //     borderRadius: BorderRadius.all(
-                                //       Radius.circular(12),
-                                //     ),
-                                //   ),
-                                // ),
                                 const SizedBox(height: 10),
                                 PetShopAndGroomingText()
                                     .commonSymmetricPadding(horizontal: 20),
-                                // Row(
-                                //   mainAxisAlignment: MainAxisAlignment.end,
-                                //   children: [
-                                //     Container(
-                                //       height: 35,
-                                //       width: controller.size.width * 0.36,
-                                //       padding: EdgeInsets.symmetric(horizontal: 12),
-                                //       decoration: BoxDecoration(
-                                //         color: themeProvider.darkTheme
-                                //             ? AppColors.darkThemeColor
-                                //             : AppColors.whiteColor,
-                                //         boxShadow: [
-                                //           BoxShadow(
-                                //             color: AppColors.whiteColor
-                                //                 .withOpacity(0.15),
-                                //             blurRadius: 15,
-                                //             spreadRadius: 1,
-                                //             offset: const Offset(0, 0),
-                                //           ),
-                                //         ],
-                                //         borderRadius: BorderRadius.all(
-                                //           Radius.circular(10),
-                                //         ),
-                                //       ),
-                                //       child: Center(
-                                //         child: Text(
-                                //           "Pet Shop & Grooming",
-                                //           style: TextStyle(
-                                //             color: themeProvider.darkTheme
-                                //                 ? AppColors.whiteColor
-                                //                 : AppColors.accentTextColor,
-                                //             fontSize: 12,
-                                //             fontWeight: FontWeight.w400,
-                                //           ),
-                                //         ),
-                                //       ),
-                                //     ),
-                                //   ],
-                                // ),
-                                AllPetsListModule()
-                                    .commonSymmetricPadding(horizontal: 20),
+
+                                /*AllPetsListModule()
+                                    .commonSymmetricPadding(horizontal: 20),*/
                               ],
                             ).commonSymmetricPadding(vertical: 20),
                           ),
