@@ -1,4 +1,4 @@
-import 'package:cc_avenue/cc_avenue.dart';
+//import 'package:cc_avenue/cc_avenue.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -34,7 +34,7 @@ class OrderDetailsController extends GetxController {
     // _razorpay!.clear();
   }
 
-  Future<void> initPlatformState() async {
+  /*Future<void> initPlatformState() async {
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       await CcAvenue.cCAvenueInit(
@@ -50,7 +50,7 @@ class OrderDetailsController extends GetxController {
     } on PlatformException {
       print('PlatformException');
     }
-  }
+  }*/
 
   // void openCheckout() async {
   //   var options = {

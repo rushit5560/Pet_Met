@@ -448,7 +448,7 @@ class OrderCountingModule extends StatelessWidget {
             onTap: () {
               // controller.submitLoginForm();
 
-              orderController.initPlatformState();
+              //orderController.initPlatformState();
               // Get.toNamed(AppRouteNames.orderPlacedRoute);
             },
             child: Container(

@@ -70,6 +70,8 @@ class RegisterController extends GetxController {
       RegisterModel registerModel = RegisterModel.fromJson(json.decode(response.body));
       isSuccessStatus = registerModel.success!.obs;
 
+      RegisterErrorModel registerErrorModel = RegisterErrorModel.fromJson(json.decode(response.body));
+
       if(isSuccessStatus.value) {
         log("isSuccessStatus : ${isSuccessStatus.value}");
         Fluttertoast.showToast(msg: registerModel.messege!);
@@ -87,7 +89,7 @@ class RegisterController extends GetxController {
         // Get.offAndToNamed(AppRouteNames.loginRoute);
         Get.back();
       } else {
-        Fluttertoast.showToast(msg: "Email already taken");
+        Fluttertoast.showToast(msg: registerErrorModel.error.email[0]);
       }
     } catch(e) {
       log("User Registration Error ::: $e");

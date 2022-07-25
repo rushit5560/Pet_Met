@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:pet_met/controllers/address_controller.dart';
 import 'package:pet_met/screens/address_screen/address_screen_widgets.dart';
 import 'package:pet_met/utils/app_route_names.dart';
+import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -43,34 +44,38 @@ class AddressScreen extends StatelessWidget {
                   title: "Addresses",
                 ),
                 Expanded(
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 25, vertical: 15),
-                      child: Container(
-                        height: 75.h,
-                        width: double.infinity,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            // const SizedBox(height: 8),
-                            // Text(
-                            //   "Addresses",
-                            //   style: TextStyle(
-                            //     color: AppColors.accentTextColor,
-                            //     fontSize: 20.sp,
-                            //     fontWeight: FontWeight.bold,
-                            //   ),
-                            // ),
-                            // Spacer(),
-                            const SizedBox(height: 35),
-                            AddressListModule(),
-                            const AddNewAddressButtonModule(),
+                  child: Obx(()=>
+                    controller.isLoading.value
+                      ? const CustomAnimationLoader():
+                     SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 25, vertical: 15),
+                        child: Container(
+                          height: 75.h,
+                          width: double.infinity,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // const SizedBox(height: 8),
+                              // Text(
+                              //   "Addresses",
+                              //   style: TextStyle(
+                              //     color: AppColors.accentTextColor,
+                              //     fontSize: 20.sp,
+                              //     fontWeight: FontWeight.bold,
+                              //   ),
+                              // ),
+                              // Spacer(),
+                              const SizedBox(height: 35),
+                              AddressListModule(),
+                              const AddNewAddressButtonModule(),
 
-                            const Spacer(),
-                            // SizedBox(height: 2.5.h),
-                          ],
+                              const Spacer(),
+                              // SizedBox(height: 2.5.h),
+                            ],
+                          ),
                         ),
                       ),
                     ),

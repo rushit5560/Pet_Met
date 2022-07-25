@@ -33,10 +33,10 @@ class AddressListModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 12.h * controller.addressList.length,
+      height: 12.h * controller.getAllAddressList.length,
       width: double.infinity,
       child: ListView.builder(
-        itemCount: controller.addressList.length,
+        itemCount: controller.getAllAddressList.length,
         itemBuilder: (context, index) {
           return Container(
             margin: EdgeInsets.only(bottom: 20),
@@ -66,7 +66,7 @@ class AddressListModule extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      controller.addressList[index].title!,
+                      controller.getAllAddressList[index].address,
                       style: TextStyle(
                         color: themeProvider.darkTheme
                             ? AppColors.whiteColor

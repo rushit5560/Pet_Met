@@ -28,7 +28,7 @@ class RegisterModel {
   };
 }
 
-class Error {
+/*class Error {
   Error({
     required this.email,
   });
@@ -37,6 +37,47 @@ class Error {
 
   factory Error.fromJson(Map<String, dynamic> json) => Error(
     email: List<String>.from(json["email"].map((x) => x ?? "")),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "email": List<dynamic>.from(email.map((x) => x)),
+  };
+}*/
+
+
+RegisterErrorModel registerErrorModelFromJson(String str) => RegisterErrorModel.fromJson(json.decode(str));
+
+String registerErrorModelToJson(RegisterErrorModel data) => json.encode(data.toJson());
+
+class RegisterErrorModel {
+  RegisterErrorModel({
+    required this.success,
+    required this.error,
+  });
+
+  bool success;
+  Error error;
+
+  factory RegisterErrorModel.fromJson(Map<String, dynamic> json) => RegisterErrorModel(
+    success: json["success"] ?? false,
+    error: Error.fromJson(json["error"] ?? {}),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "success": success,
+    "error": error.toJson(),
+  };
+}
+
+class Error {
+  Error({
+    required this.email,
+  });
+
+  List<String> email;
+
+  factory Error.fromJson(Map<String, dynamic> json) => Error(
+    email: List<String>.from(json["email"].map((x) => x) ?? ""),
   );
 
   Map<String, dynamic> toJson() => {
