@@ -12,10 +12,9 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 Future<void> main() async {
-
   // WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
-
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       systemNavigationBarColor: AppColors.blackColor,
@@ -33,7 +32,6 @@ Future<void> main() async {
   );
 
   runApp(const MyApp());
-
 }
 
 class MyApp extends StatefulWidget {

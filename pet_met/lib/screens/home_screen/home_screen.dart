@@ -120,8 +120,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                 PetShopAndGroomingText()
                                     .commonSymmetricPadding(horizontal: 20),
 
-                                /*AllPetsListModule()
-                                    .commonSymmetricPadding(horizontal: 20),*/
+                                DogDisplayWidget(
+                                  onTap: () {
+                                    Get.toNamed(
+                                        AppRouteNames.orderDetailsRoute);
+                                  },
+                                ),
+                                // AllPetsListModule()
+                                //     .commonSymmetricPadding(horizontal: 20),
                               ],
                             ).commonSymmetricPadding(vertical: 20),
                           ),

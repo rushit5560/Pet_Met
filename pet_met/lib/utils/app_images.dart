@@ -9,10 +9,12 @@ DarkThemeProvider themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
 class AppImages {
   static const petMetLogoImg = root + "petmet_logo.png";
 
-  static var tealBackgroundImg = root +
-      (themeProvider.darkTheme
-          ? "path_top_right_dark.png"
-          : "path_top_right_light.png");
+  static var tealBackgroundImg = themeProvider.darkTheme
+      ? root + "path_top_right_dark.png"
+      : root + "path_top_right_light.png";
+
+  static var backgroundImgDark = root + "path_top_right_dark.png";
+  static var backgroundImgLight = root + "path_top_right_light.png";
 
   static var cameraPlaceHolderImg = root +
       (themeProvider.darkTheme
@@ -103,5 +105,4 @@ class AppShades {
   static const root = "assets/shades/";
 
   static const bgShadeLeftImg = root + "bg_shade_left.png";
-
 }

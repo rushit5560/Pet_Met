@@ -49,41 +49,42 @@ class OrderPlacedScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 1.h),
+                SizedBox(height: 1.5.h),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    SizedBox(width: 20.w),
+                    SizedBox(width: 24.w),
                     Image.asset(
                       AppImages.dogSittingImg,
                       height: 28.h,
                     ),
                   ],
                 ),
-                SizedBox(height: 3.h),
+                SizedBox(height: 4.5.h),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  padding: EdgeInsets.symmetric(horizontal: 11.w),
                   child: Text(
                     "Your Shopping Orders has Been Placed",
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.left,
                     style: TextStyle(
                         color: AppColors.accentTextColor,
                         fontWeight: FontWeight.bold,
-                        fontSize: 20.sp,
+                        fontSize: 17.sp,
                         height: 1.4),
                   ),
                 ),
                 SizedBox(height: 3.h),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  padding: EdgeInsets.symmetric(horizontal: 11.w),
                   child: Text(
                     "Thank You for your Order. Your Order Has be proccess. You can check the proccess on the status order",
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.left,
                     style: TextStyle(
                         color: themeProvider.darkTheme
                             ? AppColors.whiteColor
                             : AppColors.greyTextColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20.sp,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 12.sp,
                         height: 1.4),
                   ),
                 ),

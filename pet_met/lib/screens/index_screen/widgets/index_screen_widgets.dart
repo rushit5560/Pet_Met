@@ -36,7 +36,9 @@ class _BuildMenuState extends State<BuildMenu> {
           children: [
             Align(
               alignment: Alignment.topRight,
-              child: Image.asset(AppImages.tealBackgroundImg),
+              child: Image.asset(themeProvider.darkTheme
+                  ? AppImages.backgroundImgDark
+                  : AppImages.backgroundImgLight),
             ),
             BackGroundLeftShadow(
               height: controller.size.height * 0.3,
@@ -333,8 +335,9 @@ class _BuildMenuState extends State<BuildMenu> {
                                                   controller.size.width * 0.3,
                                                   30,
                                                 ),
-                                                padding: const EdgeInsets.symmetric(
-                                                    horizontal: 16),
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 16),
                                                 shape:
                                                     const RoundedRectangleBorder(
                                                   borderRadius:
@@ -370,8 +373,9 @@ class _BuildMenuState extends State<BuildMenu> {
                                                 minimumSize: Size(
                                                     controller.size.width * 0.3,
                                                     30),
-                                                padding: const EdgeInsets.symmetric(
-                                                    horizontal: 16),
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 16),
                                                 shape:
                                                     const RoundedRectangleBorder(
                                                   borderRadius:
@@ -428,7 +432,7 @@ class _BuildMenuState extends State<BuildMenu> {
                               Get.toNamed(AppRouteNames.rateAppRoute);
                             },
                             leading: Image.asset(
-                             AppIcons.rateImg,
+                              AppIcons.rateImg,
                               color: themeProvider.darkTheme
                                   ? AppColors.whiteColor
                                   : AppColors.greyTextColor,

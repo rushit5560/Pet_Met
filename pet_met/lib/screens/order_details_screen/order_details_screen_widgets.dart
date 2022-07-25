@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/address_controller.dart';
+import 'package:pet_met/controllers/order_details_controller.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
@@ -132,7 +133,9 @@ class PaymentDetailsModule extends StatelessWidget {
           width: double.infinity,
           padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
           decoration: BoxDecoration(
-            color: AppColors.whiteColor,
+            color: themeProvider.darkTheme
+                ? AppColors.darkThemeBoxColor
+                : AppColors.whiteColor,
             borderRadius: BorderRadius.all(
               Radius.circular(12),
             ),
@@ -329,7 +332,9 @@ class OrderDetailsModule extends StatelessWidget {
 }
 
 class OrderCountingModule extends StatelessWidget {
-  const OrderCountingModule({Key? key}) : super(key: key);
+  OrderCountingModule({Key? key}) : super(key: key);
+
+  final orderController = Get.find<OrderDetailsController>();
 
   @override
   Widget build(BuildContext context) {
@@ -337,8 +342,10 @@ class OrderCountingModule extends StatelessWidget {
       //height: 21.h,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColors.whiteColor,
-        borderRadius: BorderRadius.all(
+        color: themeProvider.darkTheme
+            ? AppColors.darkThemeBoxColor
+            : AppColors.whiteColor,
+        borderRadius: const BorderRadius.all(
           Radius.circular(12),
         ),
         boxShadow: [
@@ -440,7 +447,9 @@ class OrderCountingModule extends StatelessWidget {
           GestureDetector(
             onTap: () {
               // controller.submitLoginForm();
-              Get.toNamed(AppRouteNames.orderPlacedRoute);
+
+              orderController.initPlatformState();
+              // Get.toNamed(AppRouteNames.orderPlacedRoute);
             },
             child: Container(
               width: double.infinity,
