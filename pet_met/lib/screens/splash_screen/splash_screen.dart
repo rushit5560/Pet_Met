@@ -14,7 +14,7 @@ class SplashScreen extends StatelessWidget {
 
   final controller = Get.put(SplashController());
   @override
-  final themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
+  // final themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: const Color(0xFFFFFFFF),
@@ -29,7 +29,9 @@ class SplashScreen extends StatelessWidget {
                 children: [
                   SizedBox(height: 12.h),
                   Image.asset(
-                    AppImages.splashLogoImg,
+                    themeProvider.darkTheme
+                        ? AppImages.splashLogoImgDark
+                        : AppImages.splashLogoImgLight,
                     fit: BoxFit.cover,
                     width: 95.w,
                   ),

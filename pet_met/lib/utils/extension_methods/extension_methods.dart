@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 extension CustomWidgets on Widget {
-
   Widget commonAllSidePadding({required double padding}) {
     return Padding(
       padding: EdgeInsets.all(padding),
@@ -16,7 +15,6 @@ extension CustomWidgets on Widget {
     );
   }
 }
-
 
 extension CustomString on String {
   String wordCapitalize() {

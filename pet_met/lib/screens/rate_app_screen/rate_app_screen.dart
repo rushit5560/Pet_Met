@@ -41,7 +41,9 @@ class RateAppScreen extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.topRight,
-              child: Image.asset(AppImages.tealBackgroundImg),
+              child: Image.asset(themeProvider.darkTheme
+                  ? AppImages.backgroundImgDark
+                  : AppImages.backgroundImgLight),
             ),
             Column(
               children: [
@@ -220,8 +222,8 @@ class RateAppScreen extends StatelessWidget {
                                   keyboardType: TextInputType.text,
                                   style: TextStyle(
                                     color: themeProvider.darkTheme
-                                    ? AppColors.whiteColor
-                                    : AppColors.blackTextColor,
+                                        ? AppColors.whiteColor
+                                        : AppColors.blackTextColor,
                                     fontSize: 13.sp,
                                     fontWeight: FontWeight.w400,
                                     decoration: TextDecoration.none,

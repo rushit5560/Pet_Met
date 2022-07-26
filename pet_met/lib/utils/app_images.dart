@@ -9,37 +9,52 @@ DarkThemeProvider themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
 class AppImages {
   static const petMetLogoImg = root + "petmet_logo.png";
 
-  static var tealBackgroundImg = themeProvider.darkTheme
-      ? root + "path_top_right_dark.png"
-      : root + "path_top_right_light.png";
+  // static var tealBackgroundImg = themeProvider.darkTheme
+  //     ? root + "path_top_right_dark.png"
+  //     : root + "path_top_right_light.png";
 
   static var backgroundImgDark = root + "path_top_right_dark.png";
   static var backgroundImgLight = root + "path_top_right_light.png";
 
-  static var cameraPlaceHolderImg = root +
-      (themeProvider.darkTheme
-          ? "camera_placeholder_dark.png"
-          : "camera_placeholder_light.png");
+  static var cameraPlaceHolderImgDark = root + "camera_placeholder_dark.png";
+  static var cameraPlaceHolderImglight = root + "camera_placeholder_light.png";
 
-  static var onboardBackImgImg = root +
-      (themeProvider.darkTheme
-          ? "onboard_bgshape_dark.png"
-          : "onboard_bgshape_light.png");
+  // static var cameraPlaceHolderImg = root +
+  //     (themeProvider.darkTheme
+  //         ? "camera_placeholder_dark.png"
+  //         : "camera_placeholder_light.png");
 
-  static var onboardPathImg = root +
-      (themeProvider.darkTheme
-          ? "onboardtop_path_dark.png"
-          : "onboardtop_path_light.png");
+  static var onboardBackImgImgDark = root + "onboard_bgshape_dark.png";
+  static var onboardBackImgImglight = root + "onboard_bgshape_light.png";
 
-  static var splashLogoImg = root +
-      (themeProvider.darkTheme
-          ? "splash_peoples1_dark.png"
-          : "splash_peoples1_light.png");
+  // static var onboardBackImgImg = root +
+  //     (themeProvider.darkTheme
+  //         ? "onboard_bgshape_dark.png"
+  //         : "onboard_bgshape_light.png");
 
-  static var supportWomenImg = root +
-      (themeProvider.darkTheme
-          ? "women_objects_dark.png"
-          : "women_objects_light.png");
+  static var onboardPathImgDark = root + "onboardtop_path_dark.png";
+  static var onboardPathImglight = root + "onboardtop_path_light.png";
+
+  // static var onboardPathImg = root +
+  //     (themeProvider.darkTheme
+  //         ? "onboardtop_path_dark.png"
+  //         : "onboardtop_path_light.png");
+
+  static var splashLogoImgDark = root + "splash_peoples1_dark.png";
+  static var splashLogoImgLight = root + "splash_peoples1_light.png";
+
+  // static var splashLogoImg = root +
+  //     (themeProvider.darkTheme
+  //         ? "splash_peoples1_dark.png"
+  //         : "splash_peoples1_light.png");
+
+  static var supportWomenImgDark = root + "women_objects_dark.png";
+  static var supportWomenImgLight = root + "women_objects_light.png";
+
+  // static var supportWomenImg = root +
+  //     (themeProvider.darkTheme
+  //         ? "women_objects_dark.png"
+  //         : "women_objects_light.png");
 
   static const whiteBackgroundImg = root + "onboardtopright.png";
   static const shopAndGroomingImg = root + "shop_grooming.png";

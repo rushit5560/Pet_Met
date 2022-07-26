@@ -16,8 +16,6 @@ class UserPreference {
   String userEmailKey = "userEmailKey";
   String userProfileImageKey = "userProfileImageKey";
 
-
-
   /// Set Role Id Key
   Future<void> setRoleId(int value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -26,15 +24,14 @@ class UserPreference {
     log("RoleIdKey : ${prefs.getInt(roleIdKey)}");
   }
 
-
   /// Set User Login Or Register Details
-  Future<void> setUserDetails(
-      {required int userId,
-      required String userName,
-      required String userEmail,
-      required String userProfileImage,
-        required String token,
-      }) async {
+  Future<void> setUserDetails({
+    required int userId,
+    required String userName,
+    required String userEmail,
+    required String userProfileImage,
+    required String token,
+  }) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setInt(userIdKey, userId);
     prefs.setString(userNameKey, userName);
@@ -76,7 +73,5 @@ class UserPreference {
     UserDetails.userProfileImage = prefs.getString(userProfileImageKey) ?? "";
     UserDetails.userToken = prefs.getString(userTokenKey) ?? "";
     UserDetails.isUserLoggedIn = prefs.getBool(isUserLoggedInKey) ?? false;
-
-
   }
 }

@@ -29,9 +29,7 @@ class PetCareListModule extends StatelessWidget {
               fontSize: 12.sp,
             ),
           ),
-          SizedBox(
-              height: controller.size.height *
-                  0.001.h),
+          SizedBox(height: controller.size.height * 0.001.h),
           Html(
             data: controller.description,
             style: {

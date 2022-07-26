@@ -23,7 +23,9 @@ class PetTrainersDetailsScreen extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.topRight,
-              child: Image.asset(AppImages.tealBackgroundImg),
+              child: Image.asset(themeProvider.darkTheme
+                  ? AppImages.backgroundImgDark
+                  : AppImages.backgroundImgLight),
             ),
             Column(
               children: [
@@ -45,7 +47,7 @@ class PetTrainersDetailsScreen extends StatelessWidget {
                                 PetTrainerPicturesModule(),
                                 SizedBox(
                                     height: petTrainersDetailsScreenController
-                                        .size.height *
+                                            .size.height *
                                         0.005.w),
                                 PetTrainerNameAndSocialMediaButtonModule(),
                                 SizedBox(

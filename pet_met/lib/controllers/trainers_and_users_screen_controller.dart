@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-class TrainersAndUsersScreenController extends GetxController{
+class TrainersAndUsersScreenController extends GetxController {
   final size = Get.size;
   XFile? imageFile = XFile("");
   RxString selectedGenderValue = "Male".obs;
 
   var nameController = TextEditingController();
-
 }

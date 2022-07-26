@@ -23,7 +23,9 @@ class PetMeetingDetailsScreen extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.topRight,
-              child: Image.asset(AppImages.tealBackgroundImg),
+              child: Image.asset(themeProvider.darkTheme
+                  ? AppImages.backgroundImgDark
+                  : AppImages.backgroundImgLight),
             ),
             BackGroundLeftShadow(
               height: petMeetingDetailsScreenController.size.height * 0.3,

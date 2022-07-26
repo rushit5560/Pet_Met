@@ -31,7 +31,9 @@ class PetTrackerPricingScreen extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.topRight,
-              child: Image.asset(AppImages.tealBackgroundImg),
+              child: Image.asset(themeProvider.darkTheme
+                  ? AppImages.backgroundImgDark
+                  : AppImages.backgroundImgLight),
             ),
             Column(
               children: [

@@ -158,38 +158,36 @@ class PetCategoriesListModule extends StatelessWidget {
             int id = singleItem.subCategory[i].categoryId;
             return Row(
               children: [
-               Checkbox(
-                    checkColor: themeProvider.darkTheme
-                        ? AppColors.whiteColor
-                        : AppColors.greyTextColor,
-                    activeColor: AppColors.greyTextColor,
-                    fillColor: MaterialStateProperty.all(
-                      AppColors.greyColor,
-                    ),
-                    focusColor: AppColors.greyColor,
-                    value: singleItem.subCategory[i].isSelected,
-                    onChanged: (value) {
-                      screenController.isLoading(true);
-                      for(int i = 0; i < screenController.catAndSubCatList.length; i++) {
-
-                        for(int j = 0; j < singleItem.subCategory.length; j++) {
-
-                          if(singleItem.subCategory[j].categoryId == id) {
-                            singleItem.subCategory[j].isSelected = true;
-                            screenController.selectedSubCatId = singleItem.subCategory[j].categoryId.toString();
-                            // log("${singleItem.subCategory[j].categoryId}");
-                            // log(singleItem.subCategory[j].categoryName);
-                          } else {
-                            singleItem.subCategory[j].isSelected = false;
-                          }
-
-                        }
-
-                      }
-                      screenController.isLoading(false);
-
-                    },
+                Checkbox(
+                  checkColor: themeProvider.darkTheme
+                      ? AppColors.whiteColor
+                      : AppColors.greyTextColor,
+                  activeColor: AppColors.greyTextColor,
+                  fillColor: MaterialStateProperty.all(
+                    AppColors.greyColor,
                   ),
+                  focusColor: AppColors.greyColor,
+                  value: singleItem.subCategory[i].isSelected,
+                  onChanged: (value) {
+                    screenController.isLoading(true);
+                    for (int i = 0;
+                        i < screenController.catAndSubCatList.length;
+                        i++) {
+                      for (int j = 0; j < singleItem.subCategory.length; j++) {
+                        if (singleItem.subCategory[j].categoryId == id) {
+                          singleItem.subCategory[j].isSelected = true;
+                          screenController.selectedSubCatId =
+                              singleItem.subCategory[j].categoryId.toString();
+                          // log("${singleItem.subCategory[j].categoryId}");
+                          // log(singleItem.subCategory[j].categoryName);
+                        } else {
+                          singleItem.subCategory[j].isSelected = false;
+                        }
+                      }
+                    }
+                    screenController.isLoading(false);
+                  },
+                ),
                 Text(
                   singleItem.subCategory[i].categoryName,
                   maxLines: 2,

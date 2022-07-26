@@ -262,44 +262,66 @@ class PetListModule extends StatelessWidget {
           return const SizedBox(width: 10);
         },
         itemBuilder: (context, index) {
-          return Stack(
-            children: [
-              Container(
-                height: controller.size.width * 0.16,
-                width: controller.size.width * 0.16,
-                margin: const EdgeInsets.only(bottom: 5, right: 5),
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage(
-                        controller.dogsTopList[index],
-                      ),
-                      fit: BoxFit.cover),
-                  color: AppColors.greyTextColor,
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(8),
-                  ),
-                ),
-              ),
-              index == 0
-                  ? Positioned(
-                      right: 0,
-                      bottom: 0,
-                      child: Container(
-                        height: 15,
-                        width: 15,
-                        decoration: const BoxDecoration(
-                            color: Colors.green, shape: BoxShape.circle),
-                        child: const Icon(
-                          Icons.add,
-                          color: AppColors.whiteColor,
-                          size: 12,
-                        ),
-                      ),
-                    )
-                  : const SizedBox()
-            ],
+          return AddPetStoryWidget(
+            controller: controller,
+            index: index,
           );
         },
+      ),
+    );
+  }
+}
+
+class AddPetStoryWidget extends StatelessWidget {
+  const AddPetStoryWidget({
+    Key? key,
+    required this.controller,
+    required this.index,
+  }) : super(key: key);
+
+  final HomeController controller;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {},
+      child: Stack(
+        children: [
+          Container(
+            height: controller.size.width * 0.16,
+            width: controller.size.width * 0.16,
+            margin: const EdgeInsets.only(bottom: 5, right: 5),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage(
+                    controller.dogsTopList[index],
+                  ),
+                  fit: BoxFit.cover),
+              color: AppColors.greyTextColor,
+              borderRadius: const BorderRadius.all(
+                Radius.circular(8),
+              ),
+            ),
+          ),
+          index == 0
+              ? Positioned(
+                  right: 0,
+                  bottom: 0,
+                  child: Container(
+                    height: 15,
+                    width: 15,
+                    decoration: const BoxDecoration(
+                        color: Colors.green, shape: BoxShape.circle),
+                    child: const Icon(
+                      Icons.add,
+                      color: AppColors.whiteColor,
+                      size: 12,
+                    ),
+                  ),
+                )
+              : const SizedBox()
+        ],
       ),
     );
   }

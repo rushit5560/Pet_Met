@@ -18,8 +18,6 @@ class PetTrainersDetailsScreenController extends GetxController {
   ApiHeader apiHeader = ApiHeader();
   TrainerData trainerDetails = TrainerData();
 
-
-
   Future<void> getTrainerDetailsFunction() async {
     isLoading(true);
     String url = ApiUrl.getTrainerDetailsApi + "/$trainerId";
@@ -29,17 +27,16 @@ class PetTrainersDetailsScreenController extends GetxController {
       Map<String, String> header = apiHeader.apiHeader();
       http.Response response = await http.get(Uri.parse(url), headers: header);
 
-      TrainerDetailsModel trainerDetailsModel = TrainerDetailsModel.fromJson(json.decode(response.body));
+      TrainerDetailsModel trainerDetailsModel =
+          TrainerDetailsModel.fromJson(json.decode(response.body));
       isSuccessStatus = trainerDetailsModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         trainerDetails = trainerDetailsModel.data[0];
       } else {
         log("Trainer Details Api Else");
       }
-
-
-    } catch(e) {
+    } catch (e) {
       log("Trainer Details Api Error ::: $e");
     } finally {
       isLoading(false);
@@ -51,6 +48,4 @@ class PetTrainersDetailsScreenController extends GetxController {
     getTrainerDetailsFunction();
     super.onInit();
   }
-
-
 }

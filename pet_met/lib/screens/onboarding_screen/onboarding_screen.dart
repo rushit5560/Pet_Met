@@ -24,14 +24,18 @@ class OnboardingScreen extends StatelessWidget {
             Positioned(
               top: -20,
               child: Image.asset(
-                AppImages.onboardBackImgImg,
+                themeProvider.darkTheme
+                    ? AppImages.onboardBackImgImgDark
+                    : AppImages.onboardBackImgImglight,
                 width: controller.size.width,
               ),
             ),
             Align(
               alignment: Alignment.topRight,
               child: Image.asset(
-                AppImages.onboardPathImg,
+                themeProvider.darkTheme
+                    ? AppImages.onboardPathImgDark
+                    : AppImages.onboardPathImglight,
                 color: themeProvider.darkTheme
                     ? AppColors.darkThemeColor
                     : AppColors.whiteColor,

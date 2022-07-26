@@ -1,8 +1,10 @@
 import 'dart:convert';
 
-AllVetAndNgoModel allVetAndNgoModelFromJson(String str) => AllVetAndNgoModel.fromJson(json.decode(str));
+AllVetAndNgoModel allVetAndNgoModelFromJson(String str) =>
+    AllVetAndNgoModel.fromJson(json.decode(str));
 
-String allVetAndNgoModelToJson(AllVetAndNgoModel data) => json.encode(data.toJson());
+String allVetAndNgoModelToJson(AllVetAndNgoModel data) =>
+    json.encode(data.toJson());
 
 class AllVetAndNgoModel {
   AllVetAndNgoModel({
@@ -15,17 +17,19 @@ class AllVetAndNgoModel {
   List<VetAndNgoData> data;
   String message;
 
-  factory AllVetAndNgoModel.fromJson(Map<String, dynamic> json) => AllVetAndNgoModel(
-    success: json["success"] ?? false,
-    data: List<VetAndNgoData>.from(json["data"].map((x) => VetAndNgoData.fromJson(x ?? {}))),
-    message: json["message"] ?? "",
-  );
+  factory AllVetAndNgoModel.fromJson(Map<String, dynamic> json) =>
+      AllVetAndNgoModel(
+        success: json["success"] ?? false,
+        data: List<VetAndNgoData>.from(
+            json["data"].map((x) => VetAndNgoData.fromJson(x ?? {}))),
+        message: json["message"] ?? "",
+      );
 
   Map<String, dynamic> toJson() => {
-    "success": success,
-    "data": List<dynamic>.from(data.map((x) => x.toJson())),
-    "message": message,
-  };
+        "success": success,
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+        "message": message,
+      };
 }
 
 class VetAndNgoData {
@@ -60,34 +64,34 @@ class VetAndNgoData {
   int userId;
 
   factory VetAndNgoData.fromJson(Map<String, dynamic> json) => VetAndNgoData(
-    id: json["id"] ?? 0,
-    name: json["name"] ?? "",
-    imageList: json["image_list"] ?? "",
-    showimg: json["showimg"] ?? "",
-    contact: json["contact"] ?? "",
-    address: json["address"] ?? "",
-    isActive: json["is_active"] ?? "",
-    socialMedias: json["social_medias"] ?? "",
-    openTime: json["open_time"] ?? "",
-    closeTime: json["close_time"] ?? "",
-    overview: json["overview"] ?? "",
-    roleId: json["role_id"] ?? 0,
-    userId: json["user_id"] ?? 0,
-  );
+        id: json["id"] ?? 0,
+        name: json["name"] ?? "",
+        imageList: json["image_list"] ?? "",
+        showimg: json["showimg"] ?? "",
+        contact: json["contact"] ?? "",
+        address: json["address"] ?? "",
+        isActive: json["is_active"] ?? "",
+        socialMedias: json["social_medias"] ?? "",
+        openTime: json["open_time"] ?? "",
+        closeTime: json["close_time"] ?? "",
+        overview: json["overview"] ?? "",
+        roleId: json["role_id"] ?? 0,
+        userId: json["user_id"] ?? 0,
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "image_list": imageList,
-    "showimg": showimg,
-    "contact": contact,
-    "address": address,
-    "is_active": isActive,
-    "social_medias": socialMedias,
-    "open_time": openTime,
-    "close_time": closeTime,
-    "overview": overview,
-    "role_id": roleId,
-    "user_id": userId,
-  };
+        "id": id,
+        "name": name,
+        "image_list": imageList,
+        "showimg": showimg,
+        "contact": contact,
+        "address": address,
+        "is_active": isActive,
+        "social_medias": socialMedias,
+        "open_time": openTime,
+        "close_time": closeTime,
+        "overview": overview,
+        "role_id": roleId,
+        "user_id": userId,
+      };
 }

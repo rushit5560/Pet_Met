@@ -60,18 +60,18 @@ class LoginController extends GetxController {
       if (isSuccessStatus.value) {
         // User Data Set in Prefs
         await userPreference.setUserDetails(
-            userId: loginModel.data.id,
-            userName: loginModel.data.name,
-            userEmail: loginModel.data.email,
-            userProfileImage: loginModel.data.image,
-            token: loginModel.data.rememberToken,
+          userId: loginModel.data.id,
+          userName: loginModel.data.name,
+          userEmail: loginModel.data.email,
+          userProfileImage: loginModel.data.image,
+          token: loginModel.data.rememberToken,
         );
         // Going to Index Screen
         Get.toNamed(AppRouteNames.indexScreenRoute);
       } else {
         Fluttertoast.showToast(msg: loginModel.error);
       }
-    } catch(e) {
+    } catch (e) {
       log('User Login Api Error ::: $e');
     } finally {
       isLoading(false);
@@ -181,4 +181,3 @@ class LoginController extends GetxController {
   }*/
 
 }
-

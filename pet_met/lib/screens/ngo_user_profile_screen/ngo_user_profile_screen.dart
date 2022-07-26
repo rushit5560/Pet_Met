@@ -7,7 +7,7 @@ class NgoUserProfileScreen extends StatelessWidget {
   NgoUserProfileScreen({Key? key}) : super(key: key);
 
   final controller = Get.put(NgoUserProfileScreenController());
-  String ? fieldName;
+  String? fieldName;
   String? fieldHinttext;
 
   @override
@@ -35,7 +35,8 @@ class NgoUserProfileScreen extends StatelessWidget {
                           const SizedBox(height: 30),
                           NgoBankNameModule(),
                           const SizedBox(height: 30),
-                          CommonTextFieldModule(fieldName: 'Ngo Bank Account Number'),
+                          CommonTextFieldModule(
+                              fieldName: 'Ngo Bank Account Number'),
 
                           const SizedBox(height: 15),
 

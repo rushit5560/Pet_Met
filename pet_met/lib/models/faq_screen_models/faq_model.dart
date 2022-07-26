@@ -16,16 +16,17 @@ class FaqModel {
   String message;
 
   factory FaqModel.fromJson(Map<String, dynamic> json) => FaqModel(
-    success: json["success"] ?? false,
-    data: List<FaqData>.from(json["data"].map((x) => FaqData.fromJson(x ?? {}))),
-    message: json["message"] ?? "",
-  );
+        success: json["success"] ?? false,
+        data: List<FaqData>.from(
+            json["data"].map((x) => FaqData.fromJson(x ?? {}))),
+        message: json["message"] ?? "",
+      );
 
   Map<String, dynamic> toJson() => {
-    "success": success,
-    "data": List<dynamic>.from(data.map((x) => x.toJson())),
-    "message": message,
-  };
+        "success": success,
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+        "message": message,
+      };
 }
 
 class FaqData {
@@ -42,16 +43,16 @@ class FaqData {
   String isActive;
 
   factory FaqData.fromJson(Map<String, dynamic> json) => FaqData(
-    id: json["id"] ?? 0,
-    question: json["question"] ?? "",
-    answer: json["answer"] ?? "",
-    isActive: json["is_active"] ?? "",
-  );
+        id: json["id"] ?? 0,
+        question: json["question"] ?? "",
+        answer: json["answer"] ?? "",
+        isActive: json["is_active"] ?? "",
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "question": question,
-    "answer": answer,
-    "is_active": isActive,
-  };
+        "id": id,
+        "question": question,
+        "answer": answer,
+        "is_active": isActive,
+      };
 }

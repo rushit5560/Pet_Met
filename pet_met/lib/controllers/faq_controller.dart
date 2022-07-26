@@ -23,7 +23,6 @@ class FaqController extends GetxController {
 
   var drawerController = ZoomDrawerController();
 
-
   Future<void> getFaqFunction() async {
     isLoading(true);
     String url = ApiUrl.faqApi;
@@ -38,16 +37,14 @@ class FaqController extends GetxController {
       FaqModel faqModel = FaqModel.fromJson(json.decode(response.body));
       isSuccessStatus = faqModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         faqList.clear();
         faqList.addAll(faqModel.data);
         log('faqList : ${faqList.length}');
       } else {
         log("Support Function Else");
       }
-
-
-    } catch(e) {
+    } catch (e) {
       log("Support Function Api Error ::: $e");
     } finally {
       isLoading(false);

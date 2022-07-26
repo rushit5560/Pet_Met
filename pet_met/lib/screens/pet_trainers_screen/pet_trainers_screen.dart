@@ -24,7 +24,9 @@ class PetTrainersScreen extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.topRight,
-              child: Image.asset(AppImages.tealBackgroundImg),
+              child: Image.asset(themeProvider.darkTheme
+                  ? AppImages.backgroundImgDark
+                  : AppImages.backgroundImgLight),
             ),
             BackGroundLeftShadow(
               height: petTrainersScreenController.size.height * 0.3,
@@ -34,12 +36,13 @@ class PetTrainersScreen extends StatelessWidget {
             ),
             Column(
               children: [
-                CustomAppBar(title: "Pet Trainers",
+                CustomAppBar(
+                    title: "Pet Trainers",
                     appBarOption: AppBarOption.drawerButtonOption),
                 Expanded(
-                    child: petTrainersScreenController.isLoading.value
-                    ? const CustomAnimationLoader()
-                    : PetTrainerListModule(),
+                  child: petTrainersScreenController.isLoading.value
+                      ? const CustomAnimationLoader()
+                      : PetTrainerListModule(),
                 ),
               ],
             ),

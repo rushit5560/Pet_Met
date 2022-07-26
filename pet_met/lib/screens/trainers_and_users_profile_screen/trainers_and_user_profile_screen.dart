@@ -7,7 +7,7 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
   TrainersAndUserProfileScreenController({Key? key}) : super(key: key);
 
   final controller = Get.put(TrainersAndUsersScreenController());
-  String ? fieldName;
+  String? fieldName;
   String? fieldHinttext;
 
   @override

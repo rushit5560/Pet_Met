@@ -82,8 +82,7 @@ class HomeController extends GetxController {
     }
   }
 
-
- /* Future<void> getAllPetFunction() async {
+  /* Future<void> getAllPetFunction() async {
     isLoading(true);
     String url = ApiUrl.getAllPetApi;
 

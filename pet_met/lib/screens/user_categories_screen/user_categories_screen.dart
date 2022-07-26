@@ -39,7 +39,9 @@ class _UserCategoriesScreenState extends State<UserCategoriesScreen> {
             ),
             Align(
               alignment: Alignment.topRight,
-              child: Image.asset(AppImages.tealBackgroundImg),
+              child: Image.asset(themeProvider.darkTheme
+                  ? AppImages.backgroundImgDark
+                  : AppImages.backgroundImgLight),
             ),
             Obx(
               () => controller.isLoading.value

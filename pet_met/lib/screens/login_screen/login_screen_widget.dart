@@ -17,7 +17,9 @@ class BackgroundImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.topRight,
-      child: Image.asset(AppImages.tealBackgroundImg),
+      child: Image.asset(themeProvider.darkTheme
+          ? AppImages.backgroundImgDark
+          : AppImages.backgroundImgLight),
     );
   }
 }
@@ -56,7 +58,6 @@ class LoginModule extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: controller.size.height * 0.2),
-
 
             Row(
               children: [
@@ -172,8 +173,7 @@ class LoginModule extends StatelessWidget {
                           BoxShadow(
                             color: themeProvider.darkTheme
                                 ? AppColors.blackColor.withOpacity(0.25)
-                                : AppColors.greyTextColor
-                                .withOpacity(0.25),
+                                : AppColors.greyTextColor.withOpacity(0.25),
                             spreadRadius: 1,
                             blurRadius: 15,
                             offset: const Offset(4, 4),
@@ -204,7 +204,7 @@ class LoginModule extends StatelessWidget {
                 const SizedBox(width: 15),
                 Expanded(
                   child: GestureDetector(
-                    onTap: ()async {
+                    onTap: () async {
                       // await controller.signInWithFacebookFunction();
                     },
                     child: Container(
@@ -218,8 +218,7 @@ class LoginModule extends StatelessWidget {
                           BoxShadow(
                             color: themeProvider.darkTheme
                                 ? AppColors.blackColor.withOpacity(0.25)
-                                : AppColors.greyTextColor
-                                .withOpacity(0.25),
+                                : AppColors.greyTextColor.withOpacity(0.25),
                             spreadRadius: 1,
                             blurRadius: 15,
                             offset: const Offset(0, 5),
@@ -283,40 +282,40 @@ class LoginModule extends StatelessWidget {
             SizedBox(height: 4.h),
 
             Obx(
-                  () => controller.isLoading.value
+              () => controller.isLoading.value
                   ? SizedBox(
-                  // width: double.infinity,
-                  height: 60,
-                    child: LoadingAnimationWidget.staggeredDotsWave(
-                      color: AppColors.accentTextColor,
-                      size: 40,
-                    ),
-                  )
+                      // width: double.infinity,
+                      height: 60,
+                      child: LoadingAnimationWidget.staggeredDotsWave(
+                        color: AppColors.accentTextColor,
+                        size: 40,
+                      ),
+                    )
                   : GestureDetector(
-                onTap: () async {
-                  await controller.submitLoginForm();
-                },
-                child: Container(
-                  width: double.infinity,
-                  height: 60,
-                  decoration: const BoxDecoration(
-                    color: AppColors.accentColor,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(12),
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Login",
-                      style: TextStyle(
-                        color: AppColors.whiteColor,
-                        fontSize: 15.sp,
-                        fontWeight: FontWeight.w600,
+                      onTap: () async {
+                        await controller.submitLoginForm();
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: 60,
+                        decoration: const BoxDecoration(
+                          color: AppColors.accentColor,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Login",
+                            style: TextStyle(
+                              color: AppColors.whiteColor,
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ),
             ),
             SizedBox(height: 2.5.h),
           ],
@@ -325,4 +324,3 @@ class LoginModule extends StatelessWidget {
     );
   }
 }
-

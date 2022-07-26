@@ -1,8 +1,10 @@
 import 'dart:convert';
 
-CategoryAndSubCategoryModel categoryAndSubCategoryModelFromJson(String str) => CategoryAndSubCategoryModel.fromJson(json.decode(str));
+CategoryAndSubCategoryModel categoryAndSubCategoryModelFromJson(String str) =>
+    CategoryAndSubCategoryModel.fromJson(json.decode(str));
 
-String categoryAndSubCategoryModelToJson(CategoryAndSubCategoryModel data) => json.encode(data.toJson());
+String categoryAndSubCategoryModelToJson(CategoryAndSubCategoryModel data) =>
+    json.encode(data.toJson());
 
 class CategoryAndSubCategoryModel {
   CategoryAndSubCategoryModel({
@@ -15,17 +17,19 @@ class CategoryAndSubCategoryModel {
   List<CatAndSubCatData> data;
   String message;
 
-  factory CategoryAndSubCategoryModel.fromJson(Map<String, dynamic> json) => CategoryAndSubCategoryModel(
-    success: json["success"] ?? false,
-    data: List<CatAndSubCatData>.from(json["data"].map((x) => CatAndSubCatData.fromJson(x ?? {}))),
-    message: json["message"] ?? "",
-  );
+  factory CategoryAndSubCategoryModel.fromJson(Map<String, dynamic> json) =>
+      CategoryAndSubCategoryModel(
+        success: json["success"] ?? false,
+        data: List<CatAndSubCatData>.from(
+            json["data"].map((x) => CatAndSubCatData.fromJson(x ?? {}))),
+        message: json["message"] ?? "",
+      );
 
   Map<String, dynamic> toJson() => {
-    "success": success,
-    "data": List<dynamic>.from(data.map((x) => x.toJson())),
-    "message": message,
-  };
+        "success": success,
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+        "message": message,
+      };
 }
 
 class CatAndSubCatData {
@@ -37,15 +41,17 @@ class CatAndSubCatData {
   MainCategoryId mainCategoryId;
   List<SubCategoryId> subCategory;
 
-  factory CatAndSubCatData.fromJson(Map<String, dynamic> json) => CatAndSubCatData(
-    mainCategoryId: MainCategoryId.fromJson(json["main_categoryID"] ?? {}),
-    subCategory: List<SubCategoryId>.from(json["sub_category"].map((x) => SubCategoryId.fromJson(x ?? {}))),
-  );
+  factory CatAndSubCatData.fromJson(Map<String, dynamic> json) =>
+      CatAndSubCatData(
+        mainCategoryId: MainCategoryId.fromJson(json["main_categoryID"] ?? {}),
+        subCategory: List<SubCategoryId>.from(
+            json["sub_category"].map((x) => SubCategoryId.fromJson(x ?? {}))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "main_categoryID": mainCategoryId.toJson(),
-    "sub_category": List<dynamic>.from(subCategory.map((x) => x.toJson())),
-  };
+        "main_categoryID": mainCategoryId.toJson(),
+        "sub_category": List<dynamic>.from(subCategory.map((x) => x.toJson())),
+      };
 }
 
 class MainCategoryId {
@@ -80,36 +86,36 @@ class MainCategoryId {
   // dynamic modifiedBy;
 
   factory MainCategoryId.fromJson(Map<String, dynamic> json) => MainCategoryId(
-    categoryId: json["categoryID"] ?? 0,
-    categoryName: json["categoryName"] ?? "",
-    // categoryMetaTitle: json["categoryMetaTitle"],
-    // categoryMetaDescrtiption: json["categoryMetaDescrtiption"],
-    // categoryMetaKeyword: json["categoryMetaKeyword"],
-    categoryImage: json["categoryImage"] ?? "",
-    // parent: json["parent"],
-    sortOrder: json["sort_order"] ?? "",
-    isActive: json["is_active"] ?? 0,
-    // createdDate: DateTime.parse(json["created_date"]),
-    // updatedDate: json["updated_date"],
-    // createdBy: json["created_by"],
-    // modifiedBy: json["modified_by"],
-  );
+        categoryId: json["categoryID"] ?? 0,
+        categoryName: json["categoryName"] ?? "",
+        // categoryMetaTitle: json["categoryMetaTitle"],
+        // categoryMetaDescrtiption: json["categoryMetaDescrtiption"],
+        // categoryMetaKeyword: json["categoryMetaKeyword"],
+        categoryImage: json["categoryImage"] ?? "",
+        // parent: json["parent"],
+        sortOrder: json["sort_order"] ?? "",
+        isActive: json["is_active"] ?? 0,
+        // createdDate: DateTime.parse(json["created_date"]),
+        // updatedDate: json["updated_date"],
+        // createdBy: json["created_by"],
+        // modifiedBy: json["modified_by"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "categoryID": categoryId,
-    "categoryName": categoryName,
-    // "categoryMetaTitle": categoryMetaTitle,
-    // "categoryMetaDescrtiption": categoryMetaDescrtiption,
-    // "categoryMetaKeyword": categoryMetaKeyword,
-    "categoryImage": categoryImage,
-    // "parent": parent,
-    "sort_order": sortOrder,
-    "is_active": isActive,
-    // "created_date": createdDate.toIso8601String(),
-    // "updated_date": updatedDate,
-    // "created_by": createdBy,
-    // "modified_by": modifiedBy,
-  };
+        "categoryID": categoryId,
+        "categoryName": categoryName,
+        // "categoryMetaTitle": categoryMetaTitle,
+        // "categoryMetaDescrtiption": categoryMetaDescrtiption,
+        // "categoryMetaKeyword": categoryMetaKeyword,
+        "categoryImage": categoryImage,
+        // "parent": parent,
+        "sort_order": sortOrder,
+        "is_active": isActive,
+        // "created_date": createdDate.toIso8601String(),
+        // "updated_date": updatedDate,
+        // "created_by": createdBy,
+        // "modified_by": modifiedBy,
+      };
 }
 
 class SubCategoryId {
@@ -148,38 +154,37 @@ class SubCategoryId {
   // dynamic modifiedBy;
 
   factory SubCategoryId.fromJson(Map<String, dynamic> json) => SubCategoryId(
-    categoryId: json["categoryID"] ?? 0,
-    mainCategoryId: json["main_categoryID"] ?? 0,
-    categoryName: json["categoryName"] ?? "",
-    // categoryMetaTitle: json["categoryMetaTitle"],
-    // categoryMetaDescrtiption: json["categoryMetaDescrtiption"],
-    // categoryMetaKeyword: json["categoryMetaKeyword"],
-    categoryImage: json["categoryImage"] ?? "",
-    // parent: json["parent"],
-    sortOrder: json["sort_order"] ?? "",
-    isActive: json["is_active"] ?? 0,
-    isSelected: false
-    // createdDate: DateTime.parse(json["created_date"]),
-    // updatedDate: json["updated_date"],
-    // createdBy: json["created_by"],
-    // modifiedBy: json["modified_by"],
-  );
+      categoryId: json["categoryID"] ?? 0,
+      mainCategoryId: json["main_categoryID"] ?? 0,
+      categoryName: json["categoryName"] ?? "",
+      // categoryMetaTitle: json["categoryMetaTitle"],
+      // categoryMetaDescrtiption: json["categoryMetaDescrtiption"],
+      // categoryMetaKeyword: json["categoryMetaKeyword"],
+      categoryImage: json["categoryImage"] ?? "",
+      // parent: json["parent"],
+      sortOrder: json["sort_order"] ?? "",
+      isActive: json["is_active"] ?? 0,
+      isSelected: false
+      // createdDate: DateTime.parse(json["created_date"]),
+      // updatedDate: json["updated_date"],
+      // createdBy: json["created_by"],
+      // modifiedBy: json["modified_by"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "categoryID": categoryId,
-    "main_categoryID": mainCategoryId,
-    "categoryName": categoryName,
-    // "categoryMetaTitle": categoryMetaTitle,
-    // "categoryMetaDescrtiption": categoryMetaDescrtiption,
-    // "categoryMetaKeyword": categoryMetaKeyword,
-    "categoryImage": categoryImage,
-    // "parent": parent,
-    "sort_order": sortOrder,
-    "is_active": isActive,
-    // "created_date": createdDate.toIso8601String(),
-    // "updated_date": updatedDate,
-    // "created_by": createdBy,
-    // "modified_by": modifiedBy,
-  };
+        "categoryID": categoryId,
+        "main_categoryID": mainCategoryId,
+        "categoryName": categoryName,
+        // "categoryMetaTitle": categoryMetaTitle,
+        // "categoryMetaDescrtiption": categoryMetaDescrtiption,
+        // "categoryMetaKeyword": categoryMetaKeyword,
+        "categoryImage": categoryImage,
+        // "parent": parent,
+        "sort_order": sortOrder,
+        "is_active": isActive,
+        // "created_date": createdDate.toIso8601String(),
+        // "updated_date": updatedDate,
+        // "created_by": createdBy,
+        // "modified_by": modifiedBy,
+      };
 }
-

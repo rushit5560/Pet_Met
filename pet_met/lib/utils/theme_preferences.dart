@@ -17,7 +17,6 @@ class DarkThemePreference {
   }
 }
 
-
 // const transColor = 0x00FFFFFF;
 // const MaterialColor primarySwatch = const MaterialColor(
 //   transColor,

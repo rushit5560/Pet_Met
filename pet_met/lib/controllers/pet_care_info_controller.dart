@@ -33,31 +33,29 @@ class PetCareInfoController extends GetxController {
     log("Api Url Pet Care Api Url : $url");
 
     try {
-
       // Map<String, String> header = apiHeader.apiHeader();
 
-      http.Response response = await http.get(Uri.parse(url),/*headers: header*/);
+      http.Response response = await http.get(
+        Uri.parse(url), /*headers: header*/
+      );
       log("Privacy Policy api Response : ${response.body}");
 
-      PetCareModel petCareModel = PetCareModel.fromJson(json.decode(response.body));
+      PetCareModel petCareModel =
+          PetCareModel.fromJson(json.decode(response.body));
       isSuccessStatus = petCareModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         title = petCareModel.data[0].title;
         description = petCareModel.data[0].content;
       } else {
         log("Privacy Policy Function Else");
       }
-    } catch(e) {
+    } catch (e) {
       log("Privacy policy api error ::: $e");
     } finally {
       isLoading(false);
     }
-
   }
-
-
-
 
   List<PetCareInfoModel> petCareInfosList = [
     PetCareInfoModel(

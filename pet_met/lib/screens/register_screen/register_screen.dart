@@ -37,9 +37,9 @@ class RegisterScreen extends StatelessWidget {
             children: [
               Align(
                 alignment: Alignment.topRight,
-                child: Image.asset(
-                  AppImages.tealBackgroundImg
-                ),
+                child: Image.asset(themeProvider.darkTheme
+                    ? AppImages.backgroundImgDark
+                    : AppImages.backgroundImgLight),
               ),
               BackGroundLeftShadow(
                 height: controller.size.height * 0.3,
@@ -110,7 +110,8 @@ class RegisterScreen extends StatelessWidget {
                         hintText: "Name",
                         textInputAction: TextInputAction.next,
                         textInputType: TextInputType.emailAddress,
-                        validator: (val) => Validations().validateUserName(val!),
+                        validator: (val) =>
+                            Validations().validateUserName(val!),
                       ),
                       SizedBox(height: 2.h),
                       CustomLightPassField(
@@ -119,7 +120,8 @@ class RegisterScreen extends StatelessWidget {
                         width: double.infinity,
                         hintText: "Password",
                         textInputAction: TextInputAction.done,
-                        validator: (val) => Validations().validatePassword(val!),
+                        validator: (val) =>
+                            Validations().validatePassword(val!),
                       ),
                       SizedBox(height: 2.h),
                       Row(
@@ -137,7 +139,8 @@ class RegisterScreen extends StatelessWidget {
                                 fillColor:
                                     MaterialStateProperty.resolveWith<Color>(
                                   (Set<MaterialState> states) {
-                                    if (states.contains(MaterialState.selected)) {
+                                    if (states
+                                        .contains(MaterialState.selected)) {
                                       return AppColors.greyColor;
                                       // the default value.
                                     }

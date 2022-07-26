@@ -8,7 +8,6 @@ import 'package:pet_met/models/support_screen_models/support_model.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:http/http.dart' as http;
 
-
 class SupportController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
@@ -34,18 +33,17 @@ class SupportController extends GetxController {
       http.Response response = await http.get(Uri.parse(url), headers: header);
       log("Support Api Response : ${response.body}");
 
-      SupportModel supportModel = SupportModel.fromJson(json.decode(response.body));
+      SupportModel supportModel =
+          SupportModel.fromJson(json.decode(response.body));
       isSuccessStatus = supportModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         supportData = supportModel.data[0];
         log("supportData : $supportData");
       } else {
         log("Support Function Else");
       }
-
-
-    } catch(e) {
+    } catch (e) {
       log("Support Function Api Error ::: $e");
     } finally {
       isLoading(false);

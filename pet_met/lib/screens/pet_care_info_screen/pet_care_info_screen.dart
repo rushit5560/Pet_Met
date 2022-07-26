@@ -47,7 +47,9 @@ class PetCareInfoScreen extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.topRight,
-              child: Image.asset(AppImages.tealBackgroundImg),
+              child: Image.asset(themeProvider.darkTheme
+                  ? AppImages.backgroundImgDark
+                  : AppImages.backgroundImgLight),
             ),
             Column(
               children: [
@@ -75,37 +77,37 @@ class PetCareInfoScreen extends StatelessWidget {
                 //   ),
                 // ),
                 Expanded(
-                    child: Obx(
-                      ()=> controller.isLoading.value
-                          ? const CustomAnimationLoader()
-                          :  SingleChildScrollView(
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20, right: 20, top: 10, bottom: 15),
-                          child: Container(
-                            height: 86.h,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                // SizedBox(height: 1.h),
-                                // Text(
-                                //   "Pet Care",
-                                //   style: TextStyle(
-                                //     color: AppColors.accentTextColor,
-                                //     fontSize: 20.sp,
-                                //     fontWeight: FontWeight.bold,
-                                //   ),
-                                // ),
-                                SizedBox(height: 1.h),
-                                Expanded(child: PetCareListModule()),
-                              ],
+                  child: Obx(
+                    () => controller.isLoading.value
+                        ? const CustomAnimationLoader()
+                        : SingleChildScrollView(
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20, right: 20, top: 10, bottom: 15),
+                              child: Container(
+                                height: 86.h,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    // SizedBox(height: 1.h),
+                                    // Text(
+                                    //   "Pet Care",
+                                    //   style: TextStyle(
+                                    //     color: AppColors.accentTextColor,
+                                    //     fontSize: 20.sp,
+                                    //     fontWeight: FontWeight.bold,
+                                    //   ),
+                                    // ),
+                                    SizedBox(height: 1.h),
+                                    Expanded(child: PetCareListModule()),
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
-                        ),
-                      ),
-                    ),
                   ),
+                ),
 
                 // const SizedBox(height: 15),
               ],

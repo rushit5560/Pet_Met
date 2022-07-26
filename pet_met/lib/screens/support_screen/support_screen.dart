@@ -13,7 +13,6 @@ import '../../utils/common_widgets/background_widgets.dart';
 import '../../utils/common_widgets/custom_appbar.dart';
 import '../../utils/enums.dart';
 
-
 class SupportScreen extends StatelessWidget {
   SupportScreen({Key? key}) : super(key: key);
 
@@ -39,7 +38,9 @@ class SupportScreen extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.topRight,
-              child: Image.asset(AppImages.tealBackgroundImg),
+              child: Image.asset(themeProvider.darkTheme
+                  ? AppImages.backgroundImgDark
+                  : AppImages.backgroundImgLight),
             ),
             Column(
               children: [
@@ -79,10 +80,13 @@ class SupportScreen extends StatelessWidget {
                                 children: [
                                   SizedBox(height: 4.h),
                                   Image.network(
-                                    ApiUrl.apiImagePath + controller.supportData.featuredimage!,
+                                    ApiUrl.apiImagePath +
+                                        controller.supportData.featuredimage!,
                                     width: 80.w,
                                     errorBuilder: (context, obj, st) {
-                                      return Image.asset(AppImages.petMetLogoImg, height: 80.w);
+                                      return Image.asset(
+                                          AppImages.petMetLogoImg,
+                                          height: 80.w);
                                     },
                                   ),
                                   SizedBox(height: 5.h),
@@ -99,9 +103,10 @@ class SupportScreen extends StatelessWidget {
                                     data: controller.supportData.content!,
                                     style: {
                                       "body": Style(
-                                        textDecorationColor: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.blackTextColor,
+                                        textDecorationColor:
+                                            themeProvider.darkTheme
+                                                ? AppColors.whiteColor
+                                                : AppColors.blackTextColor,
                                       ),
                                     },
                                   ),

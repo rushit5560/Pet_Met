@@ -18,7 +18,9 @@ class BackgroundImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.topRight,
-      child: Image.asset(AppImages.tealBackgroundImg),
+      child: Image.asset(themeProvider.darkTheme
+          ? AppImages.backgroundImgDark
+          : AppImages.backgroundImgLight),
     );
   }
 }
@@ -110,7 +112,9 @@ class UploadImageModule extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Image.asset(
-                        AppImages.cameraPlaceHolderImg,
+                        themeProvider.darkTheme
+                            ? AppImages.cameraPlaceHolderImgDark
+                            : AppImages.cameraPlaceHolderImglight,
                         height: 65,
                       ),
                       const SizedBox(height: 20),

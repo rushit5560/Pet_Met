@@ -12,11 +12,9 @@ class ShopDetailsScreenController extends GetxController {
   RxBool isSuccessStatus = false.obs;
   final size = Get.size;
 
-
   ApiHeader apiHeader = ApiHeader();
 
   ShopData shopData = ShopData();
-
 
   /// Get Shop Details
   Future<void> getShopDetailsFunction() async {
@@ -28,27 +26,26 @@ class ShopDetailsScreenController extends GetxController {
       Map<String, String> header = apiHeader.apiHeader();
       http.Response response = await http.get(Uri.parse(url), headers: header);
       log("Shop Details Api Response : ${response.body}");
-      ShopDetailsModel shopDetailsModel = ShopDetailsModel.fromJson(json.decode(response.body));
+      ShopDetailsModel shopDetailsModel =
+          ShopDetailsModel.fromJson(json.decode(response.body));
       isSuccessStatus = shopDetailsModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         shopData = shopDetailsModel.data;
         log("shopDetails : ${shopData.showimg}");
       } else {
         log("Shop Details Api Else");
       }
-    } catch(e) {
+    } catch (e) {
       log("Shop Details Api Error ::: $e");
     } finally {
       isLoading(false);
     }
-
   }
 
   @override
-  void onInit() async{
+  void onInit() async {
     super.onInit();
     await getShopDetailsFunction();
   }
-
 }

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:pet_met/models/pet_vets_and_ngo_screen_models.dart';
 import 'package:pet_met/utils/api_url.dart';
 
-class  PetVetsAndNgoScreenController extends GetxController {
+class PetVetsAndNgoScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
   final size = Get.size;
@@ -24,26 +24,23 @@ class  PetVetsAndNgoScreenController extends GetxController {
       http.Response response = await http.get(Uri.parse(url), headers: header);
       log("Vet And Ngo List Response : ${response.body}");
 
-      AllVetAndNgoModel allVetAndNgoModel = AllVetAndNgoModel.fromJson(json.decode(response.body));
+      AllVetAndNgoModel allVetAndNgoModel =
+          AllVetAndNgoModel.fromJson(json.decode(response.body));
       isSuccessStatus = allVetAndNgoModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         vetAndNgoList.clear();
         vetAndNgoList.addAll(allVetAndNgoModel.data);
         log('vetAndNgoList Length : ${vetAndNgoList.length}');
       } else {
         log('Vet And Ngo Api Else Else');
       }
-
-
-    } catch(e) {
+    } catch (e) {
       log("Vet And Ngo Function Error : $e");
     } finally {
       isLoading(false);
     }
-
   }
-
 
   @override
   void onInit() {

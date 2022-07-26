@@ -8,8 +8,6 @@ import 'package:pet_met/utils/enums.dart';
 import 'package:sizer/sizer.dart';
 import 'shop_details_screen_widgets.dart';
 
-
-
 class ShopDetailsScreen extends StatelessWidget {
   ShopDetailsScreen({Key? key}) : super(key: key);
   final shopDetailsScreenController = Get.put(ShopDetailsScreenController());
@@ -22,7 +20,9 @@ class ShopDetailsScreen extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.topRight,
-              child: Image.asset(AppImages.tealBackgroundImg),
+              child: Image.asset(themeProvider.darkTheme
+                  ? AppImages.backgroundImgDark
+                  : AppImages.backgroundImgLight),
             ),
             Column(
               children: [

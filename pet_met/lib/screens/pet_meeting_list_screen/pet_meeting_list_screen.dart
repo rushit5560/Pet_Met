@@ -22,7 +22,9 @@ class PetMeetingListScreen extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.topRight,
-              child: Image.asset(AppImages.tealBackgroundImg),
+              child: Image.asset(themeProvider.darkTheme
+                  ? AppImages.backgroundImgDark
+                  : AppImages.backgroundImgLight),
             ),
             BackGroundLeftShadow(
               height: petMeetingListScreenController.size.height * 0.3,
@@ -34,9 +36,8 @@ class PetMeetingListScreen extends StatelessWidget {
               children: [
                 // AppBar
                 CustomAppBar(
-                  title: " German Shepherd",
-                    appBarOption: AppBarOption.singleBackButtonOption
-                ),
+                    title: " German Shepherd",
+                    appBarOption: AppBarOption.singleBackButtonOption),
 
                 // Body
                 Expanded(child: PetMeetingListModule()),

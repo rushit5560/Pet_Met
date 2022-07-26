@@ -22,7 +22,6 @@ class PetMeetingAndBreadingScreenController extends GetxController {
   List<CatAndSubCatData> catAndSubCatList = [];
   String selectedSubCatId = "";
 
-
   Future<void> getAllCategoryAndSubCategoryFunction() async {
     isLoading(true);
     String url = ApiUrl.getCategoryAndSubCategoryApi;
@@ -34,13 +33,14 @@ class PetMeetingAndBreadingScreenController extends GetxController {
       http.Response response = await http.get(Uri.parse(url), headers: header);
       log("get all pet category Api Response : ${response.body}");
 
-      CategoryAndSubCategoryModel categoryAndSubCategoryModel = CategoryAndSubCategoryModel.fromJson(json.decode(response.body));
+      CategoryAndSubCategoryModel categoryAndSubCategoryModel =
+          CategoryAndSubCategoryModel.fromJson(json.decode(response.body));
       isSuccessStatus = categoryAndSubCategoryModel.success.obs;
 
       if (isSuccessStatus.value) {
         catAndSubCatList.clear();
         catAndSubCatList = categoryAndSubCategoryModel.data;
-       log("");
+        log("");
       } else {
         log("get all pet category  Api Else Else");
       }
@@ -57,4 +57,3 @@ class PetMeetingAndBreadingScreenController extends GetxController {
     super.onInit();
   }
 }
-

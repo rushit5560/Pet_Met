@@ -18,7 +18,9 @@ class BackgroundImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.topRight,
-      child: Image.asset(AppImages.tealBackgroundImg),
+      child: Image.asset(themeProvider.darkTheme
+          ? AppImages.backgroundImgDark
+          : AppImages.backgroundImgLight),
     );
   }
 }
@@ -120,8 +122,7 @@ class UploadImageModule extends StatelessWidget {
           ),
           boxShadow: [
             BoxShadow(
-              color: AppColors.greyTextColor
-                  .withOpacity(0.3),
+              color: AppColors.greyTextColor.withOpacity(0.3),
               blurRadius: 35,
               spreadRadius: 1,
               offset: const Offset(0, 5),
@@ -130,28 +131,28 @@ class UploadImageModule extends StatelessWidget {
         ),
         child: screenController.imageFile!.path.isEmpty
             ? Center(
-          child: Column(
-            mainAxisAlignment:
-            MainAxisAlignment.center,
-            crossAxisAlignment:
-            CrossAxisAlignment.center,
-            children: [
-              Image.asset(
-                AppImages.cameraPlaceHolderImg,
-                height: 65,
-              ),
-              const SizedBox(height: 20),
-              Text(
-                "Upload Image",
-                style: TextStyle(
-                  color: AppColors.blackTextColor,
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.w500,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      themeProvider.darkTheme
+                          ? AppImages.cameraPlaceHolderImgDark
+                          : AppImages.cameraPlaceHolderImglight,
+                      height: 65,
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      "Upload Image",
+                      style: TextStyle(
+                        color: AppColors.blackTextColor,
+                        fontSize: 15.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-            ],
-          ),
-        )
+              )
             : SizedBox(),
       ),
     );
@@ -169,7 +170,6 @@ class NameOfNgoListModule extends StatelessWidget {
       children: [
         Text("Name of NGO/Vet picture:"),
         SizedBox(height: 8),
-
         Container(
           height: screenController.size.width * 0.16,
           child: ListView.separated(
@@ -185,8 +185,7 @@ class NameOfNgoListModule extends StatelessWidget {
                   Container(
                     height: screenController.size.width * 0.16,
                     width: screenController.size.width * 0.16,
-                    margin: const EdgeInsets.only(
-                        bottom: 5, right: 5),
+                    margin: const EdgeInsets.only(bottom: 5, right: 5),
                     decoration: const BoxDecoration(
                       // image: DecorationImage(
                       //     image: AssetImage(
@@ -206,8 +205,7 @@ class NameOfNgoListModule extends StatelessWidget {
                       height: 15,
                       width: 15,
                       decoration: const BoxDecoration(
-                          color: AppColors.accentColor,
-                          shape: BoxShape.circle),
+                          color: AppColors.accentColor, shape: BoxShape.circle),
                       child: const Icon(
                         Icons.add,
                         color: AppColors.whiteColor,
@@ -237,7 +235,6 @@ class NgoBankNameModule extends StatelessWidget {
       children: [
         Text("Ngo Bank Name:"),
         SizedBox(height: 8),
-
         Container(
           height: screenController.size.width * 0.16,
           child: ListView.separated(
@@ -253,8 +250,7 @@ class NgoBankNameModule extends StatelessWidget {
                   Container(
                     height: screenController.size.width * 0.16,
                     width: screenController.size.width * 0.16,
-                    margin: const EdgeInsets.only(
-                        bottom: 5, right: 5),
+                    margin: const EdgeInsets.only(bottom: 5, right: 5),
                     decoration: const BoxDecoration(
                       // image: DecorationImage(
                       //     image: AssetImage(
@@ -274,8 +270,7 @@ class NgoBankNameModule extends StatelessWidget {
                       height: 15,
                       width: 15,
                       decoration: const BoxDecoration(
-                          color: AppColors.accentColor,
-                          shape: BoxShape.circle),
+                          color: AppColors.accentColor, shape: BoxShape.circle),
                       child: const Icon(
                         Icons.add,
                         color: AppColors.whiteColor,
@@ -293,17 +288,14 @@ class NgoBankNameModule extends StatelessWidget {
   }
 }
 
-
-
 class CommonTextFieldModule extends StatelessWidget {
   //CommonTextFieldModule({Key? key}) : super(key: key);
-  String ? fieldName;
+  String? fieldName;
   String? fieldHinttext;
 
   CommonTextFieldModule({this.fieldName, this.fieldHinttext});
 
   final screenController = Get.find<NgoUserProfileScreenController>();
-
 
   @override
   Widget build(BuildContext context) {
@@ -354,8 +346,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
               Text(
                 "Open shop time",
                 style: TextStyle(
-                  color:
-                  AppColors.blackTextColor.withOpacity(0.7),
+                  color: AppColors.blackTextColor.withOpacity(0.7),
                   fontSize: 11.sp,
                   fontWeight: FontWeight.bold,
                 ),
@@ -392,14 +383,17 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                     decoration: InputDecoration(
                       fillColor: AppColors.whiteColor,
                       filled: true,
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 15),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+                        borderSide:
+                            const BorderSide(width: 0, style: BorderStyle.none),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+                        borderSide:
+                            const BorderSide(width: 0, style: BorderStyle.none),
                       ),
                       //hintText: hintText,
                       hintStyle: TextStyle(
@@ -422,8 +416,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
               Text(
                 "Close shop time",
                 style: TextStyle(
-                  color:
-                  AppColors.blackTextColor.withOpacity(0.7),
+                  color: AppColors.blackTextColor.withOpacity(0.7),
                   fontSize: 11.sp,
                   fontWeight: FontWeight.bold,
                 ),
@@ -460,14 +453,17 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                     decoration: InputDecoration(
                       fillColor: AppColors.whiteColor,
                       filled: true,
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 15),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+                        borderSide:
+                            const BorderSide(width: 0, style: BorderStyle.none),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
-                        borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+                        borderSide:
+                            const BorderSide(width: 0, style: BorderStyle.none),
                       ),
                       //hintText: hintText,
                       hintStyle: TextStyle(
@@ -519,5 +515,3 @@ class SubmitButtonModule extends StatelessWidget {
     );
   }
 }
-
-

@@ -14,38 +14,36 @@ class ShopAndGroomingScreenController extends GetxController {
 
   List<ShopData> shopsList = [];
 
-
   /// Get All Shop
   Future<void> getAllShopFunction() async {
     isLoading(true);
     String url = ApiUrl.getAllShopApi;
     log("All Shop Api Url : $url");
-    
+
     try {
       Map<String, String> header = apiHeader.apiHeader();
       log("Header : $header");
 
       http.Response response = await http.get(Uri.parse(url), headers: header);
       log('Get All Shop Response: ${response.body}');
-      AllShopModel allShopModel = AllShopModel.fromJson(json.decode(response.body));
+      AllShopModel allShopModel =
+          AllShopModel.fromJson(json.decode(response.body));
 
       isSuccessStatus = allShopModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         shopsList.clear();
         shopsList.addAll(allShopModel.data);
         log("shopList Length : ${shopsList.length}");
       } else {
         log("Get All Shop Api Else");
       }
-
-    } catch(e) {
+    } catch (e) {
       log("Get All Shop Api Error ::: $e");
     } finally {
       isLoading(false);
     }
   }
-
 
   @override
   void onInit() {

@@ -14,38 +14,35 @@ class PrivacyPolicyScreenController extends GetxController {
   String title = "";
   String description = "";
 
-
   Future<void> getPrivacyPolicyFunction() async {
     isLoading(true);
     String url = ApiUrl.privacyPolicyApi;
     log("Api Url Privacy Policy : $url");
 
     try {
-
       // Map<String, String> header = apiHeader.apiHeader();
 
-      http.Response response = await http.get(Uri.parse(url),/*headers: header*/);
+      http.Response response = await http.get(
+        Uri.parse(url), /*headers: header*/
+      );
       log("Privacy Policy api Response : ${response.body}");
 
-      PrivacyPolicyModel privacyPolicyModel = PrivacyPolicyModel.fromJson(json.decode(response.body));
+      PrivacyPolicyModel privacyPolicyModel =
+          PrivacyPolicyModel.fromJson(json.decode(response.body));
       isSuccessStatus = privacyPolicyModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         title = privacyPolicyModel.data[0].title;
         description = privacyPolicyModel.data[0].content;
         log("description : $description");
       } else {
         log("Privacy Policy Function Else");
       }
-
-
-
-    } catch(e) {
+    } catch (e) {
       log("Privacy policy api error ::: $e");
     } finally {
       isLoading(false);
     }
-
   }
 
   @override
@@ -53,5 +50,4 @@ class PrivacyPolicyScreenController extends GetxController {
     getPrivacyPolicyFunction();
     super.onInit();
   }
-
 }

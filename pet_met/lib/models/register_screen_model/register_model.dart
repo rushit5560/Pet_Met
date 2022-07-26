@@ -1,6 +1,7 @@
 import 'dart:convert';
 
-RegisterModel registerModelFromJson(String str) => RegisterModel.fromJson(json.decode(str));
+RegisterModel registerModelFromJson(String str) =>
+    RegisterModel.fromJson(json.decode(str));
 
 String registerModelToJson(RegisterModel data) => json.encode(data.toJson());
 
@@ -16,16 +17,16 @@ class RegisterModel {
   // Error? error;
 
   factory RegisterModel.fromJson(Map<String, dynamic> json) => RegisterModel(
-    success: json["success"] ?? false,
-    messege: json["messege"] ?? "",
-    // error: Error.fromJson(json["error"] ?? {}),
-  );
+        success: json["success"] ?? false,
+        messege: json["messege"] ?? "",
+        // error: Error.fromJson(json["error"] ?? {}),
+      );
 
   Map<String, dynamic> toJson() => {
-    "success": success,
-    "messege": messege,
-    // "error": error!.toJson(),
-  };
+        "success": success,
+        "messege": messege,
+        // "error": error!.toJson(),
+      };
 }
 
 /*class Error {
@@ -44,10 +45,11 @@ class RegisterModel {
   };
 }*/
 
+RegisterErrorModel registerErrorModelFromJson(String str) =>
+    RegisterErrorModel.fromJson(json.decode(str));
 
-RegisterErrorModel registerErrorModelFromJson(String str) => RegisterErrorModel.fromJson(json.decode(str));
-
-String registerErrorModelToJson(RegisterErrorModel data) => json.encode(data.toJson());
+String registerErrorModelToJson(RegisterErrorModel data) =>
+    json.encode(data.toJson());
 
 class RegisterErrorModel {
   RegisterErrorModel({
@@ -58,15 +60,16 @@ class RegisterErrorModel {
   bool success;
   Error error;
 
-  factory RegisterErrorModel.fromJson(Map<String, dynamic> json) => RegisterErrorModel(
-    success: json["success"] ?? false,
-    error: Error.fromJson(json["error"] ?? {}),
-  );
+  factory RegisterErrorModel.fromJson(Map<String, dynamic> json) =>
+      RegisterErrorModel(
+        success: json["success"] ?? false,
+        error: Error.fromJson(json["error"] ?? {}),
+      );
 
   Map<String, dynamic> toJson() => {
-    "success": success,
-    "error": error.toJson(),
-  };
+        "success": success,
+        "error": error.toJson(),
+      };
 }
 
 class Error {
@@ -77,10 +80,10 @@ class Error {
   List<String> email;
 
   factory Error.fromJson(Map<String, dynamic> json) => Error(
-    email: List<String>.from(json["email"].map((x) => x) ?? ""),
-  );
+        email: List<String>.from(json["email"].map((x) => x) ?? ""),
+      );
 
   Map<String, dynamic> toJson() => {
-    "email": List<dynamic>.from(email.map((x) => x)),
-  };
+        "email": List<dynamic>.from(email.map((x) => x)),
+      };
 }

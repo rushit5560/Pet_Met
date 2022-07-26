@@ -16,7 +16,7 @@ class ShopUserProfileScreen extends StatelessWidget {
 
   final controller = Get.put(ShopUserProfileScreenController());
 
-  String ? fieldName;
+  String? fieldName;
   String? fieldHinttext;
 
   @override
@@ -39,15 +39,12 @@ class ShopUserProfileScreen extends StatelessWidget {
                           const SizedBox(height: 25),
                           UploadImageModule(),
                           const SizedBox(height: 30),
-
                           AddShopOffersListModule(),
                           const SizedBox(height: 30),
                           MeetingAvailabilityModule(),
                           const SizedBox(height: 30),
                           CommonTextFieldModule(fieldName: 'Shop Name'),
-
                           const SizedBox(height: 15),
-
                           CommonTextFieldModule(
                             fieldName: "Contact Number",
                             //fieldHinttext: "**** ** ***",
@@ -58,11 +55,8 @@ class ShopUserProfileScreen extends StatelessWidget {
                             //fieldHinttext: "**** ** ***",
                           ),
                           const SizedBox(height: 15),
-
                           OpenAndCloseShopTimeModule(),
-
                           const SizedBox(height: 30),
-
                           const SubmitButtonModule(),
                           const SizedBox(height: 15),
                         ],
@@ -77,6 +71,4 @@ class ShopUserProfileScreen extends StatelessWidget {
       ),
     );
   }
-
 }
-

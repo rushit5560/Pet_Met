@@ -29,7 +29,7 @@ class RegisterController extends GetxController {
   /// Form Submit Validator
   submitRegisterForm() async {
     if (formKey.currentState!.validate()) {
-      if(selectedTerms.value == false) {
+      if (selectedTerms.value == false) {
         Fluttertoast.showToast(msg: "Please agree with terms and condition");
       } else {
         try {
@@ -47,7 +47,6 @@ class RegisterController extends GetxController {
     }
   }
 
-
   /// User Registration
   Future<void> userRegisterFunction() async {
     isLoading(true);
@@ -56,23 +55,25 @@ class RegisterController extends GetxController {
 
     try {
       Map<String, dynamic> data = {
-        "email" : mailController.text.trim().toLowerCase(),
-        "password" : passController.text.trim(),
-        "c_password" : passController.text.trim(),
-        "categoryID" : "${UserDetails.roleId}",
-        "name" : nameController.text.trim()
+        "email": mailController.text.trim().toLowerCase(),
+        "password": passController.text.trim(),
+        "c_password": passController.text.trim(),
+        "categoryID": "${UserDetails.roleId}",
+        "name": nameController.text.trim()
       };
       log("Body Data : $data");
 
       http.Response response = await http.post(Uri.parse(url), body: data);
       log("response : ${response.body}");
 
-      RegisterModel registerModel = RegisterModel.fromJson(json.decode(response.body));
+      RegisterModel registerModel =
+          RegisterModel.fromJson(json.decode(response.body));
       isSuccessStatus = registerModel.success!.obs;
 
-      RegisterErrorModel registerErrorModel = RegisterErrorModel.fromJson(json.decode(response.body));
+      RegisterErrorModel registerErrorModel =
+          RegisterErrorModel.fromJson(json.decode(response.body));
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         log("isSuccessStatus : ${isSuccessStatus.value}");
         Fluttertoast.showToast(msg: registerModel.messege!);
 
@@ -91,9 +92,9 @@ class RegisterController extends GetxController {
       } else {
         Fluttertoast.showToast(msg: registerErrorModel.error.email[0]);
       }
-    } catch(e) {
+    } catch (e) {
       log("User Registration Error ::: $e");
-    }finally {
+    } finally {
       isLoading(false);
     }
   }

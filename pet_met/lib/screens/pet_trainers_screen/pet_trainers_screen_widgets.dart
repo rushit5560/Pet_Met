@@ -64,10 +64,9 @@ class PetTrainerListModule extends StatelessWidget {
               // ),
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
-                  child: Image.network(imgUrl,
-                      errorBuilder: (context, er, ob){
-                        return Image.asset(AppImages.petMetLogoImg);
-                      })),
+                  child: Image.network(imgUrl, errorBuilder: (context, er, ob) {
+                    return Image.asset(AppImages.petMetLogoImg);
+                  })),
             ),
             SizedBox(width: 3.w),
             Expanded(

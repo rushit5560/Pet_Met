@@ -15,7 +15,9 @@ class BackgroundCurve extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.topRight,
-      child: Image.asset(AppImages.tealBackgroundImg),
+      child: Image.asset(themeProvider.darkTheme
+          ? AppImages.backgroundImgDark
+          : AppImages.backgroundImgLight),
     );
   }
 }
@@ -62,12 +64,11 @@ class FaqListModule extends StatelessWidget {
           ).commonSymmetricPadding(horizontal: 10),
         ),
         theme: ExpandableThemeData(
-            animationDuration: const Duration(milliseconds: 500),
-            headerAlignment: ExpandablePanelHeaderAlignment.center,
-         iconColor: themeProvider.darkTheme
-             ? AppColors.whiteColor
-             : AppColors.blackTextColor,
-
+          animationDuration: const Duration(milliseconds: 500),
+          headerAlignment: ExpandablePanelHeaderAlignment.center,
+          iconColor: themeProvider.darkTheme
+              ? AppColors.whiteColor
+              : AppColors.blackTextColor,
         ),
         collapsed: Container(),
         expanded: Padding(

@@ -20,20 +20,22 @@ class BannerImageModule extends StatelessWidget {
       width: screenController.size.width,
       height: screenController.size.height * 0.030.h,
       // decoration: BoxDecoration(
-        // image: DecorationImage(
-        //   image: NetworkImage(ApiUrl.apiImagePath + screenController.shopDetails.showimg),
-        //   fit: BoxFit.cover,
-        // ),
-        // borderRadius: BorderRadius.circular(15),
+      // image: DecorationImage(
+      //   image: NetworkImage(ApiUrl.apiImagePath + screenController.shopDetails.showimg),
+      //   fit: BoxFit.cover,
       // ),
-       child: ClipRRect(
-         borderRadius: BorderRadius.circular(15),
-         child: Image.network(ApiUrl.apiImagePath + screenController.shopData.showimg!,
-             fit: BoxFit.cover,
-         errorBuilder: (context, er, ob){
-           return Image.asset(AppImages.petMetLogoImg);
-         },),
-       ),
+      // borderRadius: BorderRadius.circular(15),
+      // ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(15),
+        child: Image.network(
+          ApiUrl.apiImagePath + screenController.shopData.showimg!,
+          fit: BoxFit.cover,
+          errorBuilder: (context, er, ob) {
+            return Image.asset(AppImages.petMetLogoImg);
+          },
+        ),
+      ),
       // fit: BoxFit.cover,),
     ).commonSymmetricPadding(horizontal: 15);
   }
@@ -75,9 +77,9 @@ class OffersModule extends StatelessWidget {
       width: screenController.size.width * 0.18,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
-        child: Image.network(ApiUrl.apiImagePath + screenController.shopData.offersimages![i],
-        fit: BoxFit.cover,
-        errorBuilder: (context, er, da){
+        child: Image.network(
+            ApiUrl.apiImagePath + screenController.shopData.offersimages![i],
+            fit: BoxFit.cover, errorBuilder: (context, er, da) {
           return Image.asset(AppImages.petMetLogoImg);
         }),
       ),
@@ -104,7 +106,6 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
                 fontSize: 18.sp),
           ),
         ),
-
         Container(
           height: screenController.size.width * 0.018.w,
           width: screenController.size.width * 0.018.w,
@@ -208,7 +209,7 @@ class ShopPlaceTimePaymentModule extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    "Open:"+ screenController.shopData.shopopen!,
+                    "Open:" + screenController.shopData.shopopen!,
                     style: TextStyle(
                       color: themeProvider.darkTheme
                           ? AppColors.whiteColor
@@ -217,7 +218,7 @@ class ShopPlaceTimePaymentModule extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   Text(
-                    "Close:"+ screenController.shopData.shopclose!,
+                    "Close:" + screenController.shopData.shopclose!,
                     style: TextStyle(
                       color: themeProvider.darkTheme
                           ? AppColors.whiteColor
@@ -286,7 +287,8 @@ class MeetingAvailabilityModule extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, i) {
-              String imgUrl = ApiUrl.apiImagePath + screenController.shopData.meetingimages![i];
+              String imgUrl = ApiUrl.apiImagePath +
+                  screenController.shopData.meetingimages![i];
               return _meetingAvailabilityListTile(imgUrl);
             },
           ),
@@ -312,11 +314,11 @@ class MeetingAvailabilityModule extends StatelessWidget {
       // ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8),
-          child: Image.network(imgUrl, 
-              fit: BoxFit.fill,
-          errorBuilder: (context, er, data){
-            return Image.asset(AppImages.petMetLogoImg);
-          }),),
+        child: Image.network(imgUrl, fit: BoxFit.fill,
+            errorBuilder: (context, er, data) {
+          return Image.asset(AppImages.petMetLogoImg);
+        }),
+      ),
     ).commonSymmetricPadding(horizontal: 5);
   }
 }

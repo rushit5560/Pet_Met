@@ -25,23 +25,22 @@ class PetTrainersScreenController extends GetxController {
       http.Response response = await http.get(Uri.parse(url), headers: header);
       log("Get All Trainer Response : ${response.body}");
 
-      AllTrainerModel allTrainerModel = AllTrainerModel.fromJson(json.decode(response.body));
+      AllTrainerModel allTrainerModel =
+          AllTrainerModel.fromJson(json.decode(response.body));
       isSuccessStatus = allTrainerModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         trainersList.clear();
         trainersList.addAll(allTrainerModel.data);
         log("trainersList Length : ${trainersList.length}");
       } else {
         log("Get All Trainer Api Else");
       }
-
-    } catch(e) {
+    } catch (e) {
       log("Get All Trainers Api Error ::: $e");
     } finally {
       isLoading(false);
     }
-
   }
 
   List<String> petTrainersList = [
@@ -57,12 +56,9 @@ class PetTrainersScreenController extends GetxController {
     "Trainers company name"
   ];
 
-
   @override
   void onInit() {
     getAllTrainerFunction();
     super.onInit();
   }
-
-
 }
