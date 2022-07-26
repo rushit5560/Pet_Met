@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:pet_met/controllers/user_profile_controller.dart';
 import 'package:pet_met/screens/user_profile_screen/widgets/user_profile_screen_widgets.dart';
 import 'package:pet_met/utils/app_images.dart';
+
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:sizer/sizer.dart';
 
@@ -34,10 +35,7 @@ class UserProfileScreen extends StatelessWidget {
             //   topPad: controller.size.height * 0.45,
             //   rightPad: -controller.size.width * 0.15,
             // ),
-            Align(
-              alignment: Alignment.topRight,
-              child: Image.asset(AppImages.tealBackgroundImg),
-            ),
+            BackgroundImage(),
             Column(
               children: [
                 CustomAppBar(

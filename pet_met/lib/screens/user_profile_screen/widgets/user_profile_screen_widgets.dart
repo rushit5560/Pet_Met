@@ -11,6 +11,21 @@ import '../../../utils/app_images.dart';
 
 var themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
 
+class BackgroundImage extends StatelessWidget {
+  const BackgroundImage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.topRight,
+      child: Image.asset(
+          themeProvider.darkTheme ?
+          AppImages.backgroundImgDark : AppImages.backgroundImgLight
+      ),
+    );
+  }
+}
+
 class ContactContainerWidget extends StatelessWidget {
   const ContactContainerWidget({
     Key? key,

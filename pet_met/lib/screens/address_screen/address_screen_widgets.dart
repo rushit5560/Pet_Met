@@ -19,10 +19,8 @@ class BackgroundCurve extends StatelessWidget {
     return Align(
       alignment: Alignment.topRight,
       child: Image.asset(
-        AppImages.tealBackgroundImg,
-        // themeProvider.darkTheme
-        //     ? AppImages.backgroundImgDark
-        //     : AppImages.backgroundImgLight,
+          themeProvider.darkTheme ?
+          AppImages.backgroundImgDark : AppImages.backgroundImgLight
       ),
     );
   }

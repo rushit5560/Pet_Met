@@ -15,7 +15,10 @@ class BackgroundImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.topRight,
-      child: Image.asset(AppImages.tealBackgroundImg),
+      child: Image.asset(
+          themeProvider.darkTheme ?
+          AppImages.backgroundImgDark : AppImages.backgroundImgLight
+      ),
     );
   }
 }

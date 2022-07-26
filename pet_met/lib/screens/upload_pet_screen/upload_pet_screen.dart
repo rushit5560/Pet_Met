@@ -16,7 +16,6 @@ import '../../utils/common_widgets/custom_appbar.dart';
 import '../../utils/common_widgets/custom_light_textfield.dart';
 import '../../utils/enums.dart';
 import '../../utils/validations.dart';
-import '../user_profile_screen/widgets/user_profile_screen_widgets.dart';
 
 class UploadPetScreen extends StatefulWidget {
   UploadPetScreen({Key? key}) : super(key: key);

@@ -16,7 +16,6 @@ import '../../utils/app_route_names.dart';
 import '../../utils/common_widgets/custom_appbar.dart';
 import '../../utils/enums.dart';
 import '../../utils/validations.dart';
-import '../user_profile_screen/widgets/user_profile_screen_widgets.dart';
 
 class UserProfileEditScreen extends StatefulWidget {
   UserProfileEditScreen({Key? key}) : super(key: key);
