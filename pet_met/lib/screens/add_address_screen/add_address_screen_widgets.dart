@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:pet_met/controllers/add_address_controller.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
+import 'package:pet_met/utils/validations.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../utils/app_images.dart';
@@ -26,7 +27,15 @@ class TextFieldSection extends StatelessWidget {
 
   String? fieldName;
   String? fieldHinttext;
-  TextFieldSection({this.fieldName, this.fieldHinttext});
+  final TextEditingController? fieldController;
+  final String? Function(String?)? validator;
+
+  TextFieldSection({
+    this.fieldName,
+    this.fieldHinttext,
+    this.fieldController,
+    this.validator
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -49,14 +58,14 @@ class TextFieldSection extends StatelessWidget {
         ),
         SizedBox(height: 1.5.h),
         CustomLightTextField(
-          // fieldController: controller.nameController,
+           fieldController: fieldController,
 
           height: screenController.size.height * 0.05,
           width: double.infinity,
           hintText: fieldHinttext,
           textInputAction: TextInputAction.next,
           textInputType: TextInputType.text,
-          // validator: (val) => Validations().validateEmail(val!),
+          validator: validator,
         ),
       ],
     );
@@ -121,13 +130,19 @@ class AddAddressByLocation extends StatelessWidget {
 }
 
 class SaveButton extends StatelessWidget {
-  const SaveButton({Key? key}) : super(key: key);
+  SaveButton({Key? key}) : super(key: key);
+  final screenController = Get.find<AddAddressController>();
+
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         // controller.submitLoginForm();
+        if(screenController.formKey.currentState!.validate()){
+          screenController.addAddressFunction();
+        }
+
       },
       child: Container(
         width: double.infinity,

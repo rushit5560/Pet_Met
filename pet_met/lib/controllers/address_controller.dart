@@ -5,6 +5,7 @@ import 'dart:developer';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:pet_met/models/add_address_screen_model/isactive_address_model.dart';
 import 'package:pet_met/models/get_all_address_model/get_all_address_model.dart';
 import 'package:pet_met/screens/home_screen/home_screen.dart';
 import 'package:pet_met/screens/shop_and_grooming_screen/shop_and_grooming_screen.dart';
@@ -50,6 +51,34 @@ class AddressController extends GetxController {
       } else {
       }
     } catch(e) {
+      log('User Login Api Error ::: $e');
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  Future<void> addressIsActiveFunction(int index) async {
+    isLoading(true);
+    String url = ApiUrl.setAddressIsActiveApi +
+        "${UserDetails.userId}" +
+        "/${getAllAddressList[index].id}";
+    log('Set active Address Api Url : $url');
+
+    try {
+      Map<String, String> header = apiHeader.apiHeader();
+      log('header: $header');
+      http.Response response = await http.get(Uri.parse(url), headers: header);
+      log("set Address Api Response : ${response.body}");
+
+      IsActiveAddressModel isActiveAddressModel =
+      IsActiveAddressModel.fromJson(json.decode(response.body));
+      isSuccessStatus = isActiveAddressModel.success!.obs;
+
+      if (isSuccessStatus.value) {
+        // getAllAddressList = getAllAddressModel.data;
+        log('is active address call : ${getAllAddressList[0].address}');
+      } else {}
+    } catch (e) {
       log('User Login Api Error ::: $e');
     } finally {
       isLoading(false);

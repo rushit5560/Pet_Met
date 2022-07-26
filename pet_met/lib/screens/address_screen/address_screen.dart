@@ -47,40 +47,35 @@ class AddressScreen extends StatelessWidget {
                   child: Obx(()=>
                     controller.isLoading.value
                       ? const CustomAnimationLoader():
-                     SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 25, vertical: 15),
-                        child: Container(
-                          height: 75.h,
-                          width: double.infinity,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              // const SizedBox(height: 8),
-                              // Text(
-                              //   "Addresses",
-                              //   style: TextStyle(
-                              //     color: AppColors.accentTextColor,
-                              //     fontSize: 20.sp,
-                              //     fontWeight: FontWeight.bold,
-                              //   ),
-                              // ),
-                              // Spacer(),
-                              const SizedBox(height: 35),
-                              AddressListModule(),
-                              const AddNewAddressButtonModule(),
+                     Padding(
+                       padding: const EdgeInsets.symmetric(
+                           horizontal: 25),
+                       child: Column(
+                         mainAxisAlignment: MainAxisAlignment.start,
+                         crossAxisAlignment: CrossAxisAlignment.start,
+                         children: [
+                           // const SizedBox(height: 8),
+                           // Text(
+                           //   "Addresses",
+                           //   style: TextStyle(
+                           //     color: AppColors.accentTextColor,
+                           //     fontSize: 20.sp,
+                           //     fontWeight: FontWeight.bold,
+                           //   ),
+                           // ),
+                           // Spacer(),
+                           const SizedBox(height: 20),
+                           Expanded(child: AddressListModule()),
 
-                              const Spacer(),
-                              // SizedBox(height: 2.5.h),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                           // SizedBox(height: 2.5.h),
+                         ],
+                       ),
+                     ),
                   ),
                 ),
+                const AddNewAddressButtonModule(),
+
+                //const Spacer(),
                 const NextButton(),
                 // Padding(
                 //   padding:

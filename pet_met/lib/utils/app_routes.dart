@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:pet_met/screens/about_screen/about_screen.dart';
 import 'package:pet_met/screens/add_address_screen/add_address_screen.dart';
 import 'package:pet_met/screens/address_screen/address_screen.dart';
+import 'package:pet_met/screens/change_password_screen/change_password_screen.dart';
 import 'package:pet_met/screens/faq_screen/faq_screen.dart';
 import 'package:pet_met/screens/forgot_password_screen/forgot_password_screen.dart';
 import 'package:pet_met/screens/home_screen/home_screen.dart';
@@ -264,6 +265,13 @@ class AppRoutes {
     GetPage(
       name: AppRouteNames.trainersAndUsersScreenRoute,
       page: () => TrainersAndUserProfileScreenController(),
+      transition: Transition.native,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+
+    GetPage(
+      name: AppRouteNames.changePasswordRoute,
+      page: () => ChangePasswordScreen(),
       transition: Transition.native,
       transitionDuration: const Duration(milliseconds: 500),
     ),

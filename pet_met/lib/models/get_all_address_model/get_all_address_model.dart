@@ -43,13 +43,13 @@ class Datum {
   int id;
   int userid;
   String address;
-  String isActive;
+  bool isActive;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
     id: json["id"] ?? 0,
     userid: json["userid"] ?? 0,
     address: json["address"] ?? "",
-    isActive: json["is_active"] ?? "",
+    isActive: json["is_active"] == "1" ? true : false,
   );
 
   Map<String, dynamic> toJson() => {

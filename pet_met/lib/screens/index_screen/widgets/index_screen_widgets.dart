@@ -271,142 +271,8 @@ class _BuildMenuState extends State<BuildMenu> {
                           ),
                           drawerListTile(
                             onTap: () async {
-                              return showDialog(
-                                barrierColor: themeProvider.darkTheme
-                                    ? AppColors.darkThemeBoxColor
-                                        .withOpacity(0.3)
-                                    : AppColors.accentColor.withOpacity(0.3),
-                                context: context,
-                                builder: (ctx) => Dialog(
-                                  backgroundColor: themeProvider.darkTheme
-                                      ? AppColors.darkThemeBoxColor
-                                      : AppColors.whiteColor,
-                                  shape: const OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      width: 0,
-                                      color: Colors.transparent,
-                                    ),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(12),
-                                    ),
-                                  ),
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 15,
-                                      vertical: 25,
-                                    ),
-                                    height: controller.size.height * 0.35,
-                                    width: controller.size.width * 0.8,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        const Icon(
-                                          Icons.delete_forever,
-                                          color: AppColors.redColor,
-                                          size: 60,
-                                        ),
-                                        // const SizedBox(height: 20),
-                                        Text(
-                                          "You want to delete account Permanently.",
-                                          textAlign: TextAlign.center,
-                                          maxLines: 2,
-                                          style: TextStyle(
-                                            color: AppColors.accentTextColor,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 14.sp,
-                                            height: 1.2,
-                                          ),
-                                        ),
-                                        // const SizedBox(height: 20),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            ElevatedButton(
-                                              onPressed: () {
-                                                Get.back();
-                                              },
-                                              style: ElevatedButton.styleFrom(
-                                                primary: AppColors.accentColor,
-                                                minimumSize: Size(
-                                                  controller.size.width * 0.3,
-                                                  30,
-                                                ),
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 16),
-                                                shape:
-                                                    const RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                    Radius.circular(12),
-                                                  ),
-                                                ),
-                                              ),
-                                              child: Center(
-                                                child: Text(
-                                                  "Yes",
-                                                  style: TextStyle(
-                                                    color: AppColors.whiteColor,
-                                                    fontSize: 12.sp,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width:
-                                                  controller.size.width * 0.05,
-                                            ),
-                                            ElevatedButton(
-                                              onPressed: () {
-                                                Get.back();
-                                              },
-                                              style: ElevatedButton.styleFrom(
-                                                primary: themeProvider.darkTheme
-                                                    ? AppColors.whiteColor
-                                                    : AppColors.greyTextColor
-                                                        .withOpacity(0.3),
-                                                minimumSize: Size(
-                                                    controller.size.width * 0.3,
-                                                    30),
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 16),
-                                                shape:
-                                                    const RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                    Radius.circular(12),
-                                                  ),
-                                                ),
-                                              ),
-                                              child: Center(
-                                                child: Text(
-                                                  "Close",
-                                                  style: TextStyle(
-                                                    color: themeProvider
-                                                            .darkTheme
-                                                        ? AppColors
-                                                            .darkThemeBoxColor
-                                                        : AppColors
-                                                            .blackTextColor,
-                                                    fontSize: 12.sp,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              );
+
+                              await deleteAccountDialog();
                             },
                             leading: Image.asset(
                               AppIcons.deleteImg,
@@ -604,6 +470,146 @@ class _BuildMenuState extends State<BuildMenu> {
         title: titleWidget,
         dense: true,
         style: ListTileStyle.list,
+      ),
+    );
+  }
+
+  deleteAccountDialog(){
+    return showDialog(
+      barrierColor: themeProvider.darkTheme
+          ? AppColors.darkThemeBoxColor
+          .withOpacity(0.3)
+          : AppColors.accentColor.withOpacity(0.3),
+      context: context,
+      builder: (ctx) => Dialog(
+        backgroundColor: themeProvider.darkTheme
+            ? AppColors.darkThemeBoxColor
+            : AppColors.whiteColor,
+        shape: const OutlineInputBorder(
+          borderSide: BorderSide(
+            width: 0,
+            color: Colors.transparent,
+          ),
+          borderRadius: BorderRadius.all(
+            Radius.circular(12),
+          ),
+        ),
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 25,
+          ),
+          height: controller.size.height * 0.35,
+          width: controller.size.width * 0.8,
+          child: Column(
+            mainAxisAlignment:
+            MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment:
+            CrossAxisAlignment.center,
+            children: [
+              const Icon(
+                Icons.delete_forever,
+                color: AppColors.redColor,
+                size: 60,
+              ),
+              // const SizedBox(height: 20),
+              Text(
+                "You want to delete account Permanently.",
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                style: TextStyle(
+                  color: AppColors.accentTextColor,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 14.sp,
+                  height: 1.2,
+                ),
+              ),
+              // const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment:
+                MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: ()async {
+                      await indexController.deleteAccountFunction();
+                      Get.back();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: AppColors.accentColor,
+                      minimumSize: Size(
+                        controller.size.width * 0.3,
+                        30,
+                      ),
+                      padding:
+                      const EdgeInsets.symmetric(
+                          horizontal: 16),
+                      shape:
+                      const RoundedRectangleBorder(
+                        borderRadius:
+                        BorderRadius.all(
+                          Radius.circular(12),
+                        ),
+                      ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Yes",
+                        style: TextStyle(
+                          color: AppColors.whiteColor,
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width:
+                    controller.size.width * 0.05,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.greyTextColor
+                          .withOpacity(0.3),
+                      minimumSize: Size(
+                          controller.size.width * 0.3,
+                          30),
+                      padding:
+                      const EdgeInsets.symmetric(
+                          horizontal: 16),
+                      shape:
+                      const RoundedRectangleBorder(
+                        borderRadius:
+                        BorderRadius.all(
+                          Radius.circular(12),
+                        ),
+                      ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Close",
+                        style: TextStyle(
+                          color: themeProvider
+                              .darkTheme
+                              ? AppColors
+                              .darkThemeBoxColor
+                              : AppColors
+                              .blackTextColor,
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

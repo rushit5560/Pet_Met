@@ -52,24 +52,29 @@ class AddAddressScreen extends StatelessWidget {
                           horizontal: 25, vertical: 20),
                       child: Container(
                         height: 75.h,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(height: 4.h),
-                            // const SizedBox(height: 15),
-                            TextFieldSection(
-                              fieldName: "Select Address",
-                              fieldHinttext: "Address line 1",
-                            ),
-                            SizedBox(height: 2.h),
-                            TextFieldSection(
-                              fieldName: "Detail Address",
-                              fieldHinttext: "Address line 2",
-                            ),
-                            SizedBox(height: 2.h),
-                            AddAddressByLocation(),
-                          ],
+                        child: Form(
+                          key: controller.formKey,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(height: 4.h),
+                              // const SizedBox(height: 15),
+                              TextFieldSection(
+                                fieldController: controller.addressController,
+                                fieldName: "Select Address",
+                                fieldHinttext: "Address line 1",
+                                validator: (val) => Validations().validateAddress(val!),
+                              ),
+                              SizedBox(height: 2.h),
+                              TextFieldSection(
+                                fieldName: "Detail Address",
+                                fieldHinttext: "Address line 2",
+                              ),
+                              SizedBox(height: 2.h),
+                              AddAddressByLocation(),
+                            ],
+                          ),
                         ),
                       ),
                     ),

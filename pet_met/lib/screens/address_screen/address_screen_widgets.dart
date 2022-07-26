@@ -20,6 +20,9 @@ class BackgroundCurve extends StatelessWidget {
       alignment: Alignment.topRight,
       child: Image.asset(
         AppImages.tealBackgroundImg,
+        // themeProvider.darkTheme
+        //     ? AppImages.backgroundImgDark
+        //     : AppImages.backgroundImgLight,
       ),
     );
   }
@@ -33,108 +36,45 @@ class AddressListModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 12.h * controller.getAllAddressList.length,
-      width: double.infinity,
+      //height: 12.h * controller.getAllAddressList.length,
+      //width: double.infinity,
       child: ListView.builder(
+        shrinkWrap: true,
+        physics: const AlwaysScrollableScrollPhysics(),
         itemCount: controller.getAllAddressList.length,
         itemBuilder: (context, index) {
-          return Container(
-            margin: EdgeInsets.only(bottom: 20),
-            width: double.infinity,
-            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-            decoration: BoxDecoration(
-              color: themeProvider.darkTheme
-                  ? AppColors.darkThemeColor
-                  : AppColors.whiteColor,
-              borderRadius: BorderRadius.all(
-                Radius.circular(12),
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.greyTextColor.withOpacity(0.25),
-                  blurRadius: 35,
-                  spreadRadius: 1,
-                  offset: const Offset(0, 0),
-                ),
-              ],
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      controller.getAllAddressList[index].address,
-                      style: TextStyle(
-                        color: themeProvider.darkTheme
-                            ? AppColors.whiteColor
-                            : AppColors.blackTextColor,
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 8),
-                    Text(
-                      controller.addressList[index].address!,
-                      style: TextStyle(
-                        color: themeProvider.darkTheme
-                            ? AppColors.whiteColor
-                            : AppColors.blackTextColor,
-                        fontSize: 11.sp,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
-                ),
-                Obx(
-                  () => Container(
-                    height: 40,
-                    width: 40,
-                    child: Checkbox(
-                      checkColor: AppColors.whiteColor,
-                      activeColor: AppColors.blackColor,
-                      fillColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                          if (states.contains(MaterialState.selected))
-                            return AppColors.whiteColor;
-                          return AppColors
-                              .greyTextColor; // Use the default value.
-                        },
-                      ),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(4))),
-                      value: controller.slectedAddress.value,
-                      onChanged: (val) {
-                        controller.slectedAddress.value =
-                            !controller.slectedAddress.value;
-                      },
-                    ),
-                  ),
-                )
-              ],
-            ),
+          return AddressTileWidget(
+            controller: controller,
+            index: index,
           );
         },
       ),
     );
   }
+
+
 }
 
-class AddNewAddressButtonModule extends StatelessWidget {
-  const AddNewAddressButtonModule({Key? key}) : super(key: key);
+class AddressTileWidget extends StatelessWidget {
+  const AddressTileWidget({
+    Key? key,
+    required this.controller,
+    required this.index,
+  }) : super(key: key);
+
+  final AddressController controller;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRouteNames.addAddressRoute);
+        // Get.toNamed(add)
       },
       child: Container(
-        height: 50,
+        margin: EdgeInsets.only(bottom: 20),
         width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
         decoration: BoxDecoration(
           color: themeProvider.darkTheme
               ? AppColors.darkThemeColor
@@ -154,44 +94,141 @@ class AddNewAddressButtonModule extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              "Add New Address",
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.blackTextColor,
-                fontSize: 13.sp,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            GestureDetector(
-              onTap: () {},
-              child: Container(
-                height: 25,
-                width: 25,
-                decoration: BoxDecoration(
-                  color: AppColors.accentColor,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(8),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.accentColor.withOpacity(0.25),
-                      blurRadius: 35,
-                      spreadRadius: 1,
-                      offset: const Offset(0, 0),
-                    ),
-                  ],
-                ),
-                child: Center(
-                  child: Icon(
-                    Icons.add,
-                    color: AppColors.whiteColor,
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  controller.getAllAddressList[index].address,
+                  style: TextStyle(
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.blackTextColor,
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
+                const SizedBox(height: 8),
+                // Text(
+                //   controller.addressList[index].address!,
+                //   style: TextStyle(
+                //     color: themeProvider.darkTheme
+                //         ? AppColors.whiteColor
+                //         : AppColors.blackTextColor,
+                //     fontSize: 11.sp,
+                //     fontWeight: FontWeight.w400,
+                //   ),
+                // ),
+              ],
+            ),
+            // Obx(
+            //   () =>
+            Container(
+              height: 40,
+              width: 40,
+              child: Checkbox(
+                checkColor: AppColors.whiteColor,
+                activeColor: AppColors.blackColor,
+                fillColor: MaterialStateProperty.resolveWith<Color>(
+                      (Set<MaterialState> states) {
+                    if (states.contains(MaterialState.selected))
+                      return AppColors.greyColor;
+                    return AppColors.greyTextColor; // Use the default value.
+                  },
+                ),
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(4))),
+                value: controller.getAllAddressList[index].isActive,
+                onChanged: (val) {
+                  controller.addressIsActiveFunction(index).whenComplete(() {
+                    controller.getAllAddressFunction();
+                  });
+                  // controller.slectedAddress.value =
+                  //     !controller.slectedAddress.value;
+                },
               ),
             ),
+            // )
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class AddNewAddressButtonModule extends StatelessWidget {
+  const AddNewAddressButtonModule({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Get.toNamed(AppRouteNames.addAddressRoute);
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+        child: Container(
+          height: 50,
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          decoration: BoxDecoration(
+            color: themeProvider.darkTheme
+                ? AppColors.darkThemeColor
+                : AppColors.whiteColor,
+            borderRadius: BorderRadius.all(
+              Radius.circular(12),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.greyTextColor.withOpacity(0.25),
+                blurRadius: 35,
+                spreadRadius: 1,
+                offset: const Offset(0, 0),
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Add New Address",
+                style: TextStyle(
+                  color: themeProvider.darkTheme
+                      ? AppColors.whiteColor
+                      : AppColors.blackTextColor,
+                  fontSize: 13.sp,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              GestureDetector(
+                onTap: () {},
+                child: Container(
+                  height: 25,
+                  width: 25,
+                  decoration: BoxDecoration(
+                    color: AppColors.accentColor,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.accentColor.withOpacity(0.25),
+                        blurRadius: 35,
+                        spreadRadius: 1,
+                        offset: const Offset(0, 0),
+                      ),
+                    ],
+                  ),
+                  child: Center(
+                    child: Icon(
+                      Icons.add,
+                      color: AppColors.whiteColor,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

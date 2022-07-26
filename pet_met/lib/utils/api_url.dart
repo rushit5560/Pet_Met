@@ -32,6 +32,12 @@ class ApiUrl {
 
   // Address Management
   static const getAllAddressApi = apiMainPath + "/address/";
+  static const getAddAddressApi = apiMainPath + "/addressadd";
+  static const setAddressIsActiveApi = apiMainPath + "/addressactive/";
+
+  static const deleteAccountApi = apiMainPath + "/userdel/";
+
+  static const changePasswordApi = apiMainPath + "/changepassword";
 }
 
 class ApiHeader {

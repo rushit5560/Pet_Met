@@ -45,7 +45,7 @@ class UserProfileScreen extends StatelessWidget {
                   title: "Profile",
                   trailingWidget: GestureDetector(
                     onTap: () {
-                      Get.toNamed(AppRouteNames.forgotPassRoute);
+                      Get.toNamed(AppRouteNames.changePasswordRoute);
                     },
                     child: Icon(
                       Icons.edit_note_rounded,

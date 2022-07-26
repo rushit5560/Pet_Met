@@ -40,7 +40,7 @@ class CustomLightTextField extends StatelessWidget {
               BoxShadow(
                 color: themeProvider.darkTheme
                     ? AppColors.whiteColor.withOpacity(0.05)
-                    : AppColors.greyTextColor.withOpacity(0.05),
+                    : AppColors.greyTextColor.withOpacity(0.5),
                 blurRadius: 10,
                 spreadRadius: 0.1,
                 offset: const Offset(0, 0),

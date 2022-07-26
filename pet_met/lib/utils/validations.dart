@@ -47,7 +47,28 @@ class Validations {
     if (value.isEmpty) {
       return "Password is required";
     } else if (value.length < 6) {
-      return "Length should be 6 character";
+      return "Password must be at least 6 characters";
+    } else {
+      return null;
+    }
+  }
+
+
+  String? validateNewPassword(String value) {
+    if (value.isEmpty) {
+      return "Password is required";
+    } else if (value.length < 6) {
+      return "Password must be at least 6 characters";
+    } else {
+      return null;
+    }
+  }
+
+  String? validateConfirmPassword(String value, String value2) {
+    if (value.isEmpty) {
+      return "Password is required";
+    }else if (value != value2) {
+      return "New Password and Confirm Password should not be Match";
     } else {
       return null;
     }
@@ -69,6 +90,13 @@ class Validations {
       return false;
     }
     return double.tryParse(s) != null;
+  }
+
+  String? validateAddress(String value) {
+    if (value.isEmpty) {
+      return 'Address is required';
+    }
+    return null;
   }
 
   // String? validateSubject(String value) {
