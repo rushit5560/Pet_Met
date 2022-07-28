@@ -5,11 +5,13 @@ import 'package:pet_met/screens/address_screen/address_screen.dart';
 import 'package:pet_met/screens/change_password_screen/change_password_screen.dart';
 import 'package:pet_met/screens/faq_screen/faq_screen.dart';
 import 'package:pet_met/screens/forgot_password_screen/forgot_password_screen.dart';
+import 'package:pet_met/screens/get_payment_list_screen/get_payment_list_screen.dart';
 import 'package:pet_met/screens/home_screen/home_screen.dart';
 import 'package:pet_met/screens/index_screen/index_screen.dart';
 import 'package:pet_met/screens/load_file_screen/load_file_screen.dart';
 import 'package:pet_met/screens/login_screen/login_screen.dart';
 import 'package:pet_met/screens/metting_address_info_screen/metting_address_info_screen.dart';
+import 'package:pet_met/screens/new_payment_screen/new_payment_screen.dart';
 import 'package:pet_met/screens/ngo_user_profile_screen/ngo_user_profile_screen.dart';
 
 import 'package:pet_met/screens/order_placed_screen/order_placed_screen.dart';
@@ -272,6 +274,20 @@ class AppRoutes {
     GetPage(
       name: AppRouteNames.changePasswordRoute,
       page: () => ChangePasswordScreen(),
+      transition: Transition.native,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+
+    GetPage(
+      name: AppRouteNames.paymentListRoute,
+      page: () => GetPaymentListScreen(),
+      transition: Transition.native,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+
+    GetPage(
+      name: AppRouteNames.addPaymentRoute,
+      page: () => NewPaymentScreen(),
       transition: Transition.native,
       transitionDuration: const Duration(milliseconds: 500),
     ),

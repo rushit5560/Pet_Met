@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:http/http.dart' as http;
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:get/get.dart';
+import 'package:pet_met/models/get_all_pet_list_model/get_all_pet_list_model.dart';
 import 'package:pet_met/models/home_screen_models/banner_model.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_images.dart';
@@ -15,7 +16,8 @@ class HomeController extends GetxController {
   ApiHeader apiHeader = ApiHeader();
 
   RxBool isOpened = false.obs;
-  List<BannerData> bannerList = [];
+  List<Datum> bannerList = [];
+  List<PetList> petTopList = [];
 
   var drawerController = ZoomDrawerController();
 
@@ -77,8 +79,8 @@ class HomeController extends GetxController {
     } catch (e) {
       log("Banner Api Error ::: $e");
     } finally {
-      isLoading(false);
-      // await getAllPetFunction();
+      //isLoading(false);
+       await getAllPetFunction();
     }
   }
 
@@ -109,23 +111,36 @@ class HomeController extends GetxController {
   }*/
 
   /// Get All Pets
-  /*Future<void> getAllPetFunction() async {
+  Future<void> getAllPetFunction() async {
     isLoading(true);
-    String url = ApiUrl.getAllPetApi;
+    String url = ApiUrl.topPetListApi;
     log("All Pet Api Url : $url");
 
     try {
-      http.Response response = await http.get(Uri.parse(url));
+      Map<String, String> header = apiHeader.apiHeader();
+      log("header : $header");
+
+      http.Response response = await http.get(Uri.parse(url), headers: header);
       log("Get All Pet Api response : ${response.body}");
 
+      GetPetTopListModel getPetTopListModel =
+      GetPetTopListModel.fromJson(json.decode(response.body));
+      isSuccessStatus = getPetTopListModel.success.obs;
 
+      if (isSuccessStatus.value) {
+        // bannerList.clear();
+        petTopList.addAll(getPetTopListModel.data);
+        log("petList Length : ${petTopList.length}");
+      } else {
+        log("Pet Api Else");
+      }
 
     } catch(e) {
       log("Get All Pet Api Error ::: $e");
     } finally {
       isLoading(false);
     }
-  }*/
+  }
 
   @override
   void onInit() {

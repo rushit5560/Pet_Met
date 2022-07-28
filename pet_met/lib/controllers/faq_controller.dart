@@ -42,10 +42,10 @@ class FaqController extends GetxController {
         faqList.addAll(faqModel.data);
         log('faqList : ${faqList.length}');
       } else {
-        log("Support Function Else");
+        log("faqList Function Else");
       }
     } catch (e) {
-      log("Support Function Api Error ::: $e");
+      log("faqList Function Api Error ::: $e");
     } finally {
       isLoading(false);
     }

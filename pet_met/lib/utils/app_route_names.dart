@@ -45,4 +45,6 @@ class AppRouteNames {
   static const String ngoUserProfileScreenRoute = "/ngoUserProfile";
   static const String trainersAndUsersScreenRoute = "/trainersAndUserprofile";
   static const String changePasswordRoute = "/changePassword";
+  static const String paymentListRoute = "/paymentList";
+  static const String addPaymentRoute = "/addPaymentRoute";
 }

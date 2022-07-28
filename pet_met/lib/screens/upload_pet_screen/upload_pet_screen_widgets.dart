@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:datepicker_dropdown/datepicker_dropdown.dart';
@@ -5,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/controllers/upload_pet_controller.dart';
+import 'package:pet_met/models/get_all_category_model/get_all_category_model.dart';
+import 'package:pet_met/models/get_all_sub_category_model/get_all_sub_category_model.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
@@ -163,11 +166,12 @@ class _UploadImageModuleState extends State<UploadImageModule> {
   }
 }
 
-class TextFieldSection extends StatelessWidget {
+/*class TextFieldSection extends StatelessWidget {
   //TextFieldSection({Key? key}) : super(key: key);
 
   String? fieldName;
   String? fieldHinttext;
+  TextEditingController ? textEditingController;
   TextFieldSection({this.fieldName, this.fieldHinttext});
 
   final controller = Get.find<UploadPetController>();
@@ -193,7 +197,7 @@ class TextFieldSection extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         CustomLightTextField(
-          // fieldController: controller.nameController,
+          fieldController: textEditingController,
           height: controller.size.height * 0.05,
           width: double.infinity,
           hintText: fieldHinttext,
@@ -204,17 +208,11 @@ class TextFieldSection extends StatelessWidget {
       ],
     );
   }
-}
+}*/
 
-class TypesOfPetDropDownModule extends StatefulWidget {
-  const TypesOfPetDropDownModule({Key? key}) : super(key: key);
+class PetNameTextFieldModule extends StatelessWidget {
+  PetNameTextFieldModule({Key? key}) : super(key: key);
 
-  @override
-  State<TypesOfPetDropDownModule> createState() =>
-      _TypesOfPetDropDownModuleState();
-}
-
-class _TypesOfPetDropDownModuleState extends State<TypesOfPetDropDownModule> {
   final controller = Get.find<UploadPetController>();
 
   @override
@@ -225,7 +223,7 @@ class _TypesOfPetDropDownModuleState extends State<TypesOfPetDropDownModule> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              "Types Of Pet",
+              "Pet Name",
               style: TextStyle(
                 color: themeProvider.darkTheme
                     ? AppColors.whiteColor
@@ -237,7 +235,55 @@ class _TypesOfPetDropDownModuleState extends State<TypesOfPetDropDownModule> {
           ],
         ),
         const SizedBox(height: 8),
-        Container(
+        CustomLightTextField(
+          fieldController: controller.petNameController,
+          height: controller.size.height * 0.065,
+          width: double.infinity,
+          hintText: "Pet Name",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.text,
+          validator: (val) => Validations().validateEmail(val!),
+        ),
+      ],
+    );
+  }
+}
+
+
+/*class TypesOfPetDropDownModule extends StatefulWidget {
+  const TypesOfPetDropDownModule({Key? key}) : super(key: key);
+
+  @override
+  State<TypesOfPetDropDownModule> createState() =>
+      _TypesOfPetDropDownModuleState();
+}*/
+
+class TypesOfPetDropDownModule extends StatelessWidget {
+  final controller = Get.find<UploadPetController>();
+
+  TypesOfPetDropDownModule({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Pet Category",
+              style: TextStyle(
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        /*Container(
           height: controller.size.height * 0.06,
           width: double.infinity,
           padding: const EdgeInsets.only(left: 15, right: 15),
@@ -284,11 +330,264 @@ class _TypesOfPetDropDownModuleState extends State<TypesOfPetDropDownModule> {
               },
             ),
           ),
-        ),
+        ),*/
+        Stack(
+          children: [
+            Container(
+              height: controller.size.height * 0.06,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: themeProvider.darkTheme
+                      ? AppColors.darkThemeBoxColor
+                      : AppColors.whiteColor,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.greyTextColor.withOpacity(0.3),
+                      blurRadius: 35,
+                      spreadRadius: 1,
+                      offset: const Offset(0, 5),
+                    ),
+                  ]
+              ),
+            ),
+            Obx(
+                  () => Container(
+                padding: const EdgeInsets.only(left: 10),
+                width: Get.width,
+                //gives the width of the dropdown button
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  //color: Colors.grey.shade200,
+                ),
+                child: Theme(
+                  data: Theme.of(context).copyWith(
+                    canvasColor: Colors.grey.shade100,
+                    buttonTheme: ButtonTheme.of(context).copyWith(
+                      alignedDropdown: true,
+                    ),
+                  ),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<PetCategory>(
+                      value: controller.petCategoryDropDownValue,
+                      icon: Icon(
+                        Icons.keyboard_arrow_down_rounded,
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.blackTextColor.withOpacity(0.7),
+                      ),
+                      items: controller.petCategoryList
+                          .map<DropdownMenuItem<PetCategory>>((PetCategory value) {
+                        return DropdownMenuItem<PetCategory>(
+                          value: value,
+                          child: Text(
+                            value.categoryName!,
+                            style: const TextStyle(color: Colors.black),
+                          ),
+                        );
+                      }).toList(),
+                      // isDense: true,
+                      // isExpanded: true,
+                      dropdownColor: themeProvider.darkTheme
+                          ? AppColors.darkThemeBoxColor
+                          : AppColors.whiteColor,
+                      underline: SizedBox(),
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      style: TextStyle(
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.blackTextColor.withOpacity(0.7),
+                        fontSize: 13.sp,
+                      ),
+                      onChanged: (value) {
+                        // controller.petCategoryDropDownValue = value!;
+                        // controller.loadUI();
+
+                        controller.isLoading(true);
+                        controller.petCategoryDropDownValue = value!;
+                         controller.petSubCategoryList.clear();
+                        controller.petSubCategoryList.add(PetSubCategory(categoryName: 'Select Sub Category'));
+                        controller.getSubCategoryUsingCategoryId(categoryId: "${controller.petCategoryDropDownValue.categoryId}");
+                         log("petCategoryDropDownValue : ${controller.petCategoryDropDownValue}");
+                        controller.isLoading(false);
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        )
       ],
     );
   }
 }
+
+class PetSubCategoryDropDownModule extends StatelessWidget {
+  PetSubCategoryDropDownModule({Key? key}) : super(key: key);
+
+  final controller = Get.find<UploadPetController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Pet Sub Category",
+              style: TextStyle(
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        /*Container(
+          height: controller.size.height * 0.06,
+          width: double.infinity,
+          padding: const EdgeInsets.only(left: 15, right: 15),
+          decoration: BoxDecoration(
+              color: themeProvider.darkTheme
+                  ? AppColors.darkThemeBoxColor
+                  : AppColors.whiteColor,
+              borderRadius: BorderRadius.circular(15),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.greyTextColor.withOpacity(0.3),
+                  blurRadius: 35,
+                  spreadRadius: 1,
+                  offset: const Offset(0, 5),
+                ),
+              ]),
+          child: Center(
+            child: DropdownButton<String>(
+              icon: Icon(
+                Icons.keyboard_arrow_down_rounded,
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.blackTextColor.withOpacity(0.7),
+              ),
+              value: controller.selectedPetTypeValue.value,
+              isDense: true,
+              isExpanded: true,
+              dropdownColor: themeProvider.darkTheme
+                  ? AppColors.darkThemeBoxColor
+                  : AppColors.whiteColor,
+              items: controller.dropdownPetTypeItems,
+              underline: SizedBox(),
+              borderRadius: BorderRadius.all(Radius.circular(15)),
+              style: TextStyle(
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 15.sp,
+              ),
+              onChanged: (val) {
+                setState(() {
+                  controller.selectedPetTypeValue.value = val!;
+                });
+              },
+            ),
+          ),
+        ),*/
+        Stack(
+          children: [
+            Container(
+              height: controller.size.height * 0.06,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: themeProvider.darkTheme
+                      ? AppColors.darkThemeBoxColor
+                      : AppColors.whiteColor,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.greyTextColor.withOpacity(0.3),
+                      blurRadius: 35,
+                      spreadRadius: 1,
+                      offset: const Offset(0, 5),
+                    ),
+                  ]
+              ),
+            ),
+            Obx(
+                  () => Container(
+                padding: const EdgeInsets.only(left: 10),
+                width: Get.width,
+                //gives the width of the dropdown button
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  //color: Colors.grey.shade200,
+                ),
+                child: Theme(
+                  data: Theme.of(context).copyWith(
+                    canvasColor: Colors.grey.shade100,
+                    buttonTheme: ButtonTheme.of(context).copyWith(
+                      alignedDropdown: true,
+                    ),
+                  ),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<PetSubCategory>(
+                      value: controller.petSubCategoryDropDownValue,
+                      icon: Icon(
+                        Icons.keyboard_arrow_down_rounded,
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.blackTextColor.withOpacity(0.7),
+                      ),
+                      items: controller.petSubCategoryList
+                          .map<DropdownMenuItem<PetSubCategory>>((PetSubCategory value) {
+                        return DropdownMenuItem<PetSubCategory>(
+                          value: value,
+                          child: Text(
+                            value.categoryName!,
+                            style: const TextStyle(color: Colors.black),
+                          ),
+                        );
+                      }).toList(),
+                      // isDense: true,
+                      // isExpanded: true,
+                      dropdownColor: themeProvider.darkTheme
+                          ? AppColors.darkThemeBoxColor
+                          : AppColors.whiteColor,
+                      underline: SizedBox(),
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      style: TextStyle(
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.blackTextColor.withOpacity(0.7),
+                        fontSize: 13.sp,
+                      ),
+                      onChanged: (value) {
+                        // controller.petCategoryDropDownValue = value!;
+                        // controller.loadUI();
+
+                        controller.isLoading(true);
+                        controller.petSubCategoryDropDownValue = value!;
+                        // controller.areaList.clear();
+                        // authScreenController.areaList.add(GetAreaList(areaName: 'Select Area'));
+
+                        // print("cityDropDownValue : ${authScreenController.cityDropDownValue}");
+                        controller.isLoading(false);
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        )
+      ],
+    );
+  }
+}
+
 
 class MeetingAvailabilityDropDown extends StatefulWidget {
   const MeetingAvailabilityDropDown({Key? key}) : super(key: key);
@@ -540,14 +839,57 @@ class _GenderDropDownState extends State<GenderDropDown> {
   }
 }
 
+class WeightTextFieldModule extends StatelessWidget {
+  WeightTextFieldModule({Key? key}) : super(key: key);
+
+  final controller = Get.find<UploadPetController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Weight",
+              style: TextStyle(
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          fieldController: controller.weightController,
+          height: controller.size.height * 0.065,
+          width: double.infinity,
+          hintText: "Weight",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.number,
+          validator: (val) => Validations().validateEmail(val!),
+        ),
+      ],
+    );
+  }
+}
+
+
 class PetSubmitButton extends StatelessWidget {
-  const PetSubmitButton({Key? key}) : super(key: key);
+  PetSubmitButton({Key? key}) : super(key: key);
+
+  final controller = Get.find<UploadPetController>();
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         // controller.submitLoginForm();
+        controller.updatePetProfileFunction();
       },
       child: Container(
         width: double.infinity,

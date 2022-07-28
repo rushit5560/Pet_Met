@@ -60,6 +60,7 @@ class LoginController extends GetxController {
       if (isSuccessStatus.value) {
         // User Data Set in Prefs
         await userPreference.setUserDetails(
+          selfId: loginModel.data.uid,
           userId: loginModel.data.id,
           userName: loginModel.data.name,
           userEmail: loginModel.data.email,

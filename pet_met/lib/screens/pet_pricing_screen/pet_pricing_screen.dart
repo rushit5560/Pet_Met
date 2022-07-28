@@ -77,7 +77,7 @@ class PetPricingScreen extends StatelessWidget {
                                       separatorBuilder: (context, ind) {
                                         return SizedBox(width: 12);
                                       },
-                                      itemCount: 2,
+                                      itemCount: controller.planData.length,
                                       scrollDirection: Axis.horizontal,
                                     ),
 

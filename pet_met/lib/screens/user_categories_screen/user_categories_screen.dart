@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -160,6 +162,7 @@ class _UserCategoriesScreenState extends State<UserCategoriesScreen> {
                                                           .petTrainerAndBreederBool(
                                                               false);
                                                       controller.roleId = 1;
+                                                      log('roleId: ${controller.roleId}');
                                                     } else if (index == 1) {
                                                       controller
                                                           .individualPetBool(
@@ -174,6 +177,7 @@ class _UserCategoriesScreenState extends State<UserCategoriesScreen> {
                                                           .petTrainerAndBreederBool(
                                                               false);
                                                       controller.roleId = 2;
+                                                      log('roleId: ${controller.roleId}');
                                                     } else if (index == 2) {
                                                       controller
                                                           .individualPetBool(
@@ -188,6 +192,7 @@ class _UserCategoriesScreenState extends State<UserCategoriesScreen> {
                                                           .petTrainerAndBreederBool(
                                                               false);
                                                       controller.roleId = 3;
+                                                      log('roleId: ${controller.roleId}');
                                                     } else if (index == 3) {
                                                       controller
                                                           .individualPetBool(
@@ -202,6 +207,7 @@ class _UserCategoriesScreenState extends State<UserCategoriesScreen> {
                                                           .petTrainerAndBreederBool(
                                                               true);
                                                       controller.roleId = 4;
+                                                      log('roleId: ${controller.roleId}');
                                                     }
 
                                                     controller.isLoading(false);

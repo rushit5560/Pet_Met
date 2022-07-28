@@ -11,6 +11,7 @@ class UserPreference {
 
   String isUserLoggedInKey = "isUserLoggedInKey";
   String userTokenKey = "userTokenKey";
+  String selfIdKey = "selfIdKey";
   String userIdKey = "userIdKey";
   String userNameKey = "userNameKey";
   String userEmailKey = "userEmailKey";
@@ -26,6 +27,7 @@ class UserPreference {
 
   /// Set User Login Or Register Details
   Future<void> setUserDetails({
+    required int selfId,
     required int userId,
     required String userName,
     required String userEmail,
@@ -33,6 +35,7 @@ class UserPreference {
     required String token,
   }) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setInt(selfIdKey, selfId);
     prefs.setInt(userIdKey, userId);
     prefs.setString(userNameKey, userName);
     prefs.setString(userEmailKey, userEmail);
@@ -40,6 +43,7 @@ class UserPreference {
     prefs.setString(userTokenKey, token);
     prefs.setBool(isUserLoggedInKey, true);
 
+    UserDetails.selfId = prefs.getInt(selfIdKey) ?? 0;
     UserDetails.userId = prefs.getInt(userIdKey) ?? 0;
     UserDetails.userName = prefs.getString(userNameKey) ?? "";
     UserDetails.userEmail = prefs.getString(userEmailKey) ?? "";
@@ -47,6 +51,7 @@ class UserPreference {
     UserDetails.userToken = prefs.getString(userTokenKey) ?? "";
     UserDetails.isUserLoggedIn = prefs.getBool(isUserLoggedInKey) ?? false;
 
+    log("selfId : ${UserDetails.selfId}");
     log("userId : ${UserDetails.userId}");
     log("userName : ${UserDetails.userName}");
     log("userEmail : ${UserDetails.userEmail}");
@@ -61,12 +66,14 @@ class UserPreference {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool(isUserLoggedInKey, false);
     prefs.setString(userTokenKey, "");
+    prefs.setInt(selfIdKey, 0);
     prefs.setInt(userIdKey, 0);
     prefs.setString(userNameKey, "");
     prefs.setString(userEmailKey, "");
     prefs.setString(userProfileImageKey, "");
 
     // Get Default Value From Prefs
+    UserDetails.selfId = prefs.getInt(selfIdKey) ?? 0;
     UserDetails.userId = prefs.getInt(userIdKey) ?? 0;
     UserDetails.userName = prefs.getString(userNameKey) ?? "";
     UserDetails.userEmail = prefs.getString(userEmailKey) ?? "";

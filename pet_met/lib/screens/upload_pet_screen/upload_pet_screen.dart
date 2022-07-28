@@ -196,12 +196,19 @@ class _UploadPetScreenState extends State<UploadPetScreen> {
                           //   ),
                           // ),
                           const SizedBox(height: 30),
-                          TextFieldSection(
-                            fieldName: "Pet Name",
-                            fieldHinttext: "Your Pet Title",
-                          ),
+                          // TextFieldSection(
+                          //   fieldController: controller.mailController,
+                          //   fieldName: "Pet Name",
+                          //   fieldHinttext: "Your Pet Title",
+                          // ),
+                          PetNameTextFieldModule(),
+
                           const SizedBox(height: 15),
-                          const TypesOfPetDropDownModule(),
+                          TypesOfPetDropDownModule(),
+
+                          const SizedBox(height: 15),
+
+                          PetSubCategoryDropDownModule(),
                           // Row(
                           //   mainAxisAlignment: MainAxisAlignment.start,
                           //   children: [
@@ -457,10 +464,21 @@ class _UploadPetScreenState extends State<UploadPetScreen> {
                           //   ),
                           // ),
                           const SizedBox(height: 15),
-                          TextFieldSection(
-                            fieldName: "Weight",
-                            fieldHinttext: "Enter Weight",
-                          ),
+                          // TextFieldSection(
+                          //   fieldName: "Weight",
+                          //   fieldHinttext: "Enter Weight",
+                          // ),
+
+                          WeightTextFieldModule(),
+                          /*CustomLightTextField(
+                            fieldController: controller.petNameController,
+                            height: controller.size.height * 0.065,
+                            width: double.infinity,
+                            hintText: "Weight",
+                            textInputAction: TextInputAction.next,
+                            textInputType: TextInputType.text,
+                            validator: (val) => Validations().validateEmail(val!),
+                          ),*/
                           const SizedBox(height: 30),
                           PetSubmitButton(),
                           // GestureDetector(

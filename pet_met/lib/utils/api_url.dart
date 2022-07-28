@@ -1,11 +1,11 @@
 import 'package:pet_met/utils/user_details.dart';
 
 class ApiUrl {
-  static const apiMainPath = "https://petomate.com/patomateadmin/api";
-  static const apiImagePath = "https://petomate.com/patomateadmin/";
+  static const apiMainPath = "http://petomate.omdemo.co.in/api";
+  static const apiImagePath = "http://petomate.omdemo.co.in/";
 
   static const loginApi = apiMainPath + "/login";
-  static const registerApi = apiMainPath + "/register";
+  static const registerApi = apiMainPath + "/registeruser";
   static const bannerApi = apiMainPath + "/banner";
   static const getAllShopApi = apiMainPath + "/getallshop";
   static const shopDetailsApi = apiMainPath + "/shopdetails";
@@ -17,7 +17,7 @@ class ApiUrl {
   static const getAllVetAndNgoDetailsApi = apiMainPath + "/vetandngodetails";
 
   static const getAllCategoryApi = apiMainPath + "/category";
-  static const getAllSubCategoryApi = apiMainPath + "/sub_category";
+  static const getAllSubCategoryApi = apiMainPath + "/subcategory/";
   static const getCategoryAndSubCategoryApi =
       apiMainPath + "/categoryandsubcategory";
   static const getAllPlanApi = apiMainPath + "/getallplan";
@@ -36,8 +36,17 @@ class ApiUrl {
   static const setAddressIsActiveApi = apiMainPath + "/addressactive/";
 
   static const deleteAccountApi = apiMainPath + "/userdel/";
-
   static const changePasswordApi = apiMainPath + "/changepassword";
+  static const topPetListApi = apiMainPath + "/pettop";
+
+  /// Pet Profile Management
+  static const petProfileApi = apiMainPath + "/petdetails/";
+  static const petUpdateProfileApi = apiMainPath + "/petadd";
+
+  /// Payment Management
+  static const getPaymentListApi = apiMainPath + "/carddetails/";
+  static const addNewPaymentApi = apiMainPath + "/cardadd";
+  static const setPaymentIsActiveApi = apiMainPath + "/cardactive/";
 }
 
 class ApiHeader {

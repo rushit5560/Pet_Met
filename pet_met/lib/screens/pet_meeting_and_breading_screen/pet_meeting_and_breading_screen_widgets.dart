@@ -72,8 +72,17 @@ class MeetingAndBreadingSearchFieldModule extends StatelessWidget {
               fontWeight: FontWeight.w400,
             ),
             suffixIcon: GestureDetector(
-              onTap: () {
-                screenController.searchFieldController.clear();
+              onTap: () async {
+                // screenController.searchFieldController.clear();
+                // hideKeyboard();
+
+                if(screenController.searchFieldController.text.trim().isEmpty){
+                  screenController.isLoading(true);
+                  screenController.searchSubCatList.clear();
+                  screenController.isLoading(false);
+                } else{
+                  await screenController.getSearchCategoryAndSubCategoryFunction();
+                }
                 hideKeyboard();
               },
               child: Container(
@@ -150,7 +159,60 @@ class PetCategoriesListModule extends StatelessWidget {
             animationDuration: const Duration(milliseconds: 500),
             headerAlignment: ExpandablePanelHeaderAlignment.center),
         collapsed: Container(),
-        expanded: ListView.builder(
+        expanded: screenController.searchSubCatList.isNotEmpty ?
+        ListView.builder(
+          itemCount: screenController.searchSubCatList.length,
+          shrinkWrap: true,
+          physics: const BouncingScrollPhysics(),
+          itemBuilder: (context, i) {
+            int id = screenController.searchSubCatList[i].categoryId;
+            return Row(
+              children: [
+                Checkbox(
+                  checkColor: themeProvider.darkTheme
+                      ? AppColors.whiteColor
+                      : AppColors.greyTextColor,
+                  activeColor: AppColors.greyTextColor,
+                  fillColor: MaterialStateProperty.all(
+                    AppColors.greyColor,
+                  ),
+                  focusColor: AppColors.greyColor,
+                  value: screenController.searchSubCatList[i].isSelected,
+                  onChanged: (value) {
+                    screenController.isLoading(true);
+                    for (int i = 0;
+                    i < screenController.catAndSubCatList.length;
+                    i++) {
+                      for (int j = 0; j < screenController.searchSubCatList.length; j++) {
+                        if (screenController.searchSubCatList[j].categoryId == id) {
+                          screenController.searchSubCatList[j].isSelected = true;
+                          screenController.selectedSubCatId =
+                              screenController.searchSubCatList[j].categoryId.toString();
+                          // log("${singleItem.subCategory[j].categoryId}");
+                          // log(singleItem.subCategory[j].categoryName);
+                        } else {
+                          screenController.searchSubCatList[j].isSelected = false;
+                        }
+                      }
+                    }
+                    screenController.isLoading(false);
+                  },
+                ),
+                Text(
+                  screenController.searchSubCatList[i].categoryName,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.blackTextColor,
+                  ),
+                ),
+              ],
+            );
+          },
+        ):
+        ListView.builder(
           itemCount: singleItem.subCategory.length,
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
@@ -223,7 +285,7 @@ class MeetYourLovedOneButtonModule extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         log("Selected Sub cat Id : ${screenController.selectedSubCatId}");
-        // Get.toNamed(AppRouteNames.petMeetingListScreenRoute);
+         Get.toNamed(AppRouteNames.petMeetingListScreenRoute);
       },
       child: Container(
         width: double.infinity,

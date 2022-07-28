@@ -15,9 +15,9 @@ class PetMeetingListModule extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, i) {
         return DogDisplayWidget(
-          onTap: () {
-            Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute);
-          },
+          // onTap: () {
+          //   Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute);
+          // },
         );
       },
     );

@@ -20,6 +20,7 @@ class PetMeetingAndBreadingScreenController extends GetxController {
   ApiHeader apiHeader = ApiHeader();
 
   List<CatAndSubCatData> catAndSubCatList = [];
+  List<SubCategoryId> searchSubCatList = [];
   String selectedSubCatId = "";
 
   Future<void> getAllCategoryAndSubCategoryFunction() async {
@@ -30,7 +31,7 @@ class PetMeetingAndBreadingScreenController extends GetxController {
 
     try {
       Map<String, String> header = apiHeader.apiHeader();
-      http.Response response = await http.get(Uri.parse(url), headers: header);
+      http.Response response = await http.post(Uri.parse(url), headers: header);
       log("get all pet category Api Response : ${response.body}");
 
       CategoryAndSubCategoryModel categoryAndSubCategoryModel =
@@ -46,6 +47,47 @@ class PetMeetingAndBreadingScreenController extends GetxController {
       }
     } catch (e) {
       log("get all pet category  Error ::: $e");
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  Future<void> getSearchCategoryAndSubCategoryFunction() async {
+    isLoading(true);
+    String url = ApiUrl.getCategoryAndSubCategoryApi;
+
+    log("get all search pet category Api Url : $url");
+
+    try {
+      Map<String, dynamic> data = {
+        "search": searchFieldController.text.trim().toLowerCase(),
+      };
+      log("data : $data");
+
+      Map<String, String> header = apiHeader.apiHeader();
+      http.Response response = await http.post(Uri.parse(url), body: data, headers: header);
+      log("get all search pet category Api Response : ${response.body}");
+
+      CategoryAndSubCategoryModel categoryAndSubCategoryModel =
+      CategoryAndSubCategoryModel.fromJson(json.decode(response.body));
+      isSuccessStatus = categoryAndSubCategoryModel.success.obs;
+      log('isSuccessStatus: $isSuccessStatus');
+
+      if (isSuccessStatus.value) {
+        searchSubCatList.clear();
+        for(int i =0; i < categoryAndSubCategoryModel.data.length; i++){
+          for(int j=0; j < categoryAndSubCategoryModel.data[i].subCategory.length ; i++){
+            searchSubCatList = categoryAndSubCategoryModel.data[j].subCategory;
+            log('searchSubCatList: ${searchSubCatList.length}');
+          }
+        }
+
+        log("");
+      } else {
+        log("get all search pet category  Api Else Else");
+      }
+    } catch (e) {
+      log("get all search pet category  Error ::: $e");
     } finally {
       isLoading(false);
     }

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pet_met/controllers/address_controller.dart';
+import 'package:pet_met/controllers/get_payment_list_screen_controller.dart';
+import 'package:pet_met/services/providers/dark_theme_provider.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
-import '../../services/providers/dark_theme_provider.dart';
 
 var themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
 
@@ -26,10 +25,10 @@ class BackgroundCurve extends StatelessWidget {
   }
 }
 
-class AddressListModule extends StatelessWidget {
-  AddressListModule({Key? key}) : super(key: key);
+class PaymentListModule extends StatelessWidget {
+  PaymentListModule({Key? key}) : super(key: key);
 
-  final controller = Get.find<AddressController>();
+  final controller = Get.find<GetPaymentListScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,32 +38,15 @@ class AddressListModule extends StatelessWidget {
       child: ListView.builder(
         shrinkWrap: true,
         physics: const AlwaysScrollableScrollPhysics(),
-        itemCount: controller.getAllAddressList.length,
+        itemCount: controller.paymentList.length,
         itemBuilder: (context, index) {
-          return AddressTileWidget(
-            controller: controller,
-            index: index,
-          );
+          return paymentListModule(index);
         },
       ),
     );
   }
 
-
-}
-
-class AddressTileWidget extends StatelessWidget {
-  const AddressTileWidget({
-    Key? key,
-    required this.controller,
-    required this.index,
-  }) : super(key: key);
-
-  final AddressController controller;
-  final int index;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget paymentListModule(int index){
     return GestureDetector(
       onTap: () {
         // Get.toNamed(add)
@@ -90,37 +72,42 @@ class AddressTileWidget extends StatelessWidget {
           ],
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  controller.getAllAddressList[index].address,
-                  style: TextStyle(
-                    color: themeProvider.darkTheme
-                        ? AppColors.whiteColor
-                        : AppColors.blackTextColor,
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                // Text(
-                //   controller.addressList[index].address!,
-                //   style: TextStyle(
-                //     color: themeProvider.darkTheme
-                //         ? AppColors.whiteColor
-                //         : AppColors.blackTextColor,
-                //     fontSize: 11.sp,
-                //     fontWeight: FontWeight.w400,
-                //   ),
-                // ),
-              ],
+            Image.asset(
+              AppImages.googleMapImg,
+              height: 8.w,
             ),
-            // Obx(
-            //   () =>
+            SizedBox(width: 15),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    controller.paymentList[index].cardNumber,
+                    style: TextStyle(
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.blackTextColor,
+                      fontSize: 10.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    controller.paymentList[index].cardName,
+                    style: TextStyle(
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.greyTextColor,
+                      fontSize: 10.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Container(
               height: 40,
               width: 40,
@@ -136,10 +123,10 @@ class AddressTileWidget extends StatelessWidget {
                 ),
                 shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(4))),
-                value: controller.getAllAddressList[index].isActive,
+                value: controller.paymentList[index].isActive,
                 onChanged: (val) {
-                  controller.addressIsActiveFunction(index).whenComplete(() {
-                    controller.getAllAddressFunction();
+                  controller.paymentIsActiveFunction(index).whenComplete(() {
+                    controller.getPaymentListFunction();
                   });
                   // controller.slectedAddress.value =
                   //     !controller.slectedAddress.value;
@@ -154,14 +141,14 @@ class AddressTileWidget extends StatelessWidget {
   }
 }
 
-class AddNewAddressButtonModule extends StatelessWidget {
-  const AddNewAddressButtonModule({Key? key}) : super(key: key);
+class AddNewPaymentButtonModule extends StatelessWidget {
+  const AddNewPaymentButtonModule({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRouteNames.addAddressRoute);
+        Get.toNamed(AppRouteNames.addPaymentRoute);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
@@ -189,7 +176,7 @@ class AddNewAddressButtonModule extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Add New Address",
+                "Add New Payment",
                 style: TextStyle(
                   color: themeProvider.darkTheme
                       ? AppColors.whiteColor
@@ -243,7 +230,7 @@ class NextButton extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           // controller.submitLoginForm();
-          Get.toNamed(AppRouteNames.paymentListRoute);
+          //Get.toNamed(AppRouteNames.paymentListRoute);
         },
         child: Container(
           width: double.infinity,

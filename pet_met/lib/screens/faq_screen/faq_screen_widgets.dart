@@ -30,7 +30,7 @@ class FaqListModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      itemCount: controller.questionsList.length,
+      itemCount: controller.faqList.length,
       shrinkWrap: true,
       physics: const BouncingScrollPhysics(),
       itemBuilder: (ctx, ind) {
@@ -54,7 +54,7 @@ class FaqListModule extends StatelessWidget {
         header: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           child: Text(
-            controller.questionsList[index],
+            controller.faqList[index].question,
             style: TextStyle(
               fontSize: 13.sp,
               color: themeProvider.darkTheme
@@ -74,7 +74,7 @@ class FaqListModule extends StatelessWidget {
         expanded: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           child: Text(
-            "With tens of thousands of satisfied clients nationwide, we’ve earned a solid reputation as the most trusted and reliable pet care service in the country. And it isn’t just Fetch as a company. ",
+            controller.faqList[index].answer,
             style: TextStyle(
               color: themeProvider.darkTheme
                   ? AppColors.whiteColor

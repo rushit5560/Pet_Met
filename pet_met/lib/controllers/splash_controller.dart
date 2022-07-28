@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:pet_met/utils/app_route_names.dart';
@@ -26,12 +27,15 @@ class SplashController extends GetxController {
     UserDetails.roleId = prefs.getInt(userPreference.roleIdKey) ?? 1001;
     UserDetails.isUserLoggedIn =
         prefs.getBool(userPreference.isUserLoggedInKey) ?? false;
+    UserDetails.selfId = prefs.getInt(userPreference.selfIdKey) ?? 0;
     UserDetails.userId = prefs.getInt(userPreference.userIdKey) ?? 0;
     UserDetails.userName = prefs.getString(userPreference.userNameKey) ?? "";
     UserDetails.userEmail = prefs.getString(userPreference.userEmailKey) ?? "";
     UserDetails.userProfileImage =
         prefs.getString(userPreference.userProfileImageKey) ?? "";
     UserDetails.userToken = prefs.getString(userPreference.userTokenKey) ?? "";
+
+    log('UserDetails.roleId: ${UserDetails.roleId}');
 
     return Timer(
       const Duration(milliseconds: 2500),
