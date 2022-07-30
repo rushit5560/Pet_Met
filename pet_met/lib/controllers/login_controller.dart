@@ -18,6 +18,8 @@ class LoginController extends GetxController {
   RxBool isSuccessStatus = false.obs;
   final size = Get.size;
 
+  RxBool isPasswordVisible = true.obs;
+
   var mailController = TextEditingController();
   var passController = TextEditingController();
   var selectedPageIndex = 0.obs;
@@ -66,7 +68,9 @@ class LoginController extends GetxController {
           userEmail: loginModel.data.email,
           userProfileImage: loginModel.data.image,
           token: loginModel.data.rememberToken,
+          roleId: loginModel.data.categoryId
         );
+        //await userPreference.setRoleId(roleId);
         // Going to Index Screen
         Get.toNamed(AppRouteNames.indexScreenRoute);
       } else {

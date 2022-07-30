@@ -68,7 +68,7 @@ class VetAndNgoData {
         name: json["name"] ?? "",
         imageList: json["image_list"] ?? "",
         showimg: json["showimg"] ?? "",
-        contact: json["contact"] ?? "",
+        contact: json["contact"] ?? 0,
         address: json["address"] ?? "",
         isActive: json["is_active"] ?? "",
         socialMedias: json["social_medias"] ?? "",

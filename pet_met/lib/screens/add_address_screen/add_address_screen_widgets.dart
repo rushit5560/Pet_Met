@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/add_address_controller.dart';
+import 'package:pet_met/controllers/address_controller.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
 import 'package:pet_met/utils/validations.dart';
@@ -135,6 +136,7 @@ class AddAddressByLocation extends StatelessWidget {
 class SaveButton extends StatelessWidget {
   SaveButton({Key? key}) : super(key: key);
   final screenController = Get.find<AddAddressController>();
+  final getAddressScreenController = Get.find<AddressController>();
 
 
   @override
@@ -143,7 +145,9 @@ class SaveButton extends StatelessWidget {
       onTap: () {
         // controller.submitLoginForm();
         if(screenController.formKey.currentState!.validate()){
-          screenController.addAddressFunction();
+          screenController.addAddressFunction().then((value) {
+            getAddressScreenController.getAllAddressFunction();
+          });
         }
 
       },

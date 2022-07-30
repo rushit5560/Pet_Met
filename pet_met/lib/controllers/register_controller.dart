@@ -15,6 +15,7 @@ class RegisterController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
   final size = Get.size;
+  RxBool isPasswordVisible = true.obs;
 
   TextEditingController mailController = TextEditingController();
   TextEditingController nameController = TextEditingController();

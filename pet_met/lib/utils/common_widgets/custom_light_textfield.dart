@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -32,8 +33,8 @@ class CustomLightTextField extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          height: height,
-          width: width,
+          height: Get.height * 0.05,
+          width: double.infinity,
           decoration: BoxDecoration(
             color: Colors.transparent,
             boxShadow: [
@@ -42,13 +43,53 @@ class CustomLightTextField extends StatelessWidget {
                     ? AppColors.whiteColor.withOpacity(0.05)
                     : AppColors.greyTextColor.withOpacity(0.5),
                 blurRadius: 10,
-                spreadRadius: 0.1,
+                spreadRadius: 0.5,
                 offset: const Offset(0, 0),
               ),
             ],
           ),
         ),
         TextFormField(
+          controller: fieldController,
+          validator: validator,
+          textInputAction: textInputAction,
+          keyboardType: textInputType,
+          cursorColor: themeProvider.darkTheme
+              ? AppColors.whiteColor
+              : AppColors.accentTextColor,
+          style: TextStyle(
+            color: themeProvider.darkTheme
+                ? AppColors.whiteColor
+                : AppColors.blackTextColor,
+            fontSize: 13.sp,
+            fontWeight: FontWeight.w400,
+            decoration: TextDecoration.none,
+          ),
+          decoration: InputDecoration(
+              fillColor: themeProvider.darkTheme
+                  ? AppColors.darkThemeBoxColor
+                  : AppColors.whiteColor,
+              filled: true,
+              contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+              ),
+              hintText: hintText,
+              hintStyle: TextStyle(
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.greyTextColor,
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w400,
+              ),
+          ),
+        ),
+        /*TextFormField(
           controller: fieldController,
           validator: validator,
           textInputAction: textInputAction,
@@ -87,7 +128,7 @@ class CustomLightTextField extends StatelessWidget {
               fontWeight: FontWeight.w400,
             ),
           ),
-        ),
+        ),*/
       ],
     );
   }

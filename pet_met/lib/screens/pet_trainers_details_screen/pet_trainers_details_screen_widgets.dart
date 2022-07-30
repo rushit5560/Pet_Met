@@ -71,7 +71,9 @@ class PetTrainerPicturesModule extends StatelessWidget {
         ),
         SizedBox(
           height: 10.h,
-          child: ListView.separated(
+          child: screenController.trainerDetails.meetingimages!.isEmpty ?
+              Center(child: Text("Empty Trainer Picture")):
+          ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: screenController.trainerDetails.meetingimages!.length,
             separatorBuilder: (context, index) {
@@ -110,28 +112,28 @@ class PetTrainerPicturesModule extends StatelessWidget {
                       ),
                     ),*/
                   ),
-                  i == 0
-                      ? Positioned(
-                          right: 0,
-                          bottom: 0,
-                          child: GestureDetector(
-                            onTap: () {
-                              Get.toNamed(AppRouteNames.uploadPetRoute);
-                            },
-                            child: Container(
-                              height: 15,
-                              width: 15,
-                              decoration: const BoxDecoration(
-                                  color: Colors.green, shape: BoxShape.circle),
-                              child: const Icon(
-                                Icons.add,
-                                color: AppColors.whiteColor,
-                                size: 12,
-                              ),
-                            ),
-                          ),
-                        )
-                      : const SizedBox()
+                  // i == 0
+                  //     ? Positioned(
+                  //         right: 0,
+                  //         bottom: 0,
+                  //         child: GestureDetector(
+                  //           onTap: () {
+                  //             Get.toNamed(AppRouteNames.uploadPetRoute);
+                  //           },
+                  //           child: Container(
+                  //             height: 15,
+                  //             width: 15,
+                  //             decoration: const BoxDecoration(
+                  //                 color: Colors.green, shape: BoxShape.circle),
+                  //             child: const Icon(
+                  //               Icons.add,
+                  //               color: AppColors.whiteColor,
+                  //               size: 12,
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       )
+                  //     : const SizedBox()
                 ],
               );
             },

@@ -243,7 +243,7 @@ class NextButton extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           // controller.submitLoginForm();
-          Get.toNamed(AppRouteNames.paymentListRoute);
+          //Get.toNamed(AppRouteNames.paymentListRoute);
         },
         child: Container(
           width: double.infinity,

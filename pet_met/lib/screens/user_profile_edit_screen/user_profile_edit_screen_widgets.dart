@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:datepicker_dropdown/datepicker_dropdown.dart';
@@ -34,7 +35,7 @@ class UploadImageModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRouteNames.loadFileRoute);
+        //Get.toNamed(AppRouteNames.loadFileRoute);
         // showModalBottomSheet<void>(
         //   context: context,
         //   constraints: null,
@@ -138,7 +139,7 @@ class UploadImageModule extends StatelessWidget {
   }
 }
 
-class TextFieldSection extends StatelessWidget {
+/*class TextFieldSection extends StatelessWidget {
   //const TextFieldSection({Key? key}) : super(key: key);
 
   String? fieldName;
@@ -177,7 +178,121 @@ class TextFieldSection extends StatelessWidget {
       ],
     );
   }
+}*/
+
+class NameTextFieldModule extends StatelessWidget {
+  NameTextFieldModule({Key? key}) : super(key: key);
+
+  final controller = Get.find<UserProfileEditController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Name",
+              style: TextStyle(
+                color: AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          fieldController: controller.nameController,
+          height: controller.size.height * 0.05,
+          width: double.infinity,
+          hintText: "Name",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.text,
+          validator: (val) => Validations().validateName(val!),
+        ),
+      ],
+    );
+  }
 }
+
+class MobileNumberTextFieldModule extends StatelessWidget {
+  MobileNumberTextFieldModule({Key? key}) : super(key: key);
+
+  final controller = Get.find<UserProfileEditController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Mobile Number",
+              style: TextStyle(
+                color: AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          fieldController: controller.mobileController,
+          height: controller.size.height * 0.05,
+          width: double.infinity,
+          hintText: "**** ** ***",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.text,
+          validator: (val) => Validations().validateMobile(val!),
+        ),
+      ],
+    );
+  }
+}
+
+class LocationTextFieldModule extends StatelessWidget {
+  LocationTextFieldModule({Key? key}) : super(key: key);
+
+  final controller = Get.find<UserProfileEditController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Location",
+              style: TextStyle(
+                color: AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          fieldController: controller.locationController,
+          height: controller.size.height * 0.05,
+          width: double.infinity,
+          hintText: "**** ** ***",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.text,
+          validator: (val) => Validations().validateLocation(val!),
+        ),
+      ],
+    );
+  }
+}
+
+
+
 
 class GenderDropDownModule extends StatefulWidget {
   GenderDropDownModule({Key? key}) : super(key: key);
@@ -301,11 +416,9 @@ class BirthDateModule extends StatelessWidget {
             ),
             boxShadow: [
               BoxShadow(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor.withOpacity(0.05)
-                    : AppColors.greyTextColor.withOpacity(0.05),
-                blurRadius: 15,
-                spreadRadius: 0.1,
+                color: AppColors.greyTextColor.withOpacity(0.3),
+                blurRadius: 35,
+                spreadRadius: 1,
                 offset: const Offset(0, 5),
               ),
             ],
@@ -319,48 +432,58 @@ class BirthDateModule extends StatelessWidget {
             monthFlex: 3,
             yearFlex: 2,
             textStyle: TextStyle(
-              color: themeProvider.darkTheme
-                  ? AppColors.greyTextColor
-                  : AppColors.greyTextColor,
+              color: AppColors.blackTextColor.withOpacity(0.6),
               fontSize: 12.sp,
               fontWeight: FontWeight.w400,
             ),
             icon: Icon(
               Icons.keyboard_arrow_down_rounded,
-              color: themeProvider.darkTheme
-                  ? AppColors.whiteColor
-                  : AppColors.greyTextColor,
+              color: AppColors.greyTextColor,
             ),
             isDropdownHideUnderline: true, // optional
             isFormValidator: true, // optional
-            startYear: 1900, // optional
-            endYear: 2020, // optional
-            width: 10,
+            // startYear: 1900, // optional
+            // endYear: 2020, // optional
+            // width: 10,
 
-            selectedDay: 14, // optional
-            selectedMonth: 10, // optional
-            selectedYear: 1993, // optional
-            onChangedDay: (value) => print('onChangedDay: $value'),
-            onChangedMonth: (value) => print('onChangedMonth: $value'),
-            onChangedYear: (value) => print('onChangedYear: $value'),
+            // selectedDay: DateTime.now(), // optional
+            // selectedMonth: 10, // optional
+            // selectedYear: 1993, // optional
+            onChangedDay: (value){
+              controller.day = value!;
+              log('onChangedDay: ${controller.day}');
+            },
+            onChangedMonth: (value) {
+              controller.month = value!;
+              log('onChangedMonth: ${controller.month}');
+            },
+            onChangedYear: (value) {
+              controller.year = value!;
+              log('onChangedYear: ${controller.year}');
+            },
             // showDay: false,// optional
             // dayFlex: 2,// optional
             // locale: "zh_CN",// optional
           ),
-        )
+        ),
       ],
     );
   }
 }
 
 class SubmitButton extends StatelessWidget {
-  const SubmitButton({Key? key}) : super(key: key);
+  SubmitButton({Key? key}) : super(key: key);
+
+  final controller = Get.find<UserProfileEditController>();
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // controller.submitLoginForm();
+        if(controller.formKey.currentState!.validate()){
+
+        }
+         //controller.submitLoginForm();
       },
       child: Container(
         width: double.infinity,

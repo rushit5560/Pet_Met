@@ -288,7 +288,7 @@ class NgoBankNameModule extends StatelessWidget {
   }
 }
 
-class CommonTextFieldModule extends StatelessWidget {
+/*class CommonTextFieldModule extends StatelessWidget {
   //CommonTextFieldModule({Key? key}) : super(key: key);
   String? fieldName;
   String? fieldHinttext;
@@ -327,7 +327,159 @@ class CommonTextFieldModule extends StatelessWidget {
       ],
     );
   }
+}*/
+
+class NgoBankAccountNumberTextFieldModule extends StatelessWidget {
+  NgoBankAccountNumberTextFieldModule({Key? key}) : super(key: key);
+
+  final screenController = Get.find<NgoUserProfileScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Ngo Bank Account Number",
+              style: TextStyle(
+                color: AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          fieldController: screenController.accountNumberController,
+          height: screenController.size.height * 0.05,
+          width: double.infinity,
+          hintText: "Ngo Bank Account Number",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.emailAddress,
+          validator: (val) => Validations().validateBankAccountNumber(val!),
+        ),
+      ],
+    );
+  }
 }
+
+class IfscCodeTextFieldModule extends StatelessWidget {
+  IfscCodeTextFieldModule({Key? key}) : super(key: key);
+  final screenController = Get.find<NgoUserProfileScreenController>();
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "IFSC Code",
+              style: TextStyle(
+                color: AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          fieldController: screenController.ifscCodeController,
+          height: screenController.size.height * 0.05,
+          width: double.infinity,
+          hintText: "**** ** ***",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.emailAddress,
+          validator: (val) => Validations().validateIfscCode(val!),
+        ),
+      ],
+    );
+  }
+}
+
+class NgoAddressTextFieldModule extends StatelessWidget {
+  NgoAddressTextFieldModule({Key? key}) : super(key: key);
+
+  final screenController = Get.find<NgoUserProfileScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Ngo Address",
+              style: TextStyle(
+                color: AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          fieldController: screenController.addressController,
+          height: screenController.size.height * 0.05,
+          width: double.infinity,
+          hintText: "**** ** ***",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.emailAddress,
+          validator: (val) => Validations().validateAddress(val!),
+        ),
+      ],
+    );
+  }
+}
+
+class NgoContactTextFieldModule extends StatelessWidget {
+  NgoContactTextFieldModule({Key? key}) : super(key: key);
+
+  final screenController = Get.find<NgoUserProfileScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Ngo Contact",
+              style: TextStyle(
+                color: AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          fieldController: screenController.contactController,
+          height: screenController.size.height * 0.05,
+          width: double.infinity,
+          hintText: "Ngo Contact",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.number,
+          validator: (val) => Validations().validateMobile(val!),
+        ),
+      ],
+    );
+  }
+}
+
+
+
+
 
 class OpenAndCloseShopTimeModule extends StatelessWidget {
   OpenAndCloseShopTimeModule({Key? key}) : super(key: key);
@@ -484,12 +636,17 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
 }
 
 class SubmitButtonModule extends StatelessWidget {
-  const SubmitButtonModule({Key? key}) : super(key: key);
+  SubmitButtonModule({Key? key}) : super(key: key);
+
+  final screenController = Get.find<NgoUserProfileScreenController>();
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        if(screenController.formKey.currentState!.validate()){
+
+        }
         // controller.submitLoginForm();
       },
       child: Container(

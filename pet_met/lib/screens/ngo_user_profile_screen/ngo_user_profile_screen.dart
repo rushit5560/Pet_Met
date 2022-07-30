@@ -25,43 +25,53 @@ class NgoUserProfileScreen extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 20, vertical: 20),
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 25),
-                          UploadImageModule(),
-                          const SizedBox(height: 30),
+                      child: Form(
+                        key: controller.formKey,
+                        child: Column(
+                          children: [
+                            const SizedBox(height: 25),
+                            UploadImageModule(),
+                            const SizedBox(height: 30),
 
-                          NameOfNgoListModule(),
-                          const SizedBox(height: 30),
-                          NgoBankNameModule(),
-                          const SizedBox(height: 30),
-                          CommonTextFieldModule(
-                              fieldName: 'Ngo Bank Account Number'),
+                            NameOfNgoListModule(),
+                            const SizedBox(height: 30),
+                            NgoBankNameModule(),
+                            const SizedBox(height: 30),
+                            // CommonTextFieldModule(
+                            //     fieldName: 'Ngo Bank Account Number'),
+                            NgoBankAccountNumberTextFieldModule(),
 
-                          const SizedBox(height: 15),
 
-                          CommonTextFieldModule(
-                            fieldName: "IFSC Code",
-                            //fieldHinttext: "**** ** ***",
-                          ),
-                          const SizedBox(height: 15),
-                          CommonTextFieldModule(
-                            fieldName: "Ngo Address",
-                            //fieldHinttext: "**** ** ***",
-                          ),
-                          const SizedBox(height: 15),
-                          CommonTextFieldModule(
-                            fieldName: "Ngo Contact",
-                            //fieldHinttext: "**** ** ***",
-                          ),
-                          // const SizedBox(height: 15),
-                          // OpenAndCloseShopTimeModule(),
+                            const SizedBox(height: 15),
 
-                          const SizedBox(height: 30),
+                            // CommonTextFieldModule(
+                            //   fieldName: "IFSC Code",
+                            //   //fieldHinttext: "**** ** ***",
+                            // ),
+                            IfscCodeTextFieldModule(),
 
-                          const SubmitButtonModule(),
-                          const SizedBox(height: 15),
-                        ],
+                            const SizedBox(height: 15),
+
+                            NgoAddressTextFieldModule(),
+                            // CommonTextFieldModule(
+                            //   fieldName: "Ngo Address",
+                            //   //fieldHinttext: "**** ** ***",
+                            // ),
+                            const SizedBox(height: 15),
+                            NgoContactTextFieldModule(),
+                            // CommonTextFieldModule(
+                            //   fieldName: "Ngo Contact",
+                            //   //fieldHinttext: "**** ** ***",
+                            // ),
+                            // const SizedBox(height: 15),
+                            // OpenAndCloseShopTimeModule(),
+
+                            const SizedBox(height: 30),
+
+                            SubmitButtonModule(),
+                            const SizedBox(height: 15),
+                          ],
+                        ),
                       ),
                     ),
                   ),

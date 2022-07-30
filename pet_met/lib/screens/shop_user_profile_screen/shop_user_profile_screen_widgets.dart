@@ -61,7 +61,7 @@ class UploadImageModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRouteNames.loadFileRoute);
+        //Get.toNamed(AppRouteNames.loadFileRoute);
         // showModalBottomSheet<void>(
         //   context: context,
         //   constraints: null,
@@ -165,7 +165,7 @@ class AddShopOffersListModule extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Add Shops offers:"),
+        Text("Add Shops offers:", style: TextStyle(color: Colors.black),),
         SizedBox(height: 8),
         Container(
           height: screenController.size.width * 0.16,
@@ -230,7 +230,7 @@ class MeetingAvailabilityModule extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Add Shops offers:"),
+        Text("Add Meeting AVailability for Pets:", style: TextStyle(color: Colors.black)),
         SizedBox(height: 8),
         Container(
           height: screenController.size.width * 0.16,
@@ -284,6 +284,117 @@ class MeetingAvailabilityModule extends StatelessWidget {
     );
   }
 }
+
+class ShopNameTextFieldModule extends StatelessWidget {
+  ShopNameTextFieldModule({Key? key}) : super(key: key);
+
+  final screenController = Get.find<ShopUserProfileScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Shop Name",
+              style: TextStyle(
+                color: AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          fieldController: screenController.nameController,
+          height: screenController.size.height * 0.05,
+          width: double.infinity,
+          hintText: "Shop Name",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.text,
+          validator: (val) => Validations().validateName(val!),
+        ),
+      ],
+    );
+  }
+}
+
+class ContactNumberTextFieldModule extends StatelessWidget {
+  ContactNumberTextFieldModule({Key? key}) : super(key: key);
+  final screenController = Get.find<ShopUserProfileScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Contact Number",
+              style: TextStyle(
+                color: AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          fieldController: screenController.contactNumber,
+          height: screenController.size.height * 0.05,
+          width: double.infinity,
+          hintText: "**** ** ***",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.text,
+          validator: (val) => Validations().validateMobile(val!),
+        ),
+      ],
+    );
+  }
+}
+
+class AddressTextFieldModule extends StatelessWidget {
+   AddressTextFieldModule({Key? key}) : super(key: key);
+
+  final screenController = Get.find<ShopUserProfileScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Address",
+              style: TextStyle(
+                color: AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          fieldController: screenController.addressController,
+          height: screenController.size.height * 0.05,
+          width: double.infinity,
+          hintText: "**** ** ***",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.text,
+          validator: (val) => Validations().validateAddress(val!),
+        ),
+      ],
+    );
+  }
+}
+
 
 class CommonTextFieldModule extends StatelessWidget {
   //CommonTextFieldModule({Key? key}) : super(key: key);
@@ -367,8 +478,8 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                     ),
                   ),
                   TextFormField(
-                    //controller: fieldController,
-                    //validator: validator,
+                    controller: screenController.openTimeController,
+                    validator: (val) => Validations().validateOpenTime(val!),
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.number,
                     style: TextStyle(
@@ -437,8 +548,8 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                     ),
                   ),
                   TextFormField(
-                    //controller: fieldController,
-                    //validator: validator,
+                    controller: screenController.closeTimeController,
+                    validator: (val) => Validations().validateCloseTime(val!),
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.number,
                     style: TextStyle(
@@ -481,12 +592,17 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
 }
 
 class SubmitButtonModule extends StatelessWidget {
-  const SubmitButtonModule({Key? key}) : super(key: key);
+  SubmitButtonModule({Key? key}) : super(key: key);
+
+  final screenController = Get.find<ShopUserProfileScreenController>();
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        if(screenController.formKey.currentState!.validate()){
+
+        }
         // controller.submitLoginForm();
       },
       child: Container(

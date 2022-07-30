@@ -3,3 +3,8 @@ enum AppBarOption {
   singleBackButtonOption,
   drawerButtonOption,
 }
+
+enum PetOption {
+  addOption,
+  updateOption,
+}

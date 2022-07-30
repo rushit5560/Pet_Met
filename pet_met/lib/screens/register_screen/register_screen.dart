@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pet_met/controllers/register_controller.dart';
+import 'package:pet_met/screens/register_screen/register_screen_widgets.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_functions/hide_keyboard.dart';
 import 'package:provider/provider.dart';
@@ -93,36 +94,39 @@ class RegisterScreen extends StatelessWidget {
                         ],
                       ),
                       SizedBox(height: 5.h),
-                      CustomLightTextField(
-                        fieldController: controller.mailController,
-                        height: controller.size.height * 0.065,
-                        width: double.infinity,
-                        hintText: "Email Address",
-                        textInputAction: TextInputAction.next,
-                        textInputType: TextInputType.emailAddress,
-                        validator: (val) => Validations().validateEmail(val!),
-                      ),
+                      // CustomLightTextField(
+                      //   fieldController: controller.mailController,
+                      //   height: controller.size.height * 0.065,
+                      //   width: double.infinity,
+                      //   hintText: "Email Address",
+                      //   textInputAction: TextInputAction.next,
+                      //   textInputType: TextInputType.emailAddress,
+                      //   validator: (val) => Validations().validateEmail(val!),
+                      // ),
+                      EmailTextFieldModule(),
                       SizedBox(height: 2.h),
-                      CustomLightTextField(
-                        fieldController: controller.nameController,
-                        height: controller.size.height * 0.065,
-                        width: double.infinity,
-                        hintText: "Name",
-                        textInputAction: TextInputAction.next,
-                        textInputType: TextInputType.emailAddress,
-                        validator: (val) =>
-                            Validations().validateUserName(val!),
-                      ),
+                      NameTextFieldModule(),
+                      // CustomLightTextField(
+                      //   fieldController: controller.nameController,
+                      //   height: controller.size.height * 0.065,
+                      //   width: double.infinity,
+                      //   hintText: "Name",
+                      //   textInputAction: TextInputAction.next,
+                      //   textInputType: TextInputType.emailAddress,
+                      //   validator: (val) =>
+                      //       Validations().validateUserName(val!),
+                      // ),
                       SizedBox(height: 2.h),
-                      CustomLightPassField(
-                        fieldController: controller.passController,
-                        height: controller.size.height * 0.065,
-                        width: double.infinity,
-                        hintText: "Password",
-                        textInputAction: TextInputAction.done,
-                        validator: (val) =>
-                            Validations().validatePassword(val!),
-                      ),
+                      PasswordTextFieldModule(),
+                      // CustomLightPassField(
+                      //   fieldController: controller.passController,
+                      //   height: controller.size.height * 0.065,
+                      //   width: double.infinity,
+                      //   hintText: "Password",
+                      //   textInputAction: TextInputAction.done,
+                      //   validator: (val) =>
+                      //       Validations().validatePassword(val!),
+                      // ),
                       SizedBox(height: 2.h),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,

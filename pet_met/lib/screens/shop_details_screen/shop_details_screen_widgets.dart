@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/shop_details_screen_controller.dart';
 import 'package:pet_met/utils/api_url.dart';
@@ -57,7 +60,9 @@ class OffersModule extends StatelessWidget {
         SizedBox(height: screenController.size.height * 0.0005.h),
         SizedBox(
           height: screenController.size.width * 0.18,
-          child: ListView.builder(
+          child: screenController.shopData.offersimages!.isEmpty ?
+              const Center(child: Text("Empty Offers")):
+          ListView.builder(
             itemCount: screenController.shopData.offersimages!.length,
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
@@ -281,12 +286,15 @@ class MeetingAvailabilityModule extends StatelessWidget {
         SizedBox(height: screenController.size.height * 0.001.h),
         SizedBox(
           height: screenController.size.width * 0.15,
-          child: ListView.builder(
+          child: screenController.shopData.meetingimages!.length == 0 ?
+              const Text("Empty Meeting"):
+          ListView.builder(
             itemCount: screenController.shopData.meetingimages!.length,
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, i) {
+              log('Meeting image: ${screenController.shopData.meetingimages!.length}');
               String imgUrl = ApiUrl.apiImagePath +
                   screenController.shopData.meetingimages![i];
               return _meetingAvailabilityListTile(imgUrl);
@@ -340,16 +348,17 @@ class OverViewModule extends StatelessWidget {
               fontSize: 12.sp),
         ),
         SizedBox(height: screenController.size.height * 0.002.h),
-        Text(
-          "Established in the year 2015, Firstdog Pet Shop in Katargam, Surat is a top player in the category Pet Food Dealers in the Surat. This well-known establishment acts as a one-stop destination servicing customers both local and from other parts of Surat."
-          "Over the course of its journey, this business has established a firm foothold in it’s industry. The belief that customer satisfaction is as important as their products and services, have helped this establishment garner a vast base of customers, which continues to grow by the day."
-          "This business employs individuals that are dedicated towards their respective roles and put in a lot of effort to achieve the common vision and larger goals of the company. In the near future, this business aims to expand its line of products and services and cater to a larger client base. In Surat, this establishment occupies a prominent location in Katargam. It is an effortless task in commuting to this establishment as there are various modes of transport readily available. It is at Behind Lake Garden, Opposite Jain Derasar."
-          "which makes it easy for first-time visitors in locating this establishment. It is known to provide top service in the following categories: Pet Shops, Pet Shops For Dog, Pet Shops For Labrador Dog, Pet Shops For German Shepherd Dog, Pet Shops For Pug Dog, Pet Food Dealers, Pet Grooming Services, Dog Food Retailers.",
-          style: TextStyle(
-            color: themeProvider.darkTheme
-                ? AppColors.whiteColor
-                : AppColors.blackTextColor,
-          ),
+        Html(
+            data: screenController.shopData.fullText!,
+          style: {
+            "body": Style(
+              fontSize: FontSize(18.0),
+              fontWeight: FontWeight.bold,
+              color: themeProvider.darkTheme
+                      ? AppColors.whiteColor
+                      : AppColors.blackTextColor,
+            ),
+          },
         ),
         SizedBox(height: screenController.size.height * 0.003.h),
       ],

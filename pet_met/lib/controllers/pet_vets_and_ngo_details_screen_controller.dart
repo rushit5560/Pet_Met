@@ -112,19 +112,19 @@ class VetNgoData {
       this.userId});
 
   VetNgoData.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    imageList = json['image_list'];
-    showimg = json['showimg'];
-    contact = json['contact'];
-    address = json['address'];
-    isActive = json['is_active'];
-    socialMedias = json['social_medias'];
-    openTime = json['open_time'];
-    closeTime = json['close_time'];
-    overview = json['overview'];
-    roleId = json['role_id'];
-    userId = json['user_id'];
+    id = json['id'] ?? 0;
+    name = json['name'] ?? "";
+    imageList = json['image_list'] ?? "";
+    showimg = json['showimg'] ?? "";
+    contact = json['contact'] ?? 0;
+    address = json['address'] ?? "";
+    isActive = json['is_active'] ?? "";
+    socialMedias = json['social_medias'] ?? "";
+    openTime = json['open_time'] ?? "";
+    closeTime = json['close_time'] ?? "";
+    overview = json['overview'] ?? "";
+    roleId = json['role_id'] ?? 0;
+    userId = json['user_id'] ?? 0;
   }
 
   Map<String, dynamic> toJson() {

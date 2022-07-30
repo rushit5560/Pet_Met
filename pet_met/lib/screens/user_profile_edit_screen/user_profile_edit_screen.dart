@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/controllers/user_profile_edit_controller.dart';
 import 'package:pet_met/screens/user_profile_edit_screen/user_profile_edit_screen_widgets.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
+import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -73,37 +74,49 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                 //   ),
                 // ),
                 Expanded(
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 20),
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 25),
-                          UploadImageModule(),
-                          const SizedBox(height: 30),
-                          TextFieldSection(
-                            fieldName: "Name",
-                            fieldHinttext: "Your Pet Title",
+                  child: Obx(()=>
+                  controller.isLoading.value ?
+                      CustomAnimationLoader():
+                     SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 20),
+                        child: Form(
+                          key: controller.formKey,
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 25),
+                              UploadImageModule(),
+                              const SizedBox(height: 30),
+                              // TextFieldSection(
+                              //   fieldName: "Name",
+                              //   fieldHinttext: "Your Pet Title",
+                              // ),
+                              NameTextFieldModule(),
+
+                              const SizedBox(height: 15),
+                              // TextFieldSection(
+                              //   fieldName: "Mobile Number",
+                              //   fieldHinttext: "**** ** ***",
+                              // ),
+                              MobileNumberTextFieldModule(),
+                              const SizedBox(height: 15),
+
+                              LocationTextFieldModule(),
+                              // TextFieldSection(
+                              //   fieldName: "Location",
+                              //   fieldHinttext: "**** ** ***",
+                              // ),
+                              const SizedBox(height: 15),
+                              GenderDropDownModule(),
+                              SizedBox(height: 15),
+                              BirthDateModule(),
+                              const SizedBox(height: 30),
+                              SubmitButton(),
+                              const SizedBox(height: 15),
+                            ],
                           ),
-                          const SizedBox(height: 15),
-                          TextFieldSection(
-                            fieldName: "Mobile Number",
-                            fieldHinttext: "**** ** ***",
-                          ),
-                          const SizedBox(height: 15),
-                          TextFieldSection(
-                            fieldName: "Location",
-                            fieldHinttext: "**** ** ***",
-                          ),
-                          const SizedBox(height: 15),
-                          GenderDropDownModule(),
-                          SizedBox(height: 15),
-                          BirthDateModule(),
-                          const SizedBox(height: 30),
-                          SubmitButton(),
-                          const SizedBox(height: 15),
-                        ],
+                        ),
                       ),
                     ),
                   ),

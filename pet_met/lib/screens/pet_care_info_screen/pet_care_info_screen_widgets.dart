@@ -32,19 +32,19 @@ class PetCareListModule extends StatelessWidget {
           SizedBox(height: controller.size.height * 0.001.h),
           Html(
             data: controller.description,
-            style: {
-              "body": Style(
-                textDecorationColor: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.blackTextColor,
-                // color: themeProvider.darkTheme
-                //     ? AppColors.whiteColor
-                //     : AppColors.blackTextColor,
-                // textDecorationColor: themeProvider.darkTheme
-                //     ? AppColors.whiteColor
-                //     : AppColors.blackTextColor,
-              ),
-            },
+            // style: {
+            //   "body": Style(
+            //     textDecorationColor: themeProvider.darkTheme
+            //         ? AppColors.whiteColor
+            //         : AppColors.blackTextColor,
+            //     // color: themeProvider.darkTheme
+            //     //     ? AppColors.whiteColor
+            //     //     : AppColors.blackTextColor,
+            //     // textDecorationColor: themeProvider.darkTheme
+            //     //     ? AppColors.whiteColor
+            //     //     : AppColors.blackTextColor,
+            //   ),
+            // },
           ),
         ],
       ),

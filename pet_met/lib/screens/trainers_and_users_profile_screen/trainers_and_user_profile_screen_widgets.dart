@@ -264,6 +264,120 @@ class CommonTextFieldModule extends StatelessWidget {
   }
 }
 
+class TrainersNameTextFieldModule extends StatelessWidget {
+ // const TrainersNameTextFieldModule({Key? key}) : super(key: key);
+
+  final screenController = Get.find<TrainersAndUsersScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Trainers Name",
+              style: TextStyle(
+                color: AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          fieldController: screenController.nameController,
+          height: screenController.size.height * 0.05,
+          width: double.infinity,
+          hintText: "Trainers Name",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.text,
+          validator: (val) => Validations().validateName(val!),
+        ),
+      ],
+    );
+  }
+}
+
+class TrainersContactNumberTextField extends StatelessWidget {
+  TrainersContactNumberTextField({Key? key}) : super(key: key);
+
+  final screenController = Get.find<TrainersAndUsersScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Trainers Contact",
+              style: TextStyle(
+                color: AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          fieldController: screenController.contactNumber,
+          height: screenController.size.height * 0.05,
+          width: double.infinity,
+          hintText: "Trainers Contact",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.number,
+          validator: (val) => Validations().validateMobile(val!),
+        ),
+      ],
+    );
+  }
+}
+
+class TrainersAddressTextFieldModule extends StatelessWidget {
+  TrainersAddressTextFieldModule({Key? key}) : super(key: key);
+
+  final screenController = Get.find<TrainersAndUsersScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Trainers Address",
+              style: TextStyle(
+                color: AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          fieldController: screenController.addressController,
+          height: screenController.size.height * 0.05,
+          width: double.infinity,
+          hintText: "Trainers Address",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.text,
+          validator: (val) => Validations().validateAddress(val!),
+        ),
+      ],
+    );
+  }
+}
+
+
+
+
 class TrainersDetailsModule extends StatelessWidget {
   TrainersDetailsModule({Key? key}) : super(key: key);
 
@@ -301,8 +415,8 @@ class TrainersDetailsModule extends StatelessWidget {
               ),
             ),
             TextFormField(
-              //controller: fieldController,
-              //validator: validator,
+              controller: screenController.detailsController,
+              validator: (value) => Validations().validateDetails(value!),
               maxLines: 5,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.number,
@@ -342,12 +456,17 @@ class TrainersDetailsModule extends StatelessWidget {
 }
 
 class SubmitButtonModule extends StatelessWidget {
-  const SubmitButtonModule({Key? key}) : super(key: key);
+  SubmitButtonModule({Key? key}) : super(key: key);
+
+  final screenController = Get.find<TrainersAndUsersScreenController>();
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        if(screenController.formKey.currentState!.validate()){
+          
+        }
         // controller.submitLoginForm();
       },
       child: Container(

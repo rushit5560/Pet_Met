@@ -56,6 +56,7 @@ class AddAddressController extends GetxController {
 
       if (isSuccessStatus.value) {
         addressController.clear();
+        Get.back();
         Fluttertoast.showToast(msg: addAddressModel.message);
       } else {
         Fluttertoast.showToast(msg: addAddressModel.message);

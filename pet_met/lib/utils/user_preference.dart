@@ -15,6 +15,7 @@ class UserPreference {
   String userIdKey = "userIdKey";
   String userNameKey = "userNameKey";
   String userEmailKey = "userEmailKey";
+  String roleId1Key = "roleIdKey";
   String userProfileImageKey = "userProfileImageKey";
 
   /// Set Role Id Key
@@ -22,6 +23,7 @@ class UserPreference {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setInt(roleIdKey, value);
     UserDetails.roleId = prefs.getInt(roleIdKey) ?? 0;
+    log('role: ${UserDetails.roleId}');
     log("RoleIdKey : ${prefs.getInt(roleIdKey)}");
   }
 
@@ -33,6 +35,7 @@ class UserPreference {
     required String userEmail,
     required String userProfileImage,
     required String token,
+    required int roleId
   }) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setInt(selfIdKey, selfId);
@@ -41,6 +44,7 @@ class UserPreference {
     prefs.setString(userEmailKey, userEmail);
     prefs.setString(userProfileImageKey, userProfileImage);
     prefs.setString(userTokenKey, token);
+    prefs.setInt(roleId1Key, roleId);
     prefs.setBool(isUserLoggedInKey, true);
 
     UserDetails.selfId = prefs.getInt(selfIdKey) ?? 0;
@@ -49,6 +53,7 @@ class UserPreference {
     UserDetails.userEmail = prefs.getString(userEmailKey) ?? "";
     UserDetails.userProfileImage = prefs.getString(userProfileImageKey) ?? "";
     UserDetails.userToken = prefs.getString(userTokenKey) ?? "";
+    UserDetails.categoryId = prefs.getInt(roleId1Key) ?? 0;
     UserDetails.isUserLoggedIn = prefs.getBool(isUserLoggedInKey) ?? false;
 
     log("selfId : ${UserDetails.selfId}");
@@ -57,6 +62,7 @@ class UserPreference {
     log("userEmail : ${UserDetails.userEmail}");
     log("userProfileImage : ${UserDetails.userProfileImage}");
     log("userToken : ${UserDetails.userToken}");
+    log("roleId : ${UserDetails.categoryId}");
     log("isUserLoggedIn : ${UserDetails.isUserLoggedIn}");
   }
 
@@ -71,6 +77,7 @@ class UserPreference {
     prefs.setString(userNameKey, "");
     prefs.setString(userEmailKey, "");
     prefs.setString(userProfileImageKey, "");
+    prefs.setInt(roleId1Key, 0);
 
     // Get Default Value From Prefs
     UserDetails.selfId = prefs.getInt(selfIdKey) ?? 0;
@@ -79,6 +86,7 @@ class UserPreference {
     UserDetails.userEmail = prefs.getString(userEmailKey) ?? "";
     UserDetails.userProfileImage = prefs.getString(userProfileImageKey) ?? "";
     UserDetails.userToken = prefs.getString(userTokenKey) ?? "";
+    UserDetails.categoryId = prefs.getInt(roleId1Key) ?? 0;
     UserDetails.isUserLoggedIn = prefs.getBool(isUserLoggedInKey) ?? false;
   }
 }

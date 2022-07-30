@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:datepicker_dropdown/datepicker_dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/controllers/upload_pet_controller.dart';
@@ -11,6 +12,7 @@ import 'package:pet_met/models/get_all_sub_category_model/get_all_sub_category_m
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
+import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/validations.dart';
 import 'package:sizer/sizer.dart';
 
@@ -92,11 +94,11 @@ class _UploadImageModuleState extends State<UploadImageModule> {
           borderRadius: const BorderRadius.all(
             Radius.circular(15),
           ),
-          image: DecorationImage(
-            image: FileImage(
-              File(controller.imageFile!.path),
-            ),
-          ),
+          // image: DecorationImage(
+          //   image: FileImage(
+          //     File(controller.imageFile!.path),
+          //   ),
+          // ),
           boxShadow: [
             BoxShadow(
               color: AppColors.greyTextColor.withOpacity(0.3),
@@ -106,8 +108,57 @@ class _UploadImageModuleState extends State<UploadImageModule> {
             ),
           ],
         ),
-        child: controller.imageFile!.path.isEmpty
+        child: controller.imageFile != null
             ? Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.file(
+                themeProvider.darkTheme
+                    ? controller.imageFile! : controller.imageFile!,height: 65,),
+
+              //),
+              // const SizedBox(height: 20),
+              // Text(
+              //   "Upload Image",
+              //   style: TextStyle(
+              //     color: themeProvider.darkTheme
+              //         ? AppColors.whiteColor
+              //         : AppColors.blackTextColor,
+              //     fontSize: 15.sp,
+              //     fontWeight: FontWeight.w500,
+              //   ),
+              // ),
+            ],
+          ),
+        ):
+        controller.petImage != null ?
+        Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.network(
+                themeProvider.darkTheme
+                    ? controller.petImage! : controller.petImage!,height: 65,),
+
+              //),
+              // const SizedBox(height: 20),
+              // Text(
+              //   "Upload Image",
+              //   style: TextStyle(
+              //     color: themeProvider.darkTheme
+              //         ? AppColors.whiteColor
+              //         : AppColors.blackTextColor,
+              //     fontSize: 15.sp,
+              //     fontWeight: FontWeight.w500,
+              //   ),
+              // ),
+            ],
+          ),
+        ):
+        Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -132,14 +183,13 @@ class _UploadImageModuleState extends State<UploadImageModule> {
                   ],
                 ),
               )
-            : SizedBox(),
       ),
     );
   }
 
   /// Get from gallery
   getFromGallery() async {
-    XFile? pickedFile = await ImagePicker().pickImage(
+    /*XFile? pickedFile = await ImagePicker().pickImage(
       source: ImageSource.gallery,
       maxWidth: 1800,
       maxHeight: 1800,
@@ -148,21 +198,69 @@ class _UploadImageModuleState extends State<UploadImageModule> {
       setState(() {
         controller.imageFile = XFile(pickedFile.path);
       });
+    }*/
+    final pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+    );
+
+    if (pickedFile != null) {
+      //setState(() {
+      controller.imageFile = File(pickedFile.path);
+      controller.loadUI();
+      log('Camera File Path : ${controller.imageFile}');
+      log('Camera Image Path : ${controller.imageFile!.path}');
+
+
+      //Fluttertoast.showToast(msg: '${image.path}', toastLength: Toast.LENGTH_LONG);
+      //renameImage();
+      //});
+    } else {
+
+
     }
+
+    controller.imageFile = File(pickedFile!.path);
+    setState(() {});
+
+    Navigator.pop(context);
   }
 
   /// Get from Camera
   getFromCamera() async {
-    XFile? pickedFile = await ImagePicker().pickImage(
+    // XFile? pickedFile = await ImagePicker().pickImage(
+    //   source: ImageSource.camera,
+    //   maxWidth: 1800,
+    //   maxHeight: 1800,
+    // );
+    // if (pickedFile != null) {
+    //   setState(() {
+    //     controller.imageFile = XFile(pickedFile.path);
+    //   });
+    // }
+    final pickedFile = await ImagePicker().pickImage(
       source: ImageSource.camera,
-      maxWidth: 1800,
-      maxHeight: 1800,
     );
+
     if (pickedFile != null) {
-      setState(() {
-        controller.imageFile = XFile(pickedFile.path);
-      });
+      //setState(() {
+      controller.imageFile = File(pickedFile.path);
+      controller.loadUI();
+      log('Camera File Path : ${controller.imageFile}');
+      log('Camera Image Path : ${controller.imageFile!.path}');
+
+
+      //Fluttertoast.showToast(msg: '${image.path}', toastLength: Toast.LENGTH_LONG);
+      //renameImage();
+      //});
+    } else {
+
+
     }
+
+    controller.imageFile = File(pickedFile!.path);
+    setState(() {});
+
+    Navigator.pop(context);
   }
 }
 
@@ -242,7 +340,7 @@ class PetNameTextFieldModule extends StatelessWidget {
           hintText: "Pet Name",
           textInputAction: TextInputAction.next,
           textInputType: TextInputType.text,
-          validator: (val) => Validations().validateEmail(val!),
+          validator: (val) => Validations().validateName(val!),
         ),
       ],
     );
@@ -399,7 +497,7 @@ class TypesOfPetDropDownModule extends StatelessWidget {
                             : AppColors.blackTextColor.withOpacity(0.7),
                         fontSize: 13.sp,
                       ),
-                      onChanged: (value) {
+                      onChanged: (value) async {
                         // controller.petCategoryDropDownValue = value!;
                         // controller.loadUI();
 
@@ -407,7 +505,7 @@ class TypesOfPetDropDownModule extends StatelessWidget {
                         controller.petCategoryDropDownValue = value!;
                          controller.petSubCategoryList.clear();
                         controller.petSubCategoryList.add(PetSubCategory(categoryName: 'Select Sub Category'));
-                        controller.getSubCategoryUsingCategoryId(categoryId: "${controller.petCategoryDropDownValue.categoryId}");
+                        await controller.getSubCategoryUsingCategoryId(categoryId: "${controller.petCategoryDropDownValue.categoryId}");
                          log("petCategoryDropDownValue : ${controller.petCategoryDropDownValue}");
                         controller.isLoading(false);
                       },
@@ -588,6 +686,45 @@ class PetSubCategoryDropDownModule extends StatelessWidget {
   }
 }
 
+class PetDetailsTextFieldModule extends StatelessWidget {
+  PetDetailsTextFieldModule({Key? key}) : super(key: key);
+  final controller = Get.find<UploadPetController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Pet Details",
+              style: TextStyle(
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          fieldController: controller.petDetailsController,
+          height: controller.size.height * 0.065,
+          width: double.infinity,
+          hintText: "Pet Details",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.text,
+          validator: (val) => Validations().validateDetails(val!),
+        ),
+      ],
+    );
+  }
+}
+
+
 
 class MeetingAvailabilityDropDown extends StatefulWidget {
   const MeetingAvailabilityDropDown({Key? key}) : super(key: key);
@@ -621,7 +758,7 @@ class _MeetingAvailabilityDropDownState
           ],
         ),
         const SizedBox(height: 8),
-        Container(
+        /*Container(
           height: controller.size.height * 0.06,
           width: double.infinity,
           padding: const EdgeInsets.only(left: 15, right: 15),
@@ -666,7 +803,96 @@ class _MeetingAvailabilityDropDownState
               },
             ),
           ),
-        ),
+        ),*/
+        Stack(
+          children: [
+            Container(
+              height: controller.size.height * 0.06,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: themeProvider.darkTheme
+                      ? AppColors.darkThemeBoxColor
+                      : AppColors.whiteColor,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.greyTextColor.withOpacity(0.3),
+                      blurRadius: 35,
+                      spreadRadius: 1,
+                      offset: const Offset(0, 5),
+                    ),
+                  ]
+              ),
+            ),
+            Obx(
+                  () => Container(
+                padding: const EdgeInsets.only(left: 10),
+                width: Get.width,
+                //gives the width of the dropdown button
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  //color: Colors.grey.shade200,
+                ),
+                child: Theme(
+                  data: Theme.of(context).copyWith(
+                    canvasColor: Colors.grey.shade100,
+                    buttonTheme: ButtonTheme.of(context).copyWith(
+                      alignedDropdown: true,
+                    ),
+                  ),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                      value: controller.meetingAvailabilityValue.value,
+                      icon: Icon(
+                        Icons.keyboard_arrow_down_rounded,
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.blackTextColor.withOpacity(0.7),
+                      ),
+                      items: <String>[
+                        'Yes',
+                        'No'
+                      ].map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(color: Colors.black),
+                          ),
+                        );
+                      }).toList(),
+                      // isDense: true,
+                      // isExpanded: true,
+                      dropdownColor: themeProvider.darkTheme
+                          ? AppColors.darkThemeBoxColor
+                          : AppColors.whiteColor,
+                      underline: SizedBox(),
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      style: TextStyle(
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.blackTextColor.withOpacity(0.7),
+                        fontSize: 13.sp,
+                      ),
+                      onChanged: (value) {
+                        // controller.petCategoryDropDownValue = value!;
+                        // controller.loadUI();
+
+                        controller.isLoading(true);
+                        controller.meetingAvailabilityValue.value = value!;
+                        // controller.areaList.clear();
+                        // authScreenController.areaList.add(GetAreaList(areaName: 'Select Area'));
+
+                        // print("cityDropDownValue : ${authScreenController.cityDropDownValue}");
+                        controller.isLoading(false);
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        )
       ],
     );
   }
@@ -741,16 +967,25 @@ class _BirthDateDropDownState extends State<BirthDateDropDown> {
             ),
             isDropdownHideUnderline: true, // optional
             isFormValidator: true, // optional
-            startYear: 1900, // optional
-            endYear: 2020, // optional
-            width: 10,
+            // startYear: 1900, // optional
+            // endYear: 2020, // optional
+            // width: 10,
 
-            selectedDay: 14, // optional
-            selectedMonth: 10, // optional
-            selectedYear: 1993, // optional
-            onChangedDay: (value) => print('onChangedDay: $value'),
-            onChangedMonth: (value) => print('onChangedMonth: $value'),
-            onChangedYear: (value) => print('onChangedYear: $value'),
+            // selectedDay: DateTime.now(), // optional
+            // selectedMonth: 10, // optional
+            // selectedYear: 1993, // optional
+            onChangedDay: (value){
+              controller.day = value!;
+              log('onChangedDay: ${controller.day}');
+            },
+            onChangedMonth: (value) {
+              controller.month = value!;
+              log('onChangedMonth: ${controller.month}');
+            },
+            onChangedYear: (value) {
+              controller.year = value!;
+              log('onChangedYear: ${controller.year}');
+            },
             // showDay: false,// optional
             // dayFlex: 2,// optional
             // locale: "zh_CN",// optional
@@ -791,7 +1026,7 @@ class _GenderDropDownState extends State<GenderDropDown> {
           ],
         ),
         const SizedBox(height: 8),
-        Container(
+        /*Container(
           height: controller.size.height * 0.06,
           width: double.infinity,
           padding: const EdgeInsets.only(left: 15, right: 15),
@@ -833,7 +1068,99 @@ class _GenderDropDownState extends State<GenderDropDown> {
               },
             ),
           ),
-        ),
+        ),*/
+        Stack(
+          children: [
+            Container(
+              height: controller.size.height * 0.06,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: themeProvider.darkTheme
+                      ? AppColors.darkThemeBoxColor
+                      : AppColors.whiteColor,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.greyTextColor.withOpacity(0.3),
+                      blurRadius: 35,
+                      spreadRadius: 1,
+                      offset: const Offset(0, 5),
+                    ),
+                  ]
+              ),
+            ),
+            Obx(
+                  () => Container(
+                padding: const EdgeInsets.only(left: 10),
+                width: Get.width,
+                //gives the width of the dropdown button
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  //color: Colors.grey.shade200,
+                ),
+                child: Theme(
+                  data: Theme.of(context).copyWith(
+                    canvasColor: Colors.grey.shade100,
+                    buttonTheme: ButtonTheme.of(context).copyWith(
+                      alignedDropdown: true,
+                    ),
+                  ),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                      value: controller.genderValue.value,
+                      icon: Icon(
+                        Icons.keyboard_arrow_down_rounded,
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.blackTextColor.withOpacity(0.7),
+                      ),
+                      items: <String>[
+                        'Male',
+                        'Female',
+                        'Other',
+                      ].map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(color: Colors.black),
+                          ),
+                        );
+                      }).toList(),
+                      // isDense: true,
+                      // isExpanded: true,
+                      dropdownColor: themeProvider.darkTheme
+                          ? AppColors.darkThemeBoxColor
+                          : AppColors.whiteColor,
+                      underline: SizedBox(),
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      style: TextStyle(
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.blackTextColor.withOpacity(0.7),
+                        fontSize: 13.sp,
+                      ),
+                      onChanged: (value) {
+                        // controller.petCategoryDropDownValue = value!;
+                        // controller.loadUI();
+
+                        controller.isLoading(true);
+                        controller.genderValue.value = value!;
+                        // controller.areaList.clear();
+                        // authScreenController.areaList.add(GetAreaList(areaName: 'Select Area'));
+
+                        // print("cityDropDownValue : ${authScreenController.cityDropDownValue}");
+                        controller.isLoading(false);
+                      },
+
+                    ),
+
+                  ),
+                ),
+              ),
+            ),
+          ],
+        )
       ],
     );
   }
@@ -871,7 +1198,7 @@ class WeightTextFieldModule extends StatelessWidget {
           hintText: "Weight",
           textInputAction: TextInputAction.next,
           textInputType: TextInputType.number,
-          validator: (val) => Validations().validateEmail(val!),
+          validator: (val) => Validations().validateWeight(val!),
         ),
       ],
     );
@@ -887,9 +1214,30 @@ class PetSubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // controller.submitLoginForm();
-        controller.updatePetProfileFunction();
+      onTap: () async {
+        if(controller.updatePetFormKey.currentState!.validate()){
+          if(controller.petCategoryDropDownValue.categoryId == 0){
+            Fluttertoast.showToast(msg: 'Please select category');
+          } else if(controller.petSubCategoryDropDownValue.categoryId == 0){
+            Fluttertoast.showToast(msg: 'Please select sub category');
+          }
+          else if(controller.meetingAvailabilityValue.isEmpty){
+            Fluttertoast.showToast(msg: 'Please select meeting availability');
+          }
+          else if(controller.genderValue.isEmpty){
+            Fluttertoast.showToast(msg: 'Please select gender');
+          }
+          else if(controller.imageFile == null){
+            Fluttertoast.showToast(msg: 'Please select image');
+          }
+          else if(controller.petOption == PetOption.addOption) {
+            // Here Add Pet Api Call
+            await controller.addPetProfileFunction();
+          } else /*if(controller.petOption == PetOption.updateOption)*/ {
+            // Update Pet API Call
+            await controller.updatePetProfileFunction();
+          }
+        }
       },
       child: Container(
         width: double.infinity,
@@ -902,7 +1250,7 @@ class PetSubmitButton extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            "Submit",
+            controller.petOption == PetOption.addOption ? "Submit" : "Update",
             style: TextStyle(
               color: AppColors.whiteColor,
               fontSize: 15.sp,

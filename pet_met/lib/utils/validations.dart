@@ -1,4 +1,60 @@
 class Validations {
+  String? validateName(String value) {
+    if (value.isEmpty) {
+      return 'Name is required';
+    }
+    return null;
+  }
+
+  String? validateDetails(String value) {
+    if (value.isEmpty) {
+      return 'Details is required';
+    }
+    return null;
+  }
+
+  String? validateWeight(String value) {
+    if (value.isEmpty) {
+      return 'Weight is required';
+    }
+    return null;
+  }
+
+  String? validateLocation(String value) {
+    if (value.isEmpty) {
+      return 'Location is required';
+    }
+    return null;
+  }
+
+  String? validateOpenTime(String value) {
+    if (value.isEmpty) {
+      return 'Open time is required';
+    }
+    return null;
+  }
+
+  String? validateCloseTime(String value) {
+    if (value.isEmpty) {
+      return 'Close time is required';
+    }
+    return null;
+  }
+
+  String? validateBankAccountNumber(String value) {
+    if (value.isEmpty) {
+      return 'Bank account number is required';
+    }
+    return null;
+  }
+
+  String? validateIfscCode(String value) {
+    if (value.isEmpty) {
+      return 'IFSC code is required';
+    }
+    return null;
+  }
+
   String? validateFirstName(String value) {
     if (value.isEmpty) {
       return 'First name is required';

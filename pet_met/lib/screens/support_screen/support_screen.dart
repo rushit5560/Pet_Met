@@ -81,7 +81,7 @@ class SupportScreen extends StatelessWidget {
                                   SizedBox(height: 4.h),
                                   Image.network(
                                     ApiUrl.apiImagePath +
-                                        controller.supportData.featuredimage!,
+                                        controller.supportData.featuredimageparth!,
                                     width: 80.w,
                                     errorBuilder: (context, obj, st) {
                                       return Image.asset(

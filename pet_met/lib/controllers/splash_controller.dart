@@ -24,7 +24,7 @@ class SplashController extends GetxController {
     bool onboardingValue = prefs.getBool('onboarding') ?? false;
 
     /// Set User value in Local from Prefs
-    UserDetails.roleId = prefs.getInt(userPreference.roleIdKey) ?? 1001;
+    UserDetails.roleId = prefs.getInt(userPreference.roleIdKey) ?? 0;
     UserDetails.isUserLoggedIn =
         prefs.getBool(userPreference.isUserLoggedInKey) ?? false;
     UserDetails.selfId = prefs.getInt(userPreference.selfIdKey) ?? 0;
@@ -34,8 +34,9 @@ class SplashController extends GetxController {
     UserDetails.userProfileImage =
         prefs.getString(userPreference.userProfileImageKey) ?? "";
     UserDetails.userToken = prefs.getString(userPreference.userTokenKey) ?? "";
-
+    UserDetails.categoryId = prefs.getInt(userPreference.roleId1Key) ?? 0;
     log('UserDetails.roleId: ${UserDetails.roleId}');
+    log('UserDetails.categoryId: ${UserDetails.categoryId}');
 
     return Timer(
       const Duration(milliseconds: 2500),

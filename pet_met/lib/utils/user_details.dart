@@ -1,5 +1,5 @@
 class UserDetails {
-  static int roleId = 1001;
+  static int roleId = 0;
 
   static bool isUserLoggedIn = false;
   static String userToken = "";
@@ -8,4 +8,5 @@ class UserDetails {
   static String userName = "";
   static String userEmail = "";
   static String userProfileImage = "";
+  static int categoryId = 0;
 }

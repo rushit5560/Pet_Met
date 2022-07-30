@@ -43,47 +43,50 @@ class FaqListModule extends StatelessWidget {
   }
 
   Widget faqQuestionsListItem(int index) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: themeProvider.darkTheme
-            ? AppColors.darkThemeBoxColor
-            : AppColors.whiteColor,
-      ),
-      child: ExpandablePanel(
-        header: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          child: Text(
-            controller.faqList[index].question,
-            style: TextStyle(
-              fontSize: 13.sp,
-              color: themeProvider.darkTheme
-                  ? AppColors.whiteColor
-                  : AppColors.blackTextColor,
-            ),
-          ).commonSymmetricPadding(horizontal: 10),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          color: themeProvider.darkTheme
+              ? AppColors.darkThemeBoxColor
+              : AppColors.whiteColor,
         ),
-        theme: ExpandableThemeData(
-          animationDuration: const Duration(milliseconds: 500),
-          headerAlignment: ExpandablePanelHeaderAlignment.center,
-          iconColor: themeProvider.darkTheme
-              ? AppColors.whiteColor
-              : AppColors.blackTextColor,
-        ),
-        collapsed: Container(),
-        expanded: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          child: Text(
-            controller.faqList[index].answer,
-            style: TextStyle(
-              color: themeProvider.darkTheme
-                  ? AppColors.whiteColor
-                  : AppColors.blackTextColor,
+        child: ExpandablePanel(
+          header: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            child: Text(
+              controller.faqList[index].question,
+              style: TextStyle(
+                fontSize: 13.sp,
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.blackTextColor,
+              ),
+            ).commonSymmetricPadding(horizontal: 10),
+          ),
+          theme: ExpandableThemeData(
+            animationDuration: const Duration(milliseconds: 500),
+            headerAlignment: ExpandablePanelHeaderAlignment.center,
+            iconColor: themeProvider.darkTheme
+                ? AppColors.whiteColor
+                : AppColors.blackTextColor,
+          ),
+          collapsed: Container(),
+          expanded: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            child: Text(
+              controller.faqList[index].answer,
+              style: TextStyle(
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.blackTextColor,
+              ),
             ),
           ),
-        ),
+        ).commonSymmetricPadding(vertical: 5),
       ).commonSymmetricPadding(vertical: 5),
-    ).commonSymmetricPadding(vertical: 5);
+    );
     /*return ExpansionTile(
       // backgroundColor: Colors.white,
       collapsedBackgroundColor: Colors.white,

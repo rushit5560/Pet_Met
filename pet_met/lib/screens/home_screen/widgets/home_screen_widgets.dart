@@ -41,7 +41,7 @@ class PetTopListModule extends StatelessWidget {
   Widget dogDisplayWidget(int index){
     return GestureDetector(
       onTap: (){
-        Get.toNamed(AppRouteNames.orderDetailsRoute);
+        Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
       },
       child: Row(
         children: [
@@ -169,7 +169,8 @@ class DogDisplayWidget extends StatelessWidget {
     final size = Get.size;
     return GestureDetector(
       onTap: (){
-        Get.toNamed(AppRouteNames.orderDetailsRoute);
+        //Get.toNamed(AppRouteNames.orderDetailsRoute);
+
       },
       child: Row(
         children: [

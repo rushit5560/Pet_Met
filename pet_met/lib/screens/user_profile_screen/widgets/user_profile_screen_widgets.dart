@@ -1,7 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/user_profile_controller.dart';
 import 'package:pet_met/utils/app_route_names.dart';
+import 'package:pet_met/utils/enums.dart';
+import 'package:pet_met/utils/user_details.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -163,7 +167,17 @@ class GetPersonalInfoModule extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              Get.toNamed(AppRouteNames.userProfileEditRoute);
+              //Get.toNamed(AppRouteNames.userProfileEditRoute);
+              log('UserDetails.roleId: ${UserDetails.categoryId}');
+              if(UserDetails.categoryId == 1){
+                Get.toNamed(AppRouteNames.userProfileEditRoute);
+              } else if(UserDetails.categoryId == 2){
+                Get.toNamed(AppRouteNames.shopUserProfileScreenRoute);
+              } else if(UserDetails.categoryId == 3){
+                Get.toNamed(AppRouteNames.ngoUserProfileScreenRoute);
+              } else if(UserDetails.categoryId == 4){
+                Get.toNamed(AppRouteNames.trainersAndUsersScreenRoute);
+              }
             },
             child: Text(
               "Get Personal Info",
@@ -241,6 +255,8 @@ class ContactInfoModule extends StatelessWidget {
 class DogOwnerListModule extends StatelessWidget {
   DogOwnerListModule({Key? key}) : super(key: key);
   final controller = Get.find<UserProfileController>();
+  PetOption ? petOption;
+
 
   @override
   Widget build(BuildContext context) {
@@ -264,61 +280,126 @@ class DogOwnerListModule extends StatelessWidget {
             ],
           ),
         ),
-        Container(
-          height: 8.h,
-          child: ListView.separated(
-            scrollDirection: Axis.horizontal,
-            itemCount: controller.dogsTopList.length,
-            separatorBuilder: (context, index) {
-              return const SizedBox(width: 8);
-            },
-            itemBuilder: (context, index) {
-              return Stack(
-                children: [
-                  Container(
-                    height: 8.h,
-                    width: 7.h,
-                    margin: const EdgeInsets.only(bottom: 5, right: 5),
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage(
-                            controller.dogsTopList[index],
-                          ),
-                          fit: BoxFit.cover),
-                      color: AppColors.greyTextColor,
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(8),
+        Row(
+          children: [
+            Stack(
+              children: [
+                Container(
+                  height: 8.h,
+                  width: 7.h,
+                  margin: const EdgeInsets.only(bottom: 5, right: 5),
+                  decoration: const BoxDecoration(
+                    // image: DecorationImage(
+                    //     image: AssetImage(
+                    //       controller.dogsTopList[index],
+                    //     ),
+                    //     fit: BoxFit.cover),
+                    //color: AppColors.greyTextColor,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                  ),
+                  child:  Image.asset(AppImages.petMetLogoImg, fit: BoxFit.cover),
+
+                  ),
+                Positioned(
+                  right: 0,
+                  bottom: 0,
+                  child: GestureDetector(
+                    onTap: () {
+                      // petOption == PetOption.addOption ?
+                      // ""
+                      //     : "";
+                      //    // :
+
+                      Get.toNamed(AppRouteNames.uploadPetRoute, arguments: [PetOption.addOption,0]);
+                    },
+                    child: Container(
+                      height: 15,
+                      width: 15,
+                      decoration: const BoxDecoration(
+                          color: Colors.green, shape: BoxShape.circle),
+                      child: const Icon(
+                        Icons.add,
+                        color: AppColors.whiteColor,
+                        size: 12,
                       ),
                     ),
                   ),
-                  index == 0
-                      ? Positioned(
-                          right: 0,
-                          bottom: 0,
-                          child: GestureDetector(
-                            onTap: () {
-                              Get.toNamed(AppRouteNames.uploadPetRoute);
-                            },
-                            child: Container(
-                              height: 15,
-                              width: 15,
-                              decoration: const BoxDecoration(
-                                  color: Colors.green, shape: BoxShape.circle),
-                              child: const Icon(
-                                Icons.add,
-                                color: AppColors.whiteColor,
-                                size: 12,
-                              ),
-                            ),
-                          ),
-                        )
-                      : const SizedBox()
-                ],
-              );
-            },
-          ),
-        ),
-      ],
+                )
+    ]
+    ),
+                 Expanded(child: Container(
+                   height: 8.h,
+                   child: ListView.separated(
+                     scrollDirection: Axis.horizontal,
+                     itemCount: controller.petList.length,
+                     separatorBuilder: (context, index) {
+                       return const SizedBox(width: 8);
+                     },
+                     itemBuilder: (context, index) {
+                       return GestureDetector(
+                         onTap: (){
+                           log('Pet Id : ${controller.petList[index].id}');
+                           Get.toNamed(AppRouteNames.uploadPetRoute, arguments: [PetOption.updateOption, controller.petList[index].id]);
+                         },
+                         child: Stack(
+                           children: [
+                             Container(
+                               height: 8.h,
+                               width: 7.h,
+                               margin: const EdgeInsets.only(bottom: 5, right: 5),
+                               decoration: const BoxDecoration(
+                                 // image: DecorationImage(
+                                 //     image: AssetImage(
+                                 //       controller.dogsTopList[index],
+                                 //     ),
+                                 //     fit: BoxFit.cover),
+                                 //color: AppColors.greyTextColor,
+                                 borderRadius: BorderRadius.all(
+                                   Radius.circular(8),
+                                 ),
+                               ),
+                               child: Image.network(controller.petList[index].image,
+                                   errorBuilder: (context, st, ob){
+                                     return Image.asset(AppImages.petMetLogoImg);
+                                   },
+                                   fit: BoxFit.cover
+                               ),
+                             ),
+                             /*Positioned(
+                               right: 0,
+                               bottom: 0,
+                               child: GestureDetector(
+                                 onTap: () {
+                                   petOption == PetOption.addOption ? ""
+                                       :
+                                   Get.toNamed(AppRouteNames.uploadPetRoute, arguments: controller.petList[index].id);
+                                 },
+                                 child: Container(
+                                   height: 15,
+                                   width: 15,
+                                   decoration: const BoxDecoration(
+                                       color: Colors.green, shape: BoxShape.circle),
+                                   child: const Icon(
+                                     Icons.add,
+                                     color: AppColors.whiteColor,
+                                     size: 12,
+                                   ),
+                                 ),
+                               ),
+                             )*/
+
+                           ],
+                         ),
+                       );
+                     },
+                   ),
+                 ),)
+              ],
+            ),
+
+          ],
     );
   }
 }

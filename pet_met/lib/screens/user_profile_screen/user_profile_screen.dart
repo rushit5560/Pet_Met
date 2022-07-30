@@ -5,6 +5,7 @@ import 'package:pet_met/screens/user_profile_screen/widgets/user_profile_screen_
 import 'package:pet_met/utils/app_images.dart';
 
 import 'package:pet_met/utils/app_route_names.dart';
+import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../utils/app_colors.dart';
@@ -81,22 +82,26 @@ class UserProfileScreen extends StatelessWidget {
                 //   ),
                 // ),
                 Expanded(
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 20),
-                      child: Column(
-                        children: [
-                          const SizedBox(height: 25),
-                          ProfileImage(),
-                          const SizedBox(height: 30),
-                          const ProfileDetailsModule(),
-                          const GetPersonalInfoModule(),
-                          const ContactInfoModule(),
-                          DogOwnerListModule(),
-                          const SizedBox(height: 20),
-                          const AboutModule()
-                        ],
+                  child: Obx(()=>
+                  controller.isLoading.value ?
+                    const CustomAnimationLoader():
+                    SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 20),
+                        child: Column(
+                          children: [
+                            const SizedBox(height: 25),
+                            ProfileImage(),
+                            const SizedBox(height: 30),
+                            const ProfileDetailsModule(),
+                            const GetPersonalInfoModule(),
+                            const ContactInfoModule(),
+                            DogOwnerListModule(),
+                            const SizedBox(height: 20),
+                            const AboutModule()
+                          ],
+                        ),
                       ),
                     ),
                   ),

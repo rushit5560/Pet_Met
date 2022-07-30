@@ -43,6 +43,9 @@ class ApiUrl {
   static const petProfileApi = apiMainPath + "/petdetails/";
   static const petUpdateProfileApi = apiMainPath + "/petadd";
 
+  /// All Role Profile Managemnet
+  static const allRoleGetProfileApi = apiMainPath + "/profile";
+
   /// Payment Management
   static const getPaymentListApi = apiMainPath + "/carddetails/";
   static const addNewPaymentApi = apiMainPath + "/cardadd";
