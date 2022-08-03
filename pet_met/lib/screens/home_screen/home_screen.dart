@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -9,6 +11,7 @@ import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
+import 'package:pet_met/utils/user_details.dart';
 import 'package:provider/provider.dart';
 
 import '../../../utils/app_colors.dart';
@@ -61,7 +64,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   trailingWidget: GestureDetector(
                     onTap: () {
-                      Get.toNamed(AppRouteNames.userProfileRoute);
+                      //Get.toNamed(AppRouteNames.userProfileEditRoute);
+                      log('UserDetails.roleId: ${UserDetails.categoryId}');
+                      if(UserDetails.categoryId == 1){
+                        Get.toNamed(AppRouteNames.userProfileEditRoute);
+                      } else if(UserDetails.categoryId == 2){
+                        Get.toNamed(AppRouteNames.shopUserProfileScreenRoute);
+                      } else if(UserDetails.categoryId == 3){
+                        Get.toNamed(AppRouteNames.ngoUserProfileScreenRoute);
+                      } else if(UserDetails.categoryId == 4){
+                        Get.toNamed(AppRouteNames.trainersAndUsersScreenRoute);
+                      }
                     },
                     child: Image.asset(
                       AppImages.userProfileImg,

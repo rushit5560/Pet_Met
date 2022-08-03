@@ -166,7 +166,7 @@ class GetPersonalInfoModule extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           GestureDetector(
-            onTap: () {
+            /*onTap: () {
               //Get.toNamed(AppRouteNames.userProfileEditRoute);
               log('UserDetails.roleId: ${UserDetails.categoryId}');
               if(UserDetails.categoryId == 1){
@@ -178,7 +178,7 @@ class GetPersonalInfoModule extends StatelessWidget {
               } else if(UserDetails.categoryId == 4){
                 Get.toNamed(AppRouteNames.trainersAndUsersScreenRoute);
               }
-            },
+            },*/
             child: Text(
               "Get Personal Info",
               style: TextStyle(
@@ -367,28 +367,6 @@ class DogOwnerListModule extends StatelessWidget {
                                    fit: BoxFit.cover
                                ),
                              ),
-                             /*Positioned(
-                               right: 0,
-                               bottom: 0,
-                               child: GestureDetector(
-                                 onTap: () {
-                                   petOption == PetOption.addOption ? ""
-                                       :
-                                   Get.toNamed(AppRouteNames.uploadPetRoute, arguments: controller.petList[index].id);
-                                 },
-                                 child: Container(
-                                   height: 15,
-                                   width: 15,
-                                   decoration: const BoxDecoration(
-                                       color: Colors.green, shape: BoxShape.circle),
-                                   child: const Icon(
-                                     Icons.add,
-                                     color: AppColors.whiteColor,
-                                     size: 12,
-                                   ),
-                                 ),
-                               ),
-                             )*/
 
                            ],
                          ),

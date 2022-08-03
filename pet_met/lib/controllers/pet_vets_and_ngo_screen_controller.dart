@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:pet_met/models/pet_vets_and_ngo_screen_models.dart';
@@ -11,6 +12,9 @@ class PetVetsAndNgoScreenController extends GetxController {
   final size = Get.size;
 
   ApiHeader apiHeader = ApiHeader();
+
+  final formKey = GlobalKey<FormState>();
+  TextEditingController searchFieldController = TextEditingController();
 
   List<VetAndNgoData> vetAndNgoList = [];
 

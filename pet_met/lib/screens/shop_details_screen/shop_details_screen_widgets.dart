@@ -1,7 +1,9 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/shop_details_screen_controller.dart';
 import 'package:pet_met/utils/api_url.dart';
@@ -10,6 +12,7 @@ import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../services/providers/dark_theme_provider.dart';
 
@@ -68,7 +71,7 @@ class OffersModule extends StatelessWidget {
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, i) {
-              return _offerListTile(i);
+              return _offerListTile(i, context);
             },
           ),
         ),
@@ -76,19 +79,62 @@ class OffersModule extends StatelessWidget {
     ).commonSymmetricPadding(horizontal: 15);
   }
 
-  Widget _offerListTile(int i) {
-    return SizedBox(
-      height: screenController.size.width * 0.18,
-      width: screenController.size.width * 0.18,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(8),
-        child: Image.network(
-            ApiUrl.apiImagePath + screenController.shopData.offersimages![i],
-            fit: BoxFit.cover, errorBuilder: (context, er, da) {
-          return Image.asset(AppImages.petMetLogoImg);
-        }),
-      ),
-    ).commonSymmetricPadding(horizontal: 5);
+  Widget _offerListTile(int i, BuildContext context) {
+    return GestureDetector(
+      onTap: (){
+        imageAlertDialog(context, i);
+      },
+      child: SizedBox(
+        height: screenController.size.width * 0.18,
+        width: screenController.size.width * 0.18,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: Image.network(
+              ApiUrl.apiImagePath + screenController.shopData.offersimages![i],
+              fit: BoxFit.cover, errorBuilder: (context, er, da) {
+            return Image.asset(AppImages.petMetLogoImg);
+          }),
+        ),
+      ).commonSymmetricPadding(horizontal: 5),
+    );
+  }
+
+  imageAlertDialog(BuildContext context, int i){
+    Widget cancelButton = TextButton(
+      child: Text("No, cancel"),
+      onPressed: () {
+        Get.back();
+      },
+    );
+    Widget continueButton = TextButton(
+      child: Text("Yes, delete it"),
+      onPressed: () async {
+        Get.back();
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Image.network(
+          ApiUrl.apiImagePath + screenController.shopData.offersimages![i],
+          fit: BoxFit.cover, errorBuilder: (context, er, da) {
+        return Image.asset(AppImages.petMetLogoImg);
+      }),
+      // content: Text(
+      //     "If you change timing slot duration your all schedule slot should been deleted you won't be able to recover this again!"),
+      // actions: [
+      //   continueButton,
+      //   cancelButton,
+      // ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 }
 
@@ -111,52 +157,131 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
                 fontSize: 18.sp),
           ),
         ),
-        Container(
-          height: screenController.size.width * 0.018.w,
-          width: screenController.size.width * 0.018.w,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: AppColors.accentColor,
-          ),
-          child: Image.asset(
-            AppImages.instaImg,
-          ).commonAllSidePadding(padding: 8),
-        ).commonSymmetricPadding(horizontal: 2),
-        Container(
-          height: screenController.size.width * 0.018.w,
-          width: screenController.size.width * 0.018.w,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: AppColors.accentColor,
-          ),
-          child: Image.asset(
-            AppImages.fbImg,
-          ).commonAllSidePadding(padding: 8),
-        ).commonSymmetricPadding(horizontal: 2),
-        Container(
-          height: screenController.size.width * 0.018.w,
-          width: screenController.size.width * 0.018.w,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: AppColors.accentColor,
-          ),
-          child: Image.asset(
-            AppImages.whatsappImg,
-          ).commonAllSidePadding(padding: 8),
-        ).commonSymmetricPadding(horizontal: 2),
-        Container(
-          height: screenController.size.width * 0.018.w,
-          width: screenController.size.width * 0.018.w,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: AppColors.accentColor,
-          ),
-          child: Image.asset(
-            AppImages.phoneCallImg,
-          ).commonAllSidePadding(padding: 8),
-        ).commonSymmetricPadding(horizontal: 2),
+        GestureDetector(
+          onTap: (){
+            _makingInstagramApp();
+          },
+          child: Container(
+            height: screenController.size.width * 0.018.w,
+            width: screenController.size.width * 0.018.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: AppColors.accentColor,
+            ),
+            child: Image.asset(
+              AppImages.instaImg,
+            ).commonAllSidePadding(padding: 8),
+          ).commonSymmetricPadding(horizontal: 2),
+        ),
+        GestureDetector(
+          onTap: (){
+            var fbUrl =
+                "fb://facewebmodal/f?href="  "https://facebook.com/AliForDigitalIsrael/";
+            launchFacebook(fbUrl, "https://facebook.com/AliForDigitalIsrael/");
+          },
+          child: Container(
+            height: screenController.size.width * 0.018.w,
+            width: screenController.size.width * 0.018.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: AppColors.accentColor,
+            ),
+            child: Image.asset(
+              AppImages.fbImg,
+            ).commonAllSidePadding(padding: 8),
+          ).commonSymmetricPadding(horizontal: 2),
+        ),
+        GestureDetector(
+          onTap: (){
+            launchWhatsApp(context);
+          },
+          child: Container(
+            height: screenController.size.width * 0.018.w,
+            width: screenController.size.width * 0.018.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: AppColors.accentColor,
+            ),
+            child: Image.asset(
+              AppImages.whatsappImg,
+            ).commonAllSidePadding(padding: 8),
+          ).commonSymmetricPadding(horizontal: 2),
+        ),
+        GestureDetector(
+          onTap: (){
+            _makingPhoneCall();
+          },
+          child: Container(
+            height: screenController.size.width * 0.018.w,
+            width: screenController.size.width * 0.018.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: AppColors.accentColor,
+            ),
+            child: Image.asset(
+              AppImages.phoneCallImg,
+            ).commonAllSidePadding(padding: 8),
+          ).commonSymmetricPadding(horizontal: 2),
+        ),
       ],
     ).commonSymmetricPadding(horizontal: 15);
+  }
+
+  _makingPhoneCall() async {
+    var url = Uri.parse("tel:9776765434");
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  void launchWhatsApp(BuildContext context)
+  {
+    FocusManager.instance.primaryFocus?.unfocus();
+
+    var whatsappUrl =
+        "whatsapp://send?phone= 91 + 9876543213"
+            "&text=${Uri.encodeComponent("Hello")}";
+    try {
+      launch(whatsappUrl);
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Unable to open whatsapp"),
+        ),
+      );
+      Fluttertoast.showToast(msg: "Unable to open whatsapp");
+    }
+  }
+
+  Future<void> launchFacebook(String fbUrl,String fbWebUrl)
+  async {
+    try {
+      bool launched = await launch(fbUrl, forceSafariVC: false);
+      print("Launched Native app $launched");
+
+      if (!launched) {
+        await launch(fbWebUrl, forceSafariVC: false);
+        print("Launched browser $launched");
+      }
+    } catch (e) {
+      await launch(fbWebUrl, forceSafariVC: false);
+      print("Inside catch");
+    }
+  }
+
+  _makingInstagramApp() async {
+    var url = 'https://www.instagram.com/<INSTAGRAM_PROFILE>/';
+
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        universalLinksOnly: true,
+      );
+    } else {
+      throw 'There was a problem to open the url: $url';
+    }
   }
 }
 

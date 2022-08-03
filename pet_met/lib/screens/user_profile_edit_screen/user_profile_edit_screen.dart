@@ -95,6 +95,8 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                               NameTextFieldModule(),
 
                               const SizedBox(height: 15),
+                              EmailTextFieldModule(),
+                              const SizedBox(height: 15),
                               // TextFieldSection(
                               //   fieldName: "Mobile Number",
                               //   fieldHinttext: "**** ** ***",
@@ -102,7 +104,7 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                               MobileNumberTextFieldModule(),
                               const SizedBox(height: 15),
 
-                              LocationTextFieldModule(),
+                              //LocationTextFieldModule(),
                               // TextFieldSection(
                               //   fieldName: "Location",
                               //   fieldHinttext: "**** ** ***",
@@ -129,33 +131,6 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
     );
   }
 
-  /// Get from gallery
-  getFromGallery() async {
-    XFile? pickedFile = await ImagePicker().pickImage(
-      source: ImageSource.gallery,
-      maxWidth: 1800,
-      maxHeight: 1800,
-    );
-    if (pickedFile != null) {
-      setState(() {
-        controller.imageFile = XFile(pickedFile.path);
-      });
-    }
-  }
-
-  /// Get from Camera
-  getFromCamera() async {
-    XFile? pickedFile = await ImagePicker().pickImage(
-      source: ImageSource.camera,
-      maxWidth: 1800,
-      maxHeight: 1800,
-    );
-    if (pickedFile != null) {
-      setState(() {
-        controller.imageFile = XFile(pickedFile.path);
-      });
-    }
-  }
 
   Widget textfieldSection({
     String? fieldName,

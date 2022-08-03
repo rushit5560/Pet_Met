@@ -8,7 +8,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/models/get_all_category_model/get_all_category_model.dart';
-import 'package:pet_met/models/get_all_profile_model/get_user_profile_model.dart';
 import 'package:pet_met/models/get_all_sub_category_model/get_all_sub_category_model.dart';
 import 'package:pet_met/models/get_pet_profile_model/get_pet_profile_model.dart';
 import 'package:pet_met/models/update_pet_profile_model/update_pet_profile_model.dart';
@@ -47,7 +46,7 @@ class UploadPetController extends GetxController {
   RxString selectedPetGenderValue = "Male".obs;
   RxString selectedPetTypeValue = "Grown".obs;
   RxString selectedAvailabilityValue = "Yes".obs;
-  List<Petdatum> petList = [];
+  //List<Petdatum> petList = [];
 
   //XFile? imageFile = XFile("");
   File? imageFile;
@@ -316,12 +315,12 @@ class UploadPetController extends GetxController {
         petNameController.text = getProfile.petName!;
         petDetailsController.text = getProfile.details!;
         // meetingAvailabilityValue.value = getProfile.meetingAvailability!;
-        genderValue.value = getProfile.gender!;
+        //genderValue.value = getProfile.gender!;
         weightController.text = getProfile.weight!.toString();
         petCategoryDropDownValue.categoryName = getProfile.mainCategory.toString();
         petSubCategoryDropDownValue.categoryName = getProfile.subCategory.toString();
         birthDate = getProfile.dob!;
-        petImage = getProfile.image!;
+        petImage = ApiUrl.apiImagePath + getProfile.image!;
         log('pet name: ${petNameController.text}');
         log('pet details: ${petDetailsController.text}');
         log('genderValue: ${genderValue.value}');

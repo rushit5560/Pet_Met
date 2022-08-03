@@ -17,6 +17,7 @@ class CustomLightTextField extends StatelessWidget {
     this.validator,
     this.textInputType,
     this.textInputAction,
+    this.readOnly
   }) : super(key: key);
 
   final TextEditingController? fieldController;
@@ -26,6 +27,7 @@ class CustomLightTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final TextInputAction? textInputAction;
   final TextInputType? textInputType;
+  final bool? readOnly;
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +52,7 @@ class CustomLightTextField extends StatelessWidget {
           ),
         ),
         TextFormField(
+          readOnly: readOnly!,
           controller: fieldController,
           validator: validator,
           textInputAction: textInputAction,

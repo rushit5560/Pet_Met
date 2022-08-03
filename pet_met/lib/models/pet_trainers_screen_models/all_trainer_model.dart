@@ -20,8 +20,7 @@ class AllTrainerModel {
   factory AllTrainerModel.fromJson(Map<String, dynamic> json) =>
       AllTrainerModel(
         success: json["success"] ?? false,
-        data: List<Trainers>.from(
-            json["data"].map((x) => Trainers.fromJson(x ?? {}))),
+        data: List<Trainers>.from(json["data"].map((x) => Trainers.fromJson(x ?? {}))),
         message: json["message"] ?? "",
       );
 
@@ -32,6 +31,91 @@ class AllTrainerModel {
       };
 }
 
+class Trainers {
+  Trainers({
+    required this.id,
+    required this.name,
+    required this.address,
+    required this.phone,
+    required this.open,
+    required this.close,
+    required this.fullText,
+    required this.instagram,
+     required this.facebook,
+    required this.image,
+    required this.trainerimages,
+    required this.meetingimages,
+    required this.isActive,
+    required this.userid,
+    required this.createdBy,
+    required this.modifiedBy,
+    required this.createdDate,
+    required this.modifiedDate,
+  });
+
+  int id;
+  String name;
+  String address;
+  String phone;
+  String open;
+  String close;
+  String fullText;
+   String instagram;
+   String facebook;
+  String image;
+  List<String> trainerimages;
+  List<String> meetingimages;
+  String isActive;
+  int userid;
+  int createdBy;
+  String modifiedBy;
+  String createdDate;
+  String modifiedDate;
+
+  factory Trainers.fromJson(Map<String, dynamic> json) => Trainers(
+    id: json["id"] ?? 0,
+    name: json["name"] ?? "",
+    address: json["address"] ?? "",
+    phone: json["phone"] ?? "",
+    open: json["open"] ?? "",
+    close: json["close"] ?? "",
+    fullText: json["full_text"] ?? "",
+    instagram: json["instagram"] ?? "",
+     facebook: json["facebook"] ?? "",
+    image: json["image"] ?? "",
+    trainerimages: List<String>.from(json["trainerimages"].map((x) => x) ?? {}),
+    meetingimages: List<String>.from(json["meetingimages"].map((x) => x) ?? {}),
+    isActive: json["is_active"] ?? "",
+    userid: json["userid"] ?? 0,
+    createdBy: json["created_by"] ?? 0,
+    modifiedBy: json["modified_by"] ?? "",
+    createdDate: json["created_date"] ?? "",
+    modifiedDate: json["modified_date"] ?? "",
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "address": address == null ? null : address,
+    "phone": phone == null ? null : phone,
+    "open": open == null ? null : open,
+    "close": close == null ? null : close,
+    "full_text": fullText == null ? null : fullText,
+    "instagram": instagram == null ? null : instagram,
+     "facebook": facebook == null ? null : facebook,
+    "image": image,
+    "trainerimages": List<dynamic>.from(trainerimages.map((x) => x)),
+    "meetingimages": List<dynamic>.from(meetingimages.map((x) => x)),
+    "is_active": isActive == null ? null : isActive,
+    "userid": userid == null ? null : userid,
+    "created_by": createdBy == null ? null : createdBy,
+    "modified_by": modifiedBy,
+    "created_date": createdDate,
+    "modified_date": modifiedDate,
+  };
+}
+
+/*
 class Trainers {
   Trainers({
     required this.id,
@@ -116,4 +200,4 @@ class Trainers {
         // "created_date": createdDate.toIso8601String(),
         // "modified_date": modifiedDate,
       };
-}
+}*/

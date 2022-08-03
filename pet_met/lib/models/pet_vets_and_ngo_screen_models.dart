@@ -36,62 +36,91 @@ class VetAndNgoData {
   VetAndNgoData({
     required this.id,
     required this.name,
-    required this.imageList,
-    required this.showimg,
-    required this.contact,
     required this.address,
+    required this.phone,
+    required this.open,
+    required this.close,
+    required this.fullText,
+    required this.instagram,
+    required this.facebook,
+    required this.image,
+    required this.vetNgoimages,
+    required this.meetingimages,
     required this.isActive,
-    required this.socialMedias,
-    required this.openTime,
-    required this.closeTime,
-    required this.overview,
-    required this.roleId,
-    required this.userId,
+    required this.ifscCode,
+    required this.accountCode,
+    required this.userid,
+    required this.createdBy,
+    required this.modifiedBy,
+    required this.createdDate,
+    required this.modifiedDate,
   });
 
   int id;
   String name;
-  String imageList;
-  String showimg;
-  int contact;
   String address;
+  String phone;
+  String open;
+  String close;
+  String fullText;
+  String instagram;
+  String facebook;
+  String image;
+  String vetNgoimages;
+  String meetingimages;
   String isActive;
-  String socialMedias;
-  String openTime;
-  String closeTime;
-  String overview;
-  int roleId;
-  int userId;
+  String ifscCode;
+  String accountCode;
+  int userid;
+  int createdBy;
+  String modifiedBy;
+  String createdDate;
+  String modifiedDate;
 
   factory VetAndNgoData.fromJson(Map<String, dynamic> json) => VetAndNgoData(
-        id: json["id"] ?? 0,
-        name: json["name"] ?? "",
-        imageList: json["image_list"] ?? "",
-        showimg: json["showimg"] ?? "",
-        contact: json["contact"] ?? 0,
-        address: json["address"] ?? "",
-        isActive: json["is_active"] ?? "",
-        socialMedias: json["social_medias"] ?? "",
-        openTime: json["open_time"] ?? "",
-        closeTime: json["close_time"] ?? "",
-        overview: json["overview"] ?? "",
-        roleId: json["role_id"] ?? 0,
-        userId: json["user_id"] ?? 0,
-      );
+    id: json["id"] ?? 0,
+    name: json["name"] ?? "",
+    address: json["address"] ?? "",
+    phone: json["phone"] ?? "",
+    open: json["open"] ?? "",
+    close: json["close"] ?? "",
+    fullText: json["full_text"] ?? "",
+    instagram: json["instagram"] ?? "",
+    facebook: json["facebook"] ?? "",
+    image: json["image"] ?? "",
+    vetNgoimages: json["vet_ngoimages"] ?? "",
+    meetingimages: json["meetingimages"] ?? "",
+    isActive: json["is_active"] ?? "",
+    ifscCode: json["ifsc_code"] ?? "",
+    accountCode: json["account_code"] ?? "",
+    userid: json["userid"] ?? 0,
+    createdBy: json["created_by"] ?? 0,
+    modifiedBy: json["modified_by"] ?? "",
+    createdDate: json["created_date"] ?? "",
+    modifiedDate: json["modified_date"] ?? "",
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "image_list": imageList,
-        "showimg": showimg,
-        "contact": contact,
-        "address": address,
-        "is_active": isActive,
-        "social_medias": socialMedias,
-        "open_time": openTime,
-        "close_time": closeTime,
-        "overview": overview,
-        "role_id": roleId,
-        "user_id": userId,
-      };
+    "id": id,
+    "name": name,
+    "address": address,
+    "phone": phone,
+    "open": open,
+    "close": close,
+    "full_text": fullText,
+    "instagram": instagram,
+    "facebook": facebook,
+    "image": image,
+    "vet_ngoimages": vetNgoimages,
+    "meetingimages": meetingimages,
+    "is_active": isActive,
+    "ifsc_code": ifscCode,
+    "account_code": accountCode,
+    "userid": userid,
+    "created_by": createdBy,
+    "modified_by": modifiedBy,
+    "created_date": createdDate,
+    "modified_date": modifiedDate,
+  };
 }
+

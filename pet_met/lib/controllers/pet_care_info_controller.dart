@@ -17,6 +17,7 @@ class PetCareInfoController extends GetxController {
   RxBool isSuccessStatus = false.obs;
   final size = Get.size;
 
+  ApiHeader apiHeader = ApiHeader();
   RxBool isOpened = false.obs;
 
   RxInt selectedbottomIndex = 2.obs;
@@ -33,11 +34,9 @@ class PetCareInfoController extends GetxController {
     log("Api Url Pet Care Api Url : $url");
 
     try {
-      // Map<String, String> header = apiHeader.apiHeader();
+       Map<String, String> header = apiHeader.apiHeader();
 
-      http.Response response = await http.get(
-        Uri.parse(url), /*headers: header*/
-      );
+      http.Response response = await http.get(Uri.parse(url), headers: header);
       log("Privacy Policy api Response : ${response.body}");
 
       PetCareModel petCareModel =

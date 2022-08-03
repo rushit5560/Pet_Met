@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:datepicker_dropdown/datepicker_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/controllers/user_profile_edit_controller.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
@@ -36,49 +37,7 @@ class UploadImageModule extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         //Get.toNamed(AppRouteNames.loadFileRoute);
-        // showModalBottomSheet<void>(
-        //   context: context,
-        //   constraints: null,
-        //   builder: (BuildContext context) {
-        //     return Container(
-        //       height: controller.size.height * 0.15,
-        //       child: Column(
-        //         children: [
-        //           ListTile(
-        //             onTap: getFromCamera,
-        //             contentPadding: EdgeInsets.only(
-        //                 left:
-        //                     controller.size.width * 0.1),
-        //             title: Text(
-        //               "Select Image From Camera",
-        //               style: TextStyle(
-        //                 color: AppColors.blackTextColor
-        //                     .withOpacity(0.7),
-        //                 fontSize: 13.sp,
-        //                 fontWeight: FontWeight.w600,
-        //               ),
-        //             ),
-        //           ),
-        //           ListTile(
-        //             contentPadding: EdgeInsets.only(
-        //                 left:
-        //                     controller.size.width * 0.1),
-        //             onTap: getFromGallery,
-        //             title: Text(
-        //               "Select Image From Gallery",
-        //               style: TextStyle(
-        //                 color: AppColors.blackTextColor
-        //                     .withOpacity(0.7),
-        //                 fontSize: 13.sp,
-        //                 fontWeight: FontWeight.w600,
-        //               ),
-        //             ),
-        //           ),
-        //         ],
-        //       ),
-        //     );
-        //   },
-        // );
+        modelBottomSheet(context);
       },
       child: Container(
         //height: controller.size.height * 0.2,
@@ -90,11 +49,11 @@ class UploadImageModule extends StatelessWidget {
           borderRadius: const BorderRadius.all(
             Radius.circular(15),
           ),
-          image: DecorationImage(
-            image: FileImage(
-              File(controller.imageFile!.path),
-            ),
-          ),
+          // image: DecorationImage(
+          //   image: FileImage(
+          //     File(controller.imageFile!.path),
+          //   ),
+          // ),
           boxShadow: [
             BoxShadow(
               color: AppColors.greyTextColor.withOpacity(0.3),
@@ -106,7 +65,84 @@ class UploadImageModule extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 25),
-          child: controller.imageFile!.path.isEmpty
+          child: controller.imageFile != null
+              ? Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.file(
+                  themeProvider.darkTheme
+                      ? controller.imageFile! : controller.imageFile!,height: 65,),
+
+                //),
+                // const SizedBox(height: 20),
+                // Text(
+                //   "Upload Image",
+                //   style: TextStyle(
+                //     color: themeProvider.darkTheme
+                //         ? AppColors.whiteColor
+                //         : AppColors.blackTextColor,
+                //     fontSize: 15.sp,
+                //     fontWeight: FontWeight.w500,
+                //   ),
+                // ),
+              ],
+            ),
+          ):
+          controller.userProfile != null ?
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.network(
+                  themeProvider.darkTheme
+                      ? controller.userProfile : controller.userProfile,height: 65,
+
+                ),
+
+                //),
+                // const SizedBox(height: 20),
+                // Text(
+                //   "Upload Image",
+                //   style: TextStyle(
+                //     color: themeProvider.darkTheme
+                //         ? AppColors.whiteColor
+                //         : AppColors.blackTextColor,
+                //     fontSize: 15.sp,
+                //     fontWeight: FontWeight.w500,
+                //   ),
+                // ),
+              ],
+            ),
+          ):
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset(
+                  themeProvider.darkTheme
+                      ? AppImages.cameraPlaceHolderImgDark
+                      : AppImages.cameraPlaceHolderImglight,
+                  height: 65,
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  "Upload Image",
+                  style: TextStyle(
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.blackTextColor,
+                    fontSize: 15.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          /*child: controller.imageFile!.path.isEmpty
               ? Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -132,10 +168,129 @@ class UploadImageModule extends StatelessWidget {
                     ],
                   ),
                 )
-              : SizedBox(),
+              : SizedBox(),*/
         ),
       ),
     );
+  }
+
+  modelBottomSheet(BuildContext context){
+    showModalBottomSheet<void>(
+      context: context,
+      constraints: null,
+      builder: (BuildContext context) {
+        return Container(
+          color: themeProvider.darkTheme
+              ? AppColors.whiteColor
+              : AppColors.blackTextColor,
+          height: controller.size.height * 0.15,
+          child: Column(
+            children: [
+              ListTile(
+                onTap: getFromCamera,
+                contentPadding:
+                EdgeInsets.only(left: controller.size.width * 0.1),
+                title: Text(
+                  "Select Image From Camera",
+                  style: TextStyle(
+                    color: AppColors.blackTextColor.withOpacity(0.7),
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              ListTile(
+                contentPadding:
+                EdgeInsets.only(left: controller.size.width * 0.1),
+                onTap: getFromGallery,
+                title: Text(
+                  "Select Image From Gallery",
+                  style: TextStyle(
+                    color: AppColors.blackTextColor.withOpacity(0.7),
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  /// Get from gallery
+  getFromGallery() async {
+    /*XFile? pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      maxWidth: 1800,
+      maxHeight: 1800,
+    );
+    if (pickedFile != null) {
+      setState(() {
+        controller.imageFile = XFile(pickedFile.path);
+      });
+    }*/
+    final pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+    );
+
+    if (pickedFile != null) {
+      //setState(() {
+      controller.imageFile = File(pickedFile.path);
+      controller.loadUI();
+      log('Camera File Path : ${controller.imageFile}');
+      log('Camera Image Path : ${controller.imageFile!.path}');
+
+
+      //Fluttertoast.showToast(msg: '${image.path}', toastLength: Toast.LENGTH_LONG);
+      //renameImage();
+      //});
+    } else {
+
+
+    }
+
+    controller.imageFile = File(pickedFile!.path);
+    //setState(() {});
+    Get.back();
+  }
+
+  /// Get from Camera
+  getFromCamera() async {
+    // XFile? pickedFile = await ImagePicker().pickImage(
+    //   source: ImageSource.camera,
+    //   maxWidth: 1800,
+    //   maxHeight: 1800,
+    // );
+    // if (pickedFile != null) {
+    //   setState(() {
+    //     controller.imageFile = XFile(pickedFile.path);
+    //   });
+    // }
+    final pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.camera,
+    );
+
+    if (pickedFile != null) {
+      //setState(() {
+      controller.imageFile = File(pickedFile.path);
+      controller.loadUI();
+      log('Camera File Path : ${controller.imageFile}');
+      log('Camera Image Path : ${controller.imageFile!.path}');
+
+
+      //Fluttertoast.showToast(msg: '${image.path}', toastLength: Toast.LENGTH_LONG);
+      //renameImage();
+      //});
+    } else {
+
+
+    }
+
+    controller.imageFile = File(pickedFile!.path);
+   // setState(() {});
+    Get.back();
   }
 }
 
@@ -204,6 +359,7 @@ class NameTextFieldModule extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         CustomLightTextField(
+          readOnly: true,
           fieldController: controller.nameController,
           height: controller.size.height * 0.05,
           width: double.infinity,
@@ -216,6 +372,45 @@ class NameTextFieldModule extends StatelessWidget {
     );
   }
 }
+
+class EmailTextFieldModule extends StatelessWidget {
+  EmailTextFieldModule({Key? key}) : super(key: key);
+
+  final controller = Get.find<UserProfileEditController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Email",
+              style: TextStyle(
+                color: AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          readOnly: true,
+          fieldController: controller.emailController,
+          height: controller.size.height * 0.05,
+          width: double.infinity,
+          hintText: "Email",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.emailAddress,
+          validator: (val) => Validations().validateEmail(val!),
+        ),
+      ],
+    );
+  }
+}
+
 
 class MobileNumberTextFieldModule extends StatelessWidget {
   MobileNumberTextFieldModule({Key? key}) : super(key: key);
@@ -241,12 +436,13 @@ class MobileNumberTextFieldModule extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         CustomLightTextField(
+          readOnly: false,
           fieldController: controller.mobileController,
           height: controller.size.height * 0.05,
           width: double.infinity,
           hintText: "**** ** ***",
           textInputAction: TextInputAction.next,
-          textInputType: TextInputType.text,
+          textInputType: TextInputType.number,
           validator: (val) => Validations().validateMobile(val!),
         ),
       ],
@@ -324,54 +520,146 @@ class _GenderDropDownModuleState extends State<GenderDropDownModule> {
           ],
         ),
         const SizedBox(height: 8),
-        Container(
-          height: controller.size.height * 0.06,
-          width: double.infinity,
-          padding: const EdgeInsets.only(left: 15, right: 15),
-          decoration: BoxDecoration(
-            color: themeProvider.darkTheme
-                ? AppColors.darkThemeColor
-                : AppColors.whiteColor,
-            borderRadius: BorderRadius.circular(15),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.greyTextColor.withOpacity(0.3),
-                blurRadius: 35,
-                spreadRadius: 1,
-                offset: const Offset(0, 5),
+        // Container(
+        //   height: controller.size.height * 0.06,
+        //   width: double.infinity,
+        //   padding: const EdgeInsets.only(left: 15, right: 15),
+        //   decoration: BoxDecoration(
+        //     color: themeProvider.darkTheme
+        //         ? AppColors.darkThemeColor
+        //         : AppColors.whiteColor,
+        //     borderRadius: BorderRadius.circular(15),
+        //     boxShadow: [
+        //       BoxShadow(
+        //         color: AppColors.greyTextColor.withOpacity(0.3),
+        //         blurRadius: 35,
+        //         spreadRadius: 1,
+        //         offset: const Offset(0, 5),
+        //       ),
+        //     ],
+        //   ),
+        //   child: Center(
+        //     child: DropdownButton<String>(
+        //       icon: Icon(
+        //         Icons.keyboard_arrow_down_rounded,
+        //         color: themeProvider.darkTheme
+        //             ? AppColors.whiteColor
+        //             : AppColors.greyTextColor,
+        //       ),
+        //       value: controller.selectedGenderValue.value,
+        //       isDense: true,
+        //       isExpanded: true,
+        //       items: controller.dropdownGenderItems,
+        //       dropdownColor: themeProvider.darkTheme
+        //           ? AppColors.darkThemeColor
+        //           : AppColors.whiteColor,
+        //       underline: SizedBox(),
+        //       borderRadius: BorderRadius.all(Radius.circular(15)),
+        //       style: TextStyle(
+        //         color: themeProvider.darkTheme
+        //             ? AppColors.whiteColor
+        //             : AppColors.blackTextColor,
+        //         fontSize: 15.sp,
+        //       ),
+        //       onChanged: (val) {
+        //         setState(() {
+        //           controller.selectedGenderValue.value = val!;
+        //         });
+        //       },
+        //     ),
+        //   ),
+        // )
+        Stack(
+          children: [
+            Container(
+              height: controller.size.height * 0.06,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: themeProvider.darkTheme
+                      ? AppColors.darkThemeBoxColor
+                      : AppColors.whiteColor,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.greyTextColor.withOpacity(0.3),
+                      blurRadius: 35,
+                      spreadRadius: 1,
+                      offset: const Offset(0, 5),
+                    ),
+                  ]
               ),
-            ],
-          ),
-          child: Center(
-            child: DropdownButton<String>(
-              icon: Icon(
-                Icons.keyboard_arrow_down_rounded,
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.greyTextColor,
-              ),
-              value: controller.selectedGenderValue.value,
-              isDense: true,
-              isExpanded: true,
-              items: controller.dropdownGenderItems,
-              dropdownColor: themeProvider.darkTheme
-                  ? AppColors.darkThemeColor
-                  : AppColors.whiteColor,
-              underline: SizedBox(),
-              borderRadius: BorderRadius.all(Radius.circular(15)),
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.blackTextColor,
-                fontSize: 15.sp,
-              ),
-              onChanged: (val) {
-                setState(() {
-                  controller.selectedGenderValue.value = val!;
-                });
-              },
             ),
-          ),
+            Obx(
+                  () => Container(
+                padding: const EdgeInsets.only(left: 10),
+                width: Get.width,
+                //gives the width of the dropdown button
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  //color: Colors.grey.shade200,
+                ),
+                child: Theme(
+                  data: Theme.of(context).copyWith(
+                    canvasColor: Colors.grey.shade100,
+                    buttonTheme: ButtonTheme.of(context).copyWith(
+                      alignedDropdown: true,
+                    ),
+                  ),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                      value: controller.selectedGenderValue.value,
+                      icon: Icon(
+                        Icons.keyboard_arrow_down_rounded,
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.blackTextColor.withOpacity(0.7),
+                      ),
+                      items: <String>[
+                        'Male',
+                        'Female',
+                        'Other',
+                      ].map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: const TextStyle(color: Colors.black),
+                          ),
+                        );
+                      }).toList(),
+                      // isDense: true,
+                      // isExpanded: true,
+                      dropdownColor: themeProvider.darkTheme
+                          ? AppColors.darkThemeBoxColor
+                          : AppColors.whiteColor,
+                      underline: SizedBox(),
+                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      style: TextStyle(
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.blackTextColor.withOpacity(0.7),
+                        fontSize: 13.sp,
+                      ),
+                      onChanged: (value) {
+                        // controller.petCategoryDropDownValue = value!;
+                        // controller.loadUI();
+
+                        controller.isLoading(true);
+                        controller.selectedGenderValue.value = value!;
+                        // controller.areaList.clear();
+                        // authScreenController.areaList.add(GetAreaList(areaName: 'Select Area'));
+
+                        // print("cityDropDownValue : ${authScreenController.cityDropDownValue}");
+                        controller.isLoading(false);
+                      },
+
+                    ),
+
+                  ),
+                ),
+              ),
+            ),
+          ],
         )
       ],
     );
@@ -479,9 +767,9 @@ class SubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onTap: () async{
         if(controller.formKey.currentState!.validate()){
-
+          await controller.updateUserProfileFunction();
         }
          //controller.submitLoginForm();
       },

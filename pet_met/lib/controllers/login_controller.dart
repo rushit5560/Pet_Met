@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:pet_met/models/login_screen_model/login_model.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:http/http.dart' as http;
+import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 import '../utils/app_route_names.dart';
 
@@ -49,7 +50,8 @@ class LoginController extends GetxController {
     try {
       Map<String, dynamic> data = {
         "email": mailController.text.trim().toLowerCase(),
-        "password": passController.text.trim()
+        "password": passController.text.trim(),
+        "categoryID": "${UserDetails.roleId}",
       };
       log("data : $data");
 

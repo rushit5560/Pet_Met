@@ -153,7 +153,9 @@ class PetTrackerPriceModule extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.openCheckout();
+                      },
                       style: ElevatedButton.styleFrom(
                         primary: themeProvider.darkTheme
                             ? AppColors.whiteColor

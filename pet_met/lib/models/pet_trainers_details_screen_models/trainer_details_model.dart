@@ -34,6 +34,91 @@ class TrainerDetailsModel {
 
 class TrainerData {
   TrainerData({
+     this.id,
+     this.name,
+     this.address,
+     this.phone,
+     this.open,
+     this.close,
+     this.fullText,
+     this.instagram,
+     this.facebook,
+     this.image,
+     this.trainerimages,
+     this.meetingimages,
+     this.isActive,
+     this.userid,
+     this.createdBy,
+     this.modifiedBy,
+     this.createdDate,
+     this.modifiedDate,
+  });
+
+  int ? id;
+  String ? name;
+  String ? address;
+  String ? phone;
+  String ? open;
+  String ? close;
+  String ? fullText;
+  String ? instagram;
+  String ? facebook;
+  String ? image;
+  List<String> ? trainerimages;
+  List<String> ? meetingimages;
+  String ? isActive;
+  int ? userid;
+  int ? createdBy;
+  String ? modifiedBy;
+  String ? createdDate;
+  String ? modifiedDate;
+
+  factory TrainerData.fromJson(Map<String, dynamic> json) => TrainerData(
+    id: json["id"] ?? 0,
+    name: json["name"] ?? "",
+    address: json["address"] ?? "",
+    phone: json["phone"] ?? "",
+    open: json["open"] ?? "",
+    close: json["close"] ?? "",
+    fullText: json["full_text"] ?? "",
+    instagram: json["instagram"] ?? "",
+    facebook: json["facebook"] ?? "",
+    image: json["image"] ?? "",
+    trainerimages: List<String>.from(json["trainerimages"].map((x) => x) ?? {}),
+    meetingimages: List<String>.from(json["meetingimages"].map((x) => x) ?? {}),
+    isActive: json["is_active"] ?? "",
+    userid: json["userid"] ?? 0,
+    createdBy: json["created_by"] ?? 0,
+    modifiedBy: json["modified_by"] ?? "",
+    createdDate: json["created_date"] ?? "",
+    modifiedDate: json["modified_date"] ?? "",
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "address": address,
+    "phone": phone,
+    "open": open,
+    "close": close,
+    "full_text": fullText,
+    "instagram": instagram,
+    "facebook": facebook,
+    "image": image,
+    "trainerimages": List<dynamic>.from(trainerimages!.map((x) => x)),
+    "meetingimages": List<dynamic>.from(meetingimages!.map((x) => x)),
+    "is_active": isActive,
+    "userid": userid,
+    "created_by": createdBy,
+    "modified_by": modifiedBy,
+    "created_date": createdDate,
+    "modified_date": modifiedDate,
+  };
+}
+
+
+/*class TrainerData {
+  TrainerData({
     this.id,
     this.shopename,
     this.address,
@@ -116,4 +201,4 @@ class TrainerData {
         // "created_date": createdDate.toIso8601String(),
         // "modified_date": modifiedDate,
       };
-}
+}*/

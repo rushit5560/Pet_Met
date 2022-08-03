@@ -71,7 +71,7 @@ class IndexScreenController extends GetxController {
 
   Future<void> userLogOutFunction() async {
     await userPreference.removeUserDetails();
-    Get.offAllNamed(AppRouteNames.loginRoute);
+    Get.offAllNamed(AppRouteNames.userCategoriesScreenRoute);
   }
 
 }

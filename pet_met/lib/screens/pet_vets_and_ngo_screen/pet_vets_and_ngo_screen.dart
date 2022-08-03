@@ -39,10 +39,16 @@ class PetVetsAndNgoScreen extends StatelessWidget {
                   title: "Pet Vets & NGO",
                   appBarOption: AppBarOption.drawerButtonOption,
                 ),
+                const SizedBox(height: 15),
                 Expanded(
                   child: petVetsAndNgoScreenController.isLoading.value
                       ? const CustomAnimationLoader()
-                      : VetsAndNgoListModule(),
+                      : Column(
+                        children: [
+                          SearchVetAndNgoTextFieldModule(),
+                          VetsAndNgoListModule(),
+                        ],
+                      ),
                 ),
               ],
             ),

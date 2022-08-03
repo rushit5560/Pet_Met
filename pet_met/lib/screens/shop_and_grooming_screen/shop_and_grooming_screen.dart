@@ -38,10 +38,18 @@ class ShopAndGroomingScreen extends StatelessWidget {
                   title: "Shop & Grooming",
                   appBarOption: AppBarOption.drawerButtonOption,
                 ),
+                const SizedBox(height: 15),
+
                 Expanded(
                   child: shopAndGroomingScreenController.isLoading.value
                       ? const CustomAnimationLoader()
-                      : ShopListModule(),
+                      : Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SearchShopTextFieldModule(),
+                          ShopListModule(),
+                        ],
+                      ),
                 ),
               ],
             ),

@@ -334,6 +334,7 @@ class PetNameTextFieldModule extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         CustomLightTextField(
+          readOnly: false,
           fieldController: controller.petNameController,
           height: controller.size.height * 0.065,
           width: double.infinity,
@@ -711,6 +712,7 @@ class PetDetailsTextFieldModule extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         CustomLightTextField(
+          readOnly: false,
           fieldController: controller.petDetailsController,
           height: controller.size.height * 0.065,
           width: double.infinity,
@@ -1192,6 +1194,7 @@ class WeightTextFieldModule extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         CustomLightTextField(
+          readOnly: false,
           fieldController: controller.weightController,
           height: controller.size.height * 0.065,
           width: double.infinity,
@@ -1226,9 +1229,10 @@ class PetSubmitButton extends StatelessWidget {
           }
           else if(controller.genderValue.isEmpty){
             Fluttertoast.showToast(msg: 'Please select gender');
-          }
-          else if(controller.imageFile == null){
-            Fluttertoast.showToast(msg: 'Please select image');
+          }else if(controller.petOption == PetOption.addOption){
+            if(controller.imageFile == null){
+              Fluttertoast.showToast(msg: 'Please select image');
+            }
           }
           else if(controller.petOption == PetOption.addOption) {
             // Here Add Pet Api Call

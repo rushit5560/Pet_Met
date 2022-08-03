@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/models/shop_and_grooming_screen_model/all_shop_model.dart';
 import 'package:pet_met/utils/api_url.dart';
@@ -10,6 +11,9 @@ class ShopAndGroomingScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
   final size = Get.size;
+  final formKey = GlobalKey<FormState>();
+  TextEditingController searchFieldController = TextEditingController();
+
   ApiHeader apiHeader = ApiHeader();
 
   List<ShopData> shopsList = [];

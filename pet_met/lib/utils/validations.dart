@@ -6,9 +6,38 @@ class Validations {
     return null;
   }
 
+  String? validateSearchTextField(String value) {
+    if (value.isEmpty) {
+      return 'Search text is required';
+    }
+    return null;
+  }
+
   String? validateDetails(String value) {
     if (value.isEmpty) {
       return 'Details is required';
+    }
+    return null;
+  }
+
+  String? validateInstagramLink(String value) {
+    if (value.isEmpty) {
+      return 'Instagram Link is required';
+    }
+    return null;
+  }
+
+  String? validateFacebookLink(String value) {
+    if (value.isEmpty) {
+      return 'Facebook Link is required';
+    }
+    return null;
+  }
+
+
+  String? validateActive(String value) {
+    if (value.isEmpty) {
+      return 'Active is required';
     }
     return null;
   }

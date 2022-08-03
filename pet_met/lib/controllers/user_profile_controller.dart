@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:get/get.dart';
-import 'package:pet_met/models/get_all_profile_model/get_user_profile_model.dart';
+import 'package:pet_met/models/get_pet_list_model/get_pet_list_model.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
@@ -42,8 +42,8 @@ class UserProfileController extends GetxController {
     try {
       Map<String, dynamic> data = {
         "id": "${UserDetails.userId}",
-        "uid": "${UserDetails.selfId}",
-        "categoryid": "${UserDetails.categoryId}",
+       // "uid": "${UserDetails.selfId}",
+        "categoryID": "${UserDetails.categoryId}",
       };
 
       log("Body Data : $data");
@@ -54,13 +54,13 @@ class UserProfileController extends GetxController {
       http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
       log("Get All Role Profile Api response : ${response.body}");
 
-      AllRoleProfileModel allRoleProfileModel =
-      AllRoleProfileModel.fromJson(json.decode(response.body));
-      isSuccessStatus = allRoleProfileModel.success.obs;
+      GetPetListModel getPetListModel =
+      GetPetListModel.fromJson(json.decode(response.body));
+      isSuccessStatus = getPetListModel.success.obs;
 
       if (isSuccessStatus.value) {
         petList.clear();
-        petList.addAll(allRoleProfileModel.data.petdata);
+        petList.addAll(getPetListModel.data.petdata);
         log("petList Length : ${petList.length}");
       } else {
         log("Get All Role Profile Api Else");

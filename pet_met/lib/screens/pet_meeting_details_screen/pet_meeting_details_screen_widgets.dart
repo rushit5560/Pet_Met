@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/pet_meeting_details_screen_controller.dart';
 import 'package:pet_met/utils/api_url.dart';
@@ -232,13 +233,25 @@ class PetMeetingOverViewModule extends StatelessWidget {
               fontSize: 12.sp),
         ),
         SizedBox(height: screenController.size.height * 0.001.h),
-        Text(
-          screenController.details,
-          style: TextStyle(
-            color: themeProvider.darkTheme
-                ? AppColors.whiteColor
-                : AppColors.blackTextColor,
-          ),
+        // Text(
+        //   screenController.details,
+        //   style: TextStyle(
+        //     color: themeProvider.darkTheme
+        //         ? AppColors.whiteColor
+        //         : AppColors.blackTextColor,
+        //   ),
+        // ),
+        Html(
+          data: screenController.details,
+          style: {
+            "body": Style(
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.blackTextColor,
+              // fontSize: FontSize(15.0),
+              // fontWeight: FontWeight.w500,
+            ),
+          },
         ),
       ],
     ).commonSymmetricPadding(horizontal: 15);

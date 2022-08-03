@@ -41,15 +41,22 @@ class ApiUrl {
 
   /// Pet Profile Management
   static const petProfileApi = apiMainPath + "/petdetails/";
-  static const petUpdateProfileApi = apiMainPath + "/petadd";
+  static const petUpdateProfileApi = apiMainPath + "/petadd"; // add/update
 
   /// All Role Profile Managemnet
   static const allRoleGetProfileApi = apiMainPath + "/profile";
+  static const shopUpdateProfileApi = apiMainPath + "/shopinsert";
+  static const vetAndNgoUpdateProfileApi = apiMainPath + "/ngovetinsert";
+  static const trainersUpdateProfileApi = apiMainPath + "/trainerinsert";
+  static const userUpdateProfileApi = apiMainPath + "/usersinsert";
 
   /// Payment Management
   static const getPaymentListApi = apiMainPath + "/carddetails/";
   static const addNewPaymentApi = apiMainPath + "/cardadd";
   static const setPaymentIsActiveApi = apiMainPath + "/cardactive/";
+
+  /// Order
+  static const addOrderApi = apiMainPath + "/orderadd";
 }
 
 class ApiHeader {

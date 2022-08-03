@@ -65,7 +65,10 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                               // ),
                               // const SizedBox(height: 15),
                               // OpenAndCloseShopTimeModule(),
-
+                              const SizedBox(height: 15),
+                              IsActiveTextFieldModule(),
+                              const SizedBox(height: 15),
+                              OpenAndCloseShopTimeModule(),
                               const SizedBox(height: 30),
 
                               SubmitButtonModule(),
