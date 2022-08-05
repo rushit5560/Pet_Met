@@ -1,10 +1,13 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/controllers/index_screen_controller.dart';
+import 'package:pet_met/screens/edit_story_screen/edit_story_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
@@ -60,7 +63,8 @@ class PetTopListModule extends StatelessWidget {
             ),
             child: GestureDetector(
               onTap: (){
-                Get.toNamed(AppRouteNames.userProfileRoute);
+               // Get.toNamed(AppRouteNames.userProfileRoute);
+                Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
               },
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(12),
@@ -92,7 +96,8 @@ class PetTopListModule extends StatelessWidget {
             ),
             child: GestureDetector(
               onTap: (){
-                Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
+                //Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
+                Get.toNamed(AppRouteNames.userProfileRoute, arguments: homeController.petTopList[index].userid);
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -394,23 +399,200 @@ class PetListModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: controller.size.width * 0.16,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemCount: controller.dogsTopList.length,
-        physics: const BouncingScrollPhysics(),
-        separatorBuilder: (context, index) {
-          return const SizedBox(width: 10);
-        },
-        itemBuilder: (context, index) {
-          return AddPetStoryWidget(
-            controller: controller,
-            index: index,
-          );
-        },
-      ),
+    return Row(
+      children: [
+        Stack(
+          children: [
+            Container(
+              height: controller.size.width * 0.16,
+              width: controller.size.width * 0.16,
+              margin: const EdgeInsets.only(bottom: 5, right: 5),
+              decoration: BoxDecoration(
+                // image: DecorationImage(
+                //     image: AssetImage(
+                //       controller.dogsTopList[index],
+                //     ),
+                //     fit: BoxFit.cover),
+                color: AppColors.greyTextColor,
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+              child: Image.asset(AppImages.petMetLogoImg, fit: BoxFit.cover),
+            ),
+            Positioned(
+              right: 0,
+              bottom: 0,
+              child: GestureDetector(
+                onTap: (){
+                  modelBottomSheet(context);
+                },
+                child: Container(
+                  height: 15,
+                  width: 15,
+                  decoration: const BoxDecoration(
+                      color: Colors.green, shape: BoxShape.circle),
+                  child: const Icon(
+                    Icons.add,
+                    color: AppColors.whiteColor,
+                    size: 12,
+                  ),
+                ),
+              ),
+            )
+            
+          ],
+        ),
+        Expanded(
+          child: SizedBox(
+            height: controller.size.width * 0.16,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemCount: controller.imageList.length,
+              physics: const BouncingScrollPhysics(),
+              separatorBuilder: (context, index) {
+                return const SizedBox(width: 10);
+              },
+              itemBuilder: (context, index) {
+                return AddPetStoryWidget(
+                  controller: controller,
+                  index: index,
+                );
+              },
+            ),
+          ),
+        ),
+      ],
     );
+  }
+
+  modelBottomSheet(BuildContext context){
+    showModalBottomSheet<void>(
+      context: context,
+      constraints: null,
+      builder: (BuildContext context) {
+        return Container(
+          color: themeProvider.darkTheme
+              ? AppColors.blackTextColor
+              : AppColors.whiteColor,
+          height: controller.size.height * 0.15,
+          child: Column(
+            children: [
+              ListTile(
+                onTap: getFromCamera,
+                contentPadding:
+                EdgeInsets.only(left: controller.size.width * 0.1),
+                title: Text(
+                  "Select Image From Camera",
+                  style: TextStyle(
+                    color: AppColors.blackTextColor.withOpacity(0.7),
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              ListTile(
+                contentPadding:
+                EdgeInsets.only(left: controller.size.width * 0.1),
+                onTap: getFromGallery,
+                title: Text(
+                  "Select Image From Gallery",
+                  style: TextStyle(
+                    color: AppColors.blackTextColor.withOpacity(0.7),
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  /// Get from gallery
+  getFromGallery() async {
+    /*XFile? pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      maxWidth: 1800,
+      maxHeight: 1800,
+    );
+    if (pickedFile != null) {
+      setState(() {
+        controller.imageFile = XFile(pickedFile.path);
+      });
+    }*/
+    final pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+    );
+
+    if (pickedFile != null) {
+      //setState(() {
+      controller.imageFile = File(pickedFile.path);
+      controller.loadUI();
+      controller.imageFile = File(pickedFile.path);
+      log('Camera File Path : ${controller.imageFile}');
+      controller.addUserStoryFunction();
+      //Get.to(() => EditStoryScreen(), arguments: controller.imageFile!.path);
+
+      log('Camera Image Path : ${controller.imageFile!.path}');
+
+
+      //Fluttertoast.showToast(msg: '${image.path}', toastLength: Toast.LENGTH_LONG);
+      //renameImage();
+      //});
+    } else {
+
+
+    }
+
+
+    // if(controller.imageFile != null){
+    //
+    // }else {
+    //   print("image is not picked.....!");
+    // }
+    //setState(() {});
+    //Get.back();
+  }
+
+  /// Get from Camera
+  getFromCamera() async {
+    // XFile? pickedFile = await ImagePicker().pickImage(
+    //   source: ImageSource.camera,
+    //   maxWidth: 1800,
+    //   maxHeight: 1800,
+    // );
+    // if (pickedFile != null) {
+    //   setState(() {
+    //     controller.imageFile = XFile(pickedFile.path);
+    //   });
+    // }
+    final pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.camera,
+    );
+
+    if (pickedFile != null) {
+      //setState(() {
+      controller.imageFile = File(pickedFile.path);
+      controller.loadUI();
+      log('Camera File Path : ${controller.imageFile}');
+      log('Camera Image Path : ${controller.imageFile!.path}');
+
+
+      //Fluttertoast.showToast(msg: '${image.path}', toastLength: Toast.LENGTH_LONG);
+      //renameImage();
+      //});
+    } else {
+
+
+    }
+
+    controller.imageFile = File(pickedFile!.path);
+    controller.addUserStoryFunction();
+    // setState(() {});
+    Get.back();
   }
 }
 
@@ -428,43 +610,30 @@ class AddPetStoryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {},
-      child: Stack(
-        children: [
+      child:
           Container(
             height: controller.size.width * 0.16,
             width: controller.size.width * 0.16,
             margin: const EdgeInsets.only(bottom: 5, right: 5),
             decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(
-                    controller.dogsTopList[index],
-                  ),
-                  fit: BoxFit.cover),
+              // image: DecorationImage(
+              //     image: AssetImage(
+              //       controller.dogsTopList[index],
+              //     ),
+              //     fit: BoxFit.cover),
               color: AppColors.greyTextColor,
               borderRadius: const BorderRadius.all(
                 Radius.circular(8),
               ),
             ),
+            child: Image.network(
+                ApiUrl.apiImagePath + "asset/uploads/userstory/" + controller.imageList[index].image,
+              errorBuilder: (context, st, ob){
+                return Image.asset(AppImages.petMetLogoImg);
+              },
+              fit: BoxFit.cover,
+            )
           ),
-          index == 0
-              ? Positioned(
-                  right: 0,
-                  bottom: 0,
-                  child: Container(
-                    height: 15,
-                    width: 15,
-                    decoration: const BoxDecoration(
-                        color: Colors.green, shape: BoxShape.circle),
-                    child: const Icon(
-                      Icons.add,
-                      color: AppColors.whiteColor,
-                      size: 12,
-                    ),
-                  ),
-                )
-              : const SizedBox()
-        ],
-      ),
     );
   }
 }

@@ -58,7 +58,7 @@ class ChangePasswordScreenController extends GetxController{
         Fluttertoast.showToast(msg: changePasswordScreenModel.message);
       }
     } catch(e) {
-      log('User Login Api Error ::: $e');
+      log('Change Password Api Error ::: $e');
     } finally {
       isLoading(false);
     }

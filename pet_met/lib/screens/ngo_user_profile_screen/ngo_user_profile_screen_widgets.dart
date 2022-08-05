@@ -97,7 +97,7 @@ class UploadImageModule extends StatelessWidget {
             children: [
               Image.file(
                 themeProvider.darkTheme
-                    ? screenController.imageFile! : screenController.imageFile!,height: 65,),
+                    ? screenController.imageFile! : screenController.imageFile!,height: 65),
 
               //),
               // const SizedBox(height: 20),

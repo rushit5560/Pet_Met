@@ -181,8 +181,8 @@ class UploadImageModule extends StatelessWidget {
       builder: (BuildContext context) {
         return Container(
           color: themeProvider.darkTheme
-              ? AppColors.whiteColor
-              : AppColors.blackTextColor,
+              ? AppColors.blackTextColor
+              : AppColors.whiteColor,
           height: controller.size.height * 0.15,
           child: Column(
             children: [

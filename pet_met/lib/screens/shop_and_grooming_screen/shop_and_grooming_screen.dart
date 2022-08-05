@@ -47,7 +47,7 @@ class ShopAndGroomingScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SearchShopTextFieldModule(),
-                          ShopListModule(),
+                          Expanded(child: ShopListModule()),
                         ],
                       ),
                 ),

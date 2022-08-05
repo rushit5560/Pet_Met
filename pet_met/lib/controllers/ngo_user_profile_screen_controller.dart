@@ -239,7 +239,1188 @@ class NgoUserProfileScreenController extends GetxController {
             log('False False');
           }
         });
-      } else if (imageFile == null && ngoPictureFile1 == null && ngoPictureFile2 == null && ngoPictureFile3 == null && ngoPictureFile4 == null && ngoPictureFile5 == null){
+      }
+      else if (imageFile != null && ngoPictureFile1 == null && ngoPictureFile2 == null && ngoPictureFile3 == null && ngoPictureFile4 == null && ngoPictureFile5 == null) {
+        log("uploading with a photo");
+        var request = http.MultipartRequest('POST', Uri.parse(url));
+
+        var stream = http.ByteStream(imageFile!.openRead());
+        // var stream1 = http.ByteStream(ngoPictureFile1!.openRead());
+        // var stream2 = http.ByteStream(ngoPictureFile2!.openRead());
+        // var stream3 = http.ByteStream(ngoPictureFile3!.openRead());
+        // var stream4 = http.ByteStream(ngoPictureFile4!.openRead());
+        // var stream5 = http.ByteStream(ngoPictureFile5!.openRead());
+
+        stream.cast();
+        // stream1.cast();
+        // stream2.cast();
+        // stream3.cast();
+        // stream4.cast();
+        // stream5.cast();
+
+        var length = await imageFile!.length();
+        // var length1 = await ngoPictureFile1!.length();
+        // var length2 = await ngoPictureFile2!.length();
+        // var length3 = await ngoPictureFile3!.length();
+        // var length4 = await ngoPictureFile4!.length();
+        // var length5 = await ngoPictureFile5!.length();
+
+        request.files.add(await http.MultipartFile.fromPath("image", imageFile!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image1", ngoPictureFile1!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image2", ngoPictureFile2!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image3", ngoPictureFile3!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image4", ngoPictureFile4!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image5", ngoPictureFile5!.path));
+        request.headers.addAll(header);
+
+        request.fields['name'] = nameController.text.trim();
+        request.fields['address'] = addressController.text.trim();
+        request.fields['phone'] = contactController.text.trim();
+        request.fields['open'] = openTimeController.text.trim();
+        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['full_text'] = detailsController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
+        request.fields['is_active'] = activeController.text.trim();
+        request.fields['ifsc_code'] = ifscCodeController.text.trim();
+        request.fields['account_code'] = accountNumberController.text.trim();
+        request.fields['userid'] = "${UserDetails.userId}";
+        request.fields['uid'] = "${UserDetails.userId}";
+        //request.fields['showimg'] = "jgjadg";
+
+        var multiPart = http.MultipartFile(
+          'image',
+          stream,
+          length,
+
+          //filename: "",
+        );
+
+        // var multiPart1 = http.MultipartFile(
+        //   'image1',
+        //   stream1,
+        //   length1,
+        // );
+        // var multiPart2 = http.MultipartFile(
+        //   'image2',
+        //   stream2,
+        //   length2,
+        // );
+        // var multiPart3 = http.MultipartFile(
+        //   'image3',
+        //   stream3,
+        //   length3,
+        // );
+        // var multiPart4 = http.MultipartFile(
+        //   'image4',
+        //   stream4,
+        //   length4,
+        // );
+        // var multiPart5 = http.MultipartFile(
+        //   'image5',
+        //   stream5,
+        //   length5,
+        // );
+
+
+        request.files.add(multiPart);
+        // request.files.add(multiPart1);
+        // request.files.add(multiPart2);
+        // request.files.add(multiPart3);
+        // request.files.add(multiPart4);
+        // request.files.add(multiPart5);
+
+        log('request.fields: ${request.fields}');
+        log('request.files: ${request.files}');
+        //log('request.files length : ${request.files.length}');
+        //log('request.files name : ${request.files.first.filename}');
+        //log('request.files filetype : ${request.files.first.contentType}');
+        log('request.headers: ${request.headers}');
+
+        var response = await request.send();
+        log('response: ${response.request}');
+
+        response.stream.transform(utf8.decoder).listen((value) async {
+          VetAndNgoUpdateProfileModel vetAndNgoUpdateProfileModel =
+          VetAndNgoUpdateProfileModel.fromJson(json.decode(value));
+          log('response1 :::::: ${vetAndNgoUpdateProfileModel.success}');
+          isSuccessStatus = vetAndNgoUpdateProfileModel.success.obs;
+
+          if (isSuccessStatus.value) {
+            Fluttertoast.showToast(msg: vetAndNgoUpdateProfileModel.message);
+            await getAllRoleProfileFunction();
+            // log(updateUserProfileModel.dataVendor.userName);
+            // log(updateUserProfileModel.dataVendor.email);
+            // log(updateUserProfileModel.dataVendor.phoneNo);
+            Get.back();
+          } else {
+            log('False False');
+          }
+        });
+      }
+      else if (imageFile != null && ngoPictureFile1 != null && ngoPictureFile2 == null && ngoPictureFile3 == null && ngoPictureFile4 == null && ngoPictureFile5 == null) {
+        log("uploading with a photo");
+        var request = http.MultipartRequest('POST', Uri.parse(url));
+
+        var stream = http.ByteStream(imageFile!.openRead());
+        var stream1 = http.ByteStream(ngoPictureFile1!.openRead());
+        // var stream2 = http.ByteStream(ngoPictureFile2!.openRead());
+        // var stream3 = http.ByteStream(ngoPictureFile3!.openRead());
+        // var stream4 = http.ByteStream(ngoPictureFile4!.openRead());
+        // var stream5 = http.ByteStream(ngoPictureFile5!.openRead());
+
+        stream.cast();
+        stream1.cast();
+        // stream2.cast();
+        // stream3.cast();
+        // stream4.cast();
+        // stream5.cast();
+
+        var length = await imageFile!.length();
+        var length1 = await ngoPictureFile1!.length();
+        // var length2 = await ngoPictureFile2!.length();
+        // var length3 = await ngoPictureFile3!.length();
+        // var length4 = await ngoPictureFile4!.length();
+        // var length5 = await ngoPictureFile5!.length();
+
+        request.files.add(await http.MultipartFile.fromPath("image", imageFile!.path));
+        request.files.add(await http.MultipartFile.fromPath("image1", ngoPictureFile1!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image2", ngoPictureFile2!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image3", ngoPictureFile3!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image4", ngoPictureFile4!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image5", ngoPictureFile5!.path));
+        request.headers.addAll(header);
+
+        request.fields['name'] = nameController.text.trim();
+        request.fields['address'] = addressController.text.trim();
+        request.fields['phone'] = contactController.text.trim();
+        request.fields['open'] = openTimeController.text.trim();
+        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['full_text'] = detailsController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
+        request.fields['is_active'] = activeController.text.trim();
+        request.fields['ifsc_code'] = ifscCodeController.text.trim();
+        request.fields['account_code'] = accountNumberController.text.trim();
+        request.fields['userid'] = "${UserDetails.userId}";
+        request.fields['uid'] = "${UserDetails.userId}";
+        //request.fields['showimg'] = "jgjadg";
+
+        var multiPart = http.MultipartFile(
+          'image',
+          stream,
+          length,
+
+          //filename: "",
+        );
+
+        var multiPart1 = http.MultipartFile(
+          'image1',
+          stream1,
+          length1,
+        );
+        // var multiPart2 = http.MultipartFile(
+        //   'image2',
+        //   stream2,
+        //   length2,
+        // );
+        // var multiPart3 = http.MultipartFile(
+        //   'image3',
+        //   stream3,
+        //   length3,
+        // );
+        // var multiPart4 = http.MultipartFile(
+        //   'image4',
+        //   stream4,
+        //   length4,
+        // );
+        // var multiPart5 = http.MultipartFile(
+        //   'image5',
+        //   stream5,
+        //   length5,
+        // );
+
+
+        request.files.add(multiPart);
+        request.files.add(multiPart1);
+        // request.files.add(multiPart2);
+        // request.files.add(multiPart3);
+        // request.files.add(multiPart4);
+        // request.files.add(multiPart5);
+
+        log('request.fields: ${request.fields}');
+        log('request.files: ${request.files}');
+        //log('request.files length : ${request.files.length}');
+        //log('request.files name : ${request.files.first.filename}');
+        //log('request.files filetype : ${request.files.first.contentType}');
+        log('request.headers: ${request.headers}');
+
+        var response = await request.send();
+        log('response: ${response.request}');
+
+        response.stream.transform(utf8.decoder).listen((value) async {
+          VetAndNgoUpdateProfileModel vetAndNgoUpdateProfileModel =
+          VetAndNgoUpdateProfileModel.fromJson(json.decode(value));
+          log('response1 :::::: ${vetAndNgoUpdateProfileModel.success}');
+          isSuccessStatus = vetAndNgoUpdateProfileModel.success.obs;
+
+          if (isSuccessStatus.value) {
+            Fluttertoast.showToast(msg: vetAndNgoUpdateProfileModel.message);
+            await getAllRoleProfileFunction();
+            // log(updateUserProfileModel.dataVendor.userName);
+            // log(updateUserProfileModel.dataVendor.email);
+            // log(updateUserProfileModel.dataVendor.phoneNo);
+            Get.back();
+          } else {
+            log('False False');
+          }
+        });
+      }
+      else if (imageFile != null && ngoPictureFile1 != null && ngoPictureFile2 != null && ngoPictureFile3 == null && ngoPictureFile4 == null && ngoPictureFile5 == null) {
+        log("uploading with a photo");
+        var request = http.MultipartRequest('POST', Uri.parse(url));
+
+        var stream = http.ByteStream(imageFile!.openRead());
+        var stream1 = http.ByteStream(ngoPictureFile1!.openRead());
+        var stream2 = http.ByteStream(ngoPictureFile2!.openRead());
+        // var stream3 = http.ByteStream(ngoPictureFile3!.openRead());
+        // var stream4 = http.ByteStream(ngoPictureFile4!.openRead());
+        // var stream5 = http.ByteStream(ngoPictureFile5!.openRead());
+
+        stream.cast();
+        stream1.cast();
+        stream2.cast();
+        // stream3.cast();
+        // stream4.cast();
+        // stream5.cast();
+
+        var length = await imageFile!.length();
+        var length1 = await ngoPictureFile1!.length();
+        var length2 = await ngoPictureFile2!.length();
+        // var length3 = await ngoPictureFile3!.length();
+        // var length4 = await ngoPictureFile4!.length();
+        // var length5 = await ngoPictureFile5!.length();
+
+        request.files.add(await http.MultipartFile.fromPath("image", imageFile!.path));
+        request.files.add(await http.MultipartFile.fromPath("image1", ngoPictureFile1!.path));
+        request.files.add(await http.MultipartFile.fromPath("image2", ngoPictureFile2!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image3", ngoPictureFile3!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image4", ngoPictureFile4!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image5", ngoPictureFile5!.path));
+        request.headers.addAll(header);
+
+        request.fields['name'] = nameController.text.trim();
+        request.fields['address'] = addressController.text.trim();
+        request.fields['phone'] = contactController.text.trim();
+        request.fields['open'] = openTimeController.text.trim();
+        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['full_text'] = detailsController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
+        request.fields['is_active'] = activeController.text.trim();
+        request.fields['ifsc_code'] = ifscCodeController.text.trim();
+        request.fields['account_code'] = accountNumberController.text.trim();
+        request.fields['userid'] = "${UserDetails.userId}";
+        request.fields['uid'] = "${UserDetails.userId}";
+        //request.fields['showimg'] = "jgjadg";
+
+        var multiPart = http.MultipartFile(
+          'image',
+          stream,
+          length,
+
+          //filename: "",
+        );
+
+        var multiPart1 = http.MultipartFile(
+          'image1',
+          stream1,
+          length1,
+        );
+        var multiPart2 = http.MultipartFile(
+          'image2',
+          stream2,
+          length2,
+        );
+        // var multiPart3 = http.MultipartFile(
+        //   'image3',
+        //   stream3,
+        //   length3,
+        // );
+        // var multiPart4 = http.MultipartFile(
+        //   'image4',
+        //   stream4,
+        //   length4,
+        // );
+        // var multiPart5 = http.MultipartFile(
+        //   'image5',
+        //   stream5,
+        //   length5,
+        // );
+
+
+        request.files.add(multiPart);
+        request.files.add(multiPart1);
+        request.files.add(multiPart2);
+        // request.files.add(multiPart3);
+        // request.files.add(multiPart4);
+        // request.files.add(multiPart5);
+
+        log('request.fields: ${request.fields}');
+        log('request.files: ${request.files}');
+        //log('request.files length : ${request.files.length}');
+        //log('request.files name : ${request.files.first.filename}');
+        //log('request.files filetype : ${request.files.first.contentType}');
+        log('request.headers: ${request.headers}');
+
+        var response = await request.send();
+        log('response: ${response.request}');
+
+        response.stream.transform(utf8.decoder).listen((value) async {
+          VetAndNgoUpdateProfileModel vetAndNgoUpdateProfileModel =
+          VetAndNgoUpdateProfileModel.fromJson(json.decode(value));
+          log('response1 :::::: ${vetAndNgoUpdateProfileModel.success}');
+          isSuccessStatus = vetAndNgoUpdateProfileModel.success.obs;
+
+          if (isSuccessStatus.value) {
+            Fluttertoast.showToast(msg: vetAndNgoUpdateProfileModel.message);
+            await getAllRoleProfileFunction();
+            // log(updateUserProfileModel.dataVendor.userName);
+            // log(updateUserProfileModel.dataVendor.email);
+            // log(updateUserProfileModel.dataVendor.phoneNo);
+            Get.back();
+          } else {
+            log('False False');
+          }
+        });
+      }
+      else if (imageFile != null && ngoPictureFile1 != null && ngoPictureFile2 != null && ngoPictureFile3 != null && ngoPictureFile4 == null && ngoPictureFile5 == null) {
+        log("uploading with a photo");
+        var request = http.MultipartRequest('POST', Uri.parse(url));
+
+        var stream = http.ByteStream(imageFile!.openRead());
+        var stream1 = http.ByteStream(ngoPictureFile1!.openRead());
+        var stream2 = http.ByteStream(ngoPictureFile2!.openRead());
+        var stream3 = http.ByteStream(ngoPictureFile3!.openRead());
+        // var stream4 = http.ByteStream(ngoPictureFile4!.openRead());
+        // var stream5 = http.ByteStream(ngoPictureFile5!.openRead());
+
+        stream.cast();
+        stream1.cast();
+        stream2.cast();
+        stream3.cast();
+        // stream4.cast();
+        // stream5.cast();
+
+        var length = await imageFile!.length();
+        var length1 = await ngoPictureFile1!.length();
+        var length2 = await ngoPictureFile2!.length();
+        var length3 = await ngoPictureFile3!.length();
+        // var length4 = await ngoPictureFile4!.length();
+        // var length5 = await ngoPictureFile5!.length();
+
+        request.files.add(await http.MultipartFile.fromPath("image", imageFile!.path));
+        request.files.add(await http.MultipartFile.fromPath("image1", ngoPictureFile1!.path));
+        request.files.add(await http.MultipartFile.fromPath("image2", ngoPictureFile2!.path));
+        request.files.add(await http.MultipartFile.fromPath("image3", ngoPictureFile3!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image4", ngoPictureFile4!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image5", ngoPictureFile5!.path));
+        request.headers.addAll(header);
+
+        request.fields['name'] = nameController.text.trim();
+        request.fields['address'] = addressController.text.trim();
+        request.fields['phone'] = contactController.text.trim();
+        request.fields['open'] = openTimeController.text.trim();
+        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['full_text'] = detailsController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
+        request.fields['is_active'] = activeController.text.trim();
+        request.fields['ifsc_code'] = ifscCodeController.text.trim();
+        request.fields['account_code'] = accountNumberController.text.trim();
+        request.fields['userid'] = "${UserDetails.userId}";
+        request.fields['uid'] = "${UserDetails.userId}";
+        //request.fields['showimg'] = "jgjadg";
+
+        var multiPart = http.MultipartFile(
+          'image',
+          stream,
+          length,
+
+          //filename: "",
+        );
+
+        var multiPart1 = http.MultipartFile(
+          'image1',
+          stream1,
+          length1,
+        );
+        var multiPart2 = http.MultipartFile(
+          'image2',
+          stream2,
+          length2,
+        );
+        var multiPart3 = http.MultipartFile(
+          'image3',
+          stream3,
+          length3,
+        );
+        // var multiPart4 = http.MultipartFile(
+        //   'image4',
+        //   stream4,
+        //   length4,
+        // );
+        // var multiPart5 = http.MultipartFile(
+        //   'image5',
+        //   stream5,
+        //   length5,
+        // );
+
+
+        request.files.add(multiPart);
+        request.files.add(multiPart1);
+        request.files.add(multiPart2);
+        request.files.add(multiPart3);
+        // request.files.add(multiPart4);
+        // request.files.add(multiPart5);
+
+        log('request.fields: ${request.fields}');
+        log('request.files: ${request.files}');
+        //log('request.files length : ${request.files.length}');
+        //log('request.files name : ${request.files.first.filename}');
+        //log('request.files filetype : ${request.files.first.contentType}');
+        log('request.headers: ${request.headers}');
+
+        var response = await request.send();
+        log('response: ${response.request}');
+
+        response.stream.transform(utf8.decoder).listen((value) async {
+          VetAndNgoUpdateProfileModel vetAndNgoUpdateProfileModel =
+          VetAndNgoUpdateProfileModel.fromJson(json.decode(value));
+          log('response1 :::::: ${vetAndNgoUpdateProfileModel.success}');
+          isSuccessStatus = vetAndNgoUpdateProfileModel.success.obs;
+
+          if (isSuccessStatus.value) {
+            Fluttertoast.showToast(msg: vetAndNgoUpdateProfileModel.message);
+            await getAllRoleProfileFunction();
+            // log(updateUserProfileModel.dataVendor.userName);
+            // log(updateUserProfileModel.dataVendor.email);
+            // log(updateUserProfileModel.dataVendor.phoneNo);
+            Get.back();
+          } else {
+            log('False False');
+          }
+        });
+      }
+      else if (imageFile != null && ngoPictureFile1 != null && ngoPictureFile2 != null && ngoPictureFile3 != null && ngoPictureFile4 != null && ngoPictureFile5 == null) {
+        log("uploading with a photo");
+        var request = http.MultipartRequest('POST', Uri.parse(url));
+
+        var stream = http.ByteStream(imageFile!.openRead());
+        var stream1 = http.ByteStream(ngoPictureFile1!.openRead());
+        var stream2 = http.ByteStream(ngoPictureFile2!.openRead());
+        var stream3 = http.ByteStream(ngoPictureFile3!.openRead());
+        var stream4 = http.ByteStream(ngoPictureFile4!.openRead());
+        // var stream5 = http.ByteStream(ngoPictureFile5!.openRead());
+
+        stream.cast();
+        stream1.cast();
+        stream2.cast();
+        stream3.cast();
+        stream4.cast();
+        // stream5.cast();
+
+        var length = await imageFile!.length();
+        var length1 = await ngoPictureFile1!.length();
+        var length2 = await ngoPictureFile2!.length();
+        var length3 = await ngoPictureFile3!.length();
+        var length4 = await ngoPictureFile4!.length();
+        // var length5 = await ngoPictureFile5!.length();
+
+        request.files.add(await http.MultipartFile.fromPath("image", imageFile!.path));
+        request.files.add(await http.MultipartFile.fromPath("image1", ngoPictureFile1!.path));
+        request.files.add(await http.MultipartFile.fromPath("image2", ngoPictureFile2!.path));
+        request.files.add(await http.MultipartFile.fromPath("image3", ngoPictureFile3!.path));
+        request.files.add(await http.MultipartFile.fromPath("image4", ngoPictureFile4!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image5", ngoPictureFile5!.path));
+        request.headers.addAll(header);
+
+        request.fields['name'] = nameController.text.trim();
+        request.fields['address'] = addressController.text.trim();
+        request.fields['phone'] = contactController.text.trim();
+        request.fields['open'] = openTimeController.text.trim();
+        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['full_text'] = detailsController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
+        request.fields['is_active'] = activeController.text.trim();
+        request.fields['ifsc_code'] = ifscCodeController.text.trim();
+        request.fields['account_code'] = accountNumberController.text.trim();
+        request.fields['userid'] = "${UserDetails.userId}";
+        request.fields['uid'] = "${UserDetails.userId}";
+        //request.fields['showimg'] = "jgjadg";
+
+        var multiPart = http.MultipartFile(
+          'image',
+          stream,
+          length,
+
+          //filename: "",
+        );
+
+        var multiPart1 = http.MultipartFile(
+          'image1',
+          stream1,
+          length1,
+        );
+        var multiPart2 = http.MultipartFile(
+          'image2',
+          stream2,
+          length2,
+        );
+        var multiPart3 = http.MultipartFile(
+          'image3',
+          stream3,
+          length3,
+        );
+        var multiPart4 = http.MultipartFile(
+          'image4',
+          stream4,
+          length4,
+        );
+        // var multiPart5 = http.MultipartFile(
+        //   'image5',
+        //   stream5,
+        //   length5,
+        // );
+
+
+        request.files.add(multiPart);
+        request.files.add(multiPart1);
+        request.files.add(multiPart2);
+        request.files.add(multiPart3);
+        request.files.add(multiPart4);
+        // request.files.add(multiPart5);
+
+        log('request.fields: ${request.fields}');
+        log('request.files: ${request.files}');
+        //log('request.files length : ${request.files.length}');
+        //log('request.files name : ${request.files.first.filename}');
+        //log('request.files filetype : ${request.files.first.contentType}');
+        log('request.headers: ${request.headers}');
+
+        var response = await request.send();
+        log('response: ${response.request}');
+
+        response.stream.transform(utf8.decoder).listen((value) async {
+          VetAndNgoUpdateProfileModel vetAndNgoUpdateProfileModel =
+          VetAndNgoUpdateProfileModel.fromJson(json.decode(value));
+          log('response1 :::::: ${vetAndNgoUpdateProfileModel.success}');
+          isSuccessStatus = vetAndNgoUpdateProfileModel.success.obs;
+
+          if (isSuccessStatus.value) {
+            Fluttertoast.showToast(msg: vetAndNgoUpdateProfileModel.message);
+            await getAllRoleProfileFunction();
+            // log(updateUserProfileModel.dataVendor.userName);
+            // log(updateUserProfileModel.dataVendor.email);
+            // log(updateUserProfileModel.dataVendor.phoneNo);
+            Get.back();
+          } else {
+            log('False False');
+          }
+        });
+      }
+      else if (imageFile == null && ngoPictureFile1 != null && ngoPictureFile2 != null && ngoPictureFile3 != null && ngoPictureFile4 != null && ngoPictureFile5 != null) {
+        log("uploading with a photo");
+        var request = http.MultipartRequest('POST', Uri.parse(url));
+
+        //var stream = http.ByteStream(imageFile!.openRead());
+        var stream1 = http.ByteStream(ngoPictureFile1!.openRead());
+        var stream2 = http.ByteStream(ngoPictureFile2!.openRead());
+        var stream3 = http.ByteStream(ngoPictureFile3!.openRead());
+        var stream4 = http.ByteStream(ngoPictureFile4!.openRead());
+         var stream5 = http.ByteStream(ngoPictureFile5!.openRead());
+
+       // stream.cast();
+        stream1.cast();
+        stream2.cast();
+        stream3.cast();
+        stream4.cast();
+        stream5.cast();
+
+        //var length = await imageFile!.length();
+        var length1 = await ngoPictureFile1!.length();
+        var length2 = await ngoPictureFile2!.length();
+        var length3 = await ngoPictureFile3!.length();
+        var length4 = await ngoPictureFile4!.length();
+        var length5 = await ngoPictureFile5!.length();
+
+        //request.files.add(await http.MultipartFile.fromPath("image", imageFile!.path));
+        request.files.add(await http.MultipartFile.fromPath("image1", ngoPictureFile1!.path));
+        request.files.add(await http.MultipartFile.fromPath("image2", ngoPictureFile2!.path));
+        request.files.add(await http.MultipartFile.fromPath("image3", ngoPictureFile3!.path));
+        request.files.add(await http.MultipartFile.fromPath("image4", ngoPictureFile4!.path));
+        request.files.add(await http.MultipartFile.fromPath("image5", ngoPictureFile5!.path));
+        request.headers.addAll(header);
+
+        request.fields['name'] = nameController.text.trim();
+        request.fields['address'] = addressController.text.trim();
+        request.fields['phone'] = contactController.text.trim();
+        request.fields['open'] = openTimeController.text.trim();
+        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['full_text'] = detailsController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
+        request.fields['is_active'] = activeController.text.trim();
+        request.fields['ifsc_code'] = ifscCodeController.text.trim();
+        request.fields['account_code'] = accountNumberController.text.trim();
+        request.fields['userid'] = "${UserDetails.userId}";
+        request.fields['uid'] = "${UserDetails.userId}";
+        //request.fields['showimg'] = "jgjadg";
+
+        // var multiPart = http.MultipartFile(
+        //   'image',
+        //   stream,
+        //   length,
+        //
+        //   //filename: "",
+        // );
+
+        var multiPart1 = http.MultipartFile(
+          'image1',
+          stream1,
+          length1,
+        );
+        var multiPart2 = http.MultipartFile(
+          'image2',
+          stream2,
+          length2,
+        );
+        var multiPart3 = http.MultipartFile(
+          'image3',
+          stream3,
+          length3,
+        );
+        var multiPart4 = http.MultipartFile(
+          'image4',
+          stream4,
+          length4,
+        );
+        var multiPart5 = http.MultipartFile(
+          'image5',
+          stream5,
+          length5,
+        );
+
+
+        //request.files.add(multiPart);
+        request.files.add(multiPart1);
+        request.files.add(multiPart2);
+        request.files.add(multiPart3);
+        request.files.add(multiPart4);
+        request.files.add(multiPart5);
+
+        log('request.fields: ${request.fields}');
+        log('request.files: ${request.files}');
+        //log('request.files length : ${request.files.length}');
+        //log('request.files name : ${request.files.first.filename}');
+        //log('request.files filetype : ${request.files.first.contentType}');
+        log('request.headers: ${request.headers}');
+
+        var response = await request.send();
+        log('response: ${response.request}');
+
+        response.stream.transform(utf8.decoder).listen((value) async {
+          VetAndNgoUpdateProfileModel vetAndNgoUpdateProfileModel =
+          VetAndNgoUpdateProfileModel.fromJson(json.decode(value));
+          log('response1 :::::: ${vetAndNgoUpdateProfileModel.success}');
+          isSuccessStatus = vetAndNgoUpdateProfileModel.success.obs;
+
+          if (isSuccessStatus.value) {
+            Fluttertoast.showToast(msg: vetAndNgoUpdateProfileModel.message);
+            await getAllRoleProfileFunction();
+            // log(updateUserProfileModel.dataVendor.userName);
+            // log(updateUserProfileModel.dataVendor.email);
+            // log(updateUserProfileModel.dataVendor.phoneNo);
+            Get.back();
+          } else {
+            log('False False');
+          }
+        });
+      }
+      else if (imageFile == null && ngoPictureFile1 != null && ngoPictureFile2 == null && ngoPictureFile3 == null && ngoPictureFile4 == null && ngoPictureFile5 == null) {
+        log("uploading with a photo");
+        var request = http.MultipartRequest('POST', Uri.parse(url));
+
+        //var stream = http.ByteStream(imageFile!.openRead());
+        var stream1 = http.ByteStream(ngoPictureFile1!.openRead());
+        // var stream2 = http.ByteStream(ngoPictureFile2!.openRead());
+        // var stream3 = http.ByteStream(ngoPictureFile3!.openRead());
+        // var stream4 = http.ByteStream(ngoPictureFile4!.openRead());
+        // var stream5 = http.ByteStream(ngoPictureFile5!.openRead());
+
+        // stream.cast();
+        stream1.cast();
+        // stream2.cast();
+        // stream3.cast();
+        // stream4.cast();
+        // stream5.cast();
+
+        //var length = await imageFile!.length();
+        var length1 = await ngoPictureFile1!.length();
+        // var length2 = await ngoPictureFile2!.length();
+        // var length3 = await ngoPictureFile3!.length();
+        // var length4 = await ngoPictureFile4!.length();
+        // var length5 = await ngoPictureFile5!.length();
+
+        //request.files.add(await http.MultipartFile.fromPath("image", imageFile!.path));
+        request.files.add(await http.MultipartFile.fromPath("image1", ngoPictureFile1!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image2", ngoPictureFile2!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image3", ngoPictureFile3!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image4", ngoPictureFile4!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image5", ngoPictureFile5!.path));
+        request.headers.addAll(header);
+
+        request.fields['name'] = nameController.text.trim();
+        request.fields['address'] = addressController.text.trim();
+        request.fields['phone'] = contactController.text.trim();
+        request.fields['open'] = openTimeController.text.trim();
+        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['full_text'] = detailsController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
+        request.fields['is_active'] = activeController.text.trim();
+        request.fields['ifsc_code'] = ifscCodeController.text.trim();
+        request.fields['account_code'] = accountNumberController.text.trim();
+        request.fields['userid'] = "${UserDetails.userId}";
+        request.fields['uid'] = "${UserDetails.userId}";
+        //request.fields['showimg'] = "jgjadg";
+
+        // var multiPart = http.MultipartFile(
+        //   'image',
+        //   stream,
+        //   length,
+        //
+        //   //filename: "",
+        // );
+
+        var multiPart1 = http.MultipartFile(
+          'image1',
+          stream1,
+          length1,
+        );
+        // var multiPart2 = http.MultipartFile(
+        //   'image2',
+        //   stream2,
+        //   length2,
+        // );
+        // var multiPart3 = http.MultipartFile(
+        //   'image3',
+        //   stream3,
+        //   length3,
+        // );
+        // var multiPart4 = http.MultipartFile(
+        //   'image4',
+        //   stream4,
+        //   length4,
+        // );
+        // var multiPart5 = http.MultipartFile(
+        //   'image5',
+        //   stream5,
+        //   length5,
+        // );
+
+
+        //request.files.add(multiPart);
+        request.files.add(multiPart1);
+        // request.files.add(multiPart2);
+        // request.files.add(multiPart3);
+        // request.files.add(multiPart4);
+        // request.files.add(multiPart5);
+
+        log('request.fields: ${request.fields}');
+        log('request.files: ${request.files}');
+        //log('request.files length : ${request.files.length}');
+        //log('request.files name : ${request.files.first.filename}');
+        //log('request.files filetype : ${request.files.first.contentType}');
+        log('request.headers: ${request.headers}');
+
+        var response = await request.send();
+        log('response: ${response.request}');
+
+        response.stream.transform(utf8.decoder).listen((value) async {
+          VetAndNgoUpdateProfileModel vetAndNgoUpdateProfileModel =
+          VetAndNgoUpdateProfileModel.fromJson(json.decode(value));
+          log('response1 :::::: ${vetAndNgoUpdateProfileModel.success}');
+          isSuccessStatus = vetAndNgoUpdateProfileModel.success.obs;
+
+          if (isSuccessStatus.value) {
+            Fluttertoast.showToast(msg: vetAndNgoUpdateProfileModel.message);
+            await getAllRoleProfileFunction();
+            // log(updateUserProfileModel.dataVendor.userName);
+            // log(updateUserProfileModel.dataVendor.email);
+            // log(updateUserProfileModel.dataVendor.phoneNo);
+            Get.back();
+          } else {
+            log('False False');
+          }
+        });
+      }
+      else if (imageFile == null && ngoPictureFile1 != null && ngoPictureFile2 != null && ngoPictureFile3 == null && ngoPictureFile4 == null && ngoPictureFile5 == null) {
+        log("uploading with a photo");
+        var request = http.MultipartRequest('POST', Uri.parse(url));
+
+        //var stream = http.ByteStream(imageFile!.openRead());
+        var stream1 = http.ByteStream(ngoPictureFile1!.openRead());
+        var stream2 = http.ByteStream(ngoPictureFile2!.openRead());
+        // var stream3 = http.ByteStream(ngoPictureFile3!.openRead());
+        // var stream4 = http.ByteStream(ngoPictureFile4!.openRead());
+        // var stream5 = http.ByteStream(ngoPictureFile5!.openRead());
+
+        // stream.cast();
+        stream1.cast();
+        stream2.cast();
+        // stream3.cast();
+        // stream4.cast();
+        // stream5.cast();
+
+        //var length = await imageFile!.length();
+        var length1 = await ngoPictureFile1!.length();
+        var length2 = await ngoPictureFile2!.length();
+        // var length3 = await ngoPictureFile3!.length();
+        // var length4 = await ngoPictureFile4!.length();
+        // var length5 = await ngoPictureFile5!.length();
+
+        //request.files.add(await http.MultipartFile.fromPath("image", imageFile!.path));
+        request.files.add(await http.MultipartFile.fromPath("image1", ngoPictureFile1!.path));
+        request.files.add(await http.MultipartFile.fromPath("image2", ngoPictureFile2!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image3", ngoPictureFile3!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image4", ngoPictureFile4!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image5", ngoPictureFile5!.path));
+        request.headers.addAll(header);
+
+        request.fields['name'] = nameController.text.trim();
+        request.fields['address'] = addressController.text.trim();
+        request.fields['phone'] = contactController.text.trim();
+        request.fields['open'] = openTimeController.text.trim();
+        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['full_text'] = detailsController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
+        request.fields['is_active'] = activeController.text.trim();
+        request.fields['ifsc_code'] = ifscCodeController.text.trim();
+        request.fields['account_code'] = accountNumberController.text.trim();
+        request.fields['userid'] = "${UserDetails.userId}";
+        request.fields['uid'] = "${UserDetails.userId}";
+        //request.fields['showimg'] = "jgjadg";
+
+        // var multiPart = http.MultipartFile(
+        //   'image',
+        //   stream,
+        //   length,
+        //
+        //   //filename: "",
+        // );
+
+        var multiPart1 = http.MultipartFile(
+          'image1',
+          stream1,
+          length1,
+        );
+        var multiPart2 = http.MultipartFile(
+          'image2',
+          stream2,
+          length2,
+        );
+        // var multiPart3 = http.MultipartFile(
+        //   'image3',
+        //   stream3,
+        //   length3,
+        // );
+        // var multiPart4 = http.MultipartFile(
+        //   'image4',
+        //   stream4,
+        //   length4,
+        // );
+        // var multiPart5 = http.MultipartFile(
+        //   'image5',
+        //   stream5,
+        //   length5,
+        // );
+
+
+        //request.files.add(multiPart);
+        request.files.add(multiPart1);
+        request.files.add(multiPart2);
+        // request.files.add(multiPart3);
+        // request.files.add(multiPart4);
+        // request.files.add(multiPart5);
+
+        log('request.fields: ${request.fields}');
+        log('request.files: ${request.files}');
+        //log('request.files length : ${request.files.length}');
+        //log('request.files name : ${request.files.first.filename}');
+        //log('request.files filetype : ${request.files.first.contentType}');
+        log('request.headers: ${request.headers}');
+
+        var response = await request.send();
+        log('response: ${response.request}');
+
+        response.stream.transform(utf8.decoder).listen((value) async {
+          VetAndNgoUpdateProfileModel vetAndNgoUpdateProfileModel =
+          VetAndNgoUpdateProfileModel.fromJson(json.decode(value));
+          log('response1 :::::: ${vetAndNgoUpdateProfileModel.success}');
+          isSuccessStatus = vetAndNgoUpdateProfileModel.success.obs;
+
+          if (isSuccessStatus.value) {
+            Fluttertoast.showToast(msg: vetAndNgoUpdateProfileModel.message);
+            await getAllRoleProfileFunction();
+            // log(updateUserProfileModel.dataVendor.userName);
+            // log(updateUserProfileModel.dataVendor.email);
+            // log(updateUserProfileModel.dataVendor.phoneNo);
+            Get.back();
+          } else {
+            log('False False');
+          }
+        });
+      }
+      else if (imageFile == null && ngoPictureFile1 != null && ngoPictureFile2 != null && ngoPictureFile3 != null && ngoPictureFile4 == null && ngoPictureFile5 == null) {
+        log("uploading with a photo");
+        var request = http.MultipartRequest('POST', Uri.parse(url));
+
+        //var stream = http.ByteStream(imageFile!.openRead());
+        var stream1 = http.ByteStream(ngoPictureFile1!.openRead());
+        var stream2 = http.ByteStream(ngoPictureFile2!.openRead());
+        var stream3 = http.ByteStream(ngoPictureFile3!.openRead());
+        // var stream4 = http.ByteStream(ngoPictureFile4!.openRead());
+        // var stream5 = http.ByteStream(ngoPictureFile5!.openRead());
+
+        // stream.cast();
+        stream1.cast();
+        stream2.cast();
+        stream3.cast();
+        // stream4.cast();
+        // stream5.cast();
+
+        //var length = await imageFile!.length();
+        var length1 = await ngoPictureFile1!.length();
+        var length2 = await ngoPictureFile2!.length();
+        var length3 = await ngoPictureFile3!.length();
+        // var length4 = await ngoPictureFile4!.length();
+        // var length5 = await ngoPictureFile5!.length();
+
+        //request.files.add(await http.MultipartFile.fromPath("image", imageFile!.path));
+        request.files.add(await http.MultipartFile.fromPath("image1", ngoPictureFile1!.path));
+        request.files.add(await http.MultipartFile.fromPath("image2", ngoPictureFile2!.path));
+        request.files.add(await http.MultipartFile.fromPath("image3", ngoPictureFile3!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image4", ngoPictureFile4!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image5", ngoPictureFile5!.path));
+        request.headers.addAll(header);
+
+        request.fields['name'] = nameController.text.trim();
+        request.fields['address'] = addressController.text.trim();
+        request.fields['phone'] = contactController.text.trim();
+        request.fields['open'] = openTimeController.text.trim();
+        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['full_text'] = detailsController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
+        request.fields['is_active'] = activeController.text.trim();
+        request.fields['ifsc_code'] = ifscCodeController.text.trim();
+        request.fields['account_code'] = accountNumberController.text.trim();
+        request.fields['userid'] = "${UserDetails.userId}";
+        request.fields['uid'] = "${UserDetails.userId}";
+        //request.fields['showimg'] = "jgjadg";
+
+        // var multiPart = http.MultipartFile(
+        //   'image',
+        //   stream,
+        //   length,
+        //
+        //   //filename: "",
+        // );
+
+        var multiPart1 = http.MultipartFile(
+          'image1',
+          stream1,
+          length1,
+        );
+        var multiPart2 = http.MultipartFile(
+          'image2',
+          stream2,
+          length2,
+        );
+        var multiPart3 = http.MultipartFile(
+          'image3',
+          stream3,
+          length3,
+        );
+        // var multiPart4 = http.MultipartFile(
+        //   'image4',
+        //   stream4,
+        //   length4,
+        // );
+        // var multiPart5 = http.MultipartFile(
+        //   'image5',
+        //   stream5,
+        //   length5,
+        // );
+
+
+        //request.files.add(multiPart);
+        request.files.add(multiPart1);
+        request.files.add(multiPart2);
+        request.files.add(multiPart3);
+        // request.files.add(multiPart4);
+        // request.files.add(multiPart5);
+
+        log('request.fields: ${request.fields}');
+        log('request.files: ${request.files}');
+        //log('request.files length : ${request.files.length}');
+        //log('request.files name : ${request.files.first.filename}');
+        //log('request.files filetype : ${request.files.first.contentType}');
+        log('request.headers: ${request.headers}');
+
+        var response = await request.send();
+        log('response: ${response.request}');
+
+        response.stream.transform(utf8.decoder).listen((value) async {
+          VetAndNgoUpdateProfileModel vetAndNgoUpdateProfileModel =
+          VetAndNgoUpdateProfileModel.fromJson(json.decode(value));
+          log('response1 :::::: ${vetAndNgoUpdateProfileModel.success}');
+          isSuccessStatus = vetAndNgoUpdateProfileModel.success.obs;
+
+          if (isSuccessStatus.value) {
+            Fluttertoast.showToast(msg: vetAndNgoUpdateProfileModel.message);
+            await getAllRoleProfileFunction();
+            // log(updateUserProfileModel.dataVendor.userName);
+            // log(updateUserProfileModel.dataVendor.email);
+            // log(updateUserProfileModel.dataVendor.phoneNo);
+            Get.back();
+          } else {
+            log('False False');
+          }
+        });
+      }
+      else if (imageFile == null && ngoPictureFile1 != null && ngoPictureFile2 != null && ngoPictureFile3 != null && ngoPictureFile4 != null && ngoPictureFile5 == null) {
+        log("uploading with a photo");
+        var request = http.MultipartRequest('POST', Uri.parse(url));
+
+        //var stream = http.ByteStream(imageFile!.openRead());
+        var stream1 = http.ByteStream(ngoPictureFile1!.openRead());
+        var stream2 = http.ByteStream(ngoPictureFile2!.openRead());
+        var stream3 = http.ByteStream(ngoPictureFile3!.openRead());
+        var stream4 = http.ByteStream(ngoPictureFile4!.openRead());
+        // var stream5 = http.ByteStream(ngoPictureFile5!.openRead());
+
+        // stream.cast();
+        stream1.cast();
+        stream2.cast();
+        stream3.cast();
+        stream4.cast();
+        // stream5.cast();
+
+        //var length = await imageFile!.length();
+        var length1 = await ngoPictureFile1!.length();
+        var length2 = await ngoPictureFile2!.length();
+        var length3 = await ngoPictureFile3!.length();
+        var length4 = await ngoPictureFile4!.length();
+        // var length5 = await ngoPictureFile5!.length();
+
+        //request.files.add(await http.MultipartFile.fromPath("image", imageFile!.path));
+        request.files.add(await http.MultipartFile.fromPath("image1", ngoPictureFile1!.path));
+        request.files.add(await http.MultipartFile.fromPath("image2", ngoPictureFile2!.path));
+        request.files.add(await http.MultipartFile.fromPath("image3", ngoPictureFile3!.path));
+        request.files.add(await http.MultipartFile.fromPath("image4", ngoPictureFile4!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image5", ngoPictureFile5!.path));
+        request.headers.addAll(header);
+
+        request.fields['name'] = nameController.text.trim();
+        request.fields['address'] = addressController.text.trim();
+        request.fields['phone'] = contactController.text.trim();
+        request.fields['open'] = openTimeController.text.trim();
+        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['full_text'] = detailsController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
+        request.fields['is_active'] = activeController.text.trim();
+        request.fields['ifsc_code'] = ifscCodeController.text.trim();
+        request.fields['account_code'] = accountNumberController.text.trim();
+        request.fields['userid'] = "${UserDetails.userId}";
+        request.fields['uid'] = "${UserDetails.userId}";
+        //request.fields['showimg'] = "jgjadg";
+
+        // var multiPart = http.MultipartFile(
+        //   'image',
+        //   stream,
+        //   length,
+        //
+        //   //filename: "",
+        // );
+
+        var multiPart1 = http.MultipartFile(
+          'image1',
+          stream1,
+          length1,
+        );
+        var multiPart2 = http.MultipartFile(
+          'image2',
+          stream2,
+          length2,
+        );
+        var multiPart3 = http.MultipartFile(
+          'image3',
+          stream3,
+          length3,
+        );
+        var multiPart4 = http.MultipartFile(
+          'image4',
+          stream4,
+          length4,
+        );
+        // var multiPart5 = http.MultipartFile(
+        //   'image5',
+        //   stream5,
+        //   length5,
+        // );
+
+
+        //request.files.add(multiPart);
+        request.files.add(multiPart1);
+        request.files.add(multiPart2);
+        request.files.add(multiPart3);
+        request.files.add(multiPart4);
+        // request.files.add(multiPart5);
+
+        log('request.fields: ${request.fields}');
+        log('request.files: ${request.files}');
+        //log('request.files length : ${request.files.length}');
+        //log('request.files name : ${request.files.first.filename}');
+        //log('request.files filetype : ${request.files.first.contentType}');
+        log('request.headers: ${request.headers}');
+
+        var response = await request.send();
+        log('response: ${response.request}');
+
+        response.stream.transform(utf8.decoder).listen((value) async {
+          VetAndNgoUpdateProfileModel vetAndNgoUpdateProfileModel =
+          VetAndNgoUpdateProfileModel.fromJson(json.decode(value));
+          log('response1 :::::: ${vetAndNgoUpdateProfileModel.success}');
+          isSuccessStatus = vetAndNgoUpdateProfileModel.success.obs;
+
+          if (isSuccessStatus.value) {
+            Fluttertoast.showToast(msg: vetAndNgoUpdateProfileModel.message);
+            await getAllRoleProfileFunction();
+            // log(updateUserProfileModel.dataVendor.userName);
+            // log(updateUserProfileModel.dataVendor.email);
+            // log(updateUserProfileModel.dataVendor.phoneNo);
+            Get.back();
+          } else {
+            log('False False');
+          }
+        });
+      }
+      else if (imageFile == null && ngoPictureFile1 == null && ngoPictureFile2 == null && ngoPictureFile3 == null && ngoPictureFile4 == null && ngoPictureFile5 == null){
         print("uploading without a photo");
         var request = http.MultipartRequest('POST', Uri.parse(url));
 

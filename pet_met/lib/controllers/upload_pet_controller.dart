@@ -320,6 +320,9 @@ class UploadPetController extends GetxController {
         petCategoryDropDownValue.categoryName = getProfile.mainCategory.toString();
         petSubCategoryDropDownValue.categoryName = getProfile.subCategory.toString();
         birthDate = getProfile.dob!;
+        day = birthDate.substring(0, birthDate.length - 7);
+        log('day: $day');
+
         petImage = ApiUrl.apiImagePath + getProfile.image!;
         log('pet name: ${petNameController.text}');
         log('pet details: ${petDetailsController.text}');

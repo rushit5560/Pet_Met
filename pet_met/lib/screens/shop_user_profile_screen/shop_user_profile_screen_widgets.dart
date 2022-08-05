@@ -880,6 +880,44 @@ class MeetingAvailabilityModule extends StatelessWidget {
   }
 }
 
+class EmailTextFieldModule extends StatelessWidget {
+  EmailTextFieldModule({Key? key}) : super(key: key);
+
+  final screenController = Get.find<ShopUserProfileScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Email",
+              style: TextStyle(
+                color: AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          readOnly: false,
+          fieldController: screenController.emailController,
+          height: screenController.size.height * 0.05,
+          width: double.infinity,
+          hintText: "Email",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.emailAddress,
+          validator: (val) => Validations().validateEmail(val!),
+        ),
+      ],
+    );
+  }
+}
+
 class ShopNameTextFieldModule extends StatelessWidget {
   ShopNameTextFieldModule({Key? key}) : super(key: key);
 
@@ -1091,7 +1129,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                 height: screenController.size.height * 0.05,
                 width: double.infinity,
                 hintText: "Close",
-                textInputAction: TextInputAction.next,
+                textInputAction: TextInputAction.done,
                 textInputType: TextInputType.number,
                 validator: (val) => Validations().validateCloseTime(val!),
               ),

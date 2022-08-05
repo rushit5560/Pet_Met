@@ -8,10 +8,14 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/models/get_all_profile_model/get_shop_profile_model.dart';
 import 'package:pet_met/models/get_all_profile_model/get_vet_and_ngo_profile_model.dart';
+import 'package:pet_met/models/login_screen_model/login_model.dart';
+import 'package:pet_met/models/multi_account_user_model/multiple_account_user_model.dart';
 import 'package:pet_met/models/shop_update_profile_model/shop_update_profile_model.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
+import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/user_details.dart';
+import 'package:pet_met/utils/user_preference.dart';
 import 'package:sizer/sizer.dart';
 import 'package:http/http.dart' as http;
 
@@ -37,6 +41,7 @@ class ShopUserProfileScreenController extends GetxController {
   final formKey = GlobalKey<FormState>();
 
   var nameController = TextEditingController();
+  var emailController = TextEditingController();
   var contactNumber = TextEditingController();
   var addressController = TextEditingController();
   var openTimeController = TextEditingController();
@@ -49,6 +54,18 @@ class ShopUserProfileScreenController extends GetxController {
   String month= "";
   String day = "";
   String year = "";
+
+  String userEmail = "";
+  RxString userName = "".obs;
+  RxString shopEmail = "".obs;
+  RxString shopName = "".obs;
+  RxString ngoEmail = "".obs;
+  RxString ngoName = "".obs;
+  RxString trainerEmail = "".obs;
+  RxString trainerName = "".obs;
+
+  var passwordController = TextEditingController();
+  UserPreference userPreference = UserPreference();
 
 
 
@@ -82,6 +99,7 @@ class ShopUserProfileScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         nameController.text = getShopProfileModel.data.data[0].shopename;
+        emailController.text = getShopProfileModel.data.data[0].email;
         contactNumber.text = getShopProfileModel.data.data[0].phonenumber.toString();
         addressController.text = getShopProfileModel.data.data[0].address;
         openTimeController.text = getShopProfileModel.data.data[0].shopopen;
@@ -103,7 +121,57 @@ class ShopUserProfileScreenController extends GetxController {
     } catch(e) {
       log("All Role Profile Api Error ::: $e");
     } finally {
+      //isLoading(false);
+      await multiAccountFunction();
+    }
+  }
+
+  multiAccountFunction() async {
+    isLoading(true);
+    String url = ApiUrl.multiAccountApi;
+    log("Multi account Api Url : $url");
+
+    try {
+      Map<String, dynamic> data = {
+        "email": emailController.text.trim()
+      };
+
+      log("Multiple Account Body Data : $data");
+
+      Map<String, String> header = apiHeader.apiHeader();
+      log("header : $header");
+
+      http.Response response = await http.post(Uri.parse(url),body: data, /*headers: header*/);
+      log("Multiple Account Api response : ${response.body}");
+
+      MultiAccountUserModel multiAccountUserModel =
+      MultiAccountUserModel.fromJson(json.decode(response.body));
+      isSuccessStatus = multiAccountUserModel.success.obs;
+      log('isSuccessStatus: $isSuccessStatus');
+
+      if (isSuccessStatus.value) {
+
+        userEmail = multiAccountUserModel.data.user[0].email;
+        userName = multiAccountUserModel.data.user[0].name.obs;
+
+        shopEmail = multiAccountUserModel.data.shope[0].email.obs;
+        shopName = multiAccountUserModel.data.shope[0].shopename.obs;
+
+        ngoEmail = multiAccountUserModel.data.vetNgo[0].email.obs;
+        ngoName = multiAccountUserModel.data.vetNgo[0].name.obs;
+
+        trainerEmail = multiAccountUserModel.data.trainer[0].email.obs;
+        trainerName = multiAccountUserModel.data.trainer[0].name.obs;
+      } else {
+        log("Get Multi Account Api Else");
+        //await unfollowUserFunction();
+      }
+
+    } catch(e) {
+      log("All Multi Account Api Error ::: $e");
+    } finally {
       isLoading(false);
+      //await followStatus();
     }
   }
 
@@ -238,7 +306,1115 @@ class ShopUserProfileScreenController extends GetxController {
             log('False False');
           }
         });
-      } else if (imageFile == null && shopOfferFile1 == null && shopOfferFile2 == null && shopOfferFile3 == null && shopOfferFile4 == null && shopOfferFile5 == null){
+      }
+      else if (imageFile != null && shopOfferFile1 == null && shopOfferFile2 == null && shopOfferFile3 == null && shopOfferFile4 == null && shopOfferFile5 == null) {
+        log("uploading with a photo");
+        var request = http.MultipartRequest('POST', Uri.parse(url));
+
+        var stream = http.ByteStream(imageFile!.openRead());
+        // var stream1 = http.ByteStream(shopOfferFile1!.openRead());
+        // var stream2 = http.ByteStream(shopOfferFile2!.openRead());
+        // var stream3 = http.ByteStream(shopOfferFile3!.openRead());
+        // var stream4 = http.ByteStream(shopOfferFile4!.openRead());
+        // var stream5 = http.ByteStream(shopOfferFile5!.openRead());
+
+        stream.cast();
+        // stream1.cast();
+        // stream2.cast();
+        // stream3.cast();
+        // stream5.cast();
+
+        var length = await imageFile!.length();
+        // var length1 = await shopOfferFile1!.length();
+        // var length2 = await shopOfferFile2!.length();
+        // var length3 = await shopOfferFile3!.length();
+        // var length4 = await shopOfferFile4!.length();
+        // var length5 = await shopOfferFile4!.length();
+
+        request.files.add(await http.MultipartFile.fromPath("showimg", imageFile!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image1", shopOfferFile1!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image2", shopOfferFile2!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image3", shopOfferFile3!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image4", shopOfferFile4!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image5", shopOfferFile5!.path));
+
+        // request.headers.addAll(header);
+
+        request.fields['shopename'] = nameController.text.trim();
+        request.fields['address'] = addressController.text.trim();
+        request.fields['phonenumber'] = contactNumber.text.trim();
+        request.fields['shopopen'] = openTimeController.text.trim();
+        request.fields['shopclose'] = closeTimeController.text.trim();
+        request.fields['userid'] = "${UserDetails.userId}";
+        request.fields['uid'] = "${UserDetails.userId}";
+        request.fields['full_text'] = "jgjadg";
+
+        var multiPart = http.MultipartFile(
+          'showimg',
+          stream,
+          length,
+        );
+        // var multiPart1 = http.MultipartFile(
+        //   'image1',
+        //   stream1,
+        //   length1,
+        // );
+        // var multiPart2 = http.MultipartFile(
+        //   'image2',
+        //   stream2,
+        //   length2,
+        // );
+        // var multiPart3 = http.MultipartFile(
+        //   'image3',
+        //   stream3,
+        //   length3,
+        // );
+        // var multiPart4 = http.MultipartFile(
+        //   'image4',
+        //   stream4,
+        //   length4,
+        // );
+        // var multiPart5 = http.MultipartFile(
+        //   'image5',
+        //   stream5,
+        //   length5,
+        // );
+
+
+        request.files.add(multiPart);
+        // request.files.add(multiPart1);
+        // request.files.add(multiPart2);
+        // request.files.add(multiPart3);
+        // request.files.add(multiPart4);
+        // request.files.add(multiPart5);
+
+        log('request.fields: ${request.fields}');
+        log('request.files: ${request.files}');
+        //log('request.files length : ${request.files.length}');
+        //log('request.files name : ${request.files.first.filename}');
+        //log('request.files filetype : ${request.files.first.contentType}');
+        log('request.headers: ${request.headers}');
+
+        var response = await request.send();
+        log('response: ${response.request}');
+
+        response.stream.transform(utf8.decoder).listen((value) async {
+          log('value: $value');
+          ShopUpdateProfileModel shopProfileModel =
+          ShopUpdateProfileModel.fromJson(json.decode(value));
+          log('response1 :::::: ${shopProfileModel.success}');
+          isSuccessStatus = shopProfileModel.success.obs;
+
+          if (isSuccessStatus.value) {
+            Fluttertoast.showToast(msg: shopProfileModel.message);
+            await getAllRoleProfileFunction();
+            // log(updateUserProfileModel.dataVendor.userName);
+            // log(updateUserProfileModel.dataVendor.email);
+            // log(updateUserProfileModel.dataVendor.phoneNo);
+            Get.back();
+          } else {
+            log('False False');
+          }
+        });
+      }
+      else if (imageFile != null && shopOfferFile1 != null && shopOfferFile2 == null && shopOfferFile3 == null && shopOfferFile4 == null && shopOfferFile5 == null) {
+        log("uploading with a photo");
+        var request = http.MultipartRequest('POST', Uri.parse(url));
+
+        var stream = http.ByteStream(imageFile!.openRead());
+        var stream1 = http.ByteStream(shopOfferFile1!.openRead());
+        // var stream2 = http.ByteStream(shopOfferFile2!.openRead());
+        // var stream3 = http.ByteStream(shopOfferFile3!.openRead());
+        // var stream4 = http.ByteStream(shopOfferFile4!.openRead());
+        // var stream5 = http.ByteStream(shopOfferFile5!.openRead());
+
+        stream.cast();
+         stream1.cast();
+        // stream2.cast();
+        // stream3.cast();
+        // stream5.cast();
+
+        var length = await imageFile!.length();
+        var length1 = await shopOfferFile1!.length();
+        // var length2 = await shopOfferFile2!.length();
+        // var length3 = await shopOfferFile3!.length();
+        // var length4 = await shopOfferFile4!.length();
+        // var length5 = await shopOfferFile4!.length();
+
+        request.files.add(await http.MultipartFile.fromPath("showimg", imageFile!.path));
+        request.files.add(await http.MultipartFile.fromPath("image1", shopOfferFile1!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image2", shopOfferFile2!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image3", shopOfferFile3!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image4", shopOfferFile4!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image5", shopOfferFile5!.path));
+
+        // request.headers.addAll(header);
+
+        request.fields['shopename'] = nameController.text.trim();
+        request.fields['address'] = addressController.text.trim();
+        request.fields['phonenumber'] = contactNumber.text.trim();
+        request.fields['shopopen'] = openTimeController.text.trim();
+        request.fields['shopclose'] = closeTimeController.text.trim();
+        request.fields['userid'] = "${UserDetails.userId}";
+        request.fields['uid'] = "${UserDetails.userId}";
+        request.fields['full_text'] = "jgjadg";
+
+        var multiPart = http.MultipartFile(
+          'showimg',
+          stream,
+          length,
+        );
+        var multiPart1 = http.MultipartFile(
+          'image1',
+          stream1,
+          length1,
+        );
+        // var multiPart2 = http.MultipartFile(
+        //   'image2',
+        //   stream2,
+        //   length2,
+        // );
+        // var multiPart3 = http.MultipartFile(
+        //   'image3',
+        //   stream3,
+        //   length3,
+        // );
+        // var multiPart4 = http.MultipartFile(
+        //   'image4',
+        //   stream4,
+        //   length4,
+        // );
+        // var multiPart5 = http.MultipartFile(
+        //   'image5',
+        //   stream5,
+        //   length5,
+        // );
+
+
+        request.files.add(multiPart);
+        request.files.add(multiPart1);
+        // request.files.add(multiPart2);
+        // request.files.add(multiPart3);
+        // request.files.add(multiPart4);
+        // request.files.add(multiPart5);
+
+        log('request.fields: ${request.fields}');
+        log('request.files: ${request.files}');
+        //log('request.files length : ${request.files.length}');
+        //log('request.files name : ${request.files.first.filename}');
+        //log('request.files filetype : ${request.files.first.contentType}');
+        log('request.headers: ${request.headers}');
+
+        var response = await request.send();
+        log('response: ${response.request}');
+
+        response.stream.transform(utf8.decoder).listen((value) async {
+          log('value: $value');
+          ShopUpdateProfileModel shopProfileModel =
+          ShopUpdateProfileModel.fromJson(json.decode(value));
+          log('response1 :::::: ${shopProfileModel.success}');
+          isSuccessStatus = shopProfileModel.success.obs;
+
+          if (isSuccessStatus.value) {
+            Fluttertoast.showToast(msg: shopProfileModel.message);
+            await getAllRoleProfileFunction();
+            // log(updateUserProfileModel.dataVendor.userName);
+            // log(updateUserProfileModel.dataVendor.email);
+            // log(updateUserProfileModel.dataVendor.phoneNo);
+            Get.back();
+          } else {
+            log('False False');
+          }
+        });
+      }
+      else if (imageFile != null && shopOfferFile1 != null && shopOfferFile2 != null && shopOfferFile3 == null && shopOfferFile4 == null && shopOfferFile5 == null) {
+        log("uploading with a photo");
+        var request = http.MultipartRequest('POST', Uri.parse(url));
+
+        var stream = http.ByteStream(imageFile!.openRead());
+        var stream1 = http.ByteStream(shopOfferFile1!.openRead());
+        var stream2 = http.ByteStream(shopOfferFile2!.openRead());
+        // var stream3 = http.ByteStream(shopOfferFile3!.openRead());
+        // var stream4 = http.ByteStream(shopOfferFile4!.openRead());
+        // var stream5 = http.ByteStream(shopOfferFile5!.openRead());
+
+        stream.cast();
+        stream1.cast();
+        stream2.cast();
+        // stream3.cast();
+        // stream5.cast();
+
+        var length = await imageFile!.length();
+        var length1 = await shopOfferFile1!.length();
+        var length2 = await shopOfferFile2!.length();
+        // var length3 = await shopOfferFile3!.length();
+        // var length4 = await shopOfferFile4!.length();
+        // var length5 = await shopOfferFile4!.length();
+
+        request.files.add(await http.MultipartFile.fromPath("showimg", imageFile!.path));
+        request.files.add(await http.MultipartFile.fromPath("image1", shopOfferFile1!.path));
+        request.files.add(await http.MultipartFile.fromPath("image2", shopOfferFile2!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image3", shopOfferFile3!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image4", shopOfferFile4!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image5", shopOfferFile5!.path));
+
+        // request.headers.addAll(header);
+
+        request.fields['shopename'] = nameController.text.trim();
+        request.fields['address'] = addressController.text.trim();
+        request.fields['phonenumber'] = contactNumber.text.trim();
+        request.fields['shopopen'] = openTimeController.text.trim();
+        request.fields['shopclose'] = closeTimeController.text.trim();
+        request.fields['userid'] = "${UserDetails.userId}";
+        request.fields['uid'] = "${UserDetails.userId}";
+        request.fields['full_text'] = "jgjadg";
+
+        var multiPart = http.MultipartFile(
+          'showimg',
+          stream,
+          length,
+        );
+        var multiPart1 = http.MultipartFile(
+          'image1',
+          stream1,
+          length1,
+        );
+        var multiPart2 = http.MultipartFile(
+          'image2',
+          stream2,
+          length2,
+        );
+        // var multiPart3 = http.MultipartFile(
+        //   'image3',
+        //   stream3,
+        //   length3,
+        // );
+        // var multiPart4 = http.MultipartFile(
+        //   'image4',
+        //   stream4,
+        //   length4,
+        // );
+        // var multiPart5 = http.MultipartFile(
+        //   'image5',
+        //   stream5,
+        //   length5,
+        // );
+
+
+        request.files.add(multiPart);
+        request.files.add(multiPart1);
+        request.files.add(multiPart2);
+        // request.files.add(multiPart3);
+        // request.files.add(multiPart4);
+        // request.files.add(multiPart5);
+
+        log('request.fields: ${request.fields}');
+        log('request.files: ${request.files}');
+        //log('request.files length : ${request.files.length}');
+        //log('request.files name : ${request.files.first.filename}');
+        //log('request.files filetype : ${request.files.first.contentType}');
+        log('request.headers: ${request.headers}');
+
+        var response = await request.send();
+        log('response: ${response.request}');
+
+        response.stream.transform(utf8.decoder).listen((value) async {
+          log('value: $value');
+          ShopUpdateProfileModel shopProfileModel =
+          ShopUpdateProfileModel.fromJson(json.decode(value));
+          log('response1 :::::: ${shopProfileModel.success}');
+          isSuccessStatus = shopProfileModel.success.obs;
+
+          if (isSuccessStatus.value) {
+            Fluttertoast.showToast(msg: shopProfileModel.message);
+            await getAllRoleProfileFunction();
+            // log(updateUserProfileModel.dataVendor.userName);
+            // log(updateUserProfileModel.dataVendor.email);
+            // log(updateUserProfileModel.dataVendor.phoneNo);
+            Get.back();
+          } else {
+            log('False False');
+          }
+        });
+      }
+      else if (imageFile != null && shopOfferFile1 != null && shopOfferFile2 != null && shopOfferFile3 != null && shopOfferFile4 == null && shopOfferFile5 == null) {
+        log("uploading with a photo");
+        var request = http.MultipartRequest('POST', Uri.parse(url));
+
+        var stream = http.ByteStream(imageFile!.openRead());
+        var stream1 = http.ByteStream(shopOfferFile1!.openRead());
+        var stream2 = http.ByteStream(shopOfferFile2!.openRead());
+        var stream3 = http.ByteStream(shopOfferFile3!.openRead());
+        // var stream4 = http.ByteStream(shopOfferFile4!.openRead());
+        // var stream5 = http.ByteStream(shopOfferFile5!.openRead());
+
+        stream.cast();
+        stream1.cast();
+        stream2.cast();
+        stream3.cast();
+        // stream4.cast();
+        // stream5.cast();
+
+        var length = await imageFile!.length();
+        var length1 = await shopOfferFile1!.length();
+        var length2 = await shopOfferFile2!.length();
+        var length3 = await shopOfferFile3!.length();
+        // var length4 = await shopOfferFile4!.length();
+        // var length5 = await shopOfferFile4!.length();
+
+        request.files.add(await http.MultipartFile.fromPath("showimg", imageFile!.path));
+        request.files.add(await http.MultipartFile.fromPath("image1", shopOfferFile1!.path));
+        request.files.add(await http.MultipartFile.fromPath("image2", shopOfferFile2!.path));
+        request.files.add(await http.MultipartFile.fromPath("image3", shopOfferFile3!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image4", shopOfferFile4!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image5", shopOfferFile5!.path));
+
+        // request.headers.addAll(header);
+
+        request.fields['shopename'] = nameController.text.trim();
+        request.fields['address'] = addressController.text.trim();
+        request.fields['phonenumber'] = contactNumber.text.trim();
+        request.fields['shopopen'] = openTimeController.text.trim();
+        request.fields['shopclose'] = closeTimeController.text.trim();
+        request.fields['userid'] = "${UserDetails.userId}";
+        request.fields['uid'] = "${UserDetails.userId}";
+        request.fields['full_text'] = "jgjadg";
+
+        var multiPart = http.MultipartFile(
+          'showimg',
+          stream,
+          length,
+        );
+        var multiPart1 = http.MultipartFile(
+          'image1',
+          stream1,
+          length1,
+        );
+        var multiPart2 = http.MultipartFile(
+          'image2',
+          stream2,
+          length2,
+        );
+        var multiPart3 = http.MultipartFile(
+          'image3',
+          stream3,
+          length3,
+        );
+        // var multiPart4 = http.MultipartFile(
+        //   'image4',
+        //   stream4,
+        //   length4,
+        // );
+        // var multiPart5 = http.MultipartFile(
+        //   'image5',
+        //   stream5,
+        //   length5,
+        // );
+
+
+        request.files.add(multiPart);
+        request.files.add(multiPart1);
+        request.files.add(multiPart2);
+        request.files.add(multiPart3);
+        // request.files.add(multiPart4);
+        // request.files.add(multiPart5);
+
+        log('request.fields: ${request.fields}');
+        log('request.files: ${request.files}');
+        //log('request.files length : ${request.files.length}');
+        //log('request.files name : ${request.files.first.filename}');
+        //log('request.files filetype : ${request.files.first.contentType}');
+        log('request.headers: ${request.headers}');
+
+        var response = await request.send();
+        log('response: ${response.request}');
+
+        response.stream.transform(utf8.decoder).listen((value) async {
+          log('value: $value');
+          ShopUpdateProfileModel shopProfileModel =
+          ShopUpdateProfileModel.fromJson(json.decode(value));
+          log('response1 :::::: ${shopProfileModel.success}');
+          isSuccessStatus = shopProfileModel.success.obs;
+
+          if (isSuccessStatus.value) {
+            Fluttertoast.showToast(msg: shopProfileModel.message);
+            await getAllRoleProfileFunction();
+            // log(updateUserProfileModel.dataVendor.userName);
+            // log(updateUserProfileModel.dataVendor.email);
+            // log(updateUserProfileModel.dataVendor.phoneNo);
+            Get.back();
+          } else {
+            log('False False');
+          }
+        });
+      }
+      else if (imageFile != null && shopOfferFile1 != null && shopOfferFile2 != null && shopOfferFile3 != null && shopOfferFile4 != null && shopOfferFile5 == null) {
+        log("uploading with a photo");
+        var request = http.MultipartRequest('POST', Uri.parse(url));
+
+        var stream = http.ByteStream(imageFile!.openRead());
+        var stream1 = http.ByteStream(shopOfferFile1!.openRead());
+        var stream2 = http.ByteStream(shopOfferFile2!.openRead());
+        var stream3 = http.ByteStream(shopOfferFile3!.openRead());
+        var stream4 = http.ByteStream(shopOfferFile4!.openRead());
+        // var stream5 = http.ByteStream(shopOfferFile5!.openRead());
+
+        stream.cast();
+        stream1.cast();
+        stream2.cast();
+        stream3.cast();
+        stream4.cast();
+        // stream5.cast();
+
+        var length = await imageFile!.length();
+        var length1 = await shopOfferFile1!.length();
+        var length2 = await shopOfferFile2!.length();
+        var length3 = await shopOfferFile3!.length();
+        var length4 = await shopOfferFile4!.length();
+        // var length5 = await shopOfferFile4!.length();
+
+        request.files.add(await http.MultipartFile.fromPath("showimg", imageFile!.path));
+        request.files.add(await http.MultipartFile.fromPath("image1", shopOfferFile1!.path));
+        request.files.add(await http.MultipartFile.fromPath("image2", shopOfferFile2!.path));
+        request.files.add(await http.MultipartFile.fromPath("image3", shopOfferFile3!.path));
+        request.files.add(await http.MultipartFile.fromPath("image4", shopOfferFile4!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image5", shopOfferFile5!.path));
+
+        // request.headers.addAll(header);
+
+        request.fields['shopename'] = nameController.text.trim();
+        request.fields['address'] = addressController.text.trim();
+        request.fields['phonenumber'] = contactNumber.text.trim();
+        request.fields['shopopen'] = openTimeController.text.trim();
+        request.fields['shopclose'] = closeTimeController.text.trim();
+        request.fields['userid'] = "${UserDetails.userId}";
+        request.fields['uid'] = "${UserDetails.userId}";
+        request.fields['full_text'] = "jgjadg";
+
+        var multiPart = http.MultipartFile(
+          'showimg',
+          stream,
+          length,
+        );
+        var multiPart1 = http.MultipartFile(
+          'image1',
+          stream1,
+          length1,
+        );
+        var multiPart2 = http.MultipartFile(
+          'image2',
+          stream2,
+          length2,
+        );
+        var multiPart3 = http.MultipartFile(
+          'image3',
+          stream3,
+          length3,
+        );
+        var multiPart4 = http.MultipartFile(
+          'image4',
+          stream4,
+          length4,
+        );
+        // var multiPart5 = http.MultipartFile(
+        //   'image5',
+        //   stream5,
+        //   length5,
+        // );
+
+
+        request.files.add(multiPart);
+        request.files.add(multiPart1);
+        request.files.add(multiPart2);
+        request.files.add(multiPart3);
+        request.files.add(multiPart4);
+        // request.files.add(multiPart5);
+
+        log('request.fields: ${request.fields}');
+        log('request.files: ${request.files}');
+        //log('request.files length : ${request.files.length}');
+        //log('request.files name : ${request.files.first.filename}');
+        //log('request.files filetype : ${request.files.first.contentType}');
+        log('request.headers: ${request.headers}');
+
+        var response = await request.send();
+        log('response: ${response.request}');
+
+        response.stream.transform(utf8.decoder).listen((value) async {
+          log('value: $value');
+          ShopUpdateProfileModel shopProfileModel =
+          ShopUpdateProfileModel.fromJson(json.decode(value));
+          log('response1 :::::: ${shopProfileModel.success}');
+          isSuccessStatus = shopProfileModel.success.obs;
+
+          if (isSuccessStatus.value) {
+            Fluttertoast.showToast(msg: shopProfileModel.message);
+            await getAllRoleProfileFunction();
+            // log(updateUserProfileModel.dataVendor.userName);
+            // log(updateUserProfileModel.dataVendor.email);
+            // log(updateUserProfileModel.dataVendor.phoneNo);
+            Get.back();
+          } else {
+            log('False False');
+          }
+        });
+      }
+      else if (imageFile == null && shopOfferFile1 != null && shopOfferFile2 != null && shopOfferFile3 != null && shopOfferFile4 != null && shopOfferFile5 != null) {
+        log("uploading with a photo");
+        var request = http.MultipartRequest('POST', Uri.parse(url));
+
+        //var stream = http.ByteStream(imageFile!.openRead());
+        var stream1 = http.ByteStream(shopOfferFile1!.openRead());
+        var stream2 = http.ByteStream(shopOfferFile2!.openRead());
+        var stream3 = http.ByteStream(shopOfferFile3!.openRead());
+        var stream4 = http.ByteStream(shopOfferFile4!.openRead());
+        var stream5 = http.ByteStream(shopOfferFile5!.openRead());
+
+        //stream.cast();
+        stream1.cast();
+        stream2.cast();
+        stream3.cast();
+        stream4.cast();
+        stream5.cast();
+
+        //var length = await imageFile!.length();
+        var length1 = await shopOfferFile1!.length();
+        var length2 = await shopOfferFile2!.length();
+        var length3 = await shopOfferFile3!.length();
+        var length4 = await shopOfferFile4!.length();
+        var length5 = await shopOfferFile4!.length();
+
+        //request.files.add(await http.MultipartFile.fromPath("showimg", imageFile!.path));
+        request.files.add(await http.MultipartFile.fromPath("image1", shopOfferFile1!.path));
+        request.files.add(await http.MultipartFile.fromPath("image2", shopOfferFile2!.path));
+        request.files.add(await http.MultipartFile.fromPath("image3", shopOfferFile3!.path));
+        request.files.add(await http.MultipartFile.fromPath("image4", shopOfferFile4!.path));
+        request.files.add(await http.MultipartFile.fromPath("image5", shopOfferFile5!.path));
+
+        // request.headers.addAll(header);
+
+        request.fields['shopename'] = nameController.text.trim();
+        request.fields['address'] = addressController.text.trim();
+        request.fields['phonenumber'] = contactNumber.text.trim();
+        request.fields['shopopen'] = openTimeController.text.trim();
+        request.fields['shopclose'] = closeTimeController.text.trim();
+        request.fields['userid'] = "${UserDetails.userId}";
+        request.fields['uid'] = "${UserDetails.userId}";
+        request.fields['full_text'] = "jgjadg";
+
+        // var multiPart = http.MultipartFile(
+        //   'showimg',
+        //   stream,
+        //   length,
+        // );
+        var multiPart1 = http.MultipartFile(
+          'image1',
+          stream1,
+          length1,
+        );
+        var multiPart2 = http.MultipartFile(
+          'image2',
+          stream2,
+          length2,
+        );
+        var multiPart3 = http.MultipartFile(
+          'image3',
+          stream3,
+          length3,
+        );
+        var multiPart4 = http.MultipartFile(
+          'image4',
+          stream4,
+          length4,
+        );
+        var multiPart5 = http.MultipartFile(
+          'image5',
+          stream5,
+          length5,
+        );
+
+
+        //request.files.add(multiPart);
+        request.files.add(multiPart1);
+        request.files.add(multiPart2);
+        request.files.add(multiPart3);
+        request.files.add(multiPart4);
+        // request.files.add(multiPart5);
+
+        log('request.fields: ${request.fields}');
+        log('request.files: ${request.files}');
+        //log('request.files length : ${request.files.length}');
+        //log('request.files name : ${request.files.first.filename}');
+        //log('request.files filetype : ${request.files.first.contentType}');
+        log('request.headers: ${request.headers}');
+
+        var response = await request.send();
+        log('response: ${response.request}');
+
+        response.stream.transform(utf8.decoder).listen((value) async {
+          log('value: $value');
+          ShopUpdateProfileModel shopProfileModel =
+          ShopUpdateProfileModel.fromJson(json.decode(value));
+          log('response1 :::::: ${shopProfileModel.success}');
+          isSuccessStatus = shopProfileModel.success.obs;
+
+          if (isSuccessStatus.value) {
+            Fluttertoast.showToast(msg: shopProfileModel.message);
+            await getAllRoleProfileFunction();
+            // log(updateUserProfileModel.dataVendor.userName);
+            // log(updateUserProfileModel.dataVendor.email);
+            // log(updateUserProfileModel.dataVendor.phoneNo);
+            Get.back();
+          } else {
+            log('False False');
+          }
+        });
+      }
+      else if (imageFile == null && shopOfferFile1 != null && shopOfferFile2 == null && shopOfferFile3 == null && shopOfferFile4 == null && shopOfferFile5 == null) {
+        log("uploading with a photo");
+        var request = http.MultipartRequest('POST', Uri.parse(url));
+
+        //var stream = http.ByteStream(imageFile!.openRead());
+        var stream1 = http.ByteStream(shopOfferFile1!.openRead());
+        // var stream2 = http.ByteStream(shopOfferFile2!.openRead());
+        // var stream3 = http.ByteStream(shopOfferFile3!.openRead());
+        // var stream4 = http.ByteStream(shopOfferFile4!.openRead());
+        // var stream5 = http.ByteStream(shopOfferFile5!.openRead());
+
+        //stream.cast();
+        stream1.cast();
+        // stream2.cast();
+        // stream3.cast();
+        // stream4.cast();
+        // stream5.cast();
+
+        //var length = await imageFile!.length();
+        var length1 = await shopOfferFile1!.length();
+        // var length2 = await shopOfferFile2!.length();
+        // var length3 = await shopOfferFile3!.length();
+        // var length4 = await shopOfferFile4!.length();
+        // var length5 = await shopOfferFile4!.length();
+
+        //request.files.add(await http.MultipartFile.fromPath("showimg", imageFile!.path));
+        request.files.add(await http.MultipartFile.fromPath("image1", shopOfferFile1!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image2", shopOfferFile2!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image3", shopOfferFile3!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image4", shopOfferFile4!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image5", shopOfferFile5!.path));
+
+        // request.headers.addAll(header);
+
+        request.fields['shopename'] = nameController.text.trim();
+        request.fields['address'] = addressController.text.trim();
+        request.fields['phonenumber'] = contactNumber.text.trim();
+        request.fields['shopopen'] = openTimeController.text.trim();
+        request.fields['shopclose'] = closeTimeController.text.trim();
+        request.fields['userid'] = "${UserDetails.userId}";
+        request.fields['uid'] = "${UserDetails.userId}";
+        request.fields['full_text'] = "jgjadg";
+
+        // var multiPart = http.MultipartFile(
+        //   'showimg',
+        //   stream,
+        //   length,
+        // );
+        var multiPart1 = http.MultipartFile(
+          'image1',
+          stream1,
+          length1,
+        );
+        // var multiPart2 = http.MultipartFile(
+        //   'image2',
+        //   stream2,
+        //   length2,
+        // );
+        // var multiPart3 = http.MultipartFile(
+        //   'image3',
+        //   stream3,
+        //   length3,
+        // );
+        // var multiPart4 = http.MultipartFile(
+        //   'image4',
+        //   stream4,
+        //   length4,
+        // );
+        // var multiPart5 = http.MultipartFile(
+        //   'image5',
+        //   stream5,
+        //   length5,
+        // );
+
+
+        //request.files.add(multiPart);
+        request.files.add(multiPart1);
+        // request.files.add(multiPart2);
+        // request.files.add(multiPart3);
+        // request.files.add(multiPart4);
+        // request.files.add(multiPart5);
+
+        log('request.fields: ${request.fields}');
+        log('request.files: ${request.files}');
+        //log('request.files length : ${request.files.length}');
+        //log('request.files name : ${request.files.first.filename}');
+        //log('request.files filetype : ${request.files.first.contentType}');
+        log('request.headers: ${request.headers}');
+
+        var response = await request.send();
+        log('response: ${response.request}');
+
+        response.stream.transform(utf8.decoder).listen((value) async {
+          log('value: $value');
+          ShopUpdateProfileModel shopProfileModel =
+          ShopUpdateProfileModel.fromJson(json.decode(value));
+          log('response1 :::::: ${shopProfileModel.success}');
+          isSuccessStatus = shopProfileModel.success.obs;
+
+          if (isSuccessStatus.value) {
+            Fluttertoast.showToast(msg: shopProfileModel.message);
+            await getAllRoleProfileFunction();
+            // log(updateUserProfileModel.dataVendor.userName);
+            // log(updateUserProfileModel.dataVendor.email);
+            // log(updateUserProfileModel.dataVendor.phoneNo);
+            Get.back();
+          } else {
+            log('False False');
+          }
+        });
+      }
+      else if (imageFile == null && shopOfferFile1 != null && shopOfferFile2 != null && shopOfferFile3 == null && shopOfferFile4 == null && shopOfferFile5 == null) {
+        log("uploading with a photo");
+        var request = http.MultipartRequest('POST', Uri.parse(url));
+
+        //var stream = http.ByteStream(imageFile!.openRead());
+        var stream1 = http.ByteStream(shopOfferFile1!.openRead());
+        var stream2 = http.ByteStream(shopOfferFile2!.openRead());
+        // var stream3 = http.ByteStream(shopOfferFile3!.openRead());
+        // var stream4 = http.ByteStream(shopOfferFile4!.openRead());
+        // var stream5 = http.ByteStream(shopOfferFile5!.openRead());
+
+        //stream.cast();
+        stream1.cast();
+         stream2.cast();
+        // stream3.cast();
+        // stream4.cast();
+        // stream5.cast();
+
+        //var length = await imageFile!.length();
+        var length1 = await shopOfferFile1!.length();
+        var length2 = await shopOfferFile2!.length();
+        // var length3 = await shopOfferFile3!.length();
+        // var length4 = await shopOfferFile4!.length();
+        // var length5 = await shopOfferFile4!.length();
+
+        //request.files.add(await http.MultipartFile.fromPath("showimg", imageFile!.path));
+        request.files.add(await http.MultipartFile.fromPath("image1", shopOfferFile1!.path));
+        request.files.add(await http.MultipartFile.fromPath("image2", shopOfferFile2!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image3", shopOfferFile3!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image4", shopOfferFile4!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image5", shopOfferFile5!.path));
+
+        // request.headers.addAll(header);
+
+        request.fields['shopename'] = nameController.text.trim();
+        request.fields['address'] = addressController.text.trim();
+        request.fields['phonenumber'] = contactNumber.text.trim();
+        request.fields['shopopen'] = openTimeController.text.trim();
+        request.fields['shopclose'] = closeTimeController.text.trim();
+        request.fields['userid'] = "${UserDetails.userId}";
+        request.fields['uid'] = "${UserDetails.userId}";
+        request.fields['full_text'] = "jgjadg";
+
+        // var multiPart = http.MultipartFile(
+        //   'showimg',
+        //   stream,
+        //   length,
+        // );
+        var multiPart1 = http.MultipartFile(
+          'image1',
+          stream1,
+          length1,
+        );
+        var multiPart2 = http.MultipartFile(
+          'image2',
+          stream2,
+          length2,
+        );
+        // var multiPart3 = http.MultipartFile(
+        //   'image3',
+        //   stream3,
+        //   length3,
+        // );
+        // var multiPart4 = http.MultipartFile(
+        //   'image4',
+        //   stream4,
+        //   length4,
+        // );
+        // var multiPart5 = http.MultipartFile(
+        //   'image5',
+        //   stream5,
+        //   length5,
+        // );
+
+
+        //request.files.add(multiPart);
+        request.files.add(multiPart1);
+        request.files.add(multiPart2);
+        // request.files.add(multiPart3);
+        // request.files.add(multiPart4);
+        // request.files.add(multiPart5);
+
+        log('request.fields: ${request.fields}');
+        log('request.files: ${request.files}');
+        //log('request.files length : ${request.files.length}');
+        //log('request.files name : ${request.files.first.filename}');
+        //log('request.files filetype : ${request.files.first.contentType}');
+        log('request.headers: ${request.headers}');
+
+        var response = await request.send();
+        log('response: ${response.request}');
+
+        response.stream.transform(utf8.decoder).listen((value) async {
+          log('value: $value');
+          ShopUpdateProfileModel shopProfileModel =
+          ShopUpdateProfileModel.fromJson(json.decode(value));
+          log('response1 :::::: ${shopProfileModel.success}');
+          isSuccessStatus = shopProfileModel.success.obs;
+
+          if (isSuccessStatus.value) {
+            Fluttertoast.showToast(msg: shopProfileModel.message);
+            await getAllRoleProfileFunction();
+            // log(updateUserProfileModel.dataVendor.userName);
+            // log(updateUserProfileModel.dataVendor.email);
+            // log(updateUserProfileModel.dataVendor.phoneNo);
+            Get.back();
+          } else {
+            log('False False');
+          }
+        });
+      }
+      else if (imageFile == null && shopOfferFile1 != null && shopOfferFile2 != null && shopOfferFile3 != null && shopOfferFile4 == null && shopOfferFile5 == null) {
+        log("uploading with a photo");
+        var request = http.MultipartRequest('POST', Uri.parse(url));
+
+        //var stream = http.ByteStream(imageFile!.openRead());
+        var stream1 = http.ByteStream(shopOfferFile1!.openRead());
+        var stream2 = http.ByteStream(shopOfferFile2!.openRead());
+        var stream3 = http.ByteStream(shopOfferFile3!.openRead());
+        // var stream4 = http.ByteStream(shopOfferFile4!.openRead());
+        // var stream5 = http.ByteStream(shopOfferFile5!.openRead());
+
+        //stream.cast();
+        stream1.cast();
+        stream2.cast();
+        stream3.cast();
+        // stream4.cast();
+        // stream5.cast();
+
+        //var length = await imageFile!.length();
+        var length1 = await shopOfferFile1!.length();
+        var length2 = await shopOfferFile2!.length();
+        var length3 = await shopOfferFile3!.length();
+        // var length4 = await shopOfferFile4!.length();
+        // var length5 = await shopOfferFile4!.length();
+
+        //request.files.add(await http.MultipartFile.fromPath("showimg", imageFile!.path));
+        request.files.add(await http.MultipartFile.fromPath("image1", shopOfferFile1!.path));
+        request.files.add(await http.MultipartFile.fromPath("image2", shopOfferFile2!.path));
+        request.files.add(await http.MultipartFile.fromPath("image3", shopOfferFile3!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image4", shopOfferFile4!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image5", shopOfferFile5!.path));
+
+        // request.headers.addAll(header);
+
+        request.fields['shopename'] = nameController.text.trim();
+        request.fields['address'] = addressController.text.trim();
+        request.fields['phonenumber'] = contactNumber.text.trim();
+        request.fields['shopopen'] = openTimeController.text.trim();
+        request.fields['shopclose'] = closeTimeController.text.trim();
+        request.fields['userid'] = "${UserDetails.userId}";
+        request.fields['uid'] = "${UserDetails.userId}";
+        request.fields['full_text'] = "jgjadg";
+
+        // var multiPart = http.MultipartFile(
+        //   'showimg',
+        //   stream,
+        //   length,
+        // );
+        var multiPart1 = http.MultipartFile(
+          'image1',
+          stream1,
+          length1,
+        );
+        var multiPart2 = http.MultipartFile(
+          'image2',
+          stream2,
+          length2,
+        );
+        var multiPart3 = http.MultipartFile(
+          'image3',
+          stream3,
+          length3,
+        );
+        // var multiPart4 = http.MultipartFile(
+        //   'image4',
+        //   stream4,
+        //   length4,
+        // );
+        // var multiPart5 = http.MultipartFile(
+        //   'image5',
+        //   stream5,
+        //   length5,
+        // );
+
+
+        //request.files.add(multiPart);
+        request.files.add(multiPart1);
+        request.files.add(multiPart2);
+        request.files.add(multiPart3);
+        // request.files.add(multiPart4);
+        // request.files.add(multiPart5);
+
+        log('request.fields: ${request.fields}');
+        log('request.files: ${request.files}');
+        //log('request.files length : ${request.files.length}');
+        //log('request.files name : ${request.files.first.filename}');
+        //log('request.files filetype : ${request.files.first.contentType}');
+        log('request.headers: ${request.headers}');
+
+        var response = await request.send();
+        log('response: ${response.request}');
+
+        response.stream.transform(utf8.decoder).listen((value) async {
+          log('value: $value');
+          ShopUpdateProfileModel shopProfileModel =
+          ShopUpdateProfileModel.fromJson(json.decode(value));
+          log('response1 :::::: ${shopProfileModel.success}');
+          isSuccessStatus = shopProfileModel.success.obs;
+
+          if (isSuccessStatus.value) {
+            Fluttertoast.showToast(msg: shopProfileModel.message);
+            await getAllRoleProfileFunction();
+            // log(updateUserProfileModel.dataVendor.userName);
+            // log(updateUserProfileModel.dataVendor.email);
+            // log(updateUserProfileModel.dataVendor.phoneNo);
+            Get.back();
+          } else {
+            log('False False');
+          }
+        });
+      }
+      else if (imageFile == null && shopOfferFile1 != null && shopOfferFile2 != null && shopOfferFile3 != null && shopOfferFile4 != null && shopOfferFile5 == null) {
+        log("uploading with a photo");
+        var request = http.MultipartRequest('POST', Uri.parse(url));
+
+        //var stream = http.ByteStream(imageFile!.openRead());
+        var stream1 = http.ByteStream(shopOfferFile1!.openRead());
+        var stream2 = http.ByteStream(shopOfferFile2!.openRead());
+        var stream3 = http.ByteStream(shopOfferFile3!.openRead());
+        var stream4 = http.ByteStream(shopOfferFile4!.openRead());
+        // var stream5 = http.ByteStream(shopOfferFile5!.openRead());
+
+        //stream.cast();
+        stream1.cast();
+        stream2.cast();
+        stream3.cast();
+        stream4.cast();
+        // stream5.cast();
+
+        //var length = await imageFile!.length();
+        var length1 = await shopOfferFile1!.length();
+        var length2 = await shopOfferFile2!.length();
+        var length3 = await shopOfferFile3!.length();
+        var length4 = await shopOfferFile4!.length();
+        // var length5 = await shopOfferFile4!.length();
+
+        //request.files.add(await http.MultipartFile.fromPath("showimg", imageFile!.path));
+        request.files.add(await http.MultipartFile.fromPath("image1", shopOfferFile1!.path));
+        request.files.add(await http.MultipartFile.fromPath("image2", shopOfferFile2!.path));
+        request.files.add(await http.MultipartFile.fromPath("image3", shopOfferFile3!.path));
+        request.files.add(await http.MultipartFile.fromPath("image4", shopOfferFile4!.path));
+        // request.files.add(await http.MultipartFile.fromPath("image5", shopOfferFile5!.path));
+
+        // request.headers.addAll(header);
+
+        request.fields['shopename'] = nameController.text.trim();
+        request.fields['address'] = addressController.text.trim();
+        request.fields['phonenumber'] = contactNumber.text.trim();
+        request.fields['shopopen'] = openTimeController.text.trim();
+        request.fields['shopclose'] = closeTimeController.text.trim();
+        request.fields['userid'] = "${UserDetails.userId}";
+        request.fields['uid'] = "${UserDetails.userId}";
+        request.fields['full_text'] = "jgjadg";
+
+        // var multiPart = http.MultipartFile(
+        //   'showimg',
+        //   stream,
+        //   length,
+        // );
+        var multiPart1 = http.MultipartFile(
+          'image1',
+          stream1,
+          length1,
+        );
+        var multiPart2 = http.MultipartFile(
+          'image2',
+          stream2,
+          length2,
+        );
+        var multiPart3 = http.MultipartFile(
+          'image3',
+          stream3,
+          length3,
+        );
+        var multiPart4 = http.MultipartFile(
+          'image4',
+          stream4,
+          length4,
+        );
+        // var multiPart5 = http.MultipartFile(
+        //   'image5',
+        //   stream5,
+        //   length5,
+        // );
+
+
+        //request.files.add(multiPart);
+        request.files.add(multiPart1);
+        request.files.add(multiPart2);
+        request.files.add(multiPart3);
+        request.files.add(multiPart4);
+        // request.files.add(multiPart5);
+
+        log('request.fields: ${request.fields}');
+        log('request.files: ${request.files}');
+        //log('request.files length : ${request.files.length}');
+        //log('request.files name : ${request.files.first.filename}');
+        //log('request.files filetype : ${request.files.first.contentType}');
+        log('request.headers: ${request.headers}');
+
+        var response = await request.send();
+        log('response: ${response.request}');
+
+        response.stream.transform(utf8.decoder).listen((value) async {
+          log('value: $value');
+          ShopUpdateProfileModel shopProfileModel =
+          ShopUpdateProfileModel.fromJson(json.decode(value));
+          log('response1 :::::: ${shopProfileModel.success}');
+          isSuccessStatus = shopProfileModel.success.obs;
+
+          if (isSuccessStatus.value) {
+            Fluttertoast.showToast(msg: shopProfileModel.message);
+            await getAllRoleProfileFunction();
+            // log(updateUserProfileModel.dataVendor.userName);
+            // log(updateUserProfileModel.dataVendor.email);
+            // log(updateUserProfileModel.dataVendor.phoneNo);
+            Get.back();
+          } else {
+            log('False False');
+          }
+        });
+      }
+      else if (imageFile == null && shopOfferFile1 == null && shopOfferFile2 == null && shopOfferFile3 == null && shopOfferFile4 == null && shopOfferFile5 == null){
         print("uploading without a photo");
         var request = http.MultipartRequest('POST', Uri.parse(url));
 
@@ -293,6 +1469,50 @@ class ShopUserProfileScreenController extends GetxController {
       }
     } catch (e) {
       log("updateUserProfileFunction Error ::: $e");
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  Future<void> userLoginFunction() async {
+    isLoading(true);
+    String url = ApiUrl.loginApi;
+    log('Login Api Url : $url');
+
+    try {
+      Map<String, dynamic> data = {
+        "email": userEmail,
+        "password": passwordController.text.trim(),
+        "categoryID": "${UserDetails.roleId}",
+      };
+      log("data : $data");
+
+      http.Response response = await http.post(Uri.parse(url), body: data);
+      log("Login Api Response : ${response.body}");
+
+      LoginModel loginModel = LoginModel.fromJson(json.decode(response.body));
+      isSuccessStatus = loginModel.success.obs;
+
+      if (isSuccessStatus.value) {
+        // User Data Set in Prefs
+        await userPreference.setUserDetails(
+            selfId: loginModel.data.uid,
+            userId: loginModel.data.id,
+            userName: loginModel.data.name,
+            userEmail: loginModel.data.email,
+            userProfileImage: loginModel.data.image,
+            token: loginModel.data.rememberToken,
+            roleId: loginModel.data.categoryId
+        );
+        passwordController.clear();
+        //await userPreference.setRoleId(roleId);
+        // Going to Index Screen
+        Get.toNamed(AppRouteNames.indexScreenRoute);
+      } else {
+        Fluttertoast.showToast(msg: loginModel.error);
+      }
+    } catch (e) {
+      log('User Login Api Error ::: $e');
     } finally {
       isLoading(false);
     }

@@ -57,6 +57,18 @@ class ApiUrl {
 
   /// Order
   static const addOrderApi = apiMainPath + "/orderadd";
+
+  /// Follow && Unfollow && Status
+   static const followStatusApi = apiMainPath + "/followstatus";
+  static const followUserApi = apiMainPath + "/followuser";
+  static const unfollowUserApi = apiMainPath + "/unfollowuser";
+
+  /// Multi Account
+  static const multiAccountApi = apiMainPath + "/multipleaccount";
+
+  /// User Story
+   static const getUserStoryApi = apiMainPath + "/followwisestory/"; //get
+  static const addUserStoryApi = apiMainPath + "/userstory"; // Add
 }
 
 class ApiHeader {

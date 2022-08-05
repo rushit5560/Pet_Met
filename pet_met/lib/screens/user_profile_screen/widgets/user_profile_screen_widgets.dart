@@ -75,7 +75,8 @@ class ProfileImage extends StatelessWidget {
 }
 
 class ProfileDetailsModule extends StatelessWidget {
-  const ProfileDetailsModule({Key? key}) : super(key: key);
+  ProfileDetailsModule({Key? key}) : super(key: key);
+  final controller = Get.find<UserProfileController>();
 
   @override
   Widget build(BuildContext context) {
@@ -149,6 +150,29 @@ class ProfileDetailsModule extends StatelessWidget {
               ),
             ],
           ),
+          Obx(()=>
+             GestureDetector(
+              onTap: ()async{
+                // if(controller.message.contains('this user not follow')){
+                //   /// Follow
+                //   await controller.followUserFunction();
+                // }else if(controller.message.contains('user is allready follow')){
+                //   /// Unfollow
+                //   await controller.unfollowUserFunction();
+                // }
+               // await controller.followStatus();
+                controller.status.value == true ?
+                await controller.followUserFunction():
+                await controller.unfollowUserFunction();
+              },
+              child: Text(controller.status.value == true ? "Follow" : "Unfollow",
+                style: TextStyle(
+                  color: AppColors.accentTextColor,
+                  fontSize: 13.sp,
+                  fontWeight: FontWeight.bold,
+                ),),
+            ),
+          )
         ],
       ),
     );

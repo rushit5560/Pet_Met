@@ -80,6 +80,7 @@ class DataData {
   DataData({
     required this.id,
     required this.shopename,
+    required this.email,
     required this.address,
     required this.phonenumber,
     required this.shopopen,
@@ -106,6 +107,7 @@ class DataData {
 
   int id;
   String shopename;
+  String email;
   String address;
   String phonenumber;
   String shopopen;
@@ -132,6 +134,7 @@ class DataData {
   factory DataData.fromJson(Map<String, dynamic> json) => DataData(
     id: json["id"] ?? 0,
     shopename: json["shopename"] ?? "",
+    email: json["email"] ?? "",
     address: json["address"] ?? "",
     phonenumber: json["phonenumber"] ?? "",
     shopopen: json["shopopen"] ?? "",
@@ -159,6 +162,7 @@ class DataData {
   Map<String, dynamic> toJson() => {
     "id": id,
     "shopename": shopename,
+    "email": email,
     "address": address,
     "phonenumber": phonenumber,
     "shopopen": shopopen,

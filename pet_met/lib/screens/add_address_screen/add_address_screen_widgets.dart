@@ -62,6 +62,7 @@ class TextFieldSection extends StatelessWidget {
         ),
         SizedBox(height: 1.5.h),
         CustomLightTextField(
+          readOnly: false,
            fieldController: fieldController,
 
           height: screenController.size.height * 0.05,

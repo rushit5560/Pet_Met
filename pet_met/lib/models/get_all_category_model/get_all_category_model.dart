@@ -61,7 +61,7 @@ class PetCategory {
   String ? createdDate;
   String ? updatedDate;
   int ? createdBy;
-  String ? modifiedBy;
+  int ? modifiedBy;
 
   factory PetCategory.fromJson(Map<String, dynamic> json) => PetCategory(
     categoryId: json["categoryID"] ?? 0,
@@ -76,7 +76,7 @@ class PetCategory {
     createdDate: json["created_date"] ?? "",
     updatedDate: json["updated_date"] ?? "",
     createdBy: json["created_by"] ?? 0,
-    modifiedBy: json["modified_by"] ?? "",
+    modifiedBy: json["modified_by"] ?? 0,
   );
 
   Map<String, dynamic> toJson() => {

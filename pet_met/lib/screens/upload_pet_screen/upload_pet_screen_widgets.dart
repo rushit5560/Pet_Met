@@ -1199,7 +1199,7 @@ class WeightTextFieldModule extends StatelessWidget {
           height: controller.size.height * 0.065,
           width: double.infinity,
           hintText: "Weight",
-          textInputAction: TextInputAction.next,
+          textInputAction: TextInputAction.done,
           textInputType: TextInputType.number,
           validator: (val) => Validations().validateWeight(val!),
         ),
@@ -1229,11 +1229,11 @@ class PetSubmitButton extends StatelessWidget {
           }
           else if(controller.genderValue.isEmpty){
             Fluttertoast.showToast(msg: 'Please select gender');
-          }else if(controller.petOption == PetOption.addOption){
-            if(controller.imageFile == null){
+          }//else if(controller.petOption == PetOption.addOption){
+            else if(controller.imageFile == null){
               Fluttertoast.showToast(msg: 'Please select image');
             }
-          }
+         // }
           else if(controller.petOption == PetOption.addOption) {
             // Here Add Pet Api Call
             await controller.addPetProfileFunction();

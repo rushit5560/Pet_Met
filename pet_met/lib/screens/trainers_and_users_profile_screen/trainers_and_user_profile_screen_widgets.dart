@@ -897,7 +897,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                 height: screenController.size.height * 0.05,
                 width: double.infinity,
                 hintText: "Close",
-                textInputAction: TextInputAction.next,
+                textInputAction: TextInputAction.done,
                 textInputType: TextInputType.number,
                 validator: (val) => Validations().validateCloseTime(val!),
               ),

@@ -1,12 +1,17 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/models/get_all_pet_list_model/get_all_pet_list_model.dart';
+import 'package:pet_met/models/get_user_story_model/add_user_story_model.dart';
+import 'package:pet_met/models/get_user_story_model/get_user_story_model.dart';
 import 'package:pet_met/models/home_screen_models/banner_model.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_images.dart';
+import 'package:pet_met/utils/user_details.dart';
 
 class HomeController extends GetxController {
   var activeIndex = 0.obs;
@@ -15,9 +20,13 @@ class HomeController extends GetxController {
   final size = Get.size;
   ApiHeader apiHeader = ApiHeader();
 
+  File? imageFile;
+
   RxBool isOpened = false.obs;
   List<Datum> bannerList = [];
   List<PetList> petTopList = [];
+  List<DatumDatum> imageList = [];
+  List<GetUserStoryModelDatum> userStoryList = [];
 
   var drawerController = ZoomDrawerController();
 
@@ -138,8 +147,173 @@ class HomeController extends GetxController {
     } catch(e) {
       log("Get All Pet Api Error ::: $e");
     } finally {
+      //isLoading(false);
+      await getUserStory();
+    }
+  }
+
+  /// Get User Story
+  Future<void> getUserStory() async {
+    isLoading(true);
+    String url = ApiUrl.getUserStoryApi + '${UserDetails.userId}';
+    log("Get User story Api Url : $url");
+
+    try {
+      Map<String, String> header = apiHeader.apiHeader();
+      log("header : $header");
+
+      http.Response response = await http.get(Uri.parse(url), headers: header);
+      log("Get All USer Story Api response : ${response.body}");
+
+      GetUserStoryModel getUserStoryModel =
+      GetUserStoryModel.fromJson(json.decode(response.body));
+      isSuccessStatus = getUserStoryModel.success.obs;
+
+      if (isSuccessStatus.value) {
+        // bannerList.clear();
+        for(int i=0; i< getUserStoryModel.data.length; i++){
+          userStoryList.addAll(getUserStoryModel.data);
+          log("userStoryList Length : ${userStoryList.length}");
+          imageList.addAll(getUserStoryModel.data[i].data);
+        }
+
+      } else {
+        log("User Story Api Else");
+      }
+
+    } catch(e) {
+      log("Get All USer Story Api Error ::: $e");
+    } finally {
+      isLoading(false);
+      //await getUserStory();
+    }
+  }
+
+  /// Add User Story
+  Future<void> addUserStoryFunction() async {
+    isLoading(true);
+
+    String url = ApiUrl. addUserStoryApi;
+    log("Add User Story Profile url: $url");
+
+    Map<String, String> header = apiHeader.apiHeader();
+    log("header : $header");
+
+    try {
+      if (imageFile != null) {
+        log("uploading with a photo");
+        var request = http.MultipartRequest('POST', Uri.parse(url));
+
+        var stream = http.ByteStream(imageFile!.openRead());
+        stream.cast();
+
+        var length = await imageFile!.length();
+
+        request.files.add(await http.MultipartFile.fromPath("image", imageFile!.path));
+        //request.headers.addAll(header);
+
+        request.fields['userid'] = "${UserDetails.userId}";
+        request.fields['categoryID'] = "${UserDetails.categoryId}";
+
+        // request.fields['name'] = "demo1";
+        // request.fields['bod'] = "10-9-2014";
+        // request.fields['phone'] = "1234567890";
+        // request.fields['gender'] = "female";
+
+        var multiPart = http.MultipartFile(
+          'image',
+          stream,
+          length,
+
+          //filename: "",
+        );
+
+        // var multiFile = await http.MultipartFile.fromPath(
+        //  "image",
+        //   file!.path,
+        // );
+
+        request.files.add(multiPart);
+
+        log('request.fields: ${request.fields}');
+        log('request.files: ${request.files}');
+        //log('request.files length : ${request.files.length}');
+        //log('request.files name : ${request.files.first.filename}');
+        //log('request.files filetype : ${request.files.first.contentType}');
+        log('request.headers: ${request.headers}');
+
+        var response = await request.send();
+        log('response: ${response.request}');
+
+        response.stream.transform(utf8.decoder).listen((value) async {
+          log('value: $value');
+          AddUserStoryModel addUserStoryModel =
+          AddUserStoryModel.fromJson(json.decode(value));
+          log('response1 :::::: ${addUserStoryModel.success}');
+          isSuccessStatus = addUserStoryModel.success.obs;
+
+          if (isSuccessStatus.value) {
+            Fluttertoast.showToast(msg: addUserStoryModel.message);
+            Get.back();
+          } else {
+            log('False False');
+          }
+        });
+      } else {
+        print("uploading without a photo");
+        var request = http.MultipartRequest('POST', Uri.parse(url));
+
+        // var stream = http.ByteStream(file!.openRead());
+        // stream.cast();
+        //
+        // var length = await file!.length();
+
+        //request.headers.addAll(header);
+
+        request.fields['userid'] = "${UserDetails.userId}";
+        request.fields['categoryID'] = "${UserDetails.categoryId}";
+        //request.fields['showimg'] = "jgjadg";
+
+        // var multiPart = http.MultipartFile(
+        //   'file',
+        //   stream,
+        //   length,
+        // );
+        //
+        // request.files.add(multiPart);
+
+        log('request.fields: ${request.fields}');
+        log('request.files: ${request.files}');
+        log('request.headers: ${request.headers}');
+
+        var response = await request.send();
+        log('response: ${response.request}');
+
+        response.stream.transform(utf8.decoder).listen((value) async {
+          log('value: $value');
+          AddUserStoryModel addUserStoryModel =
+          AddUserStoryModel.fromJson(json.decode(value));
+          log('response1 :::::: ${addUserStoryModel.success}');
+          isSuccessStatus = addUserStoryModel.success.obs;
+
+          if (isSuccessStatus.value) {
+            Fluttertoast.showToast(msg: addUserStoryModel.message);
+            Get.back();
+          } else {
+            log('False False');
+          }
+        });
+      }
+    } catch (e) {
+      log("updateUserProfileFunction Error ::: $e");
+    } finally {
       isLoading(false);
     }
+  }
+
+  loadUI() {
+    isLoading(true);
+    isLoading(false);
   }
 
   @override

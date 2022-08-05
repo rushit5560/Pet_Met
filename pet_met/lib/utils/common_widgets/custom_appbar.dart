@@ -97,4 +97,14 @@ class CustomAppBar extends StatelessWidget {
       return Container();
     }
   }
+
+  trailingWidget1(){
+    if (appBarOption == AppBarOption.singleBackButtonOption) {
+      return Image.asset(
+        AppIcons.profilePetImg,
+      );
+    }else {
+      return Container();
+    }
+  }
 }
