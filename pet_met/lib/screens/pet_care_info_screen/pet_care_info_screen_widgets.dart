@@ -16,7 +16,7 @@ class PetCareListModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    /*return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -48,11 +48,15 @@ class PetCareListModule extends StatelessWidget {
           ),
         ],
       ),
-    );
-    /*return SizedBox(
+    );*/
+    return SizedBox(
       //height: controller.size.height * 0.85,
-      child: ListView.separated(
-        itemCount: controller.petCareInfosList.length,
+      child: controller.petCareList.isEmpty ?
+          const Center(child: Text("No pet care information")):
+      ListView.separated(
+        shrinkWrap: true,
+        physics: AlwaysScrollableScrollPhysics(),
+        itemCount: controller.petCareList.length,
         separatorBuilder: (ctx, ind) {
           return SizedBox(
             height: 2.5.h,
@@ -83,26 +87,31 @@ class PetCareListModule extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+
                     Text(
-                      controller.petCareInfosList[ind].name!,
+                      controller.petCareList[ind].title,
                       style: TextStyle(
-                        color: themeProvider.darkTheme
-                            ? AppColors.whiteColor
-                            : AppColors.blackTextColor,
-                        fontSize: 12.sp,
+                        color: AppColors.accentTextColor,
                         fontWeight: FontWeight.bold,
+                        fontSize: 12.sp,
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    Text(
-                      controller.petCareInfosList[ind].description!,
-                      style: TextStyle(
-                        color: themeProvider.darkTheme
-                            ? AppColors.whiteColor.withOpacity(0.75)
-                            : AppColors.blackTextColor,
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w300,
-                      ),
+                    SizedBox(height: controller.size.height * 0.001.h),
+                    Html(
+                      data: controller.petCareList[ind].content,
+                      // style: {
+                      //   "body": Style(
+                      //     textDecorationColor: themeProvider.darkTheme
+                      //         ? AppColors.whiteColor
+                      //         : AppColors.blackTextColor,
+                      //     // color: themeProvider.darkTheme
+                      //     //     ? AppColors.whiteColor
+                      //     //     : AppColors.blackTextColor,
+                      //     // textDecorationColor: themeProvider.darkTheme
+                      //     //     ? AppColors.whiteColor
+                      //     //     : AppColors.blackTextColor,
+                      //   ),
+                      // },
                     ),
                   ],
                 ),
@@ -111,6 +120,6 @@ class PetCareListModule extends StatelessWidget {
           );
         },
       ),
-    );*/
+    );
   }
 }

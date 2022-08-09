@@ -44,7 +44,7 @@ class FaqListModule extends StatelessWidget {
 
   Widget faqQuestionsListItem(int index) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 18),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12),
@@ -54,14 +54,15 @@ class FaqListModule extends StatelessWidget {
         ),
         child: ExpandablePanel(
           header: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
             child: Text(
               controller.faqList[index].question,
               style: TextStyle(
-                fontSize: 13.sp,
+                fontSize: 14.sp,
                 color: themeProvider.darkTheme
                     ? AppColors.whiteColor
                     : AppColors.blackTextColor,
+                fontWeight: FontWeight.w600
               ),
             ).commonSymmetricPadding(horizontal: 10),
           ),
@@ -70,7 +71,7 @@ class FaqListModule extends StatelessWidget {
             headerAlignment: ExpandablePanelHeaderAlignment.center,
             iconColor: themeProvider.darkTheme
                 ? AppColors.whiteColor
-                : AppColors.blackTextColor,
+                : AppColors.accentColor,
           ),
           collapsed: Container(),
           expanded: Padding(
@@ -78,9 +79,10 @@ class FaqListModule extends StatelessWidget {
             child: Text(
               controller.faqList[index].answer,
               style: TextStyle(
+                fontSize: 14,
                 color: themeProvider.darkTheme
                     ? AppColors.whiteColor
-                    : AppColors.blackTextColor,
+                    : AppColors.greyTextColor,
               ),
             ),
           ),

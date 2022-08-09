@@ -39,11 +39,11 @@ class Data {
   });
 
   List<Datum> data;
-  List<Petdatum> petdata;
+  List<NgoPet> petdata;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x)) ?? {}),
-    petdata: List<Petdatum>.from(json["petdata"].map((x) => Petdatum.fromJson(x)) ?? {}),
+    petdata: List<NgoPet>.from(json["petdata"].map((x) => NgoPet.fromJson(x)) ?? {}),
   );
 
   Map<String, dynamic> toJson() => {
@@ -184,8 +184,8 @@ class Datum {
   };
 }
 
-class Petdatum {
-  Petdatum({
+class NgoPet {
+  NgoPet({
     required this.id,
     required this.image,
     required this.petName,
@@ -223,7 +223,7 @@ class Petdatum {
   String updatedDate;
   String modifiedBy;
 
-  factory Petdatum.fromJson(Map<String, dynamic> json) => Petdatum(
+  factory NgoPet.fromJson(Map<String, dynamic> json) => NgoPet(
     id: json["id"] ?? 0,
     image: json["image"] ?? "",
     petName: json["pet_name"] ?? "",

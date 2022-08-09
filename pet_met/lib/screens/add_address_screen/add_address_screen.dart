@@ -43,7 +43,7 @@ class AddAddressScreen extends StatelessWidget {
               children: [
                 CustomAppBar(
                   appBarOption: AppBarOption.singleBackButtonOption,
-                  title: "Add New Address",
+                  //title: "Add New Address",
                 ),
                 Expanded(
                   child: SingleChildScrollView(

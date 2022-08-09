@@ -39,16 +39,16 @@ class Data {
   });
 
   List<Datum> data;
-  List<dynamic> petdata;
+  List<TrainerPet> petdata;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x)) ?? {}),
-    petdata: List<dynamic>.from(json["petdata"].map((x) => x) ?? {}),
+    petdata: List<TrainerPet>.from(json["petdata"].map((x) => TrainerPet.fromJson(x)) ?? {}),
   );
 
   Map<String, dynamic> toJson() => {
     "data": List<dynamic>.from(data.map((x) => x.toJson())),
-    "petdata": List<dynamic>.from(petdata.map((x) => x)),
+    "petdata": List<dynamic>.from(petdata.map((x) => x.toJson())),
   };
 }
 
@@ -173,5 +173,85 @@ class Datum {
     "modified_date": modifiedDate,
     "remember_token": rememberToken,
     "is_verified": isVerified,
+  };
+}
+
+class TrainerPet {
+  TrainerPet({
+    required this.id,
+    required this.image,
+    required this.petName,
+    required this.mainCategory,
+    required this.subCategory,
+    required this.dob,
+    required this.weight,
+    required this.details,
+    required this.imageList,
+    required this.meetingAvailability,
+    required this.gender,
+    required this.isActive,
+    required this.userid,
+    required this.createdBy,
+    required this.createdDate,
+    required this.updatedDate,
+    required this.modifiedBy,
+  });
+
+  int id;
+  String image;
+  String petName;
+  int mainCategory;
+  int subCategory;
+  String dob;
+  int weight;
+  String details;
+  String imageList;
+  String meetingAvailability;
+  String gender;
+  String isActive;
+  int userid;
+  int createdBy;
+  String createdDate;
+  String updatedDate;
+  String modifiedBy;
+
+  factory TrainerPet.fromJson(Map<String, dynamic> json) => TrainerPet(
+    id: json["id"] ?? 0,
+    image: json["image"] ?? "",
+    petName: json["pet_name"] ?? "",
+    mainCategory: json["main_category"] ?? 0,
+    subCategory: json["sub_category"] ?? 0,
+    dob: json["dob"] ?? "",
+    weight: json["weight"] ?? 0,
+    details: json["details"] ?? "",
+    imageList: json["image_list"] ?? "",
+    meetingAvailability: json["meeting_availability"] ?? "",
+    gender: json["gender"] ?? "",
+    isActive: json["is_active"] ?? "",
+    userid: json["userid"] ?? 0,
+    createdBy: json["created_by"] ?? 0,
+    createdDate: json["created_date"] ?? "",
+    updatedDate: json["updated_date"] ?? "",
+    modifiedBy: json["modified_by"] ?? "",
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "image": image,
+    "pet_name": petName,
+    "main_category": mainCategory,
+    "sub_category": subCategory,
+    "dob": dob,
+    "weight": weight,
+    "details": details,
+    "image_list": imageList,
+    "meeting_availability": meetingAvailability,
+    "gender": gender,
+    "is_active": isActive,
+    "userid": userid,
+    "created_by": createdBy,
+    "created_date": createdDate,
+    "updated_date": updatedDate,
+    "modified_by": modifiedBy,
   };
 }

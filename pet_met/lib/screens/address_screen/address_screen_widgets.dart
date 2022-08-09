@@ -107,16 +107,16 @@ class AddressTileWidget extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 8),
-                // Text(
-                //   controller.addressList[index].address!,
-                //   style: TextStyle(
-                //     color: themeProvider.darkTheme
-                //         ? AppColors.whiteColor
-                //         : AppColors.blackTextColor,
-                //     fontSize: 11.sp,
-                //     fontWeight: FontWeight.w400,
-                //   ),
-                // ),
+                Text(
+                  controller.addressList[index].address!,
+                  style: TextStyle(
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.blackTextColor,
+                    fontSize: 11.sp,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
               ],
             ),
             // Obx(

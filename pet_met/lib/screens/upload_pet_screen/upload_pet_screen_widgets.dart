@@ -931,14 +931,14 @@ class _BirthDateDropDownState extends State<BirthDateDropDown> {
         ),
         const SizedBox(height: 8),
         Container(
-          height: controller.size.height * 0.06,
+          height: controller.size.height * 0.08,
           width: double.infinity,
           padding: const EdgeInsets.only(left: 15, right: 15),
           decoration: BoxDecoration(
             color: themeProvider.darkTheme
                 ? AppColors.darkThemeColor
                 : AppColors.whiteColor,
-            borderRadius: BorderRadius.all(
+            borderRadius: const BorderRadius.all(
               Radius.circular(15),
             ),
             boxShadow: [

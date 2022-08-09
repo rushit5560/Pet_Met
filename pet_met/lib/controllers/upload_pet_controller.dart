@@ -379,6 +379,7 @@ class UploadPetController extends GetxController {
         request.fields['gender'] = genderValue.value;
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['petid'] = "$petId";
+        request.fields['categoryID'] = "${UserDetails.categoryId}";
         //request.fields['showimg'] = "jgjadg";
 
         var multiPart = http.MultipartFile(
@@ -443,6 +444,7 @@ class UploadPetController extends GetxController {
         request.fields['gender'] = genderValue.value;
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['petid'] = "$petId";
+        request.fields['categoryID'] = "${UserDetails.categoryId}";
         //request.fields['showimg'] = "jgjadg";
 
         // var multiPart = http.MultipartFile(
@@ -519,6 +521,7 @@ class UploadPetController extends GetxController {
         request.fields['details'] = petDetailsController.text.trim();
         request.fields['gender'] = genderValue.value;
         request.fields['userid'] = "${UserDetails.userId}";
+        request.fields['categoryID'] = "${UserDetails.categoryId}";
         //request.fields['petid'] = "$petId";
         //request.fields['showimg'] = "jgjadg";
 

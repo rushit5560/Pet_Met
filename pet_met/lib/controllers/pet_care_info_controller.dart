@@ -26,6 +26,8 @@ class PetCareInfoController extends GetxController {
   String title = "";
   String description = "";
 
+  List<Datum> petCareList = [];
+
   var drawerController = ZoomDrawerController();
 
   Future<void> getPetCareFunction() async {
@@ -37,20 +39,21 @@ class PetCareInfoController extends GetxController {
        Map<String, String> header = apiHeader.apiHeader();
 
       http.Response response = await http.get(Uri.parse(url), headers: header);
-      log("Privacy Policy api Response : ${response.body}");
+      log("Pet Care api Response : ${response.body}");
 
       PetCareModel petCareModel =
           PetCareModel.fromJson(json.decode(response.body));
       isSuccessStatus = petCareModel.success.obs;
 
       if (isSuccessStatus.value) {
-        title = petCareModel.data[0].title;
-        description = petCareModel.data[0].content;
+        // title = petCareModel.data[0].title;
+        // description = petCareModel.data[0].content;
+        petCareList = petCareModel.data;
       } else {
-        log("Privacy Policy Function Else");
+        log("Pet Care Function Else");
       }
     } catch (e) {
-      log("Privacy policy api error ::: $e");
+      log("Pet Care api error ::: $e");
     } finally {
       isLoading(false);
     }

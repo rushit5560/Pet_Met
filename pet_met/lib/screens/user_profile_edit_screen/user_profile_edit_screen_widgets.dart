@@ -90,7 +90,7 @@ class UploadImageModule extends StatelessWidget {
               ],
             ),
           ):
-          controller.userProfile != null ?
+          controller.userProfile.isNotEmpty ?
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -100,7 +100,30 @@ class UploadImageModule extends StatelessWidget {
                   themeProvider.darkTheme
                       ? controller.userProfile : controller.userProfile,height: 65,
                   errorBuilder: (context, er, bt){
-                    return Image.asset(AppImages.petMetLogoImg, height: 65);
+                    //return Image.asset(AppImages.petMetLogoImg, height: 65);
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          themeProvider.darkTheme
+                              ? AppImages.cameraPlaceHolderImgDark
+                              : AppImages.cameraPlaceHolderImglight,
+                          height: 65,
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          "Upload Image",
+                          style: TextStyle(
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor
+                                : AppColors.blackTextColor,
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    );
                   },
                 ),
 

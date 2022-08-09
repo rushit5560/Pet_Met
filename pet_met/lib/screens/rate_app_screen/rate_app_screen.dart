@@ -48,7 +48,7 @@ class RateAppScreen extends StatelessWidget {
             Column(
               children: [
                 CustomAppBar(
-                  title: "Rate App",
+                  title: "Rate Your App",
                   appBarOption: AppBarOption.singleBackButtonOption,
                 ),
                 // Padding(
@@ -74,204 +74,208 @@ class RateAppScreen extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 25, vertical: 20),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // const SizedBox(height: 8),
-                          // Text(
-                          //   "Rate your App",
-                          //   style: TextStyle(
-                          //     color: AppColors.accentTextColor,
-                          //     fontSize: 20.sp,
-                          //     fontWeight: FontWeight.bold,
-                          //   ),
-                          // ),
-                          const SizedBox(height: 45),
-                          Container(
-                            //height: controller.size.height * 0.4,
-                            width: double.infinity,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 15),
-                            decoration: BoxDecoration(
-                              color: themeProvider.darkTheme
-                                  ? AppColors.darkThemeBoxColor
-                                  : AppColors.whiteColor,
-                              borderRadius: const BorderRadius.all(
-                                const Radius.circular(12),
+                      child: Form(
+                        key: controller.formKey,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // const SizedBox(height: 8),
+                            // Text(
+                            //   "Rate your App",
+                            //   style: TextStyle(
+                            //     color: AppColors.accentTextColor,
+                            //     fontSize: 20.sp,
+                            //     fontWeight: FontWeight.bold,
+                            //   ),
+                            // ),
+                            const SizedBox(height: 45),
+                            Container(
+                              //height: controller.size.height * 0.4,
+                              width: double.infinity,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 15),
+                              decoration: BoxDecoration(
+                                color: themeProvider.darkTheme
+                                    ? AppColors.darkThemeBoxColor
+                                    : AppColors.whiteColor,
+                                borderRadius: const BorderRadius.all(
+                                  const Radius.circular(12),
+                                ),
                               ),
-                            ),
-                            child: Column(
-                              children: [
-                                const SizedBox(height: 20),
-                                RatingBar.builder(
-                                  initialRating: 3,
-                                  itemCount: 5,
-                                  itemBuilder: (context, index) {
-                                    switch (index) {
-                                      case 0:
-                                        return const Icon(
-                                          Icons.sentiment_very_dissatisfied,
-                                          color: AppColors.accentColor,
-                                        );
-                                      case 1:
-                                        return const Icon(
-                                          Icons.sentiment_dissatisfied,
-                                          color: AppColors.accentColor,
-                                        );
-                                      case 2:
-                                        return const Icon(
-                                          Icons.sentiment_neutral,
-                                          color: AppColors.accentColor,
-                                        );
-                                      case 3:
-                                        return const Icon(
-                                          Icons.sentiment_satisfied,
-                                          color: AppColors.accentColor,
-                                        );
-                                      case 4:
-                                        return const Icon(
-                                          Icons.sentiment_very_satisfied,
-                                          color: AppColors.accentColor,
-                                        );
-                                    }
-                                    return const SizedBox();
-                                  },
-                                  onRatingUpdate: (rating) {
-                                    print(rating);
-                                  },
-                                ),
-                                const SizedBox(height: 8),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      "1",
-                                      style: TextStyle(
+                              child: Column(
+                                children: [
+                                  const SizedBox(height: 20),
+                                  RatingBar.builder(
+                                    initialRating: 3,
+                                    itemCount: 5,
+                                    itemPadding: const EdgeInsets.only(right: 5),
+                                    itemBuilder: (context, index) {
+                                      switch (index) {
+                                        case 0:
+                                          return const Icon(
+                                            Icons.sentiment_very_dissatisfied,
+                                            color: AppColors.accentColor,
+                                          );
+                                        case 1:
+                                          return const Icon(
+                                            Icons.sentiment_dissatisfied,
+                                            color: AppColors.accentColor,
+                                          );
+                                        case 2:
+                                          return const Icon(
+                                            Icons.sentiment_neutral,
+                                            color: AppColors.accentColor,
+                                          );
+                                        case 3:
+                                          return const Icon(
+                                            Icons.sentiment_satisfied,
+                                            color: AppColors.accentColor,
+                                          );
+                                        case 4:
+                                          return const Icon(
+                                            Icons.sentiment_very_satisfied,
+                                            color: AppColors.accentColor,
+                                          );
+                                      }
+                                      return const SizedBox();
+                                    },
+                                    onRatingUpdate: (rating) {
+                                      print(rating);
+                                    },
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "1",
+                                        style: TextStyle(
+                                          color: themeProvider.darkTheme
+                                              ? AppColors.whiteColor
+                                              : AppColors.blackTextColor,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 38),
+                                      Text(
+                                        "2",
+                                        style: TextStyle(
+                                          color: themeProvider.darkTheme
+                                              ? AppColors.whiteColor
+                                              : AppColors.blackTextColor,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 38),
+                                      Text(
+                                        "3",
+                                        style: TextStyle(
+                                          color: themeProvider.darkTheme
+                                              ? AppColors.whiteColor
+                                              : AppColors.blackTextColor,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 38),
+                                      Text(
+                                        "4",
+                                        style: TextStyle(
+                                          color: themeProvider.darkTheme
+                                              ? AppColors.whiteColor
+                                              : AppColors.blackTextColor,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 38),
+                                      Text(
+                                        "5",
+                                        style: TextStyle(
+                                          color: themeProvider.darkTheme
+                                              ? AppColors.whiteColor
+                                              : AppColors.blackTextColor,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 10),
+                                  TextFormField(
+                                    maxLines: null,
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: const BorderSide(
+                                            width: 0, style: BorderStyle.none),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide: const BorderSide(
+                                            width: 0, style: BorderStyle.none),
+                                      ),
+                                      fillColor: themeProvider.darkTheme
+                                          ? AppColors.greyColor.withOpacity(1)
+                                          : AppColors.greyColor.withOpacity(0.12),
+                                      hintText: "Leave Your Feedback Here (Optional)",
+                                      hintMaxLines: 2,
+                                      hintStyle: TextStyle(
                                         color: themeProvider.darkTheme
                                             ? AppColors.whiteColor
-                                            : AppColors.blackTextColor,
+                                            : AppColors.greyTextColor,
+                                        fontSize: 13.sp,
+                                        fontWeight: FontWeight.w400,
                                       ),
                                     ),
-                                    const SizedBox(width: 32),
-                                    Text(
-                                      "2",
-                                      style: TextStyle(
-                                        color: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.blackTextColor,
-                                      ),
+                                    textInputAction: TextInputAction.done,
+                                    keyboardType: TextInputType.text,
+                                    style: TextStyle(
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor
+                                          : AppColors.blackTextColor,
+                                      fontSize: 13.sp,
+                                      fontWeight: FontWeight.w400,
+                                      decoration: TextDecoration.none,
                                     ),
-                                    const SizedBox(width: 32),
-                                    Text(
-                                      "3",
-                                      style: TextStyle(
-                                        color: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.blackTextColor,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 32),
-                                    Text(
-                                      "4",
-                                      style: TextStyle(
-                                        color: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.blackTextColor,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 32),
-                                    Text(
-                                      "5",
-                                      style: TextStyle(
-                                        color: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.blackTextColor,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 10),
-                                TextFormField(
-                                  maxLines: null,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      borderSide: const BorderSide(
-                                          width: 0, style: BorderStyle.none),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                      borderSide: const BorderSide(
-                                          width: 0, style: BorderStyle.none),
-                                    ),
-                                    fillColor: themeProvider.darkTheme
-                                        ? AppColors.greyColor.withOpacity(1)
-                                        : AppColors.greyColor.withOpacity(0.12),
-                                    hintText:
-                                        "Leave Your Feedback Here (Optional)",
-                                    hintStyle: TextStyle(
+                                  ),
+                                  const SizedBox(height: 32),
+                                  Text(
+                                    "Your feedback is private and will not be shared with your client",
+                                    style: TextStyle(
                                       color: themeProvider.darkTheme
                                           ? AppColors.whiteColor
                                           : AppColors.greyTextColor,
-                                      fontSize: 13.sp,
+                                      fontSize: 11.sp,
                                       fontWeight: FontWeight.w400,
                                     ),
                                   ),
-                                  textInputAction: TextInputAction.done,
-                                  keyboardType: TextInputType.text,
-                                  style: TextStyle(
-                                    color: themeProvider.darkTheme
-                                        ? AppColors.whiteColor
-                                        : AppColors.blackTextColor,
-                                    fontSize: 13.sp,
-                                    fontWeight: FontWeight.w400,
-                                    decoration: TextDecoration.none,
-                                  ),
-                                ),
-                                const SizedBox(height: 32),
-                                Text(
-                                  "Your feedback is private and will not be shared with your client",
-                                  style: TextStyle(
-                                    color: themeProvider.darkTheme
-                                        ? AppColors.whiteColor
-                                        : AppColors.greyTextColor,
-                                    fontSize: 11.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                const SizedBox(height: 32),
-                                Container(
-                                  height: 35,
-                                  width: controller.size.width * 0.4,
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      Get.back();
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      primary: AppColors.accentColor,
-                                      shape: const RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(12),
+                                  const SizedBox(height: 32),
+                                  Container(
+                                    height: 45,
+                                    width: controller.size.width * 0.4,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        Get.back();
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        primary: AppColors.accentColor,
+                                        shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(12),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        "Submit",
-                                        style: TextStyle(
-                                          color: AppColors.whiteColor,
-                                          fontSize: 12.sp,
-                                          fontWeight: FontWeight.w700,
+                                      child: Center(
+                                        child: Text(
+                                          "Submit",
+                                          style: TextStyle(
+                                            color: AppColors.whiteColor,
+                                            fontSize: 14.sp,
+                                            fontWeight: FontWeight.w700,
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),

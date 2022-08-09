@@ -21,7 +21,7 @@ class SplashScreen extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-            Container(
+            SizedBox(
               // color: AppColors.accentColor.withOpacity(0.15),
               width: controller.size.width,
               height: controller.size.height,

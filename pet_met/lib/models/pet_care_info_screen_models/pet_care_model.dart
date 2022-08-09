@@ -58,12 +58,12 @@ class Datum {
   // DateTime updatedAt;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        id: json["id"],
-        title: json["title"],
-        content: json["content"],
-        isActive: json["is_active"],
-        featuredimage: json["featuredimage"],
-        featuredimageparth: json["featuredimageparth"],
+        id: json["id"] ?? 0,
+        title: json["title"] ?? "",
+        content: json["content"] ?? "",
+        isActive: json["is_active"] ?? "",
+        featuredimage: json["featuredimage"] ?? "",
+        featuredimageparth: json["featuredimageparth"] ?? "",
         // metaTitle: json["meta_title"],
         // metaDec: json["meta_dec"],
         // metaKey: json["meta_key"],

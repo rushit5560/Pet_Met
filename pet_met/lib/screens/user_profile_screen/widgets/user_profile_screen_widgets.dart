@@ -22,10 +22,9 @@ class BackgroundImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.topRight,
-      child: Image.asset(
-          themeProvider.darkTheme ?
-          AppImages.backgroundImgDark : AppImages.backgroundImgLight
-      ),
+      child: Image.asset(themeProvider.darkTheme
+          ? AppImages.backgroundImgDark
+          : AppImages.backgroundImgLight),
     );
   }
 }
@@ -67,10 +66,31 @@ class ProfileImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      AppImages.googleMapImg,
-      height: controller.size.width * 0.35,
-    );
+    // return Image.asset(
+    //   AppImages.googleMapImg,
+    //   height: controller.size.width * 0.35,
+    // );
+    return UserDetails.categoryId == 1
+        ? Image.network(controller.userprofile, height: 80,
+            errorBuilder: (context, er, bt) {
+            return Image.asset(AppImages.petMetLogoImg);
+          })
+        : UserDetails.categoryId == 2
+            ? Image.network(controller.shopProfile, height: 80,
+                errorBuilder: (context, er, bt) {
+                return Image.asset(AppImages.petMetLogoImg);
+              })
+            : UserDetails.categoryId == 3
+                ? Image.network(controller.ngoProfile, height: 80,
+                    errorBuilder: (context, er, bt) {
+                    return Image.asset(AppImages.petMetLogoImg);
+                  })
+                : UserDetails.categoryId == 4
+                    ? Image.network(controller.trainerProfile, height: 80,
+                        errorBuilder: (context, er, bt) {
+                        return Image.asset(AppImages.petMetLogoImg);
+                      })
+                    : Container();
   }
 }
 
@@ -104,7 +124,15 @@ class ProfileDetailsModule extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            "Monika A",
+            UserDetails.categoryId == 1
+                ? controller.userName
+                : UserDetails.categoryId == 2
+                    ? controller.shopName
+                    : UserDetails.categoryId == 3
+                        ? controller.ngoName
+                        : UserDetails.categoryId == 4
+                            ? controller.trainerName
+                            : "",
             style: TextStyle(
               color: AppColors.accentTextColor,
               fontSize: 22.sp,
@@ -150,9 +178,9 @@ class ProfileDetailsModule extends StatelessWidget {
               ),
             ],
           ),
-          Obx(()=>
-             GestureDetector(
-              onTap: ()async{
+          Obx(
+            () => GestureDetector(
+              onTap: () async {
                 // if(controller.message.contains('this user not follow')){
                 //   /// Follow
                 //   await controller.followUserFunction();
@@ -160,18 +188,20 @@ class ProfileDetailsModule extends StatelessWidget {
                 //   /// Unfollow
                 //   await controller.unfollowUserFunction();
                 // }
-               // await controller.followStatus();
+                // await controller.followStatus();
                 log("Follow Status: ${controller.status.value}");
-                controller.status.value == true ?
-                await controller.followUserFunction():
-                await controller.unfollowUserFunction();
+                controller.status.value == true
+                    ? await controller.followUserFunction()
+                    : await controller.unfollowUserFunction();
               },
-              child: Text(controller.status.value == true ? "Follow" : "Unfollow",
+              child: Text(
+                controller.status.value == true ? "Follow" : "Unfollow",
                 style: TextStyle(
                   color: AppColors.accentTextColor,
                   fontSize: 13.sp,
                   fontWeight: FontWeight.bold,
-                ),),
+                ),
+              ),
             ),
           )
         ],
@@ -280,8 +310,7 @@ class ContactInfoModule extends StatelessWidget {
 class DogOwnerListModule extends StatelessWidget {
   DogOwnerListModule({Key? key}) : super(key: key);
   final controller = Get.find<UserProfileController>();
-  PetOption ? petOption;
-
+  PetOption? petOption;
 
   @override
   Widget build(BuildContext context) {
@@ -307,102 +336,262 @@ class DogOwnerListModule extends StatelessWidget {
         ),
         Row(
           children: [
-            Stack(
-              children: [
-                Container(
-                  height: 8.h,
-                  width: 7.h,
-                  margin: const EdgeInsets.only(bottom: 5, right: 5),
-                  decoration: const BoxDecoration(
-                    // image: DecorationImage(
-                    //     image: AssetImage(
-                    //       controller.dogsTopList[index],
-                    //     ),
-                    //     fit: BoxFit.cover),
-                    //color: AppColors.greyTextColor,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(8),
+            Stack(children: [
+              Container(
+                height: 8.h,
+                width: 7.h,
+                margin: const EdgeInsets.only(bottom: 5, right: 5),
+                decoration: const BoxDecoration(
+                  // image: DecorationImage(
+                  //     image: AssetImage(
+                  //       controller.dogsTopList[index],
+                  //     ),
+                  //     fit: BoxFit.cover),
+                  //color: AppColors.greyTextColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(8),
+                  ),
+                ),
+                child: Image.asset(AppImages.petMetLogoImg, fit: BoxFit.cover),
+              ),
+              Positioned(
+                right: 0,
+                bottom: 0,
+                child: GestureDetector(
+                  onTap: () {
+                    // petOption == PetOption.addOption ?
+                    // ""
+                    //     : "";
+                    //    // :
+
+                    Get.toNamed(AppRouteNames.uploadPetRoute,
+                        arguments: [PetOption.addOption, 0]);
+                  },
+                  child: Container(
+                    height: 15,
+                    width: 15,
+                    decoration: const BoxDecoration(
+                        color: Colors.green, shape: BoxShape.circle),
+                    child: const Icon(
+                      Icons.add,
+                      color: AppColors.whiteColor,
+                      size: 12,
                     ),
                   ),
-                  child:  Image.asset(AppImages.petMetLogoImg, fit: BoxFit.cover),
-
-                  ),
-                Positioned(
-                  right: 0,
-                  bottom: 0,
-                  child: GestureDetector(
-                    onTap: () {
-                      // petOption == PetOption.addOption ?
-                      // ""
-                      //     : "";
-                      //    // :
-
-                      Get.toNamed(AppRouteNames.uploadPetRoute, arguments: [PetOption.addOption,0]);
-                    },
-                    child: Container(
-                      height: 15,
-                      width: 15,
-                      decoration: const BoxDecoration(
-                          color: Colors.green, shape: BoxShape.circle),
-                      child: const Icon(
-                        Icons.add,
-                        color: AppColors.whiteColor,
-                        size: 12,
+                ),
+              )
+            ]),
+            Expanded(
+              child: UserDetails.categoryId == 1
+                  ? Container(
+                      height: 8.h,
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: controller.petList.length,
+                        separatorBuilder: (context, index) {
+                          return const SizedBox(width: 8);
+                        },
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              log('Pet Id : ${controller.petList[index].id}');
+                              Get.toNamed(AppRouteNames.uploadPetRoute,
+                                  arguments: [
+                                    PetOption.updateOption,
+                                    controller.petList[index].id
+                                  ]);
+                            },
+                            child: Stack(
+                              children: [
+                                Container(
+                                  height: 8.h,
+                                  width: 7.h,
+                                  margin: const EdgeInsets.only(
+                                      bottom: 5, right: 5),
+                                  decoration: const BoxDecoration(
+                                    // image: DecorationImage(
+                                    //     image: AssetImage(
+                                    //       controller.dogsTopList[index],
+                                    //     ),
+                                    //     fit: BoxFit.cover),
+                                    //color: AppColors.greyTextColor,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(8),
+                                    ),
+                                  ),
+                                  child: Image.network(
+                                      controller.petList[index].image,
+                                      errorBuilder: (context, st, ob) {
+                                    return Image.asset(AppImages.petMetLogoImg);
+                                  }, fit: BoxFit.cover),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
                       ),
-                    ),
-                  ),
-                )
-    ]
-    ),
-                 Expanded(child: Container(
-                   height: 8.h,
-                   child: ListView.separated(
-                     scrollDirection: Axis.horizontal,
-                     itemCount: controller.petList.length,
-                     separatorBuilder: (context, index) {
-                       return const SizedBox(width: 8);
-                     },
-                     itemBuilder: (context, index) {
-                       return GestureDetector(
-                         onTap: (){
-                           log('Pet Id : ${controller.petList[index].id}');
-                           Get.toNamed(AppRouteNames.uploadPetRoute, arguments: [PetOption.updateOption, controller.petList[index].id]);
-                         },
-                         child: Stack(
-                           children: [
-                             Container(
-                               height: 8.h,
-                               width: 7.h,
-                               margin: const EdgeInsets.only(bottom: 5, right: 5),
-                               decoration: const BoxDecoration(
-                                 // image: DecorationImage(
-                                 //     image: AssetImage(
-                                 //       controller.dogsTopList[index],
-                                 //     ),
-                                 //     fit: BoxFit.cover),
-                                 //color: AppColors.greyTextColor,
-                                 borderRadius: BorderRadius.all(
-                                   Radius.circular(8),
-                                 ),
-                               ),
-                               child: Image.network(controller.petList[index].image,
-                                   errorBuilder: (context, st, ob){
-                                     return Image.asset(AppImages.petMetLogoImg);
-                                   },
-                                   fit: BoxFit.cover
-                               ),
-                             ),
-
-                           ],
-                         ),
-                       );
-                     },
-                   ),
-                 ),)
-              ],
-            ),
-
+                    )
+                  : UserDetails.categoryId == 2
+                      ? Container(
+                          height: 8.h,
+                          child: ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: controller.shopPetList.length,
+                            separatorBuilder: (context, index) {
+                              return const SizedBox(width: 8);
+                            },
+                            itemBuilder: (context, index) {
+                              return GestureDetector(
+                                onTap: () {
+                                  log('Pet Id : ${controller.shopPetList[index].id}');
+                                  Get.toNamed(AppRouteNames.uploadPetRoute,
+                                      arguments: [
+                                        PetOption.updateOption,
+                                        controller.shopPetList[index].id
+                                      ]);
+                                },
+                                child: Stack(
+                                  children: [
+                                    Container(
+                                      height: 8.h,
+                                      width: 7.h,
+                                      margin: const EdgeInsets.only(
+                                          bottom: 5, right: 5),
+                                      decoration: const BoxDecoration(
+                                        // image: DecorationImage(
+                                        //     image: AssetImage(
+                                        //       controller.dogsTopList[index],
+                                        //     ),
+                                        //     fit: BoxFit.cover),
+                                        //color: AppColors.greyTextColor,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(8),
+                                        ),
+                                      ),
+                                      child: Image.network(
+                                          controller.shopPetList[index].image,
+                                          errorBuilder: (context, st, ob) {
+                                        return Image.asset(
+                                            AppImages.petMetLogoImg);
+                                      }, fit: BoxFit.cover),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
+                        )
+                      : UserDetails.categoryId == 3
+                          ? Container(
+                              height: 8.h,
+                              child: ListView.separated(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: controller.ngoPetList.length,
+                                separatorBuilder: (context, index) {
+                                  return const SizedBox(width: 8);
+                                },
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      log('Pet Id : ${controller.ngoPetList[index].id}');
+                                      Get.toNamed(AppRouteNames.uploadPetRoute,
+                                          arguments: [
+                                            PetOption.updateOption,
+                                            controller.ngoPetList[index].id
+                                          ]);
+                                    },
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                          height: 8.h,
+                                          width: 7.h,
+                                          margin: const EdgeInsets.only(
+                                              bottom: 5, right: 5),
+                                          decoration: const BoxDecoration(
+                                            // image: DecorationImage(
+                                            //     image: AssetImage(
+                                            //       controller.dogsTopList[index],
+                                            //     ),
+                                            //     fit: BoxFit.cover),
+                                            //color: AppColors.greyTextColor,
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(8),
+                                            ),
+                                          ),
+                                          child: Image.network(
+                                              controller
+                                                  .ngoPetList[index].image,
+                                              errorBuilder: (context, st, ob) {
+                                            return Image.asset(
+                                                AppImages.petMetLogoImg);
+                                          }, fit: BoxFit.cover),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              ),
+                            )
+                          : UserDetails.categoryId == 4
+                              ? Container(
+                                  height: 8.h,
+                                  child: ListView.separated(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: controller.trainerPetList.length,
+                                    separatorBuilder: (context, index) {
+                                      return const SizedBox(width: 8);
+                                    },
+                                    itemBuilder: (context, index) {
+                                      return GestureDetector(
+                                        onTap: () {
+                                          log('Pet Id : ${controller.trainerPetList[index].id}');
+                                          Get.toNamed(
+                                              AppRouteNames.uploadPetRoute,
+                                              arguments: [
+                                                PetOption.updateOption,
+                                                controller
+                                                    .trainerPetList[index].id
+                                              ]);
+                                        },
+                                        child: Stack(
+                                          children: [
+                                            Container(
+                                              height: 8.h,
+                                              width: 7.h,
+                                              margin: const EdgeInsets.only(
+                                                  bottom: 5, right: 5),
+                                              decoration: const BoxDecoration(
+                                                // image: DecorationImage(
+                                                //     image: AssetImage(
+                                                //       controller.dogsTopList[index],
+                                                //     ),
+                                                //     fit: BoxFit.cover),
+                                                //color: AppColors.greyTextColor,
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(8),
+                                                ),
+                                              ),
+                                              child: Image.network(
+                                                  controller
+                                                      .trainerPetList[index]
+                                                      .image,
+                                                  errorBuilder:
+                                                      (context, st, ob) {
+                                                return Image.asset(
+                                                    AppImages.petMetLogoImg);
+                                              }, fit: BoxFit.cover),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                )
+                              : Container(),
+            )
           ],
+        ),
+      ],
     );
   }
 }

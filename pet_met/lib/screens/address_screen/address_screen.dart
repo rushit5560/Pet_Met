@@ -41,7 +41,7 @@ class AddressScreen extends StatelessWidget {
               children: [
                 CustomAppBar(
                   appBarOption: AppBarOption.singleBackButtonOption,
-                  title: "Addresses",
+                  title: "Address",
                 ),
                 Expanded(
                   child: Obx(()=>

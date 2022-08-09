@@ -7,6 +7,7 @@ import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:sizer/sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PetMeetingDetailsBannerImageModule extends StatelessWidget {
   PetMeetingDetailsBannerImageModule({Key? key}) : super(key: key);
@@ -55,19 +56,33 @@ class PetNameAndSocialMediaButtonModule extends StatelessWidget {
                 fontSize: 18.sp),
           ),
         ),
-        Container(
-          height: screenController.size.width * 0.018.w,
-          width: screenController.size.width * 0.018.w,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: AppColors.accentColor,
-          ),
-          child: Image.asset(
-            AppImages.phoneCallImg,
-          ).commonAllSidePadding(padding: 8),
-        ).commonSymmetricPadding(horizontal: 2),
+        GestureDetector(
+          onTap: (){
+            _makingPhoneCall();
+          },
+          child: Container(
+            height: screenController.size.width * 0.018.w,
+            width: screenController.size.width * 0.018.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: AppColors.accentColor,
+            ),
+            child: Image.asset(
+              AppImages.phoneCallImg,
+            ).commonAllSidePadding(padding: 8),
+          ).commonSymmetricPadding(horizontal: 2),
+        ),
       ],
     ).commonSymmetricPadding(horizontal: 15);
+  }
+
+  _makingPhoneCall() async {
+    var url = Uri.parse("tel:9776765434");
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
 

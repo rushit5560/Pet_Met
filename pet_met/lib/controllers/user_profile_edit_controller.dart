@@ -130,7 +130,7 @@ class UserProfileEditController extends GetxController {
          mobileController.text = getUserProfileModel.data.data[0].phone;
         emailController.text = getUserProfileModel.data.data[0].email;
         //locationController.text = allRoleProfileModel.data.data.;
-        selectedGenderValue.value = getUserProfileModel.data.data[0].gender;
+        //selectedGenderValue.value = getUserProfileModel.data.data[0].gender;
          birthDate = getUserProfileModel.data.data[0].bod;
         log('name: ${nameController.text}');
         log('mobile: ${mobileController.text}');

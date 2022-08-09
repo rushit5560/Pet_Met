@@ -64,64 +64,75 @@ class _BuildMenuState extends State<BuildMenu> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        UserDetails.categoryId == 1 ?
-                        Image.network(
-                          ApiUrl.apiImagePath + "asset/uploads/product/" +UserDetails.userProfileImage,
-                          width: 40,
-                          height: 40,
-                          errorBuilder: (context, st, ob){
-                            return Image.asset(AppImages.petMetLogoImg);
-                          },
-                          // width: controller.size.width * 0.05,
-                        ) :
-                        UserDetails.categoryId == 2 ?
-                        Image.network(
-                          ApiUrl.apiImagePath + "asset/uploads/product/" + UserDetails.shopProfile,
-                          width: 40,
-                          height: 40,
-                          errorBuilder: (context, st, ob){
-                            return Image.asset(AppImages.petMetLogoImg);
-                          },
-                          // width: controller.size.width * 0.05,
-                        ):
-                        UserDetails.categoryId == 3 ?
-                        Image.network(
-                          ApiUrl.apiImagePath + "asset/uploads/product/" + UserDetails.userProfileImage,
-                          width: 40,
-                          height: 40,
-                          errorBuilder: (context, st, ob){
-                            return Image.asset(AppImages.petMetLogoImg);
-                          },
-                          // width: controller.size.width * 0.05,
-                        ) :
-                        UserDetails.categoryId == 4 ?
-                        Image.network(
-                          UserDetails.userProfileImage,
-                          width: 40,
-                          height: 40,
-                          errorBuilder: (context, st, ob){
-                            return Image.asset(AppImages.petMetLogoImg);
-                          },
-                          // width: controller.size.width * 0.05,
-                        ) : Image.asset(
-                            AppImages.userProfileImg,
-                          width: 40,
-                          height: 40,),
-
+                        UserDetails.categoryId == 1
+                            ? Image.network(
+                                ApiUrl.apiImagePath +
+                                    "asset/uploads/product/" +
+                                    UserDetails.userProfileImage,
+                                width: 40,
+                                height: 40,
+                                errorBuilder: (context, st, ob) {
+                                  return Image.asset(AppImages.petMetLogoImg);
+                                },
+                                // width: controller.size.width * 0.05,
+                              )
+                            : UserDetails.categoryId == 2
+                                ? Image.network(
+                                    ApiUrl.apiImagePath +
+                                        "asset/uploads/product/" +
+                                        UserDetails.shopProfile,
+                                    width: 40,
+                                    height: 40,
+                                    errorBuilder: (context, st, ob) {
+                                      return Image.asset(
+                                          AppImages.petMetLogoImg);
+                                    },
+                                    // width: controller.size.width * 0.05,
+                                  )
+                                : UserDetails.categoryId == 3
+                                    ? Image.network(
+                                        ApiUrl.apiImagePath +
+                                            "asset/uploads/product/" +
+                                            UserDetails.userProfileImage,
+                                        width: 40,
+                                        height: 40,
+                                        errorBuilder: (context, st, ob) {
+                                          return Image.asset(
+                                              AppImages.petMetLogoImg);
+                                        },
+                                        // width: controller.size.width * 0.05,
+                                      )
+                                    : UserDetails.categoryId == 4
+                                        ? Image.network(
+                                            UserDetails.userProfileImage,
+                                            width: 40,
+                                            height: 40,
+                                            errorBuilder: (context, st, ob) {
+                                              return Image.asset(
+                                                  AppImages.petMetLogoImg);
+                                            },
+                                            // width: controller.size.width * 0.05,
+                                          )
+                                        : Image.asset(
+                                            AppImages.userProfileImg,
+                                            width: 40,
+                                            height: 40,
+                                          ),
                         const SizedBox(width: 15),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              UserDetails.categoryId == 1 ?
-                              UserDetails.userName :
-                              UserDetails.categoryId == 2 ?
-                              UserDetails.shopName :
-                              UserDetails.categoryId == 3 ?
-                                  UserDetails.userName :
-                                UserDetails.categoryId == 4 ?
-                                  UserDetails.userName : "",
+                              UserDetails.categoryId == 1
+                                  ? UserDetails.userName
+                                  : UserDetails.categoryId == 2
+                                      ? UserDetails.shopName
+                                      : UserDetails.categoryId == 3
+                                          ? UserDetails.userName
+                                          : UserDetails.categoryId == 4
+                                              ? UserDetails.userName
+                                              : "",
                               style: TextStyle(
                                 color: AppColors.accentTextColor,
                                 fontSize: 12.sp,
@@ -318,7 +329,6 @@ class _BuildMenuState extends State<BuildMenu> {
                           ),
                           drawerListTile(
                             onTap: () async {
-
                               await deleteAccountDialog();
                             },
                             leading: Image.asset(
@@ -521,11 +531,10 @@ class _BuildMenuState extends State<BuildMenu> {
     );
   }
 
-  deleteAccountDialog(){
+  deleteAccountDialog() {
     return showDialog(
       barrierColor: themeProvider.darkTheme
-          ? AppColors.darkThemeBoxColor
-          .withOpacity(0.3)
+          ? AppColors.darkThemeBoxColor.withOpacity(0.3)
           : AppColors.accentColor.withOpacity(0.3),
       context: context,
       builder: (ctx) => Dialog(
@@ -549,10 +558,8 @@ class _BuildMenuState extends State<BuildMenu> {
           height: controller.size.height * 0.35,
           width: controller.size.width * 0.8,
           child: Column(
-            mainAxisAlignment:
-            MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment:
-            CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Icon(
                 Icons.delete_forever,
@@ -573,27 +580,22 @@ class _BuildMenuState extends State<BuildMenu> {
               ),
               // const SizedBox(height: 20),
               Row(
-                mainAxisAlignment:
-                MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    onPressed: ()async {
+                    onPressed: () async {
                       await indexController.deleteAccountFunction();
                       Get.back();
                     },
                     style: ElevatedButton.styleFrom(
                       primary: AppColors.accentColor,
                       minimumSize: Size(
-                        controller.size.width * 0.3,
+                        controller.size.width * 0.25,
                         30,
                       ),
-                      padding:
-                      const EdgeInsets.symmetric(
-                          horizontal: 16),
-                      shape:
-                      const RoundedRectangleBorder(
-                        borderRadius:
-                        BorderRadius.all(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
                           Radius.circular(12),
                         ),
                       ),
@@ -610,8 +612,7 @@ class _BuildMenuState extends State<BuildMenu> {
                     ),
                   ),
                   SizedBox(
-                    width:
-                    controller.size.width * 0.05,
+                    width: controller.size.width * 0.05,
                   ),
                   ElevatedButton(
                     onPressed: () {
@@ -620,18 +621,11 @@ class _BuildMenuState extends State<BuildMenu> {
                     style: ElevatedButton.styleFrom(
                       primary: themeProvider.darkTheme
                           ? AppColors.whiteColor
-                          : AppColors.greyTextColor
-                          .withOpacity(0.3),
-                      minimumSize: Size(
-                          controller.size.width * 0.3,
-                          30),
-                      padding:
-                      const EdgeInsets.symmetric(
-                          horizontal: 16),
-                      shape:
-                      const RoundedRectangleBorder(
-                        borderRadius:
-                        BorderRadius.all(
+                          : AppColors.greyTextColor.withOpacity(0.3),
+                      minimumSize: Size(controller.size.width * 0.25, 30),
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
                           Radius.circular(12),
                         ),
                       ),
@@ -640,12 +634,9 @@ class _BuildMenuState extends State<BuildMenu> {
                       child: Text(
                         "Close",
                         style: TextStyle(
-                          color: themeProvider
-                              .darkTheme
-                              ? AppColors
-                              .darkThemeBoxColor
-                              : AppColors
-                              .blackTextColor,
+                          color: themeProvider.darkTheme
+                              ? AppColors.darkThemeBoxColor
+                              : AppColors.blackTextColor,
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w500,
                         ),
