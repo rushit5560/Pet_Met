@@ -20,7 +20,8 @@ class UserCategoriesController extends GetxController {
   // Set Role Id in Prefs
   Future<void> setRoleIdInPrefs() async {
     await userPreference.setRoleId(roleId);
-    Get.offNamed(AppRouteNames.loginRoute);
+    //Get.offNamed(AppRouteNames.loginRoute);
+    Get.toNamed(AppRouteNames.loginRoute);
   }
 
   var boolsList = [];

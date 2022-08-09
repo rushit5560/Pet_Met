@@ -38,6 +38,8 @@ class Data {
     required this.id,
     required this.name,
     required this.email,
+    required this.shopName,
+    required this.showimg,
     // required this.emailVerifiedAt,
     required this.password,
     required this.rememberToken,
@@ -58,6 +60,8 @@ class Data {
   int id;
   String name;
   String email;
+  String shopName;
+  String showimg;
   // dynamic emailVerifiedAt;
   String password;
   String rememberToken;
@@ -78,6 +82,8 @@ class Data {
         id: json["id"] ?? 0,
         name: json["name"] ?? "",
         email: json["email"] ?? "",
+        shopName: json["shopName"] ?? "",
+        showimg: json["showimg"] ?? "",
         // emailVerifiedAt: json["email_verified_at"],
         password: json["password"] ?? "",
         rememberToken: json["remember_token"] ?? "",

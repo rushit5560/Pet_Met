@@ -193,7 +193,7 @@ class HomeController extends GetxController {
   Future<void> addUserStoryFunction() async {
     isLoading(true);
 
-    String url = ApiUrl. addUserStoryApi;
+    String url = ApiUrl.addUserStoryApi;
     log("Add User Story Profile url: $url");
 
     Map<String, String> header = apiHeader.apiHeader();
@@ -253,6 +253,7 @@ class HomeController extends GetxController {
           isSuccessStatus = addUserStoryModel.success.obs;
 
           if (isSuccessStatus.value) {
+            await getUserStory();
             Fluttertoast.showToast(msg: addUserStoryModel.message);
             Get.back();
           } else {
@@ -297,6 +298,7 @@ class HomeController extends GetxController {
           isSuccessStatus = addUserStoryModel.success.obs;
 
           if (isSuccessStatus.value) {
+            await getUserStory();
             Fluttertoast.showToast(msg: addUserStoryModel.message);
             Get.back();
           } else {

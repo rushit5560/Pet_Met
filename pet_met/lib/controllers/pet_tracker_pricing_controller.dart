@@ -7,7 +7,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 import 'package:http/http.dart' as http;
+import 'package:pet_met/models/add_order_screen_model/add_order_screen_model.dart';
 import 'package:pet_met/utils/app_route_names.dart';
+import 'package:pet_met/utils/user_details.dart';
 
 import '../utils/api_url.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
@@ -20,6 +22,9 @@ class PetTrackerPricingController extends GetxController {
   TextEditingController feedbackController = TextEditingController();
 
   RxBool selectedTerms = false.obs;
+  int price = 0;
+  String name= "";
+  String overview = "";
 
   final formKey = GlobalKey<FormState>();
   late Razorpay _razorpay;
@@ -42,7 +47,8 @@ class PetTrackerPricingController extends GetxController {
 
   ApiHeader apiHeader = ApiHeader();
 
-  SinglePlanDetails planDetailsData = SinglePlanDetails();
+  //SinglePlanDetails planDetailsData = SinglePlanDetails();
+  List<SinglePlanDetails> planDetailsData = [];
 
   Future<void> getplanDetailsFunction() async {
     isLoading(true);
@@ -60,8 +66,14 @@ class PetTrackerPricingController extends GetxController {
       isSuccessStatus = vetsNgoDetailsModel.success!.obs;
 
       if (isSuccessStatus.value) {
-        planDetailsData = vetsNgoDetailsModel.data!.first;
-        log("plan Details overview  : ${planDetailsData.overview}");
+        planDetailsData = vetsNgoDetailsModel.data!.obs;
+        for(int i=0; i < planDetailsData.length; i++){
+          price= planDetailsData[i].rs!;
+          name= planDetailsData[i].name!;
+          overview= planDetailsData[i].overview!;
+        }
+
+        //log("plan Details overview  : ${planDetailsData}");
       } else {
         log("plan Details  Api Else Else");
       }
@@ -72,33 +84,40 @@ class PetTrackerPricingController extends GetxController {
     }
   }
 
-  Future<void> addOrderFunction() async {
+  Future<void> addOrderFunction(
+      {required String orderId,required String paymentId,required String signature}) async {
     isLoading(true);
     String url = ApiUrl.addOrderApi;
 
     Map<String, dynamic> data = {
+      "userid": UserDetails.userId,
+      "planid" : petPlanId,
+      "price" : price,
+      "transition_orderid": orderId,
+      "transition_paymentId": paymentId,
+      "signature": signature
 
     };
 
     log("Add Order Api Url : $url");
     log("pet plan id : $petPlanId");
+    log('Add Order body: $data');
 
     try {
       Map<String, String> header = apiHeader.apiHeader();
       http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
       log("Vet Details Api Response : ${response.body}");
-      SinglePlanDetailModel vetsNgoDetailsModel =
-      SinglePlanDetailModel.fromJson(json.decode(response.body));
-      isSuccessStatus = vetsNgoDetailsModel.success!.obs;
+      AddOrderModel addOrderModel =
+      AddOrderModel.fromJson(json.decode(response.body));
+      isSuccessStatus = addOrderModel.success.obs;
 
       if (isSuccessStatus.value) {
-        planDetailsData = vetsNgoDetailsModel.data!.first;
-        log("plan Details overview  : ${planDetailsData.overview}");
+        Fluttertoast.showToast(msg: addOrderModel.message);
       } else {
-        log("plan Details  Api Else Else");
+        log("Add Order Api Else Else");
       }
     } catch (e) {
-      log("plan Details  Error ::: $e");
+      log("Add Order Error ::: $e");
     } finally {
       isLoading(false);
     }
@@ -124,9 +143,9 @@ class PetTrackerPricingController extends GetxController {
   void openCheckout() async {
     var options = {
       'key': 'rzp_test_dxCkKqtRKnvZdA',
-      'amount': planDetailsData.rs! * 100,
-      'name': planDetailsData.name,
-      'description': planDetailsData.overview,
+      'amount': price * 100,
+      'name': name,
+      'description': overview,
       'retry': {'enabled': true, 'max_count': 1},
       'send_sms_hash': true,
        'prefill': {'contact': '8888888888', 'email': 'test@razorpay.com'},
@@ -144,7 +163,11 @@ class PetTrackerPricingController extends GetxController {
 
   void _handlePaymentSuccess(PaymentSuccessResponse response)async {
     log('Success Response: $response');
-    await addOrderFunction();
+    await addOrderFunction(
+        orderId: response.orderId.toString(),
+        paymentId: response.paymentId.toString(),
+        signature: response.signature.toString()
+    );
 
     Fluttertoast.showToast(
         msg: "SUCCESS: " + response.paymentId!,

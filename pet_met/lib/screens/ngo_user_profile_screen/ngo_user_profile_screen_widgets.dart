@@ -122,7 +122,10 @@ class UploadImageModule extends StatelessWidget {
             children: [
               Image.network(
                 themeProvider.darkTheme
-                    ? ApiUrl.apiImagePath + screenController.ngoProfile! : ApiUrl.apiImagePath + screenController.ngoProfile!,height: 65,),
+                    ? ApiUrl.apiImagePath + screenController.ngoProfile! : ApiUrl.apiImagePath + screenController.ngoProfile!,height: 65,
+                errorBuilder: (context, er, st){
+                  return Image.asset(AppImages.petMetLogoImg);
+                },),
 
               //),
               // const SizedBox(height: 20),
@@ -377,7 +380,10 @@ class NameOfNgoListModule extends StatelessWidget {
                             screenController.ngoPictureFile1!,height: 65,) :
                           screenController.ngoImage1 != null ?
                           Image.network(
-                            screenController.ngoImage1!,height: 65,):
+                            screenController.ngoImage1!,height: 65,
+                            errorBuilder: (context, er, st){
+                              return Image.asset(AppImages.petMetLogoImg);
+                            },):
                           Image.asset(AppImages.petMetLogoImg) :
 
                           index == 1 ?
@@ -386,7 +392,10 @@ class NameOfNgoListModule extends StatelessWidget {
                             screenController.ngoPictureFile2!,height: 65,) :
                           screenController.ngoImage2 != null ?
                           Image.network(
-                            screenController.ngoImage2!,height: 65,):
+                            screenController.ngoImage2!,height: 65,
+                            errorBuilder: (context, er, st){
+                              return Image.asset(AppImages.petMetLogoImg);
+                            },):
                           Image.asset(AppImages.petMetLogoImg) :
 
                           index == 2 ?
@@ -395,7 +404,10 @@ class NameOfNgoListModule extends StatelessWidget {
                             screenController.ngoPictureFile3!,height: 65,) :
                           screenController.ngoImage3 != null ?
                           Image.network(
-                            screenController.ngoImage3!,height: 65,):
+                            screenController.ngoImage3!,height: 65,
+                            errorBuilder: (context, er, st){
+                              return Image.asset(AppImages.petMetLogoImg);
+                            },):
                           Image.asset(AppImages.petMetLogoImg) :
 
                           index == 3 ?
@@ -404,7 +416,10 @@ class NameOfNgoListModule extends StatelessWidget {
                             screenController.ngoPictureFile4!,height: 65,) :
                           screenController.ngoImage4 != null ?
                           Image.network(
-                            screenController.ngoImage4!,height: 65,):
+                            screenController.ngoImage4!,height: 65,
+                            errorBuilder: (context, er, st){
+                              return Image.asset(AppImages.petMetLogoImg);
+                            },):
                           Image.asset(AppImages.petMetLogoImg):
 
                           index == 4 ?
@@ -413,7 +428,10 @@ class NameOfNgoListModule extends StatelessWidget {
                             screenController.ngoPictureFile5!,height: 65,) :
                           screenController.ngoImage5 != null ?
                           Image.network(
-                            screenController.ngoImage5!,height: 65,):
+                            screenController.ngoImage5!,height: 65,
+                            errorBuilder: (context, er, st){
+                              return Image.asset(AppImages.petMetLogoImg);
+                            },):
                           Image.asset(AppImages.petMetLogoImg) : Container()
                       ),
                       Positioned(
@@ -708,6 +726,46 @@ class NgoBankNameModule extends StatelessWidget {
     );
   }
 }*/
+
+class EmailTextFieldModule extends StatelessWidget {
+  EmailTextFieldModule({Key? key}) : super(key: key);
+
+  final screenController = Get.find<NgoUserProfileScreenController>();
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Email",
+              style: TextStyle(
+                color: AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          readOnly: false,
+          fieldController: screenController.emailController,
+          height: screenController.size.height * 0.05,
+          width: double.infinity,
+          hintText: "Email",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.emailAddress,
+          validator: (val) => Validations().validateEmail(val!),
+        ),
+      ],
+    );
+  }
+}
+
 
 class NameTextFieldModule extends StatelessWidget {
   NameTextFieldModule({Key? key}) : super(key: key);
@@ -1077,59 +1135,106 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              Stack(
-                children: [
+              // Stack(
+              //   children: [
+              //     Container(
+              //       height: screenController.size.height * 0.05,
+              //       //width: double.infinity,
+              //       decoration: BoxDecoration(
+              //         color: Colors.transparent,
+              //         boxShadow: [
+              //           BoxShadow(
+              //             color: AppColors.greyTextColor.withOpacity(0.25),
+              //             blurRadius: 35,
+              //             spreadRadius: 1,
+              //             offset: const Offset(0, 0),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //     TextFormField(
+              //       readOnly: false,
+              //       controller: screenController.openTimeController,
+              //       validator: (val) => Validations().validateOpenTime(val!),
+              //       textInputAction: TextInputAction.next,
+              //       keyboardType: TextInputType.number,
+              //       style: TextStyle(
+              //         color: AppColors.blackTextColor,
+              //         fontSize: 13.sp,
+              //         fontWeight: FontWeight.w400,
+              //         decoration: TextDecoration.none,
+              //       ),
+              //       decoration: InputDecoration(
+              //         fillColor: AppColors.whiteColor,
+              //         filled: true,
+              //         contentPadding:
+              //         const EdgeInsets.symmetric(horizontal: 15),
+              //         border: OutlineInputBorder(
+              //           borderRadius: BorderRadius.circular(10),
+              //           borderSide:
+              //           const BorderSide(width: 0, style: BorderStyle.none),
+              //         ),
+              //         focusedBorder: OutlineInputBorder(
+              //           borderRadius: BorderRadius.circular(10),
+              //           borderSide:
+              //           const BorderSide(width: 0, style: BorderStyle.none),
+              //         ),
+              //         //hintText: hintText,
+              //         hintStyle: TextStyle(
+              //           color: AppColors.greyTextColor,
+              //           fontSize: 13.sp,
+              //           fontWeight: FontWeight.w400,
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // )
+              Obx(()=>
                   Container(
-                    height: screenController.size.height * 0.05,
-                    //width: double.infinity,
+                    height: Get.height * 0.05,
+                    width: double.infinity,
                     decoration: BoxDecoration(
-                      color: Colors.transparent,
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppColors.greyTextColor.withOpacity(0.25),
-                          blurRadius: 35,
-                          spreadRadius: 1,
-                          offset: const Offset(0, 0),
-                        ),
-                      ],
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.grey),
+                      //color: Colors.transparent,
+                      //   boxShadow: [
+                      //     BoxShadow(
+                      //       color: themeProvider.darkTheme
+                      //           ? AppColors.whiteColor.withOpacity(0.05)
+                      //           : AppColors.greyTextColor.withOpacity(0.5),
+                      //       blurRadius: 10,
+                      //       spreadRadius: 0.5,
+                      //       offset: const Offset(0, 0),
+                      //     ),
+                      //   ],
                     ),
-                  ),
-                  TextFormField(
-                    readOnly: false,
-                    controller: screenController.openTimeController,
-                    validator: (val) => Validations().validateOpenTime(val!),
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.number,
-                    style: TextStyle(
-                      color: AppColors.blackTextColor,
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.w400,
-                      decoration: TextDecoration.none,
-                    ),
-                    decoration: InputDecoration(
-                      fillColor: AppColors.whiteColor,
-                      filled: true,
-                      contentPadding:
-                      const EdgeInsets.symmetric(horizontal: 15),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide:
-                        const BorderSide(width: 0, style: BorderStyle.none),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide:
-                        const BorderSide(width: 0, style: BorderStyle.none),
-                      ),
-                      //hintText: hintText,
-                      hintStyle: TextStyle(
-                        color: AppColors.greyTextColor,
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.w400,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Text(
+                                screenController.selectedOpenTime != null ? screenController.selectedOpenTime!.value : "No time selected!",
+                                // textAlign: TextAlign.center,
+                                maxLines: 1,
+                                style: const TextStyle(color: Colors.black)),
+                          ),
+                          IconButton(
+                            icon: const Icon(
+                              Icons.timer_outlined,
+                              color: Colors.black,
+                              size: 20,
+                            ),
+                            tooltip: 'DOB',
+                            onPressed: () {
+                              timePicker(context);
+                            },
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                ],
               )
             ],
           ),
@@ -1148,7 +1253,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              Stack(
+              /*Stack(
                 children: [
                   Container(
                     height: screenController.size.height * 0.05,
@@ -1201,12 +1306,85 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                     ),
                   ),
                 ],
+              )*/
+              Obx(()=>
+                  Container(
+                    height: Get.height * 0.05,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      //color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.grey),
+                        // boxShadow: [
+                        //   BoxShadow(
+                        //     color: themeProvider.darkTheme
+                        //         ? AppColors.whiteColor.withOpacity(0.05)
+                        //         : AppColors.greyTextColor.withOpacity(0.5),
+                        //     blurRadius: 10,
+                        //     spreadRadius: 0.5,
+                        //     offset: const Offset(0, 0),
+                        //   ),
+                        // ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Text(
+                                screenController.selectedCloseTime != null ? screenController.selectedCloseTime!.value : "No time selected!",
+                                // textAlign: TextAlign.center,
+                                maxLines: 1,
+                                style: const TextStyle(color: Colors.black)),
+                          ),
+                          IconButton(
+                            icon: const Icon(
+                              Icons.timer_outlined,
+                              color: Colors.black,
+                              size: 20,
+                            ),
+                            tooltip: 'DOB',
+                            onPressed: () {
+                              closeTimePicker(context);
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
               )
             ],
           ),
         ),
       ],
     );
+  }
+
+  Future<void> timePicker(BuildContext context) async {
+    final TimeOfDay? result =
+    await showTimePicker(
+        context: context,
+        initialTime: TimeOfDay.now());
+    if (result != null) {
+      //setState(() {
+      screenController.selectedOpenTime!.value = result.format(context);
+      log('Open time: ${screenController.selectedOpenTime!.value}');
+      // });
+    }
+  }
+
+  Future<void> closeTimePicker(BuildContext context) async {
+    final TimeOfDay? result =
+    await showTimePicker(
+        context: context,
+        initialTime: TimeOfDay.now());
+    if (result != null) {
+      //setState(() {
+      screenController.selectedCloseTime!.value = result.format(context);
+      log('Open time: ${screenController.selectedCloseTime!.value}');
+      // });
+    }
   }
 }
 

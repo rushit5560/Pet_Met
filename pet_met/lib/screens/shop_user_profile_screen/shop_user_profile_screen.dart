@@ -76,7 +76,14 @@ class ShopUserProfileScreen extends StatelessWidget {
                               //   //fieldHinttext: "**** ** ***",
                               // ),
                               const SizedBox(height: 15),
+
                               AddressTextFieldModule(),
+                              const SizedBox(height: 15),
+                              DetailsTextFieldModule(),
+                              const SizedBox(height: 15),
+                              InstagramTextFieldModule(),
+                              const SizedBox(height: 15),
+                              FacebookLinkTextFieldModule(),
                               // CommonTextFieldModule(
                               //   fieldName: "Address",
                               //   //fieldHinttext: "**** ** ***",

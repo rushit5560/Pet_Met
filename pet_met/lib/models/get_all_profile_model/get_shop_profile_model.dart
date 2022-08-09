@@ -66,8 +66,8 @@ class GetShopProfileModelData {
   List<dynamic> petdata;
 
   factory GetShopProfileModelData.fromJson(Map<String, dynamic> json) => GetShopProfileModelData(
-    data: List<DataData>.from(json["data"].map((x) => DataData.fromJson(x))),
-    petdata: List<dynamic>.from(json["petdata"].map((x) => x)),
+    data: List<DataData>.from(json["data"].map((x) => DataData.fromJson(x)) ?? {}),
+    petdata: List<dynamic>.from(json["petdata"].map((x) => x) ?? {}),
   );
 
   Map<String, dynamic> toJson() => {

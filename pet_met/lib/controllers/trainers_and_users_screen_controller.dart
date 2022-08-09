@@ -7,11 +7,15 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/models/get_all_profile_model/get_shop_profile_model.dart';
+import 'package:pet_met/models/login_screen_model/login_model.dart';
+import 'package:pet_met/models/multi_account_user_model/multiple_account_user_model.dart';
 import 'package:pet_met/models/trainers_update_profile_model/trainers_get_profile_model.dart';
 import 'package:pet_met/models/trainers_update_profile_model/trainers_update_profile_model.dart';
 import 'package:pet_met/utils/api_url.dart';
+import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:http/http.dart' as http;
+import 'package:pet_met/utils/user_preference.dart';
 
 class TrainersAndUsersScreenController extends GetxController {
   final size = Get.size;
@@ -32,6 +36,19 @@ class TrainersAndUsersScreenController extends GetxController {
 
   final formKey = GlobalKey<FormState>();
 
+  String userEmail = "";
+  RxString userName = "".obs;
+  RxString shopEmail = "".obs;
+  RxString shopName = "".obs;
+  RxString ngoEmail = "".obs;
+  RxString ngoName = "".obs;
+  RxString trainerEmail = "".obs;
+  RxString trainerName = "".obs;
+
+  var passwordController = TextEditingController();
+  UserPreference userPreference = UserPreference();
+
+  var emailController = TextEditingController();
   var nameController = TextEditingController();
   var contactNumber = TextEditingController();
   var addressController = TextEditingController();
@@ -39,12 +56,17 @@ class TrainersAndUsersScreenController extends GetxController {
   var openTimeController = TextEditingController();
   var closeTimeController = TextEditingController();
   var activeController = TextEditingController();
+  var instagramController = TextEditingController();
+  var facebookController = TextEditingController();
   // var closeTimeController = TextEditingController();
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 
   ApiHeader apiHeader = ApiHeader();
+
+  RxString ? selectedOpenTime= "".obs;
+  RxString ? selectedCloseTime= "".obs;
 
   /// Get All Role Profile
   Future<void> getAllRoleProfileFunction() async {
@@ -73,20 +95,25 @@ class TrainersAndUsersScreenController extends GetxController {
       isSuccessStatus = getTrainersProfileModel.success.obs;
 
       if (isSuccessStatus.value) {
+        emailController.text = getTrainersProfileModel.data.data[0].email;
         nameController.text = getTrainersProfileModel.data.data[0].name;
         contactNumber.text = getTrainersProfileModel.data.data[0].phone;
         addressController.text = getTrainersProfileModel.data.data[0].address;
         detailsController.text = getTrainersProfileModel.data.data[0].fullText;
-        trainersProfile = getTrainersProfileModel.data.data[0].image;
+        trainersProfile = ApiUrl.apiImagePath + getTrainersProfileModel.data.data[0].image;
         activeController.text = getTrainersProfileModel.data.data[0].isActive;
-        openTimeController.text = getTrainersProfileModel.data.data[0].open;
-        closeTimeController.text = getTrainersProfileModel.data.data[0].close;
+        selectedOpenTime!.value = getTrainersProfileModel.data.data[0].open;
+        selectedCloseTime!.value = getTrainersProfileModel.data.data[0].close;
+        instagramController.text = getTrainersProfileModel.data.data[0].instagram;
+        facebookController.text = getTrainersProfileModel.data.data[0].facebook;
 
         trainerImage1 = ApiUrl.apiImagePath + "asset/uploads/product/" + getTrainersProfileModel.data.data[0].image1;
         trainerImage2 = ApiUrl.apiImagePath + "asset/uploads/product/" + getTrainersProfileModel.data.data[0].image2;
         trainerImage3 = ApiUrl.apiImagePath + "asset/uploads/product/" + getTrainersProfileModel.data.data[0].image3;
         trainerImage4 = ApiUrl.apiImagePath + "asset/uploads/product/" + getTrainersProfileModel.data.data[0].image4;
         trainerImage5 = ApiUrl.apiImagePath + "asset/uploads/product/" + getTrainersProfileModel.data.data[0].image5;
+
+        log('Trainer Profile: $trainersProfile');
         //
         log('Phone: ${contactNumber.text}');
       } else {
@@ -95,6 +122,100 @@ class TrainersAndUsersScreenController extends GetxController {
 
     } catch(e) {
       log("All Role Profile Api Error ::: $e");
+    } finally {
+      //isLoading(false);
+      await multiAccountFunction();
+    }
+  }
+
+  multiAccountFunction() async {
+    isLoading(true);
+    String url = ApiUrl.multiAccountApi;
+    log("Multi account Api Url : $url");
+
+    try {
+      Map<String, dynamic> data = {
+        "email": emailController.text.trim()
+      };
+
+      log("Multiple Account Body Data : $data");
+
+      Map<String, String> header = apiHeader.apiHeader();
+      log("header : $header");
+
+      http.Response response = await http.post(Uri.parse(url),body: data, /*headers: header*/);
+      log("Multiple Account Api response : ${response.body}");
+
+      MultiAccountUserModel multiAccountUserModel =
+      MultiAccountUserModel.fromJson(json.decode(response.body));
+      isSuccessStatus = multiAccountUserModel.success.obs;
+      log('isSuccessStatus: $isSuccessStatus');
+
+      if (isSuccessStatus.value) {
+
+        // userEmail = multiAccountUserModel.data.user[0].email;
+        // userName = multiAccountUserModel.data.user[0].name.obs;
+        //
+        // shopEmail = multiAccountUserModel.data.shope[0].email.obs;
+        // shopName = multiAccountUserModel.data.shope[0].shopename.obs;
+        //
+        // ngoEmail = multiAccountUserModel.data.vetNgo[0].email.obs;
+        // ngoName = multiAccountUserModel.data.vetNgo[0].name.obs;
+
+        trainerEmail = multiAccountUserModel.data.trainer[0].email.obs;
+        trainerName = multiAccountUserModel.data.trainer[0].name.obs;
+      } else {
+        log("Get Multi Account Api Else");
+        //await unfollowUserFunction();
+      }
+
+    } catch(e) {
+      log("All Multi Account Api Error ::: $e");
+    } finally {
+      isLoading(false);
+      //await followStatus();
+    }
+  }
+
+  Future<void> userLoginFunction() async {
+    isLoading(true);
+    String url = ApiUrl.loginApi;
+    log('Login Api Url : $url');
+
+    try {
+      Map<String, dynamic> data = {
+        "email": trainerEmail.value,
+        "password": passwordController.text.trim(),
+        "categoryID": "${UserDetails.roleId}",
+      };
+      log("data : $data");
+
+      http.Response response = await http.post(Uri.parse(url), body: data);
+      log("Login Api Response : ${response.body}");
+
+      LoginModel loginModel = LoginModel.fromJson(json.decode(response.body));
+      isSuccessStatus = loginModel.success.obs;
+
+      if (isSuccessStatus.value) {
+        // User Data Set in Prefs
+        // await userPreference.setUserDetails(
+        //     selfId: loginModel.data.uid,
+        //     userId: loginModel.data.id,
+        //     userName: loginModel.data.name,
+        //     userEmail: loginModel.data.email,
+        //     userProfileImage: loginModel.data.image,
+        //     token: loginModel.data.rememberToken,
+        //     roleId: loginModel.data.categoryId
+        // );
+        passwordController.clear();
+        //await userPreference.setRoleId(roleId);
+        // Going to Index Screen
+        Get.toNamed(AppRouteNames.indexScreenRoute);
+      } else {
+        Fluttertoast.showToast(msg: loginModel.error);
+      }
+    } catch (e) {
+      log('User Login Api Error ::: $e');
     } finally {
       isLoading(false);
     }
@@ -150,11 +271,11 @@ class TrainersAndUsersScreenController extends GetxController {
         request.fields['name'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phone'] = contactNumber.text.trim();
-        request.fields['open'] = openTimeController.text.trim();
-        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['open'] = selectedOpenTime!.value;
+        request.fields['close'] = selectedCloseTime!.value;
         request.fields['full_text'] = detailsController.text.trim();
-        // request.fields['instagram'] = instagramController.text.trim();
-        // request.fields['facebook'] = facebookController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
          request.fields['is_active'] = activeController.text.trim();
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['uid'] = "${UserDetails.userId}";
@@ -266,11 +387,11 @@ class TrainersAndUsersScreenController extends GetxController {
         request.fields['name'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phone'] = contactNumber.text.trim();
-        request.fields['open'] = openTimeController.text.trim();
-        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['open'] = selectedOpenTime!.value;
+        request.fields['close'] = selectedCloseTime!.value;
         request.fields['full_text'] = detailsController.text.trim();
-        // request.fields['instagram'] = instagramController.text.trim();
-        // request.fields['facebook'] = facebookController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
         request.fields['is_active'] = activeController.text.trim();
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['uid'] = "${UserDetails.userId}";
@@ -382,11 +503,11 @@ class TrainersAndUsersScreenController extends GetxController {
         request.fields['name'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phone'] = contactNumber.text.trim();
-        request.fields['open'] = openTimeController.text.trim();
-        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['open'] = selectedOpenTime!.value;
+        request.fields['close'] = selectedCloseTime!.value;
         request.fields['full_text'] = detailsController.text.trim();
-        // request.fields['instagram'] = instagramController.text.trim();
-        // request.fields['facebook'] = facebookController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
         request.fields['is_active'] = activeController.text.trim();
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['uid'] = "${UserDetails.userId}";
@@ -498,11 +619,11 @@ class TrainersAndUsersScreenController extends GetxController {
         request.fields['name'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phone'] = contactNumber.text.trim();
-        request.fields['open'] = openTimeController.text.trim();
-        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['open'] = selectedOpenTime!.value;
+        request.fields['close'] = selectedCloseTime!.value;
         request.fields['full_text'] = detailsController.text.trim();
-        // request.fields['instagram'] = instagramController.text.trim();
-        // request.fields['facebook'] = facebookController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
         request.fields['is_active'] = activeController.text.trim();
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['uid'] = "${UserDetails.userId}";
@@ -614,11 +735,11 @@ class TrainersAndUsersScreenController extends GetxController {
         request.fields['name'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phone'] = contactNumber.text.trim();
-        request.fields['open'] = openTimeController.text.trim();
-        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['open'] = selectedOpenTime!.value;
+        request.fields['close'] = selectedCloseTime!.value;
         request.fields['full_text'] = detailsController.text.trim();
-        // request.fields['instagram'] = instagramController.text.trim();
-        // request.fields['facebook'] = facebookController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
         request.fields['is_active'] = activeController.text.trim();
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['uid'] = "${UserDetails.userId}";
@@ -730,11 +851,11 @@ class TrainersAndUsersScreenController extends GetxController {
         request.fields['name'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phone'] = contactNumber.text.trim();
-        request.fields['open'] = openTimeController.text.trim();
-        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['open'] = selectedOpenTime!.value;
+        request.fields['close'] = selectedCloseTime!.value;
         request.fields['full_text'] = detailsController.text.trim();
-        // request.fields['instagram'] = instagramController.text.trim();
-        // request.fields['facebook'] = facebookController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
         request.fields['is_active'] = activeController.text.trim();
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['uid'] = "${UserDetails.userId}";
@@ -846,11 +967,11 @@ class TrainersAndUsersScreenController extends GetxController {
         request.fields['name'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phone'] = contactNumber.text.trim();
-        request.fields['open'] = openTimeController.text.trim();
-        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['open'] = selectedOpenTime!.value;
+        request.fields['close'] = selectedCloseTime!.value;
         request.fields['full_text'] = detailsController.text.trim();
-        // request.fields['instagram'] = instagramController.text.trim();
-        // request.fields['facebook'] = facebookController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
         request.fields['is_active'] = activeController.text.trim();
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['uid'] = "${UserDetails.userId}";
@@ -962,11 +1083,11 @@ class TrainersAndUsersScreenController extends GetxController {
         request.fields['name'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phone'] = contactNumber.text.trim();
-        request.fields['open'] = openTimeController.text.trim();
-        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['open'] = selectedOpenTime!.value;
+        request.fields['close'] = selectedCloseTime!.value;
         request.fields['full_text'] = detailsController.text.trim();
-        // request.fields['instagram'] = instagramController.text.trim();
-        // request.fields['facebook'] = facebookController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
         request.fields['is_active'] = activeController.text.trim();
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['uid'] = "${UserDetails.userId}";
@@ -1078,11 +1199,11 @@ class TrainersAndUsersScreenController extends GetxController {
         request.fields['name'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phone'] = contactNumber.text.trim();
-        request.fields['open'] = openTimeController.text.trim();
-        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['open'] = selectedOpenTime!.value;
+        request.fields['close'] = selectedCloseTime!.value;
         request.fields['full_text'] = detailsController.text.trim();
-        // request.fields['instagram'] = instagramController.text.trim();
-        // request.fields['facebook'] = facebookController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
         request.fields['is_active'] = activeController.text.trim();
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['uid'] = "${UserDetails.userId}";
@@ -1187,15 +1308,15 @@ class TrainersAndUsersScreenController extends GetxController {
         request.files.add(await http.MultipartFile.fromPath("image1", trainerPictureFile1!.path));
         request.files.add(await http.MultipartFile.fromPath("image2", trainerPictureFile2!.path));
         request.files.add(await http.MultipartFile.fromPath("image3", trainerPictureFile3!.path));
-        // request.files.add(await http.MultipartFile.fromPath("image4", trainerPictureFile4!.path));
-        // request.files.add(await http.MultipartFile.fromPath("image5", trainerPictureFile5!.path));
+        request.files.add(await http.MultipartFile.fromPath("image4", trainerPictureFile4!.path));
+        request.files.add(await http.MultipartFile.fromPath("image5", trainerPictureFile5!.path));
         request.headers.addAll(header);
 
         request.fields['name'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phone'] = contactNumber.text.trim();
-        request.fields['open'] = openTimeController.text.trim();
-        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['open'] = selectedOpenTime!.value;
+        request.fields['close'] = selectedCloseTime!.value;
         request.fields['full_text'] = detailsController.text.trim();
         // request.fields['instagram'] = instagramController.text.trim();
         // request.fields['facebook'] = facebookController.text.trim();
@@ -1310,11 +1431,11 @@ class TrainersAndUsersScreenController extends GetxController {
         request.fields['name'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phone'] = contactNumber.text.trim();
-        request.fields['open'] = openTimeController.text.trim();
-        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['open'] = selectedOpenTime!.value;
+        request.fields['close'] = selectedCloseTime!.value;
         request.fields['full_text'] = detailsController.text.trim();
-        // request.fields['instagram'] = instagramController.text.trim();
-        // request.fields['facebook'] = facebookController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
         request.fields['is_active'] = activeController.text.trim();
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['uid'] = "${UserDetails.userId}";
@@ -1404,11 +1525,11 @@ class TrainersAndUsersScreenController extends GetxController {
         request.fields['name'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phone'] = contactNumber.text.trim();
-        request.fields['open'] = openTimeController.text.trim();
-        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['open'] = selectedOpenTime!.value;
+        request.fields['close'] = selectedCloseTime!.value;
         request.fields['full_text'] = detailsController.text.trim();
-        // request.fields['instagram'] = instagramController.text.trim();
-        // request.fields['facebook'] = facebookController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
         request.fields['is_active'] = activeController.text.trim();
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['uid'] = "${UserDetails.userId}";

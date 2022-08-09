@@ -7,10 +7,14 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/models/get_all_profile_model/get_vet_and_ngo_profile_model.dart';
+import 'package:pet_met/models/login_screen_model/login_model.dart';
+import 'package:pet_met/models/multi_account_user_model/multiple_account_user_model.dart';
 import 'package:pet_met/models/vet_and_ngo_update_profile_model/vet_and_ngo_update_profile_model.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:http/http.dart' as http;
+import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/user_details.dart';
+import 'package:pet_met/utils/user_preference.dart';
 
 class NgoUserProfileScreenController extends GetxController {
   final size = Get.size;
@@ -34,6 +38,19 @@ class NgoUserProfileScreenController extends GetxController {
 
   final formKey = GlobalKey<FormState>();
 
+  String userEmail = "";
+  RxString userName = "".obs;
+  RxString shopEmail = "".obs;
+  RxString shopName = "".obs;
+  RxString ngoEmail = "".obs;
+  RxString ngoName = "".obs;
+  RxString trainerEmail = "".obs;
+  RxString trainerName = "".obs;
+
+  var passwordController = TextEditingController();
+  UserPreference userPreference = UserPreference();
+
+  var emailController = TextEditingController();
   var nameController = TextEditingController();
   var accountNumberController = TextEditingController();
   var ifscCodeController = TextEditingController();
@@ -47,6 +64,9 @@ class NgoUserProfileScreenController extends GetxController {
   var closeTimeController = TextEditingController();
 
   ApiHeader apiHeader = ApiHeader();
+
+  RxString ? selectedOpenTime= "".obs;
+  RxString ? selectedCloseTime= "".obs;
 
   /// Get All Role Profile
   Future<void> getAllRoleProfileFunction() async {
@@ -75,13 +95,14 @@ class NgoUserProfileScreenController extends GetxController {
       isSuccessStatus = allRoleProfileModel.success.obs;
       log('isSuccessStatus: $isSuccessStatus');
       if (isSuccessStatus.value) {
+        emailController.text = allRoleProfileModel.data.data[0].email;
          nameController.text = allRoleProfileModel.data.data[0].name;
          detailsController.text = allRoleProfileModel.data.data[0].fullText;
          instagramController.text = allRoleProfileModel.data.data[0].instagram;
          facebookController.text = allRoleProfileModel.data.data[0].facebook;
          activeController.text = allRoleProfileModel.data.data[0].isActive;
-         openTimeController.text = allRoleProfileModel.data.data[0].open;
-         closeTimeController.text = allRoleProfileModel.data.data[0].close;
+        selectedOpenTime!.value = allRoleProfileModel.data.data[0].open;
+         selectedCloseTime!.value = allRoleProfileModel.data.data[0].close;
         // //
         // log('Phone: ${contactNumber.text}');
         accountNumberController.text = allRoleProfileModel.data.data[0].accountCode;
@@ -103,6 +124,100 @@ class NgoUserProfileScreenController extends GetxController {
 
     } catch(e) {
       log("All Role Profile Api Error ::: $e");
+    } finally {
+      //isLoading(false);
+      await multiAccountFunction();
+    }
+  }
+
+  multiAccountFunction() async {
+    isLoading(true);
+    String url = ApiUrl.multiAccountApi;
+    log("Multi account Api Url : $url");
+
+    try {
+      Map<String, dynamic> data = {
+        "email": emailController.text.trim()
+      };
+
+      log("Multiple Account Body Data : $data");
+
+      Map<String, String> header = apiHeader.apiHeader();
+      log("header : $header");
+
+      http.Response response = await http.post(Uri.parse(url),body: data, /*headers: header*/);
+      log("Multiple Account Api response : ${response.body}");
+
+      MultiAccountUserModel multiAccountUserModel =
+      MultiAccountUserModel.fromJson(json.decode(response.body));
+      isSuccessStatus = multiAccountUserModel.success.obs;
+      log('isSuccessStatus: $isSuccessStatus');
+
+      if (isSuccessStatus.value) {
+
+        // userEmail = multiAccountUserModel.data.user[0].email;
+        // userName = multiAccountUserModel.data.user[0].name.obs;
+        //
+        // shopEmail = multiAccountUserModel.data.shope[0].email.obs;
+        // shopName = multiAccountUserModel.data.shope[0].shopename.obs;
+
+        ngoEmail = multiAccountUserModel.data.vetNgo[0].email.obs;
+        ngoName = multiAccountUserModel.data.vetNgo[0].name.obs;
+
+        // trainerEmail = multiAccountUserModel.data.trainer[0].email.obs;
+        // trainerName = multiAccountUserModel.data.trainer[0].name.obs;
+      } else {
+        log("Get Multi Account Api Else");
+        //await unfollowUserFunction();
+      }
+
+    } catch(e) {
+      log("All Multi Account Api Error ::: $e");
+    } finally {
+      isLoading(false);
+      //await followStatus();
+    }
+  }
+
+  Future<void> userLoginFunction() async {
+    isLoading(true);
+    String url = ApiUrl.loginApi;
+    log('Login Api Url : $url');
+
+    try {
+      Map<String, dynamic> data = {
+        "email": ngoEmail.value,
+        "password": passwordController.text.trim(),
+        "categoryID": "${UserDetails.roleId}",
+      };
+      log("data : $data");
+
+      http.Response response = await http.post(Uri.parse(url), body: data);
+      log("Login Api Response : ${response.body}");
+
+      LoginModel loginModel = LoginModel.fromJson(json.decode(response.body));
+      isSuccessStatus = loginModel.success.obs;
+
+      if (isSuccessStatus.value) {
+        // User Data Set in Prefs
+        // await userPreference.setUserDetails(
+        //     selfId: loginModel.data.uid,
+        //     userId: loginModel.data.id,
+        //     userName: loginModel.data.name,
+        //     userEmail: loginModel.data.email,
+        //     userProfileImage: loginModel.data.image,
+        //     token: loginModel.data.rememberToken,
+        //     roleId: loginModel.data.categoryId,
+        // );
+        passwordController.clear();
+        //await userPreference.setRoleId(roleId);
+        // Going to Index Screen
+        Get.toNamed(AppRouteNames.indexScreenRoute);
+      } else {
+        Fluttertoast.showToast(msg: loginModel.error);
+      }
+    } catch (e) {
+      log('User Login Api Error ::: $e');
     } finally {
       isLoading(false);
     }
@@ -158,8 +273,8 @@ class NgoUserProfileScreenController extends GetxController {
         request.fields['name'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phone'] = contactController.text.trim();
-        request.fields['open'] = openTimeController.text.trim();
-        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['open'] = selectedOpenTime!.value;
+        request.fields['close'] = selectedCloseTime!.value;
         request.fields['full_text'] = detailsController.text.trim();
         request.fields['instagram'] = instagramController.text.trim();
         request.fields['facebook'] = facebookController.text.trim();
@@ -276,8 +391,8 @@ class NgoUserProfileScreenController extends GetxController {
         request.fields['name'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phone'] = contactController.text.trim();
-        request.fields['open'] = openTimeController.text.trim();
-        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['open'] = selectedOpenTime!.value;
+        request.fields['close'] = selectedCloseTime!.value;
         request.fields['full_text'] = detailsController.text.trim();
         request.fields['instagram'] = instagramController.text.trim();
         request.fields['facebook'] = facebookController.text.trim();
@@ -394,8 +509,8 @@ class NgoUserProfileScreenController extends GetxController {
         request.fields['name'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phone'] = contactController.text.trim();
-        request.fields['open'] = openTimeController.text.trim();
-        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['open'] = selectedOpenTime!.value;
+        request.fields['close'] = selectedCloseTime!.value;
         request.fields['full_text'] = detailsController.text.trim();
         request.fields['instagram'] = instagramController.text.trim();
         request.fields['facebook'] = facebookController.text.trim();
@@ -512,8 +627,8 @@ class NgoUserProfileScreenController extends GetxController {
         request.fields['name'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phone'] = contactController.text.trim();
-        request.fields['open'] = openTimeController.text.trim();
-        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['open'] = selectedOpenTime!.value;
+        request.fields['close'] = selectedCloseTime!.value;
         request.fields['full_text'] = detailsController.text.trim();
         request.fields['instagram'] = instagramController.text.trim();
         request.fields['facebook'] = facebookController.text.trim();
@@ -630,8 +745,8 @@ class NgoUserProfileScreenController extends GetxController {
         request.fields['name'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phone'] = contactController.text.trim();
-        request.fields['open'] = openTimeController.text.trim();
-        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['open'] = selectedOpenTime!.value;
+        request.fields['close'] = selectedCloseTime!.value;
         request.fields['full_text'] = detailsController.text.trim();
         request.fields['instagram'] = instagramController.text.trim();
         request.fields['facebook'] = facebookController.text.trim();
@@ -748,8 +863,8 @@ class NgoUserProfileScreenController extends GetxController {
         request.fields['name'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phone'] = contactController.text.trim();
-        request.fields['open'] = openTimeController.text.trim();
-        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['open'] = selectedOpenTime!.value;
+        request.fields['close'] = selectedCloseTime!.value;
         request.fields['full_text'] = detailsController.text.trim();
         request.fields['instagram'] = instagramController.text.trim();
         request.fields['facebook'] = facebookController.text.trim();
@@ -866,8 +981,8 @@ class NgoUserProfileScreenController extends GetxController {
         request.fields['name'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phone'] = contactController.text.trim();
-        request.fields['open'] = openTimeController.text.trim();
-        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['open'] = selectedOpenTime!.value;
+        request.fields['close'] = selectedCloseTime!.value;
         request.fields['full_text'] = detailsController.text.trim();
         request.fields['instagram'] = instagramController.text.trim();
         request.fields['facebook'] = facebookController.text.trim();
@@ -984,8 +1099,8 @@ class NgoUserProfileScreenController extends GetxController {
         request.fields['name'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phone'] = contactController.text.trim();
-        request.fields['open'] = openTimeController.text.trim();
-        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['open'] = selectedOpenTime!.value;
+        request.fields['close'] = selectedCloseTime!.value;
         request.fields['full_text'] = detailsController.text.trim();
         request.fields['instagram'] = instagramController.text.trim();
         request.fields['facebook'] = facebookController.text.trim();
@@ -1102,8 +1217,8 @@ class NgoUserProfileScreenController extends GetxController {
         request.fields['name'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phone'] = contactController.text.trim();
-        request.fields['open'] = openTimeController.text.trim();
-        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['open'] = selectedOpenTime!.value;
+        request.fields['close'] = selectedCloseTime!.value;
         request.fields['full_text'] = detailsController.text.trim();
         request.fields['instagram'] = instagramController.text.trim();
         request.fields['facebook'] = facebookController.text.trim();
@@ -1220,8 +1335,8 @@ class NgoUserProfileScreenController extends GetxController {
         request.fields['name'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phone'] = contactController.text.trim();
-        request.fields['open'] = openTimeController.text.trim();
-        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['open'] = selectedOpenTime!.value;
+        request.fields['close'] = selectedCloseTime!.value;
         request.fields['full_text'] = detailsController.text.trim();
         request.fields['instagram'] = instagramController.text.trim();
         request.fields['facebook'] = facebookController.text.trim();
@@ -1338,8 +1453,8 @@ class NgoUserProfileScreenController extends GetxController {
         request.fields['name'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phone'] = contactController.text.trim();
-        request.fields['open'] = openTimeController.text.trim();
-        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['open'] = selectedOpenTime!.value;
+        request.fields['close'] = selectedCloseTime!.value;
         request.fields['full_text'] = detailsController.text.trim();
         request.fields['instagram'] = instagramController.text.trim();
         request.fields['facebook'] = facebookController.text.trim();
@@ -1434,8 +1549,8 @@ class NgoUserProfileScreenController extends GetxController {
         request.fields['name'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phone'] = contactController.text.trim();
-        request.fields['open'] = openTimeController.text.trim();
-        request.fields['close'] = closeTimeController.text.trim();
+        request.fields['open'] = selectedOpenTime!.value;
+        request.fields['close'] = selectedCloseTime!.value;
         request.fields['full_text'] = detailsController.text.trim();
         request.fields['instagram'] = instagramController.text.trim();
         request.fields['facebook'] = facebookController.text.trim();

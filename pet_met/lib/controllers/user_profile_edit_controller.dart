@@ -130,10 +130,14 @@ class UserProfileEditController extends GetxController {
          mobileController.text = getUserProfileModel.data.data[0].phone;
         emailController.text = getUserProfileModel.data.data[0].email;
         //locationController.text = allRoleProfileModel.data.data.;
-        //selectedGenderValue.value = allRoleProfileModel.data.data.gender;
+        selectedGenderValue.value = getUserProfileModel.data.data[0].gender;
          birthDate = getUserProfileModel.data.data[0].bod;
         log('name: ${nameController.text}');
         log('mobile: ${mobileController.text}');
+
+        // await userPreference.setUserProfileDetails(
+        //
+        // );
 
       } else {
         log("Get All User Profile Api Else");
@@ -175,14 +179,14 @@ class UserProfileEditController extends GetxController {
         userEmail = multiAccountUserModel.data.user[0].email;
         userName = multiAccountUserModel.data.user[0].name.obs;
 
-        shopEmail = multiAccountUserModel.data.shope[0].email.obs;
-        shopName = multiAccountUserModel.data.shope[0].shopename.obs;
-
-        ngoEmail = multiAccountUserModel.data.vetNgo[0].email.obs;
-        ngoName = multiAccountUserModel.data.vetNgo[0].name.obs;
-
-        trainerEmail = multiAccountUserModel.data.trainer[0].email.obs;
-        trainerName = multiAccountUserModel.data.trainer[0].name.obs;
+        // shopEmail = multiAccountUserModel.data.shope[0].email.obs;
+        // shopName = multiAccountUserModel.data.shope[0].shopename.obs;
+        //
+        // ngoEmail = multiAccountUserModel.data.vetNgo[0].email.obs;
+        // ngoName = multiAccountUserModel.data.vetNgo[0].name.obs;
+        //
+        // trainerEmail = multiAccountUserModel.data.trainer[0].email.obs;
+        // trainerName = multiAccountUserModel.data.trainer[0].name.obs;
       } else {
         log("Get Multi Account Api Else");
         //await unfollowUserFunction();
@@ -217,15 +221,15 @@ class UserProfileEditController extends GetxController {
 
       if (isSuccessStatus.value) {
         // User Data Set in Prefs
-        await userPreference.setUserDetails(
-            selfId: loginModel.data.uid,
-            userId: loginModel.data.id,
-            userName: loginModel.data.name,
-            userEmail: loginModel.data.email,
-            userProfileImage: loginModel.data.image,
-            token: loginModel.data.rememberToken,
-            roleId: loginModel.data.categoryId
-        );
+        // await userPreference.setUserDetails(
+        //     selfId: loginModel.data.uid,
+        //     userId: loginModel.data.id,
+        //     userName: loginModel.data.name,
+        //     userEmail: loginModel.data.email,
+        //     userProfileImage: loginModel.data.image,
+        //     token: loginModel.data.rememberToken,
+        //     roleId: loginModel.data.categoryId
+        // );
         passwordController.clear();
         //await userPreference.setRoleId(roleId);
         // Going to Index Screen
@@ -270,6 +274,8 @@ class UserProfileEditController extends GetxController {
         request.fields['bod'] = birthDate;
         request.fields['phone'] = mobileController.text.trim();
         request.fields['gender'] = selectedGenderValue.value;
+        request.fields['userid'] = "${UserDetails.userId}";
+
 
         // request.fields['name'] = "demo1";
         // request.fields['bod'] = "10-9-2014";
@@ -334,6 +340,7 @@ class UserProfileEditController extends GetxController {
         request.fields['bod'] = birthDate;
         request.fields['phone'] = mobileController.text.trim();
         request.fields['gender'] = selectedGenderValue.value;
+        request.fields['userid'] = "${UserDetails.userId}";
         //request.fields['showimg'] = "jgjadg";
 
         // var multiPart = http.MultipartFile(

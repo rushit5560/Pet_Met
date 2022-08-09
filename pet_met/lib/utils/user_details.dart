@@ -9,4 +9,6 @@ class UserDetails {
   static String userEmail = "";
   static String userProfileImage = "";
   static int categoryId = 0;
+  static String shopName = "";
+  static String shopProfile = "";
 }

@@ -82,6 +82,7 @@ class MeetingAndBreadingSearchFieldModule extends StatelessWidget {
                   screenController.isLoading(false);
                 } else{
                   await screenController.getSearchCategoryAndSubCategoryFunction();
+                  screenController.searchFieldController.clear();
                 }
                 hideKeyboard();
               },
@@ -283,9 +284,15 @@ class MeetYourLovedOneButtonModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onTap: () async {
         log("Selected Sub cat Id : ${screenController.selectedSubCatId}");
-         Get.toNamed(AppRouteNames.petMeetingListScreenRoute);
+        if(screenController.searchFieldController.text.isNotEmpty){
+          await screenController.getSearchCategoryAndSubCategoryFunction().then((value) {
+            screenController.searchFieldController.clear();
+            Get.toNamed(AppRouteNames.petMeetingListScreenRoute);
+          });
+        }
+
       },
       child: Container(
         width: double.infinity,

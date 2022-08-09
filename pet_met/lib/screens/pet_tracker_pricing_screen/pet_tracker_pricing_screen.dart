@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/metting_address_info_controller.dart';
 import 'package:pet_met/controllers/pet_tracker_pricing_controller.dart';
@@ -59,7 +60,7 @@ class PetTrackerPricingScreen extends StatelessWidget {
                                     child: PetTrackerPriceModule(
                                       controller: controller,
                                       planTypeText:
-                                          controller.planDetailsData.name!,
+                                          controller.name,
                                     ),
                                   ),
                                 ],
@@ -139,11 +140,11 @@ class PetTrackerPriceModule extends StatelessWidget {
                 Column(
                   children: [
                     PetTrackingDetailsCheckModule(
-                      detailsText: controller.planDetailsData.overview,
+                      detailsText: controller.overview,
                     ),
                     PetTrackingDetailsCheckModule(
                       detailsText:
-                          "valid for ${controller.planDetailsData.overview} days",
+                          "valid for ${controller.overview} days",
                     ),
                     const PetTrackingDetailsCheckModule(),
                   ],
@@ -221,7 +222,7 @@ class PetTrackerPriceModule extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 28, top: 8),
                       child: Text(
-                        controller.planDetailsData.rs.toString(),
+                        controller.price.toString(),
                         style: TextStyle(
                           color: AppColors.whiteColor,
                           fontSize: 15.sp,
@@ -287,6 +288,11 @@ class PetTrackingDetailsCheckModule extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                   ),
                 ),
+                // child: Html(
+                //   data:  detailsText == null
+                //         ? "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                //         : detailsText!,
+                // ),
               ),
             ],
           )

@@ -81,7 +81,7 @@ class ForgotPasswordModule extends StatelessWidget {
 
                 CustomLightTextField(
                   // fieldController: controller.nameController,
-
+                  readOnly: false,
                   height: controller.size.height * 0.05,
                   width: double.infinity,
                   hintText: "Email Address",

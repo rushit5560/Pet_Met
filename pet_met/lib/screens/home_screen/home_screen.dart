@@ -7,6 +7,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pet_met/controllers/home_controller.dart';
 import 'package:pet_met/controllers/index_screen_controller.dart';
 import 'package:pet_met/screens/home_screen/widgets/home_screen_widgets.dart';
+import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
@@ -76,7 +77,48 @@ class _HomeScreenState extends State<HomeScreen> {
                         Get.toNamed(AppRouteNames.trainersAndUsersScreenRoute);
                       }
                     },
-                    child: Image.asset(
+                    child: UserDetails.categoryId == 1 ?
+                    Image.network(
+                      ApiUrl.apiImagePath + "asset/uploads/product/" +UserDetails.userProfileImage,
+                      width: 40,
+                      height: 40,
+                      errorBuilder: (context, st, ob){
+                        return Image.asset(AppImages.petMetLogoImg, width: 40,
+                          height: 40,);
+                      },
+                      // width: controller.size.width * 0.05,
+                    ) :
+                    UserDetails.categoryId == 2 ?
+                    Image.network(
+                      ApiUrl.apiImagePath + "asset/uploads/product/" + UserDetails.shopProfile,
+                      width: 40,
+                      height: 40,
+                      errorBuilder: (context, st, ob){
+                        return Image.asset(AppImages.petMetLogoImg);
+                      },
+                      // width: controller.size.width * 0.05,
+                    ):
+                    UserDetails.categoryId == 3 ?
+                    Image.network(
+                      ApiUrl.apiImagePath + "asset/uploads/product/" + UserDetails.userProfileImage,
+                      width: 40,
+                      height: 40,
+                      errorBuilder: (context, st, ob){
+                        return Image.asset(AppImages.petMetLogoImg);
+                      },
+                      // width: controller.size.width * 0.05,
+                    ) :
+                    UserDetails.categoryId == 4 ?
+                    Image.network(
+                      UserDetails.userProfileImage,
+                      width: 40,
+                      height: 40,
+                      errorBuilder: (context, st, ob){
+                        return Image.asset(AppImages.petMetLogoImg);
+                      },
+                      // width: controller.size.width * 0.05,
+                    ):
+                    Image.asset(
                       AppImages.userProfileImg,
                       width: controller.size.width * 0.12,
                     ),

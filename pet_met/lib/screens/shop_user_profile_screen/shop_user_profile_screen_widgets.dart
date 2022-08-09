@@ -121,7 +121,10 @@ class UploadImageModule extends StatelessWidget {
             children: [
               Image.network(
                 themeProvider.darkTheme
-                    ? ApiUrl.apiImagePath +  screenController.shopImage! : ApiUrl.apiImagePath + screenController.shopImage!,height: 65,),
+                    ? ApiUrl.apiImagePath +  screenController.shopImage! : ApiUrl.apiImagePath + screenController.shopImage!,height: 65,
+                errorBuilder: (context, er, st){
+                  return Image.asset(AppImages.petMetLogoImg);
+                },),
 
               //),
               // const SizedBox(height: 20),
@@ -331,7 +334,10 @@ class AddShopOffersListModule extends StatelessWidget {
                           screenController.shopOfferFile1!,height: 65,) :
                             screenController.offerImage1 != null ?
                             Image.network(
-                              screenController.offerImage1!,height: 65,):
+                              screenController.offerImage1!,height: 65,
+                              errorBuilder: (context, er, st){
+                                return Image.asset(AppImages.petMetLogoImg);
+                              },):
                         Image.asset(AppImages.petMetLogoImg) :
 
                         index == 1 ?
@@ -340,7 +346,10 @@ class AddShopOffersListModule extends StatelessWidget {
                           screenController.shopOfferFile2!,height: 65,) :
                         screenController.offerImage2 != null ?
                         Image.network(
-                          screenController.offerImage2!,height: 65,):
+                          screenController.offerImage2!,height: 65,
+                          errorBuilder: (context, er, st){
+                            return Image.asset(AppImages.petMetLogoImg);
+                          },):
                         Image.asset(AppImages.petMetLogoImg) :
 
                           index == 2 ?
@@ -349,7 +358,10 @@ class AddShopOffersListModule extends StatelessWidget {
                             screenController.shopOfferFile3!,height: 65,) :
                           screenController.offerImage3 != null ?
                           Image.network(
-                            screenController.offerImage3!,height: 65,):
+                            screenController.offerImage3!,height: 65,
+                            errorBuilder: (context, er, st){
+                              return Image.asset(AppImages.petMetLogoImg);
+                            },):
                           Image.asset(AppImages.petMetLogoImg) :
 
                           index == 3 ?
@@ -358,7 +370,10 @@ class AddShopOffersListModule extends StatelessWidget {
                             screenController.shopOfferFile4!,height: 65,) :
                           screenController.offerImage4 != null ?
                           Image.network(
-                            screenController.offerImage4!,height: 65,):
+                            screenController.offerImage4!,height: 65,
+                            errorBuilder: (context, er, st){
+                              return Image.asset(AppImages.petMetLogoImg);
+                            },):
                           Image.asset(AppImages.petMetLogoImg):
 
                           index == 4 ?
@@ -367,7 +382,10 @@ class AddShopOffersListModule extends StatelessWidget {
                             screenController.shopOfferFile5!,height: 65,) :
                           screenController.offerImage5 != null ?
                           Image.network(
-                            screenController.offerImage5!,height: 65,):
+                            screenController.offerImage5!,height: 65,
+                            errorBuilder: (context, er, st){
+                              return Image.asset(AppImages.petMetLogoImg);
+                            },):
                           Image.asset(AppImages.petMetLogoImg) : Container()
                       ),
                       Positioned(
@@ -831,7 +849,7 @@ class MeetingAvailabilityModule extends StatelessWidget {
           height: screenController.size.width * 0.16,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
-            itemCount: 5,
+            itemCount: screenController.meetingImagesList.length,
             physics: const BouncingScrollPhysics(),
             separatorBuilder: (context, index) {
               return const SizedBox(width: 10);
@@ -854,8 +872,14 @@ class MeetingAvailabilityModule extends StatelessWidget {
                         Radius.circular(8),
                       ),
                     ),
+                    child: Image.network(ApiUrl.apiImagePath + screenController.meetingImagesList[index],
+                      errorBuilder: (context, st, ob){
+                        return Image.asset(AppImages.petMetLogoImg);
+                      },
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                  Positioned(
+                  /*Positioned(
                     right: 0,
                     bottom: 0,
                     child: Container(
@@ -869,7 +893,7 @@ class MeetingAvailabilityModule extends StatelessWidget {
                         size: 12,
                       ),
                     ),
-                  )
+                  )*/
                 ],
               );
             },
@@ -904,14 +928,14 @@ class EmailTextFieldModule extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         CustomLightTextField(
-          readOnly: false,
+          readOnly: true,
           fieldController: screenController.emailController,
           height: screenController.size.height * 0.05,
           width: double.infinity,
           hintText: "Email",
           textInputAction: TextInputAction.next,
           textInputType: TextInputType.emailAddress,
-          validator: (val) => Validations().validateEmail(val!),
+          //validator: (val) => Validations().validateEmail(val!),
         ),
       ],
     );
@@ -1031,6 +1055,120 @@ class AddressTextFieldModule extends StatelessWidget {
   }
 }
 
+class DetailsTextFieldModule extends StatelessWidget {
+  DetailsTextFieldModule({Key? key}) : super(key: key);
+
+  final screenController = Get.find<ShopUserProfileScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Details",
+              style: TextStyle(
+                color: AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          readOnly: false,
+          fieldController: screenController.detailsController,
+          height: screenController.size.height * 0.05,
+          width: double.infinity,
+          hintText: "Details",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.text,
+          validator: (val) => Validations().validateDetails(val!),
+        ),
+      ],
+    );
+  }
+}
+
+class InstagramTextFieldModule extends StatelessWidget {
+  InstagramTextFieldModule({Key? key}) : super(key: key);
+
+  final screenController = Get.find<ShopUserProfileScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Instagram Link",
+              style: TextStyle(
+                color: AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          readOnly: false,
+          fieldController: screenController.instagramController,
+          height: screenController.size.height * 0.05,
+          width: double.infinity,
+          hintText: "Instagram Link",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.number,
+          validator: (val) => Validations().validateInstagramLink(val!),
+        ),
+      ],
+    );
+  }
+}
+
+class FacebookLinkTextFieldModule extends StatelessWidget {
+  FacebookLinkTextFieldModule({Key? key}) : super(key: key);
+
+  final screenController = Get.find<ShopUserProfileScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Facebook Link",
+              style: TextStyle(
+                color: AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          readOnly: false,
+          fieldController: screenController.facebookController,
+          height: screenController.size.height * 0.05,
+          width: double.infinity,
+          hintText: "Facebook Link",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.number,
+          validator: (val) => Validations().validateFacebookLink(val!),
+        ),
+      ],
+    );
+  }
+}
+
 
 class CommonTextFieldModule extends StatelessWidget {
   //CommonTextFieldModule({Key? key}) : super(key: key);
@@ -1096,7 +1234,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              CustomLightTextField(
+             /* CustomLightTextField(
                 readOnly: false,
                 fieldController: screenController.openTimeController,
                 height: screenController.size.height * 0.05,
@@ -1105,7 +1243,51 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                 textInputAction: TextInputAction.next,
                 textInputType: TextInputType.number,
                 validator: (val) => Validations().validateOpenTime(val!),
-              ),
+              ),*/
+              Obx(()=>
+                 Container(
+                  height: Get.height * 0.05,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Colors.grey),
+                    //color: Colors.transparent,
+                    //   boxShadow: [
+                    //     BoxShadow(
+                    //       color: themeProvider.darkTheme
+                    //           ? AppColors.whiteColor.withOpacity(0.05)
+                    //           : AppColors.greyTextColor.withOpacity(0.5),
+                    //       blurRadius: 10,
+                    //       spreadRadius: 0.5,
+                    //       offset: const Offset(0, 0),
+                    //     ),
+                    //   ],
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
+                            screenController.selectedOpenTime != null ? screenController.selectedOpenTime!.value : "No time selected!",
+                            // textAlign: TextAlign.center,
+                            maxLines: 1,
+                            style: const TextStyle(color: Colors.black)),
+                      ),
+                      IconButton(
+                        icon: const Icon(
+                          Icons.timer_outlined,
+                          color: Colors.black,
+                          size: 20,
+                        ),
+                        tooltip: 'DOB',
+                        onPressed: () {
+                          timePicker(context);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              )
             ],
           ),
         ),
@@ -1123,21 +1305,92 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              CustomLightTextField(
-                readOnly: false,
-                fieldController: screenController.closeTimeController,
-                height: screenController.size.height * 0.05,
-                width: double.infinity,
-                hintText: "Close",
-                textInputAction: TextInputAction.done,
-                textInputType: TextInputType.number,
-                validator: (val) => Validations().validateCloseTime(val!),
-              ),
+              // CustomLightTextField(
+              //   readOnly: false,
+              //   fieldController: screenController.closeTimeController,
+              //   height: screenController.size.height * 0.05,
+              //   width: double.infinity,
+              //   hintText: "Close",
+              //   textInputAction: TextInputAction.done,
+              //   textInputType: TextInputType.number,
+              //   validator: (val) => Validations().validateCloseTime(val!),
+              // ),
+              Obx(()=>
+                  Container(
+                    height: Get.height * 0.05,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.grey),
+                      //color: Colors.transparent,
+                      //   boxShadow: [
+                      //     BoxShadow(
+                      //       color: themeProvider.darkTheme
+                      //           ? AppColors.whiteColor.withOpacity(0.05)
+                      //           : AppColors.greyTextColor.withOpacity(0.5),
+                      //       blurRadius: 10,
+                      //       spreadRadius: 0.5,
+                      //       offset: const Offset(0, 0),
+                      //     ),
+                      //   ],
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                              screenController.selectedCloseTime != null ? screenController.selectedCloseTime!.value : "No time selected!",
+                              // textAlign: TextAlign.center,
+                              maxLines: 1,
+                              style: const TextStyle(color: Colors.black)),
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.timer_outlined,
+                            color: Colors.black,
+                            size: 20,
+                          ),
+                          tooltip: 'DOB',
+                          onPressed: () {
+                            closeTimePicker(context);
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+              )
             ],
           ),
         ),
       ],
     );
+  }
+
+
+  Future<void> timePicker(BuildContext context) async {
+    final TimeOfDay? result =
+    await showTimePicker(
+        context: context,
+        initialTime: TimeOfDay.now());
+    if (result != null) {
+      //setState(() {
+        screenController.selectedOpenTime!.value = result.format(context);
+        log('Open time: ${screenController.selectedOpenTime!.value}');
+     // });
+    }
+  }
+
+  Future<void> closeTimePicker(BuildContext context) async {
+    final TimeOfDay? result =
+    await showTimePicker(
+        context: context,
+        initialTime: TimeOfDay.now());
+    if (result != null) {
+      //setState(() {
+      screenController.selectedCloseTime!.value = result.format(context);
+      log('Open time: ${screenController.selectedCloseTime!.value}');
+      // });
+    }
   }
 }
 

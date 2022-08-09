@@ -35,6 +35,8 @@ class SplashController extends GetxController {
         prefs.getString(userPreference.userProfileImageKey) ?? "";
     UserDetails.userToken = prefs.getString(userPreference.userTokenKey) ?? "";
     UserDetails.categoryId = prefs.getInt(userPreference.roleId1Key) ?? 0;
+    UserDetails.shopName = prefs.getString(userPreference.shopNameKey) ?? "";
+    UserDetails.shopProfile = prefs.getString(userPreference.shopProfileImageKey) ?? "";
     log('UserDetails.roleId: ${UserDetails.roleId}');
     log('UserDetails.categoryId: ${UserDetails.categoryId}');
 
@@ -51,7 +53,8 @@ class SplashController extends GetxController {
           // );
 
         } else if (UserDetails.isUserLoggedIn == false) {
-          Get.offNamed(AppRouteNames.loginRoute);
+          //Get.offNamed(AppRouteNames.loginRoute);
+          Get.offNamed(AppRouteNames.userCategoriesScreenRoute);
           // Get.off(() => LoginScreen(),
           //   transition: Transition.native,
           //   duration: const Duration(milliseconds: 500),

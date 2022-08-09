@@ -47,6 +47,7 @@ class PetList {
     required this.gender,
     required this.isActive,
     required this.userid,
+    required this.categoryId,
   });
 
   int id;
@@ -62,6 +63,7 @@ class PetList {
   String gender;
   String isActive;
   int userid;
+  int categoryId;
 
   factory PetList.fromJson(Map<String, dynamic> json) => PetList(
     id: json["id"] ?? 0,
@@ -77,6 +79,7 @@ class PetList {
     gender: json["gender"] ?? "",
     isActive: json["is_active"] ?? "",
     userid: json["userid"] ?? 0,
+    categoryId: json["categoryID"] ?? 0,
   );
 
   Map<String, dynamic> toJson() => {
@@ -93,6 +96,7 @@ class PetList {
     "gender": gender,
     "is_active": isActive,
     "userid": userid,
+    "categoryId": categoryId,
   };
 }
 

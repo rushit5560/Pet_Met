@@ -22,6 +22,7 @@ class PetMeetingAndBreadingScreenController extends GetxController {
 
   List<CatAndSubCatData> catAndSubCatList = [];
   List<SubCategoryId> searchSubCatList = [];
+  List<Datum> searchList = [];
   String selectedSubCatId = "";
 
   Future<void> getAllCategoryAndSubCategoryFunction() async {
@@ -76,6 +77,8 @@ class PetMeetingAndBreadingScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         searchSubCatList.clear();
+        searchList = searchCategoryAndSubCategoryModel.data;
+        log('searchList: $searchList');
         // for(int i =0; i < searchCategoryAndSubCategoryModel.data.length; i++){
         //   for(int j=0; j < categoryAndSubCategoryModel.data[i].subCategory.length ; i++){
         //     searchSubCatList = categoryAndSubCategoryModel.data[j].subCategory;

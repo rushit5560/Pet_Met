@@ -6,6 +6,7 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pet_met/controllers/register_controller.dart';
 import 'package:pet_met/screens/register_screen/register_screen_widgets.dart';
 import 'package:pet_met/utils/app_images.dart';
+import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_functions/hide_keyboard.dart';
 import 'package:provider/provider.dart';
 
@@ -163,7 +164,59 @@ class RegisterScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(width: 15),
-                          Container(
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("By Signing up i Agree to the ",
+                                style: TextStyle(
+                                color: themeProvider.darkTheme
+                                    ? AppColors.whiteColor.withOpacity(0.75)
+                                    : AppColors.greyTextColor,
+                                fontSize: 11.sp,
+                                fontWeight: FontWeight.w400,
+                              ),),
+                              Row(
+                                children: [
+                                  GestureDetector(
+                                    onTap: (){
+
+                                    },
+                                    child: Text("term and Condition",
+                                      style: TextStyle(
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor.withOpacity(0.75)
+                                          : AppColors.greyTextColor,
+
+                                      fontSize: 11.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),),
+                                  ),
+                                  Text(" && ",
+                                    style: TextStyle(
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor.withOpacity(0.75)
+                                          : AppColors.greyTextColor,
+                                      fontSize: 11.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),),
+                                  GestureDetector(
+                                    onTap: (){
+                                      Get.toNamed(
+                                          AppRouteNames.privacyPolicyScreenRoute);
+                                    },
+                                    child: Text("privacy Policy", style: TextStyle(
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor.withOpacity(0.75)
+                                          : AppColors.greyTextColor,
+                                      fontSize: 11.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
+                          /*Container(
                             width: controller.size.width * 0.65,
                             child: RichText(
                               text: TextSpan(
@@ -177,7 +230,7 @@ class RegisterScreen extends StatelessWidget {
                                 text: "By Signing up i Agree to the ",
                                 children: [
                                   TextSpan(
-                                    text: "term and Condition & privacy Police",
+                                    text: "term and Condition & privacy Policy",
                                     style: TextStyle(
                                       color: themeProvider.darkTheme
                                           ? AppColors.whiteColor
@@ -191,7 +244,7 @@ class RegisterScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
-                          ),
+                          ),*/
                         ],
                       ),
                       // SizedBox(height: controller.size.height * 0.1),

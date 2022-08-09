@@ -1,9 +1,11 @@
 import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/theme_preferences.dart';
+import 'package:pet_met/utils/user_details.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
@@ -62,19 +64,64 @@ class _BuildMenuState extends State<BuildMenu> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Image.asset(
-                          AppImages.userProfileImg,
+                        UserDetails.categoryId == 1 ?
+                        Image.network(
+                          ApiUrl.apiImagePath + "asset/uploads/product/" +UserDetails.userProfileImage,
                           width: 40,
                           height: 40,
+                          errorBuilder: (context, st, ob){
+                            return Image.asset(AppImages.petMetLogoImg);
+                          },
                           // width: controller.size.width * 0.05,
-                        ),
+                        ) :
+                        UserDetails.categoryId == 2 ?
+                        Image.network(
+                          ApiUrl.apiImagePath + "asset/uploads/product/" + UserDetails.shopProfile,
+                          width: 40,
+                          height: 40,
+                          errorBuilder: (context, st, ob){
+                            return Image.asset(AppImages.petMetLogoImg);
+                          },
+                          // width: controller.size.width * 0.05,
+                        ):
+                        UserDetails.categoryId == 3 ?
+                        Image.network(
+                          ApiUrl.apiImagePath + "asset/uploads/product/" + UserDetails.userProfileImage,
+                          width: 40,
+                          height: 40,
+                          errorBuilder: (context, st, ob){
+                            return Image.asset(AppImages.petMetLogoImg);
+                          },
+                          // width: controller.size.width * 0.05,
+                        ) :
+                        UserDetails.categoryId == 4 ?
+                        Image.network(
+                          UserDetails.userProfileImage,
+                          width: 40,
+                          height: 40,
+                          errorBuilder: (context, st, ob){
+                            return Image.asset(AppImages.petMetLogoImg);
+                          },
+                          // width: controller.size.width * 0.05,
+                        ) : Image.asset(
+                            AppImages.userProfileImg,
+                          width: 40,
+                          height: 40,),
+
                         const SizedBox(width: 15),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Miroslava Savitskaya",
+                              UserDetails.categoryId == 1 ?
+                              UserDetails.userName :
+                              UserDetails.categoryId == 2 ?
+                              UserDetails.shopName :
+                              UserDetails.categoryId == 3 ?
+                                  UserDetails.userName :
+                                UserDetails.categoryId == 4 ?
+                                  UserDetails.userName : "",
                               style: TextStyle(
                                 color: AppColors.accentTextColor,
                                 fontSize: 12.sp,

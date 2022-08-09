@@ -99,7 +99,9 @@ class UploadImageModule extends StatelessWidget {
                 Image.network(
                   themeProvider.darkTheme
                       ? controller.userProfile : controller.userProfile,height: 65,
-
+                  errorBuilder: (context, er, bt){
+                    return Image.asset(AppImages.petMetLogoImg, height: 65);
+                  },
                 ),
 
                 //),
@@ -692,7 +694,7 @@ class BirthDateModule extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Container(
-          height: controller.size.height * 0.06,
+          height: controller.size.height * 0.08,
           width: double.infinity,
           padding: const EdgeInsets.only(left: 15, right: 15),
           decoration: BoxDecoration(

@@ -7,6 +7,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/controllers/index_screen_controller.dart';
+import 'package:pet_met/models/get_all_pet_list_model/get_all_pet_list_model.dart';
 import 'package:pet_met/screens/edit_story_screen/edit_story_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
@@ -33,7 +34,8 @@ class PetTopListModule extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
-        return dogDisplayWidget(index);
+        PetList petList = homeController.petTopList[index];
+        return dogDisplayWidget(petList);
       },
       separatorBuilder: (ctx, index) {
         return const SizedBox(height: 15);
@@ -42,7 +44,7 @@ class PetTopListModule extends StatelessWidget {
     );
   }
 
-  Widget dogDisplayWidget(int index){
+  Widget dogDisplayWidget(PetList petList){
     return Row(
       children: [
         Expanded(
@@ -64,7 +66,7 @@ class PetTopListModule extends StatelessWidget {
             child: GestureDetector(
               onTap: (){
                // Get.toNamed(AppRouteNames.userProfileRoute);
-                Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
+                Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: petList.id);
               },
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(12),
@@ -73,7 +75,7 @@ class PetTopListModule extends StatelessWidget {
                   //   fit: BoxFit.cover,
                   // )
                 child: Image.network(
-                  ApiUrl.apiImagePath + homeController.petTopList[index].image,
+                  ApiUrl.apiImagePath + petList.image,
                   errorBuilder: (context, st, ob){
                     return Image.asset(AppImages.petMetLogoImg);
                   },
@@ -97,14 +99,16 @@ class PetTopListModule extends StatelessWidget {
             child: GestureDetector(
               onTap: (){
                 //Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
-                Get.toNamed(AppRouteNames.userProfileRoute, arguments: homeController.petTopList[index].userid);
+                log('Follow Userid: ${petList.userid}');
+                log('Follow Categoryid: ${petList.categoryId}');
+                Get.toNamed(AppRouteNames.userProfileRoute, arguments: [petList.userid, petList.categoryId]);
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    homeController.petTopList[index].petName,
+                    petList.petName,
                     style: TextStyle(
                       color: AppColors.accentTextColor,
                       fontSize: 18.sp,
@@ -112,7 +116,7 @@ class PetTopListModule extends StatelessWidget {
                     ),
                   ),
                   Html(
-                    data: homeController.petTopList[index].details,
+                    data: petList.details,
                     style: {
                       "body": Style(
                         color: themeProvider.darkTheme
@@ -135,7 +139,7 @@ class PetTopListModule extends StatelessWidget {
                   // ),
                   const SizedBox(height: 12),
                   Text(
-                    homeController.petTopList[index].gender + ", 2 Years Old",
+                    petList.gender + ", 2 Years Old",
                     style: TextStyle(
                       color: themeProvider.darkTheme
                           ? AppColors.whiteColor.withOpacity(0.65)

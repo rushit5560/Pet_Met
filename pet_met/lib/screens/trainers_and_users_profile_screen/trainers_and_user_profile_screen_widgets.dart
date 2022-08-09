@@ -123,6 +123,9 @@ class UploadImageModule extends StatelessWidget {
               Image.network(
                 themeProvider.darkTheme
                     ? ApiUrl.apiImagePath + screenController.trainersProfile! : ApiUrl.apiImagePath + screenController.trainersProfile!,
+                errorBuilder: (context, er, st){
+                  return Image.asset(AppImages.petMetLogoImg);
+                },
                 height: 65),
 
               //),
@@ -331,7 +334,10 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                             screenController.trainerPictureFile1!,height: 65,) :
                           screenController.trainerImage1 != null ?
                           Image.network(
-                            screenController.trainerImage1!,height: 65,):
+                            screenController.trainerImage1!,height: 65,
+                            errorBuilder: (context, er, st){
+                              return Image.asset(AppImages.petMetLogoImg);
+                            },):
                           Image.asset(AppImages.petMetLogoImg) :
 
                           index == 1 ?
@@ -340,7 +346,10 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                             screenController.trainerPictureFile2!,height: 65,) :
                           screenController.trainerImage2 != null ?
                           Image.network(
-                            screenController.trainerImage2!,height: 65,):
+                            screenController.trainerImage2!,height: 65,
+                            errorBuilder: (context, er, st){
+                              return Image.asset(AppImages.petMetLogoImg);
+                            },):
                           Image.asset(AppImages.petMetLogoImg) :
 
                           index == 2 ?
@@ -349,7 +358,10 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                             screenController.trainerPictureFile3!,height: 65,) :
                           screenController.trainerImage3 != null ?
                           Image.network(
-                            screenController.trainerImage3!,height: 65,):
+                            screenController.trainerImage3!,height: 65,
+                            errorBuilder: (context, er, st){
+                              return Image.asset(AppImages.petMetLogoImg);
+                            },):
                           Image.asset(AppImages.petMetLogoImg) :
 
                           index == 3 ?
@@ -358,7 +370,10 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                             screenController.trainerPictureFile4!,height: 65,) :
                           screenController.trainerImage4 != null ?
                           Image.network(
-                            screenController.trainerImage4!,height: 65,):
+                            screenController.trainerImage4!,height: 65,
+                            errorBuilder: (context, er, st){
+                              return Image.asset(AppImages.petMetLogoImg);
+                            },):
                           Image.asset(AppImages.petMetLogoImg):
 
                           index == 4 ?
@@ -367,7 +382,10 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                             screenController.trainerPictureFile5!,height: 65,) :
                           screenController.trainerImage5 != null ?
                           Image.network(
-                            screenController.trainerImage5!,height: 65,):
+                            screenController.trainerImage5!,height: 65,
+                            errorBuilder: (context, er, st){
+                              return Image.asset(AppImages.petMetLogoImg);
+                            },):
                           Image.asset(AppImages.petMetLogoImg) : Container()
                       ),
                       Positioned(
@@ -636,6 +654,44 @@ class TrainersNameTextFieldModule extends StatelessWidget {
   }
 }
 
+class EmailTextFieldModule extends StatelessWidget {
+  // const TrainersNameTextFieldModule({Key? key}) : super(key: key);
+
+  final screenController = Get.find<TrainersAndUsersScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Email",
+              style: TextStyle(
+                color: AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          readOnly: true,
+          fieldController: screenController.emailController,
+          height: screenController.size.height * 0.05,
+          width: double.infinity,
+          hintText: "Email",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.emailAddress,
+          validator: (val) => Validations().validateEmail(val!),
+        ),
+      ],
+    );
+  }
+}
+
 class TrainersContactNumberTextField extends StatelessWidget {
   TrainersContactNumberTextField({Key? key}) : super(key: key);
 
@@ -803,6 +859,83 @@ class TrainersDetailsModule extends StatelessWidget {
   }
 }
 
+class InstagramTextFieldModule extends StatelessWidget {
+  InstagramTextFieldModule({Key? key}) : super(key: key);
+
+  final screenController = Get.find<TrainersAndUsersScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Instagram Link",
+              style: TextStyle(
+                color: AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          readOnly: false,
+          fieldController: screenController.instagramController,
+          height: screenController.size.height * 0.05,
+          width: double.infinity,
+          hintText: "Instagram Link",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.number,
+          validator: (val) => Validations().validateInstagramLink(val!),
+        ),
+      ],
+    );
+  }
+}
+
+class FacebookLinkTextFieldModule extends StatelessWidget {
+  FacebookLinkTextFieldModule({Key? key}) : super(key: key);
+
+  final screenController = Get.find<TrainersAndUsersScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Facebook Link",
+              style: TextStyle(
+                color: AppColors.blackTextColor.withOpacity(0.7),
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          readOnly: false,
+          fieldController: screenController.facebookController,
+          height: screenController.size.height * 0.05,
+          width: double.infinity,
+          hintText: "Facebook Link",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.number,
+          validator: (val) => Validations().validateFacebookLink(val!),
+        ),
+      ],
+    );
+  }
+}
+
+
 class IsActiveTextFieldModule extends StatelessWidget {
   IsActiveTextFieldModule({Key? key}) : super(key: key);
 
@@ -864,16 +997,63 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              CustomLightTextField(
-                readOnly: false,
-                fieldController: screenController.openTimeController,
-                height: screenController.size.height * 0.05,
-                width: double.infinity,
-                hintText: "Open",
-                textInputAction: TextInputAction.next,
-                textInputType: TextInputType.number,
-                validator: (val) => Validations().validateOpenTime(val!),
-              ),
+              // CustomLightTextField(
+              //   readOnly: false,
+              //   fieldController: screenController.openTimeController,
+              //   height: screenController.size.height * 0.05,
+              //   width: double.infinity,
+              //   hintText: "Open",
+              //   textInputAction: TextInputAction.next,
+              //   textInputType: TextInputType.number,
+              //   validator: (val) => Validations().validateOpenTime(val!),
+              // ),
+              Obx(()=>
+                  Container(
+                    height: Get.height * 0.05,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.grey),
+                      //color: Colors.transparent,
+                      //   boxShadow: [
+                      //     BoxShadow(
+                      //       color: themeProvider.darkTheme
+                      //           ? AppColors.whiteColor.withOpacity(0.05)
+                      //           : AppColors.greyTextColor.withOpacity(0.5),
+                      //       blurRadius: 10,
+                      //       spreadRadius: 0.5,
+                      //       offset: const Offset(0, 0),
+                      //     ),
+                      //   ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Text(
+                                screenController.selectedOpenTime != null ? screenController.selectedOpenTime!.value : "No time selected!",
+                                // textAlign: TextAlign.center,
+                                maxLines: 1,
+                                style: const TextStyle(color: Colors.black)),
+                          ),
+                          IconButton(
+                            icon: const Icon(
+                              Icons.timer_outlined,
+                              color: Colors.black,
+                              size: 20,
+                            ),
+                            tooltip: 'DOB',
+                            onPressed: () {
+                              timePicker(context);
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+              )
             ],
           ),
         ),
@@ -891,21 +1071,94 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              CustomLightTextField(
-                readOnly: false,
-                fieldController: screenController.closeTimeController,
-                height: screenController.size.height * 0.05,
-                width: double.infinity,
-                hintText: "Close",
-                textInputAction: TextInputAction.done,
-                textInputType: TextInputType.number,
-                validator: (val) => Validations().validateCloseTime(val!),
-              ),
+              // CustomLightTextField(
+              //   readOnly: false,
+              //   fieldController: screenController.closeTimeController,
+              //   height: screenController.size.height * 0.05,
+              //   width: double.infinity,
+              //   hintText: "Close",
+              //   textInputAction: TextInputAction.done,
+              //   textInputType: TextInputType.number,
+              //   validator: (val) => Validations().validateCloseTime(val!),
+              // ),
+              Obx(()=>
+                  Container(
+                    height: Get.height * 0.05,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      //color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: Colors.grey),
+                      // boxShadow: [
+                      //   BoxShadow(
+                      //     color: themeProvider.darkTheme
+                      //         ? AppColors.whiteColor.withOpacity(0.05)
+                      //         : AppColors.greyTextColor.withOpacity(0.5),
+                      //     blurRadius: 10,
+                      //     spreadRadius: 0.5,
+                      //     offset: const Offset(0, 0),
+                      //   ),
+                      // ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: Text(
+                                screenController.selectedCloseTime != null ? screenController.selectedCloseTime!.value : "No time selected!",
+                                // textAlign: TextAlign.center,
+                                maxLines: 1,
+                                style: const TextStyle(color: Colors.black)),
+                          ),
+                          IconButton(
+                            icon: const Icon(
+                              Icons.timer_outlined,
+                              color: Colors.black,
+                              size: 20,
+                            ),
+                            tooltip: 'DOB',
+                            onPressed: () {
+                              closeTimePicker(context);
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+              )
             ],
           ),
         ),
       ],
     );
+  }
+
+  Future<void> timePicker(BuildContext context) async {
+    final TimeOfDay? result =
+    await showTimePicker(
+        context: context,
+        initialTime: TimeOfDay.now());
+    if (result != null) {
+      //setState(() {
+      screenController.selectedOpenTime!.value = result.format(context);
+      log('Open time: ${screenController.selectedOpenTime!.value}');
+      // });
+    }
+  }
+
+  Future<void> closeTimePicker(BuildContext context) async {
+    final TimeOfDay? result =
+    await showTimePicker(
+        context: context,
+        initialTime: TimeOfDay.now());
+    if (result != null) {
+      //setState(() {
+      screenController.selectedCloseTime!.value = result.format(context);
+      log('Close time: ${screenController.selectedCloseTime!.value}');
+      // });
+    }
   }
 }
 

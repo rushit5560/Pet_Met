@@ -115,10 +115,10 @@ class Shope {
   String meetingimages;
   String sortorder;
   String status;
-  String userid;
+  int userid;
   String isActive;
   int categoryId;
-  String createdBy;
+  int createdBy;
   String modifiedBy;
   String createdDate;
   String modifiedDate;
@@ -247,9 +247,9 @@ class Trainer {
   String image5;
   String meetingimages;
   String isActive;
-  String userid;
+  int userid;
   int categoryId;
-  String createdBy;
+  int createdBy;
   String modifiedBy;
   String createdDate;
   String modifiedDate;
@@ -280,7 +280,7 @@ class Trainer {
     image5: json["image5"] ?? "",
     meetingimages: json["meetingimages"] ?? "",
     isActive: json["is_active"] ?? "",
-    userid: json["userid"] ?? "",
+    userid: json["userid"] ?? 0,
     categoryId: json["categoryID"] ?? 0,
     createdBy: json["created_by"] ?? "",
     modifiedBy: json["modified_by"] ?? "",

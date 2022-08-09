@@ -31,7 +31,7 @@ class RegisterController extends GetxController {
   submitRegisterForm() async {
     if (formKey.currentState!.validate()) {
       if (selectedTerms.value == false) {
-        Fluttertoast.showToast(msg: "Please agree with terms and condition");
+        Fluttertoast.showToast(msg: "Please agree with terms and condition & privacy policy");
       } else {
         try {
           await userRegisterFunction();
@@ -91,7 +91,7 @@ class RegisterController extends GetxController {
         // Get.offAndToNamed(AppRouteNames.loginRoute);
         Get.back();
       } else {
-        Fluttertoast.showToast(msg: "The email has already been taken");
+        Fluttertoast.showToast(msg: "The email has already register");
       }
     } catch (e) {
       log("User Registration Error ::: $e");

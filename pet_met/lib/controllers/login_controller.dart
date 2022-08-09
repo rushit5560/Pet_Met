@@ -70,13 +70,23 @@ class LoginController extends GetxController {
           userEmail: loginModel.data.email,
           userProfileImage: loginModel.data.image,
           token: loginModel.data.rememberToken,
-          roleId: loginModel.data.categoryId
+          roleId: loginModel.data.categoryId,
+          shopName: loginModel.data.shopName,
+          shopProfile: loginModel.data.showimg,
         );
         //await userPreference.setRoleId(roleId);
         // Going to Index Screen
         Get.toNamed(AppRouteNames.indexScreenRoute);
       } else {
-        Fluttertoast.showToast(msg: loginModel.error);
+        //Fluttertoast.showToast(msg: loginModel.error);
+        if(loginModel.error.contains('password don\'t match')){
+          Fluttertoast.showToast(msg: "Invalid password");
+        }
+        if(loginModel.error.contains('Email don\'t match')){
+          Fluttertoast.showToast(msg: "Invalid email");
+        }
+
+       //
       }
     } catch (e) {
       log('User Login Api Error ::: $e');

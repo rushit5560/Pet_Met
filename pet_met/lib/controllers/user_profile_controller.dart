@@ -18,7 +18,8 @@ class UserProfileController extends GetxController {
   final size = Get.size;
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
-  int followUserId = Get.arguments;
+  int followUserId = Get.arguments[0];
+  int followCategoryId = Get.arguments[1];
 
   ApiHeader apiHeader = ApiHeader();
 
@@ -99,7 +100,7 @@ class UserProfileController extends GetxController {
       Map<String, dynamic> data = {
         "userid": "${UserDetails.userId}",
         "followuserid": "$followUserId",
-        "categoryID": "${UserDetails.categoryId}",
+        "categoryID": "$followCategoryId",
       };
 
       log("Follow Status Body Data : $data");
@@ -114,6 +115,7 @@ class UserProfileController extends GetxController {
       GetFollowStatusModel.fromJson(json.decode(response.body));
       isSuccessStatus = getFollowStatusModel.success.obs;
       status = getFollowStatusModel.success.obs;
+      log('status: $status');
       if (isSuccessStatus.value) {
 
         message = getFollowStatusModel.message;
@@ -141,7 +143,7 @@ class UserProfileController extends GetxController {
       Map<String, dynamic> data = {
         "userid": "${UserDetails.userId}",
         "followuserid": "$followUserId",
-        "categoryID": "${UserDetails.categoryId}",
+        "categoryID": "$followCategoryId",
       };
 
       log("Body Data : $data");
@@ -158,6 +160,7 @@ class UserProfileController extends GetxController {
 
       if (isSuccessStatus.value) {
         Fluttertoast.showToast(msg: followUserModel.message);
+        await followStatus();
       } else {
         log("Follow User Api Else");
       }
@@ -170,7 +173,7 @@ class UserProfileController extends GetxController {
     }
   }
 
-  unfollowUserFunction()async{
+  unfollowUserFunction() async {
     isLoading(true);
     String url = ApiUrl.unfollowUserApi;
     log("Unfollow User Api Url : $url");
@@ -179,7 +182,7 @@ class UserProfileController extends GetxController {
       Map<String, dynamic> data = {
         "userid": "${UserDetails.userId}",
         "followuserid": "$followUserId",
-        "categoryID": "${UserDetails.categoryId}",
+        "categoryID": "$followCategoryId",
       };
 
       log("Body Data : $data");
@@ -196,6 +199,7 @@ class UserProfileController extends GetxController {
 
       if (isSuccessStatus.value) {
         Fluttertoast.showToast(msg: unFollowUserModel.message);
+        await followStatus();
       } else {
         log("Un Follow User Api Else");
       }

@@ -161,6 +161,7 @@ class ProfileDetailsModule extends StatelessWidget {
                 //   await controller.unfollowUserFunction();
                 // }
                // await controller.followStatus();
+                log("Follow Status: ${controller.status.value}");
                 controller.status.value == true ?
                 await controller.followUserFunction():
                 await controller.unfollowUserFunction();

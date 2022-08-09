@@ -44,8 +44,11 @@ class ShopUserProfileScreenController extends GetxController {
   var emailController = TextEditingController();
   var contactNumber = TextEditingController();
   var addressController = TextEditingController();
+  var detailsController = TextEditingController();
   var openTimeController = TextEditingController();
   var closeTimeController = TextEditingController();
+  var instagramController = TextEditingController();
+  var facebookController = TextEditingController();
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
@@ -63,11 +66,14 @@ class ShopUserProfileScreenController extends GetxController {
   RxString ngoName = "".obs;
   RxString trainerEmail = "".obs;
   RxString trainerName = "".obs;
+  //DateTime selectedDate = DateTime.now();
+  RxString ? selectedOpenTime= "".obs;
+  RxString ? selectedCloseTime= "".obs;
 
   var passwordController = TextEditingController();
   UserPreference userPreference = UserPreference();
 
-
+  List<String> meetingImagesList = [];
 
   ApiHeader apiHeader = ApiHeader();
 
@@ -102,8 +108,10 @@ class ShopUserProfileScreenController extends GetxController {
         emailController.text = getShopProfileModel.data.data[0].email;
         contactNumber.text = getShopProfileModel.data.data[0].phonenumber.toString();
         addressController.text = getShopProfileModel.data.data[0].address;
-        openTimeController.text = getShopProfileModel.data.data[0].shopopen;
-        closeTimeController.text = getShopProfileModel.data.data[0].shopclose;
+        selectedOpenTime!.value = getShopProfileModel.data.data[0].shopopen;
+        selectedCloseTime!.value = getShopProfileModel.data.data[0].shopclose;
+        instagramController.text = getShopProfileModel.data.data[0].instagram;
+        facebookController.text = getShopProfileModel.data.data[0].facebook;
         shopImage = getShopProfileModel.data.data[0].showimg;
         offerImage1 = ApiUrl.apiImagePath + "asset/uploads/product/" + getShopProfileModel.data.data[0].image1;
         offerImage2 = ApiUrl.apiImagePath + "asset/uploads/product/" + getShopProfileModel.data.data[0].image2;
@@ -111,15 +119,17 @@ class ShopUserProfileScreenController extends GetxController {
         offerImage4 = ApiUrl.apiImagePath + "asset/uploads/product/" + getShopProfileModel.data.data[0].image4;
         offerImage5 = ApiUrl.apiImagePath + "asset/uploads/product/" + getShopProfileModel.data.data[0].image5;
 
+        meetingImagesList = getShopProfileModel.data.data[0].meetingimages;
+
 
         //
         log('Phone: ${contactNumber.text}');
       } else {
-        log("Get All Role Profile Api Else");
+        log("Get All Shop Profile Api Else");
       }
 
     } catch(e) {
-      log("All Role Profile Api Error ::: $e");
+      log("All Shop Profile Api Error ::: $e");
     } finally {
       //isLoading(false);
       await multiAccountFunction();
@@ -151,17 +161,17 @@ class ShopUserProfileScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
 
-        userEmail = multiAccountUserModel.data.user[0].email;
-        userName = multiAccountUserModel.data.user[0].name.obs;
+        // userEmail = multiAccountUserModel.data.user[0].email;
+        // userName = multiAccountUserModel.data.user[0].name.obs;
 
         shopEmail = multiAccountUserModel.data.shope[0].email.obs;
         shopName = multiAccountUserModel.data.shope[0].shopename.obs;
 
-        ngoEmail = multiAccountUserModel.data.vetNgo[0].email.obs;
-        ngoName = multiAccountUserModel.data.vetNgo[0].name.obs;
-
-        trainerEmail = multiAccountUserModel.data.trainer[0].email.obs;
-        trainerName = multiAccountUserModel.data.trainer[0].name.obs;
+        // ngoEmail = multiAccountUserModel.data.vetNgo[0].email.obs;
+        // ngoName = multiAccountUserModel.data.vetNgo[0].name.obs;
+        //
+        // trainerEmail = multiAccountUserModel.data.trainer[0].email.obs;
+        // trainerName = multiAccountUserModel.data.trainer[0].name.obs;
       } else {
         log("Get Multi Account Api Else");
         //await unfollowUserFunction();
@@ -233,11 +243,13 @@ class ShopUserProfileScreenController extends GetxController {
         request.fields['shopename'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phonenumber'] = contactNumber.text.trim();
-        request.fields['shopopen'] = openTimeController.text.trim();
-        request.fields['shopclose'] = closeTimeController.text.trim();
+        request.fields['shopopen'] = selectedOpenTime!.value;
+        request.fields['shopclose'] = selectedCloseTime!.value;
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['uid'] = "${UserDetails.userId}";
-        request.fields['full_text'] = "jgjadg";
+        request.fields['full_text'] = detailsController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
 
         var multiPart = http.MultipartFile(
           'showimg',
@@ -343,11 +355,13 @@ class ShopUserProfileScreenController extends GetxController {
         request.fields['shopename'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phonenumber'] = contactNumber.text.trim();
-        request.fields['shopopen'] = openTimeController.text.trim();
-        request.fields['shopclose'] = closeTimeController.text.trim();
+        request.fields['shopopen'] = selectedOpenTime!.value;
+        request.fields['shopclose'] = selectedCloseTime!.value;
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['uid'] = "${UserDetails.userId}";
-        request.fields['full_text'] = "jgjadg";
+        request.fields['full_text'] = detailsController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
 
         var multiPart = http.MultipartFile(
           'showimg',
@@ -453,11 +467,13 @@ class ShopUserProfileScreenController extends GetxController {
         request.fields['shopename'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phonenumber'] = contactNumber.text.trim();
-        request.fields['shopopen'] = openTimeController.text.trim();
-        request.fields['shopclose'] = closeTimeController.text.trim();
+        request.fields['shopopen'] = selectedOpenTime!.value;
+        request.fields['shopclose'] = selectedCloseTime!.value;
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['uid'] = "${UserDetails.userId}";
-        request.fields['full_text'] = "jgjadg";
+        request.fields['full_text'] = detailsController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
 
         var multiPart = http.MultipartFile(
           'showimg',
@@ -563,11 +579,13 @@ class ShopUserProfileScreenController extends GetxController {
         request.fields['shopename'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phonenumber'] = contactNumber.text.trim();
-        request.fields['shopopen'] = openTimeController.text.trim();
-        request.fields['shopclose'] = closeTimeController.text.trim();
+        request.fields['shopopen'] = selectedOpenTime!.value;
+        request.fields['shopclose'] = selectedCloseTime!.value;
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['uid'] = "${UserDetails.userId}";
-        request.fields['full_text'] = "jgjadg";
+        request.fields['full_text'] = detailsController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
 
         var multiPart = http.MultipartFile(
           'showimg',
@@ -674,11 +692,13 @@ class ShopUserProfileScreenController extends GetxController {
         request.fields['shopename'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phonenumber'] = contactNumber.text.trim();
-        request.fields['shopopen'] = openTimeController.text.trim();
-        request.fields['shopclose'] = closeTimeController.text.trim();
+        request.fields['shopopen'] = selectedOpenTime!.value;
+        request.fields['shopclose'] = selectedCloseTime!.value;
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['uid'] = "${UserDetails.userId}";
-        request.fields['full_text'] = "jgjadg";
+        request.fields['full_text'] = detailsController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
 
         var multiPart = http.MultipartFile(
           'showimg',
@@ -785,11 +805,13 @@ class ShopUserProfileScreenController extends GetxController {
         request.fields['shopename'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phonenumber'] = contactNumber.text.trim();
-        request.fields['shopopen'] = openTimeController.text.trim();
-        request.fields['shopclose'] = closeTimeController.text.trim();
+        request.fields['shopopen'] = selectedOpenTime!.value;
+        request.fields['shopclose'] = selectedCloseTime!.value;
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['uid'] = "${UserDetails.userId}";
-        request.fields['full_text'] = "jgjadg";
+        request.fields['full_text'] = detailsController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
 
         var multiPart = http.MultipartFile(
           'showimg',
@@ -896,11 +918,13 @@ class ShopUserProfileScreenController extends GetxController {
         request.fields['shopename'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phonenumber'] = contactNumber.text.trim();
-        request.fields['shopopen'] = openTimeController.text.trim();
-        request.fields['shopclose'] = closeTimeController.text.trim();
+        request.fields['shopopen'] = selectedOpenTime!.value;
+        request.fields['shopclose'] = selectedCloseTime!.value;
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['uid'] = "${UserDetails.userId}";
-        request.fields['full_text'] = "jgjadg";
+        request.fields['full_text'] = detailsController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
 
         // var multiPart = http.MultipartFile(
         //   'showimg',
@@ -1007,11 +1031,13 @@ class ShopUserProfileScreenController extends GetxController {
         request.fields['shopename'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phonenumber'] = contactNumber.text.trim();
-        request.fields['shopopen'] = openTimeController.text.trim();
-        request.fields['shopclose'] = closeTimeController.text.trim();
+        request.fields['shopopen'] = selectedOpenTime!.value;
+        request.fields['shopclose'] = selectedCloseTime!.value;
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['uid'] = "${UserDetails.userId}";
-        request.fields['full_text'] = "jgjadg";
+        request.fields['full_text'] = detailsController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
 
         // var multiPart = http.MultipartFile(
         //   'showimg',
@@ -1118,11 +1144,13 @@ class ShopUserProfileScreenController extends GetxController {
         request.fields['shopename'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phonenumber'] = contactNumber.text.trim();
-        request.fields['shopopen'] = openTimeController.text.trim();
-        request.fields['shopclose'] = closeTimeController.text.trim();
+        request.fields['shopopen'] = selectedOpenTime!.value;
+        request.fields['shopclose'] = selectedCloseTime!.value;
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['uid'] = "${UserDetails.userId}";
-        request.fields['full_text'] = "jgjadg";
+        request.fields['full_text'] = detailsController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
 
         // var multiPart = http.MultipartFile(
         //   'showimg',
@@ -1229,11 +1257,13 @@ class ShopUserProfileScreenController extends GetxController {
         request.fields['shopename'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phonenumber'] = contactNumber.text.trim();
-        request.fields['shopopen'] = openTimeController.text.trim();
-        request.fields['shopclose'] = closeTimeController.text.trim();
+        request.fields['shopopen'] = selectedOpenTime!.value;
+        request.fields['shopclose'] = selectedCloseTime!.value;
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['uid'] = "${UserDetails.userId}";
-        request.fields['full_text'] = "jgjadg";
+        request.fields['full_text'] = detailsController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
 
         // var multiPart = http.MultipartFile(
         //   'showimg',
@@ -1340,11 +1370,13 @@ class ShopUserProfileScreenController extends GetxController {
         request.fields['shopename'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phonenumber'] = contactNumber.text.trim();
-        request.fields['shopopen'] = openTimeController.text.trim();
-        request.fields['shopclose'] = closeTimeController.text.trim();
+        request.fields['shopopen'] = selectedOpenTime!.value;
+        request.fields['shopclose'] = selectedCloseTime!.value;
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['uid'] = "${UserDetails.userId}";
-        request.fields['full_text'] = "jgjadg";
+        request.fields['full_text'] = detailsController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
 
         // var multiPart = http.MultipartFile(
         //   'showimg',
@@ -1428,11 +1460,13 @@ class ShopUserProfileScreenController extends GetxController {
         request.fields['shopename'] = nameController.text.trim();
         request.fields['address'] = addressController.text.trim();
         request.fields['phonenumber'] = contactNumber.text.trim();
-        request.fields['shopopen'] = openTimeController.text.trim();
-        request.fields['shopclose'] = closeTimeController.text.trim();
+        request.fields['shopopen'] = selectedOpenTime!.value;
+        request.fields['shopclose'] = selectedCloseTime!.value;
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['uid'] = "${UserDetails.userId}";
-        request.fields['full_text'] = "jgjadg";
+        request.fields['full_text'] = detailsController.text.trim();
+        request.fields['instagram'] = instagramController.text.trim();
+        request.fields['facebook'] = facebookController.text.trim();
 
         // var multiPart = http.MultipartFile(
         //   'file',
@@ -1481,7 +1515,7 @@ class ShopUserProfileScreenController extends GetxController {
 
     try {
       Map<String, dynamic> data = {
-        "email": userEmail,
+        "email": shopEmail.value,
         "password": passwordController.text.trim(),
         "categoryID": "${UserDetails.roleId}",
       };
@@ -1495,15 +1529,15 @@ class ShopUserProfileScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         // User Data Set in Prefs
-        await userPreference.setUserDetails(
-            selfId: loginModel.data.uid,
-            userId: loginModel.data.id,
-            userName: loginModel.data.name,
-            userEmail: loginModel.data.email,
-            userProfileImage: loginModel.data.image,
-            token: loginModel.data.rememberToken,
-            roleId: loginModel.data.categoryId
-        );
+        // await userPreference.setUserDetails(
+        //     selfId: loginModel.data.uid,
+        //     userId: loginModel.data.id,
+        //     userName: loginModel.data.name,
+        //     userEmail: loginModel.data.email,
+        //     userProfileImage: loginModel.data.image,
+        //     token: loginModel.data.rememberToken,
+        //     roleId: loginModel.data.categoryId
+        // );
         passwordController.clear();
         //await userPreference.setRoleId(roleId);
         // Going to Index Screen
