@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/pet_vets_and_ngo_screen_controller.dart';
 import 'package:pet_met/models/pet_vets_and_ngo_screen_models.dart';
+import 'package:pet_met/screens/pet_vets_and_ngo_details_screen/pet_vets_and_ngo_details_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
@@ -134,8 +135,9 @@ class VetsAndNgoListModule extends StatelessWidget {
     String imgUrl = ApiUrl.apiImagePath + vetAndNgoData.image;
     return GestureDetector(
       onTap: () {
-        Get.toNamed(
-          AppRouteNames.petVetsAndNgoDetailsScreenRoute,
+        Get.to(()=> PetVetsAndNgoDetailsScreen(),
+          transition: Transition.native,
+          duration: const Duration(milliseconds: 500),
           arguments: vetAndNgoData.id,
         );
       },

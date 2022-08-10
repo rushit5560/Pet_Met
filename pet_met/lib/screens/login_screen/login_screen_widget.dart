@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pet_met/controllers/login_controller.dart';
+import 'package:pet_met/screens/forgot_password_screen/forgot_password_screen.dart';
+import 'package:pet_met/screens/register_screen/register_screen.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
@@ -116,7 +118,9 @@ class LoginModule extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    Get.toNamed(AppRouteNames.forgotPassRoute);
+                    Get.to(() => ForgotPasswordScreen(),
+                        transition: Transition.native,
+                        duration: const Duration(milliseconds: 500));
                   },
                   child: Text(
                     "Forgot Password ?",
@@ -269,7 +273,9 @@ class LoginModule extends StatelessWidget {
                 const SizedBox(width: 5),
                 GestureDetector(
                   onTap: () {
-                    Get.toNamed(AppRouteNames.registerRoute);
+                    Get.to(() => RegisterScreen(),
+                        transition: Transition.native,
+                        duration: const Duration(milliseconds: 500));
                   },
                   child: Text(
                     "Register",

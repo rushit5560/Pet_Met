@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:pet_met/screens/splash_screen/splash_screen.dart';
 import 'package:pet_met/services/providers/dark_theme_provider.dart';
 
 import 'package:pet_met/utils/app_colors.dart';
@@ -71,8 +72,9 @@ class _MyAppState extends State<MyApp> {
                 debugShowCheckedModeBanner: false,
                 // theme: appThemeData,
                 theme: Styles.themeData(themeChangeProvider.darkTheme, context),
-                initialRoute: AppRouteNames.splashRoute,
-                getPages: AppRoutes().routes,
+                //initialRoute: AppRouteNames.splashRoute,
+                //getPages: AppRoutes().routes,
+                home: SplashScreen(),
               );
             },
           ),

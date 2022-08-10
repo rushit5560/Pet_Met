@@ -7,6 +7,10 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pet_met/controllers/home_controller.dart';
 import 'package:pet_met/controllers/index_screen_controller.dart';
 import 'package:pet_met/screens/home_screen/widgets/home_screen_widgets.dart';
+import 'package:pet_met/screens/ngo_user_profile_screen/ngo_user_profile_screen.dart';
+import 'package:pet_met/screens/shop_user_profile_screen/shop_user_profile_screen.dart';
+import 'package:pet_met/screens/trainers_and_users_profile_screen/trainers_and_user_profile_screen.dart';
+import 'package:pet_met/screens/user_profile_edit_screen/user_profile_edit_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
@@ -68,13 +72,21 @@ class _HomeScreenState extends State<HomeScreen> {
                       //Get.toNamed(AppRouteNames.userProfileEditRoute);
                       log('UserDetails.roleId: ${UserDetails.categoryId}');
                       if(UserDetails.categoryId == 1){
-                        Get.toNamed(AppRouteNames.userProfileEditRoute);
+                        Get.to(() => UserProfileEditScreen(),
+                            transition: Transition.native,
+                            duration: const Duration(milliseconds: 500));
                       } else if(UserDetails.categoryId == 2){
-                        Get.toNamed(AppRouteNames.shopUserProfileScreenRoute);
+                        Get.to(()=> ShopUserProfileScreen(),
+                            transition: Transition.native,
+                            duration: const Duration(milliseconds: 500));
                       } else if(UserDetails.categoryId == 3){
-                        Get.toNamed(AppRouteNames.ngoUserProfileScreenRoute);
+                        Get.to(()=> NgoUserProfileScreen(),
+                            transition: Transition.native,
+                            duration: const Duration(milliseconds: 500));
                       } else if(UserDetails.categoryId == 4){
-                        Get.toNamed(AppRouteNames.trainersAndUsersScreenRoute);
+                        Get.to(()=> TrainersAndUserProfileScreenController(),
+                            transition: Transition.native,
+                            duration: const Duration(milliseconds: 500));
                       }
                     },
                     child: UserDetails.categoryId == 1 ?

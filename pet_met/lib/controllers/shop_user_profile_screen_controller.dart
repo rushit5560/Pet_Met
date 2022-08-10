@@ -11,6 +11,7 @@ import 'package:pet_met/models/get_all_profile_model/get_vet_and_ngo_profile_mod
 import 'package:pet_met/models/login_screen_model/login_model.dart';
 import 'package:pet_met/models/multi_account_user_model/multiple_account_user_model.dart';
 import 'package:pet_met/models/shop_update_profile_model/shop_update_profile_model.dart';
+import 'package:pet_met/screens/index_screen/index_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_route_names.dart';
@@ -1541,7 +1542,9 @@ class ShopUserProfileScreenController extends GetxController {
         passwordController.clear();
         //await userPreference.setRoleId(roleId);
         // Going to Index Screen
-        Get.toNamed(AppRouteNames.indexScreenRoute);
+        Get.to(() => IndexScreen(),
+            transition: Transition.native,
+            duration: const Duration(milliseconds: 500));
       } else {
         Fluttertoast.showToast(msg: loginModel.error);
       }

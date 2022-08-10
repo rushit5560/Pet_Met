@@ -6,10 +6,12 @@ import 'package:flutter_zoom_drawer/config.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/screens/home_screen/home_screen.dart';
+import 'package:pet_met/screens/locate_screen/locate_screen.dart';
 import 'package:pet_met/screens/pet_meeting_and_breading_screen/pet_meeting_and_breading_screen.dart';
 import 'package:pet_met/screens/pet_trainers_screen/pet_trainers_screen.dart';
 import 'package:pet_met/screens/pet_vets_and_ngo_screen/pet_vets_and_ngo_screen.dart';
 import 'package:pet_met/screens/shop_and_grooming_screen/shop_and_grooming_screen.dart';
+import 'package:pet_met/screens/user_categories_screen/user_categories_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/user_details.dart';
@@ -34,10 +36,10 @@ class IndexScreenController extends GetxController {
   ApiHeader apiHeader = ApiHeader();
 
   List screenPages = [
-    ShopAndGroomingScreen(),
+    PetMeetingAndBreadingScreen(),
     PetTrainersScreen(),
     HomeScreen(),
-    PetMeetingAndBreadingScreen(),
+    LocateScreen(),
     PetVetsAndNgoScreen(),
   ];
 
@@ -71,7 +73,9 @@ class IndexScreenController extends GetxController {
 
   Future<void> userLogOutFunction() async {
     await userPreference.removeUserDetails();
-    Get.offAllNamed(AppRouteNames.userCategoriesScreenRoute);
+    Get.offAll(()=> const UserCategoriesScreen(),
+        transition: Transition.native,
+        duration: const Duration(milliseconds: 500));
   }
 
 }

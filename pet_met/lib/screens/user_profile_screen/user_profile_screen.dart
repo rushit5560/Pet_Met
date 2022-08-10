@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/user_profile_controller.dart';
+import 'package:pet_met/screens/change_password_screen/change_password_screen.dart';
 import 'package:pet_met/screens/user_profile_screen/widgets/user_profile_screen_widgets.dart';
 import 'package:pet_met/utils/app_images.dart';
 
@@ -44,7 +45,9 @@ class UserProfileScreen extends StatelessWidget {
                   title: "Profile",
                   trailingWidget: GestureDetector(
                     onTap: () {
-                      Get.toNamed(AppRouteNames.changePasswordRoute);
+                      Get.to(()=> ChangePasswordScreen(),
+                          transition: Transition.native,
+                          duration: const Duration(milliseconds: 500));
                     },
                     child: Icon(
                       Icons.edit_note_rounded,

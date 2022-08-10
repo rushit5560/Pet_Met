@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/address_controller.dart';
 import 'package:pet_met/controllers/order_details_controller.dart';
+import 'package:pet_met/screens/payment_failed_screen/payment_failed_screen.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
@@ -219,7 +220,9 @@ class OrderDetailsModule extends StatelessWidget {
         SizedBox(height: 1.5.h),
         GestureDetector(
           onTap: () {
-            Get.toNamed(AppRouteNames.paymentFailedRoute);
+            Get.to(()=> PaymentFailedScreen(),
+                transition: Transition.native,
+                duration: const Duration(milliseconds: 500));
           },
           child: Container(
             // height: 50,

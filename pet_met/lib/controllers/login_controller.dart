@@ -12,6 +12,7 @@ import 'package:pet_met/utils/api_url.dart';
 import 'package:http/http.dart' as http;
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
+import '../screens/index_screen/index_screen.dart';
 import '../utils/app_route_names.dart';
 
 class LoginController extends GetxController {
@@ -76,7 +77,9 @@ class LoginController extends GetxController {
         );
         //await userPreference.setRoleId(roleId);
         // Going to Index Screen
-        Get.toNamed(AppRouteNames.indexScreenRoute);
+        Get.to(() => IndexScreen(),
+            transition: Transition.native,
+            duration: const Duration(milliseconds: 500));
       } else {
         //Fluttertoast.showToast(msg: loginModel.error);
         if(loginModel.error.contains('password don\'t match')){

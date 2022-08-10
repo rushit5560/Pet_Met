@@ -1,6 +1,15 @@
 import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pet_met/screens/about_screen/about_screen.dart';
+import 'package:pet_met/screens/faq_screen/faq_screen.dart';
+import 'package:pet_met/screens/pet_activity_screen/pet_activity_screen.dart';
+import 'package:pet_met/screens/pet_care_info_screen/pet_care_info_screen.dart';
+import 'package:pet_met/screens/pet_pricing_screen/pet_pricing_screen.dart';
+import 'package:pet_met/screens/privacy_policy_screen/privacy_policy_screen.dart';
+import 'package:pet_met/screens/rate_app_screen/rate_app_screen.dart';
+import 'package:pet_met/screens/support_screen/support_screen.dart';
+import 'package:pet_met/screens/user_profile_screen/user_profile_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
@@ -58,7 +67,7 @@ class _BuildMenuState extends State<BuildMenu> {
                   child: GestureDetector(
                     onTap: () {
                       indexController.drawerController.close!();
-                      Get.toNamed(AppRouteNames.userProfileRoute);
+                      Get.to(() => UserProfileScreen());
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -190,7 +199,7 @@ class _BuildMenuState extends State<BuildMenu> {
                           drawerListTile(
                             onTap: () {
                               indexController.drawerController.close!();
-                              Get.toNamed(AppRouteNames.petCareInfoRoute);
+                              Get.to(()=> PetCareInfoScreen());
                             },
                             leading: Image.asset(
                               AppIcons.adoptionImg,
@@ -215,7 +224,7 @@ class _BuildMenuState extends State<BuildMenu> {
                           drawerListTile(
                             onTap: () {
                               indexController.drawerController.close!();
-                              Get.toNamed(AppRouteNames.supportRoute);
+                              Get.to(()=> SupportScreen());
                             },
                             leading: Image.asset(
                               AppIcons.supportImg,
@@ -238,7 +247,7 @@ class _BuildMenuState extends State<BuildMenu> {
                           drawerListTile(
                             onTap: () {
                               indexController.drawerController.close!();
-                              Get.toNamed(AppRouteNames.aboutRoute);
+                              Get.to(() => AboutScreen());
                             },
                             leading: Image.asset(
                               AppIcons.aboutImg,
@@ -261,7 +270,7 @@ class _BuildMenuState extends State<BuildMenu> {
                           drawerListTile(
                             onTap: () {
                               indexController.drawerController.close!();
-                              Get.toNamed(AppRouteNames.faqRoute);
+                              Get.to(() => FaqScreen());
                             },
                             leading: Image.asset(
                               AppIcons.faqImg,
@@ -284,8 +293,7 @@ class _BuildMenuState extends State<BuildMenu> {
                           drawerListTile(
                             onTap: () {
                               indexController.drawerController.close!();
-                              Get.toNamed(
-                                  AppRouteNames.privacyPolicyScreenRoute);
+                              Get.to(() => PrivacyPolicyScreen());
                             },
                             leading: Image.asset(
                               AppIcons.privacyPolicyImg,
@@ -352,7 +360,7 @@ class _BuildMenuState extends State<BuildMenu> {
                           drawerListTile(
                             onTap: () {
                               indexController.drawerController.close!();
-                              Get.toNamed(AppRouteNames.rateAppRoute);
+                              Get.to(()=> RateAppScreen());
                             },
                             leading: Image.asset(
                               AppIcons.rateImg,
@@ -375,7 +383,7 @@ class _BuildMenuState extends State<BuildMenu> {
                           drawerListTile(
                             onTap: () {
                               indexController.drawerController.close!();
-                              Get.toNamed(AppRouteNames.petActivityRoute);
+                              Get.to(() => PetActivityScreen());
                             },
                             leading: Image.asset(
                               AppIcons.rateImg,
@@ -398,7 +406,9 @@ class _BuildMenuState extends State<BuildMenu> {
                           drawerListTile(
                             onTap: () {
                               indexController.drawerController.close!();
-                              Get.toNamed(AppRouteNames.petPricingRoute);
+                              Get.to(()=> PetPricingScreen(),
+                                  transition: Transition.native,
+                                  duration: const Duration(milliseconds: 500));
                             },
                             leading: Image.asset(
                               AppIcons.rateImg,

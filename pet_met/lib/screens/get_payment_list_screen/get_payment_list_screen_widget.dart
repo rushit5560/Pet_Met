@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/get_payment_list_screen_controller.dart';
+import 'package:pet_met/screens/new_payment_screen/new_payment_screen.dart';
 import 'package:pet_met/services/providers/dark_theme_provider.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
@@ -148,7 +149,9 @@ class AddNewPaymentButtonModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRouteNames.addPaymentRoute);
+        Get.to(()=> NewPaymentScreen(),
+            transition: Transition.native,
+            duration: const Duration(milliseconds: 500));
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),

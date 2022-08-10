@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/address_controller.dart';
+import 'package:pet_met/screens/add_address_screen/add_address_screen.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
@@ -161,7 +162,9 @@ class AddNewAddressButtonModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRouteNames.addAddressRoute);
+        Get.to(() => AddAddressScreen(),
+            transition: Transition.native,
+            duration: const Duration(milliseconds: 500));
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),

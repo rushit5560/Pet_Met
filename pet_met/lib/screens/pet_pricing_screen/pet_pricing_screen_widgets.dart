@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/pet_pricing_controller.dart';
+import 'package:pet_met/screens/pet_tracker_pricing_screen/pet_tracker_pricing_screen.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
@@ -111,13 +112,17 @@ class PetTrackerPriceModule extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {
                         if (index == 0) {
-                          Get.toNamed(
-                            AppRouteNames.petTrackerPricingRoute,
+                          Get.to(()=>
+                          PetTrackerPricingScreen(),
+                            transition: Transition.native,
+                            duration: const Duration(milliseconds: 500),
                             arguments: controller.planData[index].id,
                           );
                         } else if (index == 1) {
-                          Get.toNamed(
-                            AppRouteNames.petTrackerPricingRoute,
+                          Get.to(()=>
+                            PetTrackerPricingScreen(),
+                            transition: Transition.native,
+                            duration: const Duration(milliseconds: 500),
                             arguments: controller.planData[index].id,
                           );
                         }

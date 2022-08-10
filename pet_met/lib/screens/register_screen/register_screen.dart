@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pet_met/controllers/register_controller.dart';
+import 'package:pet_met/screens/privacy_policy_screen/privacy_policy_screen.dart';
 import 'package:pet_met/screens/register_screen/register_screen_widgets.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
@@ -201,8 +202,9 @@ class RegisterScreen extends StatelessWidget {
                                     ),),
                                   GestureDetector(
                                     onTap: (){
-                                      Get.toNamed(
-                                          AppRouteNames.privacyPolicyScreenRoute);
+                                      Get.to(() => PrivacyPolicyScreen(),
+                                          transition: Transition.native,
+                                          duration: const Duration(milliseconds: 500));
                                     },
                                     child: Text("privacy Policy", style: TextStyle(
                                       color: themeProvider.darkTheme

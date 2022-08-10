@@ -9,6 +9,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/controllers/index_screen_controller.dart';
 import 'package:pet_met/models/get_all_pet_list_model/get_all_pet_list_model.dart';
 import 'package:pet_met/screens/edit_story_screen/edit_story_screen.dart';
+import 'package:pet_met/screens/pet_meeting_details_screen/pet_meeting_details_screen.dart';
+import 'package:pet_met/screens/shop_and_grooming_screen/shop_and_grooming_screen.dart';
+import 'package:pet_met/screens/user_profile_screen/user_profile_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
@@ -66,7 +69,7 @@ class PetTopListModule extends StatelessWidget {
             child: GestureDetector(
               onTap: (){
                // Get.toNamed(AppRouteNames.userProfileRoute);
-                Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: petList.id);
+                Get.to(()=> PetMeetingDetailsScreen(), arguments: petList.id);
               },
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(12),
@@ -101,7 +104,10 @@ class PetTopListModule extends StatelessWidget {
                 //Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
                 log('Follow Userid: ${petList.userid}');
                 log('Follow Categoryid: ${petList.categoryId}');
-                Get.toNamed(AppRouteNames.userProfileRoute, arguments: [petList.userid, petList.categoryId]);
+                Get.to(()=> UserProfileScreen(),
+                    transition: Transition.native,
+                    duration: const Duration(milliseconds: 500),
+                    arguments: [petList.userid, petList.categoryId]);
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -823,10 +829,14 @@ class PetShopAndGroomingText extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            indexController.isLoading(true);
-            indexController.selectedBottomIndex.value = 0;
-            indexController.isLoading(false);
-            log("indexController.selectedbottomIndex.value : ${indexController.selectedBottomIndex.value}");
+            // indexController.isLoading(true);
+            // indexController.selectedBottomIndex.value = 0;
+            // indexController.isLoading(false);
+            // log("indexController.selectedbottomIndex.value : ${indexController.selectedBottomIndex.value}");
+            Get.to(()=> ShopAndGroomingScreen(),
+              transition: Transition.zoom,
+              duration: const Duration(milliseconds: 500),
+            );
           },
           child: Container(
             height: 35,

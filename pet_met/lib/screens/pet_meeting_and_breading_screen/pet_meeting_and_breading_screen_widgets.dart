@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/pet_meeting_and_breading_screen_controller.dart';
 import 'package:pet_met/models/pet_meeting_and_breading_screen_models/category_and_sub_category_model.dart';
+import 'package:pet_met/screens/pet_meeting_list_screen/pet_meeting_list_screen.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_functions/hide_keyboard.dart';
@@ -289,7 +290,9 @@ class MeetYourLovedOneButtonModule extends StatelessWidget {
         if(screenController.searchFieldController.text.isNotEmpty){
           await screenController.getSearchCategoryAndSubCategoryFunction().then((value) {
             screenController.searchFieldController.clear();
-            Get.toNamed(AppRouteNames.petMeetingListScreenRoute);
+            Get.to(()=> PetMeetingListScreen(),
+                transition: Transition.native,
+                duration: const Duration(milliseconds: 500));
           });
         }
 

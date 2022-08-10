@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pet_met/screens/user_categories_screen/user_categories_screen.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:provider/provider.dart';
 
@@ -19,7 +20,10 @@ class OnboardingController extends GetxController {
     if (isLastPage) {
       setOnBoardingValue();
       //Get.off(() => LoginScreen());
-      Get.offNamed(AppRouteNames.userCategoriesScreenRoute);
+      Get.off(() => const UserCategoriesScreen(),
+          transition: Transition.native,
+          duration: const Duration(milliseconds: 500)
+      );
     } else {
       pageController.nextPage(
         duration: 300.milliseconds,

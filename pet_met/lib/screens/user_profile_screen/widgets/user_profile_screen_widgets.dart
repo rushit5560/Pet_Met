@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/user_profile_controller.dart';
+import 'package:pet_met/screens/address_screen/address_screen.dart';
+import 'package:pet_met/screens/upload_pet_screen/upload_pet_screen.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/user_details.dart';
@@ -294,7 +296,7 @@ class ContactInfoModule extends StatelessWidget {
             SizedBox(width: 20),
             GestureDetector(
               onTap: () {
-                Get.toNamed(AppRouteNames.addressRoute);
+                Get.to(()=> AddressScreen());
               },
               child: const ContactContainerWidget(
                 imagePath: AppImages.locateGreenImg,
@@ -364,7 +366,9 @@ class DogOwnerListModule extends StatelessWidget {
                     //     : "";
                     //    // :
 
-                    Get.toNamed(AppRouteNames.uploadPetRoute,
+                    Get.to(()=> UploadPetScreen(),
+                        transition: Transition.native,
+                        duration: const Duration(milliseconds: 500),
                         arguments: [PetOption.addOption, 0]);
                   },
                   child: Container(
@@ -395,7 +399,9 @@ class DogOwnerListModule extends StatelessWidget {
                           return GestureDetector(
                             onTap: () {
                               log('Pet Id : ${controller.petList[index].id}');
-                              Get.toNamed(AppRouteNames.uploadPetRoute,
+                              Get.to(()=> UploadPetScreen(),
+                                  transition: Transition.native,
+                                  duration: const Duration(milliseconds: 500),
                                   arguments: [
                                     PetOption.updateOption,
                                     controller.petList[index].id
@@ -444,7 +450,9 @@ class DogOwnerListModule extends StatelessWidget {
                               return GestureDetector(
                                 onTap: () {
                                   log('Pet Id : ${controller.shopPetList[index].id}');
-                                  Get.toNamed(AppRouteNames.uploadPetRoute,
+                                  Get.to(()=> UploadPetScreen(),
+                                      transition: Transition.native,
+                                      duration: const Duration(milliseconds: 500),
                                       arguments: [
                                         PetOption.updateOption,
                                         controller.shopPetList[index].id
@@ -494,7 +502,9 @@ class DogOwnerListModule extends StatelessWidget {
                                   return GestureDetector(
                                     onTap: () {
                                       log('Pet Id : ${controller.ngoPetList[index].id}');
-                                      Get.toNamed(AppRouteNames.uploadPetRoute,
+                                      Get.to(()=> UploadPetScreen(),
+                                          transition: Transition.native,
+                                          duration: const Duration(milliseconds: 500),
                                           arguments: [
                                             PetOption.updateOption,
                                             controller.ngoPetList[index].id
@@ -545,8 +555,9 @@ class DogOwnerListModule extends StatelessWidget {
                                       return GestureDetector(
                                         onTap: () {
                                           log('Pet Id : ${controller.trainerPetList[index].id}');
-                                          Get.toNamed(
-                                              AppRouteNames.uploadPetRoute,
+                                          Get.to(()=> UploadPetScreen(),
+                                              transition: Transition.native,
+                                              duration: const Duration(milliseconds: 500),
                                               arguments: [
                                                 PetOption.updateOption,
                                                 controller

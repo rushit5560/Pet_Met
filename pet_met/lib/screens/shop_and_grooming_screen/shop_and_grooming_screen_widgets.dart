@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/shop_and_grooming_screen_controller.dart';
 import 'package:pet_met/models/shop_and_grooming_screen_model/all_shop_model.dart';
+import 'package:pet_met/screens/shop_details_screen/shop_details_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
@@ -134,7 +135,9 @@ class ShopListModule extends StatelessWidget {
     String imgUrl = ApiUrl.apiImagePath + shopSingleItem.showimg;
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRouteNames.shopDetailsScreenRoute,
+        Get.to(()=> ShopDetailsScreen(),
+            transition: Transition.native,
+            duration: const Duration(milliseconds: 500),
             arguments: shopSingleItem.id);
       },
       child: Container(

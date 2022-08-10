@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/pet_trainers_screen_controller.dart';
 import 'package:pet_met/models/pet_trainers_screen_models/all_trainer_model.dart';
+import 'package:pet_met/screens/pet_trainers_details_screen/pet_trainers_details_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
@@ -134,7 +135,9 @@ class PetTrainerListModule extends StatelessWidget {
     String imgUrl = ApiUrl.apiImagePath + trainerSingleItem.image;
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRouteNames.petTrainerDetailsScreenRoute,
+        Get.to(()=> PetTrainersDetailsScreen(),
+            transition: Transition.native,
+            duration: const Duration(milliseconds: 500),
             arguments: trainerSingleItem.id);
       },
       child: Container(

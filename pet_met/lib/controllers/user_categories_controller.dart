@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
+import 'package:pet_met/screens/login_screen/login_screen.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/user_preference.dart';
 
@@ -21,7 +22,10 @@ class UserCategoriesController extends GetxController {
   Future<void> setRoleIdInPrefs() async {
     await userPreference.setRoleId(roleId);
     //Get.offNamed(AppRouteNames.loginRoute);
-    Get.toNamed(AppRouteNames.loginRoute);
+    Get.to(() => LoginScreen(),
+        transition: Transition.native,
+        duration: const Duration(milliseconds: 500)
+    );
   }
 
   var boolsList = [];

@@ -2,6 +2,9 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:get/get.dart';
+import 'package:pet_met/screens/index_screen/index_screen.dart';
+import 'package:pet_met/screens/onboarding_screen/onboarding_screen.dart';
+import 'package:pet_met/screens/user_categories_screen/user_categories_screen.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
@@ -44,9 +47,13 @@ class SplashController extends GetxController {
       const Duration(milliseconds: 2500),
       () {
         if (onboardingValue == false) {
-          Get.offNamed(AppRouteNames.onBoardingRoute);
+          Get.off(()=> OnboardingScreen(),
+              transition: Transition.native,
+              duration: const Duration(milliseconds: 500));
         } else if (UserDetails.isUserLoggedIn == true) {
-          Get.offNamed(AppRouteNames.indexScreenRoute);
+          Get.off(() => IndexScreen(),
+              transition: Transition.native,
+              duration: const Duration(milliseconds: 500));
           // Get.off(() => IndexScreen(),
           //   transition: Transition.native,
           //   duration: const Duration(milliseconds: 500),
@@ -54,7 +61,9 @@ class SplashController extends GetxController {
 
         } else if (UserDetails.isUserLoggedIn == false) {
           //Get.offNamed(AppRouteNames.loginRoute);
-          Get.offNamed(AppRouteNames.userCategoriesScreenRoute);
+          Get.off(() => const UserCategoriesScreen(),
+              transition: Transition.native,
+              duration: const Duration(milliseconds: 500));
           // Get.off(() => LoginScreen(),
           //   transition: Transition.native,
           //   duration: const Duration(milliseconds: 500),
