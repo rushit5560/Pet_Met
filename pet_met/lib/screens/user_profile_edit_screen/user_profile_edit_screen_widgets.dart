@@ -71,9 +71,15 @@ class UploadImageModule extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.file(
-                  themeProvider.darkTheme
-                      ? controller.imageFile! : controller.imageFile!,height: 65,),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: Image.file(
+                    themeProvider.darkTheme
+                        ? controller.imageFile! : controller.imageFile!,
+                    width: 100,
+                    height: 100,
+                    fit: BoxFit.cover,),
+                ),
 
                 //),
                 // const SizedBox(height: 20),
@@ -96,35 +102,41 @@ class UploadImageModule extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.network(
-                  themeProvider.darkTheme
-                      ? controller.userProfile : controller.userProfile,height: 65,
-                  errorBuilder: (context, er, bt){
-                    //return Image.asset(AppImages.petMetLogoImg, height: 65);
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          themeProvider.darkTheme
-                              ? AppImages.cameraPlaceHolderImgDark
-                              : AppImages.cameraPlaceHolderImglight,
-                          height: 65,
-                        ),
-                        const SizedBox(height: 20),
-                        Text(
-                          "Upload Image",
-                          style: TextStyle(
-                            color: themeProvider.darkTheme
-                                ? AppColors.whiteColor
-                                : AppColors.blackTextColor,
-                            fontSize: 15.sp,
-                            fontWeight: FontWeight.w500,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: Image.network(
+                    themeProvider.darkTheme
+                        ? controller.userProfile : controller.userProfile,
+                    width: 100,
+                    height: 100,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, er, bt){
+                      //return Image.asset(AppImages.petMetLogoImg, height: 65);
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            themeProvider.darkTheme
+                                ? AppImages.cameraPlaceHolderImgDark
+                                : AppImages.cameraPlaceHolderImglight,
+                            height: 65,
                           ),
-                        ),
-                      ],
-                    );
-                  },
+                          const SizedBox(height: 20),
+                          Text(
+                            "Upload Image",
+                            style: TextStyle(
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor,
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
                 ),
 
                 //),

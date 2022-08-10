@@ -46,6 +46,8 @@ class TrainersAndUsersScreenController extends GetxController {
   RxString trainerEmail = "".obs;
   RxString trainerName = "".obs;
 
+  RxBool isPasswordVisible = true.obs;
+
   var passwordController = TextEditingController();
   UserPreference userPreference = UserPreference();
 

@@ -36,20 +36,22 @@ class ShopAndGroomingScreen extends StatelessWidget {
               children: [
                 CustomAppBar(
                   title: "Shop & Grooming",
-                  appBarOption: AppBarOption.drawerButtonOption,
+                  appBarOption: AppBarOption.singleBackButtonOption,
                 ),
                 const SizedBox(height: 15),
 
                 Expanded(
-                  child: shopAndGroomingScreenController.isLoading.value
-                      ? const CustomAnimationLoader()
-                      : Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SearchShopTextFieldModule(),
-                          Expanded(child: ShopListModule()),
-                        ],
-                      ),
+                  child: Obx(()=>
+                     shopAndGroomingScreenController.isLoading.value
+                        ? const CustomAnimationLoader()
+                        : Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SearchShopTextFieldModule(),
+                            Expanded(child: ShopListModule()),
+                          ],
+                        ),
+                  ),
                 ),
               ],
             ),

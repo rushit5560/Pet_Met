@@ -51,6 +51,8 @@ class ShopUserProfileScreenController extends GetxController {
   var instagramController = TextEditingController();
   var facebookController = TextEditingController();
 
+  RxBool isPasswordVisible = true.obs;
+
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 

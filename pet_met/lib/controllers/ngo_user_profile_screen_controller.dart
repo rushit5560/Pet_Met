@@ -33,6 +33,8 @@ class NgoUserProfileScreenController extends GetxController {
   File? ngoPictureFile5;
   String ? ngoImage5;
 
+  RxBool isPasswordVisible = true.obs;
+
   RxString selectedGenderValue = "Male".obs;
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;

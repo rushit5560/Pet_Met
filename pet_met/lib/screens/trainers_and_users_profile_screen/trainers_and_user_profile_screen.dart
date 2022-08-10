@@ -340,15 +340,93 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                 ],
               ),
               //const SizedBox(height: 8),
-              CustomLightTextField(
-                readOnly: false,
-                fieldController: controller.passwordController,
-                height: Get.height * 0.05,
-                width: double.infinity,
-                hintText: "Password",
-                textInputAction: TextInputAction.next,
-                textInputType: TextInputType.text,
-                validator: (val) => Validations().validatePassword(val!),
+              // CustomLightTextField(
+              //   readOnly: false,
+              //   fieldController: controller.passwordController,
+              //   height: Get.height * 0.05,
+              //   width: double.infinity,
+              //   hintText: "Password",
+              //   textInputAction: TextInputAction.next,
+              //   textInputType: TextInputType.text,
+              //   validator: (val) => Validations().validatePassword(val!),
+              // ),
+              Obx(()=>
+                  Stack(
+                    children: [
+                      Container(
+                        height: controller.size.height * 0.05,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          boxShadow: [
+                            BoxShadow(
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor.withOpacity(0.05)
+                                  : AppColors.greyTextColor.withOpacity(0.5),
+                              blurRadius: 10,
+                              spreadRadius: 0.1,
+                              offset: const Offset(0, 0),
+                            ),
+                          ],
+                        ),
+                      ),
+                      TextFormField(
+                        controller: controller.passwordController,
+                        validator: (val) => Validations().validatePassword(val!),
+                        obscureText: controller.isPasswordVisible.value,
+                        textInputAction: TextInputAction.done,
+                        keyboardType: TextInputType.visiblePassword,
+                        cursorColor: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.accentTextColor,
+                        style: TextStyle(
+                          color: themeProvider.darkTheme
+                              ? AppColors.whiteColor
+                              : AppColors.blackTextColor,
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.w400,
+                          decoration: TextDecoration.none,
+                        ),
+                        decoration: InputDecoration(
+                            fillColor: themeProvider.darkTheme
+                                ? AppColors.darkThemeBoxColor
+                                : AppColors.whiteColor,
+                            filled: true,
+                            contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+                            ),
+                            hintText: "Current Password",
+                            hintStyle: TextStyle(
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.greyTextColor,
+                              fontSize: 13.sp,
+                              fontWeight: FontWeight.w400,
+                            ),
+                            suffixIcon: Obx(
+                                  () => GestureDetector(
+                                onTap: () {
+                                  controller.isPasswordVisible.value =
+                                  !controller.isPasswordVisible.value;
+                                },
+                                child: Icon(
+                                    controller.isPasswordVisible.value
+                                        ? Icons.visibility_off_rounded
+                                        : Icons.visibility_rounded,
+                                    size: 20,
+                                    color: Colors.grey),
+                              ),
+                            )
+                        ),
+                      ),
+                    ],
+                  ),
               ),
 
               // const SizedBox(height: 20),

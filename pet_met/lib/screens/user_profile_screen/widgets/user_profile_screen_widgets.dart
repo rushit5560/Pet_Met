@@ -73,25 +73,48 @@ class ProfileImage extends StatelessWidget {
     //   height: controller.size.width * 0.35,
     // );
     return UserDetails.categoryId == 1
-        ? Image.network(controller.userprofile, height: 80,
-            errorBuilder: (context, er, bt) {
-            return Image.asset(AppImages.petMetLogoImg);
-          })
+        ? ClipRRect(
+          borderRadius: BorderRadius.circular(30),
+          child: Image.network(controller.userprofile,  width: 100,
+              height: 100,
+              fit: BoxFit.cover,
+              errorBuilder: (context, er, bt) {
+              return Image.asset(AppImages.petMetLogoImg);
+            }),
+        )
         : UserDetails.categoryId == 2
-            ? Image.network(controller.shopProfile, height: 80,
-                errorBuilder: (context, er, bt) {
-                return Image.asset(AppImages.petMetLogoImg);
-              })
+            ? ClipRRect(
+
+              borderRadius: BorderRadius.circular(30),
+              child: Image.network(controller.shopProfile, width: 100,
+                  height: 100,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, er, bt) {
+                  return Image.asset(AppImages.petMetLogoImg);
+                }),
+            )
             : UserDetails.categoryId == 3
-                ? Image.network(controller.ngoProfile, height: 80,
-                    errorBuilder: (context, er, bt) {
-                    return Image.asset(AppImages.petMetLogoImg);
-                  })
+                ? ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: Image.network(controller.ngoProfile,
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, er, bt) {
+                      return Image.asset(AppImages.petMetLogoImg);
+                    }),
+                )
                 : UserDetails.categoryId == 4
-                    ? Image.network(controller.trainerProfile, height: 80,
-                        errorBuilder: (context, er, bt) {
-                        return Image.asset(AppImages.petMetLogoImg);
-                      })
+                    ? ClipRRect(
+                      borderRadius: BorderRadius.circular(30),
+                      child: Image.network(controller.trainerProfile,
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, er, bt) {
+                          return Image.asset(AppImages.petMetLogoImg);
+                        }),
+                    )
                     : Container();
   }
 }

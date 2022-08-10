@@ -90,13 +90,12 @@ class PetTrackerPricingController extends GetxController {
     String url = ApiUrl.addOrderApi;
 
     Map<String, dynamic> data = {
-      "userid": UserDetails.userId,
-      "planid" : petPlanId,
-      "price" : price,
+      "userid": UserDetails.userId.toString(),
+      "planid" : petPlanId.toString(),
+      "price" : price.toString(),
       "transition_orderid": orderId,
       "transition_paymentId": paymentId,
       "signature": signature
-
     };
 
     log("Add Order Api Url : $url");

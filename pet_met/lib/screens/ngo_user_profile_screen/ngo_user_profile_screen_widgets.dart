@@ -95,9 +95,15 @@ class UploadImageModule extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.file(
-                themeProvider.darkTheme
-                    ? screenController.imageFile! : screenController.imageFile!,height: 65),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: Image.file(
+                  themeProvider.darkTheme
+                      ? screenController.imageFile! : screenController.imageFile!,
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.cover,),
+              ),
 
               //),
               // const SizedBox(height: 20),
@@ -120,12 +126,41 @@ class UploadImageModule extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.network(
-                themeProvider.darkTheme
-                    ? ApiUrl.apiImagePath + screenController.ngoProfile! : ApiUrl.apiImagePath + screenController.ngoProfile!,height: 65,
-                errorBuilder: (context, er, st){
-                  return Image.asset(AppImages.petMetLogoImg);
-                },),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: Image.network(
+                  themeProvider.darkTheme
+                      ? ApiUrl.apiImagePath + screenController.ngoProfile! : ApiUrl.apiImagePath + screenController.ngoProfile!,
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, er, st){
+                    //return Image.asset(AppImages.petMetLogoImg);
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          themeProvider.darkTheme
+                              ? AppImages.cameraPlaceHolderImgDark
+                              : AppImages.cameraPlaceHolderImglight,
+                          height: 65,
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          "Upload Image",
+                          style: TextStyle(
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor
+                                : AppColors.blackTextColor,
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    );
+                  },),
+              ),
 
               //),
               // const SizedBox(height: 20),

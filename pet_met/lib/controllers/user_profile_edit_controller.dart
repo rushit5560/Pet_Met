@@ -42,6 +42,8 @@ class UserProfileEditController extends GetxController {
 
   var passwordController = TextEditingController();
 
+  RxBool isPasswordVisible = true.obs;
+
   File? imageFile;
   String userProfile= "";
 
