@@ -28,6 +28,9 @@ class HomeController extends GetxController {
   List<DatumDatum> imageList = [];
   List<GetUserStoryModelDatum> userStoryList = [];
 
+  int pageIndex = 0;
+  bool isLoadMore = false;
+
   var drawerController = ZoomDrawerController();
 
   List dogsTopList = [
@@ -122,8 +125,9 @@ class HomeController extends GetxController {
   /// Get All Pets
   Future<void> getAllPetFunction() async {
     isLoading(true);
-    String url = ApiUrl.topPetListApi;
+    String url = ApiUrl.topPetListApi + "?page=$pageIndex";
     log("All Pet Api Url : $url");
+    log('pageIndex: $pageIndex');
 
     try {
       Map<String, String> header = apiHeader.apiHeader();
@@ -140,12 +144,18 @@ class HomeController extends GetxController {
         // bannerList.clear();
         petTopList.addAll(getPetTopListModel.data);
         log("petList Length : ${petTopList.length}");
+        isLoading(true);
+        isLoadMore = false;
+        isLoading(false);
       } else {
         log("Pet Api Else");
       }
 
     } catch(e) {
       log("Get All Pet Api Error ::: $e");
+      isLoading(true);
+      isLoadMore = false;
+      isLoading(false);
     } finally {
       //isLoading(false);
       await getUserStory();

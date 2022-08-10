@@ -94,7 +94,7 @@ class Shope {
     required this.isVerified,
   });
 
-  int id;
+  String id;
   String shopename;
   String email;
   String password;
@@ -115,10 +115,10 @@ class Shope {
   String meetingimages;
   String sortorder;
   String status;
-  int userid;
+  String userid;
   String isActive;
-  int categoryId;
-  int createdBy;
+  String categoryId;
+  String createdBy;
   String modifiedBy;
   String createdDate;
   String modifiedDate;
@@ -126,7 +126,7 @@ class Shope {
   String isVerified;
 
   factory Shope.fromJson(Map<String, dynamic> json) => Shope(
-    id: json["id"] ?? 0,
+    id: json["id"] ?? "",
     shopename: json["shopename"] ?? "",
     email: json["email"] ?? "",
     password: json["password"] ?? "",
@@ -149,7 +149,7 @@ class Shope {
     status: json["status"] ?? "",
     userid: json["userid"] ?? "",
     isActive: json["is_active"] ?? "",
-    categoryId: json["categoryID"] ?? 0,
+    categoryId: json["categoryID"] ?? "",
     createdBy: json["created_by"] ?? "",
     modifiedBy: json["modified_by"] ?? "",
     createdDate: json["created_date"] ?? "",
@@ -227,7 +227,7 @@ class Trainer {
     required this.accountCode,
   });
 
-  int id;
+  String id;
   String name;
   String email;
   String password;
@@ -247,9 +247,9 @@ class Trainer {
   String image5;
   String meetingimages;
   String isActive;
-  int userid;
-  int categoryId;
-  int createdBy;
+  String userid;
+  String categoryId;
+  String createdBy;
   String modifiedBy;
   String createdDate;
   String modifiedDate;
@@ -260,7 +260,7 @@ class Trainer {
   String accountCode;
 
   factory Trainer.fromJson(Map<String, dynamic> json) => Trainer(
-    id: json["id"] ?? 0,
+    id: json["id"] ?? "",
     name: json["name"] ?? "",
     email: json["email"] ?? "",
     password: json["password"] ?? "",
@@ -280,8 +280,8 @@ class Trainer {
     image5: json["image5"] ?? "",
     meetingimages: json["meetingimages"] ?? "",
     isActive: json["is_active"] ?? "",
-    userid: json["userid"] ?? 0,
-    categoryId: json["categoryID"] ?? 0,
+    userid: json["userid"] ?? "",
+    categoryId: json["categoryID"] ?? "",
     createdBy: json["created_by"] ?? "",
     modifiedBy: json["modified_by"] ?? "",
     createdDate: json["created_date"] ?? "",
@@ -351,17 +351,17 @@ class User {
     required this.isVerified,
   });
 
-  int id;
+  String id;
   String name;
   String email;
   String emailVerifiedAt;
   String password;
   String rememberToken;
   String image;
-  int country;
-  int state;
-  int city;
-  int categoryId;
+  String country;
+  String state;
+  String city;
+  String categoryId;
   String forgotpasswordToken;
   String createdAt;
   String updatedAt;
@@ -372,17 +372,17 @@ class User {
   String isVerified;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-    id: json["id"] ?? 0,
+    id: json["id"] ?? "",
     name: json["name"] ?? "",
     email: json["email"] ?? "",
     emailVerifiedAt: json["email_verified_at"] ?? "",
     password: json["password"] ?? "",
     rememberToken: json["remember_token"] ?? "",
     image: json["image"] ?? "",
-    country: json["country"] ?? 0,
-    state: json["state"] ?? 0,
-    city: json["city"] ?? 0,
-    categoryId: json["categoryID"] ?? 0,
+    country: json["country"] ?? "",
+    state: json["state"] ?? "",
+    city: json["city"] ?? "",
+    categoryId: json["categoryID"] ?? "",
     forgotpasswordToken: json["forgotpassword_token"] ?? "",
     createdAt: json["created_at"] ?? "",
     updatedAt: json["updated_at"] ?? "",

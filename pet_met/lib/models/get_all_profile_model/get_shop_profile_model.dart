@@ -105,7 +105,7 @@ class DataData {
     required this.modifiedDate,
   });
 
-  int id;
+  String id;
   String shopename;
   String email;
   String address;
@@ -125,14 +125,14 @@ class DataData {
   String image5;
   String sortorder;
   String status;
-  int userid;
-  int createdBy;
+  String userid;
+  String createdBy;
   String modifiedBy;
   String createdDate;
   String modifiedDate;
 
   factory DataData.fromJson(Map<String, dynamic> json) => DataData(
-    id: json["id"] ?? 0,
+    id: json["id"] ?? "",
     shopename: json["shopename"] ?? "",
     email: json["email"] ?? "",
     address: json["address"] ?? "",
@@ -145,15 +145,15 @@ class DataData {
     showimg: json["showimg"] ?? "",
     offersimages: List<String>.from(json["offersimages"].map((x) => x) ?? {}),
     meetingimages: List<String>.from(json["meetingimages"].map((x) => x) ?? {}),
-    image1: json["image1"],
-    image2: json["image2"],
-    image3: json["image3"],
-    image4: json["image4"],
-    image5: json["image5"],
+    image1: json["image1"] ?? "",
+    image2: json["image2"] ?? "",
+    image3: json["image3"] ?? "",
+    image4: json["image4"] ?? "",
+    image5: json["image5"] ?? "",
     sortorder: json["sortorder"] ?? "",
     status: json["status"] ?? "",
-    userid: json["userid"] ?? 0,
-    createdBy: json["created_by"] ?? 0,
+    userid: json["userid"] ?? "",
+    createdBy: json["created_by"] ?? "",
     modifiedBy: json["modified_by"] ?? "",
     createdDate:json["created_date"] ?? "",
     modifiedDate: json["modified_date"] ?? "",
@@ -209,39 +209,39 @@ class ShopPet {
     required this.modifiedBy,
   });
 
-  int id;
+  String id;
   String image;
   String petName;
-  int mainCategory;
-  int subCategory;
+  String mainCategory;
+  String subCategory;
   String dob;
-  int weight;
+  String weight;
   String details;
   String imageList;
   String meetingAvailability;
   String gender;
   String isActive;
-  int userid;
-  int createdBy;
+  String userid;
+  String createdBy;
   String createdDate;
   String updatedDate;
   String modifiedBy;
 
   factory ShopPet.fromJson(Map<String, dynamic> json) => ShopPet(
-    id: json["id"] ?? 0,
+    id: json["id"] ?? "",
     image: json["image"] ?? "",
     petName: json["pet_name"] ?? "",
-    mainCategory: json["main_category"] ?? 0,
-    subCategory: json["sub_category"] ?? 0,
+    mainCategory: json["main_category"] ?? "",
+    subCategory: json["sub_category"] ?? "",
     dob: json["dob"] ?? "",
-    weight: json["weight"] ?? 0,
+    weight: json["weight"] ?? "",
     details: json["details"] ?? "",
     imageList: json["image_list"] ?? "",
     meetingAvailability: json["meeting_availability"] ?? "",
     gender: json["gender"] ?? "",
     isActive: json["is_active"] ?? "",
-    userid: json["userid"] ?? 0,
-    createdBy: json["created_by"] ?? 0,
+    userid: json["userid"] ?? "",
+    createdBy: json["created_by"] ?? "",
     createdDate: json["created_date"] ?? "",
     updatedDate: json["updated_date"] ?? "",
     modifiedBy: json["modified_by"] ?? "",

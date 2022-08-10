@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:pet_met/utils/api_url.dart';
 
 class PetVetsAndNgoDetailsScreenController extends GetxController {
-  int vetAndNgoId = Get.arguments;
+  String vetAndNgoId = Get.arguments;
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
@@ -82,19 +82,19 @@ class VetsAndNgoDetailsModel {
 }
 
 class VetNgoData {
-  int? id;
+  String? id;
   String? name;
   String? imageList;
   String? showimg;
-  int? contact;
+  String? contact;
   String? address;
   String? isActive;
   String? socialMedias;
   String? openTime;
   String? closeTime;
   String? overview;
-  int? roleId;
-  int? userId;
+  String? roleId;
+  String? userId;
 
   VetNgoData(
       {this.id,
@@ -112,19 +112,19 @@ class VetNgoData {
       this.userId});
 
   VetNgoData.fromJson(Map<String, dynamic> json) {
-    id = json['id'] ?? 0;
+    id = json['id'] ?? "";
     name = json['name'] ?? "";
     imageList = json['image_list'] ?? "";
     showimg = json['showimg'] ?? "";
-    contact = json['contact'] ?? 0;
+    contact = json['contact'] ?? "";
     address = json['address'] ?? "";
     isActive = json['is_active'] ?? "";
     socialMedias = json['social_medias'] ?? "";
     openTime = json['open_time'] ?? "";
     closeTime = json['close_time'] ?? "";
     overview = json['overview'] ?? "";
-    roleId = json['role_id'] ?? 0;
-    userId = json['user_id'] ?? 0;
+    roleId = json['role_id'] ?? "";
+    userId = json['user_id'] ?? "";
   }
 
   Map<String, dynamic> toJson() {

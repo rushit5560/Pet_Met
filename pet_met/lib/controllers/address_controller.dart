@@ -51,7 +51,7 @@ class AddressController extends GetxController {
       } else {
       }
     } catch(e) {
-      log('User Login Api Error ::: $e');
+      log('User Address Api Error ::: $e');
     } finally {
       isLoading(false);
     }

@@ -107,17 +107,17 @@ class AddressTileWidget extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 8),
-                Text(
-                  controller.addressList[index].address!,
-                  style: TextStyle(
-                    color: themeProvider.darkTheme
-                        ? AppColors.whiteColor
-                        : AppColors.blackTextColor,
-                    fontSize: 11.sp,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
+                // const SizedBox(height: 8),
+                // Text(
+                //   controller.addressList[index].address!,
+                //   style: TextStyle(
+                //     color: themeProvider.darkTheme
+                //         ? AppColors.whiteColor
+                //         : AppColors.blackTextColor,
+                //     fontSize: 11.sp,
+                //     fontWeight: FontWeight.w400,
+                //   ),
+                // ),
               ],
             ),
             // Obx(
@@ -137,7 +137,7 @@ class AddressTileWidget extends StatelessWidget {
                 ),
                 shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(4))),
-                value: controller.getAllAddressList[index].isActive,
+                value: controller.getAllAddressList[index].isActive1,
                 onChanged: (val) {
                   controller.addressIsActiveFunction(index).whenComplete(() {
                     controller.getAllAddressFunction();

@@ -37,25 +37,29 @@ class Datum {
     required this.id,
     required this.userid,
     required this.address,
+    required this.isActive1,
     required this.isActive,
   });
 
-  int id;
-  int userid;
+  String id;
+  String userid;
   String address;
-  bool isActive;
+  bool isActive1;
+  String isActive;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-    id: json["id"] ?? 0,
-    userid: json["userid"] ?? 0,
+    id: json["id"] ?? "",
+    userid: json["userid"] ?? "",
     address: json["address"] ?? "",
-    isActive: json["is_active"] == "1" ? true : false,
+    isActive1: json["is_active1"] ?? false,
+    isActive: json["is_active"] ?? "",
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
     "userid": userid,
     "address": address,
+    "is_active1": isActive1,
     "is_active": isActive,
   };
 }

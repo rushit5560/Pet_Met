@@ -167,7 +167,7 @@ class PetCategoriesListModule extends StatelessWidget {
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
           itemBuilder: (context, i) {
-            int id = screenController.searchSubCatList[i].categoryId;
+            String id = screenController.searchSubCatList[i].categoryId;
             return Row(
               children: [
                 Checkbox(
@@ -219,7 +219,7 @@ class PetCategoriesListModule extends StatelessWidget {
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
           itemBuilder: (context, i) {
-            int id = singleItem.subCategory[i].categoryId;
+            String id = singleItem.subCategory[i].categoryId;
             return Row(
               children: [
                 Checkbox(

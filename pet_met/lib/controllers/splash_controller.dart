@@ -30,14 +30,14 @@ class SplashController extends GetxController {
     UserDetails.roleId = prefs.getInt(userPreference.roleIdKey) ?? 0;
     UserDetails.isUserLoggedIn =
         prefs.getBool(userPreference.isUserLoggedInKey) ?? false;
-    UserDetails.selfId = prefs.getInt(userPreference.selfIdKey) ?? 0;
-    UserDetails.userId = prefs.getInt(userPreference.userIdKey) ?? 0;
+    UserDetails.selfId = prefs.getString(userPreference.selfIdKey) ?? "";
+    UserDetails.userId = prefs.getString(userPreference.userIdKey) ?? "";
     UserDetails.userName = prefs.getString(userPreference.userNameKey) ?? "";
     UserDetails.userEmail = prefs.getString(userPreference.userEmailKey) ?? "";
     UserDetails.userProfileImage =
         prefs.getString(userPreference.userProfileImageKey) ?? "";
     UserDetails.userToken = prefs.getString(userPreference.userTokenKey) ?? "";
-    UserDetails.categoryId = prefs.getInt(userPreference.roleId1Key) ?? 0;
+    UserDetails.categoryId = prefs.getString(userPreference.roleId1Key) ?? "";
     UserDetails.shopName = prefs.getString(userPreference.shopNameKey) ?? "";
     UserDetails.shopProfile = prefs.getString(userPreference.shopProfileImageKey) ?? "";
     log('UserDetails.roleId: ${UserDetails.roleId}');

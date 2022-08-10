@@ -11,7 +11,7 @@ class PetMeetingDetailsScreenController extends GetxController {
   RxBool isSuccessStatus = false.obs;
   final size = Get.size;
 
-  int petId = Get.arguments;
+  String petId = Get.arguments;
 
   ApiHeader apiHeader = ApiHeader();
   Datum getProfile = Datum();

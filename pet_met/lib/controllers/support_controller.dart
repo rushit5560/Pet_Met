@@ -15,10 +15,15 @@ class SupportController extends GetxController {
 
   RxBool isOpened = false.obs;
   ApiHeader apiHeader = ApiHeader();
-  SupportData supportData = SupportData();
+  //SupportData supportData = SupportData();
+  List<SupportData> supportData = [];
 
   RxInt selectedbottomIndex = 2.obs;
   RxBool slectedAddress = true.obs;
+
+  String featuredImage = "";
+  String title = "";
+  String content = "";
 
   var drawerController = ZoomDrawerController();
 
@@ -38,7 +43,12 @@ class SupportController extends GetxController {
       isSuccessStatus = supportModel.success.obs;
 
       if (isSuccessStatus.value) {
-        supportData = supportModel.data[0];
+        supportData = supportModel.data;
+        for(int i=0 ; i< supportData.length; i++){
+          featuredImage = supportData[i].featuredimageparth!;
+          title = supportData[i].title!;
+          content = supportData[i].content!;
+        }
         log("supportData : $supportData");
       } else {
         log("Support Function Else");

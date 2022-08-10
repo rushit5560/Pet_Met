@@ -114,9 +114,15 @@ class _UploadImageModuleState extends State<UploadImageModule> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.file(
-                themeProvider.darkTheme
-                    ? controller.imageFile! : controller.imageFile!,height: 65,),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: Image.file(
+                  themeProvider.darkTheme
+                      ? controller.imageFile! : controller.imageFile!,
+                    width: 100,
+                    height: 100,
+                    fit: BoxFit.cover),
+              ),
 
               //),
               // const SizedBox(height: 20),
@@ -139,9 +145,15 @@ class _UploadImageModuleState extends State<UploadImageModule> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.network(
-                themeProvider.darkTheme
-                    ? controller.petImage! : controller.petImage!,height: 65,),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(30),
+                child: Image.network(
+                  themeProvider.darkTheme
+                      ? controller.petImage! : controller.petImage!,
+                    width: 100,
+                    height: 100,
+                    fit: BoxFit.cover),
+              ),
 
               //),
               // const SizedBox(height: 20),
@@ -481,7 +493,12 @@ class TypesOfPetDropDownModule extends StatelessWidget {
                           value: value,
                           child: Text(
                             value.categoryName!,
-                            style: const TextStyle(color: Colors.black),
+                            style: TextStyle(
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor.withOpacity(0.7),
+                              fontSize: 13.sp,
+                            ),
                           ),
                         );
                       }).toList(),
@@ -646,7 +663,12 @@ class PetSubCategoryDropDownModule extends StatelessWidget {
                           value: value,
                           child: Text(
                             value.categoryName!,
-                            style: const TextStyle(color: Colors.black),
+                            style: TextStyle(
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor.withOpacity(0.7),
+                              fontSize: 13.sp,
+                            ),
                           ),
                         );
                       }).toList(),
@@ -859,7 +881,12 @@ class _MeetingAvailabilityDropDownState
                           value: value,
                           child: Text(
                             value,
-                            style: const TextStyle(color: Colors.black),
+                            style: TextStyle(
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor.withOpacity(0.7),
+                              fontSize: 13.sp,
+                            ),
                           ),
                         );
                       }).toList(),
@@ -1125,7 +1152,12 @@ class _GenderDropDownState extends State<GenderDropDown> {
                           value: value,
                           child: Text(
                             value,
-                            style: const TextStyle(color: Colors.black),
+                            style: TextStyle(
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor.withOpacity(0.7),
+                              fontSize: 13.sp,
+                            ),
                           ),
                         );
                       }).toList(),

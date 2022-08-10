@@ -62,7 +62,7 @@ class AddAddressController extends GetxController {
         Fluttertoast.showToast(msg: addAddressModel.message);
       }
     } catch(e) {
-      log('User Login Api Error ::: $e');
+      log('User Add Address Api Error ::: $e');
     } finally {
       isLoading(false);
     }

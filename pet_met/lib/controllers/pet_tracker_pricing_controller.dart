@@ -17,12 +17,12 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 class PetTrackerPricingController extends GetxController {
   final size = Get.size;
 
-  int petPlanId = Get.arguments;
+  String petPlanId = Get.arguments;
 
   TextEditingController feedbackController = TextEditingController();
 
   RxBool selectedTerms = false.obs;
-  int price = 0;
+  String price = "";
   String name= "";
   String overview = "";
 
@@ -91,8 +91,8 @@ class PetTrackerPricingController extends GetxController {
 
     Map<String, dynamic> data = {
       "userid": UserDetails.userId.toString(),
-      "planid" : petPlanId.toString(),
-      "price" : price.toString(),
+      "planid" : petPlanId,
+      "price" : price,
       "transition_orderid": orderId,
       "transition_paymentId": paymentId,
       "signature": signature
@@ -142,7 +142,7 @@ class PetTrackerPricingController extends GetxController {
   void openCheckout() async {
     var options = {
       'key': 'rzp_test_dxCkKqtRKnvZdA',
-      'amount': price * 100,
+      'amount': price,
       'name': name,
       'description': overview,
       'retry': {'enabled': true, 'max_count': 1},
@@ -163,9 +163,9 @@ class PetTrackerPricingController extends GetxController {
   void _handlePaymentSuccess(PaymentSuccessResponse response)async {
     log('Success Response: $response');
     await addOrderFunction(
-        orderId: response.orderId.toString(),
-        paymentId: response.paymentId.toString(),
-        signature: response.signature.toString()
+        orderId: response.orderId!,
+        paymentId: response.paymentId!,
+        signature: response.signature!
     );
 
     Fluttertoast.showToast(
@@ -217,14 +217,14 @@ class SinglePlanDetailModel {
   SinglePlanDetailModel({this.success, this.data, this.message});
 
   SinglePlanDetailModel.fromJson(Map<String, dynamic> json) {
-    success = json['success'];
+    success = json['success'] ?? false;
     if (json['data'] != null) {
       data = <SinglePlanDetails>[];
       json['data'].forEach((v) {
         data!.add(new SinglePlanDetails.fromJson(v));
       });
     }
-    message = json['message'];
+    message = json['message'] ?? "";
   }
 
   Map<String, dynamic> toJson() {
@@ -239,23 +239,23 @@ class SinglePlanDetailModel {
 }
 
 class SinglePlanDetails {
-  int? id;
-  int? rs;
+  String? id;
+  String? rs;
   String? name;
   String? overview;
   String? isActive;
-  int? days;
+  String? days;
 
   SinglePlanDetails(
       {this.id, this.rs, this.name, this.overview, this.isActive, this.days});
 
   SinglePlanDetails.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    rs = json['rs'];
-    name = json['name'];
-    overview = json['overview'];
-    isActive = json['is_active'];
-    days = json['days'];
+    id = json['id'] ?? "";
+    rs = json['rs'] ?? "";
+    name = json['name'] ?? "";
+    overview = json['overview'] ?? "";
+    isActive = json['is_active'] ?? "";
+    days = json['days'] ?? "";
   }
 
   Map<String, dynamic> toJson() {

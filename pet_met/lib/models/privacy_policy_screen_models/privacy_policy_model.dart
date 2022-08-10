@@ -47,7 +47,7 @@ class Datum {
     // required this.updatedAt,
   });
 
-  int id;
+  String id;
   String title;
   String content;
   String isActive;
@@ -60,7 +60,7 @@ class Datum {
   // DateTime updatedAt;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        id: json["id"] ?? 0,
+        id: json["id"] ?? "",
         title: json["title"] ?? "",
         content: json["content"] ?? "",
         isActive: json["is_active"] ?? "",

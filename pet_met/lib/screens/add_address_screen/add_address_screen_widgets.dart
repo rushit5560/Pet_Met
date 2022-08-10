@@ -90,7 +90,9 @@ class AddAddressByLocation extends StatelessWidget {
             Text(
               "Add Address by Location",
               style: TextStyle(
-                color: AppColors.blackTextColor.withOpacity(0.7),
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.blackTextColor.withOpacity(0.7),
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),

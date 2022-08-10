@@ -168,7 +168,7 @@ class ShopData {
     // required this.modifiedDate,
   });
 
-  int id;
+  String id;
   String shopename;
   String address;
   String phonenumber;

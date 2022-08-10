@@ -53,7 +53,7 @@ class Trainers {
     required this.modifiedDate,
   });
 
-  int id;
+  String id;
   String name;
   String address;
   String phone;
@@ -66,14 +66,14 @@ class Trainers {
   List<String> trainerimages;
   List<String> meetingimages;
   String isActive;
-  int userid;
-  int createdBy;
+  String userid;
+  String createdBy;
   String modifiedBy;
   String createdDate;
   String modifiedDate;
 
   factory Trainers.fromJson(Map<String, dynamic> json) => Trainers(
-    id: json["id"] ?? 0,
+    id: json["id"] ?? "",
     name: json["name"] ?? "",
     address: json["address"] ?? "",
     phone: json["phone"] ?? "",
@@ -86,8 +86,8 @@ class Trainers {
     trainerimages: List<String>.from(json["trainerimages"].map((x) => x) ?? {}),
     meetingimages: List<String>.from(json["meetingimages"].map((x) => x) ?? {}),
     isActive: json["is_active"] ?? "",
-    userid: json["userid"] ?? 0,
-    createdBy: json["created_by"] ?? 0,
+    userid: json["userid"] ?? "",
+    createdBy: json["created_by"] ?? "",
     modifiedBy: json["modified_by"] ?? "",
     createdDate: json["created_date"] ?? "",
     modifiedDate: json["modified_date"] ?? "",

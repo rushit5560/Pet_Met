@@ -71,25 +71,25 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: () {
                       //Get.toNamed(AppRouteNames.userProfileEditRoute);
                       log('UserDetails.roleId: ${UserDetails.categoryId}');
-                      if(UserDetails.categoryId == 1){
+                      if(UserDetails.categoryId == "1"){
                         Get.to(() => UserProfileEditScreen(),
                             transition: Transition.native,
                             duration: const Duration(milliseconds: 500));
-                      } else if(UserDetails.categoryId == 2){
+                      } else if(UserDetails.categoryId == "2"){
                         Get.to(()=> ShopUserProfileScreen(),
                             transition: Transition.native,
                             duration: const Duration(milliseconds: 500));
-                      } else if(UserDetails.categoryId == 3){
+                      } else if(UserDetails.categoryId == "3"){
                         Get.to(()=> NgoUserProfileScreen(),
                             transition: Transition.native,
                             duration: const Duration(milliseconds: 500));
-                      } else if(UserDetails.categoryId == 4){
+                      } else if(UserDetails.categoryId == "4"){
                         Get.to(()=> TrainersAndUserProfileScreenController(),
                             transition: Transition.native,
                             duration: const Duration(milliseconds: 500));
                       }
                     },
-                    child: UserDetails.categoryId == 1 ?
+                    child: UserDetails.categoryId == "1" ?
                     ClipRRect(
                       // decoration: BoxDecoration(
                       //   border: Border.all(color: Colors.black, width: 0.0),
@@ -109,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         // width: controller.size.width * 0.05,
                       ),
                     ) :
-                    UserDetails.categoryId == 2 ?
+                    UserDetails.categoryId == "2" ?
                     ClipRRect(
                       borderRadius: BorderRadius.circular(30),
                       child: Image.network(
@@ -126,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         // width: controller.size.width * 0.05,
                       ),
                     ):
-                    UserDetails.categoryId == 3 ?
+                    UserDetails.categoryId == "3" ?
                     ClipRRect(
                       borderRadius: BorderRadius.circular(30),
                       child: Image.network(
@@ -143,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         // width: controller.size.width * 0.05,
                       ),
                     ) :
-                    UserDetails.categoryId == 4 ?
+                    UserDetails.categoryId == "4" ?
                     ClipRRect(
                       borderRadius: BorderRadius.circular(30),
                       child: Image.network(

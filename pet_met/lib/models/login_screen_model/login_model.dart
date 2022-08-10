@@ -56,8 +56,8 @@ class Data {
     required this.gender,
   });
 
-  int uid;
-  int id;
+  String uid;
+  String id;
   String name;
   String email;
   String shopName;
@@ -66,10 +66,10 @@ class Data {
   String password;
   String rememberToken;
   String image;
-  int country;
-  int state;
-  int city;
-  int categoryId;
+  String country;
+  String state;
+  String city;
+  String categoryId;
   // dynamic forgotpasswordToken;
   // DateTime createdAt;
   // DateTime updatedAt;
@@ -78,8 +78,8 @@ class Data {
   String gender;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        uid: json["uid"] ?? 0,
-        id: json["id"] ?? 0,
+        uid: json["uid"] ?? "",
+        id: json["id"] ?? "",
         name: json["name"] ?? "",
         email: json["email"] ?? "",
         shopName: json["shopName"] ?? "",
@@ -88,10 +88,10 @@ class Data {
         password: json["password"] ?? "",
         rememberToken: json["remember_token"] ?? "",
         image: json["image"] ?? "",
-        country: json["country"] ?? 0,
-        state: json["state"] ?? 0,
-        city: json["city"] ?? 0,
-        categoryId: json["categoryID"] ?? 0,
+        country: json["country"] ?? "",
+        state: json["state"] ?? "",
+        city: json["city"] ?? "",
+        categoryId: json["categoryID"] ?? "",
         // forgotpasswordToken: json["forgotpassword_token"],
         // createdAt: DateTime.parse(json["created_at"]),
         // updatedAt: DateTime.parse(json["updated_at"]),

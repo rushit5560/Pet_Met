@@ -52,7 +52,10 @@ class PetCareListModule extends StatelessWidget {
     return SizedBox(
       //height: controller.size.height * 0.85,
       child: controller.petCareList.isEmpty ?
-          const Center(child: Text("No pet care information")):
+      Center(child: Text("No pet care information", style:
+          TextStyle(color: themeProvider.darkTheme
+              ? AppColors.whiteColor
+              : AppColors.blackTextColor.withOpacity(0.7),),)):
       ListView.separated(
         shrinkWrap: true,
         physics: AlwaysScrollableScrollPhysics(),
@@ -91,7 +94,9 @@ class PetCareListModule extends StatelessWidget {
                     Text(
                       controller.petCareList[ind].title,
                       style: TextStyle(
-                        color: AppColors.accentTextColor,
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.blackTextColor.withOpacity(0.7),
                         fontWeight: FontWeight.bold,
                         fontSize: 12.sp,
                       ),
@@ -99,19 +104,19 @@ class PetCareListModule extends StatelessWidget {
                     SizedBox(height: controller.size.height * 0.001.h),
                     Html(
                       data: controller.petCareList[ind].content,
-                      // style: {
-                      //   "body": Style(
-                      //     textDecorationColor: themeProvider.darkTheme
-                      //         ? AppColors.whiteColor
-                      //         : AppColors.blackTextColor,
-                      //     // color: themeProvider.darkTheme
-                      //     //     ? AppColors.whiteColor
-                      //     //     : AppColors.blackTextColor,
-                      //     // textDecorationColor: themeProvider.darkTheme
-                      //     //     ? AppColors.whiteColor
-                      //     //     : AppColors.blackTextColor,
-                      //   ),
-                      // },
+                      style: {
+                        "body": Style(
+                          textDecorationColor: themeProvider.darkTheme
+                              ? AppColors.whiteColor
+                              : AppColors.blackTextColor,
+                          // color: themeProvider.darkTheme
+                          //     ? AppColors.whiteColor
+                          //     : AppColors.blackTextColor,
+                          // textDecorationColor: themeProvider.darkTheme
+                          //     ? AppColors.whiteColor
+                          //     : AppColors.blackTextColor,
+                        ),
+                      },
                     ),
                   ],
                 ),

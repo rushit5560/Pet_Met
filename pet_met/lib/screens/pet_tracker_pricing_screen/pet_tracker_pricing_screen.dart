@@ -222,7 +222,7 @@ class PetTrackerPriceModule extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 28, top: 8),
                       child: Text(
-                        controller.price.toString(),
+                        controller.price,
                         style: TextStyle(
                           color: AppColors.whiteColor,
                           fontSize: 15.sp,

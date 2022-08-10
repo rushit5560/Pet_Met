@@ -50,23 +50,23 @@ class PetList {
     required this.categoryId,
   });
 
-  int id;
+  String id;
   String image;
   String petName;
-  int mainCategory;
-  int subCategory;
+  String mainCategory;
+  String subCategory;
   String dob;
-  int weight;
+  String weight;
   String details;
   String imageList;
   String meetingAvailability;
   String gender;
   String isActive;
-  int userid;
-  int categoryId;
+  String userid;
+  String categoryId;
 
   factory PetList.fromJson(Map<String, dynamic> json) => PetList(
-    id: json["id"] ?? 0,
+    id: json["id"] ?? "",
     image: json["image"] ?? "",
     petName: json["pet_name"] ?? "",
     mainCategory: json["main_category"] ?? 0,

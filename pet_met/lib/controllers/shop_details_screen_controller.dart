@@ -6,7 +6,7 @@ import 'package:pet_met/models/shop_details_screen_models/shop_details_model.dar
 import 'package:pet_met/utils/api_url.dart';
 
 class ShopDetailsScreenController extends GetxController {
-  int shopId = Get.arguments;
+  String shopId = Get.arguments;
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;

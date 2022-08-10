@@ -195,41 +195,49 @@ class RateAppScreen extends StatelessWidget {
                                     ],
                                   ),
                                   const SizedBox(height: 10),
-                                  TextFormField(
-                                    maxLines: null,
-                                    decoration: InputDecoration(
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                        borderSide: const BorderSide(
-                                            width: 0, style: BorderStyle.none),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.greyColor
+                                          : AppColors.whiteColor,
+                                    ),
+                                    child: TextFormField(
+                                      maxLines: null,
+                                      decoration: InputDecoration(
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                          borderSide: const BorderSide(
+                                              width: 0, style: BorderStyle.none),
+                                        ),
+                                        focusedBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                          borderSide: const BorderSide(
+                                              width: 0, style: BorderStyle.none),
+                                        ),
+                                        fillColor: themeProvider.darkTheme
+                                            ? AppColors.greyColor.withOpacity(1)
+                                            : AppColors.greyColor.withOpacity(0.12),
+                                        hintText: "Leave Your Feedback Here (Optional)",
+                                        hintMaxLines: 2,
+                                        hintStyle: TextStyle(
+                                          color: themeProvider.darkTheme
+                                              ? AppColors.whiteColor
+                                              : AppColors.greyTextColor,
+                                          fontSize: 13.sp,
+                                          fontWeight: FontWeight.w400,
+                                        ),
                                       ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                        borderSide: const BorderSide(
-                                            width: 0, style: BorderStyle.none),
-                                      ),
-                                      fillColor: themeProvider.darkTheme
-                                          ? AppColors.greyColor.withOpacity(1)
-                                          : AppColors.greyColor.withOpacity(0.12),
-                                      hintText: "Leave Your Feedback Here (Optional)",
-                                      hintMaxLines: 2,
-                                      hintStyle: TextStyle(
+                                      textInputAction: TextInputAction.done,
+                                      keyboardType: TextInputType.text,
+                                      style: TextStyle(
                                         color: themeProvider.darkTheme
                                             ? AppColors.whiteColor
-                                            : AppColors.greyTextColor,
+                                            : AppColors.blackTextColor,
                                         fontSize: 13.sp,
                                         fontWeight: FontWeight.w400,
+                                        decoration: TextDecoration.none,
                                       ),
-                                    ),
-                                    textInputAction: TextInputAction.done,
-                                    keyboardType: TextInputType.text,
-                                    style: TextStyle(
-                                      color: themeProvider.darkTheme
-                                          ? AppColors.whiteColor
-                                          : AppColors.blackTextColor,
-                                      fontSize: 13.sp,
-                                      fontWeight: FontWeight.w400,
-                                      decoration: TextDecoration.none,
                                     ),
                                   ),
                                   const SizedBox(height: 32),

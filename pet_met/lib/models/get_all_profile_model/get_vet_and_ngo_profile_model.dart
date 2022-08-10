@@ -86,7 +86,7 @@ class Datum {
     required this.isVerified,
   });
 
-  int id;
+  String id;
   String name;
   String email;
   String password;
@@ -108,9 +108,9 @@ class Datum {
   String isActive;
   String ifscCode;
   String accountCode;
-  int userid;
-  int categoryId;
-  int createdBy;
+  String userid;
+  String categoryId;
+  String createdBy;
   String modifiedBy;
   String createdDate;
   String modifiedDate;
@@ -118,7 +118,7 @@ class Datum {
   String isVerified;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-    id: json["id"] ?? 0,
+    id: json["id"] ?? "",
     name: json["name"] ?? "",
     email: json["email"] ?? "",
     password: json["password"] ?? "",
@@ -140,9 +140,9 @@ class Datum {
     isActive: json["is_active"] ?? "",
     ifscCode: json["ifsc_code"] ?? "",
     accountCode: json["account_code"] ?? "",
-    userid: json["userid"] ?? 0,
-    categoryId: json["categoryID"] ?? 0,
-    createdBy: json["created_by"] ?? 0,
+    userid: json["userid"] ?? "",
+    categoryId: json["categoryID"] ?? "",
+    createdBy: json["created_by"] ?? "",
     modifiedBy: json["modified_by"] ?? "",
     createdDate: json["created_date"] ?? "",
     modifiedDate: json["modified_date"] ?? "",
@@ -205,39 +205,39 @@ class NgoPet {
     required this.modifiedBy,
   });
 
-  int id;
+  String id;
   String image;
   String petName;
-  int mainCategory;
-  int subCategory;
+  String mainCategory;
+  String subCategory;
   String dob;
-  int weight;
+  String weight;
   String details;
   String imageList;
   String meetingAvailability;
   String gender;
   String isActive;
-  int userid;
-  int createdBy;
+  String userid;
+  String createdBy;
   String createdDate;
   String updatedDate;
   String modifiedBy;
 
   factory NgoPet.fromJson(Map<String, dynamic> json) => NgoPet(
-    id: json["id"] ?? 0,
+    id: json["id"] ?? "",
     image: json["image"] ?? "",
     petName: json["pet_name"] ?? "",
-    mainCategory: json["main_category"] ?? 0,
-    subCategory: json["sub_category"] ?? 0,
+    mainCategory: json["main_category"] ?? "",
+    subCategory: json["sub_category"] ?? "",
     dob: json["dob"] ?? "",
-    weight: json["weight"] ?? 0,
+    weight: json["weight"] ?? "",
     details: json["details"] ?? "",
     imageList: json["image_list"] ?? "",
     meetingAvailability: json["meeting_availability"] ?? "",
     gender: json["gender"] ?? "",
     isActive: json["is_active"] ?? "",
-    userid: json["userid"] ?? 0,
-    createdBy: json["created_by"] ?? 0,
+    userid: json["userid"] ?? "",
+    createdBy: json["created_by"] ?? "",
     createdDate: json["created_date"] ?? "",
     updatedDate: json["updated_date"] ?? "",
     modifiedBy: json["modified_by"] ?? "",

@@ -54,7 +54,7 @@ class TrainerData {
      this.modifiedDate,
   });
 
-  int ? id;
+  String ? id;
   String ? name;
   String ? address;
   String ? phone;
@@ -67,8 +67,8 @@ class TrainerData {
   List<String> ? trainerimages;
   List<String> ? meetingimages;
   String ? isActive;
-  int ? userid;
-  int ? createdBy;
+  String ? userid;
+  String ? createdBy;
   String ? modifiedBy;
   String ? createdDate;
   String ? modifiedDate;

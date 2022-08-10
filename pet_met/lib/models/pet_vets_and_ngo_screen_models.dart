@@ -56,7 +56,7 @@ class VetAndNgoData {
     required this.modifiedDate,
   });
 
-  int id;
+  String id;
   String name;
   String address;
   String phone;
@@ -71,14 +71,14 @@ class VetAndNgoData {
   String isActive;
   String ifscCode;
   String accountCode;
-  int userid;
-  int createdBy;
+  String userid;
+  String createdBy;
   String modifiedBy;
   String createdDate;
   String modifiedDate;
 
   factory VetAndNgoData.fromJson(Map<String, dynamic> json) => VetAndNgoData(
-    id: json["id"] ?? 0,
+    id: json["id"] ?? "",
     name: json["name"] ?? "",
     address: json["address"] ?? "",
     phone: json["phone"] ?? "",
@@ -93,8 +93,8 @@ class VetAndNgoData {
     isActive: json["is_active"] ?? "",
     ifscCode: json["ifsc_code"] ?? "",
     accountCode: json["account_code"] ?? "",
-    userid: json["userid"] ?? 0,
-    createdBy: json["created_by"] ?? 0,
+    userid: json["userid"] ?? "",
+    createdBy: json["created_by"] ?? "",
     modifiedBy: json["modified_by"] ?? "",
     createdDate: json["created_date"] ?? "",
     modifiedDate: json["modified_date"] ?? "",

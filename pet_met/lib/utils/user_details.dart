@@ -3,12 +3,12 @@ class UserDetails {
 
   static bool isUserLoggedIn = false;
   static String userToken = "";
-  static int userId = 0;
-  static int selfId = 0;
+  static String userId = "";
+  static String selfId = "";
   static String userName = "";
   static String userEmail = "";
   static String userProfileImage = "";
-  static int categoryId = 0;
+  static String categoryId = "";
   static String shopName = "";
   static String shopProfile = "";
 }

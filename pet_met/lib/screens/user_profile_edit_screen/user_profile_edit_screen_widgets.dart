@@ -660,7 +660,12 @@ class _GenderDropDownModuleState extends State<GenderDropDownModule> {
                           value: value,
                           child: Text(
                             value,
-                            style: const TextStyle(color: Colors.black),
+                            style: TextStyle(
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor.withOpacity(0.7),
+                              fontSize: 13.sp,
+                            ),
                           ),
                         );
                       }).toList(),

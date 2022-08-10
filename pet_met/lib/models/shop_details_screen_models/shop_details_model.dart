@@ -57,7 +57,7 @@ class ShopData {
     // this.modifiedDate,
   });
 
-  int? id;
+  String? id;
   String? shopename;
   String? address;
   String? phonenumber;
@@ -77,7 +77,7 @@ class ShopData {
   // dynamic modifiedDate;
 
   factory ShopData.fromJson(Map<String, dynamic> json) => ShopData(
-        id: json["id"] ?? 0,
+        id: json["id"] ?? "",
         shopename: json["shopename"] ?? "",
         address: json["address"] ?? "",
         phonenumber: json["phonenumber"] ?? "",

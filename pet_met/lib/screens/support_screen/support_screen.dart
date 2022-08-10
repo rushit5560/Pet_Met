@@ -79,9 +79,10 @@ class SupportScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   SizedBox(height: 4.h),
+
                                   Image.network(
                                     ApiUrl.apiImagePath +
-                                        controller.supportData.featuredimageparth!,
+                                        controller.featuredImage,
                                     width: 80.w,
                                     errorBuilder: (context, obj, st) {
                                       return Image.asset(
@@ -91,7 +92,7 @@ class SupportScreen extends StatelessWidget {
                                   ),
                                   SizedBox(height: 5.h),
                                   Text(
-                                    controller.supportData.title!,
+                                    controller.title,
                                     style: TextStyle(
                                       color: AppColors.accentTextColor,
                                       fontSize: 24.sp,
@@ -100,7 +101,7 @@ class SupportScreen extends StatelessWidget {
                                   ),
                                   SizedBox(height: 5.h),
                                   Html(
-                                    data: controller.supportData.content!,
+                                    data: controller.content,
                                     style: {
                                       "body": Style(
                                         textDecorationColor:

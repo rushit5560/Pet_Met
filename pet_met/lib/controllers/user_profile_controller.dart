@@ -21,8 +21,8 @@ class UserProfileController extends GetxController {
   final size = Get.size;
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
-  int followUserId = Get.arguments[0];
-  int followCategoryId = Get.arguments[1];
+  String followUserId = Get.arguments[0];
+  String followCategoryId = Get.arguments[1];
 
   ApiHeader apiHeader = ApiHeader();
 
@@ -437,13 +437,13 @@ class UserProfileController extends GetxController {
   void onInit() async{
     super.onInit();
     //getAllRoleProfileFunction();
-    if(UserDetails.categoryId == 1){
+    if(UserDetails.categoryId == "1"){
       await getUserProfileFunction();
-    } else if(UserDetails.categoryId == 2){
+    } else if(UserDetails.categoryId == "2"){
       await getShopProfileFunction();
-    } else if(UserDetails.categoryId == 3){
+    } else if(UserDetails.categoryId == "3"){
       await getNgoProfileFunction();
-    } else if(UserDetails.categoryId == 4){
+    } else if(UserDetails.categoryId == "4"){
       await getTrainerProfileFunction();
     }
   }

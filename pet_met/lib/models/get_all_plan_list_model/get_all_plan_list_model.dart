@@ -28,23 +28,23 @@ class AllPlanListModel {
 }
 
 class PlanData {
-  int? id;
-  int? rs;
+  String? id;
+  String? rs;
   String? name;
   String? overview;
   String? isActive;
-  int? days;
+  String? days;
 
   PlanData(
       {this.id, this.rs, this.name, this.overview, this.isActive, this.days});
 
   PlanData.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    rs = json['rs'];
-    name = json['name'];
-    overview = json['overview'];
-    isActive = json['is_active'];
-    days = json['days'];
+    id = json['id'] ?? "";
+    rs = json['rs'] ?? "";
+    name = json['name'] ?? "";
+    overview = json['overview'] ?? "";
+    isActive = json['is_active'] ?? "";
+    days = json['days'] ?? "";
   }
 
   Map<String, dynamic> toJson() {

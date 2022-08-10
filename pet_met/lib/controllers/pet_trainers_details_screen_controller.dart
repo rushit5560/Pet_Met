@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 
 class PetTrainersDetailsScreenController extends GetxController {
   // Get Trainer Id From Trainer List Screen
-  int trainerId = Get.arguments;
+  String trainerId = Get.arguments;
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;

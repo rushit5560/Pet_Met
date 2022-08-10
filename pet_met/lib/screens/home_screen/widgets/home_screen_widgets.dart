@@ -23,9 +23,14 @@ import 'package:sizer/sizer.dart';
 import '../../../controllers/home_controller.dart';
 import '../../../services/providers/dark_theme_provider.dart';
 
-class PetTopListModule extends StatelessWidget {
+class PetTopListModule extends StatefulWidget {
   PetTopListModule({Key? key}) : super(key: key);
 
+  @override
+  State<PetTopListModule> createState() => _PetTopListModuleState();
+}
+
+class _PetTopListModuleState extends State<PetTopListModule> {
   final HomeController homeController = Get.find<HomeController>();
 
   final size = Get.size;
@@ -33,18 +38,53 @@ class PetTopListModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var themeProvider = Provider.of<DarkThemeProvider>(context);
-    return ListView.separated(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (context, index) {
-        PetList petList = homeController.petTopList[index];
-        return dogDisplayWidget(petList);
+    return homeController.petTopList.isNotEmpty ?
+      NotificationListener<ScrollNotification>(
+      onNotification: (scrollState) {
+        if (!homeController.isLoadMore && scrollState is ScrollEndNotification && scrollState.metrics.pixels == scrollState.metrics.maxScrollExtent){
+          setState(() async{
+            homeController.isLoadMore = true;
+            homeController.pageIndex = homeController.pageIndex + 1;
+            await homeController.getAllPetFunction();
+          });
+          log('homeController.isLoadMore: ${homeController.isLoadMore}');
+        }
+        return false;
       },
-      separatorBuilder: (ctx, index) {
-        return const SizedBox(height: 15);
-      },
-      itemCount: homeController.petTopList.length,
-    );
+      child: Column(
+        children: [
+          ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (context, index) {
+              PetList petList = homeController.petTopList[index];
+              return dogDisplayWidget(petList);
+            },
+            separatorBuilder: (ctx, index) {
+              return const SizedBox(height: 15);
+            },
+            itemCount: homeController.petTopList.length,
+          ),
+          homeController.isLoadMore == true
+              ? Container(
+            height: 30,
+            width: 30,
+            child: const CircularProgressIndicator(color: Colors.black,),
+          )
+              : Container(
+            color: Colors.transparent,
+            height: MediaQuery.of(context).size.height * 0.10,
+          ),
+        ],
+      ),
+    ): Center(
+        child: Container(
+            margin: EdgeInsets.only(bottom: Get.height * 0.20),
+            width: MediaQuery.of(context).size.width,
+            child: Text(
+              "No data available",
+              textAlign: TextAlign.center,
+            )));
   }
 
   Widget dogDisplayWidget(PetList petList){

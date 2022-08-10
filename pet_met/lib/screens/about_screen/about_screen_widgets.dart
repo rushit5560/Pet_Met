@@ -53,17 +53,31 @@ class AboutUsModule extends StatelessWidget {
             SizedBox(height: 2.h),
             Html(
               data: screenController.description,
+              // style: {
+              //   "body": Style(
+              //     textDecorationColor: themeProvider.darkTheme
+              //         ? AppColors.whiteColor
+              //         : AppColors.blackTextColor,
+              //     // color: themeProvider.darkTheme
+              //     //     ? AppColors.whiteColor
+              //     //     : AppColors.blackTextColor,
+              //     // textDecorationColor: themeProvider.darkTheme
+              //     //     ? AppColors.whiteColor
+              //     //     : AppColors.blackTextColor,
+              //   ),
+              // },
               style: {
+                "p": Style(
+                  fontSize: FontSize(18.0),
+                  color: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.blackTextColor,
+                ),
                 "body": Style(
-                  textDecorationColor: themeProvider.darkTheme
+                  fontSize: FontSize(18.0),
+                  color: themeProvider.darkTheme
                       ? AppColors.whiteColor
                       : AppColors.blackTextColor,
-                  // color: themeProvider.darkTheme
-                  //     ? AppColors.whiteColor
-                  //     : AppColors.blackTextColor,
-                  // textDecorationColor: themeProvider.darkTheme
-                  //     ? AppColors.whiteColor
-                  //     : AppColors.blackTextColor,
                 ),
               },
             ),

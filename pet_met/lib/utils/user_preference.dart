@@ -31,35 +31,35 @@ class UserPreference {
 
   /// Set User Login Or Register Details
   Future<void> setUserDetails({
-    required int selfId,
-    required int userId,
+    required String selfId,
+    required String userId,
     required String userName,
     required String userEmail,
     required String userProfileImage,
     required String token,
-    required int roleId,
+    required String roleId,
     String ? shopName,
     String ? shopProfile
   }) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setInt(selfIdKey, selfId);
-    prefs.setInt(userIdKey, userId);
+    prefs.setString(selfIdKey, selfId);
+    prefs.setString(userIdKey, userId);
     prefs.setString(userNameKey, userName);
     prefs.setString(userEmailKey, userEmail);
     prefs.setString(userProfileImageKey, userProfileImage);
     prefs.setString(userTokenKey, token);
-    prefs.setInt(roleId1Key, roleId);
+    prefs.setString(roleId1Key, roleId);
     prefs.setBool(isUserLoggedInKey, true);
     prefs.setString(shopNameKey, shopName!);
     prefs.setString(shopProfileImageKey, shopProfile!);
 
-    UserDetails.selfId = prefs.getInt(selfIdKey) ?? 0;
-    UserDetails.userId = prefs.getInt(userIdKey) ?? 0;
+    UserDetails.selfId = prefs.getString(selfIdKey) ?? "";
+    UserDetails.userId = prefs.getString(userIdKey) ?? "";
     UserDetails.userName = prefs.getString(userNameKey) ?? "";
     UserDetails.userEmail = prefs.getString(userEmailKey) ?? "";
     UserDetails.userProfileImage = prefs.getString(userProfileImageKey) ?? "";
     UserDetails.userToken = prefs.getString(userTokenKey) ?? "";
-    UserDetails.categoryId = prefs.getInt(roleId1Key) ?? 0;
+    UserDetails.categoryId = prefs.getString(roleId1Key) ?? "";
     UserDetails.isUserLoggedIn = prefs.getBool(isUserLoggedInKey) ?? false;
     UserDetails.shopName = prefs.getString(shopNameKey) ?? "";
     UserDetails.shopProfile = prefs.getString(shopProfileImageKey) ?? "";
@@ -124,13 +124,13 @@ class UserPreference {
     prefs.setString(shopProfileImageKey, "");
 
     // Get Default Value From Prefs
-    UserDetails.selfId = prefs.getInt(selfIdKey) ?? 0;
-    UserDetails.userId = prefs.getInt(userIdKey) ?? 0;
+    UserDetails.selfId = prefs.getString(selfIdKey) ?? "";
+    UserDetails.userId = prefs.getString(userIdKey) ?? "";
     UserDetails.userName = prefs.getString(userNameKey) ?? "";
     UserDetails.userEmail = prefs.getString(userEmailKey) ?? "";
     UserDetails.userProfileImage = prefs.getString(userProfileImageKey) ?? "";
     UserDetails.userToken = prefs.getString(userTokenKey) ?? "";
-    UserDetails.categoryId = prefs.getInt(roleId1Key) ?? 0;
+    UserDetails.categoryId = prefs.getString(roleId1Key) ?? "";
     UserDetails.isUserLoggedIn = prefs.getBool(isUserLoggedInKey) ?? false;
     UserDetails.shopName = prefs.getString(shopNameKey) ?? "";
     UserDetails.shopProfile = prefs.getString(shopProfileImageKey) ?? "";

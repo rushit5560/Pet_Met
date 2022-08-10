@@ -50,8 +50,8 @@ class PetSubCategory {
     this.modifiedBy,
   });
 
-  int ? categoryId;
-  int ? mainCategoryId;
+  String ? categoryId;
+  String ? mainCategoryId;
   String ? categoryName;
   String ? categoryMetaTitle;
   String ? categoryMetaDescrtiption;
@@ -59,15 +59,15 @@ class PetSubCategory {
   String ? categoryImage;
   String ? parent;
   String ? sortOrder;
-  int ? isActive;
+  String ? isActive;
   String ? createdDate;
   String ? updatedDate;
-  int ? createdBy;
+  String ? createdBy;
   String ? modifiedBy;
 
   factory PetSubCategory.fromJson(Map<String, dynamic> json) => PetSubCategory(
-    categoryId: json["categoryID"] ?? 0,
-    mainCategoryId: json["main_categoryID"] ?? 0,
+    categoryId: json["categoryID"] ?? "",
+    mainCategoryId: json["main_categoryID"] ?? "",
     categoryName: json["categoryName"] ?? "",
     categoryMetaTitle: json["categoryMetaTitle"] ?? "",
     categoryMetaDescrtiption: json["categoryMetaDescrtiption"] ?? "",
@@ -78,7 +78,7 @@ class PetSubCategory {
     isActive: json["is_active"] ?? "",
     createdDate: json["created_date"] ?? "",
     updatedDate: json["updated_date"] ?? "",
-    createdBy: json["created_by"] ?? 0,
+    createdBy: json["created_by"] ?? "",
     modifiedBy: json["modified_by"] ?? "",
   );
 

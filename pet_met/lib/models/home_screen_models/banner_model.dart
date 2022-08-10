@@ -34,7 +34,7 @@ class BannerModel {
 
 class Datum {
   Datum({
-    required this.bannerId,
+    //required this.bannerId,
     required this.title,
     required this.sortOrder,
     required this.url,
@@ -46,11 +46,11 @@ class Datum {
     required this.isActive,
     required this.createdDate,
     required this.modifiedDate,
-    required this.createdBy,
+    //required this.createdBy,
     required this.modifiedBy,
   });
 
-  int bannerId;
+  //String bannerId;
   String title;
   String sortOrder;
   String url;
@@ -62,11 +62,11 @@ class Datum {
   String isActive;
   String createdDate;
   String modifiedDate;
-  int createdBy;
+  //String createdBy;
   String modifiedBy;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-    bannerId: json["banner_id"] ?? 0,
+    //bannerId: json["banner_id"] ?? "",
     title: json["title"] ?? "",
     sortOrder: json["sort_order"] ?? "",
     url: json["url"] ?? "",
@@ -76,14 +76,14 @@ class Datum {
     content: json["content"] ?? "",
     position: json["position"] ?? 0,
     isActive: json["is_active"] ?? "",
-    createdDate: json["created_date"] ??" ",
+    createdDate: json["created_date"] ?? "",
     modifiedDate: json["modified_date"] ?? "",
-    createdBy: json["created_by"] ?? 0,
+    //createdBy: json["created_by"] ?? "",
     modifiedBy: json["modified_by"] ?? "",
   );
 
   Map<String, dynamic> toJson() => {
-    "banner_id": bannerId,
+    //"banner_id": bannerId,
     "title": title,
     "sort_order": sortOrder,
     "url": url,
@@ -95,7 +95,7 @@ class Datum {
     "is_active": isActive,
     "created_date": createdDate,
     "modified_date": modifiedDate,
-    "created_by": createdBy,
+   // "created_by": createdBy,
     "modified_by": modifiedBy,
   };
 }
