@@ -57,7 +57,7 @@ class OnboardingScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              // SizedBox(height: 5.h),
+                              SizedBox(height: 4.h),
                               // Spacer(),
                               Image.asset(
                                 controller.onBoardingPages[index].imageAsset,
