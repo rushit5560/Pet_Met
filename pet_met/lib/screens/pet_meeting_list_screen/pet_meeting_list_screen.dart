@@ -36,7 +36,7 @@ class PetMeetingListScreen extends StatelessWidget {
               children: [
                 // AppBar
                 CustomAppBar(
-                    title: " German Shepherd",
+                    title: "Search Ressults",
                     appBarOption: AppBarOption.singleBackButtonOption),
 
                 // Body

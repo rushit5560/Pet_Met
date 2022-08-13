@@ -69,17 +69,17 @@ class PetList {
     id: json["id"] ?? "",
     image: json["image"] ?? "",
     petName: json["pet_name"] ?? "",
-    mainCategory: json["main_category"] ?? 0,
-    subCategory: json["sub_category"] ?? 0,
+    mainCategory: json["main_category"] ?? "",
+    subCategory: json["sub_category"] ?? "",
     dob: json["dob"] ?? "",
-    weight: json["weight"] ?? 0,
+    weight: json["weight"] ?? "",
     details: json["details"] ?? "",
     imageList: json["image_list"] ?? "",
     meetingAvailability: json["meeting_availability"] ?? "",
     gender: json["gender"] ?? "",
     isActive: json["is_active"] ?? "",
-    userid: json["userid"] ?? 0,
-    categoryId: json["categoryID"] ?? 0,
+    userid: json["userid"] ?? "",
+    categoryId: json["categoryID"] ?? "",
   );
 
   Map<String, dynamic> toJson() => {

@@ -146,6 +146,7 @@ class HomeController extends GetxController {
         log("petList Length : ${petTopList.length}");
         isLoading(true);
         isLoadMore = false;
+        log('isLoadMore1: $isLoadMore');
         isLoading(false);
       } else {
         log("Pet Api Else");
@@ -333,6 +334,12 @@ class HomeController extends GetxController {
     super.onInit();
     getAllBannerFunction();
     // getAllPetFunction();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 }
 

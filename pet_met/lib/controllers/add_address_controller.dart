@@ -39,7 +39,7 @@ class AddAddressController extends GetxController {
     log('Get Add Address Api Url : $url');
 
     Map<String, dynamic> data = {
-      "userid": "${UserDetails.userId}",
+      "userid": UserDetails.userId,
       "address": addressController.text.trim()
     };
     log("data : $data");

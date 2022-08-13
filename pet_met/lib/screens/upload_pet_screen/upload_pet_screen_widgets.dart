@@ -49,6 +49,9 @@ class _UploadImageModuleState extends State<UploadImageModule> {
           constraints: null,
           builder: (BuildContext context) {
             return Container(
+              color: themeProvider.darkTheme
+                  ? AppColors.darkThemeColor
+                  : AppColors.whiteColor,
               height: controller.size.height * 0.15,
               child: Column(
                 children: [
@@ -59,7 +62,10 @@ class _UploadImageModuleState extends State<UploadImageModule> {
                     title: Text(
                       "Select Image From Camera",
                       style: TextStyle(
-                        color: AppColors.blackTextColor.withOpacity(0.7),
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.darkThemeColor,
+                        //color: AppColors.blackTextColor.withOpacity(0.7),
                         fontSize: 13.sp,
                         fontWeight: FontWeight.w600,
                       ),
@@ -72,7 +78,9 @@ class _UploadImageModuleState extends State<UploadImageModule> {
                     title: Text(
                       "Select Image From Gallery",
                       style: TextStyle(
-                        color: AppColors.blackTextColor.withOpacity(0.7),
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.darkThemeColor,
                         fontSize: 13.sp,
                         fontWeight: FontWeight.w600,
                       ),

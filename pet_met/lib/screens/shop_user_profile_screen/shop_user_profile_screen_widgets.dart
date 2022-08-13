@@ -1158,7 +1158,7 @@ class InstagramTextFieldModule extends StatelessWidget {
           width: double.infinity,
           hintText: "Instagram Link",
           textInputAction: TextInputAction.next,
-          textInputType: TextInputType.number,
+          textInputType: TextInputType.text,
           validator: (val) => Validations().validateInstagramLink(val!),
         ),
       ],
@@ -1196,7 +1196,7 @@ class FacebookLinkTextFieldModule extends StatelessWidget {
           width: double.infinity,
           hintText: "Facebook Link",
           textInputAction: TextInputAction.next,
-          textInputType: TextInputType.number,
+          textInputType: TextInputType.text,
           validator: (val) => Validations().validateFacebookLink(val!),
         ),
       ],
@@ -1306,7 +1306,8 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                             screenController.selectedOpenTime != null ? screenController.selectedOpenTime!.value : "No time selected!",
                             // textAlign: TextAlign.center,
                             maxLines: 1,
-                            style: const TextStyle(color: Colors.black)),
+                            style: const TextStyle(color: Colors.black)
+                        ),
                       ),
                       IconButton(
                         icon: const Icon(

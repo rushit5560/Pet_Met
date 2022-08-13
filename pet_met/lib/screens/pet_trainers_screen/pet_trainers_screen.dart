@@ -46,7 +46,7 @@ class PetTrainersScreen extends StatelessWidget {
                       : Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          SearchTrainersTextFieldModule(),
+                          //SearchTrainersTextFieldModule(),
                           Expanded(child: PetTrainerListModule()),
                         ],
                       ),

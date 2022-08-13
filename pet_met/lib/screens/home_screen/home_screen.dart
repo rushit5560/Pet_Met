@@ -203,32 +203,29 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Obx(
                     () => controller.isLoading.value
                         ? const CustomAnimationLoader()
-                        : SingleChildScrollView(
-                            physics: const BouncingScrollPhysics(),
-                            child: Column(
-                              children: [
-                                PetListModule()
-                                    .commonSymmetricPadding(horizontal: 20),
-                                SizedBox(
-                                  height: controller.size.height * 0.025,
-                                ),
-                                BannerModule(),
-                                const SizedBox(height: 10),
-                                PetShopAndGroomingText()
-                                    .commonSymmetricPadding(horizontal: 20),
+                        : Column(
+                          children: [
+                            PetListModule()
+                                .commonSymmetricPadding(horizontal: 20),
+                            SizedBox(
+                              height: controller.size.height * 0.025,
+                            ),
+                            BannerModule(),
+                            const SizedBox(height: 10),
+                            PetShopAndGroomingText()
+                                .commonSymmetricPadding(horizontal: 20),
 
-                                PetTopListModule()
-                                // DogDisplayWidget(
-                                //   onTap: () {
-                                //     Get.toNamed(
-                                //         AppRouteNames.orderDetailsRoute);
-                                //   },
-                                // ),
-                                // AllPetsListModule()
-                                //     .commonSymmetricPadding(horizontal: 20),
-                              ],
-                            ).commonSymmetricPadding(vertical: 20),
-                          ),
+                            Expanded(child: PetTopListModule())
+                            // DogDisplayWidget(
+                            //   onTap: () {
+                            //     Get.toNamed(
+                            //         AppRouteNames.orderDetailsRoute);
+                            //   },
+                            // ),
+                            // AllPetsListModule()
+                            //     .commonSymmetricPadding(horizontal: 20),
+                          ],
+                        ).commonSymmetricPadding(vertical: 20),
                   ),
                 )
               ],

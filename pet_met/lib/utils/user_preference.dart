@@ -114,12 +114,12 @@ class UserPreference {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool(isUserLoggedInKey, false);
     prefs.setString(userTokenKey, "");
-    prefs.setInt(selfIdKey, 0);
-    prefs.setInt(userIdKey, 0);
+    prefs.setString(selfIdKey, "");
+    prefs.setString(userIdKey, "");
     prefs.setString(userNameKey, "");
     prefs.setString(userEmailKey, "");
     prefs.setString(userProfileImageKey, "");
-    prefs.setInt(roleId1Key, 0);
+    prefs.setString(roleId1Key, "");
     prefs.setString(shopNameKey, "");
     prefs.setString(shopProfileImageKey, "");
 

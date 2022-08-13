@@ -132,7 +132,7 @@ class VetsAndNgoListModule extends StatelessWidget {
   }
 
   Widget _vetsAndNgoListTile(VetAndNgoData vetAndNgoData) {
-    String imgUrl = ApiUrl.apiImagePath + vetAndNgoData.image;
+    String imgUrl = ApiUrl.apiImagePath + "asset/uploads/product/" +vetAndNgoData.image;
     return GestureDetector(
       onTap: () {
         Get.to(()=> PetVetsAndNgoDetailsScreen(),

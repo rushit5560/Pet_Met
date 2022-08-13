@@ -34,36 +34,179 @@ class _PetTopListModuleState extends State<PetTopListModule> {
   final HomeController homeController = Get.find<HomeController>();
 
   final size = Get.size;
+  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
     var themeProvider = Provider.of<DarkThemeProvider>(context);
-    return homeController.petTopList.isNotEmpty ?
+    return //homeController.petTopList.isNotEmpty ?
       NotificationListener<ScrollNotification>(
       onNotification: (scrollState) {
-        if (!homeController.isLoadMore && scrollState is ScrollEndNotification && scrollState.metrics.pixels == scrollState.metrics.maxScrollExtent){
-          setState(() async{
+        if (!homeController.isLoadMore && scrollState is ScrollEndNotification && scrollState.metrics.pixels == scrollState.metrics.maxScrollExtent &&
+            _scrollController.position.pixels ==
+                _scrollController.position.maxScrollExtent){
+          //setState(() {
             homeController.isLoadMore = true;
             homeController.pageIndex = homeController.pageIndex + 1;
-            await homeController.getAllPetFunction();
-          });
+             homeController.getAllPetFunction();
+          //});
           log('homeController.isLoadMore: ${homeController.isLoadMore}');
         }
         return false;
       },
       child: Column(
         children: [
-          ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              PetList petList = homeController.petTopList[index];
-              return dogDisplayWidget(petList);
-            },
-            separatorBuilder: (ctx, index) {
-              return const SizedBox(height: 15);
-            },
-            itemCount: homeController.petTopList.length,
+          Expanded(
+            child: ListView.separated(
+              shrinkWrap: true,
+              itemCount: homeController.petTopList.length,
+              controller: _scrollController,
+              physics: const AlwaysScrollableScrollPhysics(),
+              itemBuilder: (context, index) {
+                PetList petList = homeController.petTopList[index];
+                return Row(
+                  children: [
+                    Expanded(
+                      // flex: 45,
+                      child: Container(
+                        height: size.height * 0.25,
+                        width: size.width * 0.45,
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                          color: themeProvider.darkTheme
+                              ? AppColors.darkThemeBoxColor
+                              : AppColors.whiteColor,
+                          // image: const DecorationImage(
+                          //     image: AssetImage("assets/images/dog1.png"),
+                          //     fit: BoxFit.cover),
+                        ),
+                        child: GestureDetector(
+                          onTap: (){
+                            // Get.toNamed(AppRouteNames.userProfileRoute);
+                            Get.to(()=> PetMeetingDetailsScreen(), arguments: petList.id);
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            // child: Image.network(
+                            //   ApiUrl.apiImagePath + homeController.petTopList[index].image,
+                            //   fit: BoxFit.cover,
+                            // )
+                            child: Image.network(
+                              ApiUrl.apiImagePath + petList.image,
+                              errorBuilder: (context, st, ob){
+                                return Image.asset(AppImages.petMetLogoImg);
+                              },
+                              fit: BoxFit.cover,),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      // flex: 55,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: themeProvider.darkTheme
+                              ? AppColors.darkThemeBoxColor
+                              : AppColors.whiteColor,
+                          borderRadius: const BorderRadius.only(
+                            topRight: Radius.circular(12),
+                            bottomRight: Radius.circular(12),
+                          ),
+                        ),
+                        child: GestureDetector(
+                          onTap: (){
+                            //Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
+                            log('Follow Userid: ${petList.userid}');
+                            log('Follow Categoryid: ${petList.categoryId}');
+                            Get.to(()=> UserProfileScreen(),
+                                transition: Transition.native,
+                                duration: const Duration(milliseconds: 500),
+                                arguments: [petList.userid, petList.categoryId]);
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                petList.petName,
+                                style: TextStyle(
+                                  color: AppColors.accentTextColor,
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Html(
+                                data: petList.details,
+                                style: {
+                                  "body": Style(
+                                    color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.blackTextColor.withOpacity(0.6),
+                                    fontSize: FontSize(15.0),
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                },
+                              ),
+                              // Text(
+                              //   homeController.petTopList[index].details,
+                              //   style: TextStyle(
+                              //     color: themeProvider.darkTheme
+                              //         ? AppColors.whiteColor
+                              //         : AppColors.blackTextColor.withOpacity(0.6),
+                              //     fontSize: 10.sp,
+                              //     fontWeight: FontWeight.w500,
+                              //   ),
+                              // ),
+                              const SizedBox(height: 12),
+                              Text(
+                                petList.gender + ", 2 Years Old",
+                                style: TextStyle(
+                                  color: themeProvider.darkTheme
+                                      ? AppColors.whiteColor.withOpacity(0.65)
+                                      : AppColors.greyTextColor,
+                                  fontSize: 11.sp,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                              const SizedBox(height: 25),
+                              Row(
+                                children: [
+                                  const SizedBox(width: 3),
+                                  Image.asset(
+                                    AppIcons.locationImg,
+                                    height: 16,
+                                    color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor.withOpacity(0.65)
+                                        : AppColors.blackTextColor.withOpacity(0.6),
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    "Distance: 3.6 km",
+                                    style: TextStyle(
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor.withOpacity(0.65)
+                                          : AppColors.blackTextColor.withOpacity(0.6),
+                                      fontSize: 10.sp,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ).commonSymmetricPadding(horizontal: 12, vertical: 14),
+                        ),
+                      ),
+                    ),
+                  ],
+                ).commonAllSidePadding(padding: 10);
+              },
+              separatorBuilder: (ctx, index) {
+                return const SizedBox(height: 15);
+              },
+
+            ),
           ),
           homeController.isLoadMore == true
               ? Container(
@@ -73,18 +216,19 @@ class _PetTopListModuleState extends State<PetTopListModule> {
           )
               : Container(
             color: Colors.transparent,
-            height: MediaQuery.of(context).size.height * 0.10,
+            height: 30,
+            width: 30,
           ),
         ],
       ),
-    ): Center(
+    )/*: Center(
         child: Container(
-            margin: EdgeInsets.only(bottom: Get.height * 0.20),
+            margin: EdgeInsets.only(bottom: 20),
             width: MediaQuery.of(context).size.width,
             child: Text(
               "No data available",
               textAlign: TextAlign.center,
-            )));
+            )))*/;
   }
 
   Widget dogDisplayWidget(PetList petList){

@@ -33,7 +33,7 @@ class AddressController extends GetxController {
 
   Future<void> getAllAddressFunction() async {
     isLoading(true);
-    String url = ApiUrl.getAllAddressApi + "${UserDetails.userId}";
+    String url = ApiUrl.getAllAddressApi + UserDetails.userId;
     log('Get All Address Api Url : $url');
 
     try {
@@ -60,7 +60,7 @@ class AddressController extends GetxController {
   Future<void> addressIsActiveFunction(int index) async {
     isLoading(true);
     String url = ApiUrl.setAddressIsActiveApi +
-        "${UserDetails.userId}" +
+        UserDetails.userId +
         "/${getAllAddressList[index].id}";
     log('Set active Address Api Url : $url');
 

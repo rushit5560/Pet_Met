@@ -396,7 +396,7 @@ class NameTextFieldModule extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         CustomLightTextField(
-          readOnly: true,
+          readOnly: false,
           fieldController: controller.nameController,
           height: controller.size.height * 0.05,
           width: double.infinity,
@@ -441,7 +441,7 @@ class EmailTextFieldModule extends StatelessWidget {
           hintText: "Email",
           textInputAction: TextInputAction.next,
           textInputType: TextInputType.emailAddress,
-          validator: (val) => Validations().validateEmail(val!),
+          //validator: (val) => Validations().validateEmail(val!),
         ),
       ],
     );

@@ -73,7 +73,7 @@ class _BuildMenuState extends State<BuildMenu> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        UserDetails.categoryId == 1
+                        UserDetails.categoryId == "1"
                             ? ClipRRect(
                           borderRadius: BorderRadius.circular(30),
                               child: Image.network(
@@ -91,7 +91,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                   // width: controller.size.width * 0.05,
                                 ),
                             )
-                            : UserDetails.categoryId == 2
+                            : UserDetails.categoryId == "2"
                                 ? ClipRRect(
                                   borderRadius: BorderRadius.circular(30),
                                   child: Image.network(
@@ -111,7 +111,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                       // width: controller.size.width * 0.05,
                                     ),
                                 )
-                                : UserDetails.categoryId == 3
+                                : UserDetails.categoryId == "3"
                                     ? ClipRRect(
                                       borderRadius: BorderRadius.circular(30),
                                       child: Image.network(
@@ -130,7 +130,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                           // width: controller.size.width * 0.05,
                                         ),
                                     )
-                                    : UserDetails.categoryId == 4
+                                    : UserDetails.categoryId == "4"
                                         ? ClipRRect(
                                           borderRadius: BorderRadius.circular(30),
                                           child: Image.network(
@@ -158,13 +158,13 @@ class _BuildMenuState extends State<BuildMenu> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              UserDetails.categoryId == 1
+                              UserDetails.categoryId == "1"
                                   ? UserDetails.userName
-                                  : UserDetails.categoryId == 2
+                                  : UserDetails.categoryId == "2"
                                       ? UserDetails.shopName
-                                      : UserDetails.categoryId == 3
+                                      : UserDetails.categoryId == "3"
                                           ? UserDetails.userName
-                                          : UserDetails.categoryId == 4
+                                          : UserDetails.categoryId == "4"
                                               ? UserDetails.userName
                                               : "",
                               style: TextStyle(

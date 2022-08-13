@@ -17,7 +17,11 @@ class PetMeetingListModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return screenController.searchList.isEmpty ?
+        const Center(
+          child: Text("No Results Found", style: TextStyle(color: Colors.black, fontSize: 17),),
+        ) :
+      ListView.builder(
       itemCount: screenController.searchList.length,
       shrinkWrap: true,
       physics: const BouncingScrollPhysics(),
@@ -29,7 +33,7 @@ class PetMeetingListModule extends StatelessWidget {
         // );
         return dogDisplayWidget(i);
       },
-    );
+    ) ;
   }
 
   Widget dogDisplayWidget(int index){

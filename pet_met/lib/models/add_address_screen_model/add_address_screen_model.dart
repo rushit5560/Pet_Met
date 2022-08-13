@@ -16,12 +16,12 @@ class AddAddressModel {
   });
 
   bool success;
-  String data;
+  int data;
   String message;
 
   factory AddAddressModel.fromJson(Map<String, dynamic> json) => AddAddressModel(
     success: json["success"] ?? false,
-    data: json["data"] ?? "",
+    data: json["data"] ?? 0,
     message: json["message"] ?? "",
   );
 

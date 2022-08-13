@@ -45,7 +45,7 @@ class PetVetsAndNgoScreen extends StatelessWidget {
                       ? const CustomAnimationLoader()
                       : Column(
                         children: [
-                          SearchVetAndNgoTextFieldModule(),
+                          //SearchVetAndNgoTextFieldModule(),
                           Expanded(child: VetsAndNgoListModule()),
                         ],
                       ),

@@ -85,7 +85,7 @@ class PetTrackerPricingController extends GetxController {
   }
 
   Future<void> addOrderFunction(
-      {required String orderId,required String paymentId,required String signature}) async {
+      { String ? orderId,required String paymentId, String ? signature}) async {
     isLoading(true);
     String url = ApiUrl.addOrderApi;
 
@@ -93,9 +93,9 @@ class PetTrackerPricingController extends GetxController {
       "userid": UserDetails.userId.toString(),
       "planid" : petPlanId,
       "price" : price,
-      "transition_orderid": orderId,
+      "transition_orderid": orderId ?? "123",
       "transition_paymentId": paymentId,
-      "signature": signature
+      "signature": signature ?? "123"
     };
 
     log("Add Order Api Url : $url");
@@ -161,11 +161,11 @@ class PetTrackerPricingController extends GetxController {
   }
 
   void _handlePaymentSuccess(PaymentSuccessResponse response)async {
-    log('Success Response: $response');
+    log('Success Response: ${response.orderId}');
     await addOrderFunction(
-        orderId: response.orderId!,
+        orderId: response.orderId,
         paymentId: response.paymentId!,
-        signature: response.signature!
+        signature: response.signature
     );
 
     Fluttertoast.showToast(

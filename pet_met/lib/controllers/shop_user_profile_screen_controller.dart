@@ -111,6 +111,7 @@ class ShopUserProfileScreenController extends GetxController {
         emailController.text = getShopProfileModel.data.data[0].email;
         contactNumber.text = getShopProfileModel.data.data[0].phonenumber.toString();
         addressController.text = getShopProfileModel.data.data[0].address;
+        detailsController.text = getShopProfileModel.data.data[0].fullText;
         selectedOpenTime!.value = getShopProfileModel.data.data[0].shopopen;
         selectedCloseTime!.value = getShopProfileModel.data.data[0].shopclose;
         instagramController.text = getShopProfileModel.data.data[0].instagram;

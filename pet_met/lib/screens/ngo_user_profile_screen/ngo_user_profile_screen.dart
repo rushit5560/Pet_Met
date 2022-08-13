@@ -35,10 +35,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                     onTap: () {
                       modelBottomSheet(context);
                     },
-                    child: Image.asset(
-                      AppImages.userProfileImg,
-                      width: controller.size.width * 0.12,
-                    ),
+                    child: const Icon(Icons.person, color: AppColors.accentColor,),
                   ),
                 ),
                 Expanded(

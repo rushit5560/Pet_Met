@@ -72,7 +72,7 @@ class ProfileImage extends StatelessWidget {
     //   AppImages.googleMapImg,
     //   height: controller.size.width * 0.35,
     // );
-    return UserDetails.categoryId == 1
+    return UserDetails.categoryId == "1"
         ? ClipRRect(
           borderRadius: BorderRadius.circular(30),
           child: Image.network(controller.userprofile,  width: 100,
@@ -82,7 +82,7 @@ class ProfileImage extends StatelessWidget {
               return Image.asset(AppImages.petMetLogoImg);
             }),
         )
-        : UserDetails.categoryId == 2
+        : UserDetails.categoryId == "2"
             ? ClipRRect(
 
               borderRadius: BorderRadius.circular(30),
@@ -93,7 +93,7 @@ class ProfileImage extends StatelessWidget {
                   return Image.asset(AppImages.petMetLogoImg);
                 }),
             )
-            : UserDetails.categoryId == 3
+            : UserDetails.categoryId == "3"
                 ? ClipRRect(
                   borderRadius: BorderRadius.circular(30),
                   child: Image.network(controller.ngoProfile,
@@ -104,7 +104,7 @@ class ProfileImage extends StatelessWidget {
                       return Image.asset(AppImages.petMetLogoImg);
                     }),
                 )
-                : UserDetails.categoryId == 4
+                : UserDetails.categoryId == "4"
                     ? ClipRRect(
                       borderRadius: BorderRadius.circular(30),
                       child: Image.network(controller.trainerProfile,
@@ -149,13 +149,13 @@ class ProfileDetailsModule extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            UserDetails.categoryId == 1
+            UserDetails.categoryId == "1"
                 ? controller.userName
-                : UserDetails.categoryId == 2
+                : UserDetails.categoryId == "2"
                     ? controller.shopName
-                    : UserDetails.categoryId == 3
+                    : UserDetails.categoryId == "3"
                         ? controller.ngoName
-                        : UserDetails.categoryId == 4
+                        : UserDetails.categoryId == "4"
                             ? controller.trainerName
                             : "",
             style: TextStyle(
@@ -319,7 +319,7 @@ class ContactInfoModule extends StatelessWidget {
             SizedBox(width: 20),
             GestureDetector(
               onTap: () {
-                Get.to(()=> AddressScreen());
+                //Get.to(()=> AddressScreen());
               },
               child: const ContactContainerWidget(
                 imagePath: AppImages.locateGreenImg,
@@ -409,7 +409,7 @@ class DogOwnerListModule extends StatelessWidget {
               )
             ]),
             Expanded(
-              child: UserDetails.categoryId == 1
+              child: UserDetails.categoryId == "1"
                   ? Container(
                       height: 8.h,
                       child: ListView.separated(
@@ -460,7 +460,7 @@ class DogOwnerListModule extends StatelessWidget {
                         },
                       ),
                     )
-                  : UserDetails.categoryId == 2
+                  : UserDetails.categoryId == "2"
                       ? Container(
                           height: 8.h,
                           child: ListView.separated(
@@ -512,7 +512,7 @@ class DogOwnerListModule extends StatelessWidget {
                             },
                           ),
                         )
-                      : UserDetails.categoryId == 3
+                      : UserDetails.categoryId == "3"
                           ? Container(
                               height: 8.h,
                               child: ListView.separated(
@@ -565,7 +565,7 @@ class DogOwnerListModule extends StatelessWidget {
                                 },
                               ),
                             )
-                          : UserDetails.categoryId == 4
+                          : UserDetails.categoryId == "4"
                               ? Container(
                                   height: 8.h,
                                   child: ListView.separated(
