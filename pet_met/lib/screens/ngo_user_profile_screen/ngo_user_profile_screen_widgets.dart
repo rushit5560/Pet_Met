@@ -68,142 +68,148 @@ class UploadImageModule extends StatelessWidget {
         modelBottomSheet(context);
       },
       child: Container(
-        height: screenController.size.height * 0.2,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: AppColors.whiteColor,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(15),
-          ),
-          // image: DecorationImage(
-          //   image: FileImage(
-          //     File(screenController.imageFile!.path),
-          //   ),
-          // ),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.greyTextColor.withOpacity(0.3),
-              blurRadius: 35,
-              spreadRadius: 1,
-              offset: const Offset(0, 5),
+          height: screenController.size.height * 0.2,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: AppColors.whiteColor,
+            borderRadius: const BorderRadius.all(
+              Radius.circular(15),
             ),
-          ],
-        ),
-        child: screenController.imageFile != null
-        ? Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(30),
-                child: Image.file(
-                  themeProvider.darkTheme
-                      ? screenController.imageFile! : screenController.imageFile!,
-                  width: 100,
-                  height: 100,
-                  fit: BoxFit.cover,),
+            // image: DecorationImage(
+            //   image: FileImage(
+            //     File(screenController.imageFile!.path),
+            //   ),
+            // ),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.greyTextColor.withOpacity(0.3),
+                blurRadius: 35,
+                spreadRadius: 1,
+                offset: const Offset(0, 5),
               ),
-
-              //),
-              // const SizedBox(height: 20),
-              // Text(
-              //   "Upload Image",
-              //   style: TextStyle(
-              //     color: themeProvider.darkTheme
-              //         ? AppColors.whiteColor
-              //         : AppColors.blackTextColor,
-              //     fontSize: 15.sp,
-              //     fontWeight: FontWeight.w500,
-              //   ),
-              // ),
             ],
           ),
-        ):
-        screenController.ngoProfile != null ?
-        Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(30),
-                child: Image.network(
-                  themeProvider.darkTheme
-                      ? ApiUrl.apiImagePath + screenController.ngoProfile! : ApiUrl.apiImagePath + screenController.ngoProfile!,
-                  width: 100,
-                  height: 100,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, er, st){
-                    //return Image.asset(AppImages.petMetLogoImg);
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Image.asset(
+          child: screenController.imageFile != null
+              ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(30),
+                        child: Image.file(
                           themeProvider.darkTheme
-                              ? AppImages.cameraPlaceHolderImgDark
-                              : AppImages.cameraPlaceHolderImglight,
-                          height: 65,
+                              ? screenController.imageFile!
+                              : screenController.imageFile!,
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.cover,
                         ),
-                        const SizedBox(height: 20),
-                        Text(
-                          "Upload Image",
-                          style: TextStyle(
-                            color: themeProvider.darkTheme
-                                ? AppColors.whiteColor
-                                : AppColors.blackTextColor,
-                            fontSize: 15.sp,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    );
-                  },),
-              ),
-
-              //),
-              // const SizedBox(height: 20),
-              // Text(
-              //   "Upload Image",
-              //   style: TextStyle(
-              //     color: themeProvider.darkTheme
-              //         ? AppColors.whiteColor
-              //         : AppColors.blackTextColor,
-              //     fontSize: 15.sp,
-              //     fontWeight: FontWeight.w500,
-              //   ),
-              // ),
-            ],
-          ),
-        ):
-             Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      themeProvider.darkTheme
-                          ? AppImages.cameraPlaceHolderImgDark
-                          : AppImages.cameraPlaceHolderImglight,
-                      height: 65,
-                    ),
-                    const SizedBox(height: 20),
-                    Text(
-                      "Upload Image",
-                      style: TextStyle(
-                        color: AppColors.blackTextColor,
-                        fontSize: 15.sp,
-                        fontWeight: FontWeight.w500,
                       ),
-                    ),
-                  ],
-                ),
-              )
-      ),
+
+                      //),
+                      // const SizedBox(height: 20),
+                      // Text(
+                      //   "Upload Image",
+                      //   style: TextStyle(
+                      //     color: themeProvider.darkTheme
+                      //         ? AppColors.whiteColor
+                      //         : AppColors.blackTextColor,
+                      //     fontSize: 15.sp,
+                      //     fontWeight: FontWeight.w500,
+                      //   ),
+                      // ),
+                    ],
+                  ),
+                )
+              : screenController.ngoProfile != null
+                  ? Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(30),
+                            child: Image.network(
+                              themeProvider.darkTheme
+                                  ? ApiUrl.apiImagePath +
+                                      screenController.ngoProfile!
+                                  : ApiUrl.apiImagePath +
+                                      screenController.ngoProfile!,
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, er, st) {
+                                //return Image.asset(AppImages.petMetLogoImg);
+                                return Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      themeProvider.darkTheme
+                                          ? AppImages.cameraPlaceHolderImgDark
+                                          : AppImages.cameraPlaceHolderImglight,
+                                      height: 65,
+                                    ),
+                                    const SizedBox(height: 20),
+                                    Text(
+                                      "Upload Image",
+                                      style: TextStyle(
+                                        color: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                            : AppColors.blackTextColor,
+                                        fontSize: 15.sp,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
+                          ),
+
+                          //),
+                          // const SizedBox(height: 20),
+                          // Text(
+                          //   "Upload Image",
+                          //   style: TextStyle(
+                          //     color: themeProvider.darkTheme
+                          //         ? AppColors.whiteColor
+                          //         : AppColors.blackTextColor,
+                          //     fontSize: 15.sp,
+                          //     fontWeight: FontWeight.w500,
+                          //   ),
+                          // ),
+                        ],
+                      ),
+                    )
+                  : Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            themeProvider.darkTheme
+                                ? AppImages.cameraPlaceHolderImgDark
+                                : AppImages.cameraPlaceHolderImglight,
+                            height: 65,
+                          ),
+                          const SizedBox(height: 20),
+                          Text(
+                            "Upload Image",
+                            style: TextStyle(
+                              color: AppColors.blackTextColor,
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )),
     );
   }
-  modelBottomSheet(BuildContext context){
+
+  modelBottomSheet(BuildContext context) {
     showModalBottomSheet<void>(
       context: context,
       constraints: null,
@@ -218,7 +224,7 @@ class UploadImageModule extends StatelessWidget {
               ListTile(
                 onTap: getFromCamera,
                 contentPadding:
-                EdgeInsets.only(left: screenController.size.width * 0.1),
+                    EdgeInsets.only(left: screenController.size.width * 0.1),
                 title: Text(
                   "Select Image From Camera",
                   style: TextStyle(
@@ -230,7 +236,7 @@ class UploadImageModule extends StatelessWidget {
               ),
               ListTile(
                 contentPadding:
-                EdgeInsets.only(left: screenController.size.width * 0.1),
+                    EdgeInsets.only(left: screenController.size.width * 0.1),
                 onTap: getFromGallery,
                 title: Text(
                   "Select Image From Gallery",
@@ -271,14 +277,10 @@ class UploadImageModule extends StatelessWidget {
       log('Camera File Path : ${screenController.imageFile}');
       log('Camera Image Path : ${screenController.imageFile!.path}');
 
-
       //Fluttertoast.showToast(msg: '${image.path}', toastLength: Toast.LENGTH_LONG);
       //renameImage();
       //});
-    } else {
-
-
-    }
+    } else {}
 
     screenController.imageFile = File(pickedFile!.path);
     //setState(() {});
@@ -308,14 +310,10 @@ class UploadImageModule extends StatelessWidget {
       log('Camera File Path : ${screenController.imageFile}');
       log('Camera Image Path : ${screenController.imageFile!.path}');
 
-
       //Fluttertoast.showToast(msg: '${image.path}', toastLength: Toast.LENGTH_LONG);
       //renameImage();
       //});
-    } else {
-
-
-    }
+    } else {}
 
     screenController.imageFile = File(pickedFile!.path);
     // setState(() {});
@@ -332,8 +330,9 @@ class NameOfNgoListModule extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Name of NGO/Vet picture:", style: TextStyle(color: Colors.black)),
-        SizedBox(height: 8),
+        const Text("Name of NGO/Vet picture:",
+            style: TextStyle(color: Colors.black)),
+        const SizedBox(height: 8),
         /*Container(
           height: screenController.size.width * 0.16,
           child: ListView.separated(
@@ -382,14 +381,14 @@ class NameOfNgoListModule extends StatelessWidget {
             },
           ),
         ),*/
-        Container(
+        SizedBox(
           height: screenController.size.width * 0.16,
           child: ListView.builder(
               shrinkWrap: true,
               itemCount: 5,
               scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index){
-                return Container(
+              itemBuilder: (context, index) {
+                return SizedBox(
                   // height: screenController.size.width * 0.16,
                   child: Stack(
                     alignment: Alignment.bottomRight,
@@ -409,89 +408,149 @@ class NameOfNgoListModule extends StatelessWidget {
                               Radius.circular(8),
                             ),
                           ),
-                          child: index == 0 ?
-                          screenController.ngoPictureFile1 != null ?
-                          Image.file(
-                            screenController.ngoPictureFile1!,height: 65,) :
-                          screenController.ngoImage1 != null ?
-                          Image.network(
-                            screenController.ngoImage1!,height: 65,
-                            errorBuilder: (context, er, st){
-                              return Image.asset(AppImages.petMetLogoImg);
-                            },):
-                          Image.asset(AppImages.petMetLogoImg) :
-
-                          index == 1 ?
-                          screenController.ngoPictureFile2 != null ?
-                          Image.file(
-                            screenController.ngoPictureFile2!,height: 65,) :
-                          screenController.ngoImage2 != null ?
-                          Image.network(
-                            screenController.ngoImage2!,height: 65,
-                            errorBuilder: (context, er, st){
-                              return Image.asset(AppImages.petMetLogoImg);
-                            },):
-                          Image.asset(AppImages.petMetLogoImg) :
-
-                          index == 2 ?
-                          screenController.ngoPictureFile3 != null ?
-                          Image.file(
-                            screenController.ngoPictureFile3!,height: 65,) :
-                          screenController.ngoImage3 != null ?
-                          Image.network(
-                            screenController.ngoImage3!,height: 65,
-                            errorBuilder: (context, er, st){
-                              return Image.asset(AppImages.petMetLogoImg);
-                            },):
-                          Image.asset(AppImages.petMetLogoImg) :
-
-                          index == 3 ?
-                          screenController.ngoPictureFile4 != null ?
-                          Image.file(
-                            screenController.ngoPictureFile4!,height: 65,) :
-                          screenController.ngoImage4 != null ?
-                          Image.network(
-                            screenController.ngoImage4!,height: 65,
-                            errorBuilder: (context, er, st){
-                              return Image.asset(AppImages.petMetLogoImg);
-                            },):
-                          Image.asset(AppImages.petMetLogoImg):
-
-                          index == 4 ?
-                          screenController.ngoPictureFile5 != null ?
-                          Image.file(
-                            screenController.ngoPictureFile5!,height: 65,) :
-                          screenController.ngoImage5 != null ?
-                          Image.network(
-                            screenController.ngoImage5!,height: 65,
-                            errorBuilder: (context, er, st){
-                              return Image.asset(AppImages.petMetLogoImg);
-                            },):
-                          Image.asset(AppImages.petMetLogoImg) : Container()
-                      ),
+                          child: index == 0
+                              ? screenController.ngoPictureFile1 != null
+                                  ? Image.file(
+                                      screenController.ngoPictureFile1!,
+                                      height: 65,
+                                      fit: BoxFit.fill,
+                                    )
+                                  : screenController.ngoImage1 != null
+                                      ? Image.network(
+                                          screenController.ngoImage1!,
+                                          height: 65,
+                                          fit: BoxFit.fill,
+                                          errorBuilder: (context, er, st) {
+                                            return Image.asset(
+                                              AppImages.petMetLogoImg,
+                                              fit: BoxFit.fill,
+                                            );
+                                          },
+                                        )
+                                      : Image.asset(AppImages.petMetLogoImg)
+                              : index == 1
+                                  ? screenController.ngoPictureFile2 != null
+                                      ? Image.file(
+                                          screenController.ngoPictureFile2!,
+                                          height: 65,
+                                          fit: BoxFit.fill,
+                                        )
+                                      : screenController.ngoImage2 != null
+                                          ? Image.network(
+                                              screenController.ngoImage2!,
+                                              height: 65,
+                                              fit: BoxFit.fill,
+                                              errorBuilder: (context, er, st) {
+                                                return Image.asset(
+                                                  AppImages.petMetLogoImg,
+                                                  fit: BoxFit.fill,
+                                                );
+                                              },
+                                            )
+                                          : Image.asset(AppImages.petMetLogoImg)
+                                  : index == 2
+                                      ? screenController.ngoPictureFile3 != null
+                                          ? Image.file(
+                                              screenController.ngoPictureFile3!,
+                                              height: 65,
+                                              fit: BoxFit.fill,
+                                            )
+                                          : screenController.ngoImage3 != null
+                                              ? Image.network(
+                                                  screenController.ngoImage3!,
+                                                  height: 65,
+                                                  fit: BoxFit.fill,
+                                                  errorBuilder:
+                                                      (context, er, st) {
+                                                    return Image.asset(
+                                                      AppImages.petMetLogoImg,
+                                                      fit: BoxFit.fill,
+                                                    );
+                                                  },
+                                                )
+                                              : Image.asset(
+                                                  AppImages.petMetLogoImg)
+                                      : index == 3
+                                          ? screenController.ngoPictureFile4 !=
+                                                  null
+                                              ? Image.file(
+                                                  screenController
+                                                      .ngoPictureFile4!,
+                                                  height: 65,
+                                                  fit: BoxFit.fill,
+                                                )
+                                              : screenController.ngoImage4 !=
+                                                      null
+                                                  ? Image.network(
+                                                      screenController
+                                                          .ngoImage4!,
+                                                      height: 65,
+                                                      fit: BoxFit.fill,
+                                                      errorBuilder:
+                                                          (context, er, st) {
+                                                        return Image.asset(
+                                                          AppImages
+                                                              .petMetLogoImg,
+                                                          fit: BoxFit.fill,
+                                                        );
+                                                      },
+                                                    )
+                                                  : Image.asset(
+                                                      AppImages.petMetLogoImg)
+                                          : index == 4
+                                              ? screenController
+                                                          .ngoPictureFile5 !=
+                                                      null
+                                                  ? Image.file(
+                                                      screenController
+                                                          .ngoPictureFile5!,
+                                                      height: 65,
+                                                      fit: BoxFit.fill,
+                                                    )
+                                                  : screenController
+                                                              .ngoImage5 !=
+                                                          null
+                                                      ? Image.network(
+                                                          screenController
+                                                              .ngoImage5!,
+                                                          height: 65,
+                                                          fit: BoxFit.fill,
+                                                          errorBuilder:
+                                                              (context, er,
+                                                                  st) {
+                                                            return Image.asset(
+                                                              AppImages
+                                                                  .petMetLogoImg,
+                                                              fit: BoxFit.fill,
+                                                            );
+                                                          },
+                                                        )
+                                                      : Image.asset(AppImages
+                                                          .petMetLogoImg)
+                                              : Container()),
                       Positioned(
                         right: 0,
                         bottom: 0,
                         child: GestureDetector(
-                          onTap:(){
-                            if(index == 0){
+                          onTap: () {
+                            if (index == 0) {
                               getFromGallery();
-                            } else if(index == 1){
+                            } else if (index == 1) {
                               getFromGallery2();
-                            } else if(index == 2){
+                            } else if (index == 2) {
                               getFromGallery3();
-                            } else if(index == 3){
+                            } else if (index == 3) {
                               getFromGallery4();
-                            } else if(index == 4){
+                            } else if (index == 4) {
                               getFromGallery5();
                             }
-
                           },
                           child: Container(
                             height: 15,
                             width: 15,
                             decoration: const BoxDecoration(
-                                color: AppColors.accentColor, shape: BoxShape.circle),
+                                color: AppColors.accentColor,
+                                shape: BoxShape.circle),
                             child: const Icon(
                               Icons.add,
                               color: AppColors.whiteColor,
@@ -531,8 +590,7 @@ class NameOfNgoListModule extends StatelessWidget {
       screenController.loadUI();
       log('Camera File Path : ${screenController.ngoPictureFile1}');
       log('Camera Image Path : ${screenController.ngoPictureFile1!.path}');
-    } else {
-    }
+    } else {}
 
     screenController.ngoPictureFile1 = File(pickedFile!.path);
     //setState(() {});
@@ -560,8 +618,7 @@ class NameOfNgoListModule extends StatelessWidget {
       screenController.loadUI();
       log('Camera File Path : ${screenController.ngoPictureFile2}');
       log('Camera Image Path : ${screenController.ngoPictureFile2!.path}');
-    } else {
-    }
+    } else {}
 
     screenController.ngoPictureFile2 = File(pickedFile!.path);
     //setState(() {});
@@ -589,8 +646,7 @@ class NameOfNgoListModule extends StatelessWidget {
       screenController.loadUI();
       log('Camera File Path : ${screenController.ngoPictureFile3}');
       log('Camera Image Path : ${screenController.ngoPictureFile3!.path}');
-    } else {
-    }
+    } else {}
 
     screenController.ngoPictureFile3 = File(pickedFile!.path);
     //setState(() {});
@@ -618,8 +674,7 @@ class NameOfNgoListModule extends StatelessWidget {
       screenController.loadUI();
       log('Camera File Path : ${screenController.ngoPictureFile4}');
       log('Camera Image Path : ${screenController.ngoPictureFile4!.path}');
-    } else {
-    }
+    } else {}
 
     screenController.ngoPictureFile4 = File(pickedFile!.path);
     //setState(() {});
@@ -647,8 +702,7 @@ class NameOfNgoListModule extends StatelessWidget {
       screenController.loadUI();
       log('Camera File Path : ${screenController.ngoPictureFile5}');
       log('Camera Image Path : ${screenController.ngoPictureFile5!.path}');
-    } else {
-    }
+    } else {}
 
     screenController.ngoPictureFile5 = File(pickedFile!.path);
     //setState(() {});
@@ -767,7 +821,6 @@ class EmailTextFieldModule extends StatelessWidget {
 
   final screenController = Get.find<NgoUserProfileScreenController>();
 
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -787,7 +840,7 @@ class EmailTextFieldModule extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         CustomLightTextField(
-          readOnly: false,
+          readOnly: true,
           fieldController: screenController.emailController,
           height: screenController.size.height * 0.05,
           width: double.infinity,
@@ -800,7 +853,6 @@ class EmailTextFieldModule extends StatelessWidget {
     );
   }
 }
-
 
 class NameTextFieldModule extends StatelessWidget {
   NameTextFieldModule({Key? key}) : super(key: key);
@@ -840,7 +892,6 @@ class NameTextFieldModule extends StatelessWidget {
   }
 }
 
-
 class NgoBankAccountNumberTextFieldModule extends StatelessWidget {
   NgoBankAccountNumberTextFieldModule({Key? key}) : super(key: key);
 
@@ -871,8 +922,9 @@ class NgoBankAccountNumberTextFieldModule extends StatelessWidget {
           width: double.infinity,
           hintText: "Ngo Bank Account Number",
           textInputAction: TextInputAction.next,
-          textInputType: TextInputType.emailAddress,
+          textInputType: TextInputType.number,
           validator: (val) => Validations().validateBankAccountNumber(val!),
+          maxLength: 18,
         ),
       ],
     );
@@ -882,7 +934,6 @@ class NgoBankAccountNumberTextFieldModule extends StatelessWidget {
 class IfscCodeTextFieldModule extends StatelessWidget {
   IfscCodeTextFieldModule({Key? key}) : super(key: key);
   final screenController = Get.find<NgoUserProfileScreenController>();
-
 
   @override
   Widget build(BuildContext context) {
@@ -907,10 +958,11 @@ class IfscCodeTextFieldModule extends StatelessWidget {
           fieldController: screenController.ifscCodeController,
           height: screenController.size.height * 0.05,
           width: double.infinity,
-          hintText: "**** ** ***",
+          hintText: "IFSC Code",
           textInputAction: TextInputAction.next,
-          textInputType: TextInputType.emailAddress,
+          textInputType: TextInputType.text,
           validator: (val) => Validations().validateIfscCode(val!),
+          maxLength: 11,
         ),
       ],
     );
@@ -985,8 +1037,9 @@ class NgoContactTextFieldModule extends StatelessWidget {
           width: double.infinity,
           hintText: "Ngo Contact",
           textInputAction: TextInputAction.next,
-          textInputType: TextInputType.number,
+          textInputType: TextInputType.phone,
           validator: (val) => Validations().validateMobile(val!),
+          maxLength: 10,
         ),
       ],
     );
@@ -1023,14 +1076,13 @@ class NgoDetailsTextFieldModule extends StatelessWidget {
           width: double.infinity,
           hintText: "Details",
           textInputAction: TextInputAction.next,
-          textInputType: TextInputType.number,
+          textInputType: TextInputType.text,
           validator: (val) => Validations().validateDetails(val!),
         ),
       ],
     );
   }
 }
-
 
 class InstagramTextFieldModule extends StatelessWidget {
   InstagramTextFieldModule({Key? key}) : super(key: key);
@@ -1121,7 +1173,7 @@ class IsActiveTextFieldModule extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              "Active",
+              "Active Status",
               style: TextStyle(
                 color: AppColors.blackTextColor.withOpacity(0.7),
                 fontSize: 11.sp,
@@ -1131,7 +1183,94 @@ class IsActiveTextFieldModule extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 8),
-        CustomLightTextField(
+        Stack(
+          children: [
+            Container(
+              height: screenController.size.height * 0.06,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: themeProvider.darkTheme
+                      ? AppColors.darkThemeBoxColor
+                      : AppColors.whiteColor,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.greyTextColor.withOpacity(0.3),
+                      blurRadius: 35,
+                      spreadRadius: 1,
+                      offset: const Offset(0, 5),
+                    ),
+                  ]),
+            ),
+            Obx(
+              () => Container(
+                padding: const EdgeInsets.only(left: 10),
+                width: Get.width,
+                //gives the width of the dropdown button
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  //color: Colors.grey.shade200,
+                ),
+                child: Theme(
+                  data: Theme.of(context).copyWith(
+                    canvasColor: Colors.grey.shade100,
+                    buttonTheme: ButtonTheme.of(context).copyWith(
+                      alignedDropdown: true,
+                    ),
+                  ),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                      value: screenController.ngoActiveStatusValue.value,
+                      icon: Icon(
+                        Icons.keyboard_arrow_down_rounded,
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.blackTextColor.withOpacity(0.7),
+                      ),
+                      items: <String>[
+                        'Active',
+                        'Inactive',
+                      ].map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: TextStyle(
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor.withOpacity(0.7),
+                              fontSize: 13.sp,
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                      // isDense: true,
+                      // isExpanded: true,
+                      dropdownColor: themeProvider.darkTheme
+                          ? AppColors.darkThemeBoxColor
+                          : AppColors.whiteColor,
+                      underline: const SizedBox(),
+                      borderRadius: const BorderRadius.all(Radius.circular(15)),
+                      style: TextStyle(
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.blackTextColor.withOpacity(0.7),
+                        fontSize: 13.sp,
+                      ),
+                      onChanged: (value) {
+                        screenController.isLoading(true);
+                        screenController.ngoActiveStatusValue.value = value!;
+                        log("ngoActiveStatusValue.value : ${screenController.ngoActiveStatusValue.value}");
+                        screenController.isLoading(false);
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        /*CustomLightTextField(
           readOnly: false,
           fieldController: screenController.activeController,
           height: screenController.size.height * 0.05,
@@ -1140,12 +1279,11 @@ class IsActiveTextFieldModule extends StatelessWidget {
           textInputAction: TextInputAction.next,
           textInputType: TextInputType.number,
           validator: (val) => Validations().validateActive(val!),
-        ),
+        ),*/
       ],
     );
   }
 }
-
 
 class OpenAndCloseShopTimeModule extends StatelessWidget {
   OpenAndCloseShopTimeModule({Key? key}) : super(key: key);
@@ -1224,52 +1362,54 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
               //     ),
               //   ],
               // )
-              Obx(()=>
-                  Container(
-                    height: Get.height * 0.05,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.grey),
-                      //color: Colors.transparent,
-                      //   boxShadow: [
-                      //     BoxShadow(
-                      //       color: themeProvider.darkTheme
-                      //           ? AppColors.whiteColor.withOpacity(0.05)
-                      //           : AppColors.greyTextColor.withOpacity(0.5),
-                      //       blurRadius: 10,
-                      //       spreadRadius: 0.5,
-                      //       offset: const Offset(0, 0),
-                      //     ),
-                      //   ],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Text(
-                                screenController.selectedOpenTime != null ? screenController.selectedOpenTime!.value : "No time selected!",
-                                // textAlign: TextAlign.center,
-                                maxLines: 1,
-                                style: const TextStyle(color: Colors.black)),
+              Obx(
+                () => Container(
+                  height: Get.height * 0.05,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Colors.grey),
+                    //color: Colors.transparent,
+                    //   boxShadow: [
+                    //     BoxShadow(
+                    //       color: themeProvider.darkTheme
+                    //           ? AppColors.whiteColor.withOpacity(0.05)
+                    //           : AppColors.greyTextColor.withOpacity(0.5),
+                    //       blurRadius: 10,
+                    //       spreadRadius: 0.5,
+                    //       offset: const Offset(0, 0),
+                    //     ),
+                    //   ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                              screenController.selectedOpenTime != null
+                                  ? screenController.selectedOpenTime!.value
+                                  : "No time selected!",
+                              // textAlign: TextAlign.center,
+                              maxLines: 1,
+                              style: const TextStyle(color: Colors.black)),
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.timer_outlined,
+                            color: Colors.black,
+                            size: 20,
                           ),
-                          IconButton(
-                            icon: const Icon(
-                              Icons.timer_outlined,
-                              color: Colors.black,
-                              size: 20,
-                            ),
-                            tooltip: 'DOB',
-                            onPressed: () {
-                              timePicker(context);
-                            },
-                          ),
-                        ],
-                      ),
+                          tooltip: 'DOB',
+                          onPressed: () {
+                            timePicker(context);
+                          },
+                        ),
+                      ],
                     ),
                   ),
+                ),
               )
             ],
           ),
@@ -1342,52 +1482,54 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                   ),
                 ],
               )*/
-              Obx(()=>
-                  Container(
-                    height: Get.height * 0.05,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      //color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.grey),
-                        // boxShadow: [
-                        //   BoxShadow(
-                        //     color: themeProvider.darkTheme
-                        //         ? AppColors.whiteColor.withOpacity(0.05)
-                        //         : AppColors.greyTextColor.withOpacity(0.5),
-                        //     blurRadius: 10,
-                        //     spreadRadius: 0.5,
-                        //     offset: const Offset(0, 0),
-                        //   ),
-                        // ],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Text(
-                                screenController.selectedCloseTime != null ? screenController.selectedCloseTime!.value : "No time selected!",
-                                // textAlign: TextAlign.center,
-                                maxLines: 1,
-                                style: const TextStyle(color: Colors.black)),
+              Obx(
+                () => Container(
+                  height: Get.height * 0.05,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    //color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Colors.grey),
+                    // boxShadow: [
+                    //   BoxShadow(
+                    //     color: themeProvider.darkTheme
+                    //         ? AppColors.whiteColor.withOpacity(0.05)
+                    //         : AppColors.greyTextColor.withOpacity(0.5),
+                    //     blurRadius: 10,
+                    //     spreadRadius: 0.5,
+                    //     offset: const Offset(0, 0),
+                    //   ),
+                    // ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                              screenController.selectedCloseTime != null
+                                  ? screenController.selectedCloseTime!.value
+                                  : "No time selected!",
+                              // textAlign: TextAlign.center,
+                              maxLines: 1,
+                              style: const TextStyle(color: Colors.black)),
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.timer_outlined,
+                            color: Colors.black,
+                            size: 20,
                           ),
-                          IconButton(
-                            icon: const Icon(
-                              Icons.timer_outlined,
-                              color: Colors.black,
-                              size: 20,
-                            ),
-                            tooltip: 'DOB',
-                            onPressed: () {
-                              closeTimePicker(context);
-                            },
-                          ),
-                        ],
-                      ),
+                          tooltip: 'DOB',
+                          onPressed: () {
+                            closeTimePicker(context);
+                          },
+                        ),
+                      ],
                     ),
                   ),
+                ),
               )
             ],
           ),
@@ -1398,9 +1540,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
 
   Future<void> timePicker(BuildContext context) async {
     final TimeOfDay? result =
-    await showTimePicker(
-        context: context,
-        initialTime: TimeOfDay.now());
+        await showTimePicker(context: context, initialTime: TimeOfDay.now());
     if (result != null) {
       //setState(() {
       screenController.selectedOpenTime!.value = result.format(context);
@@ -1411,9 +1551,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
 
   Future<void> closeTimePicker(BuildContext context) async {
     final TimeOfDay? result =
-    await showTimePicker(
-        context: context,
-        initialTime: TimeOfDay.now());
+        await showTimePicker(context: context, initialTime: TimeOfDay.now());
     if (result != null) {
       //setState(() {
       screenController.selectedCloseTime!.value = result.format(context);
@@ -1431,11 +1569,10 @@ class SubmitButtonModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async{
-        if(screenController.formKey.currentState!.validate()){
+      onTap: () async {
+        if (screenController.formKey.currentState!.validate()) {
           await screenController.updateVetAndNgoProfileFunction();
         }
-        // controller.submitLoginForm();
       },
       child: Container(
         width: double.infinity,

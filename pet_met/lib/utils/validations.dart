@@ -30,6 +30,8 @@ class Validations {
   String? validateInstagramLink(String value) {
     if (value.isEmpty) {
       return 'Instagram Link is required';
+    } else if(!value.contains('https://www.instagram.com/') || value.contains(' ')) {
+      return 'Invalid instagram link';
     }
     return null;
   }
@@ -37,6 +39,8 @@ class Validations {
   String? validateFacebookLink(String value) {
     if (value.isEmpty) {
       return 'Facebook Link is required';
+    } else if(!value.contains('https://www.facebook.com/') || value.contains(' ')) {
+      return 'Invalid facebook link';
     }
     return null;
   }
@@ -80,6 +84,8 @@ class Validations {
   String? validateBankAccountNumber(String value) {
     if (value.isEmpty) {
       return 'Bank account number is required';
+    } else if(value.length < 9 || value.length > 18) {
+      return 'Invalid account number';
     }
     return null;
   }
@@ -87,6 +93,8 @@ class Validations {
   String? validateIfscCode(String value) {
     if (value.isEmpty) {
       return 'IFSC code is required';
+    } else if(value.length > 11) {
+      return 'Invalid ifsc code';
     }
     return null;
   }
@@ -160,7 +168,7 @@ class Validations {
     if (value.isEmpty) {
       return "Password is required";
     }else if (value != value2) {
-      return "New Password and Confirm Password should not be Match";
+      return "New password and confirm password should not be match";
     } else {
       return null;
     }

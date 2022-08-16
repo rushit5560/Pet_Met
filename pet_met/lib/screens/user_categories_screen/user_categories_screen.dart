@@ -92,7 +92,7 @@ class _UserCategoriesScreenState extends State<UserCategoriesScreen> {
                                   //   ],
                                   // ),
                                   SizedBox(height: 3.h),
-                                  Container(
+                                  SizedBox(
                                     height: controller.size.height * 0.35,
                                     width: double.infinity,
                                     child: ListView.separated(
@@ -113,7 +113,7 @@ class _UserCategoriesScreenState extends State<UserCategoriesScreen> {
                                                 offset: const Offset(4, 4),
                                               ),
                                             ],
-                                            borderRadius: BorderRadius.all(
+                                            borderRadius: const BorderRadius.all(
                                               Radius.circular(8),
                                             ),
                                           ),

@@ -22,7 +22,7 @@ class UserCategoriesController extends GetxController {
   Future<void> setRoleIdInPrefs() async {
     await userPreference.setRoleId(roleId);
     //Get.offNamed(AppRouteNames.loginRoute);
-    Get.to(() => LoginScreen(),
+    Get.off(() => LoginScreen(),
         transition: Transition.native,
         duration: const Duration(milliseconds: 500)
     );

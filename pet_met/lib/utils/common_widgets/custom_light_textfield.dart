@@ -17,7 +17,8 @@ class CustomLightTextField extends StatelessWidget {
     this.validator,
     this.textInputType,
     this.textInputAction,
-    this.readOnly
+    this.readOnly,
+    this.maxLength
   }) : super(key: key);
 
   final TextEditingController? fieldController;
@@ -28,6 +29,7 @@ class CustomLightTextField extends StatelessWidget {
   final TextInputAction? textInputAction;
   final TextInputType? textInputType;
   final bool? readOnly;
+  final int? maxLength;
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +59,7 @@ class CustomLightTextField extends StatelessWidget {
           validator: validator,
           textInputAction: textInputAction,
           keyboardType: textInputType,
+          maxLength: maxLength,
           cursorColor: themeProvider.darkTheme
               ? AppColors.whiteColor
               : AppColors.accentTextColor,
@@ -73,6 +76,7 @@ class CustomLightTextField extends StatelessWidget {
                   ? AppColors.darkThemeBoxColor
                   : AppColors.whiteColor,
               filled: true,
+              counterText: "",
               contentPadding: const EdgeInsets.symmetric(horizontal: 15),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),

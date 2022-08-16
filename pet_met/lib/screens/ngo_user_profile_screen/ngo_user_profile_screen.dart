@@ -24,7 +24,7 @@ class NgoUserProfileScreen extends StatelessWidget {
       child: Scaffold(
         body: Stack(
           children: [
-            BackgroundImage(),
+            const BackgroundImage(),
             Column(
               children: [
                // BackArrow(),
@@ -131,168 +131,236 @@ class NgoUserProfileScreen extends StatelessWidget {
               ? AppColors.blackTextColor
               : AppColors.whiteColor,
           //height: controller.size.height * 0.15,
-          child: Column(
-            children: [
-              GestureDetector(
-                onTap: ()async{
-                  await multipleAccountDialog(context);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: Get.width,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(color: Colors.grey)
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("User", style: TextStyle(color: Colors.black),),
-                          SizedBox(height: 10),
 
-                          Row(
-                            children: [
-                              Text("Email:", style: TextStyle(color: Colors.black),),
-                              Text(controller.userEmail, style: TextStyle(color: Colors.black),),
-                            ],
-                          ),
-                          SizedBox(height: 10),
-                          Row(
-                            children: [
-                              Text("Name:", style: TextStyle(color: Colors.black),),
-                              Text(controller.userName.value, style: TextStyle(color: Colors.black),),
-                            ],
-                          )
-                        ],
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                controller.userProfile == true
+                ? GestureDetector(
+                  onTap: ()async{
+                    await multipleAccountDialog(context);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: Get.width,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(color: Colors.grey)
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              "User",
+                              style: TextStyle(color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 17),
+                            ),
+                            const SizedBox(child: Divider(color: AppColors.greyColor,)),
+
+                            Row(
+                              children: [
+                                const Expanded(
+                                    flex: 30,
+                                    child: Text("User Name", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,),)),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                    flex: 70,
+                                    child: Text(controller.userName.value, style: const TextStyle(color: Colors.black),)),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            Row(
+                              children: [
+                                const Expanded(
+                                  flex: 30,
+                                  child: Text("Email", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,),),
+                                ),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                    flex: 70,
+                                    child: Text(controller.userEmail.value, style: const TextStyle(color: Colors.black),)),
+                              ],
+                            ),
+
+
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
+                ) : Container(),
 
-              GestureDetector(
-                onTap: ()async{
-                  await multipleAccountDialog(context);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: Get.width,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(color: Colors.grey)
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Shop", style: TextStyle(color: Colors.black),),
-                          SizedBox(height: 10),
+                controller.shopProfile == true
+                ? GestureDetector(
+                  onTap: ()async{
+                    await multipleAccountDialog(context);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: Get.width,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(color: Colors.grey)
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text("Shop",  style: TextStyle(color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17),),
+                            const SizedBox(child: Divider(color: AppColors.greyColor,)),
 
-                          Row(
-                            children: [
-                              Text("Email:", style: TextStyle(color: Colors.black),),
-                              Text(controller.shopEmail.value, style: TextStyle(color: Colors.black),),
-                            ],
-                          ),
-                          SizedBox(height: 10),
-                          Row(
-                            children: [
-                              Text("Name:", style: TextStyle(color: Colors.black),),
-                              Text(controller.shopName.value, style: TextStyle(color: Colors.black),),
-                            ],
-                          )
-                        ],
+                            Row(
+                              children: [
+                                const Expanded(
+                                    flex: 30,
+                                    child: Text("Shop Name", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),)),
+                                Expanded(
+                                    flex: 70,
+                                    child: Text(controller.shopName.value, style: const TextStyle(color: Colors.black),)),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            Row(
+                              children: [
+                                const Expanded(
+                                  flex: 30,
+                                    child: Text("Email", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),)),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                    flex: 70,
+                                    child: Text(controller.shopEmail.value, style: const TextStyle(color: Colors.black),)),
+                              ],
+                            ),
+
+
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
+                ) : Container(),
 
-              GestureDetector(
-                onTap: ()async{
-                  await multipleAccountDialog(context);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: Get.width,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(color: Colors.grey)
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Vet & NGO", style: TextStyle(color: Colors.black),),
-                          SizedBox(height: 10),
+                controller.vetNgoProfile == true
+                ? GestureDetector(
+                  onTap: ()async{
+                    await multipleAccountDialog(context);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: Get.width,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(color: Colors.grey)
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text("Vet & NGO",  style: TextStyle(color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17),),
+                            const SizedBox(child: Divider(color: AppColors.greyColor,)),
 
-                          Row(
-                            children: [
-                              Text("Email:", style: TextStyle(color: Colors.black),),
-                              Text(controller.ngoEmail.value, style: TextStyle(color: Colors.black),),
-                            ],
-                          ),
-                          SizedBox(height: 10),
-                          Row(
-                            children: [
-                              Text("Name:", style: TextStyle(color: Colors.black),),
-                              Text(controller.ngoName.value, style: TextStyle(color: Colors.black),),
-                            ],
-                          )
-                        ],
+                            Row(
+                              children: [
+                                const Expanded(
+                                    flex: 30,
+                                    child: Text("Vet/Ngo Name", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,),)),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                    flex: 70,
+                                    child: Text(controller.ngoName.value, style: const TextStyle(color: Colors.black),)),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            Row(
+                              children: [
+                                const Expanded(
+                                  flex: 30,
+                                  child: Text("Email", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,),),
+                                ),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                    flex: 70,
+                                    child: Text(controller.ngoEmail.value, style: const TextStyle(color: Colors.black),)),
+                              ],
+                            ),
+
+
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
+                ) : Container(),
 
-              GestureDetector(
-                onTap: ()async{
-                  await multipleAccountDialog(context);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    width: Get.width,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(color: Colors.grey)
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Trainer", style: TextStyle(color: Colors.black),),
-                          SizedBox(height: 10),
+                controller.trainerProfile == true
+                ? GestureDetector(
+                  onTap: ()async{
+                    await multipleAccountDialog(context);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      width: Get.width,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(color: Colors.grey)
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text("Trainer",  style: TextStyle(color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17),),
+                            const SizedBox(child: Divider(color: AppColors.greyColor,)),
 
-                          Row(
-                            children: [
-                              Text("Email:", style: TextStyle(color: Colors.black),),
-                              Text(controller.trainerEmail.value, style: TextStyle(color: Colors.black),),
-                            ],
-                          ),
-                          SizedBox(height: 10),
-                          Row(
-                            children: [
-                              Text("Name:", style: TextStyle(color: Colors.black),),
-                              Text(controller.trainerName.value, style: TextStyle(color: Colors.black),),
-                            ],
-                          )
-                        ],
+                            Row(
+                              children: [
+                                const Expanded(
+                                    flex: 30,
+                                    child: Text("Trainer Name", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),)),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                    flex: 70,
+                                    child: Text(controller.trainerName.value, style: const TextStyle(color: Colors.black),)),
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            Row(
+                              children: [
+                                const Expanded(
+                                  flex: 30,
+                                    child: Text("Email", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),)),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                    flex: 70,
+                                    child: Text(controller.trainerEmail.value, style: const TextStyle(color: Colors.black),)),
+                              ],
+                            ),
+
+
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              )
-            ],
+                ) : Container(),
+              ],
+            ),
           ),
         );
       },
