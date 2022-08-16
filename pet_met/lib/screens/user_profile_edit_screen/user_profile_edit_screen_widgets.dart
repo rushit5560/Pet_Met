@@ -6,10 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/controllers/user_profile_edit_controller.dart';
+import 'package:pet_met/screens/upload_pet_screen/upload_pet_screen.dart';
+import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
+import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/validations.dart';
 import 'package:sizer/sizer.dart';
 
@@ -40,20 +43,26 @@ class UploadImageModule extends StatelessWidget {
         modelBottomSheet(context);
       },
       child: Container(
-        //height: controller.size.height * 0.2,
+        height: controller.size.height * 0.2,
         width: double.infinity,
         decoration: BoxDecoration(
           color: themeProvider.darkTheme
               ? AppColors.darkThemeColor
               : AppColors.whiteColor,
           borderRadius: const BorderRadius.all(
-            Radius.circular(15),
+            Radius.circular(25),
           ),
-          // image: DecorationImage(
-          //   image: FileImage(
-          //     File(controller.imageFile!.path),
-          //   ),
-          // ),
+          // image: controller.imageFile != null ?
+          //   DecorationImage(
+          //       image: FileImage(
+          //           File(themeProvider.darkTheme
+          //           ? controller.imageFile!.path: controller.imageFile!.path))):
+          // DecorationImage(
+          //     image: NetworkImage(
+          //       themeProvider.darkTheme
+          //           ?
+          //       controller.userProfile : controller.userProfile,
+          //     )),
           boxShadow: [
             BoxShadow(
               color: AppColors.greyTextColor.withOpacity(0.3),
@@ -63,155 +72,90 @@ class UploadImageModule extends StatelessWidget {
             ),
           ],
         ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 25),
-          child: controller.imageFile != null
-              ? Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(30),
+        child: controller.imageFile != null
+            ? Center(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
                   child: Image.file(
                     themeProvider.darkTheme
-                        ? controller.imageFile! : controller.imageFile!,
-                    width: 100,
-                    height: 100,
-                    fit: BoxFit.cover,),
-                ),
-
-                //),
-                // const SizedBox(height: 20),
-                // Text(
-                //   "Upload Image",
-                //   style: TextStyle(
-                //     color: themeProvider.darkTheme
-                //         ? AppColors.whiteColor
-                //         : AppColors.blackTextColor,
-                //     fontSize: 15.sp,
-                //     fontWeight: FontWeight.w500,
-                //   ),
-                // ),
-              ],
-            ),
-          ):
-          controller.userProfile.isNotEmpty ?
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(30),
-                  child: Image.network(
-                    themeProvider.darkTheme
-                        ? controller.userProfile : controller.userProfile,
-                    width: 100,
-                    height: 100,
+                        ? controller.imageFile!
+                        : controller.imageFile!,
+                    width: double.infinity,
+                    height: controller.size.height * 0.2,
                     fit: BoxFit.cover,
-                    errorBuilder: (context, er, bt){
-                      //return Image.asset(AppImages.petMetLogoImg, height: 65);
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            themeProvider.darkTheme
-                                ? AppImages.cameraPlaceHolderImgDark
-                                : AppImages.cameraPlaceHolderImglight,
-                            height: 65,
-                          ),
-                          const SizedBox(height: 20),
-                          Text(
-                            "Upload Image",
-                            style: TextStyle(
-                              color: themeProvider.darkTheme
-                                  ? AppColors.whiteColor
-                                  : AppColors.blackTextColor,
-                              fontSize: 15.sp,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      );
-                    },
                   ),
                 ),
-
-                //),
-                // const SizedBox(height: 20),
-                // Text(
-                //   "Upload Image",
-                //   style: TextStyle(
-                //     color: themeProvider.darkTheme
-                //         ? AppColors.whiteColor
-                //         : AppColors.blackTextColor,
-                //     fontSize: 15.sp,
-                //     fontWeight: FontWeight.w500,
-                //   ),
-                // ),
-              ],
-            ),
-          ):
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset(
-                  themeProvider.darkTheme
-                      ? AppImages.cameraPlaceHolderImgDark
-                      : AppImages.cameraPlaceHolderImglight,
-                  height: 65,
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  "Upload Image",
-                  style: TextStyle(
-                    color: themeProvider.darkTheme
-                        ? AppColors.whiteColor
-                        : AppColors.blackTextColor,
-                    fontSize: 15.sp,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          /*child: controller.imageFile!.path.isEmpty
-              ? Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset(
+              )
+            : controller.userProfile.isNotEmpty
+                ? Center(
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(30),
+                      child: Image.network(
                         themeProvider.darkTheme
-                            ? AppImages.cameraPlaceHolderImgDark
-                            : AppImages.cameraPlaceHolderImglight,
-                        height: 65,
+                            ? controller.userProfile
+                            : controller.userProfile,
+                        width: double.infinity,
+                        height: controller.size.height * 0.2,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, er, bt) {
+                          //return Image.asset(AppImages.petMetLogoImg, height: 65);
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                themeProvider.darkTheme
+                                    ? AppImages.cameraPlaceHolderImgDark
+                                    : AppImages.cameraPlaceHolderImglight,
+                                height: 65,
+                              ),
+                              const SizedBox(height: 20),
+                              Text(
+                                "Upload Image",
+                                style: TextStyle(
+                                  color: themeProvider.darkTheme
+                                      ? AppColors.whiteColor
+                                      : AppColors.blackTextColor,
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          );
+                        },
                       ),
-                      const SizedBox(height: 20),
-                      Text(
-                        "Upload Image",
-                        style: TextStyle(
-                          color: themeProvider.darkTheme
-                              ? AppColors.whiteColor
-                              : AppColors.blackTextColor,
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.w500,
+                    ),
+                  )
+                : Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          themeProvider.darkTheme
+                              ? AppImages.cameraPlaceHolderImgDark
+                              : AppImages.cameraPlaceHolderImglight,
+                          height: 65,
                         ),
-                      ),
-                    ],
+                        const SizedBox(height: 20),
+                        Text(
+                          "Upload Image",
+                          style: TextStyle(
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor
+                                : AppColors.blackTextColor,
+                            fontSize: 15.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                )
-              : SizedBox(),*/
-        ),
       ),
     );
   }
 
-  modelBottomSheet(BuildContext context){
+  modelBottomSheet(BuildContext context) {
     showModalBottomSheet<void>(
       context: context,
       constraints: null,
@@ -226,7 +170,7 @@ class UploadImageModule extends StatelessWidget {
               ListTile(
                 onTap: getFromCamera,
                 contentPadding:
-                EdgeInsets.only(left: controller.size.width * 0.1),
+                    EdgeInsets.only(left: controller.size.width * 0.1),
                 title: Text(
                   "Select Image From Camera",
                   style: TextStyle(
@@ -238,7 +182,7 @@ class UploadImageModule extends StatelessWidget {
               ),
               ListTile(
                 contentPadding:
-                EdgeInsets.only(left: controller.size.width * 0.1),
+                    EdgeInsets.only(left: controller.size.width * 0.1),
                 onTap: getFromGallery,
                 title: Text(
                   "Select Image From Gallery",
@@ -279,14 +223,10 @@ class UploadImageModule extends StatelessWidget {
       log('Camera File Path : ${controller.imageFile}');
       log('Camera Image Path : ${controller.imageFile!.path}');
 
-
       //Fluttertoast.showToast(msg: '${image.path}', toastLength: Toast.LENGTH_LONG);
       //renameImage();
       //});
-    } else {
-
-
-    }
+    } else {}
 
     controller.imageFile = File(pickedFile!.path);
     //setState(() {});
@@ -316,18 +256,265 @@ class UploadImageModule extends StatelessWidget {
       log('Camera File Path : ${controller.imageFile}');
       log('Camera Image Path : ${controller.imageFile!.path}');
 
-
       //Fluttertoast.showToast(msg: '${image.path}', toastLength: Toast.LENGTH_LONG);
       //renameImage();
       //});
-    } else {
-
-
-    }
+    } else {}
 
     controller.imageFile = File(pickedFile!.path);
-   // setState(() {});
+    // setState(() {});
     Get.back();
+  }
+}
+
+class UserPetListModule extends StatelessWidget {
+  UserPetListModule({Key? key}) : super(key: key);
+
+  final controller = Get.find<UserProfileEditController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        "Your pets:",
+        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 17),
+      ),
+      SizedBox(height: 8),
+      /*Container(
+            height: controller.size.width * 0.16,
+            child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: 5,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index){
+                  return Container(
+                    // height: screenController.size.width * 0.16,
+                    child: Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        Container(
+                            height: controller.size.width * 0.16,
+                            width: controller.size.width * 0.16,
+                            margin: const EdgeInsets.only(bottom: 5, right: 5),
+                            decoration: const BoxDecoration(
+                              // image: DecorationImage(
+                              //     image: AssetImage(
+                              //       controller.dogsTopList[index],
+                              //     ),
+                              //     fit: BoxFit.cover),
+                              color: AppColors.greyTextColor,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(8),
+                              ),
+                            ),
+                            child: index == 0 ?
+                            controller.shopOfferFile1 != null ?
+                            Image.file(
+                              controller.shopOfferFile1!,height: 65,) :
+                            controller.offerImage1 != null ?
+                            Image.network(
+                              controller.offerImage1!,height: 65,
+                              errorBuilder: (context, er, st){
+                                return Image.asset(AppImages.petMetLogoImg);
+                              },):
+                            Image.asset(AppImages.petMetLogoImg) :
+
+                            index == 1 ?
+                            controller.shopOfferFile2 != null ?
+                            Image.file(
+                              controller.shopOfferFile2!,height: 65,) :
+                            controller.offerImage2 != null ?
+                            Image.network(
+                              controller.offerImage2!,height: 65,
+                              errorBuilder: (context, er, st){
+                                return Image.asset(AppImages.petMetLogoImg);
+                              },):
+                            Image.asset(AppImages.petMetLogoImg) :
+
+                            index == 2 ?
+                            controller.shopOfferFile3 != null ?
+                            Image.file(
+                              controller.shopOfferFile3!,height: 65,) :
+                            controller.offerImage3 != null ?
+                            Image.network(
+                              controller.offerImage3!,height: 65,
+                              errorBuilder: (context, er, st){
+                                return Image.asset(AppImages.petMetLogoImg);
+                              },):
+                            Image.asset(AppImages.petMetLogoImg) :
+
+                            index == 3 ?
+                            controller.shopOfferFile4 != null ?
+                            Image.file(
+                              controller.shopOfferFile4!,height: 65,) :
+                            controller.offerImage4 != null ?
+                            Image.network(
+                              controller.offerImage4!,height: 65,
+                              errorBuilder: (context, er, st){
+                                return Image.asset(AppImages.petMetLogoImg);
+                              },):
+                            Image.asset(AppImages.petMetLogoImg):
+
+                            index == 4 ?
+                            screenController.shopOfferFile5 != null ?
+                            Image.file(
+                              screenController.shopOfferFile5!,height: 65,) :
+                            screenController.offerImage5 != null ?
+                            Image.network(
+                              screenController.offerImage5!,height: 65,
+                              errorBuilder: (context, er, st){
+                                return Image.asset(AppImages.petMetLogoImg);
+                              },):
+                            Image.asset(AppImages.petMetLogoImg) : Container()
+                        ),
+                        Positioned(
+                          right: 0,
+                          bottom: 0,
+                          child: GestureDetector(
+                            onTap:(){
+                              if(index == 0){
+                                getFromGallery();
+                              } else if(index == 1){
+                                getFromGallery2();
+                              } else if(index == 2){
+                                getFromGallery3();
+                              } else if(index == 3){
+                                getFromGallery4();
+                              } else if(index == 4){
+                                getFromGallery5();
+                              }
+
+                            },
+                            child: Container(
+                              height: 15,
+                              width: 15,
+                              decoration: const BoxDecoration(
+                                  color: AppColors.accentColor, shape: BoxShape.circle),
+                              child: const Icon(
+                                Icons.add,
+                                color: AppColors.whiteColor,
+                                size: 12,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                }),
+          )*/
+      Row(
+        children: [
+          Stack(
+              children: [
+            Container(
+              height: 8.h,
+              width: 8.h,
+              margin: const EdgeInsets.only(bottom: 5, right: 5),
+              decoration: BoxDecoration(
+                // image: DecorationImage(
+                //     image: AssetImage(
+                //       controller.dogsTopList[index],
+                //     ),
+                //     fit: BoxFit.cover),
+                //color: AppColors.greyTextColor,
+                border: Border.all(color: Colors.grey),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+              child: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                  child: Image.asset(AppImages.petMetLogoImg, fit: BoxFit.cover)),
+            ),
+            Positioned(
+              right: 0,
+              bottom: 0,
+              child: GestureDetector(
+                onTap: () {
+                  // petOption == PetOption.addOption ?
+                  // ""
+                  //     : "";
+                  //    // :
+
+                  Get.to(() => UploadPetScreen(),
+                      transition: Transition.native,
+                      duration: const Duration(milliseconds: 500),
+                      arguments: [PetOption.addOption, ""]);
+                },
+                child: Container(
+                  height: 15,
+                  width: 15,
+                  decoration: const BoxDecoration(
+                      color: Colors.green, shape: BoxShape.circle),
+                  child: const Icon(
+                    Icons.add,
+                    color: AppColors.whiteColor,
+                    size: 12,
+                  ),
+                ),
+              ),
+            )
+          ]),
+          SizedBox(width: 5),
+          Expanded(
+            child:  Container(
+              height: 8.h,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemCount: controller.petList.length,
+                separatorBuilder: (context, index) {
+                  return const SizedBox(width: 8);
+                },
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      log('Pet Id : ${controller.petList[index].id}');
+                      Get.to(()=> UploadPetScreen(),
+                          transition: Transition.native,
+                          duration: const Duration(milliseconds: 500),
+                          arguments: [
+                            PetOption.updateOption,
+                            controller.petList[index].id
+                          ]);
+                    },
+                    child: Stack(
+                      children: [
+                        Container(
+                          height: 8.h,
+                          width: 7.h,
+                          margin: const EdgeInsets.only(
+                              bottom: 5, right: 5),
+                          decoration: const BoxDecoration(
+                            // image: DecorationImage(
+                            //     image: AssetImage(
+                            //       controller.dogsTopList[index],
+                            //     ),
+                            //     fit: BoxFit.cover),
+                            //color: AppColors.greyTextColor,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8),
+                            ),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.all(Radius.circular(8)),
+                            child: Image.network(
+                                ApiUrl.apiImagePath + controller.petList[index].image,
+                                errorBuilder: (context, st, ob) {
+                                  return Image.asset(AppImages.petMetLogoImg);
+                                }, fit: BoxFit.cover),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            )
+          )
+        ],
+      )
+    ]);
   }
 }
 
@@ -448,7 +635,6 @@ class EmailTextFieldModule extends StatelessWidget {
   }
 }
 
-
 class MobileNumberTextFieldModule extends StatelessWidget {
   MobileNumberTextFieldModule({Key? key}) : super(key: key);
 
@@ -523,9 +709,6 @@ class LocationTextFieldModule extends StatelessWidget {
     );
   }
 }
-
-
-
 
 class GenderDropDownModule extends StatefulWidget {
   GenderDropDownModule({Key? key}) : super(key: key);
@@ -623,11 +806,10 @@ class _GenderDropDownModuleState extends State<GenderDropDownModule> {
                       spreadRadius: 1,
                       offset: const Offset(0, 5),
                     ),
-                  ]
-              ),
+                  ]),
             ),
             Obx(
-                  () => Container(
+              () => Container(
                 padding: const EdgeInsets.only(left: 10),
                 width: Get.width,
                 //gives the width of the dropdown button
@@ -694,9 +876,7 @@ class _GenderDropDownModuleState extends State<GenderDropDownModule> {
                         // print("cityDropDownValue : ${authScreenController.cityDropDownValue}");
                         controller.isLoading(false);
                       },
-
                     ),
-
                   ),
                 ),
               ),
@@ -757,7 +937,8 @@ class BirthDateModule extends StatelessWidget {
             boxDecoration: BoxDecoration(
               // border: Border.,
               borderRadius: BorderRadius.circular(5),
-            ), // optional
+            ),
+            // optional
             dayFlex: 2,
             monthFlex: 3,
             yearFlex: 2,
@@ -770,8 +951,10 @@ class BirthDateModule extends StatelessWidget {
               Icons.keyboard_arrow_down_rounded,
               color: AppColors.greyTextColor,
             ),
-            isDropdownHideUnderline: true, // optional
-            isFormValidator: true, // optional
+            isDropdownHideUnderline: true,
+            // optional
+            isFormValidator: true,
+            // optional
             // startYear: 1900, // optional
             // endYear: 2020, // optional
             // width: 10,
@@ -779,7 +962,7 @@ class BirthDateModule extends StatelessWidget {
             // selectedDay: DateTime.now(), // optional
             // selectedMonth: 10, // optional
             // selectedYear: 1993, // optional
-            onChangedDay: (value){
+            onChangedDay: (value) {
               controller.day = value!;
               log('onChangedDay: ${controller.day}');
             },
@@ -809,11 +992,11 @@ class SubmitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async{
-        if(controller.formKey.currentState!.validate()){
+      onTap: () async {
+        if (controller.formKey.currentState!.validate()) {
           await controller.updateUserProfileFunction();
         }
-         //controller.submitLoginForm();
+        //controller.submitLoginForm();
       },
       child: Container(
         width: double.infinity,

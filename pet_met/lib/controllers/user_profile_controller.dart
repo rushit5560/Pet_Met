@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/models/follow_user_model/follow_user_model.dart';
@@ -10,12 +11,14 @@ import 'package:pet_met/models/follow_user_model/unfollow_user_model.dart';
 import 'package:pet_met/models/get_all_profile_model/get_shop_profile_model.dart';
 import 'package:pet_met/models/get_all_profile_model/get_user_profile_model.dart';
 import 'package:pet_met/models/get_all_profile_model/get_vet_and_ngo_profile_model.dart';
+import 'package:pet_met/models/get_pet_profile_model/get_pet_profile_model.dart';
 import 'package:pet_met/models/trainers_update_profile_model/trainers_get_profile_model.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:http/http.dart' as http;
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class UserProfileController extends GetxController {
   final size = Get.size;
@@ -23,6 +26,7 @@ class UserProfileController extends GetxController {
   RxBool isSuccessStatus = false.obs;
   String followUserId = Get.arguments[0];
   String followCategoryId = Get.arguments[1];
+  String petId = Get.arguments[2];
 
   ApiHeader apiHeader = ApiHeader();
 
@@ -60,6 +64,10 @@ class UserProfileController extends GetxController {
 
   String trainerProfile= "";
   String trainerName = "";
+
+  late Razorpay _razorpay;
+
+  //PetDatum getProfile = PetDatum();
 
   /// Get All Role Profile
   /*Future<void> getAllRoleProfileFunction() async {
@@ -117,9 +125,9 @@ class UserProfileController extends GetxController {
 
     try {
       Map<String, dynamic> data = {
-        "id": "${UserDetails.userId}",
+        "id": followUserId,
         // "uid": "${UserDetails.selfId}",
-        "categoryID": "${UserDetails.categoryId}",
+        "categoryID": followCategoryId,
       };
 
       log("Body Data : $data");
@@ -166,9 +174,9 @@ class UserProfileController extends GetxController {
 
     try {
       Map<String, dynamic> data = {
-        "id": "${UserDetails.userId}",
+        "id": followUserId,
         // "uid": "${UserDetails.selfId}",
-        "categoryID": "${UserDetails.categoryId}",
+        "categoryID": followCategoryId,
       };
 
       log("Body Data : $data");
@@ -189,6 +197,7 @@ class UserProfileController extends GetxController {
 
         shopProfile = ApiUrl.apiImagePath + getShopProfileModel.data.data[0].showimg;
         shopName = getShopProfileModel.data.data[0].shopename;
+        log('shopProfile: $shopProfile');
 
         //profileImage = getPetListModel.data.
         // for(int i= 0; i < getPetListModel.data.petdata.length ; i++){
@@ -217,9 +226,9 @@ class UserProfileController extends GetxController {
 
     try {
       Map<String, dynamic> data = {
-        "id": "${UserDetails.userId}",
+        "id": followUserId,
         // "uid": "${UserDetails.selfId}",
-        "categoryID": "${UserDetails.categoryId}",
+        "categoryID": followCategoryId,
       };
 
       log("Body Data : $data");
@@ -268,9 +277,9 @@ class UserProfileController extends GetxController {
 
     try {
       Map<String, dynamic> data = {
-        "id": "${UserDetails.userId}",
+        "id": followUserId,
         // "uid": "${UserDetails.selfId}",
-        "categoryID": "${UserDetails.categoryId}",
+        "categoryID": followCategoryId,
       };
 
       log("Body Data : $data");
@@ -351,9 +360,61 @@ class UserProfileController extends GetxController {
       log("All Follow Status Api Error ::: $e");
     } finally {
       isLoading(false);
-      //await followStatus();
+      //await getProfileFunction();
     }
   }
+
+  /// Get Pet Profile
+  /*Future<void> getProfileFunction() async {
+    isLoading(true);
+    String url = ApiUrl.petProfileApi + petId;
+    log("All Pet Profile Api Url : $url");
+
+    try {
+      Map<String, String> header = apiHeader.apiHeader();
+      log("header : $header");
+
+      http.Response response = await http.get(Uri.parse(url), headers: header);
+      log("Get Pet Profile Api response : ${response.body}");
+
+      GetPetProfileModel getPetProfileModel =
+      GetPetProfileModel.fromJson(json.decode(response.body));
+      isSuccessStatus = getPetProfileModel.success!.obs;
+
+      if (isSuccessStatus.value) {
+
+         getProfile = getPetProfileModel.data![0];
+        // petNameController.text = getProfile.petName!;
+        // petDetailsController.text = getProfile.details!;
+        // // meetingAvailabilityValue.value = getProfile.meetingAvailability!;
+        // //genderValue.value = getProfile.gender!;
+        // weightController.text = getProfile.weight!.toString();
+        // petCategoryDropDownValue.categoryName = getProfile.mainCategory.toString();
+        // petSubCategoryDropDownValue.categoryName = getProfile.subCategory.toString();
+        // birthDate = getProfile.dob!;
+        // day = birthDate.substring(0, birthDate.length - 7);
+        // log('day: $day');
+        //
+        // petImage = ApiUrl.apiImagePath + getProfile.image!;
+        // log('pet name: ${petNameController.text}');
+        // log('pet details: ${petDetailsController.text}');
+        // log('genderValue: ${genderValue.value}');
+        // log('weightController: ${weightController.text}');
+        // log('petCategoryDropDownValue: ${petCategoryDropDownValue.categoryName}');
+        // log('petSubCategoryDropDownValue: ${petSubCategoryDropDownValue.categoryName}');
+        // log('birthDate: $birthDate');
+        // log('petImage: $petImage');
+      } else {
+        log("Pet Profile Api Else");
+      }
+
+    } catch(e) {
+      log("Pet Profile Api Error ::: $e");
+    } finally {
+      isLoading(false);
+      // await getPetCategoryFunction();
+    }
+  }*/
 
   followUserFunction()async{
     isLoading(true);
@@ -433,18 +494,76 @@ class UserProfileController extends GetxController {
     }
   }
 
+  /*void openCheckout() async {
+    var options = {
+      'key': 'rzp_test_dxCkKqtRKnvZdA',
+      'amount': 200 * 100,
+      'name': getProfile.petName,
+      'description': getProfile.details,
+      'retry': {'enabled': true, 'max_count': 1},
+      'send_sms_hash': true,
+      'prefill': {'contact': '8888888888', 'email': 'test@razorpay.com'},
+      'external': {
+        'wallets': ['paytm']
+      }
+    };
+
+    try {
+      _razorpay.open(options);
+    } catch (e) {
+      debugPrint('Error: e');
+    }
+  }*/
+
+  void _handlePaymentSuccess(PaymentSuccessResponse response)async {
+    log('Success Response: ${response.orderId}');
+    /*await addOrderFunction(
+        orderId: response.orderId,
+        paymentId: response.paymentId!,
+        signature: response.signature
+    );*/
+
+    Fluttertoast.showToast(
+        msg: "SUCCESS: " + response.paymentId!,
+        toastLength: Toast.LENGTH_SHORT);
+    log(response.paymentId.toString());
+    log(response.orderId.toString());
+    log(response.signature.toString());
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response) {
+    print('Error Response: $response');
+    Fluttertoast.showToast(
+        msg: "ERROR: " + response.code.toString() + " - " + response.message!,
+        toastLength: Toast.LENGTH_SHORT);
+    log(response.message.toString());
+    log(response.code.toString());
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    print('External SDK Response: $response');
+    Fluttertoast.showToast(
+        msg: "EXTERNAL_WALLET: " + response.walletName!,
+        toastLength: Toast.LENGTH_SHORT);
+    log("response Wallet : ${response.walletName}");
+  }
+
   @override
   void onInit() async{
     super.onInit();
     //getAllRoleProfileFunction();
-    if(UserDetails.categoryId == "1"){
+    if(followCategoryId == "1"){
       await getUserProfileFunction();
-    } else if(UserDetails.categoryId == "2"){
+    } else if(followCategoryId == "2"){
       await getShopProfileFunction();
-    } else if(UserDetails.categoryId == "3"){
+    } else if(followCategoryId == "3"){
       await getNgoProfileFunction();
-    } else if(UserDetails.categoryId == "4"){
+    } else if(followCategoryId == "4"){
       await getTrainerProfileFunction();
     }
+    _razorpay = Razorpay();
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
   }
 }

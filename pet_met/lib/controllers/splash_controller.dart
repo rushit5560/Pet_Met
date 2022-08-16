@@ -42,6 +42,7 @@ class SplashController extends GetxController {
     UserDetails.shopProfile = prefs.getString(userPreference.shopProfileImageKey) ?? "";
     log('UserDetails.roleId: ${UserDetails.roleId}');
     log('UserDetails.categoryId: ${UserDetails.categoryId}');
+    log('UserDetails.shopName: ${UserDetails.shopName}');
 
     return Timer(
       const Duration(milliseconds: 2500),

@@ -33,20 +33,20 @@ class Styles {
           isDarkTheme ? AppColors.darkThemeColor : AppColors.whiteColor,
       indicatorColor:
           isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
-      // buttonColor:
-      //     isDarkTheme ? const Color(0xff3B3B3B) : const Color(0xffF1F5FB),
+      buttonColor:
+          isDarkTheme ? const Color(0xff3B3B3B) : const Color(0xffF1F5FB),
       hintColor: isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
       highlightColor:
           isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
-      hoverColor: isDarkTheme ? AppColors.greyColor : AppColors.darkThemeColor,
-      focusColor: isDarkTheme ? AppColors.greyColor : AppColors.darkThemeColor,
+       hoverColor: isDarkTheme ? AppColors.greyColor : AppColors.darkThemeColor,
+       focusColor: isDarkTheme ? AppColors.greyColor : AppColors.darkThemeColor,
       disabledColor: AppColors.greyColor,
-      // textSelectionColor: isDarkTheme ? Colors.white : Colors.black,
-      cardColor: isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
-      canvasColor:
-          isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
+      // // textSelectionColor: isDarkTheme ? Colors.white : Colors.black,
+       cardColor: isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
+      // canvasColor:
+      //     isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
 
-      brightness: isDarkTheme ? Brightness.light : Brightness.dark,
+       //brightness: isDarkTheme ? Brightness.light : Brightness.dark,
       buttonTheme: Theme.of(context).buttonTheme.copyWith(
           colorScheme: isDarkTheme
               ? const ColorScheme.light()

@@ -21,7 +21,7 @@ import '../utils/app_colors.dart';
 
 class UploadPetController extends GetxController {
   PetOption petOption = Get.arguments[0];
-  int petId = Get.arguments[1] ?? 0;
+  String petId = Get.arguments[1] ?? "";
 
   final size = Get.size;
   RxBool isLoading = false.obs;
@@ -36,7 +36,7 @@ class UploadPetController extends GetxController {
   var petDetailsController = TextEditingController();
   var weightController = TextEditingController();
 
-  Datum getProfile = Datum();
+  PetDatum getProfile = PetDatum();
   RxList<PetCategory> petCategoryList = [PetCategory(categoryName: 'Select Category')].obs;
   PetCategory petCategoryDropDownValue = PetCategory();
 

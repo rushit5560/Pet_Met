@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:pet_met/controllers/user_profile_controller.dart';
 import 'package:pet_met/screens/address_screen/address_screen.dart';
 import 'package:pet_met/screens/upload_pet_screen/upload_pet_screen.dart';
+import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/user_details.dart';
@@ -72,7 +73,7 @@ class ProfileImage extends StatelessWidget {
     //   AppImages.googleMapImg,
     //   height: controller.size.width * 0.35,
     // );
-    return UserDetails.categoryId == "1"
+    return controller.followCategoryId == "1"
         ? ClipRRect(
           borderRadius: BorderRadius.circular(30),
           child: Image.network(controller.userprofile,  width: 100,
@@ -82,7 +83,7 @@ class ProfileImage extends StatelessWidget {
               return Image.asset(AppImages.petMetLogoImg);
             }),
         )
-        : UserDetails.categoryId == "2"
+        : controller.followCategoryId == "2"
             ? ClipRRect(
 
               borderRadius: BorderRadius.circular(30),
@@ -93,7 +94,7 @@ class ProfileImage extends StatelessWidget {
                   return Image.asset(AppImages.petMetLogoImg);
                 }),
             )
-            : UserDetails.categoryId == "3"
+            : controller.followCategoryId == "3"
                 ? ClipRRect(
                   borderRadius: BorderRadius.circular(30),
                   child: Image.network(controller.ngoProfile,
@@ -104,7 +105,7 @@ class ProfileImage extends StatelessWidget {
                       return Image.asset(AppImages.petMetLogoImg);
                     }),
                 )
-                : UserDetails.categoryId == "4"
+                : controller.followCategoryId == "4"
                     ? ClipRRect(
                       borderRadius: BorderRadius.circular(30),
                       child: Image.network(controller.trainerProfile,
@@ -116,6 +117,16 @@ class ProfileImage extends StatelessWidget {
                         }),
                     )
                     : Container();
+    /*return ClipRRect(
+      borderRadius: BorderRadius.circular(30),
+      child: Image.asset(AppImages.petMetLogoImg)*//*Image.network(ApiUrl.apiImagePath + controller.getProfile.image!,
+          width: 100,
+          height: 100,
+          fit: BoxFit.cover,
+          errorBuilder: (context, er, bt) {
+            return Image.asset(AppImages.petMetLogoImg);
+          }),*//*
+    );*/
   }
 }
 
@@ -149,13 +160,13 @@ class ProfileDetailsModule extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            UserDetails.categoryId == "1"
+            controller.followCategoryId == "1"
                 ? controller.userName
-                : UserDetails.categoryId == "2"
+                : controller.followCategoryId == "2"
                     ? controller.shopName
-                    : UserDetails.categoryId == "3"
+                    : controller.followCategoryId == "3"
                         ? controller.ngoName
-                        : UserDetails.categoryId == "4"
+                        : controller.followCategoryId == "4"
                             ? controller.trainerName
                             : "",
             style: TextStyle(
@@ -165,7 +176,7 @@ class ProfileDetailsModule extends StatelessWidget {
             ),
           ),
           // const SizedBox(width: 15),
-          Row(
+          /*Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
@@ -202,7 +213,7 @@ class ProfileDetailsModule extends StatelessWidget {
                 ),
               ),
             ],
-          ),
+          ),*/
           Obx(
             () => GestureDetector(
               onTap: () async {
@@ -279,7 +290,9 @@ class GetPersonalInfoModule extends StatelessWidget {
 }
 
 class ContactInfoModule extends StatelessWidget {
-  const ContactInfoModule({Key? key}) : super(key: key);
+  ContactInfoModule({Key? key}) : super(key: key);
+
+  final controller = Get.find<UserProfileController>();
 
   @override
   Widget build(BuildContext context) {
@@ -309,22 +322,27 @@ class ContactInfoModule extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const ContactContainerWidget(
-              imagePath: AppImages.infoGreenImg,
-            ),
-            const SizedBox(width: 20),
-            const ContactContainerWidget(
-              imagePath: AppImages.phoneGreenImg,
-            ),
-            SizedBox(width: 20),
+            // const ContactContainerWidget(
+            //   imagePath: AppImages.infoGreenImg,
+            // ),
+            // const SizedBox(width: 20),
             GestureDetector(
-              onTap: () {
-                //Get.to(()=> AddressScreen());
+              onTap: (){
+                //controller.openCheckout();
               },
               child: const ContactContainerWidget(
-                imagePath: AppImages.locateGreenImg,
+                imagePath: AppImages.phoneGreenImg,
               ),
             ),
+            // SizedBox(width: 20),
+            // GestureDetector(
+            //   onTap: () {
+            //     //Get.to(()=> AddressScreen());
+            //   },
+            //   child: const ContactContainerWidget(
+            //     imagePath: AppImages.locateGreenImg,
+            //   ),
+            // ),
           ],
         ),
       ),
@@ -349,7 +367,7 @@ class DogOwnerListModule extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                "Dog Owner Feild",
+                "Owner Pet",
                 style: TextStyle(
                   color: AppColors.accentTextColor,
                   fontSize: 13.sp,
@@ -361,7 +379,7 @@ class DogOwnerListModule extends StatelessWidget {
         ),
         Row(
           children: [
-            Stack(children: [
+            /*Stack(children: [
               Container(
                 height: 8.h,
                 width: 7.h,
@@ -407,9 +425,9 @@ class DogOwnerListModule extends StatelessWidget {
                   ),
                 ),
               )
-            ]),
+            ]),*/
             Expanded(
-              child: UserDetails.categoryId == "1"
+              child: controller.followCategoryId == "1"
                   ? Container(
                       height: 8.h,
                       child: ListView.separated(
@@ -422,13 +440,13 @@ class DogOwnerListModule extends StatelessWidget {
                           return GestureDetector(
                             onTap: () {
                               log('Pet Id : ${controller.petList[index].id}');
-                              Get.to(()=> UploadPetScreen(),
-                                  transition: Transition.native,
-                                  duration: const Duration(milliseconds: 500),
-                                  arguments: [
-                                    PetOption.updateOption,
-                                    controller.petList[index].id
-                                  ]);
+                              // Get.to(()=> UploadPetScreen(),
+                              //     transition: Transition.native,
+                              //     duration: const Duration(milliseconds: 500),
+                              //     arguments: [
+                              //       PetOption.updateOption,
+                              //       controller.petList[index].id
+                              //     ]);
                             },
                             child: Stack(
                               children: [
@@ -460,7 +478,7 @@ class DogOwnerListModule extends StatelessWidget {
                         },
                       ),
                     )
-                  : UserDetails.categoryId == "2"
+                  : controller.followCategoryId == "2"
                       ? Container(
                           height: 8.h,
                           child: ListView.separated(
@@ -473,13 +491,13 @@ class DogOwnerListModule extends StatelessWidget {
                               return GestureDetector(
                                 onTap: () {
                                   log('Pet Id : ${controller.shopPetList[index].id}');
-                                  Get.to(()=> UploadPetScreen(),
-                                      transition: Transition.native,
-                                      duration: const Duration(milliseconds: 500),
-                                      arguments: [
-                                        PetOption.updateOption,
-                                        controller.shopPetList[index].id
-                                      ]);
+                                  // Get.to(()=> UploadPetScreen(),
+                                  //     transition: Transition.native,
+                                  //     duration: const Duration(milliseconds: 500),
+                                  //     arguments: [
+                                  //       PetOption.updateOption,
+                                  //       controller.shopPetList[index].id
+                                  //     ]);
                                 },
                                 child: Stack(
                                   children: [
@@ -512,7 +530,7 @@ class DogOwnerListModule extends StatelessWidget {
                             },
                           ),
                         )
-                      : UserDetails.categoryId == "3"
+                      : controller.followCategoryId == "3"
                           ? Container(
                               height: 8.h,
                               child: ListView.separated(
@@ -525,13 +543,13 @@ class DogOwnerListModule extends StatelessWidget {
                                   return GestureDetector(
                                     onTap: () {
                                       log('Pet Id : ${controller.ngoPetList[index].id}');
-                                      Get.to(()=> UploadPetScreen(),
-                                          transition: Transition.native,
-                                          duration: const Duration(milliseconds: 500),
-                                          arguments: [
-                                            PetOption.updateOption,
-                                            controller.ngoPetList[index].id
-                                          ]);
+                                      // Get.to(()=> UploadPetScreen(),
+                                      //     transition: Transition.native,
+                                      //     duration: const Duration(milliseconds: 500),
+                                      //     arguments: [
+                                      //       PetOption.updateOption,
+                                      //       controller.ngoPetList[index].id
+                                      //     ]);
                                     },
                                     child: Stack(
                                       children: [
@@ -565,7 +583,7 @@ class DogOwnerListModule extends StatelessWidget {
                                 },
                               ),
                             )
-                          : UserDetails.categoryId == "4"
+                          : controller.followCategoryId == "4"
                               ? Container(
                                   height: 8.h,
                                   child: ListView.separated(
@@ -578,14 +596,14 @@ class DogOwnerListModule extends StatelessWidget {
                                       return GestureDetector(
                                         onTap: () {
                                           log('Pet Id : ${controller.trainerPetList[index].id}');
-                                          Get.to(()=> UploadPetScreen(),
-                                              transition: Transition.native,
-                                              duration: const Duration(milliseconds: 500),
-                                              arguments: [
-                                                PetOption.updateOption,
-                                                controller
-                                                    .trainerPetList[index].id
-                                              ]);
+                                          // Get.to(()=> UploadPetScreen(),
+                                          //     transition: Transition.native,
+                                          //     duration: const Duration(milliseconds: 500),
+                                          //     arguments: [
+                                          //       PetOption.updateOption,
+                                          //       controller
+                                          //           .trainerPetList[index].id
+                                          //     ]);
                                         },
                                         child: Stack(
                                           children: [

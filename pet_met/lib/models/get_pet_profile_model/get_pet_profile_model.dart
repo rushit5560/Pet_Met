@@ -16,12 +16,12 @@ class GetPetProfileModel {
   });
 
   bool ? success;
-  List<Datum> ? data;
+  List<PetDatum> ? data;
   String ? message;
 
   factory GetPetProfileModel.fromJson(Map<String, dynamic> json) => GetPetProfileModel(
     success: json["success"] ?? false,
-    data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x)) ?? {}),
+    data: List<PetDatum>.from(json["data"].map((x) => PetDatum.fromJson(x)) ?? {}),
     message: json["message"] ?? "",
   );
 
@@ -32,8 +32,8 @@ class GetPetProfileModel {
   };
 }
 
-class Datum {
-  Datum({
+class PetDatum {
+  PetDatum({
     this.id,
     this.image,
     this.petName,
@@ -63,7 +63,7 @@ class Datum {
   String ? isActive;
   String ? userid;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory PetDatum.fromJson(Map<String, dynamic> json) => PetDatum(
     id: json["id"] ?? "",
     image: json["image"] ?? "",
     petName: json["pet_name"] ?? "",

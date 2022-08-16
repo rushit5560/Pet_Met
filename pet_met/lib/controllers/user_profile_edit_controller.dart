@@ -56,6 +56,7 @@ class UserProfileEditController extends GetxController {
   RxString ngoName = "".obs;
   RxString trainerEmail = "".obs;
   RxString trainerName = "".obs;
+  List<Petdatum> petList = [];
 
   /*List<DropdownMenuItem<String>> get dropdownGenderItems {
     List<DropdownMenuItem<String>> menuItems = [
@@ -125,8 +126,8 @@ class UserProfileEditController extends GetxController {
       isSuccessStatus = getUserProfileModel.success.obs;
 
       if (isSuccessStatus.value) {
-        // petList.clear();
-        // petList.addAll(allRoleProfileModel.data.petdata);
+        petList.clear();
+        petList.addAll(getUserProfileModel.data.petdata);
         // log("petList Length : ${petList.length}");
         userProfile = ApiUrl.apiImagePath + "asset/uploads/product/" + getUserProfileModel.data.data[0].image;
          nameController.text = getUserProfileModel.data.data[0].name;

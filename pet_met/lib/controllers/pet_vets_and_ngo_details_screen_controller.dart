@@ -192,7 +192,7 @@ class VetNgoData {
   String ? instagram;
   String ? facebook;
   String ? image;
-  String ? vetNgoimages;
+  List<String> ? vetNgoimages;
   String ? image1;
   String ? image2;
   String ? image3;
@@ -224,7 +224,7 @@ class VetNgoData {
          this.instagram,
          this.facebook,
          this.image,
-         this.vetNgoimages,
+         //this.vetNgoimages,
          this.image1,
          this.image2,
          this.image3,
@@ -257,7 +257,7 @@ class VetNgoData {
     instagram: json["instagram"] ?? "",
     facebook: json["facebook"] ?? "",
     image: json["image"] ?? "",
-    vetNgoimages: json["vet_ngoimages"] ?? "",
+    //vetNgoimages: List<String>.from(json["vet_ngoimages"].map((x) => x) ?? {}),
     image1: json["image1"] ?? "",
     image2: json["image2"] ?? "",
     image3: json["image3"] ?? "",
@@ -290,7 +290,7 @@ class VetNgoData {
     "instagram": instagram,
     "facebook": facebook,
     "image": image,
-    "vet_ngoimages": vetNgoimages,
+    //"vet_ngoimages": List<dynamic>.from(vetNgoimages!.map((x) => x)),
     "image1": image1,
     "image2": image2,
     "image3": image3,

@@ -14,7 +14,7 @@ class PetMeetingDetailsScreenController extends GetxController {
   String petId = Get.arguments;
 
   ApiHeader apiHeader = ApiHeader();
-  Datum getProfile = Datum();
+  PetDatum getProfile = PetDatum();
   String image = "";
   String petName = "";
   String mettingAvailability = "";

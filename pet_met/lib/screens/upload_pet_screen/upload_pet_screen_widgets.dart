@@ -123,12 +123,12 @@ class _UploadImageModuleState extends State<UploadImageModule> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(15),
                 child: Image.file(
                   themeProvider.darkTheme
                       ? controller.imageFile! : controller.imageFile!,
-                    width: 100,
-                    height: 100,
+                    width: double.infinity,
+                    height: controller.size.height * 0.2,
                     fit: BoxFit.cover),
               ),
 
@@ -154,12 +154,12 @@ class _UploadImageModuleState extends State<UploadImageModule> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(15),
                 child: Image.network(
                   themeProvider.darkTheme
                       ? controller.petImage! : controller.petImage!,
-                    width: 100,
-                    height: 100,
+                    width: double.infinity,
+                    height: controller.size.height * 0.2,
                     fit: BoxFit.cover),
               ),
 

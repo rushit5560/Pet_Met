@@ -61,6 +61,7 @@ class IndexScreenController extends GetxController {
       if (isSuccessStatus.value) {
         //addressController.clear();
         Fluttertoast.showToast(msg: deleteAccountModel.message);
+        Get.off(()=> const UserCategoriesScreen());
       } else {
         Fluttertoast.showToast(msg: deleteAccountModel.message);
       }

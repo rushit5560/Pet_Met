@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/controllers/shop_user_profile_screen_controller.dart';
@@ -95,12 +96,12 @@ class UploadImageModule extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(15),
                 child: Image.file(
                   themeProvider.darkTheme
                       ? screenController.imageFile! : screenController.imageFile!,
-                  width: 100,
-                  height: 100,
+                    width: double.infinity,
+                    height: screenController.size.height * 0.2,
                   fit: BoxFit.cover),
               ),
 
@@ -126,12 +127,12 @@ class UploadImageModule extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ClipRRect(
-                borderRadius: BorderRadius.circular(30),
+                borderRadius: BorderRadius.circular(15),
                 child: Image.network(
                   themeProvider.darkTheme
                       ? ApiUrl.apiImagePath +  screenController.shopImage! : ApiUrl.apiImagePath + screenController.shopImage!,
-                    width: 100,
-                    height: 100,
+                    width: double.infinity,
+                    height: screenController.size.height * 0.2,
                     fit: BoxFit.cover,
                   errorBuilder: (context, er, st){
                     //return Image.asset(AppImages.petMetLogoImg);
@@ -878,7 +879,7 @@ class MeetingAvailabilityModule extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Add Meeting AVailability for Pets:", style: TextStyle(color: Colors.black)),
+        Text("Add Meeting Availability for Pets:", style: TextStyle(color: Colors.black)),
         SizedBox(height: 8),
         Container(
           height: screenController.size.width * 0.16,
@@ -1301,6 +1302,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      SizedBox(width: 10),
                       Expanded(
                         child: Text(
                             screenController.selectedOpenTime != null ? screenController.selectedOpenTime!.value : "No time selected!",
@@ -1373,6 +1375,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        SizedBox(width: 10),
                         Expanded(
                           child: Text(
                               screenController.selectedCloseTime != null ? screenController.selectedCloseTime!.value : "No time selected!",
@@ -1440,7 +1443,13 @@ class SubmitButtonModule extends StatelessWidget {
     return GestureDetector(
       onTap: ()async {
         if(screenController.formKey.currentState!.validate()){
-          await screenController.updateShopProfileFunction();
+          if(screenController.selectedOpenTime!.value.isEmpty){
+            Fluttertoast.showToast(msg: 'Please shop select open time');
+          } else if(screenController.selectedCloseTime!.value.isEmpty){
+            Fluttertoast.showToast(msg: 'Please shop select close time');
+          }else{
+            await screenController.updateShopProfileFunction();
+          }
         }
         // controller.submitLoginForm();
       },

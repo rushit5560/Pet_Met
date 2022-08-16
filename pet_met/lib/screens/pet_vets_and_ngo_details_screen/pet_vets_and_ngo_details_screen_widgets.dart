@@ -48,107 +48,77 @@ class NgoAchivementPictureListModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(
-            top: 15,
-            bottom: 15,
-          ),
-          child: Row(
-            children: [
-              Text(
-                "Trainer Picture",
-                style: TextStyle(
-                  color: AppColors.accentTextColor,
-                  fontSize: 13.sp,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-        ),
-        /*SizedBox(
-          height: 10.h,
-          child: screenController.trainerDetails.meetingimages!.isEmpty ?
-          const Center(child: Text("Empty Trainer Picture")):
-          ListView.separated(
-            scrollDirection: Axis.horizontal,
-            itemCount: screenController.trainerDetails.meetingimages!.length,
-            separatorBuilder: (context, index) {
-              return const SizedBox(width: 8);
-            },
-            itemBuilder: (context, i) {
-              String imgUrl = ApiUrl.apiImagePath +
-                  screenController.trainerDetails.meetingimages![i];
-              return Stack(
-                children: [
-                  GestureDetector(
-                    onTap:(){
-                      imageAlertDialog(context, i);
-                    },
-                    child: Container(
-                      height: 10.h,
-                      width: 10.h,
-
-                      margin: const EdgeInsets.only(bottom: 5, right: 5),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: Colors.grey)
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(15),
-                        child: Image.network(
-                          imgUrl,
-                          fit: BoxFit.cover,
-                          // color: AppColors.greyTextColor,
-                          errorBuilder: (context, er, ob) {
-                            return Image.asset(AppImages.petMetLogoImg);
-                          },
-                        ),
-                      ),
-                      *//*decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: NetworkImage(imgUrl),
-                            onError: (context, er){
-                              Image.asset(AppImages.petMetLogoImg);
-                            },
-                            fit: BoxFit.cover),
-                        color: AppColors.greyTextColor,
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(8),
-                        ),
-                      ),*//*
-                    ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 15,
+              bottom: 15,
+            ),
+            child: Row(
+              children: [
+                Text(
+                  "NGO Achievement Picture",
+                  style: TextStyle(
+                    color: AppColors.accentTextColor,
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.bold,
                   ),
-                  // i == 0
-                  //     ? Positioned(
-                  //         right: 0,
-                  //         bottom: 0,
-                  //         child: GestureDetector(
-                  //           onTap: () {
-                  //             Get.toNamed(AppRouteNames.uploadPetRoute);
-                  //           },
-                  //           child: Container(
-                  //             height: 15,
-                  //             width: 15,
-                  //             decoration: const BoxDecoration(
-                  //                 color: Colors.green, shape: BoxShape.circle),
-                  //             child: const Icon(
-                  //               Icons.add,
-                  //               color: AppColors.whiteColor,
-                  //               size: 12,
-                  //             ),
-                  //           ),
-                  //         ),
-                  //       )
-                  //     : const SizedBox()
-                ],
-              );
-            },
+                ),
+              ],
+            ),
           ),
-        ),*/
-      ],
+          SizedBox(
+            height: 10.h,
+            // child: screenController.vetsNgoDetailsData.vetNgoimages!.isEmpty ?
+            // const Center(child: Text("Empty Trainer Picture")):
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemCount: /*screenController.vetsNgoDetailsData.vetNgoimages!.length*/5,
+              separatorBuilder: (context, index) {
+                return const SizedBox(width: 8);
+              },
+              itemBuilder: (context, i) {
+                // String imgUrl = ApiUrl.apiImagePath +
+                //     screenController.vetsNgoDetailsData.vetNgoimages![i];
+                return Stack(
+                  children: [
+                    GestureDetector(
+                      onTap:(){
+                       // imageAlertDialog(context, i);
+                      },
+                      child: Container(
+                        height: 10.h,
+                        width: 10.h,
+
+                        margin: const EdgeInsets.only(bottom: 5, right: 5),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            border: Border.all(color: Colors.grey)
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          /*child: Image.network(
+                            imgUrl,
+                            fit: BoxFit.cover,
+                            // color: AppColors.greyTextColor,
+                            errorBuilder: (context, er, ob) {
+                              return Image.asset(AppImages.petMetLogoImg);
+                            },
+                          ),*/
+                          child: Image.asset(AppImages.petMetLogoImg),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -38,7 +38,7 @@ class UserPreference {
     required String userProfileImage,
     required String token,
     required String roleId,
-    String ? shopName,
+    required String shopName,
     String ? shopProfile
   }) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -50,7 +50,7 @@ class UserPreference {
     prefs.setString(userTokenKey, token);
     prefs.setString(roleId1Key, roleId);
     prefs.setBool(isUserLoggedInKey, true);
-    prefs.setString(shopNameKey, shopName!);
+    prefs.setString(shopNameKey, shopName);
     prefs.setString(shopProfileImageKey, shopProfile!);
 
     UserDetails.selfId = prefs.getString(selfIdKey) ?? "";
@@ -72,6 +72,7 @@ class UserPreference {
     log("userToken : ${UserDetails.userToken}");
     log("roleId : ${UserDetails.categoryId}");
     log("isUserLoggedIn : ${UserDetails.isUserLoggedIn}");
+    log("shopName : ${UserDetails.shopName}");
   }
 
   /// Set User Login Or Register Details

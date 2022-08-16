@@ -43,7 +43,7 @@ class UserProfileScreen extends StatelessWidget {
                 CustomAppBar(
                   appBarOption: AppBarOption.singleBackButtonOption,
                   title: "Profile",
-                  trailingWidget: GestureDetector(
+                  /*trailingWidget: GestureDetector(
                     onTap: () {
                       Get.to(()=> ChangePasswordScreen(),
                           transition: Transition.native,
@@ -54,7 +54,7 @@ class UserProfileScreen extends StatelessWidget {
                       color: AppColors.accentColor,
                       size: 7.w,
                     ),
-                  ),
+                  ),*/
                 ),
                 // Padding(
                 //   padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
@@ -98,8 +98,9 @@ class UserProfileScreen extends StatelessWidget {
                             ProfileImage(),
                             const SizedBox(height: 30),
                             ProfileDetailsModule(),
-                            const GetPersonalInfoModule(),
-                            const ContactInfoModule(),
+                            //const GetPersonalInfoModule(),
+                            const SizedBox(height: 15),
+                            ContactInfoModule(),
                             DogOwnerListModule(),
                             const SizedBox(height: 20),
                             const AboutModule()

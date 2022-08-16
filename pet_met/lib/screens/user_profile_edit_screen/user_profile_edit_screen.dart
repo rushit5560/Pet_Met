@@ -109,6 +109,8 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                 //   fieldName: "Name",
                                 //   fieldHinttext: "Your Pet Title",
                                 // ),
+                                UserPetListModule(),
+                                const SizedBox(height: 15),
                                 NameTextFieldModule(),
 
                                 const SizedBox(height: 15),

@@ -38,7 +38,7 @@ class Data {
     required this.id,
     required this.name,
     required this.email,
-    required this.shopName,
+    required this.shopename,
     required this.showimg,
     // required this.emailVerifiedAt,
     required this.password,
@@ -60,7 +60,7 @@ class Data {
   String id;
   String name;
   String email;
-  String shopName;
+  String shopename;
   String showimg;
   // dynamic emailVerifiedAt;
   String password;
@@ -82,7 +82,7 @@ class Data {
         id: json["id"] ?? "",
         name: json["name"] ?? "",
         email: json["email"] ?? "",
-        shopName: json["shopName"] ?? "",
+        shopename: json["shopename"] ?? "",
         showimg: json["showimg"] ?? "",
         // emailVerifiedAt: json["email_verified_at"],
         password: json["password"] ?? "",
@@ -105,6 +105,7 @@ class Data {
         "id": id,
         "name": name,
         "email": email,
+        "shopename" : shopename,
         // "email_verified_at": emailVerifiedAt,
         "password": password,
         "remember_token": rememberToken,

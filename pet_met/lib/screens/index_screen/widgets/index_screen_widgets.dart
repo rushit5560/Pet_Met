@@ -2,6 +2,7 @@ import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/screens/about_screen/about_screen.dart';
+import 'package:pet_met/screens/change_password_screen/change_password_screen.dart';
 import 'package:pet_met/screens/faq_screen/faq_screen.dart';
 import 'package:pet_met/screens/pet_activity_screen/pet_activity_screen.dart';
 import 'package:pet_met/screens/pet_care_info_screen/pet_care_info_screen.dart';
@@ -66,8 +67,8 @@ class _BuildMenuState extends State<BuildMenu> {
                       const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
                   child: GestureDetector(
                     onTap: () {
-                      indexController.drawerController.close!();
-                      Get.to(() => UserProfileScreen());
+                      // indexController.drawerController.close!();
+                      // Get.to(() => UserProfileScreen());
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -362,6 +363,7 @@ class _BuildMenuState extends State<BuildMenu> {
                           ),
                           drawerListTile(
                             onTap: () async {
+                              indexController.drawerController.close!();
                               await deleteAccountDialog();
                             },
                             leading: Image.asset(
@@ -385,6 +387,31 @@ class _BuildMenuState extends State<BuildMenu> {
                           drawerListTile(
                             onTap: () {
                               indexController.drawerController.close!();
+                              Get.to(()=> ChangePasswordScreen(),
+                                  transition: Transition.native,
+                                  duration: const Duration(milliseconds: 500));
+                            },
+                            leading: Icon(
+                              Icons.edit_note_rounded,
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.greyTextColor,
+                              size: 22,
+                            ),
+                            titleWidget: Text(
+                              "Change Password",
+                              style: TextStyle(
+                                color: themeProvider.darkTheme
+                                    ? AppColors.whiteColor
+                                    : AppColors.greyTextColor,
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          /*drawerListTile(
+                            onTap: () {
+                              indexController.drawerController.close!();
                               Get.to(()=> RateAppScreen());
                             },
                             leading: Image.asset(
@@ -404,8 +431,8 @@ class _BuildMenuState extends State<BuildMenu> {
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                          ),
-                          drawerListTile(
+                          ),*/
+                          /*drawerListTile(
                             onTap: () {
                               indexController.drawerController.close!();
                               Get.to(() => PetActivityScreen());
@@ -427,7 +454,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
-                          ),
+                          ),*/
                           drawerListTile(
                             onTap: () {
                               indexController.drawerController.close!();
@@ -443,7 +470,7 @@ class _BuildMenuState extends State<BuildMenu> {
                               height: 22,
                             ),
                             titleWidget: Text(
-                              "Pet Tracker",
+                              "Plan",
                               style: TextStyle(
                                 color: themeProvider.darkTheme
                                     ? AppColors.whiteColor
@@ -620,7 +647,7 @@ class _BuildMenuState extends State<BuildMenu> {
                   ElevatedButton(
                     onPressed: () async {
                       await indexController.deleteAccountFunction();
-                      Get.back();
+                      //Get.back();
                     },
                     style: ElevatedButton.styleFrom(
                       primary: AppColors.accentColor,

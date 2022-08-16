@@ -123,7 +123,7 @@ class _PetTopListModuleState extends State<PetTopListModule> {
                             Get.to(()=> UserProfileScreen(),
                                 transition: Transition.native,
                                 duration: const Duration(milliseconds: 500),
-                                arguments: [petList.userid, petList.categoryId]);
+                                arguments: [petList.userid, petList.categoryId, petList.id]);
                           },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,

@@ -72,9 +72,10 @@ class LoginController extends GetxController {
           userProfileImage: loginModel.data.image,
           token: loginModel.data.rememberToken,
           roleId: loginModel.data.categoryId,
-          shopName: loginModel.data.shopName,
+          shopName: loginModel.data.shopename,
           shopProfile: loginModel.data.showimg,
         );
+        log('shop Name: ${loginModel.data.shopename}');
         //await userPreference.setRoleId(roleId);
         // Going to Index Screen
         Get.to(() => IndexScreen(),
