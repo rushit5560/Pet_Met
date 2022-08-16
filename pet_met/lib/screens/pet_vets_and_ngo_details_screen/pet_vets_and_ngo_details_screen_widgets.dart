@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/pet_vets_and_ngo_details_screen_controller.dart';
@@ -8,6 +9,7 @@ import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
+import 'package:pet_met/utils/validations.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -28,7 +30,7 @@ class BannerImageModule extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
       ),
       child: Image.network(
-        ApiUrl.apiImagePath + screenController.vetsNgoDetailsData.showimg!,
+        ApiUrl.apiImagePath + "asset/uploads/product/" +screenController.vetsNgoDetailsData.image!,
         errorBuilder: (context, st, ob){
           return Image.asset(AppImages.petMetLogoImg);
         },
@@ -38,6 +40,117 @@ class BannerImageModule extends StatelessWidget {
     ).commonSymmetricPadding(horizontal: 15);
   }
 }
+
+class NgoAchivementPictureListModule extends StatelessWidget {
+  const NgoAchivementPictureListModule({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(
+            top: 15,
+            bottom: 15,
+          ),
+          child: Row(
+            children: [
+              Text(
+                "Trainer Picture",
+                style: TextStyle(
+                  color: AppColors.accentTextColor,
+                  fontSize: 13.sp,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 10.h,
+          child: screenController.trainerDetails.meetingimages!.isEmpty ?
+          const Center(child: Text("Empty Trainer Picture")):
+          ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemCount: screenController.trainerDetails.meetingimages!.length,
+            separatorBuilder: (context, index) {
+              return const SizedBox(width: 8);
+            },
+            itemBuilder: (context, i) {
+              String imgUrl = ApiUrl.apiImagePath +
+                  screenController.trainerDetails.meetingimages![i];
+              return Stack(
+                children: [
+                  GestureDetector(
+                    onTap:(){
+                      imageAlertDialog(context, i);
+                    },
+                    child: Container(
+                      height: 10.h,
+                      width: 10.h,
+
+                      margin: const EdgeInsets.only(bottom: 5, right: 5),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(color: Colors.grey)
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Image.network(
+                          imgUrl,
+                          fit: BoxFit.cover,
+                          // color: AppColors.greyTextColor,
+                          errorBuilder: (context, er, ob) {
+                            return Image.asset(AppImages.petMetLogoImg);
+                          },
+                        ),
+                      ),
+                      /*decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage(imgUrl),
+                            onError: (context, er){
+                              Image.asset(AppImages.petMetLogoImg);
+                            },
+                            fit: BoxFit.cover),
+                        color: AppColors.greyTextColor,
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(8),
+                        ),
+                      ),*/
+                    ),
+                  ),
+                  // i == 0
+                  //     ? Positioned(
+                  //         right: 0,
+                  //         bottom: 0,
+                  //         child: GestureDetector(
+                  //           onTap: () {
+                  //             Get.toNamed(AppRouteNames.uploadPetRoute);
+                  //           },
+                  //           child: Container(
+                  //             height: 15,
+                  //             width: 15,
+                  //             decoration: const BoxDecoration(
+                  //                 color: Colors.green, shape: BoxShape.circle),
+                  //             child: const Icon(
+                  //               Icons.add,
+                  //               color: AppColors.whiteColor,
+                  //               size: 12,
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       )
+                  //     : const SizedBox()
+                ],
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 
 class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
   VetAndNgoNameAndSocialMediaButtonModule({Key? key}) : super(key: key);
@@ -129,7 +242,7 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
   }
 
   _makingPhoneCall() async {
-    var url = Uri.parse("tel:9776765434");
+    var url = Uri.parse("tel: ${screenController.vetsNgoDetailsData.phone}");
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {
@@ -141,7 +254,7 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
     FocusManager.instance.primaryFocus?.unfocus();
 
     var whatsappUrl =
-        "whatsapp://send?phone= 91 + 9876543213"
+        "whatsapp://send?phone= ${screenController.vetsNgoDetailsData.phone}"
         "&text=${Uri.encodeComponent("Hello")}";
     try {
       launch(whatsappUrl);
@@ -234,8 +347,8 @@ class VetAndNgoPlaceTimePaymentModule extends StatelessWidget {
             SizedBox(width: screenController.size.width * 0.008.w),
             Expanded(
               child: Text(
-                "Open: " + screenController.vetsNgoDetailsData.openTime!  + "  "
-    "Close:" + screenController.vetsNgoDetailsData.closeTime!,
+                "Open: " + screenController.vetsNgoDetailsData.open!  + "  "
+    "Close:" + screenController.vetsNgoDetailsData.close!,
                 style: TextStyle(
                   color: themeProvider.darkTheme
                       ? AppColors.whiteColor
@@ -249,6 +362,262 @@ class VetAndNgoPlaceTimePaymentModule extends StatelessWidget {
     ).commonSymmetricPadding(horizontal: 15);
   }
 }
+
+class DonateForPetLoversButtonModule extends StatelessWidget {
+  DonateForPetLoversButtonModule({Key? key}) : super(key: key);
+
+  final screenController = Get.find<PetVetsAndNgoDetailsScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () async {
+        //screenController.openCheckout();
+        alertDialogBox(context);
+      },
+      child: Container(
+        width: Get.width/1.5,
+        height: 35,
+        decoration: const BoxDecoration(
+          color: AppColors.accentTextColor,
+          borderRadius: BorderRadius.all(
+            Radius.circular(12),
+          ),
+        ),
+        child: Center(
+          child: Text(
+            "Click donate for Pet Lovers",
+            style: TextStyle(
+              color: AppColors.whiteColor,
+              fontSize: 13.sp,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+      ),
+    ).commonSymmetricPadding(horizontal: 25);
+  }
+
+  alertDialogBox(BuildContext context){
+    return showDialog(
+      barrierColor: themeProvider.darkTheme
+          ? AppColors.darkThemeBoxColor
+          .withOpacity(0.3)
+          : AppColors.accentColor.withOpacity(0.3),
+      context: context,
+      builder: (ctx) => Dialog(
+        backgroundColor: themeProvider.darkTheme
+            ? AppColors.darkThemeBoxColor
+            : AppColors.whiteColor,
+        shape: const OutlineInputBorder(
+          borderSide: BorderSide(
+            width: 0,
+            color: Colors.transparent,
+          ),
+          borderRadius: BorderRadius.all(
+            Radius.circular(12),
+          ),
+        ),
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 25,
+          ),
+          height: screenController.size.height * 0.35,
+          width: screenController.size.width * 0.8,
+          child: Form(
+            key: screenController.formKey,
+            child: Column(
+              mainAxisAlignment:
+              MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment:
+              CrossAxisAlignment.center,
+              children: [
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Price",
+                      style: TextStyle(
+                        color: AppColors.blackTextColor.withOpacity(0.7),
+                        fontSize: 11.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                //const SizedBox(height: 8),
+                // CustomLightTextField(
+                //   readOnly: false,
+                //   fieldController: controller.passwordController,
+                //   height: Get.height * 0.05,
+                //   width: double.infinity,
+                //   hintText: "Password",
+                //   textInputAction: TextInputAction.next,
+                //   textInputType: TextInputType.text,
+                //   validator: (val) => Validations().validateName(val!),
+                // ),
+
+                    Stack(
+                      children: [
+                        Container(
+                          height: screenController.size.height * 0.05,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            boxShadow: [
+                              BoxShadow(
+                                color: themeProvider.darkTheme
+                                    ? AppColors.whiteColor.withOpacity(0.05)
+                                    : AppColors.greyTextColor.withOpacity(0.5),
+                                blurRadius: 10,
+                                spreadRadius: 0.1,
+                                offset: const Offset(0, 0),
+                              ),
+                            ],
+                          ),
+                        ),
+                        TextFormField(
+                          controller: screenController.priceController,
+                          validator: (val) => Validations().validatePrice(val!),
+                          textInputAction: TextInputAction.done,
+                          keyboardType: TextInputType.number,
+                          cursorColor: themeProvider.darkTheme
+                              ? AppColors.whiteColor
+                              : AppColors.accentTextColor,
+                          style: TextStyle(
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor
+                                : AppColors.blackTextColor,
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.w400,
+                            decoration: TextDecoration.none,
+                          ),
+                          decoration: InputDecoration(
+                              fillColor: themeProvider.darkTheme
+                                  ? AppColors.darkThemeBoxColor
+                                  : AppColors.whiteColor,
+                              filled: true,
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+                              ),
+                              hintText: "Price",
+                              hintStyle: TextStyle(
+                                color: themeProvider.darkTheme
+                                    ? AppColors.whiteColor
+                                    : AppColors.greyTextColor,
+                                fontSize: 13.sp,
+                                fontWeight: FontWeight.w400,
+                              ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                // const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment:
+                  MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: ()async {
+                        //await screenController.userLoginFunction();
+                        if(screenController.formKey.currentState!.validate()){
+
+                          screenController.openCheckout();
+                          screenController.priceController.clear();
+                        }
+
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: AppColors.accentColor,
+                        minimumSize: Size(
+                          screenController.size.width * 0.3,
+                          30,
+                        ),
+                        padding:
+                        const EdgeInsets.symmetric(
+                            horizontal: 16),
+                        shape:
+                        const RoundedRectangleBorder(
+                          borderRadius:
+                          BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Ok",
+                          style: TextStyle(
+                            color: AppColors.whiteColor,
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width:
+                      screenController.size.width * 0.05,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.greyTextColor
+                            .withOpacity(0.3),
+                        minimumSize: Size(
+                            screenController.size.width * 0.3,
+                            30),
+                        padding:
+                        const EdgeInsets.symmetric(
+                            horizontal: 16),
+                        shape:
+                        const RoundedRectangleBorder(
+                          borderRadius:
+                          BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Close",
+                          style: TextStyle(
+                            color: themeProvider
+                                .darkTheme
+                                ? AppColors
+                                .darkThemeBoxColor
+                                : AppColors
+                                .blackTextColor,
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 
 class OverViewModule extends StatelessWidget {
   OverViewModule({Key? key}) : super(key: key);
@@ -266,15 +635,27 @@ class OverViewModule extends StatelessWidget {
               fontWeight: FontWeight.bold,
               fontSize: 12.sp),
         ),
-        SizedBox(height: screenController.size.height * 0.003.h),
-        Text(
-          screenController.vetsNgoDetailsData.overview!,
-          style: TextStyle(
-            color: themeProvider.darkTheme
-                ? AppColors.whiteColor
-                : AppColors.blackTextColor,
-          ),
+        SizedBox(height: 10),
+        Html(
+            data: screenController.vetsNgoDetailsData.fullText!,
+          style: {
+            "p": Style(
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.blackTextColor,
+               //fontSize: FontSize(15.0),
+              // fontWeight: FontWeight.w500,
+            ),
+          },
         ),
+        // Text(
+        //   screenController.vetsNgoDetailsData.fullText!,
+        //   style: TextStyle(
+        //     color: themeProvider.darkTheme
+        //         ? AppColors.whiteColor
+        //         : AppColors.blackTextColor,
+        //   ),
+        // ),
         SizedBox(height: 2.h)
       ],
     ).commonSymmetricPadding(horizontal: 15, vertical: 5);

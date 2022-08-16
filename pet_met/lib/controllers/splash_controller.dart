@@ -50,7 +50,8 @@ class SplashController extends GetxController {
           Get.off(()=> OnboardingScreen(),
               transition: Transition.native,
               duration: const Duration(milliseconds: 500));
-        } else if (UserDetails.isUserLoggedIn == true) {
+        }
+        else if (UserDetails.isUserLoggedIn == true) {
           Get.off(() => IndexScreen(),
               transition: Transition.native,
               duration: const Duration(milliseconds: 500));
@@ -59,7 +60,8 @@ class SplashController extends GetxController {
           //   duration: const Duration(milliseconds: 500),
           // );
 
-        } else if (UserDetails.isUserLoggedIn == false) {
+        }
+        else if (UserDetails.isUserLoggedIn == false) {
           //Get.offNamed(AppRouteNames.loginRoute);
           Get.off(() => const UserCategoriesScreen(),
               transition: Transition.native,

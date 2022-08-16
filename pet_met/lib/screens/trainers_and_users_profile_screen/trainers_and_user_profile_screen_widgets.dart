@@ -1174,6 +1174,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
     final TimeOfDay? result =
     await showTimePicker(
         context: context,
+        cancelText: "Cancel",
         initialTime: TimeOfDay.now());
     if (result != null) {
       //setState(() {

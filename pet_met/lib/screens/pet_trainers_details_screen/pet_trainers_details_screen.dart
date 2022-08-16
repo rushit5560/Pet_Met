@@ -38,6 +38,7 @@ class PetTrainersDetailsScreen extends StatelessWidget {
                         ? const CustomAnimationLoader()
                         : SingleChildScrollView(
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 PetTrainerBannerImageModule(),
                                 SizedBox(
@@ -59,6 +60,8 @@ class PetTrainersDetailsScreen extends StatelessWidget {
                                     height: petTrainersDetailsScreenController
                                             .size.height *
                                         0.005.w),
+                                CallUsTextModule(),
+                                SizedBox(height: 10),
                                 PetTrainerOverViewModule(),
                               ],
                             ).commonSymmetricPadding(horizontal: 5),

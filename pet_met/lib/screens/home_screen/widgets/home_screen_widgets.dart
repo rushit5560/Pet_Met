@@ -42,14 +42,14 @@ class _PetTopListModuleState extends State<PetTopListModule> {
     return //homeController.petTopList.isNotEmpty ?
       NotificationListener<ScrollNotification>(
       onNotification: (scrollState) {
-        if (!homeController.isLoadMore && scrollState is ScrollEndNotification && scrollState.metrics.pixels == scrollState.metrics.maxScrollExtent &&
-            _scrollController.position.pixels ==
-                _scrollController.position.maxScrollExtent){
-          //setState(() {
+        if (!homeController.isLoadMore && scrollState is ScrollEndNotification &&
+            scrollState.metrics.pixels == scrollState.metrics.maxScrollExtent &&
+            _scrollController.position.pixels == _scrollController.position.maxScrollExtent){
+          setState(() async {
             homeController.isLoadMore = true;
             homeController.pageIndex = homeController.pageIndex + 1;
-             homeController.getAllPetFunction();
-          //});
+             await homeController.getAllPetFunction();
+          });
           log('homeController.isLoadMore: ${homeController.isLoadMore}');
         }
         return false;
@@ -210,13 +210,14 @@ class _PetTopListModuleState extends State<PetTopListModule> {
           ),
           homeController.isLoadMore == true
               ? Container(
-            height: 30,
+            height: 20,
             width: 30,
+            color: Colors.black,
             child: const CircularProgressIndicator(color: Colors.black,),
           )
               : Container(
             color: Colors.transparent,
-            height: 30,
+            height: 20,
             width: 30,
           ),
         ],

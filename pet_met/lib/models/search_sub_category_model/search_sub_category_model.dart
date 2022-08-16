@@ -43,6 +43,7 @@ class Datum {
     required this.categoryImage,
     required this.parent,
     required this.sortOrder,
+    required this.isSelected,
     required this.isActive,
     required this.createdDate,
     required this.updatedDate,
@@ -60,6 +61,7 @@ class Datum {
   String parent;
   String sortOrder;
   String isActive;
+  bool isSelected;
   String createdDate;
   String updatedDate;
   String createdBy;
@@ -76,6 +78,7 @@ class Datum {
     parent: json["parent"] ?? "",
     sortOrder: json["sort_order"] ?? "",
     isActive: json["is_active"] ?? "",
+    isSelected: false,
     createdDate: json["created_date"] ?? "",
     updatedDate: json["updated_date"] ?? "",
     createdBy: json["created_by"] ?? "",

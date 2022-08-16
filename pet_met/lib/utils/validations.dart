@@ -6,6 +6,13 @@ class Validations {
     return null;
   }
 
+  String? validatePrice(String value) {
+    if (value.isEmpty) {
+      return 'Price is required';
+    }
+    return null;
+  }
+
   String? validateSearchTextField(String value) {
     if (value.isEmpty) {
       return 'Search text is required';

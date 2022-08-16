@@ -76,7 +76,7 @@ class PetTrainerPicturesModule extends StatelessWidget {
         SizedBox(
           height: 10.h,
           child: screenController.trainerDetails.meetingimages!.isEmpty ?
-              Center(child: Text("Empty Trainer Picture")):
+              const Center(child: Text("Empty Trainer Picture")):
           ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: screenController.trainerDetails.meetingimages!.length,
@@ -95,7 +95,12 @@ class PetTrainerPicturesModule extends StatelessWidget {
                     child: Container(
                       height: 10.h,
                       width: 10.h,
+
                       margin: const EdgeInsets.only(bottom: 5, right: 5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(color: Colors.grey)
+                        ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(15),
                         child: Image.network(
@@ -285,7 +290,7 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
   }
 
   _makingPhoneCall() async {
-    var url = Uri.parse("tel:9776765434");
+    var url = Uri.parse("tel: ${screenController.trainerDetails.phone}");
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {
@@ -297,7 +302,7 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
     FocusManager.instance.primaryFocus?.unfocus();
 
     var whatsappUrl =
-        "whatsapp://send?phone= 91 + 9876543213"
+        "whatsapp://send?phone= ${screenController.trainerDetails.phone}"
         "&text=${Uri.encodeComponent("Hello")}";
     try {
       launch(whatsappUrl);
@@ -393,7 +398,7 @@ class PetTrainerPlaceTimePaymentModule extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    "Open:" + screenController.trainerDetails.open!,
+                    "Open: " + screenController.trainerDetails.open!,
                     style: TextStyle(
                       color: themeProvider.darkTheme
                           ? AppColors.whiteColor
@@ -402,7 +407,7 @@ class PetTrainerPlaceTimePaymentModule extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   Text(
-                    "Close:" + screenController.trainerDetails.close!,
+                    "Close: " + screenController.trainerDetails.close!,
                     style: TextStyle(
                       color: themeProvider.darkTheme
                           ? AppColors.whiteColor
@@ -418,6 +423,19 @@ class PetTrainerPlaceTimePaymentModule extends StatelessWidget {
     ).commonSymmetricPadding(horizontal: 15);
   }
 }
+
+class CallUsTextModule extends StatelessWidget {
+  CallUsTextModule({Key? key}) : super(key: key);
+
+  final screenController = Get.find<PetTrainersDetailsScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Text("Call Us Today at " + "${screenController.trainerDetails.phone}" + " To Learn More!",
+      style: const TextStyle(color: AppColors.accentTextColor, fontWeight: FontWeight.bold,)).commonSymmetricPadding(horizontal: 15);
+  }
+}
+
 
 class PetTrainerOverViewModule extends StatelessWidget {
   PetTrainerOverViewModule({Key? key}) : super(key: key);
@@ -438,23 +456,23 @@ class PetTrainerOverViewModule extends StatelessWidget {
               fontSize: 12.sp),
         ),
         SizedBox(height: screenController.size.height * 0.003.h),
-        Html(
-          data: screenController.trainerDetails.fullText,
-          // style: {
-          //   "p": Style(
-          //       color: themeProvider.darkTheme
-          //           ? AppColors.whiteColor
-          //           : AppColors.blackTextColor)
-          // },
-        ),
-        // Text(
-        //   screenController.trainerDetails.fullText,
-        //   style: TextStyle(
-        //     color: themeProvider.darkTheme
-        //         ? AppColors.whiteColor
-        //         : AppColors.blackTextColor,
-        //   ),
+        // Html(
+        //   data: screenController.trainerDetails.fullText,
+        //   style: {
+        //     "p": Style(
+        //         color: themeProvider.darkTheme
+        //             ? AppColors.whiteColor
+        //             : AppColors.blackTextColor)
+        //   },
         // ),
+        Text(
+          screenController.trainerDetails.fullText!,
+          style: TextStyle(
+            color: themeProvider.darkTheme
+                ? AppColors.whiteColor
+                : AppColors.blackTextColor,
+          ),
+        ),
         SizedBox(height: screenController.size.height * 0.003.h),
       ],
     ).commonSymmetricPadding(horizontal: 15);

@@ -18,7 +18,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       // backgroundColor: const Color(0xFFFFFFFF),
-      body: SafeArea(
+     /* body: SafeArea(
         child: Stack(
           children: [
             SizedBox(
@@ -92,76 +92,196 @@ class SplashScreen extends StatelessWidget {
             backgroundWaveShape(controller),
           ],
         ),
+      ),*/
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              children: [
+                const SizedBox(height: 25),
+                Image.asset(
+                  themeProvider.darkTheme
+                      ? AppImages.splashLogoImgDark
+                      : AppImages.splashLogoImgLight,
+                  fit: BoxFit.cover,
+                  // width: Get.width/1.5,
+                  height: Get.height/3.5,
+                ),
+
+                SizedBox(height: 8.h),
+                Image.asset(
+                  AppImages.petMetLogoImg,
+                  fit: BoxFit.cover,
+                  width: 30.w,
+                ),
+                const SizedBox(height: 15),
+                Image.asset(
+                  AppImages.petMateTextImg,
+                  fit: BoxFit.cover,
+                  width: 25.w,
+                ),
+
+                const SizedBox(height: 20),
+                Text(
+                  "``Your Personal pet Companion.,,",
+                  style: TextStyle(
+                    fontSize: 11.sp,
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.greyTextColor,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 20),
+
+
+
+              ],
+            ),
+            Expanded(
+              child: backgroundWaveShape(controller),
+            )
+
+
+            //backgroundWaveShape(controller),
+          ],
+        ),
       ),
     );
   }
 
   backgroundWaveShape(controller) {
-    return Positioned(
-      bottom: 0,
-      child: Opacity(
-        opacity: 0.07,
-        child: Container(
-          width: controller.size.width + 16,
-          // height: controller.size.height * 0.5,
-          child: themeProvider.darkTheme
-              ? darkThemeBottomShapes()
-              : lightThemeBottomShapes(),
+    return Column(
+      children: [
+        Expanded(
+          child: Stack(
+            alignment: Alignment.centerRight,
+            children: [
+              Opacity(
+                opacity: 0.10,
+                child: Container(
+                  //width: controller.size.width + 16,
+                  // height: controller.size.height * 0.5,
+                  child: themeProvider.darkTheme
+                      ? darkThemeBottomShapes()
+                      : lightThemeBottomShapes(),
+                ),
+              ),
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Image.asset(
+                    AppImages.cubeImg,
+                    fit: BoxFit.cover,
+                  ),
+                  SizedBox(width: 12.w),
+                ],
+              ),
+
+
+            ],
+          ),
         ),
-      ),
+        Text(
+          "Adopt and sell pet on a smartphone. Easily to use and\ncute interface",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 10.sp,
+            color: themeProvider.darkTheme
+                ? AppColors.whiteColor.withOpacity(0.4)
+                : AppColors.blackTextColor,
+            fontWeight: FontWeight.w400,
+            height: 1.5,
+          ),
+        ),
+        SizedBox(height: 10)
+      ],
     );
   }
 
   lightThemeBottomShapes() {
     return Column(
       children: [
-        Row(
-          children: [
-            Image.asset(
-              "assets/images/Group-4-light.png",
-            ),
-            Image.asset(
-              "assets/images/Group-2-light.png",
-            ),
-            Image.asset(
-              "assets/images/Group-3-light.png",
-            ),
-            Image.asset(
-              "assets/images/Group-1-light.png",
-            ),
-          ],
+        Expanded(
+          child: Row(
+            children: [
+              Expanded(
+                child: Image.asset(
+                  "assets/images/Group-4-light.png",
+                ),
+              ),
+              Expanded(
+                child: Image.asset(
+                  "assets/images/Group-2-light.png",
+                ),
+              ),
+              Expanded(
+                child: Image.asset(
+                  "assets/images/Group-3-light.png",
+                ),
+              ),
+              Expanded(
+                child: Image.asset(
+                  "assets/images/Group-1-light.png",
+                ),
+              ),
+            ],
+          ),
         ),
-        Row(
-          children: [
-            Image.asset(
-              "assets/images/Group-4-light.png",
-            ),
-            Image.asset(
-              "assets/images/Group-2-light.png",
-            ),
-            Image.asset(
-              "assets/images/Group-3-light.png",
-            ),
-            Image.asset(
-              "assets/images/Group-1-light.png",
-            ),
-          ],
+        Expanded(
+          child: Row(
+            children: [
+              Expanded(
+                child: Image.asset(
+                  "assets/images/Group-4-light.png",
+                ),
+              ),
+              Expanded(
+                child: Image.asset(
+                  "assets/images/Group-2-light.png",
+                ),
+              ),
+              Expanded(
+                child: Image.asset(
+                  "assets/images/Group-3-light.png",
+                ),
+              ),
+              Expanded(
+                child: Image.asset(
+                  "assets/images/Group-1-light.png",
+                ),
+              ),
+            ],
+          ),
         ),
-        Row(
-          children: [
-            Image.asset(
-              "assets/images/Group-4-light.png",
-            ),
-            Image.asset(
-              "assets/images/Group-2-light.png",
-            ),
-            Image.asset(
-              "assets/images/Group-3-light.png",
-            ),
-            Image.asset(
-              "assets/images/Group-1-light.png",
-            ),
-          ],
+        Expanded(
+          child: Row(
+            children: [
+              Expanded(
+                child: Image.asset(
+                  "assets/images/Group-4-light.png",
+                ),
+              ),
+              Expanded(
+                child: Image.asset(
+                  "assets/images/Group-2-light.png",
+                ),
+              ),
+              Expanded(
+                child: Image.asset(
+                  "assets/images/Group-3-light.png",
+                ),
+              ),
+              Expanded(
+                child: Image.asset(
+                  "assets/images/Group-1-light.png",
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );

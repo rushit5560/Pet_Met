@@ -72,7 +72,7 @@ class MeetingAndBreadingSearchFieldModule extends StatelessWidget {
               fontSize: 13.sp,
               fontWeight: FontWeight.w400,
             ),
-            suffixIcon: GestureDetector(
+            /*suffixIcon: GestureDetector(
               onTap: () async {
                 // screenController.searchFieldController.clear();
                 // hideKeyboard();
@@ -96,7 +96,7 @@ class MeetingAndBreadingSearchFieldModule extends StatelessWidget {
                   color: Colors.white,
                 ).commonAllSidePadding(padding: 5),
               ).commonAllSidePadding(padding: 8),
-            ),
+            ),*/
           ),
         ),
       ],
@@ -161,13 +161,13 @@ class PetCategoriesListModule extends StatelessWidget {
             animationDuration: const Duration(milliseconds: 500),
             headerAlignment: ExpandablePanelHeaderAlignment.center),
         collapsed: Container(),
-        expanded: screenController.searchSubCatList.isNotEmpty ?
+        expanded: /*screenController.searchList.isNotEmpty ?
         ListView.builder(
-          itemCount: screenController.searchSubCatList.length,
+          itemCount: screenController.searchList.length,
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
           itemBuilder: (context, i) {
-            String id = screenController.searchSubCatList[i].categoryId;
+            String id = screenController.searchList[i].categoryId;
             return Row(
               children: [
                 Checkbox(
@@ -179,21 +179,21 @@ class PetCategoriesListModule extends StatelessWidget {
                     AppColors.greyColor,
                   ),
                   focusColor: AppColors.greyColor,
-                  value: screenController.searchSubCatList[i].isSelected,
+                  value: screenController.searchList[i].isSelected,
                   onChanged: (value) {
                     screenController.isLoading(true);
                     for (int i = 0;
                     i < screenController.catAndSubCatList.length;
                     i++) {
-                      for (int j = 0; j < screenController.searchSubCatList.length; j++) {
-                        if (screenController.searchSubCatList[j].categoryId == id) {
-                          screenController.searchSubCatList[j].isSelected = true;
+                      for (int j = 0; j < screenController.searchList.length; j++) {
+                        if (screenController.searchList[j].categoryId == id) {
+                          screenController.searchList[j].isSelected = true;
                           screenController.selectedSubCatId =
-                              screenController.searchSubCatList[j].categoryId.toString();
+                              screenController.searchList[j].categoryId.toString();
                           // log("${singleItem.subCategory[j].categoryId}");
                           // log(singleItem.subCategory[j].categoryName);
                         } else {
-                          screenController.searchSubCatList[j].isSelected = false;
+                          screenController.searchList[j].isSelected = false;
                         }
                       }
                     }
@@ -201,7 +201,7 @@ class PetCategoriesListModule extends StatelessWidget {
                   },
                 ),
                 Text(
-                  screenController.searchSubCatList[i].categoryName,
+                  screenController.searchList[i].categoryName,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -213,7 +213,7 @@ class PetCategoriesListModule extends StatelessWidget {
               ],
             );
           },
-        ):
+        ):*/
         ListView.builder(
           itemCount: singleItem.subCategory.length,
           shrinkWrap: true,
@@ -287,14 +287,14 @@ class MeetYourLovedOneButtonModule extends StatelessWidget {
     return GestureDetector(
       onTap: () async {
         log("Selected Sub cat Id : ${screenController.selectedSubCatId}");
-        if(screenController.searchFieldController.text.isNotEmpty){
+        //if(screenController.searchFieldController.text.isNotEmpty){
           await screenController.getSearchCategoryAndSubCategoryFunction().then((value) {
             screenController.searchFieldController.clear();
             Get.to(()=> PetMeetingListScreen(),
                 transition: Transition.native,
                 duration: const Duration(milliseconds: 500));
           });
-        }
+       // }
 
       },
       child: Container(

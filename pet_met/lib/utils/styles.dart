@@ -25,7 +25,7 @@ class Styles {
 
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {
     return ThemeData(
-      primarySwatch: primarySwatch,
+      //primarySwatch: primarySwatch,
       primaryColor: isDarkTheme ? Colors.black : Colors.white,
       scaffoldBackgroundColor:
           isDarkTheme ? AppColors.darkThemeColor : AppColors.whiteColor,

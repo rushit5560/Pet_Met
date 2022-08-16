@@ -165,16 +165,26 @@ class VetsAndNgoListModule extends StatelessWidget {
                 color: Colors.grey,
               ),
             ),*/
-            SizedBox(
-              width: 22.w,
-              height: 22.w,
-              // decoration: BoxDecoration(
-              //   borderRadius: BorderRadius.circular(30),
-              //   color: Colors.grey,
-              // ),
+            Container(
+              width: 75,
+              height: 65,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                  border: Border.all(color: Colors.grey),
+                // boxShadow: const [
+                //   BoxShadow(
+                //     color: Colors.grey,
+                //     blurRadius: 1.5,
+                //     spreadRadius: 1.5
+                //   )
+                // ]
+                //color: Colors.grey,
+              ),
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
-                  child: Image.network(imgUrl, errorBuilder: (context, er, ob) {
+                  child: Image.network(imgUrl,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, er, ob) {
                     return Image.asset(AppImages.petMetLogoImg);
                   })),
             ),

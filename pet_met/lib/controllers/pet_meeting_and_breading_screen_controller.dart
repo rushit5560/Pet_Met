@@ -76,9 +76,10 @@ class PetMeetingAndBreadingScreenController extends GetxController {
       log('isSuccessStatus: $isSuccessStatus');
 
       if (isSuccessStatus.value) {
-        searchSubCatList.clear();
+        searchList.clear();
         searchList = searchCategoryAndSubCategoryModel.data;
         log('searchList: $searchList');
+        //searchList.clear();
         // for(int i =0; i < searchCategoryAndSubCategoryModel.data.length; i++){
         //   for(int j=0; j < categoryAndSubCategoryModel.data[i].subCategory.length ; i++){
         //     searchSubCatList = categoryAndSubCategoryModel.data[j].subCategory;

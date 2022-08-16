@@ -43,12 +43,15 @@ class PetVetsAndNgoDetailsScreen extends StatelessWidget {
                         ? const CustomAnimationLoader()
                         : SingleChildScrollView(
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 BannerImageModule(),
                                 SizedBox(
                                     height: petVetsAndNgoDetailsScreenController
                                             .size.height *
                                         0.005.w),
+                                NgoAchivementPictureListModule(),
+                                SizedBox(height: 10),
                                 VetAndNgoNameAndSocialMediaButtonModule(),
                                 SizedBox(
                                     height: petVetsAndNgoDetailsScreenController
@@ -59,6 +62,8 @@ class PetVetsAndNgoDetailsScreen extends StatelessWidget {
                                     height: petVetsAndNgoDetailsScreenController
                                             .size.height *
                                         0.005.w),
+                                DonateForPetLoversButtonModule(),
+                                SizedBox(height: 10),
                                 OverViewModule(),
                               ],
                             ),

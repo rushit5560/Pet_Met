@@ -6,6 +6,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/shop_details_screen_controller.dart';
+import 'package:pet_met/screens/pet_meeting_details_screen/pet_meeting_details_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
@@ -228,7 +229,7 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
   }
 
   _makingPhoneCall() async {
-    var url = Uri.parse("tel:9776765434");
+    var url = Uri.parse("tel:${screenController.shopData.phonenumber}");
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {
@@ -241,7 +242,7 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
     FocusManager.instance.primaryFocus?.unfocus();
 
     var whatsappUrl =
-        "whatsapp://send?phone= 91 + 9876543213"
+        "whatsapp://send?phone= ${screenController.shopData.phonenumber}"
             "&text=${Uri.encodeComponent("Hello")}";
     try {
       launch(whatsappUrl);
@@ -259,15 +260,15 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
   async {
     try {
       bool launched = await launch(fbUrl, forceSafariVC: false);
-      print("Launched Native app $launched");
+      log("Launched Native app $launched");
 
       if (!launched) {
         await launch(fbWebUrl, forceSafariVC: false);
-        print("Launched browser $launched");
+        log("Launched browser $launched");
       }
     } catch (e) {
       await launch(fbWebUrl, forceSafariVC: false);
-      print("Inside catch");
+      log("Inside catch");
     }
   }
 
@@ -417,7 +418,7 @@ class MeetingAvailabilityModule extends StatelessWidget {
         SizedBox(height: screenController.size.height * 0.001.h),
         SizedBox(
           height: screenController.size.width * 0.15,
-          child: screenController.shopData.meetingimages!.length == 0 ?
+          child: screenController.shopData.meetingimages!.isEmpty ?
               const Text("Empty Meeting"):
           ListView.builder(
             itemCount: screenController.shopData.meetingimages!.length,
@@ -437,28 +438,36 @@ class MeetingAvailabilityModule extends StatelessWidget {
   }
 
   Widget _meetingAvailabilityListTile(String imgUrl) {
-    return SizedBox(
-      height: screenController.size.width * 0.15,
-      width: screenController.size.width * 0.15,
-      // decoration: const BoxDecoration(
-      //   // image: DecorationImage(
-      //   //     image: AssetImage(
-      //   //       AppImages.shopDetailsImg,
-      //   //     ),
-      //   //     fit: BoxFit.cover),
-      //   color: AppColors.greyTextColor,
-      //   borderRadius: BorderRadius.all(
-      //     Radius.circular(8),
-      //   ),
-      // ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(8),
-        child: Image.network(imgUrl, fit: BoxFit.fill,
-            errorBuilder: (context, er, data) {
-          return Image.asset(AppImages.petMetLogoImg);
-        }),
-      ),
-    ).commonSymmetricPadding(horizontal: 5);
+    return GestureDetector(
+      onTap: (){
+        //Get.to(()=> PetMeetingDetailsScreen(), arguments: petList.id);
+      },
+      child: SizedBox(
+        height: screenController.size.width * 0.15,
+        width: screenController.size.width * 0.15,
+        child: Container(
+          decoration: BoxDecoration(
+            // image: DecorationImage(
+            //     image: AssetImage(
+            //       AppImages.shopDetailsImg,
+            //     ),
+            //     fit: BoxFit.cover),
+            //color: AppColors.greyTextColor,
+            border: Border.all(color: Colors.grey),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(8),
+            ),
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.network(imgUrl, fit: BoxFit.fill,
+                errorBuilder: (context, er, data) {
+              return Image.asset(AppImages.petMetLogoImg);
+            }),
+          ),
+        ),
+      ).commonSymmetricPadding(horizontal: 5),
+    );
   }
 }
 
