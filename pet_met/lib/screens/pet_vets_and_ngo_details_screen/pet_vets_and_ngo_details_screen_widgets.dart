@@ -42,7 +42,9 @@ class BannerImageModule extends StatelessWidget {
 }
 
 class NgoAchivementPictureListModule extends StatelessWidget {
-  const NgoAchivementPictureListModule({Key? key}) : super(key: key);
+  NgoAchivementPictureListModule({Key? key}) : super(key: key);
+
+  final screenController = Get.find<PetVetsAndNgoDetailsScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +68,7 @@ class NgoAchivementPictureListModule extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(
+        /*SizedBox(
           height: 10.h,
           child: screenController.trainerDetails.meetingimages!.isEmpty ?
           const Center(child: Text("Empty Trainer Picture")):
@@ -105,7 +107,7 @@ class NgoAchivementPictureListModule extends StatelessWidget {
                           },
                         ),
                       ),
-                      /*decoration: BoxDecoration(
+                      *//*decoration: BoxDecoration(
                         image: DecorationImage(
                             image: NetworkImage(imgUrl),
                             onError: (context, er){
@@ -116,7 +118,7 @@ class NgoAchivementPictureListModule extends StatelessWidget {
                         borderRadius: const BorderRadius.all(
                           Radius.circular(8),
                         ),
-                      ),*/
+                      ),*//*
                     ),
                   ),
                   // i == 0
@@ -145,7 +147,7 @@ class NgoAchivementPictureListModule extends StatelessWidget {
               );
             },
           ),
-        ),
+        ),*/
       ],
     );
   }
