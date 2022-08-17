@@ -89,6 +89,10 @@ class LoginController extends GetxController {
         if(loginModel.error.contains('Email don\'t match')){
           Fluttertoast.showToast(msg: "Invalid email");
         }
+        
+        if(loginModel.messege.contains('User account is deleted')) {
+          Fluttertoast.showToast(msg: loginModel.messege);
+        }
 
        //
       }

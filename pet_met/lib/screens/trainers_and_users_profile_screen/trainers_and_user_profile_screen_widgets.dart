@@ -68,144 +68,146 @@ class UploadImageModule extends StatelessWidget {
         modelBottomSheet(context);
       },
       child: Container(
-        height: screenController.size.height * 0.2,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: AppColors.whiteColor,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(15),
-          ),
-          // image: DecorationImage(
-          //   image: FileImage(
-          //     File(screenController.imageFile!.path),
-          //   ),
-          // ),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.greyTextColor.withOpacity(0.3),
-              blurRadius: 35,
-              spreadRadius: 1,
-              offset: const Offset(0, 5),
+          height: screenController.size.height * 0.2,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: AppColors.whiteColor,
+            borderRadius: const BorderRadius.all(
+              Radius.circular(15),
             ),
-          ],
-        ),
-        child: screenController.imageFile != null
-            ? Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(30),
-                child: Image.file(
-                  themeProvider.darkTheme
-                      ? screenController.imageFile! : screenController.imageFile!,
-                  width: 100,
-                  height: 100,
-                  fit: BoxFit.cover,),
+            // image: DecorationImage(
+            //   image: FileImage(
+            //     File(screenController.imageFile!.path),
+            //   ),
+            // ),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.greyTextColor.withOpacity(0.3),
+                blurRadius: 35,
+                spreadRadius: 1,
+                offset: const Offset(0, 5),
               ),
-
-              //),
-              // const SizedBox(height: 20),
-              // Text(
-              //   "Upload Image",
-              //   style: TextStyle(
-              //     color: themeProvider.darkTheme
-              //         ? AppColors.whiteColor
-              //         : AppColors.blackTextColor,
-              //     fontSize: 15.sp,
-              //     fontWeight: FontWeight.w500,
-              //   ),
-              // ),
             ],
           ),
-        ):
-        screenController.trainersProfile != null ?
-        Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(30),
-                child: Image.network(
-                  themeProvider.darkTheme
-                      ? ApiUrl.apiImagePath + screenController.trainersProfile! : ApiUrl.apiImagePath + screenController.trainersProfile!,
-                    width: 100,
-                    height: 100,
-                    fit: BoxFit.cover,
-                  errorBuilder: (context, er, st){
-                    //return Image.asset(AppImages.petMetLogoImg);
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Image.asset(
+          child: screenController.imageFile != null
+              ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(30),
+                        child: Image.file(
                           themeProvider.darkTheme
-                              ? AppImages.cameraPlaceHolderImgDark
-                              : AppImages.cameraPlaceHolderImglight,
-                          height: 65,
+                              ? screenController.imageFile!
+                              : screenController.imageFile!,
+                          width: 100,
+                          height: 100,
+                          fit: BoxFit.cover,
                         ),
-                        const SizedBox(height: 20),
-                        Text(
-                          "Upload Image",
-                          style: TextStyle(
-                            color: themeProvider.darkTheme
-                                ? AppColors.whiteColor
-                                : AppColors.blackTextColor,
-                            fontSize: 15.sp,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    );
-                  },
-                ),
-              ),
+                      ),
 
-              //),
-              // const SizedBox(height: 20),
-              // Text(
-              //   "Upload Image",
-              //   style: TextStyle(
-              //     color: themeProvider.darkTheme
-              //         ? AppColors.whiteColor
-              //         : AppColors.blackTextColor,
-              //     fontSize: 15.sp,
-              //     fontWeight: FontWeight.w500,
-              //   ),
-              // ),
-            ],
-          ),
-        ):
-        Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset(
-                themeProvider.darkTheme
-                    ? AppImages.cameraPlaceHolderImgDark
-                    : AppImages.cameraPlaceHolderImglight,
-                height: 65,
-              ),
-              const SizedBox(height: 20),
-              Text(
-                "Upload Image",
-                style: TextStyle(
-                  color: AppColors.blackTextColor,
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ],
-          ),
-        )
-      ),
+                      //),
+                      // const SizedBox(height: 20),
+                      // Text(
+                      //   "Upload Image",
+                      //   style: TextStyle(
+                      //     color: themeProvider.darkTheme
+                      //         ? AppColors.whiteColor
+                      //         : AppColors.blackTextColor,
+                      //     fontSize: 15.sp,
+                      //     fontWeight: FontWeight.w500,
+                      //   ),
+                      // ),
+                    ],
+                  ),
+                )
+              : screenController.trainersProfile != null
+                  ? Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(30),
+                            child: Image.network(
+                              themeProvider.darkTheme
+                                  ? screenController.trainersProfile!
+                                  : screenController.trainersProfile!,
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, er, st) {
+                                //return Image.asset(AppImages.petMetLogoImg);
+                                return Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      themeProvider.darkTheme
+                                          ? AppImages.cameraPlaceHolderImgDark
+                                          : AppImages.cameraPlaceHolderImglight,
+                                      height: 65,
+                                    ),
+                                    const SizedBox(height: 20),
+                                    Text(
+                                      "Upload Image",
+                                      style: TextStyle(
+                                        color: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                            : AppColors.blackTextColor,
+                                        fontSize: 15.sp,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
+                          ),
+
+                          //),
+                          // const SizedBox(height: 20),
+                          // Text(
+                          //   "Upload Image",
+                          //   style: TextStyle(
+                          //     color: themeProvider.darkTheme
+                          //         ? AppColors.whiteColor
+                          //         : AppColors.blackTextColor,
+                          //     fontSize: 15.sp,
+                          //     fontWeight: FontWeight.w500,
+                          //   ),
+                          // ),
+                        ],
+                      ),
+                    )
+                  : Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            themeProvider.darkTheme
+                                ? AppImages.cameraPlaceHolderImgDark
+                                : AppImages.cameraPlaceHolderImglight,
+                            height: 65,
+                          ),
+                          const SizedBox(height: 20),
+                          Text(
+                            "Upload Image",
+                            style: TextStyle(
+                              color: AppColors.blackTextColor,
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )),
     );
   }
 
-  modelBottomSheet(BuildContext context){
+  modelBottomSheet(BuildContext context) {
     showModalBottomSheet<void>(
       context: context,
       constraints: null,
@@ -220,7 +222,7 @@ class UploadImageModule extends StatelessWidget {
               ListTile(
                 onTap: getFromCamera,
                 contentPadding:
-                EdgeInsets.only(left: screenController.size.width * 0.1),
+                    EdgeInsets.only(left: screenController.size.width * 0.1),
                 title: Text(
                   "Select Image From Camera",
                   style: TextStyle(
@@ -232,7 +234,7 @@ class UploadImageModule extends StatelessWidget {
               ),
               ListTile(
                 contentPadding:
-                EdgeInsets.only(left: screenController.size.width * 0.1),
+                    EdgeInsets.only(left: screenController.size.width * 0.1),
                 onTap: getFromGallery,
                 title: Text(
                   "Select Image From Gallery",
@@ -273,14 +275,10 @@ class UploadImageModule extends StatelessWidget {
       log('Camera File Path : ${screenController.imageFile}');
       log('Camera Image Path : ${screenController.imageFile!.path}');
 
-
       //Fluttertoast.showToast(msg: '${image.path}', toastLength: Toast.LENGTH_LONG);
       //renameImage();
       //});
-    } else {
-
-
-    }
+    } else {}
 
     screenController.imageFile = File(pickedFile!.path);
     //setState(() {});
@@ -310,14 +308,10 @@ class UploadImageModule extends StatelessWidget {
       log('Camera File Path : ${screenController.imageFile}');
       log('Camera Image Path : ${screenController.imageFile!.path}');
 
-
       //Fluttertoast.showToast(msg: '${image.path}', toastLength: Toast.LENGTH_LONG);
       //renameImage();
       //});
-    } else {
-
-
-    }
+    } else {}
 
     screenController.imageFile = File(pickedFile!.path);
     // setState(() {});
@@ -334,128 +328,180 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Name of Trainers Achievment Picture:", style: TextStyle(color: Colors.black),),
-        SizedBox(height: 8),
-        Container(
+        const Text(
+          "Trainers Achievement Picture:",
+          style: TextStyle(color: Colors.black),
+        ),
+        const SizedBox(height: 8),
+        SizedBox(
           height: screenController.size.width * 0.16,
           child: ListView.builder(
               shrinkWrap: true,
               itemCount: 5,
               scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index){
-                return Container(
-                  // height: screenController.size.width * 0.16,
-                  child: Stack(
-                    alignment: Alignment.bottomRight,
-                    children: [
-                      Container(
-                          height: screenController.size.width * 0.16,
-                          width: screenController.size.width * 0.16,
-                          margin: const EdgeInsets.only(bottom: 5, right: 5),
-                          decoration: const BoxDecoration(
-                            // image: DecorationImage(
-                            //     image: AssetImage(
-                            //       controller.dogsTopList[index],
-                            //     ),
-                            //     fit: BoxFit.cover),
-                            color: AppColors.greyTextColor,
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(8),
-                            ),
-                          ),
-                          child: index == 0 ?
-                          screenController.trainerPictureFile1 != null ?
-                          Image.file(
-                            screenController.trainerPictureFile1!,height: 65,) :
-                          screenController.trainerImage1 != null ?
-                          Image.network(
-                            screenController.trainerImage1!,height: 65,
-                            errorBuilder: (context, er, st){
-                              return Image.asset(AppImages.petMetLogoImg);
-                            },):
-                          Image.asset(AppImages.petMetLogoImg) :
-
-                          index == 1 ?
-                          screenController.trainerPictureFile2!= null ?
-                          Image.file(
-                            screenController.trainerPictureFile2!,height: 65,) :
-                          screenController.trainerImage2 != null ?
-                          Image.network(
-                            screenController.trainerImage2!,height: 65,
-                            errorBuilder: (context, er, st){
-                              return Image.asset(AppImages.petMetLogoImg);
-                            },):
-                          Image.asset(AppImages.petMetLogoImg) :
-
-                          index == 2 ?
-                          screenController.trainerPictureFile3 != null ?
-                          Image.file(
-                            screenController.trainerPictureFile3!,height: 65,) :
-                          screenController.trainerImage3 != null ?
-                          Image.network(
-                            screenController.trainerImage3!,height: 65,
-                            errorBuilder: (context, er, st){
-                              return Image.asset(AppImages.petMetLogoImg);
-                            },):
-                          Image.asset(AppImages.petMetLogoImg) :
-
-                          index == 3 ?
-                          screenController.trainerPictureFile4 != null ?
-                          Image.file(
-                            screenController.trainerPictureFile4!,height: 65,) :
-                          screenController.trainerImage4 != null ?
-                          Image.network(
-                            screenController.trainerImage4!,height: 65,
-                            errorBuilder: (context, er, st){
-                              return Image.asset(AppImages.petMetLogoImg);
-                            },):
-                          Image.asset(AppImages.petMetLogoImg):
-
-                          index == 4 ?
-                          screenController.trainerPictureFile5 != null ?
-                          Image.file(
-                            screenController.trainerPictureFile5!,height: 65,) :
-                          screenController.trainerImage5 != null ?
-                          Image.network(
-                            screenController.trainerImage5!,height: 65,
-                            errorBuilder: (context, er, st){
-                              return Image.asset(AppImages.petMetLogoImg);
-                            },):
-                          Image.asset(AppImages.petMetLogoImg) : Container()
-                      ),
-                      Positioned(
-                        right: 0,
-                        bottom: 0,
-                        child: GestureDetector(
-                          onTap:(){
-                            if(index == 0){
-                              getFromGallery();
-                            } else if(index == 1){
-                              getFromGallery2();
-                            } else if(index == 2){
-                              getFromGallery3();
-                            } else if(index == 3){
-                              getFromGallery4();
-                            } else if(index == 4){
-                              getFromGallery5();
-                            }
-
-                          },
-                          child: Container(
-                            height: 15,
-                            width: 15,
-                            decoration: const BoxDecoration(
-                                color: AppColors.accentColor, shape: BoxShape.circle),
-                            child: const Icon(
-                              Icons.add,
-                              color: AppColors.whiteColor,
-                              size: 12,
-                            ),
+              itemBuilder: (context, index) {
+                return Stack(
+                  alignment: Alignment.bottomRight,
+                  children: [
+                    Container(
+                        height: screenController.size.width * 0.16,
+                        width: screenController.size.width * 0.16,
+                        margin: const EdgeInsets.only(bottom: 5, right: 5),
+                        decoration: const BoxDecoration(
+                          // image: DecorationImage(
+                          //     image: AssetImage(
+                          //       controller.dogsTopList[index],
+                          //     ),
+                          //     fit: BoxFit.cover),
+                          color: AppColors.greyTextColor,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(8),
                           ),
                         ),
-                      )
-                    ],
-                  ),
+                        child: index == 0
+                            ? screenController.trainerPictureFile1 != null
+                                ? Image.file(
+                                    screenController.trainerPictureFile1!,
+                                    height: 65,
+                          fit: BoxFit.fill,
+                                  )
+                                : screenController.trainerImage1 != null
+                                    ? Image.network(
+                                        screenController.trainerImage1!,
+                                        height: 65,
+                          fit: BoxFit.fill,
+                                        errorBuilder: (context, er, st) {
+                                          return Image.asset(
+                                              AppImages.petMetLogoImg);
+                                        },
+                                      )
+                                    : Image.asset(AppImages.petMetLogoImg, fit: BoxFit.fill,)
+                            : index == 1
+                                ? screenController.trainerPictureFile2 != null
+                                    ? Image.file(
+                                        screenController.trainerPictureFile2!,
+                                        height: 65,
+                          fit: BoxFit.fill,
+                                      )
+                                    : screenController.trainerImage2 != null
+                                        ? Image.network(
+                                            screenController.trainerImage2!,
+                                            height: 65,
+                          fit: BoxFit.fill,
+                                            errorBuilder: (context, er, st) {
+                                              return Image.asset(
+                                                  AppImages.petMetLogoImg, fit: BoxFit.fill,);
+                                            },
+                                          )
+                                        : Image.asset(AppImages.petMetLogoImg)
+                                : index == 2
+                                    ? screenController.trainerPictureFile3 !=
+                                            null
+                                        ? Image.file(
+                                            screenController
+                                                .trainerPictureFile3!,
+                                            height: 65,
+                          fit: BoxFit.fill,
+                                          )
+                                        : screenController.trainerImage3 != null
+                                            ? Image.network(
+                                                screenController.trainerImage3!,
+                                                height: 65,
+                          fit: BoxFit.fill,
+                                                errorBuilder:
+                                                    (context, er, st) {
+                                                  return Image.asset(
+                                                      AppImages.petMetLogoImg, fit: BoxFit.fill,);
+                                                },
+                                              )
+                                            : Image.asset(
+                                                AppImages.petMetLogoImg)
+                                    : index == 3
+                                        ? screenController
+                                                    .trainerPictureFile4 !=
+                                                null
+                                            ? Image.file(
+                                                screenController
+                                                    .trainerPictureFile4!,
+                                                height: 65,
+                          fit: BoxFit.fill,
+                                              )
+                                            : screenController.trainerImage4 !=
+                                                    null
+                                                ? Image.network(
+                                                    screenController
+                                                        .trainerImage4!,
+                                                    height: 65,
+                          fit: BoxFit.fill,
+                                                    errorBuilder:
+                                                        (context, er, st) {
+                                                      return Image.asset(
+                                                          AppImages
+                                                              .petMetLogoImg);
+                                                    },
+                                                  )
+                                                : Image.asset(
+                                                    AppImages.petMetLogoImg, fit: BoxFit.fill,)
+                                        : index == 4
+                                            ? screenController
+                                                        .trainerPictureFile5 !=
+                                                    null
+                                                ? Image.file(
+                                                    screenController
+                                                        .trainerPictureFile5!,
+                                                    height: 65,
+                          fit: BoxFit.fill,
+                                                  )
+                                                : screenController
+                                                            .trainerImage5 !=
+                                                        null
+                                                    ? Image.network(
+                                                        screenController
+                                                            .trainerImage5!,
+                                                        height: 65,
+                          fit: BoxFit.fill,
+                                                        errorBuilder:
+                                                            (context, er, st) {
+                                                          return Image.asset(
+                                                              AppImages
+                                                                  .petMetLogoImg, fit: BoxFit.fill,);
+                                                        },
+                                                      )
+                                                    : Image.asset(
+                                                        AppImages.petMetLogoImg)
+                                            : Container()),
+                    Positioned(
+                      right: 0,
+                      bottom: 0,
+                      child: GestureDetector(
+                        onTap: () {
+                          if (index == 0) {
+                            getFromGallery();
+                          } else if (index == 1) {
+                            getFromGallery2();
+                          } else if (index == 2) {
+                            getFromGallery3();
+                          } else if (index == 3) {
+                            getFromGallery4();
+                          } else if (index == 4) {
+                            getFromGallery5();
+                          }
+                        },
+                        child: Container(
+                          height: 15,
+                          width: 15,
+                          decoration: const BoxDecoration(
+                              color: AppColors.accentColor,
+                              shape: BoxShape.circle),
+                          child: const Icon(
+                            Icons.add,
+                            color: AppColors.whiteColor,
+                            size: 12,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
                 );
               }),
         )
@@ -485,8 +531,7 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
       screenController.loadUI();
       log('Camera File Path : ${screenController.trainerPictureFile1}');
       log('Camera Image Path : ${screenController.trainerPictureFile1!.path}');
-    } else {
-    }
+    } else {}
 
     screenController.trainerPictureFile1 = File(pickedFile!.path);
     //setState(() {});
@@ -514,8 +559,7 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
       screenController.loadUI();
       log('Camera File Path : ${screenController.trainerPictureFile2}');
       log('Camera Image Path : ${screenController.trainerPictureFile2!.path}');
-    } else {
-    }
+    } else {}
 
     screenController.trainerPictureFile2 = File(pickedFile!.path);
     //setState(() {});
@@ -543,8 +587,7 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
       screenController.loadUI();
       log('Camera File Path : ${screenController.trainerPictureFile3}');
       log('Camera Image Path : ${screenController.trainerPictureFile3!.path}');
-    } else {
-    }
+    } else {}
 
     screenController.trainerPictureFile3 = File(pickedFile!.path);
     //setState(() {});
@@ -572,8 +615,7 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
       screenController.loadUI();
       log('Camera File Path : ${screenController.trainerPictureFile4}');
       log('Camera Image Path : ${screenController.trainerPictureFile4!.path}');
-    } else {
-    }
+    } else {}
 
     screenController.trainerPictureFile4 = File(pickedFile!.path);
     //setState(() {});
@@ -601,8 +643,7 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
       screenController.loadUI();
       log('Camera File Path : ${screenController.trainerPictureFile5}');
       log('Camera Image Path : ${screenController.trainerPictureFile5!.path}');
-    } else {
-    }
+    } else {}
 
     screenController.trainerPictureFile5 = File(pickedFile!.path);
     //setState(() {});
@@ -652,7 +693,7 @@ class CommonTextFieldModule extends StatelessWidget {
 }
 
 class TrainersNameTextFieldModule extends StatelessWidget {
- // const TrainersNameTextFieldModule({Key? key}) : super(key: key);
+  // const TrainersNameTextFieldModule({Key? key}) : super(key: key);
 
   final screenController = Get.find<TrainersAndUsersScreenController>();
 
@@ -803,9 +844,6 @@ class TrainersAddressTextFieldModule extends StatelessWidget {
   }
 }
 
-
-
-
 class TrainersDetailsModule extends StatelessWidget {
   TrainersDetailsModule({Key? key}) : super(key: key);
 
@@ -825,7 +863,6 @@ class TrainersDetailsModule extends StatelessWidget {
           ),
         ),
         SizedBox(height: 8),
-
         CustomLightTextField(
           readOnly: false,
           fieldController: screenController.detailsController,
@@ -970,7 +1007,6 @@ class FacebookLinkTextFieldModule extends StatelessWidget {
   }
 }
 
-
 class IsActiveTextFieldModule extends StatelessWidget {
   IsActiveTextFieldModule({Key? key}) : super(key: key);
 
@@ -994,7 +1030,98 @@ class IsActiveTextFieldModule extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 8),
-        CustomLightTextField(
+        Stack(
+          children: [
+            Container(
+              height: screenController.size.height * 0.06,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: themeProvider.darkTheme
+                      ? AppColors.darkThemeBoxColor
+                      : AppColors.whiteColor,
+                  borderRadius: BorderRadius.circular(10),
+                  boxShadow: [
+                    BoxShadow(
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor.withOpacity(0.05)
+                          : AppColors.greyTextColor.withOpacity(0.5),
+                      blurRadius: 10,
+                      spreadRadius: 0.5,
+                      offset: const Offset(0, 0),
+                    ),
+                  ],
+              ),
+            ),
+            Obx(
+              () => Container(
+                padding: const EdgeInsets.only(left: 10),
+                width: Get.width,
+                //gives the width of the dropdown button
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  //color: Colors.grey.shade200,
+                ),
+                child: Theme(
+                  data: Theme.of(context).copyWith(
+                    canvasColor: Colors.grey.shade100,
+                    buttonTheme: ButtonTheme.of(context).copyWith(
+                      alignedDropdown: true,
+                    ),
+                  ),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<String>(
+                      value: screenController.trainerActiveStatusValue.value,
+                      icon: Icon(
+                        Icons.keyboard_arrow_down_rounded,
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.blackTextColor.withOpacity(0.7),
+                      ),
+                      items: <String>[
+                        'Active',
+                        'Inactive',
+                      ].map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(
+                            value,
+                            style: TextStyle(
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor.withOpacity(0.7),
+                              fontSize: 13.sp,
+                            ),
+                          ),
+                        );
+                      }).toList(),
+                      // isDense: true,
+                      // isExpanded: true,
+                      dropdownColor: themeProvider.darkTheme
+                          ? AppColors.darkThemeBoxColor
+                          : AppColors.whiteColor,
+                      underline: const SizedBox(),
+                      borderRadius: const BorderRadius.all(Radius.circular(15)),
+                      style: TextStyle(
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.blackTextColor.withOpacity(0.7),
+                        fontSize: 13.sp,
+                      ),
+                      onChanged: (value) {
+                        screenController.isLoading(true);
+                        screenController.trainerActiveStatusValue.value = value!;
+                        log("ngoActiveStatusValue.value : ${screenController.trainerActiveStatusValue.value}");
+                        screenController.isLoading(false);
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+
+        /*CustomLightTextField(
           readOnly: false,
           fieldController: screenController.activeController,
           height: screenController.size.height * 0.05,
@@ -1003,7 +1130,7 @@ class IsActiveTextFieldModule extends StatelessWidget {
           textInputAction: TextInputAction.next,
           textInputType: TextInputType.number,
           validator: (val) => Validations().validateActive(val!),
-        ),
+        ),*/
       ],
     );
   }
@@ -1024,7 +1151,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Open shop time",
+                "Available From",
                 style: TextStyle(
                   color: AppColors.blackTextColor.withOpacity(0.7),
                   fontSize: 11.sp,
@@ -1042,63 +1169,65 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
               //   textInputType: TextInputType.number,
               //   validator: (val) => Validations().validateOpenTime(val!),
               // ),
-              Obx(()=>
-                  Container(
-                    height: Get.height * 0.05,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.grey),
-                      //color: Colors.transparent,
-                      //   boxShadow: [
-                      //     BoxShadow(
-                      //       color: themeProvider.darkTheme
-                      //           ? AppColors.whiteColor.withOpacity(0.05)
-                      //           : AppColors.greyTextColor.withOpacity(0.5),
-                      //       blurRadius: 10,
-                      //       spreadRadius: 0.5,
-                      //       offset: const Offset(0, 0),
-                      //     ),
-                      //   ],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Text(
-                                screenController.selectedOpenTime != null ? screenController.selectedOpenTime!.value : "No time selected!",
-                                // textAlign: TextAlign.center,
-                                maxLines: 1,
-                                style: const TextStyle(color: Colors.black)),
+              Obx(
+                () => Container(
+                  height: Get.height * 0.05,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Colors.grey),
+                    //color: Colors.transparent,
+                    //   boxShadow: [
+                    //     BoxShadow(
+                    //       color: themeProvider.darkTheme
+                    //           ? AppColors.whiteColor.withOpacity(0.05)
+                    //           : AppColors.greyTextColor.withOpacity(0.5),
+                    //       blurRadius: 10,
+                    //       spreadRadius: 0.5,
+                    //       offset: const Offset(0, 0),
+                    //     ),
+                    //   ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                              screenController.selectedOpenTime != null
+                                  ? screenController.selectedOpenTime!.value
+                                  : "No time selected!",
+                              // textAlign: TextAlign.center,
+                              maxLines: 1,
+                              style: const TextStyle(color: Colors.black)),
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.timer_outlined,
+                            color: Colors.black,
+                            size: 20,
                           ),
-                          IconButton(
-                            icon: const Icon(
-                              Icons.timer_outlined,
-                              color: Colors.black,
-                              size: 20,
-                            ),
-                            tooltip: 'DOB',
-                            onPressed: () {
-                              timePicker(context);
-                            },
-                          ),
-                        ],
-                      ),
+                          tooltip: 'DOB',
+                          onPressed: () {
+                            timePicker(context);
+                          },
+                        ),
+                      ],
                     ),
                   ),
+                ),
               )
             ],
           ),
         ),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Close shop time",
+                "Available To",
                 style: TextStyle(
                   color: AppColors.blackTextColor.withOpacity(0.7),
                   fontSize: 11.sp,
@@ -1116,52 +1245,54 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
               //   textInputType: TextInputType.number,
               //   validator: (val) => Validations().validateCloseTime(val!),
               // ),
-              Obx(()=>
-                  Container(
-                    height: Get.height * 0.05,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      //color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.grey),
-                      // boxShadow: [
-                      //   BoxShadow(
-                      //     color: themeProvider.darkTheme
-                      //         ? AppColors.whiteColor.withOpacity(0.05)
-                      //         : AppColors.greyTextColor.withOpacity(0.5),
-                      //     blurRadius: 10,
-                      //     spreadRadius: 0.5,
-                      //     offset: const Offset(0, 0),
-                      //   ),
-                      // ],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 5),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Text(
-                                screenController.selectedCloseTime != null ? screenController.selectedCloseTime!.value : "No time selected!",
-                                // textAlign: TextAlign.center,
-                                maxLines: 1,
-                                style: const TextStyle(color: Colors.black)),
+              Obx(
+                () => Container(
+                  height: Get.height * 0.05,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    //color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: Colors.grey),
+                    // boxShadow: [
+                    //   BoxShadow(
+                    //     color: themeProvider.darkTheme
+                    //         ? AppColors.whiteColor.withOpacity(0.05)
+                    //         : AppColors.greyTextColor.withOpacity(0.5),
+                    //     blurRadius: 10,
+                    //     spreadRadius: 0.5,
+                    //     offset: const Offset(0, 0),
+                    //   ),
+                    // ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                              screenController.selectedCloseTime != null
+                                  ? screenController.selectedCloseTime!.value
+                                  : "No time selected!",
+                              // textAlign: TextAlign.center,
+                              maxLines: 1,
+                              style: const TextStyle(color: Colors.black)),
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.timer_outlined,
+                            color: Colors.black,
+                            size: 20,
                           ),
-                          IconButton(
-                            icon: const Icon(
-                              Icons.timer_outlined,
-                              color: Colors.black,
-                              size: 20,
-                            ),
-                            tooltip: 'DOB',
-                            onPressed: () {
-                              closeTimePicker(context);
-                            },
-                          ),
-                        ],
-                      ),
+                          tooltip: 'DOB',
+                          onPressed: () {
+                            closeTimePicker(context);
+                          },
+                        ),
+                      ],
                     ),
                   ),
+                ),
               )
             ],
           ),
@@ -1171,11 +1302,8 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
   }
 
   Future<void> timePicker(BuildContext context) async {
-    final TimeOfDay? result =
-    await showTimePicker(
-        context: context,
-        cancelText: "Cancel",
-        initialTime: TimeOfDay.now());
+    final TimeOfDay? result = await showTimePicker(
+        context: context, cancelText: "Cancel", initialTime: TimeOfDay.now());
     if (result != null) {
       //setState(() {
       screenController.selectedOpenTime!.value = result.format(context);
@@ -1186,9 +1314,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
 
   Future<void> closeTimePicker(BuildContext context) async {
     final TimeOfDay? result =
-    await showTimePicker(
-        context: context,
-        initialTime: TimeOfDay.now());
+        await showTimePicker(context: context, initialTime: TimeOfDay.now());
     if (result != null) {
       //setState(() {
       screenController.selectedCloseTime!.value = result.format(context);
@@ -1206,8 +1332,8 @@ class SubmitButtonModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async{
-        if(screenController.formKey.currentState!.validate()){
+      onTap: () async {
+        if (screenController.formKey.currentState!.validate()) {
           await screenController.updateTrainersProfileFunction();
         }
         // controller.submitLoginForm();

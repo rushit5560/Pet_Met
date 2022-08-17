@@ -37,7 +37,7 @@ class CustomLightTextField extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          height: Get.height * 0.05,
+          height: Get.height * 0.06,
           width: double.infinity,
           decoration: BoxDecoration(
             color: Colors.transparent,

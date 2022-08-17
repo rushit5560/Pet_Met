@@ -61,8 +61,9 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                               //CommonTextFieldModule(fieldName: 'Trainers name'),
 
                               EmailTextFieldModule(),
-                              TrainersNameTextFieldModule(),
+                              const SizedBox(height: 15),
 
+                              TrainersNameTextFieldModule(),
                               const SizedBox(height: 15),
 
                               // CommonTextFieldModule(

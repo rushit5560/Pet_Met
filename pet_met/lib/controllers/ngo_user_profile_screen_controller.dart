@@ -100,12 +100,12 @@ class NgoUserProfileScreenController extends GetxController {
 
       log("Body Data : $data");
 
-      Map<String, String> header = apiHeader.apiHeader();
-      log("header : $header");
+      // Map<String, String> header = apiHeader.apiHeader();
+      // log("header : $header");
 
       http.Response response = await http.post(
         Uri.parse(url),
-        body: data, /*headers: header*/
+        body: data,
       );
       log("Get All Role Profile Api response : ${response.body}");
 
@@ -119,7 +119,7 @@ class NgoUserProfileScreenController extends GetxController {
         detailsController.text = allRoleProfileModel.data.data[0].fullText;
         instagramController.text = allRoleProfileModel.data.data[0].instagram;
         facebookController.text = allRoleProfileModel.data.data[0].facebook;
-        activeController.text = allRoleProfileModel.data.data[0].isActive;
+        // activeController.text = allRoleProfileModel.data.data[0].isActive;
         selectedOpenTime!.value = allRoleProfileModel.data.data[0].open;
         selectedCloseTime!.value = allRoleProfileModel.data.data[0].close;
         // //
@@ -287,8 +287,8 @@ class NgoUserProfileScreenController extends GetxController {
     }
   }
 
-  /// Update Vet & NGO profile
-  updateVetAndNgoProfileFunction() async {
+  // Update Vet & NGO profile
+  Future<void> updateVetAndNgoProfileFunction() async {
     isLoading(true);
 
     String url = ApiUrl.vetAndNgoUpdateProfileApi;
