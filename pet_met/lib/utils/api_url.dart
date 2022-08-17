@@ -67,8 +67,10 @@ class ApiUrl {
   static const multiAccountApi = apiMainPath + "/multipleaccount";
 
   /// User Story
-   static const getUserStoryApi = apiMainPath + "/followwisestory/"; //get
+  static const getUserStoryApi = apiMainPath + "/followwisestory/"; //get
   static const addUserStoryApi = apiMainPath + "/userstory"; // Add
+
+  static const subCategoryWisePetsApi = apiMainPath + "/subcategorywisepet/";
 }
 
 class ApiHeader {

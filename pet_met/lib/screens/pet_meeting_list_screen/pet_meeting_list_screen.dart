@@ -4,6 +4,7 @@ import 'package:pet_met/controllers/pet_meeting_list_screen_controller.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/background_widgets.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
+import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/enums.dart';
 
 import 'pet_meeting_list_screen_widgets.dart';
@@ -36,11 +37,13 @@ class PetMeetingListScreen extends StatelessWidget {
               children: [
                 // AppBar
                 CustomAppBar(
-                    title: "Search Ressults",
+                    title: "Pets",
                     appBarOption: AppBarOption.singleBackButtonOption),
 
                 // Body
-                Expanded(child: PetMeetingListModule()),
+                Obx(() => petMeetingListScreenController.isLoading.value
+                    ? const CustomAnimationLoader()
+                    : Expanded(child: PetMeetingListModule())),
               ],
             ),
           ],

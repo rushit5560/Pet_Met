@@ -46,20 +46,17 @@ class PetMeetingAndBreadingScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             MeetingAndBreadingSearchFieldModule(),
-                            SizedBox(
-                                height: petMeetingAndBreadingScreenController
-                                        .size.height *
-                                    0.002.h),
+                            SizedBox(height: petMeetingAndBreadingScreenController.size.height * 0.002.h),
                             const PetCategoriesTextModule(),
                             SizedBox(
-                                height: petMeetingAndBreadingScreenController
-                                        .size.height *
-                                    0.002.h),
-                            Expanded(child: PetCategoriesListModule()),
+                                height: petMeetingAndBreadingScreenController.size.height * 0.002.h),
+                            Expanded(
+                                child: petMeetingAndBreadingScreenController.searchList.isNotEmpty
+                                    ? PetCategoriesSearchListModule()
+                                    : PetCategoriesListModule(),
+                            ),
                             SizedBox(
-                                height: petMeetingAndBreadingScreenController
-                                        .size.height *
-                                    0.002.h),
+                                height: petMeetingAndBreadingScreenController.size.height * 0.002.h),
                             MeetYourLovedOneButtonModule(),
                           ],
                         ).commonAllSidePadding(padding: 20),

@@ -21,9 +21,11 @@ class PetMeetingAndBreadingScreenController extends GetxController {
   ApiHeader apiHeader = ApiHeader();
 
   List<CatAndSubCatData> catAndSubCatList = [];
-  List<SubCategoryId> searchSubCatList = [];
-  List<Datum> searchList = [];
+  // RxList<SubCategoryId> searchSubCatList = <SubCategoryId>[].obs;
+  List<SearchDatum> searchList = [];
   String selectedSubCatId = "";
+
+  RxBool isSearch = false.obs;
 
   Future<void> getAllCategoryAndSubCategoryFunction() async {
     isLoading(true);
@@ -76,6 +78,7 @@ class PetMeetingAndBreadingScreenController extends GetxController {
       log('isSuccessStatus: $isSuccessStatus');
 
       if (isSuccessStatus.value) {
+        isSearch = true.obs;
         searchList.clear();
         searchList = searchCategoryAndSubCategoryModel.data;
         log('searchList: $searchList');
@@ -87,15 +90,17 @@ class PetMeetingAndBreadingScreenController extends GetxController {
         //   }
         // }
 
-        log("");
       } else {
         log("get all search pet category  Api Else Else");
       }
     } catch (e) {
       log("get all search pet category  Error ::: $e");
-    } finally {
+    } /*finally {
       isLoading(false);
-    }
+    }*/
+
+    isLoading(true);
+    isLoading(false);
   }
 
   @override

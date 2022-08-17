@@ -16,12 +16,12 @@ class SearchCategoryAndSubCategoryModel {
   });
 
   bool success;
-  List<Datum> data;
+  List<SearchDatum> data;
   String message;
 
   factory SearchCategoryAndSubCategoryModel.fromJson(Map<String, dynamic> json) => SearchCategoryAndSubCategoryModel(
     success: json["success"] ?? false,
-    data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x)) ?? {}),
+    data: List<SearchDatum>.from(json["data"].map((x) => SearchDatum.fromJson(x)) ?? {}),
     message: json["message"] ?? "",
   );
 
@@ -32,8 +32,8 @@ class SearchCategoryAndSubCategoryModel {
   };
 }
 
-class Datum {
-  Datum({
+class SearchDatum {
+  SearchDatum({
     required this.categoryId,
     required this.mainCategoryId,
     required this.categoryName,
@@ -67,7 +67,7 @@ class Datum {
   String createdBy;
   String modifiedBy;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory SearchDatum.fromJson(Map<String, dynamic> json) => SearchDatum(
     categoryId: json["categoryID"] ?? "",
     mainCategoryId: json["main_categoryID"] ?? "",
     categoryName: json["categoryName"] ?? "",
