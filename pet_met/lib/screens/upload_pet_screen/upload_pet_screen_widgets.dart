@@ -1259,9 +1259,9 @@ class PetSubmitButton extends StatelessWidget {
     return GestureDetector(
       onTap: () async {
         if(controller.updatePetFormKey.currentState!.validate()){
-          if(controller.petCategoryDropDownValue.categoryId == 0){
+          if(controller.petCategoryDropDownValue.categoryId == "0"){
             Fluttertoast.showToast(msg: 'Please select category');
-          } else if(controller.petSubCategoryDropDownValue.categoryId == 0){
+          } else if(controller.petSubCategoryDropDownValue.categoryId == "0"){
             Fluttertoast.showToast(msg: 'Please select sub category');
           }
           else if(controller.meetingAvailabilityValue.isEmpty){
@@ -1269,11 +1269,11 @@ class PetSubmitButton extends StatelessWidget {
           }
           else if(controller.genderValue.isEmpty){
             Fluttertoast.showToast(msg: 'Please select gender');
-          }//else if(controller.petOption == PetOption.addOption){
-            else if(controller.imageFile == null){
+          }else if(controller.petOption == PetOption.addOption){
+             if(controller.imageFile == null){
               Fluttertoast.showToast(msg: 'Please select image');
             }
-         // }
+          }
           else if(controller.petOption == PetOption.addOption) {
             // Here Add Pet Api Call
             await controller.addPetProfileFunction();

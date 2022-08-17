@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/user_profile_controller.dart';
 import 'package:pet_met/screens/address_screen/address_screen.dart';
+import 'package:pet_met/screens/pet_meeting_details_screen/pet_meeting_details_screen.dart';
 import 'package:pet_met/screens/upload_pet_screen/upload_pet_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_route_names.dart';
@@ -447,6 +448,7 @@ class DogOwnerListModule extends StatelessWidget {
                               //       PetOption.updateOption,
                               //       controller.petList[index].id
                               //     ]);
+                              Get.to(()=> PetMeetingDetailsScreen(), arguments: controller.petList[index].id);
                             },
                             child: Stack(
                               children: [

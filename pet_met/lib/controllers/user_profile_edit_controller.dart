@@ -63,6 +63,8 @@ class UserProfileEditController extends GetxController {
   bool vetNgoProfile = false;
   bool trainerProfile = false;
 
+  String userApiProfile = "";
+
   /*List<DropdownMenuItem<String>> get dropdownGenderItems {
     List<DropdownMenuItem<String>> menuItems = [
       DropdownMenuItem(
@@ -139,11 +141,21 @@ class UserProfileEditController extends GetxController {
          mobileController.text = getUserProfileModel.data.data[0].phone;
         emailController.text = getUserProfileModel.data.data[0].email;
         //locationController.text = allRoleProfileModel.data.data.;
-        selectedGenderValue.value = getUserProfileModel.data.data[0].gender;
+        //selectedGenderValue.value = getUserProfileModel.data.data[0].gender;
          birthDate = getUserProfileModel.data.data[0].bod;
         log('name: ${nameController.text}');
         log('mobile: ${mobileController.text}');
         log('gender: ${getUserProfileModel.data.data[0].gender}');
+
+        // userApiProfile
+        if(getUserProfileModel.data.data[0].image != "") {
+          List<String> profileSplitImageList = getUserProfileModel.data.data[0]
+              .image.split('/');
+          for (int i = 0; i < profileSplitImageList.length; i++) {
+            log("profileSplitImageList : ${profileSplitImageList[i]}");
+          }
+          userApiProfile = profileSplitImageList[0];
+        }
 
         // await userPreference.setUserProfileDetails(
         //
@@ -288,7 +300,7 @@ class UserProfileEditController extends GetxController {
     log("header : $header");
 
     try {
-      if (imageFile != null) {
+      /*if (imageFile != null) {
         log("uploading with a photo");
         var request = http.MultipartRequest('POST', Uri.parse(url));
 
@@ -355,7 +367,8 @@ class UserProfileEditController extends GetxController {
             log('False False');
           }
         });
-      } else {
+      }
+      else {
         print("uploading without a photo");
         var request = http.MultipartRequest('POST', Uri.parse(url));
 
@@ -371,7 +384,7 @@ class UserProfileEditController extends GetxController {
         request.fields['phone'] = mobileController.text.trim();
         request.fields['gender'] = selectedGenderValue.value;
         request.fields['userid'] = "${UserDetails.userId}";
-        //request.fields['showimg'] = "jgjadg";
+        request.fields['oldimage'] = userApiProfile;
 
         // var multiPart = http.MultipartFile(
         //   'file',
@@ -405,7 +418,50 @@ class UserProfileEditController extends GetxController {
             log('False False');
           }
         });
+      }*/
+      var request = http.MultipartRequest('POST', Uri.parse(url));
+      request.headers.addAll(header);
+
+      // Profile Image
+      if (imageFile != null) {
+        var stream = http.ByteStream(imageFile!.openRead());
+        stream.cast();
+        var length = await imageFile!.length();
+        request.files.add(await http.MultipartFile.fromPath("image", imageFile!.path));
+        var multiPart = http.MultipartFile('image', stream, length);
+        request.files.add(multiPart);
+      } else if (imageFile == null) {
+        request.fields['oldimage'] = userApiProfile;
       }
+
+      request.fields['name'] = nameController.text.trim();
+      request.fields['bod'] = birthDate;
+      request.fields['phone'] = mobileController.text.trim();
+      request.fields['gender'] = selectedGenderValue.value;
+      request.fields['userid'] = "${UserDetails.userId}";
+
+      var response = await request.send();
+      log('response: ${response.request}');
+
+      response.stream.transform(utf8.decoder).listen((value) async {
+        log('value: $value');
+        UpdateUserProfileModel updateUserProfileModel =
+        UpdateUserProfileModel.fromJson(json.decode(value));
+        log('response1 :::::: ${updateUserProfileModel.success}');
+        isSuccessStatus = updateUserProfileModel.success.obs;
+
+        if (isSuccessStatus.value) {
+          Fluttertoast.showToast(msg: updateUserProfileModel.message);
+          await getAllRoleProfileFunction();
+          // log(updateUserProfileModel.dataVendor.userName);
+          // log(updateUserProfileModel.dataVendor.email);
+          // log(updateUserProfileModel.dataVendor.phoneNo);
+          Get.back();
+        } else {
+          log('False False');
+        }
+      });
+
     } catch (e) {
       log("updateUserProfileFunction Error ::: $e");
     } finally {

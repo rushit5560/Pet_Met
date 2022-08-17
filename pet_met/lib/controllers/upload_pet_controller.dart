@@ -61,6 +61,8 @@ class UploadPetController extends GetxController {
   RxString genderValue = 'Male'.obs;
   RxString meetingAvailabilityValue = 'Yes'.obs;
 
+  String petApiProfile = "";
+
   List<DropdownMenuItem<String>> get dropdownPetGenderItems {
     List<DropdownMenuItem<String>> menuItems = [
       DropdownMenuItem(
@@ -323,6 +325,16 @@ class UploadPetController extends GetxController {
         day = birthDate.substring(0, birthDate.length - 7);
         log('day: $day');
 
+        // petApiProfile
+        if(getPetProfileModel.data![0].image != "") {
+          List<String> profileSplitImageList = getPetProfileModel.data![0]
+              .image!.split('/');
+          for (int i = 0; i < profileSplitImageList.length; i++) {
+            log("profileSplitImageList : ${profileSplitImageList[i]}");
+          }
+          petApiProfile = profileSplitImageList[0];
+        }
+
         petImage = ApiUrl.apiImagePath + getProfile.image!;
         log('pet name: ${petNameController.text}');
         log('pet details: ${petDetailsController.text}');
@@ -358,7 +370,7 @@ class UploadPetController extends GetxController {
     log("header : $header");
 
     try {
-      if (imageFile != null) {
+      /*if (imageFile != null) {
         log("uploading with a photo");
         var request = http.MultipartRequest('POST', Uri.parse(url));
 
@@ -424,7 +436,8 @@ class UploadPetController extends GetxController {
             log('False False');
           }
         });
-      } else {
+      }
+      else {
         print("uploading without a photo");
         var request = http.MultipartRequest('POST', Uri.parse(url));
 
@@ -479,7 +492,54 @@ class UploadPetController extends GetxController {
             log('False False');
           }
         });
+      }*/
+      var request = http.MultipartRequest('POST', Uri.parse(url));
+      request.headers.addAll(header);
+
+      // Profile Image
+      if (imageFile != null) {
+        var stream = http.ByteStream(imageFile!.openRead());
+        stream.cast();
+        var length = await imageFile!.length();
+        request.files.add(await http.MultipartFile.fromPath("image", imageFile!.path));
+        var multiPart = http.MultipartFile('image', stream, length);
+        request.files.add(multiPart);
+      } else if (imageFile == null) {
+        request.fields['oldimage'] = petApiProfile;
       }
+
+      request.fields['pet_name'] = petNameController.text.trim();
+      request.fields['main_category'] = "${petCategoryDropDownValue.categoryId}";
+      request.fields['sub_category'] = "${petSubCategoryDropDownValue.categoryId}";
+      request.fields['dob'] = birthDate;
+      request.fields['weight'] = weightController.text.trim();
+      request.fields['details'] = petDetailsController.text.trim();
+      request.fields['gender'] = genderValue.value;
+      request.fields['userid'] = "${UserDetails.userId}";
+      request.fields['petid'] = "$petId";
+      request.fields['categoryID'] = "${UserDetails.categoryId}";
+
+      var response = await request.send();
+      log('response: ${response.request}');
+
+      response.stream.transform(utf8.decoder).listen((value) async {
+        UpdatePetProfileModel updatePetProfileModel =
+        UpdatePetProfileModel.fromJson(json.decode(value));
+        log('response1 :::::: ${updatePetProfileModel.success}');
+        isSuccessStatus = updatePetProfileModel.success.obs;
+
+        if (isSuccessStatus.value) {
+          Fluttertoast.showToast(msg: updatePetProfileModel.message);
+          await getProfileFunction();
+          // log(updateUserProfileModel.dataVendor.userName);
+          // log(updateUserProfileModel.dataVendor.email);
+          // log(updateUserProfileModel.dataVendor.phoneNo);
+          Get.back();
+        } else {
+          log('False False');
+        }
+      });
+
     } catch (e) {
       log("updateUserProfileFunction Error ::: $e");
     } finally {
