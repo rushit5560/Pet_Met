@@ -997,7 +997,7 @@ class NgoAddressTextFieldModule extends StatelessWidget {
           fieldController: screenController.addressController,
           height: screenController.size.height * 0.05,
           width: double.infinity,
-          hintText: "**** ** ***",
+          hintText: "Address",
           textInputAction: TextInputAction.next,
           textInputType: TextInputType.emailAddress,
           validator: (val) => Validations().validateAddress(val!),
@@ -1300,7 +1300,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Open shop time",
+                "Open time",
                 style: TextStyle(
                   color: AppColors.blackTextColor.withOpacity(0.7),
                   fontSize: 11.sp,
@@ -1410,17 +1410,17 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ),
-        SizedBox(width: 10),
+        const SizedBox(width: 10),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Close shop time",
+                "Close time",
                 style: TextStyle(
                   color: AppColors.blackTextColor.withOpacity(0.7),
                   fontSize: 11.sp,

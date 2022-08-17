@@ -36,8 +36,9 @@ class TrainersAndUsersScreenController extends GetxController {
   RxString selectedGenderValue = "Male".obs;
 
   final formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> loginPasswordForm = GlobalKey<FormState>();
 
-  String userEmail = "";
+  RxString userEmail = "".obs;
   RxString userName = "".obs;
   RxString shopEmail = "".obs;
   RxString shopName = "".obs;
@@ -45,6 +46,11 @@ class TrainersAndUsersScreenController extends GetxController {
   RxString ngoName = "".obs;
   RxString trainerEmail = "".obs;
   RxString trainerName = "".obs;
+
+  bool userProfile = false;
+  bool shopProfile = false;
+  bool vetNgoProfile = false;
+  bool trainerProfile = false;
 
   RxBool isPasswordVisible = true.obs;
 
@@ -80,9 +86,8 @@ class TrainersAndUsersScreenController extends GetxController {
 
     try {
       Map<String, dynamic> data = {
-        "id": "${UserDetails.userId}",
-        //"uid": "${UserDetails.userId}",
-        "categoryID": "${UserDetails.categoryId}",
+        "id": UserDetails.userId,
+        "categoryID": UserDetails.categoryId,
       };
 
       log("Body Data : $data");
@@ -137,16 +142,17 @@ class TrainersAndUsersScreenController extends GetxController {
     log("Multi account Api Url : $url");
 
     try {
-      Map<String, dynamic> data = {
-        "email": emailController.text.trim()
-      };
+      Map<String, dynamic> data = {"email": UserDetails.userEmail};
 
       log("Multiple Account Body Data : $data");
 
       Map<String, String> header = apiHeader.apiHeader();
       log("header : $header");
 
-      http.Response response = await http.post(Uri.parse(url),body: data, /*headers: header*/);
+      http.Response response = await http.post(
+        Uri.parse(url),
+        body: data, /*headers: header*/
+      );
       log("Multiple Account Api response : ${response.body}");
 
       MultiAccountUserModel multiAccountUserModel =
@@ -156,23 +162,40 @@ class TrainersAndUsersScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
 
-        // userEmail = multiAccountUserModel.data.user[0].email;
-        // userName = multiAccountUserModel.data.user[0].name.obs;
-        //
-        // shopEmail = multiAccountUserModel.data.shope[0].email.obs;
-        // shopName = multiAccountUserModel.data.shope[0].shopename.obs;
-        //
-        // ngoEmail = multiAccountUserModel.data.vetNgo[0].email.obs;
-        // ngoName = multiAccountUserModel.data.vetNgo[0].name.obs;
+        bool userAvail = multiAccountUserModel.data.user.isEmpty ? false : true;
+        if(userAvail == true) {
+          userProfile = true;
+          userEmail.value = "${multiAccountUserModel.data.user[0].email}";
+          userName.value = "${multiAccountUserModel.data.user[0].name}";
+        }
 
-        trainerEmail = multiAccountUserModel.data.trainer[0].email.obs;
-        trainerName = multiAccountUserModel.data.trainer[0].name.obs;
+        bool shopAvail = multiAccountUserModel.data.shope.isEmpty ? false : true;
+        if(shopAvail == true) {
+          shopProfile = true;
+          shopEmail.value = "${multiAccountUserModel.data.shope[0].email}";
+          shopName.value = "${multiAccountUserModel.data.shope[0].shopename}";
+        }
+
+        bool vetNgoAvail = multiAccountUserModel.data.vetNgo.isEmpty ? false : true;
+        if(vetNgoAvail == true) {
+          vetNgoProfile = true;
+          ngoEmail.value = "${multiAccountUserModel.data.vetNgo[0].email}";
+          ngoName.value = "${multiAccountUserModel.data.vetNgo[0].name}";
+        }
+
+        bool trainerAvail = multiAccountUserModel.data.trainer.isEmpty ? false : true;
+        if(trainerAvail == true) {
+          trainerProfile = true;
+          trainerEmail.value = "${multiAccountUserModel.data.trainer[0].email}";
+          trainerName.value = "${multiAccountUserModel.data.trainer[0].name}";
+        }
+
+
       } else {
         log("Get Multi Account Api Else");
         //await unfollowUserFunction();
       }
-
-    } catch(e) {
+    } catch (e) {
       log("All Multi Account Api Error ::: $e");
     } finally {
       isLoading(false);
@@ -180,16 +203,16 @@ class TrainersAndUsersScreenController extends GetxController {
     }
   }
 
-  Future<void> userLoginFunction() async {
+  Future<void> userLoginFunction({required String email, required categoryId}) async {
     isLoading(true);
     String url = ApiUrl.loginApi;
     log('Login Api Url : $url');
 
     try {
       Map<String, dynamic> data = {
-        "email": trainerEmail.value,
+        "email": email,
         "password": passwordController.text.trim(),
-        "categoryID": "${UserDetails.roleId}",
+        "categoryID": "$categoryId",
       };
       log("data : $data");
 

@@ -38,7 +38,7 @@ class NgoUserProfileScreenController extends GetxController {
   String ngoApiPicture4 = "";
   String ngoApiPicture5 = "";
 
-  //todo
+
   bool userProfile = false;
   bool shopProfile = false;
   bool vetNgoProfile = false;
@@ -53,6 +53,7 @@ class NgoUserProfileScreenController extends GetxController {
   RxString ngoActiveStatusValue = "Active".obs;
 
   final formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> loginPasswordForm = GlobalKey<FormState>();
 
   RxString userEmail = "".obs;
   RxString userName = "".obs;
@@ -238,16 +239,16 @@ class NgoUserProfileScreenController extends GetxController {
     }
   }
 
-  Future<void> userLoginFunction() async {
+  Future<void> userLoginFunction({required String email, required categoryId}) async {
     isLoading(true);
     String url = ApiUrl.loginApi;
     log('Login Api Url : $url');
 
     try {
       Map<String, dynamic> data = {
-        "email": ngoEmail.value,
+        "email": email,
         "password": passwordController.text.trim(),
-        "categoryID": "${UserDetails.roleId}",
+        "categoryID": "$categoryId",
       };
       log("data : $data");
 
@@ -259,19 +260,21 @@ class NgoUserProfileScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         // User Data Set in Prefs
-        // await userPreference.setUserDetails(
-        //     selfId: loginModel.data.uid,
-        //     userId: loginModel.data.id,
-        //     userName: loginModel.data.name,
-        //     userEmail: loginModel.data.email,
-        //     userProfileImage: loginModel.data.image,
-        //     token: loginModel.data.rememberToken,
-        //     roleId: loginModel.data.categoryId,
-        // );
-        passwordController.clear();
+        await userPreference.setUserDetails(
+            selfId: loginModel.data.uid,
+            userId: loginModel.data.id,
+            userName: loginModel.data.name,
+            userEmail: loginModel.data.email,
+            userProfileImage: loginModel.data.image,
+            token: loginModel.data.rememberToken,
+            roleId: loginModel.data.categoryId,
+            shopName: loginModel.data.shopename,
+          shopProfile: loginModel.data.showimg,
+        );
+        // passwordController.clear();
         //await userPreference.setRoleId(roleId);
         // Going to Index Screen
-        Get.to(() => IndexScreen(),
+        Get.offAll(() => IndexScreen(),
             transition: Transition.native,
             duration: const Duration(milliseconds: 500));
       } else {

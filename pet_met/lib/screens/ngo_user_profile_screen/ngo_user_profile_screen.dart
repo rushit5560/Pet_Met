@@ -139,7 +139,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                 controller.userProfile == true
                 ? GestureDetector(
                   onTap: ()async{
-                    await multipleAccountDialog(context);
+                    await multipleAccountDialog(context, controller.userEmail.value, "1");
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -198,7 +198,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                 controller.shopProfile == true
                 ? GestureDetector(
                   onTap: ()async{
-                    await multipleAccountDialog(context);
+                    await multipleAccountDialog(context, controller.shopEmail.value, "1");
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -252,7 +252,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                 controller.vetNgoProfile == true
                 ? GestureDetector(
                   onTap: ()async{
-                    await multipleAccountDialog(context);
+                    await multipleAccountDialog(context, controller.ngoEmail.value, "3");
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -308,7 +308,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                 controller.trainerProfile == true
                 ? GestureDetector(
                   onTap: ()async{
-                    await multipleAccountDialog(context);
+                    await multipleAccountDialog(context, controller.trainerEmail.value, "4");
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -359,6 +359,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                     ),
                   ),
                 ) : Container(),
+                const SizedBox(height: 10),
               ],
             ),
           ),
@@ -367,13 +368,14 @@ class NgoUserProfileScreen extends StatelessWidget {
     );
   }
 
-  multipleAccountDialog(BuildContext context){
+  multipleAccountDialog(BuildContext context, String email, String categoryId){
     return showDialog(
       barrierColor: themeProvider.darkTheme
           ? AppColors.darkThemeBoxColor
           .withOpacity(0.3)
           : AppColors.accentColor.withOpacity(0.3),
       context: context,
+      barrierDismissible: false,
       builder: (ctx) => Dialog(
         backgroundColor: themeProvider.darkTheme
             ? AppColors.darkThemeBoxColor
@@ -394,199 +396,187 @@ class NgoUserProfileScreen extends StatelessWidget {
           ),
           height: controller.size.height * 0.35,
           width: controller.size.width * 0.8,
-          child: Column(
-            mainAxisAlignment:
-            MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment:
-            CrossAxisAlignment.center,
-            children: [
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    "Password",
-                    style: TextStyle(
-                      color: AppColors.blackTextColor.withOpacity(0.7),
-                      fontSize: 11.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-              //const SizedBox(height: 8),
-              // CustomLightTextField(
-              //   readOnly: false,
-              //   fieldController: controller.passwordController,
-              //   height: Get.height * 0.05,
-              //   width: double.infinity,
-              //   hintText: "Password",
-              //   textInputAction: TextInputAction.next,
-              //   textInputType: TextInputType.visiblePassword,
-              //   validator: (val) => Validations().validatePassword(val!),
-              // ),
-              Obx(()=>
-                  Stack(
-                    children: [
-                      Container(
-                        height: controller.size.height * 0.05,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          boxShadow: [
-                            BoxShadow(
-                              color: themeProvider.darkTheme
-                                  ? AppColors.whiteColor.withOpacity(0.05)
-                                  : AppColors.greyTextColor.withOpacity(0.5),
-                              blurRadius: 10,
-                              spreadRadius: 0.1,
-                              offset: const Offset(0, 0),
-                            ),
-                          ],
-                        ),
+          child: Form(
+            key: controller.loginPasswordForm,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Password",
+                      style: TextStyle(
+                        color: AppColors.blackTextColor.withOpacity(0.7),
+                        fontSize: 11.sp,
+                        fontWeight: FontWeight.bold,
                       ),
-                      TextFormField(
-                        controller: controller.passwordController,
-                        validator: (val) => Validations().validatePassword(val!),
-                        obscureText: controller.isPasswordVisible.value,
-                        textInputAction: TextInputAction.done,
-                        keyboardType: TextInputType.visiblePassword,
-                        cursorColor: themeProvider.darkTheme
-                            ? AppColors.whiteColor
-                            : AppColors.accentTextColor,
-                        style: TextStyle(
-                          color: themeProvider.darkTheme
-                              ? AppColors.whiteColor
-                              : AppColors.blackTextColor,
-                          fontSize: 13.sp,
-                          fontWeight: FontWeight.w400,
-                          decoration: TextDecoration.none,
-                        ),
-                        decoration: InputDecoration(
-                            fillColor: themeProvider.darkTheme
-                                ? AppColors.darkThemeBoxColor
-                                : AppColors.whiteColor,
-                            filled: true,
-                            contentPadding: const EdgeInsets.symmetric(horizontal: 15),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-                            ),
-                            hintText: "Current Password",
-                            hintStyle: TextStyle(
-                              color: themeProvider.darkTheme
-                                  ? AppColors.whiteColor
-                                  : AppColors.greyTextColor,
-                              fontSize: 13.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                            suffixIcon: Obx(
-                                  () => GestureDetector(
-                                onTap: () {
-                                  controller.isPasswordVisible.value =
-                                  !controller.isPasswordVisible.value;
-                                },
-                                child: Icon(
-                                    controller.isPasswordVisible.value
-                                        ? Icons.visibility_off_rounded
-                                        : Icons.visibility_rounded,
-                                    size: 20,
-                                    color: Colors.grey),
+                    ),
+                  ],
+                ),
+
+                Obx(()=>
+                    Stack(
+                      children: [
+                        Container(
+                          height: controller.size.height * 0.05,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            boxShadow: [
+                              BoxShadow(
+                                color: themeProvider.darkTheme
+                                    ? AppColors.whiteColor.withOpacity(0.05)
+                                    : AppColors.greyTextColor.withOpacity(0.5),
+                                blurRadius: 10,
+                                spreadRadius: 0.1,
+                                offset: const Offset(0, 0),
                               ),
-                            )
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-              ),
+                        TextFormField(
+                          controller: controller.passwordController,
+                          validator: (val) => Validations().validatePassword(val!),
+                          obscureText: controller.isPasswordVisible.value,
+                          textInputAction: TextInputAction.done,
+                          keyboardType: TextInputType.visiblePassword,
+                          cursorColor: themeProvider.darkTheme
+                              ? AppColors.whiteColor
+                              : AppColors.accentTextColor,
+                          style: TextStyle(
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor
+                                : AppColors.blackTextColor,
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.w400,
+                            decoration: TextDecoration.none,
+                          ),
+                          decoration: InputDecoration(
+                              fillColor: themeProvider.darkTheme
+                                  ? AppColors.darkThemeBoxColor
+                                  : AppColors.whiteColor,
+                              filled: true,
+                              contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+                              ),
+                              hintText: "Current Password",
+                              hintStyle: TextStyle(
+                                color: themeProvider.darkTheme
+                                    ? AppColors.whiteColor
+                                    : AppColors.greyTextColor,
+                                fontSize: 13.sp,
+                                fontWeight: FontWeight.w400,
+                              ),
+                              suffixIcon: Obx(
+                                    () => GestureDetector(
+                                  onTap: () {
+                                    controller.isPasswordVisible.value =
+                                    !controller.isPasswordVisible.value;
+                                  },
+                                  child: Icon(
+                                      controller.isPasswordVisible.value
+                                          ? Icons.visibility_off_rounded
+                                          : Icons.visibility_rounded,
+                                      size: 20,
+                                      color: Colors.grey),
+                                ),
+                              )
+                          ),
+                        ),
+                      ],
+                    ),
+                ),
 
-              // const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment:
-                MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: ()async {
-                      await controller.userLoginFunction();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: AppColors.accentColor,
-                      minimumSize: Size(
-                        controller.size.width * 0.3,
-                        30,
-                      ),
-                      padding:
-                      const EdgeInsets.symmetric(
-                          horizontal: 16),
-                      shape:
-                      const RoundedRectangleBorder(
-                        borderRadius:
-                        BorderRadius.all(
-                          Radius.circular(12),
-                        ),
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Yes",
-                        style: TextStyle(
-                          color: AppColors.whiteColor,
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width:
-                    controller.size.width * 0.05,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      primary: themeProvider.darkTheme
-                          ? AppColors.whiteColor
-                          : AppColors.greyTextColor
-                          .withOpacity(0.3),
-                      minimumSize: Size(
+                Row(
+                  mainAxisAlignment:
+                  MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () async {
+                        if(controller.loginPasswordForm.currentState!.validate()) {
+                          await controller.userLoginFunction(
+                              email: email, categoryId: categoryId);
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: AppColors.accentColor,
+                        minimumSize: Size(
                           controller.size.width * 0.3,
-                          30),
-                      padding:
-                      const EdgeInsets.symmetric(
-                          horizontal: 16),
-                      shape:
-                      const RoundedRectangleBorder(
-                        borderRadius:
-                        BorderRadius.all(
-                          Radius.circular(12),
+                          30,
+                        ),
+                        padding:
+                        const EdgeInsets.symmetric(horizontal: 16),
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(12)),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Yes",
+                          style: TextStyle(
+                            color: AppColors.whiteColor,
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
                     ),
-                    child: Center(
-                      child: Text(
-                        "Close",
-                        style: TextStyle(
-                          color: themeProvider
-                              .darkTheme
-                              ? AppColors
-                              .darkThemeBoxColor
-                              : AppColors
-                              .blackTextColor,
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w500,
+                    SizedBox(
+                      width:
+                      controller.size.width * 0.05,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        Get.back();
+                        controller.passwordController.clear();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.greyTextColor
+                            .withOpacity(0.3),
+                        minimumSize: Size(
+                            controller.size.width * 0.3,
+                            30),
+                        padding:
+                        const EdgeInsets.symmetric(
+                            horizontal: 16),
+                        shape:
+                        const RoundedRectangleBorder(
+                          borderRadius:
+                          BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Close",
+                          style: TextStyle(
+                            color: themeProvider
+                                .darkTheme
+                                ? AppColors
+                                .darkThemeBoxColor
+                                : AppColors
+                                .blackTextColor,
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
