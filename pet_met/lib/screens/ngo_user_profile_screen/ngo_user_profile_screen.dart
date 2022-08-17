@@ -198,7 +198,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                 controller.shopProfile == true
                 ? GestureDetector(
                   onTap: ()async{
-                    await multipleAccountDialog(context, controller.shopEmail.value, "1");
+                    await multipleAccountDialog(context, controller.shopEmail.value, "2");
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),

@@ -355,13 +355,14 @@ class AddShopOffersListModule extends StatelessWidget {
                         height: screenController.size.width * 0.16,
                         width: screenController.size.width * 0.16,
                         margin: const EdgeInsets.only(bottom: 5, right: 5),
-                        decoration: const BoxDecoration(
+                        decoration: BoxDecoration(
                           // image: DecorationImage(
                           //     image: AssetImage(
                           //       controller.dogsTopList[index],
                           //     ),
                           //     fit: BoxFit.cover),
-                          color: AppColors.greyTextColor,
+                          //color: AppColors.greyTextColor,
+                          border: Border.all(color: Colors.grey),
                           borderRadius: BorderRadius.all(
                             Radius.circular(8),
                           ),
@@ -373,6 +374,7 @@ class AddShopOffersListModule extends StatelessWidget {
                             screenController.offerImage1 != null ?
                             Image.network(
                               screenController.offerImage1!,height: 65,
+                              fit: BoxFit.fill,
                               errorBuilder: (context, er, st){
                                 return Image.asset(AppImages.petMetLogoImg);
                               },):
@@ -385,6 +387,7 @@ class AddShopOffersListModule extends StatelessWidget {
                         screenController.offerImage2 != null ?
                         Image.network(
                           screenController.offerImage2!,height: 65,
+                          fit: BoxFit.fill,
                           errorBuilder: (context, er, st){
                             return Image.asset(AppImages.petMetLogoImg);
                           },):
@@ -393,10 +396,11 @@ class AddShopOffersListModule extends StatelessWidget {
                           index == 2 ?
                           screenController.shopOfferFile3 != null ?
                           Image.file(
-                            screenController.shopOfferFile3!,height: 65,) :
+                            screenController.shopOfferFile3!,height: 65) :
                           screenController.offerImage3 != null ?
                           Image.network(
                             screenController.offerImage3!,height: 65,
+                            fit: BoxFit.fill,
                             errorBuilder: (context, er, st){
                               return Image.asset(AppImages.petMetLogoImg);
                             },):
@@ -409,6 +413,7 @@ class AddShopOffersListModule extends StatelessWidget {
                           screenController.offerImage4 != null ?
                           Image.network(
                             screenController.offerImage4!,height: 65,
+                            fit: BoxFit.fill,
                             errorBuilder: (context, er, st){
                               return Image.asset(AppImages.petMetLogoImg);
                             },):
@@ -421,6 +426,7 @@ class AddShopOffersListModule extends StatelessWidget {
                           screenController.offerImage5 != null ?
                           Image.network(
                             screenController.offerImage5!,height: 65,
+                            fit: BoxFit.fill,
                             errorBuilder: (context, er, st){
                               return Image.asset(AppImages.petMetLogoImg);
                             },):
@@ -442,7 +448,6 @@ class AddShopOffersListModule extends StatelessWidget {
                             } else if(index == 4){
                               getFromGallery5();
                             }
-
                           },
                           child: Container(
                             height: 15,
@@ -968,15 +973,11 @@ class MeetingAvailabilityModule extends StatelessWidget {
                     bottom: 0,
                     child: GestureDetector(
                       onTap: () {
-                        // petOption == PetOption.addOption ?
-                        // ""
-                        //     : "";
-                        //    // :
-
-                        Get.to(() => UploadPetScreen(),
+                        screenController.openCheckout();
+                        /*Get.to(() => UploadPetScreen(),
                             transition: Transition.native,
                             duration: const Duration(milliseconds: 500),
-                            arguments: [PetOption.addOption, ""]);
+                            arguments: [PetOption.addOption, ""]);*/
                       },
                       child: Container(
                         height: 15,

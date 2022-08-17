@@ -22,7 +22,7 @@ class PetTrackerPricingController extends GetxController {
   TextEditingController feedbackController = TextEditingController();
 
   RxBool selectedTerms = false.obs;
-  String price = "";
+  int price = 0;
   String name= "";
   String overview = "";
 
@@ -68,7 +68,7 @@ class PetTrackerPricingController extends GetxController {
       if (isSuccessStatus.value) {
         planDetailsData = vetsNgoDetailsModel.data!.obs;
         for(int i=0; i < planDetailsData.length; i++){
-          price= planDetailsData[i].rs!;
+          price= int.parse(planDetailsData[i].rs!);
           name= planDetailsData[i].name!;
           overview= planDetailsData[i].overview!;
         }
@@ -142,7 +142,7 @@ class PetTrackerPricingController extends GetxController {
   void openCheckout() async {
     var options = {
       'key': 'rzp_test_dxCkKqtRKnvZdA',
-      'amount': price,
+      'amount': price * 100,
       'name': name,
       'description': overview,
       'retry': {'enabled': true, 'max_count': 1},
@@ -152,6 +152,7 @@ class PetTrackerPricingController extends GetxController {
         'wallets': ['paytm']
       }
     };
+    log('options: $options');
 
     try {
       _razorpay.open(options);

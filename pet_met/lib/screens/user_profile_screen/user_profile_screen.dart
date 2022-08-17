@@ -103,7 +103,7 @@ class UserProfileScreen extends StatelessWidget {
                             ContactInfoModule(),
                             DogOwnerListModule(),
                             const SizedBox(height: 20),
-                            const AboutModule()
+                            AboutModule()
                           ],
                         ),
                       ),

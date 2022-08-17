@@ -59,6 +59,7 @@ class PetTrainerPicturesModule extends StatelessWidget {
           padding: const EdgeInsets.only(
             top: 15,
             bottom: 15,
+            left: 15, right: 15
           ),
           child: Row(
             children: [
@@ -73,84 +74,91 @@ class PetTrainerPicturesModule extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(
-          height: 10.h,
-          child: screenController.trainerDetails.meetingimages!.isEmpty ?
-              const Center(child: Text("Empty Trainer Picture")):
-          ListView.separated(
-            scrollDirection: Axis.horizontal,
-            itemCount: screenController.trainerDetails.meetingimages!.length,
-            separatorBuilder: (context, index) {
-              return const SizedBox(width: 8);
-            },
-            itemBuilder: (context, i) {
-              String imgUrl = ApiUrl.apiImagePath +
-                  screenController.trainerDetails.meetingimages![i];
-              return Stack(
-                children: [
-                  GestureDetector(
-                    onTap:(){
-                      imageAlertDialog(context, i);
-                    },
-                    child: Container(
-                      height: 10.h,
-                      width: 10.h,
+        Padding(
+          padding: const EdgeInsets.only(
+              // top: 15,
+              // bottom: 15,
+              left: 15, right: 15
+          ),
+          child: SizedBox(
+            height: 10.h,
+            child: screenController.trainerDetails.meetingimages!.isEmpty ?
+                const Center(child: Text("Empty Trainer Picture")):
+            ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemCount: screenController.trainerDetails.meetingimages!.length,
+              separatorBuilder: (context, index) {
+                return const SizedBox(width: 8);
+              },
+              itemBuilder: (context, i) {
+                String imgUrl = ApiUrl.apiImagePath +
+                    screenController.trainerDetails.meetingimages![i];
+                return Stack(
+                  children: [
+                    GestureDetector(
+                      onTap:(){
+                        imageAlertDialog(context, i);
+                      },
+                      child: Container(
+                        height: 10.h,
+                        width: 10.h,
 
-                      margin: const EdgeInsets.only(bottom: 5, right: 5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(color: Colors.grey)
-                        ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(15),
-                        child: Image.network(
-                          imgUrl,
-                          fit: BoxFit.cover,
-                          // color: AppColors.greyTextColor,
-                          errorBuilder: (context, er, ob) {
-                            return Image.asset(AppImages.petMetLogoImg);
-                          },
-                        ),
-                      ),
-                      /*decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: NetworkImage(imgUrl),
-                            onError: (context, er){
-                              Image.asset(AppImages.petMetLogoImg);
+                        margin: const EdgeInsets.only(bottom: 5, right: 5),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(color: Colors.grey)
+                          ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image.network(
+                            imgUrl,
+                            fit: BoxFit.cover,
+                            // color: AppColors.greyTextColor,
+                            errorBuilder: (context, er, ob) {
+                              return Image.asset(AppImages.petMetLogoImg);
                             },
-                            fit: BoxFit.cover),
-                        color: AppColors.greyTextColor,
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(8),
+                          ),
                         ),
-                      ),*/
+                        /*decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(imgUrl),
+                              onError: (context, er){
+                                Image.asset(AppImages.petMetLogoImg);
+                              },
+                              fit: BoxFit.cover),
+                          color: AppColors.greyTextColor,
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(8),
+                          ),
+                        ),*/
+                      ),
                     ),
-                  ),
-                  // i == 0
-                  //     ? Positioned(
-                  //         right: 0,
-                  //         bottom: 0,
-                  //         child: GestureDetector(
-                  //           onTap: () {
-                  //             Get.toNamed(AppRouteNames.uploadPetRoute);
-                  //           },
-                  //           child: Container(
-                  //             height: 15,
-                  //             width: 15,
-                  //             decoration: const BoxDecoration(
-                  //                 color: Colors.green, shape: BoxShape.circle),
-                  //             child: const Icon(
-                  //               Icons.add,
-                  //               color: AppColors.whiteColor,
-                  //               size: 12,
-                  //             ),
-                  //           ),
-                  //         ),
-                  //       )
-                  //     : const SizedBox()
-                ],
-              );
-            },
+                    // i == 0
+                    //     ? Positioned(
+                    //         right: 0,
+                    //         bottom: 0,
+                    //         child: GestureDetector(
+                    //           onTap: () {
+                    //             Get.toNamed(AppRouteNames.uploadPetRoute);
+                    //           },
+                    //           child: Container(
+                    //             height: 15,
+                    //             width: 15,
+                    //             decoration: const BoxDecoration(
+                    //                 color: Colors.green, shape: BoxShape.circle),
+                    //             child: const Icon(
+                    //               Icons.add,
+                    //               color: AppColors.whiteColor,
+                    //               size: 12,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       )
+                    //     : const SizedBox()
+                  ],
+                );
+              },
+            ),
           ),
         ),
       ],

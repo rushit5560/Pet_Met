@@ -329,7 +329,7 @@ class ContactInfoModule extends StatelessWidget {
             // const SizedBox(width: 20),
             GestureDetector(
               onTap: (){
-                //controller.openCheckout();
+                controller.openCheckout();
               },
               child: const ContactContainerWidget(
                 imagePath: AppImages.phoneGreenImg,
@@ -450,31 +450,26 @@ class DogOwnerListModule extends StatelessWidget {
                               //     ]);
                               Get.to(()=> PetMeetingDetailsScreen(), arguments: controller.petList[index].id);
                             },
-                            child: Stack(
-                              children: [
-                                Container(
-                                  height: 8.h,
-                                  width: 7.h,
-                                  margin: const EdgeInsets.only(
-                                      bottom: 5, right: 5),
-                                  decoration: const BoxDecoration(
-                                    // image: DecorationImage(
-                                    //     image: AssetImage(
-                                    //       controller.dogsTopList[index],
-                                    //     ),
-                                    //     fit: BoxFit.cover),
-                                    //color: AppColors.greyTextColor,
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(8),
-                                    ),
-                                  ),
-                                  child: Image.network(
-                                      controller.petList[index].image,
-                                      errorBuilder: (context, st, ob) {
-                                    return Image.asset(AppImages.petMetLogoImg);
-                                  }, fit: BoxFit.cover),
-                                ),
-                              ],
+                            child: Container(
+                              height: 8.h,
+                              width: 7.h,
+                              margin: const EdgeInsets.only(
+                                  bottom: 5),
+                              decoration: BoxDecoration(
+                                // image: DecorationImage(
+                                //     image: AssetImage(
+                                //       controller.dogsTopList[index],
+                                //     ),
+                                //     fit: BoxFit.cover),
+                                //color: AppColors.greyTextColor,
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(color: Colors.grey)
+                              ),
+                              child: Image.network(
+                                  ApiUrl.apiImagePath +controller.petList[index].image,
+                                  errorBuilder: (context, st, ob) {
+                                return Image.asset(AppImages.petMetLogoImg);
+                              }, fit: BoxFit.cover),
                             ),
                           );
                         },
@@ -500,6 +495,7 @@ class DogOwnerListModule extends StatelessWidget {
                                   //       PetOption.updateOption,
                                   //       controller.shopPetList[index].id
                                   //     ]);
+                                  Get.to(()=> PetMeetingDetailsScreen(), arguments: controller.shopPetList[index].id);
                                 },
                                 child: Stack(
                                   children: [
@@ -508,16 +504,15 @@ class DogOwnerListModule extends StatelessWidget {
                                       width: 7.h,
                                       margin: const EdgeInsets.only(
                                           bottom: 5, right: 5),
-                                      decoration: const BoxDecoration(
+                                      decoration: BoxDecoration(
                                         // image: DecorationImage(
                                         //     image: AssetImage(
                                         //       controller.dogsTopList[index],
                                         //     ),
                                         //     fit: BoxFit.cover),
                                         //color: AppColors.greyTextColor,
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(8),
-                                        ),
+                                          borderRadius: BorderRadius.circular(8),
+                                          border: Border.all(color: Colors.grey)
                                       ),
                                       child: Image.network(
                                           controller.shopPetList[index].image,
@@ -552,6 +547,7 @@ class DogOwnerListModule extends StatelessWidget {
                                       //       PetOption.updateOption,
                                       //       controller.ngoPetList[index].id
                                       //     ]);
+                                      Get.to(()=> PetMeetingDetailsScreen(), arguments: controller.ngoPetList[index].id);
                                     },
                                     child: Stack(
                                       children: [
@@ -560,16 +556,15 @@ class DogOwnerListModule extends StatelessWidget {
                                           width: 7.h,
                                           margin: const EdgeInsets.only(
                                               bottom: 5, right: 5),
-                                          decoration: const BoxDecoration(
+                                          decoration: BoxDecoration(
                                             // image: DecorationImage(
                                             //     image: AssetImage(
                                             //       controller.dogsTopList[index],
                                             //     ),
                                             //     fit: BoxFit.cover),
                                             //color: AppColors.greyTextColor,
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(8),
-                                            ),
+                                              borderRadius: BorderRadius.circular(8),
+                                              border: Border.all(color: Colors.grey)
                                           ),
                                           child: Image.network(
                                               controller
@@ -606,6 +601,7 @@ class DogOwnerListModule extends StatelessWidget {
                                           //       controller
                                           //           .trainerPetList[index].id
                                           //     ]);
+                                          Get.to(()=> PetMeetingDetailsScreen(), arguments: controller.trainerPetList[index].id);
                                         },
                                         child: Stack(
                                           children: [
@@ -614,16 +610,15 @@ class DogOwnerListModule extends StatelessWidget {
                                               width: 7.h,
                                               margin: const EdgeInsets.only(
                                                   bottom: 5, right: 5),
-                                              decoration: const BoxDecoration(
+                                              decoration: BoxDecoration(
                                                 // image: DecorationImage(
                                                 //     image: AssetImage(
                                                 //       controller.dogsTopList[index],
                                                 //     ),
                                                 //     fit: BoxFit.cover),
                                                 //color: AppColors.greyTextColor,
-                                                borderRadius: BorderRadius.all(
-                                                  Radius.circular(8),
-                                                ),
+                                                  borderRadius: BorderRadius.circular(8),
+                                                  border: Border.all(color: Colors.grey)
                                               ),
                                               child: Image.network(
                                                   controller
@@ -651,7 +646,9 @@ class DogOwnerListModule extends StatelessWidget {
 }
 
 class AboutModule extends StatelessWidget {
-  const AboutModule({Key? key}) : super(key: key);
+  AboutModule({Key? key}) : super(key: key);
+
+  final controller = Get.find<UserProfileController>();
 
   @override
   Widget build(BuildContext context) {
@@ -676,6 +673,7 @@ class AboutModule extends StatelessWidget {
         ],
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -701,7 +699,14 @@ class AboutModule extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           Text(
-            "The cat (Felis catus) is a domestic species of small carnivorous mammal.[1][2] It is the only domesticated species in the family Felidae and is often referred to as the domestic cat to distinguish it from the wild members of the family.",
+            controller.followCategoryId == "1" ?
+            "Lorem Ipsum" :
+              controller.followCategoryId == "2" ?
+                controller.shopDescription :
+                  controller.followCategoryId == "3" ?
+                    controller.ngoDescription :
+                      controller.followCategoryId == "4" ?
+                         controller.trainerDescription : "",
             style: TextStyle(
                 fontSize: 12.sp,
                 color: themeProvider.darkTheme

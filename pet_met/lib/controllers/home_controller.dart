@@ -1,14 +1,19 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/models/get_all_pet_list_model/get_all_pet_list_model.dart';
+import 'package:pet_met/models/get_all_profile_model/get_shop_profile_model.dart';
+import 'package:pet_met/models/get_all_profile_model/get_user_profile_model.dart';
+import 'package:pet_met/models/get_all_profile_model/get_vet_and_ngo_profile_model.dart';
 import 'package:pet_met/models/get_user_story_model/add_user_story_model.dart';
 import 'package:pet_met/models/get_user_story_model/get_user_story_model.dart';
 import 'package:pet_met/models/home_screen_models/banner_model.dart';
+import 'package:pet_met/models/trainers_update_profile_model/trainers_get_profile_model.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/user_details.dart';
@@ -20,6 +25,8 @@ class HomeController extends GetxController {
   final size = Get.size;
   ApiHeader apiHeader = ApiHeader();
 
+  final ScrollController scrollController = ScrollController();
+
   File? imageFile;
 
   RxBool isOpened = false.obs;
@@ -28,8 +35,28 @@ class HomeController extends GetxController {
   List<DatumDatum> imageList = [];
   List<GetUserStoryModelDatum> userStoryList = [];
 
-  int pageIndex = 0;
+  List<Petdatum> petList = [];
+  List<ShopPet> shopPetList = [];
+  List<NgoPet> ngoPetList = [];
+  List<TrainerPet> trainerPetList = [];
+
+  int pageIndex = 1;
   bool isLoadMore = false;
+
+  RxString userprofile= "".obs;
+  String userName = "";
+
+  RxString shopProfile= "".obs;
+  String shopName = "";
+  String shopDescription = "";
+
+  RxString ngoProfile= "".obs;
+  String ngoName = "";
+  String ngoDescription = "";
+
+  RxString trainerProfile= "".obs;
+  String trainerName = "";
+  String trainerDescription = "";
 
   var drawerController = ZoomDrawerController();
 
@@ -163,6 +190,47 @@ class HomeController extends GetxController {
     }
   }
 
+  Future<void> getAllIncrementPetFunction() async {
+    // isLoading(true);
+    String url = ApiUrl.topPetListApi + "?page=$pageIndex";
+    log("All Pet Api Url : $url");
+    log('pageIndex: $pageIndex');
+
+    try {
+      Map<String, String> header = apiHeader.apiHeader();
+      log("header : $header");
+
+      http.Response response = await http.get(Uri.parse(url), headers: header);
+      log("Get All Pet Api response : ${response.body}");
+
+      GetPetTopListModel getPetTopListModel =
+      GetPetTopListModel.fromJson(json.decode(response.body));
+      isSuccessStatus = getPetTopListModel.success.obs;
+
+      if (isSuccessStatus.value) {
+        // bannerList.clear();
+        petTopList.addAll(getPetTopListModel.data);
+        log("petList Length : ${petTopList.length}");
+        // isLoading(true);
+        isLoadMore = false;
+        log('isLoadMore1: $isLoadMore');
+        // isLoading(false);
+      } else {
+        log("Pet Api Else");
+      }
+
+    } catch(e) {
+      log("Get All Pet Api Error ::: $e");
+      // isLoading(true);
+      isLoadMore = false;
+      // isLoading(false);
+    } finally {
+      //isLoading(false);
+      // await getUserStory();
+      loadUI();
+    }
+  }
+
   /// Get User Story
   Future<void> getUserStory() async {
     isLoading(true);
@@ -186,6 +254,7 @@ class HomeController extends GetxController {
           userStoryList.addAll(getUserStoryModel.data);
           log("userStoryList Length : ${userStoryList.length}");
           imageList.addAll(getUserStoryModel.data[i].data);
+          log('imageList: $imageList');
         }
 
       } else {
@@ -324,6 +393,213 @@ class HomeController extends GetxController {
     }
   }
 
+  /// Get User Profile
+  Future<void> getUserProfileFunction() async {
+    isLoading(true);
+    String url = ApiUrl.allRoleGetProfileApi;
+    log("All Role Profile Api Url : $url");
+
+    try {
+      Map<String, dynamic> data = {
+        "id": UserDetails.userId,
+        // "uid": "${UserDetails.selfId}",
+        "categoryID": UserDetails.categoryId,
+      };
+
+      log("Body Data : $data");
+
+      Map<String, String> header = apiHeader.apiHeader();
+      log("header : $header");
+
+      http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
+      log("Get All Role Profile Api response : ${response.body}");
+
+      GetUserProfileModel getUserProfileModel =
+      GetUserProfileModel.fromJson(json.decode(response.body));
+      isSuccessStatus = getUserProfileModel.success.obs;
+
+      if (isSuccessStatus.value) {
+        petList.clear();
+        petList.addAll(getUserProfileModel.data.petdata);
+
+        userprofile.value = ApiUrl.apiImagePath + "asset/uploads/product/" + getUserProfileModel.data.data[0].image;
+        userName = getUserProfileModel.data.data[0].name;
+        log('userprofile: $userprofile');
+        // for(int i= 0; i < getPetListModel.data.petdata.length ; i++){
+        //   followUserId = getPetListModel.data.petdata[i].id;
+        //   log('followUserId: $followUserId');
+        // }
+        log("petList Length : ${petList.length}");
+      } else {
+        log("Get All Role Profile Api Else");
+      }
+
+
+    } catch(e) {
+      log("All Role Profile Api Error ::: $e");
+    } finally {
+      //isLoading(false);
+      await getAllBannerFunction();
+    }
+  }
+
+  /// Get Shop Profile
+  Future<void> getShopProfileFunction() async {
+    isLoading(true);
+    String url = ApiUrl.allRoleGetProfileApi;
+    log("All Role Profile Api Url : $url");
+
+    try {
+      Map<String, dynamic> data = {
+        "id": UserDetails.userId,
+        // "uid": "${UserDetails.selfId}",
+        "categoryID": UserDetails.categoryId,
+      };
+
+      log("Body Data : $data");
+
+      Map<String, String> header = apiHeader.apiHeader();
+      log("header : $header");
+
+      http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
+      log("Get All Role Profile Api response : ${response.body}");
+
+      GetShopProfileModel getShopProfileModel =
+      GetShopProfileModel.fromJson(json.decode(response.body));
+      isSuccessStatus = getShopProfileModel.success.obs;
+
+      if (isSuccessStatus.value) {
+        shopPetList.clear();
+        shopPetList.addAll(getShopProfileModel.data.petdata);
+
+        shopProfile.value = ApiUrl.apiImagePath + getShopProfileModel.data.data[0].showimg;
+        shopName = getShopProfileModel.data.data[0].shopename;
+        shopDescription = getShopProfileModel.data.data[0].fullText;
+        log('shopProfile: $shopProfile');
+
+        //profileImage = getPetListModel.data.
+        // for(int i= 0; i < getPetListModel.data.petdata.length ; i++){
+        //   followUserId = getPetListModel.data.petdata[i].id;
+        //   log('followUserId: $followUserId');
+        // }
+        log("petList Length : ${petList.length}");
+      } else {
+        log("Get All Role Profile Api Else");
+      }
+
+
+    } catch(e) {
+      log("All Role Profile Api Error ::: $e");
+    } finally {
+      //isLoading(false);
+      await getAllBannerFunction();
+    }
+  }
+
+  /// Get NGO Profile
+  Future<void> getNgoProfileFunction() async {
+    isLoading(true);
+    String url = ApiUrl.allRoleGetProfileApi;
+    log("All Role Profile Api Url : $url");
+
+    try {
+      Map<String, dynamic> data = {
+        "id": UserDetails.userId,
+        // "uid": "${UserDetails.selfId}",
+        "categoryID": UserDetails.categoryId,
+      };
+
+      log("Body Data : $data");
+
+      Map<String, String> header = apiHeader.apiHeader();
+      log("header : $header");
+
+      http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
+      log("Get All Role Profile Api response : ${response.body}");
+
+      AllRoleProfileModel allRoleProfileModel =
+      AllRoleProfileModel.fromJson(json.decode(response.body));
+      isSuccessStatus = allRoleProfileModel.success.obs;
+
+      if (isSuccessStatus.value) {
+        ngoPetList.clear();
+        ngoPetList.addAll(allRoleProfileModel.data.petdata);
+
+        ngoProfile.value = ApiUrl.apiImagePath + allRoleProfileModel.data.data[0].image;
+        ngoName = allRoleProfileModel.data.data[0].name;
+        ngoDescription = allRoleProfileModel.data.data[0].fullText;
+
+        //profileImage = getPetListModel.data.
+        // for(int i= 0; i < getPetListModel.data.petdata.length ; i++){
+        //   followUserId = getPetListModel.data.petdata[i].id;
+        //   log('followUserId: $followUserId');
+        // }
+        log("petList Length : ${petList.length}");
+      } else {
+        log("Get All Role Profile Api Else");
+      }
+
+
+    } catch(e) {
+      log("All Role Profile Api Error ::: $e");
+    } finally {
+      //isLoading(false);
+      await getAllBannerFunction();
+    }
+  }
+
+  /// Get Trainer Profile
+  Future<void> getTrainerProfileFunction() async {
+    isLoading(true);
+    String url = ApiUrl.allRoleGetProfileApi;
+    log("All Role Profile Api Url : $url");
+
+    try {
+      Map<String, dynamic> data = {
+        "id": UserDetails.userId,
+        // "uid": "${UserDetails.selfId}",
+        "categoryID": UserDetails.categoryId,
+      };
+
+      log("Body Data : $data");
+
+      Map<String, String> header = apiHeader.apiHeader();
+      log("header : $header");
+
+      http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
+      log("Get All Role Profile Api response : ${response.body}");
+
+      GetTrainersProfileModel getTrainersProfileModel =
+      GetTrainersProfileModel.fromJson(json.decode(response.body));
+      isSuccessStatus = getTrainersProfileModel.success.obs;
+
+      if (isSuccessStatus.value) {
+        trainerPetList.clear();
+        trainerPetList.addAll(getTrainersProfileModel.data.petdata);
+
+        trainerProfile.value = ApiUrl.apiImagePath + getTrainersProfileModel.data.data[0].image;
+        trainerName = getTrainersProfileModel.data.data[0].name;
+        trainerDescription = getTrainersProfileModel.data.data[0].fullText;
+
+        //profileImage = getPetListModel.data.
+        // for(int i= 0; i < getPetListModel.data.petdata.length ; i++){
+        //   followUserId = getPetListModel.data.petdata[i].id;
+        //   log('followUserId: $followUserId');
+        // }
+        log("petList Length : ${petList.length}");
+      } else {
+        log("Get All Role Profile Api Else");
+      }
+
+
+    } catch(e) {
+      log("All Role Profile Api Error ::: $e");
+    } finally {
+      //isLoading(false);
+      await getAllBannerFunction();
+    }
+  }
+
   loadUI() {
     isLoading(true);
     isLoading(false);
@@ -332,7 +608,24 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getAllBannerFunction();
+    //getAllBannerFunction();
+    if(UserDetails.categoryId == "1"){
+      getUserProfileFunction();
+    } else if(UserDetails.categoryId == "2"){
+      getShopProfileFunction();
+    } else if(UserDetails.categoryId == "3"){
+      getNgoProfileFunction();
+    } else if(UserDetails.categoryId == "4"){
+      getTrainerProfileFunction();
+    }
+    scrollController.addListener(() {
+      if(scrollController.position.maxScrollExtent == scrollController.offset) {
+        //api call for more pet
+        pageIndex++;
+        log("pageIndex : $pageIndex");
+        getAllIncrementPetFunction();
+      }
+    });
     // getAllPetFunction();
   }
 

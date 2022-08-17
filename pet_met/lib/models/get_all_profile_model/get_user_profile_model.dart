@@ -38,11 +38,11 @@ class Data {
     required this.petdata,
   });
 
-  List<Datum> data;
+  List<UserData> data;
   List<Petdatum> petdata;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x)) ?? {}),
+    data: List<UserData>.from(json["data"].map((x) => UserData.fromJson(x)) ?? {}),
     petdata: List<Petdatum>.from(json["petdata"].map((x) => Petdatum.fromJson(x)) ?? {}),
   );
 
@@ -52,8 +52,8 @@ class Data {
   };
 }
 
-class Datum {
-  Datum({
+class UserData {
+  UserData({
     required this.id,
     required this.name,
     required this.email,
@@ -95,7 +95,7 @@ class Datum {
   String isActive;
   String isVerified;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory UserData.fromJson(Map<String, dynamic> json) => UserData(
     id: json["id"] ?? "",
     name: json["name"] ?? "",
     email: json["email"] ?? "",

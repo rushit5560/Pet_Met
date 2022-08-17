@@ -38,11 +38,11 @@ class Data {
     required this.petdata,
   });
 
-  List<Datum> data;
+  List<NgoData> data;
   List<NgoPet> petdata;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x)) ?? {}),
+    data: List<NgoData>.from(json["data"].map((x) => NgoData.fromJson(x)) ?? {}),
     petdata: List<NgoPet>.from(json["petdata"].map((x) => NgoPet.fromJson(x)) ?? {}),
   );
 
@@ -52,8 +52,8 @@ class Data {
   };
 }
 
-class Datum {
-  Datum({
+class NgoData {
+  NgoData({
     required this.id,
     required this.name,
     required this.email,
@@ -117,7 +117,7 @@ class Datum {
   String rememberToken;
   String isVerified;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory NgoData.fromJson(Map<String, dynamic> json) => NgoData(
     id: json["id"] ?? "",
     name: json["name"] ?? "",
     email: json["email"] ?? "",

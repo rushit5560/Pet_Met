@@ -58,12 +58,15 @@ class UserProfileController extends GetxController {
 
   String shopProfile= "";
   String shopName = "";
+  String shopDescription = "";
 
   String ngoProfile= "";
   String ngoName = "";
+  String ngoDescription = "";
 
   String trainerProfile= "";
   String trainerName = "";
+  String trainerDescription = "";
 
   late Razorpay _razorpay;
 
@@ -197,6 +200,7 @@ class UserProfileController extends GetxController {
 
         shopProfile = ApiUrl.apiImagePath + getShopProfileModel.data.data[0].showimg;
         shopName = getShopProfileModel.data.data[0].shopename;
+        shopDescription = getShopProfileModel.data.data[0].fullText;
         log('shopProfile: $shopProfile');
 
         //profileImage = getPetListModel.data.
@@ -249,6 +253,7 @@ class UserProfileController extends GetxController {
 
         ngoProfile = ApiUrl.apiImagePath + allRoleProfileModel.data.data[0].image;
         ngoName = allRoleProfileModel.data.data[0].name;
+        ngoDescription = allRoleProfileModel.data.data[0].fullText;
 
         //profileImage = getPetListModel.data.
         // for(int i= 0; i < getPetListModel.data.petdata.length ; i++){
@@ -300,6 +305,7 @@ class UserProfileController extends GetxController {
 
         trainerProfile = ApiUrl.apiImagePath + getTrainersProfileModel.data.data[0].image;
         trainerName = getTrainersProfileModel.data.data[0].name;
+        trainerDescription = getTrainersProfileModel.data.data[0].fullText;
 
         //profileImage = getPetListModel.data.
         // for(int i= 0; i < getPetListModel.data.petdata.length ; i++){
@@ -494,12 +500,12 @@ class UserProfileController extends GetxController {
     }
   }
 
-  /*void openCheckout() async {
+  void openCheckout() async {
     var options = {
       'key': 'rzp_test_dxCkKqtRKnvZdA',
       'amount': 200 * 100,
-      'name': getProfile.petName,
-      'description': getProfile.details,
+      'name': followCategoryId == "1" ? userName : followCategoryId == "2" ? shopName : followCategoryId == "3" ? ngoName : followCategoryId == "4" ? trainerName: "",
+      'description': followCategoryId == "1" ? "" : followCategoryId == "2" ? shopDescription : followCategoryId == "3" ? ngoDescription : followCategoryId == "4" ? trainerDescription : "",
       'retry': {'enabled': true, 'max_count': 1},
       'send_sms_hash': true,
       'prefill': {'contact': '8888888888', 'email': 'test@razorpay.com'},
@@ -513,7 +519,7 @@ class UserProfileController extends GetxController {
     } catch (e) {
       debugPrint('Error: e');
     }
-  }*/
+  }
 
   void _handlePaymentSuccess(PaymentSuccessResponse response)async {
     log('Success Response: ${response.orderId}');

@@ -111,7 +111,7 @@ class PetTrackerPriceModule extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        if (index == 0) {
+                        /*if (index == 0) {
                           Get.to(()=>
                           PetTrackerPricingScreen(),
                             transition: Transition.native,
@@ -125,7 +125,13 @@ class PetTrackerPriceModule extends StatelessWidget {
                             duration: const Duration(milliseconds: 500),
                             arguments: controller.planData[index].id,
                           );
-                        }
+                        }*/
+                        Get.to(()=>
+                            PetTrackerPricingScreen(),
+                          transition: Transition.native,
+                          duration: const Duration(milliseconds: 500),
+                          arguments: controller.planData[index].id,
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         primary: themeProvider.darkTheme

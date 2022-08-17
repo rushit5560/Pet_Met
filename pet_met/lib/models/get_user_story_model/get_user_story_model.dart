@@ -63,13 +63,13 @@ class DatumDatum {
     required this.uid,
   });
 
-  int id;
-  int userid;
+  String id;
+  String userid;
   String image;
   String starttime;
   String endtime;
-  int categoryId;
-  int uid;
+  String categoryId;
+  String uid;
 
   factory DatumDatum.fromJson(Map<String, dynamic> json) => DatumDatum(
     id: json["id"] ?? 0,

@@ -38,11 +38,11 @@ class Data {
     required this.petdata,
   });
 
-  List<Datum> data;
+  List<TrainerData> data;
   List<TrainerPet> petdata;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x)) ?? {}),
+    data: List<TrainerData>.from(json["data"].map((x) => TrainerData.fromJson(x)) ?? {}),
     petdata: List<TrainerPet>.from(json["petdata"].map((x) => TrainerPet.fromJson(x)) ?? {}),
   );
 
@@ -52,8 +52,8 @@ class Data {
   };
 }
 
-class Datum {
-  Datum({
+class TrainerData {
+  TrainerData({
     required this.id,
     required this.name,
     required this.email,
@@ -113,7 +113,7 @@ class Datum {
   String rememberToken;
   String isVerified;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory TrainerData.fromJson(Map<String, dynamic> json) => TrainerData(
     id: json["id"] ?? "",
     name: json["name"] ?? "",
     email: json["email"] ?? "",

@@ -96,13 +96,13 @@ class UploadImageModule extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(15),
                         child: Image.file(
                           themeProvider.darkTheme
                               ? screenController.imageFile!
                               : screenController.imageFile!,
-                          width: 100,
-                          height: 100,
+                          width: double.infinity,
+                          height: screenController.size.height * 0.2,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -129,15 +129,15 @@ class UploadImageModule extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           ClipRRect(
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(15),
                             child: Image.network(
                               themeProvider.darkTheme
                                   ? ApiUrl.apiImagePath +
                                       screenController.ngoProfile!
                                   : ApiUrl.apiImagePath +
                                       screenController.ngoProfile!,
-                              width: 100,
-                              height: 100,
+                              width: double.infinity,
+                              height: screenController.size.height * 0.2,
                               fit: BoxFit.cover,
                               errorBuilder: (context, er, st) {
                                 //return Image.asset(AppImages.petMetLogoImg);
@@ -396,14 +396,15 @@ class NameOfNgoListModule extends StatelessWidget {
                       Container(
                           height: screenController.size.width * 0.16,
                           width: screenController.size.width * 0.16,
-                          margin: const EdgeInsets.only(bottom: 5, right: 5),
-                          decoration: const BoxDecoration(
+                          margin: const EdgeInsets.only(bottom: 5, right: 10),
+                          decoration: BoxDecoration(
                             // image: DecorationImage(
                             //     image: AssetImage(
                             //       controller.dogsTopList[index],
                             //     ),
                             //     fit: BoxFit.cover),
-                            color: AppColors.greyTextColor,
+                            //color: AppColors.greyTextColor,
+                            border: Border.all(color: Colors.grey),
                             borderRadius: BorderRadius.all(
                               Radius.circular(8),
                             ),
@@ -418,8 +419,8 @@ class NameOfNgoListModule extends StatelessWidget {
                                   : screenController.ngoImage1 != null
                                       ? Image.network(
                                           screenController.ngoImage1!,
-                                          height: 65,
-                                          fit: BoxFit.fill,
+                                          height: 50, width: 50,
+                                          //fit: BoxFit.fill,
                                           errorBuilder: (context, er, st) {
                                             return Image.asset(
                                               AppImages.petMetLogoImg,
@@ -438,8 +439,8 @@ class NameOfNgoListModule extends StatelessWidget {
                                       : screenController.ngoImage2 != null
                                           ? Image.network(
                                               screenController.ngoImage2!,
-                                              height: 65,
-                                              fit: BoxFit.fill,
+                                                height: 50, width: 50,
+                                              //fit: BoxFit.fill,
                                               errorBuilder: (context, er, st) {
                                                 return Image.asset(
                                                   AppImages.petMetLogoImg,
@@ -464,7 +465,8 @@ class NameOfNgoListModule extends StatelessWidget {
                                                       (context, er, st) {
                                                     return Image.asset(
                                                       AppImages.petMetLogoImg,
-                                                      fit: BoxFit.fill,
+                                                      //fit: BoxFit.fill,
+                                                      height: 50, width: 50,
                                                     );
                                                   },
                                                 )
@@ -484,8 +486,8 @@ class NameOfNgoListModule extends StatelessWidget {
                                                   ? Image.network(
                                                       screenController
                                                           .ngoImage4!,
-                                                      height: 65,
-                                                      fit: BoxFit.fill,
+                                                      height: 50, width: 50,
+                                                      //fit: BoxFit.fill,
                                                       errorBuilder:
                                                           (context, er, st) {
                                                         return Image.asset(
@@ -513,8 +515,8 @@ class NameOfNgoListModule extends StatelessWidget {
                                                       ? Image.network(
                                                           screenController
                                                               .ngoImage5!,
-                                                          height: 65,
-                                                          fit: BoxFit.fill,
+                                                          height: 50, width: 50,
+                                                          //fit: BoxFit.fill,
                                                           errorBuilder:
                                                               (context, er,
                                                                   st) {
