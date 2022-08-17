@@ -57,23 +57,26 @@ class CustomAppBar extends StatelessWidget {
           ),
 
           // Title Text Module
+          /*Expanded(
+            child:*/
           isTitleText!
-              ? Text(
-                  title,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 25,
-                    color: AppColors.accentTextColor,
-                    fontWeight: FontWeight.bold,
-                  ),
-                )
-              : centerWidget!,
+                ? Text(
+              title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 22,
+                color: AppColors.accentTextColor,
+                fontWeight: FontWeight.bold,
+              ),
+            )
+                : centerWidget!,
+          // ),
 
           // Right Side Button Module
           SizedBox(
             height: 25,
-            width: 25,
+            width: 15,
             child: trailingWidget,
           ).commonSymmetricPadding(horizontal: 20, vertical: 8),
         ],
