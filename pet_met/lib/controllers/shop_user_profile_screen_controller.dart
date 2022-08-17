@@ -40,6 +40,7 @@ class ShopUserProfileScreenController extends GetxController {
 
   RxString selectedGenderValue = "Male".obs;
   final formKey = GlobalKey<FormState>();
+  final loginFormKey = GlobalKey<FormState>();
 
   var nameController = TextEditingController();
   var emailController = TextEditingController();
@@ -61,7 +62,7 @@ class ShopUserProfileScreenController extends GetxController {
   String day = "";
   String year = "";
 
-  String userEmail = "";
+  RxString userEmail = "".obs;
   RxString userName = "".obs;
   RxString shopEmail = "".obs;
   RxString shopName = "".obs;
@@ -80,6 +81,21 @@ class ShopUserProfileScreenController extends GetxController {
 
   ApiHeader apiHeader = ApiHeader();
 
+  List<ShopPet> petList = [];
+
+  String shopApiProfile = "";
+  String shopApiPicture1 = "";
+  String shopApiPicture2 = "";
+  String shopApiPicture3 = "";
+  String shopApiPicture4 = "";
+  String shopApiPicture5 = "";
+
+  //todo
+  bool userProfile = false;
+  bool shopProfile = false;
+  bool vetNgoProfile = false;
+  bool trainerProfile = false;
+
   /// Get All Role Profile
   Future<void> getAllRoleProfileFunction() async {
     isLoading(true);
@@ -89,9 +105,9 @@ class ShopUserProfileScreenController extends GetxController {
 
     try {
       Map<String, dynamic> data = {
-        "id": "${UserDetails.userId}",
+        "id": UserDetails.userId,
         //"uid": "${UserDetails.selfId}",
-        "categoryID": "${UserDetails.categoryId}",
+        "categoryID": UserDetails.categoryId,
       };
 
       log("Body Data : $data");
@@ -107,6 +123,9 @@ class ShopUserProfileScreenController extends GetxController {
       isSuccessStatus = getShopProfileModel.success.obs;
 
       if (isSuccessStatus.value) {
+        petList.clear();
+        petList.addAll(getShopProfileModel.data.petdata);
+
         nameController.text = getShopProfileModel.data.data[0].shopename;
         emailController.text = getShopProfileModel.data.data[0].email;
         contactNumber.text = getShopProfileModel.data.data[0].phonenumber.toString();
@@ -124,6 +143,22 @@ class ShopUserProfileScreenController extends GetxController {
         offerImage5 = ApiUrl.apiImagePath + "asset/uploads/product/" + getShopProfileModel.data.data[0].image5;
 
         meetingImagesList = getShopProfileModel.data.data[0].meetingimages;
+
+        shopApiPicture1 = getShopProfileModel.data.data[0].image1;
+        shopApiPicture2 = getShopProfileModel.data.data[0].image2;
+        shopApiPicture3 = getShopProfileModel.data.data[0].image3;
+        shopApiPicture4 = getShopProfileModel.data.data[0].image4;
+        shopApiPicture5 = getShopProfileModel.data.data[0].image5;
+
+        // shopApiProfile
+        if(getShopProfileModel.data.data[0].showimg != "") {
+          List<String> profileSplitImageList = getShopProfileModel.data.data[0]
+              .showimg.split('/');
+          for (int i = 0; i < profileSplitImageList.length; i++) {
+            log("profileSplitImageList : ${profileSplitImageList[i]}");
+          }
+          shopApiProfile = profileSplitImageList[3];
+        }
 
 
         //
@@ -146,16 +181,17 @@ class ShopUserProfileScreenController extends GetxController {
     log("Multi account Api Url : $url");
 
     try {
-      Map<String, dynamic> data = {
-        "email": emailController.text.trim()
-      };
+      Map<String, dynamic> data = {"email": emailController.text.trim()};
 
       log("Multiple Account Body Data : $data");
 
       Map<String, String> header = apiHeader.apiHeader();
       log("header : $header");
 
-      http.Response response = await http.post(Uri.parse(url),body: data, /*headers: header*/);
+      http.Response response = await http.post(
+        Uri.parse(url),
+        body: data, /*headers: header*/
+      );
       log("Multiple Account Api response : ${response.body}");
 
       MultiAccountUserModel multiAccountUserModel =
@@ -165,23 +201,40 @@ class ShopUserProfileScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
 
-        // userEmail = multiAccountUserModel.data.user[0].email;
-        // userName = multiAccountUserModel.data.user[0].name.obs;
+        bool userAvail = multiAccountUserModel.data.user.isEmpty ? false : true;
+        if(userAvail == true) {
+          userProfile = true;
+          userEmail.value = "${multiAccountUserModel.data.user[0].email}";
+          userName.value = "${multiAccountUserModel.data.user[0].name}";
+        }
 
-        shopEmail = multiAccountUserModel.data.shope[0].email.obs;
-        shopName = multiAccountUserModel.data.shope[0].shopename.obs;
+        bool shopAvail = multiAccountUserModel.data.shope.isEmpty ? false : true;
+        if(shopAvail == true) {
+          shopProfile = true;
+          shopEmail.value = "${multiAccountUserModel.data.shope[0].email}";
+          shopName.value = "${multiAccountUserModel.data.shope[0].shopename}";
+        }
 
-        // ngoEmail = multiAccountUserModel.data.vetNgo[0].email.obs;
-        // ngoName = multiAccountUserModel.data.vetNgo[0].name.obs;
-        //
-        // trainerEmail = multiAccountUserModel.data.trainer[0].email.obs;
-        // trainerName = multiAccountUserModel.data.trainer[0].name.obs;
+        bool vetNgoAvail = multiAccountUserModel.data.vetNgo.isEmpty ? false : true;
+        if(vetNgoAvail == true) {
+          vetNgoProfile = true;
+          ngoEmail.value = "${multiAccountUserModel.data.vetNgo[0].email}";
+          ngoName.value = "${multiAccountUserModel.data.vetNgo[0].name}";
+        }
+
+        bool trainerAvail = multiAccountUserModel.data.trainer.isEmpty ? false : true;
+        if(trainerAvail == true) {
+          trainerProfile = true;
+          trainerEmail.value = "${multiAccountUserModel.data.trainer[0].email}";
+          trainerName.value = "${multiAccountUserModel.data.trainer[0].name}";
+        }
+
+
       } else {
         log("Get Multi Account Api Else");
         //await unfollowUserFunction();
       }
-
-    } catch(e) {
+    } catch (e) {
       log("All Multi Account Api Error ::: $e");
     } finally {
       isLoading(false);
@@ -211,7 +264,119 @@ class ShopUserProfileScreenController extends GetxController {
     // ];
 
     try {
-      if (imageFile != null && shopOfferFile1 != null && shopOfferFile2 != null && shopOfferFile3 != null && shopOfferFile4 != null && shopOfferFile5 != null) {
+      var request = http.MultipartRequest('POST', Uri.parse(url));
+      request.headers.addAll(header);
+
+      // Profile Image
+      if (imageFile != null) {
+        var stream = http.ByteStream(imageFile!.openRead());
+        stream.cast();
+        var length = await imageFile!.length();
+        request.files.add(await http.MultipartFile.fromPath("showimg", imageFile!.path));
+        var multiPart = http.MultipartFile('showimg', stream, length);
+        request.files.add(multiPart);
+      } else if (imageFile == null) {
+        request.fields['oldshowimg'] = shopApiProfile;
+      }
+
+      // For File 1
+      if (shopOfferFile1 != null) {
+        var stream1 = http.ByteStream(shopOfferFile1!.openRead());
+        stream1.cast();
+        var length1 = await shopOfferFile1!.length();
+        request.files.add(
+            await http.MultipartFile.fromPath("image1", shopOfferFile1!.path));
+        var multiPart1 = http.MultipartFile('image1', stream1, length1);
+        request.files.add(multiPart1);
+      }  else if (shopOfferFile1 == null) {
+        request.fields['oldimage1'] = shopApiPicture1;
+      }
+
+      // For File 2
+      if (shopOfferFile2 != null) {
+        var stream2 = http.ByteStream(shopOfferFile2!.openRead());
+        stream2.cast();
+        var length2 = await shopOfferFile2!.length();
+        request.files.add(
+            await http.MultipartFile.fromPath("image2", shopOfferFile2!.path));
+        var multiPart2 = http.MultipartFile('image2', stream2, length2);
+        request.files.add(multiPart2);
+      }  else if (shopOfferFile2 == null) {
+        request.fields['oldimage2'] = shopApiPicture2;
+      }
+
+      // For File 3
+      if (shopOfferFile3 != null) {
+        var stream3 = http.ByteStream(shopOfferFile3!.openRead());
+        stream3.cast();
+        var length3 = await shopOfferFile3!.length();
+        request.files.add(
+            await http.MultipartFile.fromPath("image3", shopOfferFile3!.path));
+        var multiPart3 = http.MultipartFile('image3', stream3, length3);
+        request.files.add(multiPart3);
+      }  else if (shopOfferFile3 == null) {
+        request.fields['oldimage3'] = shopApiPicture3;
+      }
+
+      // For File 4
+      if (shopOfferFile4 != null) {
+        var stream4 = http.ByteStream(shopOfferFile4!.openRead());
+        stream4.cast();
+        var length4 = await shopOfferFile4!.length();
+        request.files.add(
+            await http.MultipartFile.fromPath("image4", shopOfferFile4!.path));
+        var multiPart4 = http.MultipartFile('image4', stream4, length4);
+        request.files.add(multiPart4);
+      }  else if (shopOfferFile4 == null) {
+        request.fields['oldimage4'] = shopApiPicture4;
+      }
+
+      // For File 5
+      if (shopOfferFile5 != null) {
+        var stream5 = http.ByteStream(shopOfferFile5!.openRead());
+        stream5.cast();
+        var length5 = await shopOfferFile5!.length();
+        request.files.add(
+            await http.MultipartFile.fromPath("image5", shopOfferFile5!.path));
+        var multiPart5 = http.MultipartFile('image5', stream5, length5);
+        request.files.add(multiPart5);
+      }  else if (shopOfferFile5 == null) {
+        request.fields['oldimage5'] = shopApiPicture5;
+      }
+
+      request.fields['shopename'] = nameController.text.trim();
+      request.fields['address'] = addressController.text.trim();
+      request.fields['phonenumber'] = contactNumber.text.trim();
+      request.fields['shopopen'] = selectedOpenTime!.value;
+      request.fields['shopclose'] = selectedCloseTime!.value;
+      request.fields['userid'] = "${UserDetails.userId}";
+      request.fields['uid'] = "${UserDetails.userId}";
+      request.fields['full_text'] = detailsController.text.trim();
+      request.fields['instagram'] = instagramController.text.trim();
+      request.fields['facebook'] = facebookController.text.trim();
+
+      var response = await request.send();
+      log('response: ${response.request}');
+
+      response.stream.transform(utf8.decoder).listen((value) async {
+        log('value: $value');
+        ShopUpdateProfileModel shopProfileModel =
+        ShopUpdateProfileModel.fromJson(json.decode(value));
+        log('response1 :::::: ${shopProfileModel.success}');
+        isSuccessStatus = shopProfileModel.success.obs;
+
+        if (isSuccessStatus.value) {
+          Fluttertoast.showToast(msg: shopProfileModel.message);
+          await getAllRoleProfileFunction();
+          // log(updateUserProfileModel.dataVendor.userName);
+          // log(updateUserProfileModel.dataVendor.email);
+          // log(updateUserProfileModel.dataVendor.phoneNo);
+          Get.back();
+        } else {
+          log('False False');
+        }
+      });
+      /*if (imageFile != null && shopOfferFile1 != null && shopOfferFile2 != null && shopOfferFile3 != null && shopOfferFile4 != null && shopOfferFile5 != null) {
         log("uploading with a photo");
         var request = http.MultipartRequest('POST', Uri.parse(url));
 
@@ -1504,7 +1669,7 @@ class ShopUserProfileScreenController extends GetxController {
             log('False False');
           }
         });
-      }
+      }*/
     } catch (e) {
       log("updateUserProfileFunction Error ::: $e");
     } finally {
@@ -1512,16 +1677,16 @@ class ShopUserProfileScreenController extends GetxController {
     }
   }
 
-  Future<void> userLoginFunction() async {
+  Future<void> userLoginFunction({required String email, required categoryId}) async {
     isLoading(true);
     String url = ApiUrl.loginApi;
     log('Login Api Url : $url');
 
     try {
       Map<String, dynamic> data = {
-        "email": shopEmail.value,
+        "email": email,
         "password": passwordController.text.trim(),
-        "categoryID": "${UserDetails.roleId}",
+        "categoryID": categoryId,
       };
       log("data : $data");
 

@@ -6,11 +6,13 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/controllers/shop_user_profile_screen_controller.dart';
+import 'package:pet_met/screens/upload_pet_screen/upload_pet_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
+import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/validations.dart';
 import 'package:sizer/sizer.dart';
 
@@ -130,7 +132,7 @@ class UploadImageModule extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
                 child: Image.network(
                   themeProvider.darkTheme
-                      ? ApiUrl.apiImagePath +  screenController.shopImage! : ApiUrl.apiImagePath + screenController.shopImage!,
+                      ? ApiUrl.apiImagePath + screenController.shopImage! : ApiUrl.apiImagePath + screenController.shopImage!,
                     width: double.infinity,
                     height: screenController.size.height * 0.2,
                     fit: BoxFit.cover,
@@ -881,7 +883,7 @@ class MeetingAvailabilityModule extends StatelessWidget {
       children: [
         Text("Add Meeting Availability for Pets:", style: TextStyle(color: Colors.black)),
         SizedBox(height: 8),
-        Container(
+        /*Container(
           height: screenController.size.width * 0.16,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
@@ -915,7 +917,8 @@ class MeetingAvailabilityModule extends StatelessWidget {
                       fit: BoxFit.cover,
                     ),
                   ),
-                  /*Positioned(
+                  */
+        /*Positioned(
                     right: 0,
                     bottom: 0,
                     child: Container(
@@ -929,12 +932,125 @@ class MeetingAvailabilityModule extends StatelessWidget {
                         size: 12,
                       ),
                     ),
-                  )*/
+                  )*//*
                 ],
               );
             },
           ),
-        ),
+        ),*/
+
+        Row(
+          children: [
+            Stack(
+                children: [
+                  Container(
+                    height: 8.h,
+                    width: 8.h,
+                    margin: const EdgeInsets.only(bottom: 5, right: 5),
+                    decoration: BoxDecoration(
+                      // image: DecorationImage(
+                      //     image: AssetImage(
+                      //       controller.dogsTopList[index],
+                      //     ),
+                      //     fit: BoxFit.cover),
+                      //color: AppColors.greyTextColor,
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                    ),
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(8)),
+                        child: Image.asset(AppImages.petMetLogoImg, fit: BoxFit.cover)),
+                  ),
+                  Positioned(
+                    right: 0,
+                    bottom: 0,
+                    child: GestureDetector(
+                      onTap: () {
+                        // petOption == PetOption.addOption ?
+                        // ""
+                        //     : "";
+                        //    // :
+
+                        Get.to(() => UploadPetScreen(),
+                            transition: Transition.native,
+                            duration: const Duration(milliseconds: 500),
+                            arguments: [PetOption.addOption, ""]);
+                      },
+                      child: Container(
+                        height: 15,
+                        width: 15,
+                        decoration: const BoxDecoration(
+                            color: Colors.green, shape: BoxShape.circle),
+                        child: const Icon(
+                          Icons.add,
+                          color: AppColors.whiteColor,
+                          size: 12,
+                        ),
+                      ),
+                    ),
+                  )
+                ]),
+            SizedBox(width: 5),
+            Expanded(
+                child: SizedBox(
+                  height: 8.h,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: screenController.petList.length,
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(width: 8);
+                    },
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          log('Pet Id : ${screenController.petList[index].id}');
+                          Get.to(()=> UploadPetScreen(),
+                              transition: Transition.native,
+                              duration: const Duration(milliseconds: 500),
+                              arguments: [
+                                PetOption.updateOption,
+                                screenController.petList[index].id
+                              ]);
+                        },
+                        child: Stack(
+                          children: [
+                            Container(
+                              height: 8.h,
+                              width: 7.h,
+                              margin: const EdgeInsets.only(
+                                  bottom: 5, right: 5),
+                              decoration: const BoxDecoration(
+                                // image: DecorationImage(
+                                //     image: AssetImage(
+                                //       controller.dogsTopList[index],
+                                //     ),
+                                //     fit: BoxFit.cover),
+                                //color: AppColors.greyTextColor,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(8),
+                                ),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: const BorderRadius.all(Radius.circular(8)),
+                                child: Image.network(
+                                    ApiUrl.apiImagePath + screenController.petList[index].image,
+                                    errorBuilder: (context, st, ob) {
+                                      return Image.asset(AppImages.petMetLogoImg);
+                                    },
+                                    fit: BoxFit.cover),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                )
+            )
+          ],
+        )
       ],
     );
   }
