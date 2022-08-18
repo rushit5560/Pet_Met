@@ -68,144 +68,153 @@ class _HomeScreenState extends State<HomeScreen> {
                     AppImages.petMetLogoImg,
                     width: controller.size.width * 0.25,
                   ),
-                  trailingWidget: Obx(()=>
-                      GestureDetector(
+                  trailingWidget: Obx(
+                    () => GestureDetector(
                       onTap: () {
                         //Get.toNamed(AppRouteNames.userProfileEditRoute);
                         log('UserDetails.roleId: ${UserDetails.categoryId}');
-                        if(UserDetails.categoryId == "1"){
+                        if (UserDetails.categoryId == "1") {
                           Get.to(() => UserProfileEditScreen(),
                               transition: Transition.native,
                               duration: const Duration(milliseconds: 500));
-                        } else if(UserDetails.categoryId == "2"){
-                          Get.to(()=> ShopUserProfileScreen(),
+                        } else if (UserDetails.categoryId == "2") {
+                          Get.to(() => ShopUserProfileScreen(),
                               transition: Transition.native,
                               duration: const Duration(milliseconds: 500));
-                        } else if(UserDetails.categoryId == "3"){
-                          Get.to(()=> NgoUserProfileScreen(),
+                        } else if (UserDetails.categoryId == "3") {
+                          Get.to(() => NgoUserProfileScreen(),
                               transition: Transition.native,
                               duration: const Duration(milliseconds: 500));
-                        } else if(UserDetails.categoryId == "4"){
-                          Get.to(()=> TrainersAndUserProfileScreenController(),
+                        } else if (UserDetails.categoryId == "4") {
+                          Get.to(() => TrainersAndUserProfileScreenController(),
                               transition: Transition.native,
                               duration: const Duration(milliseconds: 500));
                         }
                       },
-                      child: UserDetails.categoryId == "1" ?
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          border: Border.all(color: Colors.black, width: 0.0),
-                        ),
-                        child: ClipRRect(
-                          // decoration: BoxDecoration(
-                          //   border: Border.all(color: Colors.black, width: 0.0),
-                          //   borderRadius: BorderRadius.circular(30),
-                          // ),
-                          borderRadius: BorderRadius.circular(30),
-                          child: Image.network(
-                            controller.userprofile.value,
-                            width: 60,
-                            height: 60,
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, st, ob){
-                              return Image.asset(AppImages.petMetLogoImg, width: 40,
-                                height: 50,
-                                fit: BoxFit.cover,);
-                            },
-                            // width: controller.size.width * 0.05,
-                          ),
-                        ),
-                      ) :
-                      UserDetails.categoryId == "2" ?
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
-                        child: Image.network(
-                          controller.shopProfile.value,
-                          width: 40,
-                          height: 50,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, st, ob){
-                            return Image.asset(AppImages.petMetLogoImg,
-                              width: 40,
-                              height: 50,
-                              fit: BoxFit.cover,);
-                          },
-                          // width: controller.size.width * 0.05,
-                        ),
-                      ):
-                      UserDetails.categoryId == "3" ?
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
-                        child: Image.network(
-                          controller.ngoProfile.value,
-                          width: 40,
-                          height: 50,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, st, ob){
-                            return Image.asset(AppImages.petMetLogoImg,
-                              width: 40,
-                              height: 50,
-                              fit: BoxFit.cover);
-                          },
-                          // width: controller.size.width * 0.05,
-                        ),
-                      ) :
-                      UserDetails.categoryId == "4" ?
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
-                        child: Image.network(
-                          controller.trainerProfile.value,
-                          width: 40,
-                          height: 50,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, st, ob){
-                            return Image.asset(AppImages.petMetLogoImg,
-                                width: 40,
-                                height: 50,
-                                fit: BoxFit.cover);
-                          },
-                          // width: controller.size.width * 0.05,
-                        ),
-                      ):
-                      Image.asset(
-                        AppImages.userProfileImg,
-                        width: controller.size.width * 0.12,
-                      ),
+                      child: UserDetails.categoryId == "1"
+                          ? Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30),
+                                border:
+                                    Border.all(color: Colors.black, width: 0.0),
+                              ),
+                              child: ClipRRect(
+                                // decoration: BoxDecoration(
+                                //   border: Border.all(color: Colors.black, width: 0.0),
+                                //   borderRadius: BorderRadius.circular(30),
+                                // ),
+                                borderRadius: BorderRadius.circular(30),
+                                child: Image.network(
+                                  controller.userprofile.value,
+                                  width: 60,
+                                  height: 60,
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, st, ob) {
+                                    return Image.asset(
+                                      AppImages.petMetLogoImg,
+                                      width: 40,
+                                      height: 50,
+                                      fit: BoxFit.cover,
+                                    );
+                                  },
+                                  // width: controller.size.width * 0.05,
+                                ),
+                              ),
+                            )
+                          : UserDetails.categoryId == "2"
+                              ? ClipRRect(
+                                  borderRadius: BorderRadius.circular(30),
+                                  child: Image.network(
+                                    controller.shopProfile.value,
+                                    width: 40,
+                                    height: 50,
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (context, st, ob) {
+                                      return Image.asset(
+                                        AppImages.petMetLogoImg,
+                                        width: 40,
+                                        height: 50,
+                                        fit: BoxFit.cover,
+                                      );
+                                    },
+                                    // width: controller.size.width * 0.05,
+                                  ),
+                                )
+                              : UserDetails.categoryId == "3"
+                                  ? ClipRRect(
+                                      borderRadius: BorderRadius.circular(30),
+                                      child: Image.network(
+                                        controller.ngoProfile.value,
+                                        width: 40,
+                                        height: 50,
+                                        fit: BoxFit.cover,
+                                        errorBuilder: (context, st, ob) {
+                                          return Image.asset(
+                                              AppImages.petMetLogoImg,
+                                              width: 40,
+                                              height: 50,
+                                              fit: BoxFit.cover);
+                                        },
+                                        // width: controller.size.width * 0.05,
+                                      ),
+                                    )
+                                  : UserDetails.categoryId == "4"
+                                      ? ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                          child: Image.network(
+                                            controller.trainerProfile.value,
+                                            width: 40,
+                                            height: 50,
+                                            fit: BoxFit.cover,
+                                            errorBuilder: (context, st, ob) {
+                                              return Image.asset(
+                                                  AppImages.petMetLogoImg,
+                                                  width: 40,
+                                                  height: 50,
+                                                  fit: BoxFit.cover);
+                                            },
+                                            // width: controller.size.width * 0.05,
+                                          ),
+                                        )
+                                      : Image.asset(
+                                          AppImages.userProfileImg,
+                                          width: controller.size.width * 0.12,
+                                        ),
                     ),
                   ),
                 ),
                 Expanded(
                   child: Obx(
-                        () => controller.isLoading.value
+                    () => controller.isLoading.value
                         ? const CustomAnimationLoader()
                         : SingleChildScrollView(
-                      controller: controller.scrollController,
-                      physics: const BouncingScrollPhysics(),
-                      child: Column(
-                        children: [
-                          PetListModule()
-                              .commonSymmetricPadding(horizontal: 20),
-                          SizedBox(
-                              height: controller.size.height * 0.025),
-                          BannerModule(),
-                          const SizedBox(height: 10),
-                          PetShopAndGroomingText()
-                              .commonSymmetricPadding(horizontal: 20),
+                            controller: controller.scrollController,
+                            physics: const BouncingScrollPhysics(),
+                            child: Column(
+                              children: [
+                                PetListModule()
+                                    .commonSymmetricPadding(horizontal: 20),
+                                SizedBox(
+                                    height: controller.size.height * 0.025),
+                                BannerModule(),
+                                const SizedBox(height: 10),
+                                PetShopAndGroomingText()
+                                    .commonSymmetricPadding(horizontal: 20),
 
-                          // Expanded(child: PetTopListModule()),
-                          PetTopListModule(),
-                          // DogDisplayWidget(
-                          //   onTap: () {
-                          //     Get.toNamed(
-                          //         AppRouteNames.orderDetailsRoute);
-                          //   },
-                          // ),
-                          // AllPetsListModule()
-                          //     .commonSymmetricPadding(horizontal: 20),
-                        ],
-                      ).commonSymmetricPadding(vertical: 20),
-                    ),
+                                // Expanded(child: PetTopListModule()),
+                                PetTopListModule(),
+                                // DogDisplayWidget(
+                                //   onTap: () {
+                                //     Get.toNamed(
+                                //         AppRouteNames.orderDetailsRoute);
+                                //   },
+                                // ),
+                                // AllPetsListModule()
+                                //     .commonSymmetricPadding(horizontal: 20),
+                              ],
+                            ).commonSymmetricPadding(vertical: 20),
+                          ),
                   ),
                 ),
               ],

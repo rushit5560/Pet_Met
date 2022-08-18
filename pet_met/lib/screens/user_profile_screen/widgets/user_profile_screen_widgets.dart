@@ -323,27 +323,20 @@ class ContactInfoModule extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // const ContactContainerWidget(
-            //   imagePath: AppImages.infoGreenImg,
-            // ),
-            // const SizedBox(width: 20),
+
             GestureDetector(
-              onTap: (){
-                controller.openCheckout();
+              onTap: () {
+                if(controller.meetingStatus.value == true) {
+                  // open phone dialer
+                } else if(controller.meetingStatus.value == false) {
+                  controller.openCheckout();
+                }
               },
               child: const ContactContainerWidget(
                 imagePath: AppImages.phoneGreenImg,
               ),
             ),
-            // SizedBox(width: 20),
-            // GestureDetector(
-            //   onTap: () {
-            //     //Get.to(()=> AddressScreen());
-            //   },
-            //   child: const ContactContainerWidget(
-            //     imagePath: AppImages.locateGreenImg,
-            //   ),
-            // ),
+
           ],
         ),
       ),

@@ -419,8 +419,9 @@ class NameOfNgoListModule extends StatelessWidget {
                                   : screenController.ngoImage1 != null
                                       ? Image.network(
                                           screenController.ngoImage1!,
-                                          height: 50, width: 50,
-                                          //fit: BoxFit.fill,
+                                          height: 50,
+                                          width: 50,
+                                          fit: BoxFit.fill,
                                           errorBuilder: (context, er, st) {
                                             return Image.asset(
                                               AppImages.petMetLogoImg,
@@ -439,8 +440,9 @@ class NameOfNgoListModule extends StatelessWidget {
                                       : screenController.ngoImage2 != null
                                           ? Image.network(
                                               screenController.ngoImage2!,
-                                                height: 50, width: 50,
-                                              //fit: BoxFit.fill,
+                                              height: 50,
+                                              width: 50,
+                                              fit: BoxFit.fill,
                                               errorBuilder: (context, er, st) {
                                                 return Image.asset(
                                                   AppImages.petMetLogoImg,
@@ -465,8 +467,9 @@ class NameOfNgoListModule extends StatelessWidget {
                                                       (context, er, st) {
                                                     return Image.asset(
                                                       AppImages.petMetLogoImg,
-                                                      //fit: BoxFit.fill,
-                                                      height: 50, width: 50,
+                                                      fit: BoxFit.fill,
+                                                      height: 50,
+                                                      width: 50,
                                                     );
                                                   },
                                                 )
@@ -486,8 +489,9 @@ class NameOfNgoListModule extends StatelessWidget {
                                                   ? Image.network(
                                                       screenController
                                                           .ngoImage4!,
-                                                      height: 50, width: 50,
-                                                      //fit: BoxFit.fill,
+                                                      height: 50,
+                                                      width: 50,
+                                                      fit: BoxFit.fill,
                                                       errorBuilder:
                                                           (context, er, st) {
                                                         return Image.asset(
@@ -515,8 +519,9 @@ class NameOfNgoListModule extends StatelessWidget {
                                                       ? Image.network(
                                                           screenController
                                                               .ngoImage5!,
-                                                          height: 50, width: 50,
-                                                          //fit: BoxFit.fill,
+                                                          height: 50,
+                                                          width: 50,
+                                                          fit: BoxFit.fill,
                                                           errorBuilder:
                                                               (context, er,
                                                                   st) {

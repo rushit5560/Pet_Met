@@ -98,7 +98,7 @@ class PetTopListModule extends StatelessWidget {
                           arguments: [
                             homeController.petTopList[i].userid,
                             homeController.petTopList[i].categoryId,
-                            homeController.petTopList[i].id
+                            homeController.petTopList[i].id,
                           ]);
                     },
                     child: Column(

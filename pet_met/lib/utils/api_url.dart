@@ -45,6 +45,7 @@ class ApiUrl {
 
   /// All Role Profile Managemnet
   static const allRoleGetProfileApi = apiMainPath + "/profile";
+  static const allPetUserProfileApi = apiMainPath + "/userprofile";
   static const shopUpdateProfileApi = apiMainPath + "/shopinsert";
   static const vetAndNgoUpdateProfileApi = apiMainPath + "/ngovetinsert";
   static const trainersUpdateProfileApi = apiMainPath + "/trainerinsert";

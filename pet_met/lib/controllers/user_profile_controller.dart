@@ -9,28 +9,29 @@ import 'package:pet_met/models/follow_user_model/follow_user_model.dart';
 import 'package:pet_met/models/follow_user_model/get_follow_status_model.dart';
 import 'package:pet_met/models/follow_user_model/unfollow_user_model.dart';
 import 'package:pet_met/models/get_all_profile_model/get_shop_profile_model.dart';
-import 'package:pet_met/models/get_all_profile_model/get_user_profile_model.dart';
 import 'package:pet_met/models/get_all_profile_model/get_vet_and_ngo_profile_model.dart';
-import 'package:pet_met/models/get_pet_profile_model/get_pet_profile_model.dart';
 import 'package:pet_met/models/trainers_update_profile_model/trainers_get_profile_model.dart';
+import 'package:pet_met/models/user_profile_screen_model/pet_user_profile_model.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_images.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:http/http.dart' as http;
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+
+
 
 class UserProfileController extends GetxController {
   final size = Get.size;
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
+
   String followUserId = Get.arguments[0];
   String followCategoryId = Get.arguments[1];
   String petId = Get.arguments[2];
 
   ApiHeader apiHeader = ApiHeader();
 
-  List<Petdatum> petList = [];
+  List<Petdatum1> petList = [];
   List<ShopPet> shopPetList = [];
   List<NgoPet> ngoPetList = [];
   List<TrainerPet> trainerPetList = [];
@@ -68,9 +69,10 @@ class UserProfileController extends GetxController {
   String trainerName = "";
   String trainerDescription = "";
 
+  RxBool meetingStatus = false.obs;
+
   late Razorpay _razorpay;
 
-  //PetDatum getProfile = PetDatum();
 
   /// Get All Role Profile
   /*Future<void> getAllRoleProfileFunction() async {
@@ -123,14 +125,15 @@ class UserProfileController extends GetxController {
   /// Get User Profile
   Future<void> getUserProfileFunction() async {
     isLoading(true);
-    String url = ApiUrl.allRoleGetProfileApi;
+    String url = ApiUrl.allPetUserProfileApi;
     log("All Role Profile Api Url : $url");
 
     try {
       Map<String, dynamic> data = {
-        "id": followUserId,
-        // "uid": "${UserDetails.selfId}",
-        "categoryID": followCategoryId,
+        "userid" : UserDetails.userId,
+        "categoryID" : UserDetails.categoryId,
+        "meettingpetuserid": followUserId,
+        "meettingpetusercategory": followCategoryId,
       };
 
       log("Body Data : $data");
@@ -141,25 +144,24 @@ class UserProfileController extends GetxController {
       http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
       log("Get All Role Profile Api response : ${response.body}");
 
-      GetUserProfileModel getUserProfileModel =
-      GetUserProfileModel.fromJson(json.decode(response.body));
+      PetUserProfileModel getUserProfileModel =
+      PetUserProfileModel.fromJson(json.decode(response.body));
       isSuccessStatus = getUserProfileModel.success.obs;
 
       if (isSuccessStatus.value) {
         petList.clear();
         petList.addAll(getUserProfileModel.data.petdata);
+        meetingStatus = getUserProfileModel.data.meettingstatus.obs;
 
         userprofile = ApiUrl.apiImagePath + "asset/uploads/product/" + getUserProfileModel.data.data[0].image;
         userName = getUserProfileModel.data.data[0].name;
-        // for(int i= 0; i < getPetListModel.data.petdata.length ; i++){
-        //   followUserId = getPetListModel.data.petdata[i].id;
-        //   log('followUserId: $followUserId');
-        // }
+
+
+
         log("petList Length : ${petList.length}");
       } else {
         log("Get All Role Profile Api Else");
       }
-
 
     } catch(e) {
       log("All Role Profile Api Error ::: $e");
