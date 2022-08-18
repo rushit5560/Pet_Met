@@ -58,6 +58,9 @@ class UploadPetController extends GetxController {
 
   String birthDate= "";
 
+  String petApiCatId = "";
+  String petApiSubCatId = "";
+
   RxString genderValue = 'Male'.obs;
   RxString meetingAvailabilityValue = 'Yes'.obs;
 
@@ -191,28 +194,27 @@ class UploadPetController extends GetxController {
         petCategoryList.addAll(getPetCategoryModel.data);
         petCategoryDropDownValue = petCategoryList[0];
         log('petCategoryList : ${petCategoryList.length}');
-        isLoading(true);
-        isLoading(false);
-        //log('pet name: ${getProfile.petName}');
       } else {
         log("Pet Category Api Else");
       }
-
     } catch(e) {
       log("Pet Category Api Error ::: $e");
     } finally {
-      //isLoading(false);
-      await getSubCategoryUsingCategoryId();
+      if(petOption == PetOption.addOption) {
+        isLoading(false);
+      } else if(petOption == PetOption.updateOption) {
+      await getProfileFunction();
+      }
     }
   }
 
-  /// Get Area Using City Id
-  getSubCategoryUsingCategoryId({ String ? categoryId}) async {
-    isLoading(true);
+  /// Get Sub category using cat id
+  getSubCategoryUsingCategoryId({required String petSubCatId, bool usingCatDDId = false}) async {
+    // isLoading(true);
 
     String url = ApiUrl.getAllSubCategoryApi;
-    String finalUrl = url + "$categoryId";
-    log('finalUrl : $finalUrl');
+    String finalUrl = url + petSubCatId;
+    log('Pet Sub category api url : $finalUrl');
 
     Map<String, String> header = apiHeader.apiHeader();
     log("header : $header");
@@ -228,20 +230,32 @@ class UploadPetController extends GetxController {
         petSubCategoryList.addAll(getPetSubCategoryModel.data);
         petSubCategoryDropDownValue = petSubCategoryList[0];
         log('petSubCategoryList : ${petSubCategoryList.length}');
+
+        // When update pet that time getting pet subcategory id
+        if(usingCatDDId == false) {
+          if (petOption == PetOption.updateOption) {
+            for (int i = 0; i < petSubCategoryList.length; i++) {
+              if (petSubCategoryList[i].categoryId == petApiSubCatId) {
+                petSubCategoryDropDownValue = petSubCategoryList[i];
+              }
+            }
+          }
+        }
+
+
       } else {
         log('getSubCategoryUsingCategoryId false false');
       }
     } catch(e) {
       log('getSubCategoryUsingCategoryId Error : $e');
     } finally{
-
+      isLoading(false);
       //await getAllRoleProfileFunction();
-      if(petOption == PetOption.addOption) {
-        isLoading(false);
-      } else if(petOption == PetOption.updateOption){
-        await getProfileFunction();
-
-      }
+      // if(petOption == PetOption.addOption) {
+      //   isLoading(false);
+      // } else if(petOption == PetOption.updateOption){
+      //   await getProfileFunction();
+      // }
     }
   }
 
@@ -295,7 +309,7 @@ class UploadPetController extends GetxController {
   /// Get Pet Profile
   Future<void> getProfileFunction() async {
     isLoading(true);
-    String url = ApiUrl.petProfileApi + "$petId";
+    String url = ApiUrl.petProfileApi + petId;
     log("All Pet Profile Api Url : $url");
 
     try {
@@ -310,20 +324,36 @@ class UploadPetController extends GetxController {
       isSuccessStatus = getPetProfileModel.success!.obs;
 
       if (isSuccessStatus.value) {
-        // bannerList.clear();
-        // petTopList.addAll(getPetTopListModel.data);
-        // log("petList Length : ${petTopList.length}");
         getProfile = getPetProfileModel.data![0];
         petNameController.text = getProfile.petName!;
         petDetailsController.text = getProfile.details!;
-        // meetingAvailabilityValue.value = getProfile.meetingAvailability!;
-        //genderValue.value = getProfile.gender!;
         weightController.text = getProfile.weight!.toString();
-        petCategoryDropDownValue.categoryName = getProfile.mainCategory.toString();
-        petSubCategoryDropDownValue.categoryName = getProfile.subCategory.toString();
-        birthDate = getProfile.dob!;
-        day = birthDate.substring(0, birthDate.length - 7);
-        log('day: $day');
+
+        petApiCatId = "${getProfile.mainCategory}";
+        petApiSubCatId = "${getProfile.subCategory}";
+
+        log("petApiCatId : $petApiCatId");
+        log("petApiSubCatId : $petApiSubCatId");
+
+        // Get Pet category
+        for(int i=0; i < petCategoryList.length; i++) {
+          if(petCategoryList[i].categoryId == getProfile.mainCategory) {
+            petCategoryDropDownValue = petCategoryList[i];
+          }
+        }
+
+
+
+        // Get DOB of Pet
+        if(getProfile.dob != "") {
+          String birthdate1 = getProfile.dob!;
+          List<String> bDate = birthdate1.split('-');
+          day = bDate[0];
+          month = bDate[1];
+          year = bDate[2];
+        }
+
+
 
         // petApiProfile
         if(getPetProfileModel.data![0].image != "") {
@@ -342,7 +372,6 @@ class UploadPetController extends GetxController {
         log('weightController: ${weightController.text}');
         log('petCategoryDropDownValue: ${petCategoryDropDownValue.categoryName}');
         log('petSubCategoryDropDownValue: ${petSubCategoryDropDownValue.categoryName}');
-        log('birthDate: $birthDate');
         log('petImage: $petImage');
       } else {
         log("Pet Profile Api Else");
@@ -351,8 +380,13 @@ class UploadPetController extends GetxController {
     } catch(e) {
       log("Pet Profile Api Error ::: $e");
     } finally {
-      isLoading(false);
-      // await getPetCategoryFunction();
+      if(petOption == PetOption.updateOption) {
+        await getSubCategoryUsingCategoryId(petSubCatId: petApiCatId);
+      } else {
+        isLoading(false);
+      }
+
+
     }
   }
 
@@ -703,6 +737,18 @@ class UploadPetController extends GetxController {
   void onInit() async{
     super.onInit();
     getPetCategoryFunction();
+    petSubCategoryDropDownValue = petSubCategoryList[0];
+
+    DateTime date = DateTime.now();
+    day = "${date.day}";
+    month = "${date.month}";
+    year = "${date.year}";
+
+    // if(petOption == PetOption.addOption) {
+    //   getPetCategoryFunction();
+    // } else if(petOption == PetOption.updateOption) {
+    //   getProfileFunction();
+    // }
 
   }
 }

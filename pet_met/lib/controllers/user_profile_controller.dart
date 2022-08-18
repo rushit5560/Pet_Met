@@ -555,7 +555,7 @@ class UserProfileController extends GetxController {
   }
 
   @override
-  void onInit() async{
+  void onInit() async {
     super.onInit();
     //getAllRoleProfileFunction();
     if(followCategoryId == "1"){

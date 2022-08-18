@@ -358,7 +358,9 @@ class DogOwnerListModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return controller.followCategoryId == "3" || controller.followCategoryId == "4"
+        ? Container()
+    : Column(
       children: [
         Padding(
           padding: const EdgeInsets.only(
@@ -527,7 +529,7 @@ class DogOwnerListModule extends StatelessWidget {
                             },
                           ),
                         )
-                      : controller.followCategoryId == "3"
+                      /*: controller.followCategoryId == "3"
                           ? Container(
                               height: 8.h,
                               child: ListView.separated(
@@ -635,7 +637,7 @@ class DogOwnerListModule extends StatelessWidget {
                                       );
                                     },
                                   ),
-                                )
+                                )*/
                               : Container(),
             )
           ],
@@ -655,7 +657,7 @@ class AboutModule extends StatelessWidget {
     return Container(
       //height: controller.size.height * 0.25,
       width: double.infinity,
-      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       decoration: BoxDecoration(
         color: themeProvider.darkTheme
             ? AppColors.darkThemeBoxColor

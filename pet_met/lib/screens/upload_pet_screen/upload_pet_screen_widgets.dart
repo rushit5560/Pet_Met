@@ -160,7 +160,11 @@ class _UploadImageModuleState extends State<UploadImageModule> {
                       ? controller.petImage! : controller.petImage!,
                     width: double.infinity,
                     height: controller.size.height * 0.2,
-                    fit: BoxFit.cover),
+                    fit: BoxFit.cover,
+                  errorBuilder: (context, er, st){
+                    return Image.asset(AppImages.petMetLogoImg);
+                  },
+                ),
               ),
 
               //),
@@ -500,7 +504,7 @@ class TypesOfPetDropDownModule extends StatelessWidget {
                         return DropdownMenuItem<PetCategory>(
                           value: value,
                           child: Text(
-                            value.categoryName!,
+                            "${value.categoryName}",
                             style: TextStyle(
                               color: themeProvider.darkTheme
                                   ? AppColors.whiteColor
@@ -515,8 +519,8 @@ class TypesOfPetDropDownModule extends StatelessWidget {
                       dropdownColor: themeProvider.darkTheme
                           ? AppColors.darkThemeBoxColor
                           : AppColors.whiteColor,
-                      underline: SizedBox(),
-                      borderRadius: BorderRadius.all(Radius.circular(15)),
+                      underline: const SizedBox(),
+                      borderRadius: const BorderRadius.all(Radius.circular(15)),
                       style: TextStyle(
                         color: themeProvider.darkTheme
                             ? AppColors.whiteColor
@@ -524,14 +528,14 @@ class TypesOfPetDropDownModule extends StatelessWidget {
                         fontSize: 13.sp,
                       ),
                       onChanged: (value) async {
-                        // controller.petCategoryDropDownValue = value!;
-                        // controller.loadUI();
-
                         controller.isLoading(true);
                         controller.petCategoryDropDownValue = value!;
-                         controller.petSubCategoryList.clear();
+                        controller.petSubCategoryList.clear();
                         controller.petSubCategoryList.add(PetSubCategory(categoryName: 'Select Sub Category'));
-                        await controller.getSubCategoryUsingCategoryId(categoryId: "${controller.petCategoryDropDownValue.categoryId}");
+                        await controller.getSubCategoryUsingCategoryId(
+                            petSubCatId: "${controller.petCategoryDropDownValue.categoryId}",
+                                usingCatDDId: true,
+                        );
                          log("petCategoryDropDownValue : ${controller.petCategoryDropDownValue}");
                         controller.isLoading(false);
                       },
@@ -986,10 +990,7 @@ class _BirthDateDropDownState extends State<BirthDateDropDown> {
             ],
           ),
           child: DropdownDatePicker(
-            boxDecoration: BoxDecoration(
-              // border: Border.,
-              borderRadius: BorderRadius.circular(5),
-            ), // optional
+            boxDecoration: BoxDecoration(borderRadius: BorderRadius.circular(5)), // optional
             dayFlex: 2,
             monthFlex: 3,
             yearFlex: 2,
@@ -998,19 +999,17 @@ class _BirthDateDropDownState extends State<BirthDateDropDown> {
               fontSize: 12.sp,
               fontWeight: FontWeight.w400,
             ),
-            icon: Icon(
+            icon: const Icon(
               Icons.keyboard_arrow_down_rounded,
               color: AppColors.greyTextColor,
             ),
             isDropdownHideUnderline: true, // optional
             isFormValidator: true, // optional
-            // startYear: 1900, // optional
-            // endYear: 2020, // optional
-            // width: 10,
 
-            // selectedDay: DateTime.now(), // optional
-            // selectedMonth: 10, // optional
-            // selectedYear: 1993, // optional
+            selectedDay: int.parse(controller.day),
+            selectedMonth: int.parse(controller.month),
+            selectedYear: int.parse(controller.year),
+
             onChangedDay: (value){
               controller.day = value!;
               log('onChangedDay: ${controller.day}');
@@ -1023,9 +1022,7 @@ class _BirthDateDropDownState extends State<BirthDateDropDown> {
               controller.year = value!;
               log('onChangedYear: ${controller.year}');
             },
-            // showDay: false,// optional
-            // dayFlex: 2,// optional
-            // locale: "zh_CN",// optional
+
           ),
         ),
       ],
@@ -1258,27 +1255,23 @@ class PetSubmitButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        if(controller.updatePetFormKey.currentState!.validate()){
-          if(controller.petCategoryDropDownValue.categoryId == "0"){
+        if (controller.updatePetFormKey.currentState!.validate()) {
+          if (controller.petCategoryDropDownValue.categoryName ==
+              "Select Category") {
             Fluttertoast.showToast(msg: 'Please select category');
-          } else if(controller.petSubCategoryDropDownValue.categoryId == "0"){
+          } else if (controller.petSubCategoryDropDownValue.categoryName ==
+              "Select Sub Category") {
             Fluttertoast.showToast(msg: 'Please select sub category');
-          }
-          else if(controller.meetingAvailabilityValue.isEmpty){
-            Fluttertoast.showToast(msg: 'Please select meeting availability');
-          }
-          else if(controller.genderValue.isEmpty){
-            Fluttertoast.showToast(msg: 'Please select gender');
-          }else if(controller.petOption == PetOption.addOption){
-             if(controller.imageFile == null){
+          } else if (controller.petOption == PetOption.addOption) {
+            if (controller.imageFile == null) {
               Fluttertoast.showToast(msg: 'Please select image');
             }
-          }
-          else if(controller.petOption == PetOption.addOption) {
-            // Here Add Pet Api Call
-            await controller.addPetProfileFunction();
-          } else /*if(controller.petOption == PetOption.updateOption)*/ {
-            // Update Pet API Call
+            if (controller.imageFile != null) {
+              // Add Pet Api Call
+              await controller.addPetProfileFunction();
+            }
+          } else if (controller.petOption == PetOption.updateOption) {
+            // Update Pet Api Call
             await controller.updatePetProfileFunction();
           }
         }

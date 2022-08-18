@@ -285,7 +285,7 @@ class UserPetListModule extends StatelessWidget {
 
       Row(
         children: [
-          Stack(
+          controller.petList.length == 5 ? Container() : Stack(
               children: [
             Container(
               height: 8.h,
@@ -336,7 +336,7 @@ class UserPetListModule extends StatelessWidget {
               ),
             )
           ]),
-          SizedBox(width: 5),
+          controller.petList.length == 5 ? Container() : const SizedBox(width: 5),
           Expanded(
             child:  Container(
               height: 8.h,
