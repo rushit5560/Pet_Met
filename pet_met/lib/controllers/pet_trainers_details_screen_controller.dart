@@ -16,7 +16,8 @@ class PetTrainersDetailsScreenController extends GetxController {
   final size = Get.size;
 
   ApiHeader apiHeader = ApiHeader();
-  TrainerData trainerDetails = TrainerData();
+  //TrainerData trainerDetails = TrainerData();
+  List<TrainerData> trainerDetails = [];
 
   Future<void> getTrainerDetailsFunction() async {
     isLoading(true);
@@ -32,7 +33,7 @@ class PetTrainersDetailsScreenController extends GetxController {
       isSuccessStatus = trainerDetailsModel.success.obs;
 
       if (isSuccessStatus.value) {
-        trainerDetails = trainerDetailsModel.data[0];
+        trainerDetails = trainerDetailsModel.data;
       } else {
         log("Trainer Details Api Else");
       }

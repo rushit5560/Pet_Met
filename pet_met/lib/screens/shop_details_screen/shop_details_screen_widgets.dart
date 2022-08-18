@@ -36,7 +36,7 @@ class BannerImageModule extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15),
         child: Image.network(
-          ApiUrl.apiImagePath + screenController.shopData.showimg!,
+          ApiUrl.apiImagePath + "${screenController.shopData[0].showimg}",
           fit: BoxFit.cover,
           errorBuilder: (context, er, ob) {
             return Image.asset(AppImages.petMetLogoImg);
@@ -61,8 +61,120 @@ class OffersModule extends StatelessWidget {
           "Offers:",
           style: TextStyle(color: AppColors.accentTextColor),
         ),
-        SizedBox(height: screenController.size.height * 0.0005.h),
-        SizedBox(
+        SizedBox(height: 10),
+        Row(
+          children: [
+            Expanded(
+                child: SizedBox(
+                  height: screenController.size.width * 0.18,
+                  //width: screenController.size.width * 0.18,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: Colors.grey)
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.network(
+                          ApiUrl.apiImagePath + "asset/uploads/product/"
+                              "${screenController.shopData[0].image1}",
+                          height: 40, width: 40,
+                           errorBuilder: (context, er, da) {
+                        return Image.asset(AppImages.petMetLogoImg);
+                      }),
+                    ),
+                  ),
+                )),
+            SizedBox(width: 10),
+            Expanded(
+                child: SizedBox(
+                  height: screenController.size.width * 0.18,
+                  //width: screenController.size.width * 0.18,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: Colors.grey)
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.network(
+                          ApiUrl.apiImagePath + "asset/uploads/product/"
+                              "${screenController.shopData[0].image2}",
+                          height: 40, width: 40,
+                           errorBuilder: (context, er, da) {
+                        return Image.asset(AppImages.petMetLogoImg);
+                      }),
+                    ),
+                  ),
+                )),
+            SizedBox(width: 10),
+            Expanded(
+                child: SizedBox(
+                  height: screenController.size.width * 0.18,
+                  //width: screenController.size.width * 0.18,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: Colors.grey)
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.network(
+                          ApiUrl.apiImagePath + "asset/uploads/product/"
+                              "${screenController.shopData[0].image3}",
+                          fit: BoxFit.cover,
+                          height: 40, width: 40,
+                          errorBuilder: (context, er, da) {
+                        return Image.asset(AppImages.petMetLogoImg);
+                      }),
+                    ),
+                  ),
+                )),
+            SizedBox(width: 10),
+            Expanded(
+                child: SizedBox(
+                  height: screenController.size.width * 0.18,
+                  //width: screenController.size.width * 0.18,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: Colors.grey)
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.network(
+                          ApiUrl.apiImagePath + "asset/uploads/product/"
+                              "${screenController.shopData[0].image4}",
+                          fit: BoxFit.cover, errorBuilder: (context, er, da) {
+                        return Image.asset(AppImages.petMetLogoImg);
+                      }),
+                    ),
+                  ),
+                )),
+            SizedBox(width: 10),
+            Expanded(
+                child: SizedBox(
+                  height: screenController.size.width * 0.18,
+                  //width: screenController.size.width * 0.18,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: Colors.grey)
+                    ),
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.network(
+                            ApiUrl.apiImagePath + "asset/uploads/product/"
+                                "${screenController.shopData[0].image5}",
+                            fit: BoxFit.cover, errorBuilder: (context, er, da) {
+                          return Image.asset(AppImages.petMetLogoImg);
+                        }),
+                    ),
+                  ),
+                ))
+          ],
+        )
+        /*SizedBox(
           height: screenController.size.width * 0.18,
           child: screenController.shopData.offersimages!.isEmpty ?
               const Center(child: Text("Empty Offers")):
@@ -75,32 +187,32 @@ class OffersModule extends StatelessWidget {
               return _offerListTile(i, context);
             },
           ),
-        ),
+        ),*/
       ],
     ).commonSymmetricPadding(horizontal: 15);
   }
 
   Widget _offerListTile(int i, BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         imageAlertDialog(context, i);
       },
       child: SizedBox(
         height: screenController.size.width * 0.18,
         width: screenController.size.width * 0.18,
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: Image.network(
+            borderRadius: BorderRadius.circular(8),
+            child: /*Image.network(
               ApiUrl.apiImagePath + screenController.shopData.offersimages![i],
               fit: BoxFit.cover, errorBuilder: (context, er, da) {
             return Image.asset(AppImages.petMetLogoImg);
-          }),
-        ),
+          }),*/
+            Image.asset(AppImages.petMetLogoImg)),
       ).commonSymmetricPadding(horizontal: 5),
     );
   }
 
-  imageAlertDialog(BuildContext context, int i){
+  imageAlertDialog(BuildContext context, int i) {
     Widget cancelButton = TextButton(
       child: Text("No, cancel"),
       onPressed: () {
@@ -116,11 +228,12 @@ class OffersModule extends StatelessWidget {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Image.network(
+        title: /*Image.network(
           ApiUrl.apiImagePath + screenController.shopData.offersimages![i],
           fit: BoxFit.cover, errorBuilder: (context, er, da) {
         return Image.asset(AppImages.petMetLogoImg);
-      }),
+      }),*/
+        Image.asset(AppImages.petMetLogoImg)
       // content: Text(
       //     "If you change timing slot duration your all schedule slot should been deleted you won't be able to recover this again!"),
       // actions: [
@@ -149,7 +262,7 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
       children: [
         Expanded(
           child: Text(
-            screenController.shopData.shopename!,
+            "${screenController.shopData[0].shopename}",
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
@@ -159,7 +272,7 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
           ),
         ),
         GestureDetector(
-          onTap: (){
+          onTap: () {
             _makingInstagramApp();
           },
           child: Container(
@@ -175,9 +288,9 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
           ).commonSymmetricPadding(horizontal: 2),
         ),
         GestureDetector(
-          onTap: (){
-            var fbUrl =
-                "fb://facewebmodal/f?href="  "https://facebook.com/AliForDigitalIsrael/";
+          onTap: () {
+            var fbUrl = "fb://facewebmodal/f?href="
+                "https://facebook.com/AliForDigitalIsrael/";
             launchFacebook(fbUrl, "https://facebook.com/AliForDigitalIsrael/");
           },
           child: Container(
@@ -193,7 +306,7 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
           ).commonSymmetricPadding(horizontal: 2),
         ),
         GestureDetector(
-          onTap: (){
+          onTap: () {
             launchWhatsApp(context);
           },
           child: Container(
@@ -209,7 +322,7 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
           ).commonSymmetricPadding(horizontal: 2),
         ),
         GestureDetector(
-          onTap: (){
+          onTap: () {
             _makingPhoneCall();
           },
           child: Container(
@@ -229,7 +342,7 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
   }
 
   _makingPhoneCall() async {
-    var url = Uri.parse("tel:${screenController.shopData.phonenumber}");
+    var url = Uri.parse("tel:${screenController.shopData[0].phonenumber}");
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {
@@ -237,13 +350,12 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
     }
   }
 
-  void launchWhatsApp(BuildContext context)
-  {
+  void launchWhatsApp(BuildContext context) {
     FocusManager.instance.primaryFocus?.unfocus();
 
     var whatsappUrl =
-        "whatsapp://send?phone= ${screenController.shopData.phonenumber}"
-            "&text=${Uri.encodeComponent("Hello")}";
+        "whatsapp://send?phone= ${screenController.shopData[0].phonenumber}"
+        "&text=${Uri.encodeComponent("Hello")}";
     try {
       launch(whatsappUrl);
     } catch (e) {
@@ -256,8 +368,7 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
     }
   }
 
-  Future<void> launchFacebook(String fbUrl,String fbWebUrl)
-  async {
+  Future<void> launchFacebook(String fbUrl, String fbWebUrl) async {
     try {
       bool launched = await launch(fbUrl, forceSafariVC: false);
       log("Launched Native app $launched");
@@ -311,7 +422,7 @@ class ShopPlaceTimePaymentModule extends StatelessWidget {
             SizedBox(width: screenController.size.width * 0.008.w),
             Expanded(
               child: Text(
-                screenController.shopData.address!,
+                "${screenController.shopData[0].address}",
                 style: TextStyle(
                   color: themeProvider.darkTheme
                       ? AppColors.whiteColor
@@ -335,15 +446,19 @@ class ShopPlaceTimePaymentModule extends StatelessWidget {
                   ? AppColors.whiteColor
                   : AppColors.blackTextColor,
             ),*/
-            Icon(Icons.watch_later_outlined, color: themeProvider.darkTheme
-                ? AppColors.whiteColor
-                : AppColors.greyTextColor, size: 20,),
+            Icon(
+              Icons.watch_later_outlined,
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.greyTextColor,
+              size: 20,
+            ),
             SizedBox(width: screenController.size.width * 0.008.w),
             Expanded(
               child: Row(
                 children: [
                   Text(
-                    "Open:" + screenController.shopData.shopopen!,
+                    "Open:" + "${screenController.shopData[0].shopopen}",
                     style: TextStyle(
                       color: themeProvider.darkTheme
                           ? AppColors.whiteColor
@@ -352,7 +467,7 @@ class ShopPlaceTimePaymentModule extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   Text(
-                    "Close:" + screenController.shopData.shopclose!,
+                    "Close: ${screenController.shopData[0].shopclose}",
                     style: TextStyle(
                       color: themeProvider.darkTheme
                           ? AppColors.whiteColor
@@ -378,9 +493,13 @@ class ShopPlaceTimePaymentModule extends StatelessWidget {
                   ? AppColors.whiteColor
                   : AppColors.blackTextColor,
             ),*/
-            Icon(Icons.payment, color: themeProvider.darkTheme
-                ? AppColors.whiteColor
-                : AppColors.greyTextColor, size: 20,),
+            Icon(
+              Icons.payment,
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.greyTextColor,
+              size: 20,
+            ),
             SizedBox(width: screenController.size.width * 0.008.w),
             Expanded(
               child: Text(
@@ -418,17 +537,18 @@ class MeetingAvailabilityModule extends StatelessWidget {
         SizedBox(height: screenController.size.height * 0.001.h),
         SizedBox(
           height: screenController.size.width * 0.15,
-          child: screenController.shopData.meetingimages!.isEmpty ?
-              const Text("Empty Meeting"):
-          ListView.builder(
-            itemCount: screenController.shopData.meetingimages!.length,
+          child: screenController.shopData[0].meetingimages!.isEmpty
+              ? const Text("Empty Meeting")
+              : ListView.builder(
+            itemCount: screenController.shopData[0].meetingimages!.length,
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, i) {
-              log('Meeting image: ${screenController.shopData.meetingimages!.length}');
+              log('Meeting image: ${screenController.shopData[0].meetingimages!
+                  .length}');
               String imgUrl = ApiUrl.apiImagePath +
-                  screenController.shopData.meetingimages![i];
+                  screenController.shopData[0].meetingimages![i];
               return _meetingAvailabilityListTile(imgUrl);
             },
           ),
@@ -439,7 +559,7 @@ class MeetingAvailabilityModule extends StatelessWidget {
 
   Widget _meetingAvailabilityListTile(String imgUrl) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         //Get.to(()=> PetMeetingDetailsScreen(), arguments: petList.id);
       },
       child: SizedBox(
@@ -462,8 +582,8 @@ class MeetingAvailabilityModule extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             child: Image.network(imgUrl, fit: BoxFit.fill,
                 errorBuilder: (context, er, data) {
-              return Image.asset(AppImages.petMetLogoImg);
-            }),
+                  return Image.asset(AppImages.petMetLogoImg);
+                }),
           ),
         ),
       ).commonSymmetricPadding(horizontal: 5),
@@ -489,14 +609,14 @@ class OverViewModule extends StatelessWidget {
         ),
         SizedBox(height: screenController.size.height * 0.002.h),
         Html(
-            data: screenController.shopData.fullText!,
+          data: "${screenController.shopData[0].fullText}",
           style: {
             "body": Style(
               fontSize: FontSize(18.0),
               fontWeight: FontWeight.bold,
               color: themeProvider.darkTheme
-                      ? AppColors.whiteColor
-                      : AppColors.blackTextColor,
+                  ? AppColors.whiteColor
+                  : AppColors.blackTextColor,
             ),
           },
         ),

@@ -45,6 +45,11 @@ class TrainerData {
      this.facebook,
      this.image,
      this.trainerimages,
+    this.image1,
+    this.image2,
+    this.image3,
+    this.image4,
+    this.image5,
      this.meetingimages,
      this.isActive,
      this.userid,
@@ -65,6 +70,11 @@ class TrainerData {
   String ? facebook;
   String ? image;
   List<String> ? trainerimages;
+  String ? image1;
+  String ? image2;
+  String ? image3;
+  String ? image4;
+  String ? image5;
   List<String> ? meetingimages;
   String ? isActive;
   String ? userid;
@@ -85,6 +95,11 @@ class TrainerData {
     facebook: json["facebook"] ?? "",
     image: json["image"] ?? "",
     trainerimages: List<String>.from(json["trainerimages"].map((x) => x) ?? {}),
+    image1: json["image1"],
+    image2: json["image2"],
+    image3: json["image3"],
+    image4: json["image4"],
+    image5: json["image5"],
     meetingimages: List<String>.from(json["meetingimages"].map((x) => x) ?? {}),
     isActive: json["is_active"] ?? "",
     userid: json["userid"] ?? "",
@@ -106,6 +121,11 @@ class TrainerData {
     "facebook": facebook,
     "image": image,
     "trainerimages": List<dynamic>.from(trainerimages!.map((x) => x)),
+    "image1": image1,
+    "image2": image2,
+    "image3": image3,
+    "image4": image4,
+    "image5": image5,
     "meetingimages": List<dynamic>.from(meetingimages!.map((x) => x)),
     "is_active": isActive,
     "userid": userid,

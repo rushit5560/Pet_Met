@@ -178,7 +178,19 @@ class PetTopListModule extends StatelessWidget {
           ).commonAllSidePadding(padding: 10);
         }
         else {
-          return const CustomAnimationLoader();
+          return homeController.hasMore
+              ? const CustomAnimationLoader()
+              : Center(
+              child: Text(
+                "No more pets!",
+                style: TextStyle(
+                  color: themeProvider.darkTheme
+                      ? AppColors.whiteColor
+                      : AppColors.blackTextColor.withOpacity(0.6),
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ));
         }
       },
     );
@@ -663,7 +675,7 @@ class PetListModule extends StatelessWidget {
             height: controller.size.width * 0.16,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              itemCount: controller.imageList.length,
+              itemCount: controller.userStoryList.length,
               physics: const BouncingScrollPhysics(),
               separatorBuilder: (context, index) {
                 return const SizedBox(width: 10);
@@ -841,13 +853,14 @@ class AddPetStoryWidget extends StatelessWidget {
                 Radius.circular(8),
               ),
             ),
-            child: Image.network(
-                ApiUrl.apiImagePath + "asset/uploads/userstory/" + controller.imageList[index].image,
+            child: /*Image.network(
+                ApiUrl.apiImagePath + "asset/uploads/userstory/" + controller.userStoryList[index].image,
               errorBuilder: (context, st, ob){
                 return Image.asset(AppImages.petMetLogoImg);
               },
               fit: BoxFit.cover,
-            )
+            )*/
+            Image.asset(AppImages.petMetLogoImg)
           ),
     );
   }

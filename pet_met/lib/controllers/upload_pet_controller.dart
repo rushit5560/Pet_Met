@@ -505,7 +505,7 @@ class UploadPetController extends GetxController {
         var multiPart = http.MultipartFile('image', stream, length);
         request.files.add(multiPart);
       } else if (imageFile == null) {
-        request.fields['oldimage'] = petApiProfile;
+        request.fields['showimg'] = petApiProfile;
       }
 
       request.fields['pet_name'] = petNameController.text.trim();
@@ -518,6 +518,8 @@ class UploadPetController extends GetxController {
       request.fields['userid'] = "${UserDetails.userId}";
       request.fields['petid'] = "$petId";
       request.fields['categoryID'] = "${UserDetails.categoryId}";
+
+      log('request.fields: ${request.fields}');
 
       var response = await request.send();
       log('response: ${response.request}');

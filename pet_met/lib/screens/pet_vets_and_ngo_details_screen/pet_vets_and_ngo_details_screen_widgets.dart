@@ -30,7 +30,7 @@ class BannerImageModule extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
       ),
       child: Image.network(
-        ApiUrl.apiImagePath + "asset/uploads/product/" +screenController.vetsNgoDetailsData.image!,
+        ApiUrl.apiImagePath + "asset/uploads/product/" +screenController.vetsNgoDetailsData[0].image!,
         errorBuilder: (context, st, ob){
           return Image.asset(AppImages.petMetLogoImg);
         },
@@ -70,13 +70,15 @@ class NgoAchivementPictureListModule extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(
+          /*SizedBox(
             height: 10.h,
             // child: screenController.vetsNgoDetailsData.vetNgoimages!.isEmpty ?
             // const Center(child: Text("Empty Trainer Picture")):
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              itemCount: /*screenController.vetsNgoDetailsData.vetNgoimages!.length*/5,
+              itemCount: */
+          /*screenController.vetsNgoDetailsData.vetNgoimages!.length*/
+          /*5,
               separatorBuilder: (context, index) {
                 return const SizedBox(width: 8);
               },
@@ -100,14 +102,15 @@ class NgoAchivementPictureListModule extends StatelessWidget {
                         ),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(15),
-                          /*child: Image.network(
+                          */
+          /*child: Image.network(
                             imgUrl,
                             fit: BoxFit.cover,
                             // color: AppColors.greyTextColor,
                             errorBuilder: (context, er, ob) {
                               return Image.asset(AppImages.petMetLogoImg);
                             },
-                          ),*/
+                          ),*//*
                           child: Image.asset(AppImages.petMetLogoImg),
                         ),
                       ),
@@ -116,7 +119,120 @@ class NgoAchivementPictureListModule extends StatelessWidget {
                 );
               },
             ),
-          ),
+          ),*/
+          SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(
+                  child: SizedBox(
+                    height: screenController.size.width * 0.18,
+                    //width: screenController.size.width * 0.18,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: Colors.grey)
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.network(
+                            ApiUrl.apiImagePath + "asset/uploads/product/"
+                                "${screenController.vetsNgoDetailsData[0].image1}",
+                            height: 40, width: 40,
+                            errorBuilder: (context, er, da) {
+                              return Image.asset(AppImages.petMetLogoImg);
+                            }),
+                      ),
+                    ),
+                  )),
+              SizedBox(width: 10),
+              Expanded(
+                  child: SizedBox(
+                    height: screenController.size.width * 0.18,
+                    //width: screenController.size.width * 0.18,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: Colors.grey)
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.network(
+                            ApiUrl.apiImagePath + "asset/uploads/product/"
+                                "${screenController.vetsNgoDetailsData[0].image2}",
+                            height: 40, width: 40,
+                            errorBuilder: (context, er, da) {
+                              return Image.asset(AppImages.petMetLogoImg);
+                            }),
+                      ),
+                    ),
+                  )),
+              SizedBox(width: 10),
+              Expanded(
+                  child: SizedBox(
+                    height: screenController.size.width * 0.18,
+                    //width: screenController.size.width * 0.18,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: Colors.grey)
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.network(
+                            ApiUrl.apiImagePath + "asset/uploads/product/"
+                                "${screenController.vetsNgoDetailsData[0].image3}",
+                            fit: BoxFit.cover,
+                            height: 40, width: 40,
+                            errorBuilder: (context, er, da) {
+                              return Image.asset(AppImages.petMetLogoImg);
+                            }),
+                      ),
+                    ),
+                  )),
+              SizedBox(width: 10),
+              Expanded(
+                  child: SizedBox(
+                    height: screenController.size.width * 0.18,
+                    //width: screenController.size.width * 0.18,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: Colors.grey)
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.network(
+                            ApiUrl.apiImagePath + "asset/uploads/product/"
+                                "${screenController.vetsNgoDetailsData[0].image4}",
+                            fit: BoxFit.cover, errorBuilder: (context, er, da) {
+                          return Image.asset(AppImages.petMetLogoImg);
+                        }),
+                      ),
+                    ),
+                  )),
+              SizedBox(width: 10),
+              Expanded(
+                  child: SizedBox(
+                    height: screenController.size.width * 0.18,
+                    //width: screenController.size.width * 0.18,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: Colors.grey)
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.network(
+                            ApiUrl.apiImagePath + "asset/uploads/product/"
+                                "${screenController.vetsNgoDetailsData[0].image5}",
+                            fit: BoxFit.cover, errorBuilder: (context, er, da) {
+                          return Image.asset(AppImages.petMetLogoImg);
+                        }),
+                      ),
+                    ),
+                  ))
+            ],
+          )
         ],
       ),
     );
@@ -134,7 +250,7 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
       children: [
         Expanded(
           child: Text(
-            screenController.vetsNgoDetailsData.name!,
+            screenController.vetsNgoDetailsData[0].name!,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
@@ -214,7 +330,7 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
   }
 
   _makingPhoneCall() async {
-    var url = Uri.parse("tel: ${screenController.vetsNgoDetailsData.phone}");
+    var url = Uri.parse("tel: ${screenController.vetsNgoDetailsData[0].phone}");
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {
@@ -226,7 +342,7 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
     FocusManager.instance.primaryFocus?.unfocus();
 
     var whatsappUrl =
-        "whatsapp://send?phone= ${screenController.vetsNgoDetailsData.phone}"
+        "whatsapp://send?phone= ${screenController.vetsNgoDetailsData[0].phone}"
         "&text=${Uri.encodeComponent("Hello")}";
     try {
       launch(whatsappUrl);
@@ -292,7 +408,7 @@ class VetAndNgoPlaceTimePaymentModule extends StatelessWidget {
             SizedBox(width: screenController.size.width * 0.008.w),
             Expanded(
               child: Text(
-                screenController.vetsNgoDetailsData.address!,
+                screenController.vetsNgoDetailsData[0].address!,
                 style: TextStyle(
                   color: themeProvider.darkTheme
                       ? AppColors.whiteColor
@@ -319,8 +435,8 @@ class VetAndNgoPlaceTimePaymentModule extends StatelessWidget {
             SizedBox(width: screenController.size.width * 0.008.w),
             Expanded(
               child: Text(
-                "Open: " + screenController.vetsNgoDetailsData.open!  + "  "
-    "Close:" + screenController.vetsNgoDetailsData.close!,
+                "Open: " + screenController.vetsNgoDetailsData[0].open!  + "  "
+    "Close:" + screenController.vetsNgoDetailsData[0].close!,
                 style: TextStyle(
                   color: themeProvider.darkTheme
                       ? AppColors.whiteColor
@@ -412,7 +528,9 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
                     Text(
                       "Price",
                       style: TextStyle(
-                        color: AppColors.blackTextColor.withOpacity(0.7),
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.blackTextColor,
                         fontSize: 11.sp,
                         fontWeight: FontWeight.bold,
                       ),
@@ -609,13 +727,20 @@ class OverViewModule extends StatelessWidget {
         ),
         SizedBox(height: 10),
         Html(
-            data: screenController.vetsNgoDetailsData.fullText!,
+            data: screenController.vetsNgoDetailsData[0].fullText!,
           style: {
+            "body": Style(
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.blackTextColor,
+              //fontSize: FontSize(15.0),
+              // fontWeight: FontWeight.w500,
+            ),
             "p": Style(
               color: themeProvider.darkTheme
                   ? AppColors.whiteColor
                   : AppColors.blackTextColor,
-               //fontSize: FontSize(15.0),
+              //fontSize: FontSize(15.0),
               // fontWeight: FontWeight.w500,
             ),
           },

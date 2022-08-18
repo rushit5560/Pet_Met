@@ -19,7 +19,8 @@ class PetVetsAndNgoDetailsScreenController extends GetxController {
   ApiHeader apiHeader = ApiHeader();
   TextEditingController priceController = TextEditingController();
 
-  VetNgoData vetsNgoDetailsData = VetNgoData();
+ // VetNgoData vetsNgoDetailsData = VetNgoData();
+  List<VetNgoData> vetsNgoDetailsData = [];
   late Razorpay _razorpay;
   final formKey = GlobalKey<FormState>();
 
@@ -39,8 +40,8 @@ class PetVetsAndNgoDetailsScreenController extends GetxController {
       isSuccessStatus = vetsNgoDetailsModel.success.obs;
 
       if (isSuccessStatus.value) {
-        vetsNgoDetailsData = vetsNgoDetailsModel.data.first;
-        log("vets Details image list  : ${vetsNgoDetailsData.image}");
+        vetsNgoDetailsData = vetsNgoDetailsModel.data;
+       // log("vets Details image list  : ${vetsNgoDetailsData.image}");
       } else {
         log("Vet Details Api Else Else");
       }
@@ -55,8 +56,8 @@ class PetVetsAndNgoDetailsScreenController extends GetxController {
     var options = {
       'key': 'rzp_test_dxCkKqtRKnvZdA',
       'amount': priceController.text.trim(),
-      'name': vetsNgoDetailsData.name,
-      'description': vetsNgoDetailsData.fullText,
+      'name': vetsNgoDetailsData[0].name,
+      'description': vetsNgoDetailsData[0].fullText,
       'retry': {'enabled': true, 'max_count': 1},
       'send_sms_hash': true,
       'prefill': {'contact': '8888888888', 'email': 'test@razorpay.com'},

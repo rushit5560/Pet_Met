@@ -34,7 +34,7 @@ class PetTrainerBannerImageModule extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15),
         child: Image.network(
-          ApiUrl.apiImagePath + screenController.trainerDetails.image!,
+          ApiUrl.apiImagePath + screenController.trainerDetails[0].image!,
           fit: BoxFit.cover,
           errorBuilder: (context, er, ob) {
             return Image.asset(AppImages.petMetLogoImg);
@@ -74,7 +74,7 @@ class PetTrainerPicturesModule extends StatelessWidget {
             ],
           ),
         ),
-        Padding(
+        /*Padding(
           padding: const EdgeInsets.only(
               // top: 15,
               // bottom: 15,
@@ -119,7 +119,8 @@ class PetTrainerPicturesModule extends StatelessWidget {
                             },
                           ),
                         ),
-                        /*decoration: BoxDecoration(
+                        */
+        /*decoration: BoxDecoration(
                           image: DecorationImage(
                               image: NetworkImage(imgUrl),
                               onError: (context, er){
@@ -130,7 +131,7 @@ class PetTrainerPicturesModule extends StatelessWidget {
                           borderRadius: const BorderRadius.all(
                             Radius.circular(8),
                           ),
-                        ),*/
+                        ),*//*
                       ),
                     ),
                     // i == 0
@@ -160,7 +161,123 @@ class PetTrainerPicturesModule extends StatelessWidget {
               },
             ),
           ),
-        ),
+        ),*/
+        //SizedBox(height: 5),
+        Padding(
+          padding: const EdgeInsets.only(left: 15, right: 15),
+          child: Row(
+            children: [
+              Expanded(
+                  child: SizedBox(
+                    height: screenController.size.width * 0.18,
+                    //width: screenController.size.width * 0.18,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: Colors.grey)
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.network(
+                            ApiUrl.apiImagePath + "asset/uploads/product/"
+                                "${screenController.trainerDetails[0].image1}",
+                            height: 40, width: 40,
+                            errorBuilder: (context, er, da) {
+                              return Image.asset(AppImages.petMetLogoImg);
+                            }),
+                      ),
+                    ),
+                  )),
+              SizedBox(width: 10),
+              Expanded(
+                  child: SizedBox(
+                    height: screenController.size.width * 0.18,
+                    //width: screenController.size.width * 0.18,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: Colors.grey)
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.network(
+                            ApiUrl.apiImagePath + "asset/uploads/product/"
+                                "${screenController.trainerDetails[0].image2}",
+                            height: 40, width: 40,
+                            errorBuilder: (context, er, da) {
+                              return Image.asset(AppImages.petMetLogoImg);
+                            }),
+                      ),
+                    ),
+                  )),
+              SizedBox(width: 10),
+              Expanded(
+                  child: SizedBox(
+                    height: screenController.size.width * 0.18,
+                    //width: screenController.size.width * 0.18,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: Colors.grey)
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.network(
+                            ApiUrl.apiImagePath + "asset/uploads/product/"
+                                "${screenController.trainerDetails[0].image3}",
+                            fit: BoxFit.cover,
+                            height: 40, width: 40,
+                            errorBuilder: (context, er, da) {
+                              return Image.asset(AppImages.petMetLogoImg);
+                            }),
+                      ),
+                    ),
+                  )),
+              SizedBox(width: 10),
+              Expanded(
+                  child: SizedBox(
+                    height: screenController.size.width * 0.18,
+                    //width: screenController.size.width * 0.18,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: Colors.grey)
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.network(
+                            ApiUrl.apiImagePath + "asset/uploads/product/"
+                                "${screenController.trainerDetails[0].image4}",
+                            fit: BoxFit.cover, errorBuilder: (context, er, da) {
+                          return Image.asset(AppImages.petMetLogoImg);
+                        }),
+                      ),
+                    ),
+                  )),
+              SizedBox(width: 10),
+              Expanded(
+                  child: SizedBox(
+                    height: screenController.size.width * 0.18,
+                    //width: screenController.size.width * 0.18,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: Colors.grey)
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.network(
+                            ApiUrl.apiImagePath + "asset/uploads/product/"
+                                "${screenController.trainerDetails[0].image5}",
+                            fit: BoxFit.cover, errorBuilder: (context, er, da) {
+                          return Image.asset(AppImages.petMetLogoImg);
+                        }),
+                      ),
+                    ),
+                  ))
+            ],
+          ),
+        )
       ],
     );
   }
@@ -183,7 +300,7 @@ class PetTrainerPicturesModule extends StatelessWidget {
     AlertDialog alert = AlertDialog(
       title: Image.network(
         ApiUrl.apiImagePath +
-            screenController.trainerDetails.meetingimages![i],
+            screenController.trainerDetails[0].meetingimages![i],
         fit: BoxFit.cover,
         // color: AppColors.greyTextColor,
         errorBuilder: (context, er, ob) {
@@ -218,7 +335,7 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
       children: [
         Expanded(
           child: Text(
-            screenController.trainerDetails.name!,
+            screenController.trainerDetails[0].name!,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
@@ -298,7 +415,7 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
   }
 
   _makingPhoneCall() async {
-    var url = Uri.parse("tel: ${screenController.trainerDetails.phone}");
+    var url = Uri.parse("tel: ${screenController.trainerDetails[0].phone}");
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {
@@ -310,7 +427,7 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
     FocusManager.instance.primaryFocus?.unfocus();
 
     var whatsappUrl =
-        "whatsapp://send?phone= ${screenController.trainerDetails.phone}"
+        "whatsapp://send?phone= ${screenController.trainerDetails[0].phone}"
         "&text=${Uri.encodeComponent("Hello")}";
     try {
       launch(whatsappUrl);
@@ -377,7 +494,7 @@ class PetTrainerPlaceTimePaymentModule extends StatelessWidget {
             SizedBox(width: screenController.size.width * 0.008.w),
             Expanded(
               child: Text(
-                screenController.trainerDetails.address!,
+                screenController.trainerDetails[0].address!,
                 style: TextStyle(
                   color: themeProvider.darkTheme
                       ? AppColors.whiteColor
@@ -406,7 +523,7 @@ class PetTrainerPlaceTimePaymentModule extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    "Open: " + screenController.trainerDetails.open!,
+                    "Open: " + screenController.trainerDetails[0].open!,
                     style: TextStyle(
                       color: themeProvider.darkTheme
                           ? AppColors.whiteColor
@@ -415,7 +532,7 @@ class PetTrainerPlaceTimePaymentModule extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   Text(
-                    "Close: " + screenController.trainerDetails.close!,
+                    "Close: " + screenController.trainerDetails[0].close!,
                     style: TextStyle(
                       color: themeProvider.darkTheme
                           ? AppColors.whiteColor
@@ -439,7 +556,7 @@ class CallUsTextModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text("Call Us Today at " + "${screenController.trainerDetails.phone}" + " To Learn More!",
+    return Text("Call Us Today at " + "${screenController.trainerDetails[0].phone}" + " To Learn More!",
       style: const TextStyle(color: AppColors.accentTextColor, fontWeight: FontWeight.bold,)).commonSymmetricPadding(horizontal: 15);
   }
 }
@@ -474,7 +591,7 @@ class PetTrainerOverViewModule extends StatelessWidget {
         //   },
         // ),
         Text(
-          screenController.trainerDetails.fullText!,
+          screenController.trainerDetails[0].fullText!,
           style: TextStyle(
             color: themeProvider.darkTheme
                 ? AppColors.whiteColor

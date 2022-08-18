@@ -100,8 +100,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         borderRadius: BorderRadius.circular(30),
                         child: Image.network(
                           controller.userprofile.value,
-                          width: 50,
-                          height: 50,
+                          width: 60,
+                          height: 60,
                           fit: BoxFit.cover,
                           errorBuilder: (context, st, ob){
                             return Image.asset(AppImages.petMetLogoImg, width: 40,

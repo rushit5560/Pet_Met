@@ -14,7 +14,8 @@ class ShopDetailsScreenController extends GetxController {
 
   ApiHeader apiHeader = ApiHeader();
 
-  ShopData shopData = ShopData();
+  //ShopData shopData = ShopData();
+  List<ShopData> shopData = [];
 
   /// Get Shop Details
   Future<void> getShopDetailsFunction() async {
@@ -32,7 +33,7 @@ class ShopDetailsScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         shopData = shopDetailsModel.data;
-        log("shopDetails : ${shopData.showimg}");
+       // log("shopDetails : ${shopData.showimg}");
       } else {
         log("Shop Details Api Else");
       }
