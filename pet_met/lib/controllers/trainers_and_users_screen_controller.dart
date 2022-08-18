@@ -33,7 +33,7 @@ class TrainersAndUsersScreenController extends GetxController {
   String ? trainerImage4;
   File? trainerPictureFile5;
   String ? trainerImage5;
-  RxString selectedGenderValue = "Male".obs;
+  // RxString selectedGenderValue = "Male".obs;
 
   final formKey = GlobalKey<FormState>();
   GlobalKey<FormState> loginPasswordForm = GlobalKey<FormState>();

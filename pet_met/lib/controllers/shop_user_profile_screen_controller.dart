@@ -39,7 +39,6 @@ class ShopUserProfileScreenController extends GetxController {
   File? shopOfferFile5;
   String ? offerImage5;
 
-  RxString selectedGenderValue = "Male".obs;
   final formKey = GlobalKey<FormState>();
   final loginFormKey = GlobalKey<FormState>();
 
@@ -93,7 +92,6 @@ class ShopUserProfileScreenController extends GetxController {
   String shopApiPicture4 = "";
   String shopApiPicture5 = "";
 
-  //todo
   bool userProfile = false;
   bool shopProfile = false;
   bool vetNgoProfile = false;
@@ -109,7 +107,6 @@ class ShopUserProfileScreenController extends GetxController {
     try {
       Map<String, dynamic> data = {
         "id": UserDetails.userId,
-        //"uid": "${UserDetails.selfId}",
         "categoryID": UserDetails.categoryId,
       };
 
@@ -152,6 +149,7 @@ class ShopUserProfileScreenController extends GetxController {
         shopApiPicture3 = getShopProfileModel.data.data[0].image3;
         shopApiPicture4 = getShopProfileModel.data.data[0].image4;
         shopApiPicture5 = getShopProfileModel.data.data[0].image5;
+
 
         // shopApiProfile
         if(getShopProfileModel.data.data[0].showimg != "") {

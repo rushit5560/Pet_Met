@@ -632,55 +632,7 @@ class _GenderDropDownModuleState extends State<GenderDropDownModule> {
           ],
         ),
         const SizedBox(height: 8),
-        // Container(
-        //   height: controller.size.height * 0.06,
-        //   width: double.infinity,
-        //   padding: const EdgeInsets.only(left: 15, right: 15),
-        //   decoration: BoxDecoration(
-        //     color: themeProvider.darkTheme
-        //         ? AppColors.darkThemeColor
-        //         : AppColors.whiteColor,
-        //     borderRadius: BorderRadius.circular(15),
-        //     boxShadow: [
-        //       BoxShadow(
-        //         color: AppColors.greyTextColor.withOpacity(0.3),
-        //         blurRadius: 35,
-        //         spreadRadius: 1,
-        //         offset: const Offset(0, 5),
-        //       ),
-        //     ],
-        //   ),
-        //   child: Center(
-        //     child: DropdownButton<String>(
-        //       icon: Icon(
-        //         Icons.keyboard_arrow_down_rounded,
-        //         color: themeProvider.darkTheme
-        //             ? AppColors.whiteColor
-        //             : AppColors.greyTextColor,
-        //       ),
-        //       value: controller.selectedGenderValue.value,
-        //       isDense: true,
-        //       isExpanded: true,
-        //       items: controller.dropdownGenderItems,
-        //       dropdownColor: themeProvider.darkTheme
-        //           ? AppColors.darkThemeColor
-        //           : AppColors.whiteColor,
-        //       underline: SizedBox(),
-        //       borderRadius: BorderRadius.all(Radius.circular(15)),
-        //       style: TextStyle(
-        //         color: themeProvider.darkTheme
-        //             ? AppColors.whiteColor
-        //             : AppColors.blackTextColor,
-        //         fontSize: 15.sp,
-        //       ),
-        //       onChanged: (val) {
-        //         setState(() {
-        //           controller.selectedGenderValue.value = val!;
-        //         });
-        //       },
-        //     ),
-        //   ),
-        // )
+
         Stack(
           children: [
             Container(
@@ -728,7 +680,6 @@ class _GenderDropDownModuleState extends State<GenderDropDownModule> {
                       items: <String>[
                         'Male',
                         'Female',
-                        'Other',
                       ].map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,

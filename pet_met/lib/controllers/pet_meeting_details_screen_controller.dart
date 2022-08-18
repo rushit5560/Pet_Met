@@ -24,7 +24,7 @@ class PetMeetingDetailsScreenController extends GetxController {
   /// Get Pet Profile
   Future<void> getProfileFunction() async {
     isLoading(true);
-    String url = ApiUrl.petProfileApi + "$petId";
+    String url = ApiUrl.petProfileApi + petId;
     log("All Pet Profile Api Url : $url");
 
     try {
@@ -77,9 +77,9 @@ class PetMeetingDetailsScreenController extends GetxController {
   }
 
   @override
-  void onInit() async{
+  void onInit() {
     // TODO: implement onInit
     super.onInit();
-    await getProfileFunction();
+    getProfileFunction();
   }
 }
