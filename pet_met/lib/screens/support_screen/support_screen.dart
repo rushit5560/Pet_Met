@@ -47,25 +47,6 @@ class SupportScreen extends StatelessWidget {
                 CustomAppBar(
                   appBarOption: AppBarOption.singleBackButtonOption,
                 ),
-                // Padding(
-                //   padding: const EdgeInsets.only(
-                //       top: 20, left: 20, right: 20, bottom: 15),
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.start,
-                //     children: [
-                //       GestureDetector(
-                //         onTap: () {
-                //           Get.back();
-                //         },
-                //         child: Image.asset(
-                //           "assets/icons/left_back_arrow.png",
-                //           width: controller.size.width * 0.07,
-                //         ),
-                //       ),
-                //       const SizedBox(),
-                //     ],
-                //   ),
-                // ),
                 Expanded(
                   child: Obx(
                     () => controller.isLoading.value
@@ -104,10 +85,11 @@ class SupportScreen extends StatelessWidget {
                                     data: controller.content,
                                     style: {
                                       "body": Style(
-                                        textDecorationColor:
-                                            themeProvider.darkTheme
-                                                ? AppColors.whiteColor
-                                                : AppColors.blackTextColor,
+                                        color: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                            : AppColors.blackTextColor,
+                                        fontSize: const FontSize(15.0),
+                                        fontWeight: FontWeight.w500,
                                       ),
                                     },
                                   ),

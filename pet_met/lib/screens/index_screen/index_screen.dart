@@ -72,8 +72,9 @@ class IndexScreenState extends State<IndexScreen> {
                     backgroundColor: themeProvider.darkTheme
                         ? AppColors.darkThemeColor
                         : AppColors.accentColor,
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(20),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
                     ),
                     //new
                     hasInk: true, //new, gives a cute ink effect
@@ -123,7 +124,7 @@ class IndexScreenState extends State<IndexScreen> {
                         ),
                         title: const Text(
                           "Play",
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: AppColors.whiteColor,
                           ),
                         ),

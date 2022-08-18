@@ -57,25 +57,7 @@ class PetCareInfoScreen extends StatelessWidget {
                   appBarOption: AppBarOption.singleBackButtonOption,
                   title: "Pet Care",
                 ),
-                // Padding(
-                //   padding: const EdgeInsets.only(
-                //       top: 20, left: 20, right: 20, bottom: 15),
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.start,
-                //     children: [
-                //       GestureDetector(
-                //         onTap: () {
-                //           Get.back();
-                //         },
-                //         child: Image.asset(
-                //           "assets/icons/left_back_arrow.png",
-                //           width: controller.size.width * 0.07,
-                //         ),
-                //       ),
-                //       const SizedBox(),
-                //     ],
-                //   ),
-                // ),
+
                 Expanded(
                   child: Obx(
                     () => controller.isLoading.value
@@ -84,7 +66,7 @@ class PetCareInfoScreen extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.only(
                                   left: 20, right: 20, top: 10, bottom: 15),
-                              child: Container(
+                              child: SizedBox(
                                 height: 86.h,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,

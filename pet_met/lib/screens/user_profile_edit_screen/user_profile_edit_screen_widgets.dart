@@ -277,132 +277,12 @@ class UserPetListModule extends StatelessWidget {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         "Your pets:",
-        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 17),
+        style: TextStyle(color: themeProvider.darkTheme
+            ? AppColors.whiteColor
+            : AppColors.blackTextColor, fontWeight: FontWeight.bold, fontSize: 17),
       ),
-      SizedBox(height: 8),
-      /*Container(
-            height: controller.size.width * 0.16,
-            child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: 5,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index){
-                  return Container(
-                    // height: screenController.size.width * 0.16,
-                    child: Stack(
-                      alignment: Alignment.bottomRight,
-                      children: [
-                        Container(
-                            height: controller.size.width * 0.16,
-                            width: controller.size.width * 0.16,
-                            margin: const EdgeInsets.only(bottom: 5, right: 5),
-                            decoration: const BoxDecoration(
-                              // image: DecorationImage(
-                              //     image: AssetImage(
-                              //       controller.dogsTopList[index],
-                              //     ),
-                              //     fit: BoxFit.cover),
-                              color: AppColors.greyTextColor,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(8),
-                              ),
-                            ),
-                            child: index == 0 ?
-                            controller.shopOfferFile1 != null ?
-                            Image.file(
-                              controller.shopOfferFile1!,height: 65,) :
-                            controller.offerImage1 != null ?
-                            Image.network(
-                              controller.offerImage1!,height: 65,
-                              errorBuilder: (context, er, st){
-                                return Image.asset(AppImages.petMetLogoImg);
-                              },):
-                            Image.asset(AppImages.petMetLogoImg) :
+      const SizedBox(height: 8),
 
-                            index == 1 ?
-                            controller.shopOfferFile2 != null ?
-                            Image.file(
-                              controller.shopOfferFile2!,height: 65,) :
-                            controller.offerImage2 != null ?
-                            Image.network(
-                              controller.offerImage2!,height: 65,
-                              errorBuilder: (context, er, st){
-                                return Image.asset(AppImages.petMetLogoImg);
-                              },):
-                            Image.asset(AppImages.petMetLogoImg) :
-
-                            index == 2 ?
-                            controller.shopOfferFile3 != null ?
-                            Image.file(
-                              controller.shopOfferFile3!,height: 65,) :
-                            controller.offerImage3 != null ?
-                            Image.network(
-                              controller.offerImage3!,height: 65,
-                              errorBuilder: (context, er, st){
-                                return Image.asset(AppImages.petMetLogoImg);
-                              },):
-                            Image.asset(AppImages.petMetLogoImg) :
-
-                            index == 3 ?
-                            controller.shopOfferFile4 != null ?
-                            Image.file(
-                              controller.shopOfferFile4!,height: 65,) :
-                            controller.offerImage4 != null ?
-                            Image.network(
-                              controller.offerImage4!,height: 65,
-                              errorBuilder: (context, er, st){
-                                return Image.asset(AppImages.petMetLogoImg);
-                              },):
-                            Image.asset(AppImages.petMetLogoImg):
-
-                            index == 4 ?
-                            screenController.shopOfferFile5 != null ?
-                            Image.file(
-                              screenController.shopOfferFile5!,height: 65,) :
-                            screenController.offerImage5 != null ?
-                            Image.network(
-                              screenController.offerImage5!,height: 65,
-                              errorBuilder: (context, er, st){
-                                return Image.asset(AppImages.petMetLogoImg);
-                              },):
-                            Image.asset(AppImages.petMetLogoImg) : Container()
-                        ),
-                        Positioned(
-                          right: 0,
-                          bottom: 0,
-                          child: GestureDetector(
-                            onTap:(){
-                              if(index == 0){
-                                getFromGallery();
-                              } else if(index == 1){
-                                getFromGallery2();
-                              } else if(index == 2){
-                                getFromGallery3();
-                              } else if(index == 3){
-                                getFromGallery4();
-                              } else if(index == 4){
-                                getFromGallery5();
-                              }
-
-                            },
-                            child: Container(
-                              height: 15,
-                              width: 15,
-                              decoration: const BoxDecoration(
-                                  color: AppColors.accentColor, shape: BoxShape.circle),
-                              child: const Icon(
-                                Icons.add,
-                                color: AppColors.whiteColor,
-                                size: 12,
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  );
-                }),
-          )*/
       Row(
         children: [
           Stack(
@@ -574,7 +454,9 @@ class NameTextFieldModule extends StatelessWidget {
             Text(
               "Name",
               style: TextStyle(
-                color: AppColors.blackTextColor.withOpacity(0.7),
+                  color: themeProvider.darkTheme
+                      ? AppColors.whiteColor.withOpacity(0.7)
+                      : AppColors.blackTextColor.withOpacity(0.7),
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -612,7 +494,9 @@ class EmailTextFieldModule extends StatelessWidget {
             Text(
               "Email",
               style: TextStyle(
-                color: AppColors.blackTextColor.withOpacity(0.7),
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor.withOpacity(0.7)
+                    : AppColors.blackTextColor.withOpacity(0.7),
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -650,7 +534,9 @@ class MobileNumberTextFieldModule extends StatelessWidget {
             Text(
               "Mobile Number",
               style: TextStyle(
-                color: AppColors.blackTextColor.withOpacity(0.7),
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor.withOpacity(0.7)
+                    : AppColors.blackTextColor.withOpacity(0.7),
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -688,7 +574,9 @@ class LocationTextFieldModule extends StatelessWidget {
             Text(
               "Location",
               style: TextStyle(
-                color: AppColors.blackTextColor.withOpacity(0.7),
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor.withOpacity(0.7)
+                    : AppColors.blackTextColor.withOpacity(0.7),
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -731,7 +619,7 @@ class _GenderDropDownModuleState extends State<GenderDropDownModule> {
               "Gender",
               style: TextStyle(
                 color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
+                    ? AppColors.whiteColor.withOpacity(0.7)
                     : AppColors.blackTextColor.withOpacity(0.7),
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
@@ -943,11 +831,13 @@ class BirthDateModule extends StatelessWidget {
             monthFlex: 3,
             yearFlex: 2,
             textStyle: TextStyle(
-              color: AppColors.blackTextColor.withOpacity(0.6),
+              color: themeProvider.darkTheme
+                  ? AppColors.greyTextColor.withOpacity(0.7)
+                  : AppColors.blackTextColor.withOpacity(0.7),
               fontSize: 12.sp,
               fontWeight: FontWeight.w400,
             ),
-            icon: Icon(
+            icon: const Icon(
               Icons.keyboard_arrow_down_rounded,
               color: AppColors.greyTextColor,
             ),

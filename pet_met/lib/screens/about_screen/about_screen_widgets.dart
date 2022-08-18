@@ -67,17 +67,19 @@ class AboutUsModule extends StatelessWidget {
               //   ),
               // },
               style: {
-                "p": Style(
-                  fontSize: FontSize(18.0),
-                  color: themeProvider.darkTheme
-                          ? AppColors.whiteColor
-                          : AppColors.blackTextColor,
-                ),
                 "body": Style(
-                  fontSize: FontSize(18.0),
                   color: themeProvider.darkTheme
                       ? AppColors.whiteColor
                       : AppColors.blackTextColor,
+                  fontSize: const FontSize(15.0),
+                  fontWeight: FontWeight.w500,
+                ),
+                "p": Style(
+                  color: themeProvider.darkTheme
+                      ? AppColors.whiteColor
+                      : AppColors.blackTextColor,
+                  fontSize: const FontSize(15.0),
+                  fontWeight: FontWeight.w500,
                 ),
               },
             ),

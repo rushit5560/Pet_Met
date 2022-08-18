@@ -46,7 +46,9 @@ class MeetingAndBreadingSearchFieldModule extends StatelessWidget {
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.text,
           style: TextStyle(
-            color: AppColors.blackTextColor,
+            color: themeProvider.darkTheme
+                ? AppColors.whiteColor
+                : AppColors.blackTextColor,
             fontSize: 13.sp,
             fontWeight: FontWeight.w400,
             decoration: TextDecoration.none,

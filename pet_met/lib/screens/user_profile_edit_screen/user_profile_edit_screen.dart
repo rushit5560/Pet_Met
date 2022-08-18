@@ -175,9 +175,11 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
+                            Text(
                               "User",
-                              style: TextStyle(color: Colors.black,
+                              style: TextStyle(color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 17),
                             ),
@@ -185,26 +187,34 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
 
                             Row(
                               children: [
-                                const Expanded(
+                                Expanded(
                                     flex: 30,
-                                    child: Text("User Name", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,),)),
+                                    child: Text("User Name", style: TextStyle(color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.blackTextColor, fontWeight: FontWeight.bold,),)),
                                 const SizedBox(width: 8),
                                 Expanded(
                                     flex: 70,
-                                    child: Text(controller.userName.value, style: const TextStyle(color: Colors.black),)),
+                                    child: Text(controller.userName.value, style: TextStyle(color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.blackTextColor,),)),
                               ],
                             ),
                             const SizedBox(height: 10),
                             Row(
                               children: [
-                                const Expanded(
+                                Expanded(
                                   flex: 30,
-                                  child: Text("Email", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,),),
+                                  child: Text("Email", style: TextStyle(color: themeProvider.darkTheme
+                                      ? AppColors.whiteColor
+                                      : AppColors.blackTextColor, fontWeight: FontWeight.bold,),),
                                 ),
                                 const SizedBox(width: 8),
                                 Expanded(
                                     flex: 70,
-                                    child: Text(controller.userEmail.value, style: const TextStyle(color: Colors.black),)),
+                                    child: Text(controller.userEmail.value, style: TextStyle(color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.blackTextColor,),)),
                               ],
                             ),
 
@@ -234,31 +244,41 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text("Shop",  style: TextStyle(color: Colors.black,
+                            Text("Shop",  style: TextStyle(color: themeProvider.darkTheme
+                                ? AppColors.whiteColor
+                                : AppColors.blackTextColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 17),),
                             const SizedBox(child: Divider(color: AppColors.greyColor,)),
 
                             Row(
                               children: [
-                                const Expanded(
+                                Expanded(
                                     flex: 30,
-                                    child: Text("Shop Name", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),)),
+                                    child: Text("Shop Name", style: TextStyle(color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.blackTextColor, fontWeight: FontWeight.bold),)),
                                 Expanded(
                                     flex: 70,
-                                    child: Text(controller.shopName.value, style: const TextStyle(color: Colors.black),)),
+                                    child: Text(controller.shopName.value, style: TextStyle(color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.blackTextColor,),)),
                               ],
                             ),
                             const SizedBox(height: 10),
                             Row(
                               children: [
-                                const Expanded(
+                                Expanded(
                                     flex: 30,
-                                    child: Text("Email", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),)),
+                                    child: Text("Email", style: TextStyle(color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.blackTextColor, fontWeight: FontWeight.bold),)),
                                 const SizedBox(width: 8),
                                 Expanded(
                                     flex: 70,
-                                    child: Text(controller.shopEmail.value, style: const TextStyle(color: Colors.black),)),
+                                    child: Text(controller.shopEmail.value, style: TextStyle(color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.blackTextColor,),)),
                               ],
                             ),
 
@@ -288,33 +308,43 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text("Vet & NGO",  style: TextStyle(color: Colors.black,
+                            Text("Vet & NGO",  style: TextStyle(color: themeProvider.darkTheme
+                                ? AppColors.whiteColor
+                                : AppColors.blackTextColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 17),),
                             const SizedBox(child: Divider(color: AppColors.greyColor,)),
 
                             Row(
                               children: [
-                                const Expanded(
+                                Expanded(
                                     flex: 30,
-                                    child: Text("Vet/Ngo Name", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,),)),
+                                    child: Text("Vet/Ngo Name", style: TextStyle(color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.blackTextColor, fontWeight: FontWeight.bold,),)),
                                 const SizedBox(width: 8),
                                 Expanded(
                                     flex: 70,
-                                    child: Text(controller.ngoName.value, style: const TextStyle(color: Colors.black),)),
+                                    child: Text(controller.ngoName.value, style: TextStyle(color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.blackTextColor,),)),
                               ],
                             ),
                             const SizedBox(height: 10),
                             Row(
                               children: [
-                                const Expanded(
+                                Expanded(
                                   flex: 30,
-                                  child: Text("Email", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold,),),
+                                  child: Text("Email", style: TextStyle(color: themeProvider.darkTheme
+                                      ? AppColors.whiteColor
+                                      : AppColors.blackTextColor, fontWeight: FontWeight.bold,),),
                                 ),
                                 const SizedBox(width: 8),
                                 Expanded(
                                     flex: 70,
-                                    child: Text(controller.ngoEmail.value, style: const TextStyle(color: Colors.black),)),
+                                    child: Text(controller.ngoEmail.value, style: TextStyle(color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.blackTextColor,),)),
                               ],
                             ),
 
@@ -344,32 +374,42 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text("Trainer",  style: TextStyle(color: Colors.black,
+                            Text("Trainer",  style: TextStyle(color: themeProvider.darkTheme
+                                ? AppColors.whiteColor
+                                : AppColors.blackTextColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 17),),
                             const SizedBox(child: Divider(color: AppColors.greyColor,)),
 
                             Row(
                               children: [
-                                const Expanded(
+                                Expanded(
                                     flex: 30,
-                                    child: Text("Trainer Name", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),)),
+                                    child: Text("Trainer Name", style: TextStyle(color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.blackTextColor, fontWeight: FontWeight.bold),)),
                                 const SizedBox(width: 8),
                                 Expanded(
                                     flex: 70,
-                                    child: Text(controller.trainerName.value, style: const TextStyle(color: Colors.black),)),
+                                    child: Text(controller.trainerName.value, style: TextStyle(color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.blackTextColor,),)),
                               ],
                             ),
                             const SizedBox(height: 10),
                             Row(
                               children: [
-                                const Expanded(
+                                Expanded(
                                     flex: 30,
-                                    child: Text("Email", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),)),
+                                    child: Text("Email", style: TextStyle(color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.blackTextColor, fontWeight: FontWeight.bold),)),
                                 const SizedBox(width: 8),
                                 Expanded(
                                     flex: 70,
-                                    child: Text(controller.trainerEmail.value, style: const TextStyle(color: Colors.black),)),
+                                    child: Text(controller.trainerEmail.value, style: TextStyle(color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.blackTextColor,),)),
                               ],
                             ),
 
@@ -428,7 +468,9 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                   Text(
                     "Password",
                     style: TextStyle(
-                      color: AppColors.blackTextColor.withOpacity(0.7),
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor.withOpacity(0.7)
+                            : AppColors.blackTextColor.withOpacity(0.7),
                       fontSize: 11.sp,
                       fontWeight: FontWeight.bold,
                     ),

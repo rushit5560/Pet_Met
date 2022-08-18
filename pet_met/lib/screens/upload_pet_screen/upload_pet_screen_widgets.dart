@@ -1238,7 +1238,7 @@ class WeightTextFieldModule extends StatelessWidget {
           fieldController: controller.weightController,
           height: controller.size.height * 0.065,
           width: double.infinity,
-          hintText: "Weight",
+          hintText: "Weight (Kg)",
           textInputAction: TextInputAction.done,
           textInputType: TextInputType.number,
           validator: (val) => Validations().validateWeight(val!),

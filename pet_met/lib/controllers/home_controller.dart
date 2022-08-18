@@ -26,6 +26,7 @@ class HomeController extends GetxController {
   ApiHeader apiHeader = ApiHeader();
 
   final ScrollController scrollController = ScrollController();
+  bool hasMore = true;
 
   File? imageFile;
 
@@ -41,7 +42,7 @@ class HomeController extends GetxController {
   List<TrainerPet> trainerPetList = [];
 
   int pageIndex = 1;
-  bool isLoadMore = false;
+  // bool isLoadMore = false;
 
   RxString userprofile= "".obs;
   String userName = "";
@@ -171,19 +172,12 @@ class HomeController extends GetxController {
         // bannerList.clear();
         petTopList.addAll(getPetTopListModel.data);
         log("petList Length : ${petTopList.length}");
-        isLoading(true);
-        isLoadMore = false;
-        log('isLoadMore1: $isLoadMore');
-        isLoading(false);
       } else {
         log("Pet Api Else");
       }
 
     } catch(e) {
       log("Get All Pet Api Error ::: $e");
-      isLoading(true);
-      isLoadMore = false;
-      isLoading(false);
     } finally {
       //isLoading(false);
       await getUserStory();
@@ -191,50 +185,47 @@ class HomeController extends GetxController {
   }
 
   Future<void> getAllIncrementPetFunction() async {
-    // isLoading(true);
-    String url = ApiUrl.topPetListApi + "?page=$pageIndex";
-    log("All Pet Api Url : $url");
-    log('pageIndex: $pageIndex');
+    if(hasMore == true) {
+      String url = ApiUrl.topPetListApi + "?page=$pageIndex";
+      log("All Pet Api Url : $url");
+      log('pageIndex: $pageIndex');
 
-    try {
-      Map<String, String> header = apiHeader.apiHeader();
-      log("header : $header");
+      try {
+        Map<String, String> header = apiHeader.apiHeader();
+        log("header : $header");
 
-      http.Response response = await http.get(Uri.parse(url), headers: header);
-      log("Get All Pet Api response : ${response.body}");
+        http.Response response = await http.get(
+            Uri.parse(url), headers: header);
+        log("Get All Pet Api response : ${response.body}");
 
-      GetPetTopListModel getPetTopListModel =
-      GetPetTopListModel.fromJson(json.decode(response.body));
-      isSuccessStatus = getPetTopListModel.success.obs;
+        GetPetTopListModel getPetTopListModel =
+        GetPetTopListModel.fromJson(json.decode(response.body));
+        isSuccessStatus = getPetTopListModel.success.obs;
 
-      if (isSuccessStatus.value) {
-        // bannerList.clear();
-        petTopList.addAll(getPetTopListModel.data);
-        log("petList Length : ${petTopList.length}");
-        // isLoading(true);
-        isLoadMore = false;
-        log('isLoadMore1: $isLoadMore');
-        // isLoading(false);
-      } else {
-        log("Pet Api Else");
+        if (isSuccessStatus.value) {
+          // bannerList.clear();
+          petTopList.addAll(getPetTopListModel.data);
+          log("petList Length : ${petTopList.length}");
+
+          // If get all pet then change the hasMore flag
+          if (getPetTopListModel.data.length < 10) {
+            hasMore = false;
+          }
+        } else {
+          log("Pet Api Else");
+        }
+      } catch (e) {
+        log("Get All Pet Api Error ::: $e");
+      } finally {
+        loadUI();
       }
-
-    } catch(e) {
-      log("Get All Pet Api Error ::: $e");
-      // isLoading(true);
-      isLoadMore = false;
-      // isLoading(false);
-    } finally {
-      //isLoading(false);
-      // await getUserStory();
-      loadUI();
     }
   }
 
   /// Get User Story
   Future<void> getUserStory() async {
     isLoading(true);
-    String url = ApiUrl.getUserStoryApi + '${UserDetails.userId}';
+    String url = ApiUrl.getUserStoryApi + UserDetails.userId;
     log("Get User story Api Url : $url");
 
     try {
@@ -250,12 +241,15 @@ class HomeController extends GetxController {
 
       if (isSuccessStatus.value) {
         // bannerList.clear();
-        for(int i=0; i< getUserStoryModel.data.length; i++){
-          userStoryList.addAll(getUserStoryModel.data);
-          log("userStoryList Length : ${userStoryList.length}");
-          imageList.addAll(getUserStoryModel.data[i].data);
-          log('imageList: $imageList');
-        }
+        // for(int i=0; i< getUserStoryModel.data.length; i++){
+        //   userStoryList.addAll(getUserStoryModel.data);
+        //   log("userStoryList Length : ${userStoryList.length}");
+        //   imageList.addAll(getUserStoryModel.data[i].data);
+        //   log('imageList: $imageList');
+        // }
+
+        userStoryList.addAll(getUserStoryModel.data);
+        log("userStoryList Length : ${userStoryList.length}");
 
       } else {
         log("User Story Api Else");
@@ -292,8 +286,8 @@ class HomeController extends GetxController {
         request.files.add(await http.MultipartFile.fromPath("image", imageFile!.path));
         //request.headers.addAll(header);
 
-        request.fields['userid'] = "${UserDetails.userId}";
-        request.fields['categoryID'] = "${UserDetails.categoryId}";
+        request.fields['userid'] = UserDetails.userId;
+        request.fields['categoryID'] = UserDetails.categoryId;
 
         // request.fields['name'] = "demo1";
         // request.fields['bod'] = "10-9-2014";

@@ -69,7 +69,15 @@ class PrivacyPolicyScreen extends StatelessWidget {
                                         color: themeProvider.darkTheme
                                             ? AppColors.whiteColor
                                             : AppColors.blackTextColor,
-                                        fontSize: const FontSize(17)
+                                        fontSize: const FontSize(15.0),
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      "p": Style(
+                                        color: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                            : AppColors.blackTextColor,
+                                        fontSize: const FontSize(15.0),
+                                        fontWeight: FontWeight.w500,
                                       ),
                                     },
                                   ),

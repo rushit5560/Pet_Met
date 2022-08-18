@@ -106,15 +106,11 @@ class PetCareListModule extends StatelessWidget {
                       data: controller.petCareList[ind].content,
                       style: {
                         "body": Style(
-                          textDecorationColor: themeProvider.darkTheme
+                          color: themeProvider.darkTheme
                               ? AppColors.whiteColor
                               : AppColors.blackTextColor,
-                          // color: themeProvider.darkTheme
-                          //     ? AppColors.whiteColor
-                          //     : AppColors.blackTextColor,
-                          // textDecorationColor: themeProvider.darkTheme
-                          //     ? AppColors.whiteColor
-                          //     : AppColors.blackTextColor,
+                          fontSize: const FontSize(15.0),
+                          fontWeight: FontWeight.w500,
                         ),
                       },
                     ),
