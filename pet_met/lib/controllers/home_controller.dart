@@ -17,6 +17,7 @@ import 'package:pet_met/models/trainers_update_profile_model/trainers_get_profil
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/user_details.dart';
+import 'package:story_view/controller/story_controller.dart';
 
 class HomeController extends GetxController {
   var activeIndex = 0.obs;
@@ -40,6 +41,8 @@ class HomeController extends GetxController {
   List<ShopPet> shopPetList = [];
   List<NgoPet> ngoPetList = [];
   List<TrainerPet> trainerPetList = [];
+
+  final storyController = StoryController();
 
   int pageIndex = 1;
   // bool isLoadMore = false;
@@ -250,6 +253,22 @@ class HomeController extends GetxController {
 
         userStoryList.addAll(getUserStoryModel.data);
         log("userStoryList Length : ${userStoryList.length}");
+        /*for(int i=0; i < getUserStoryModel.data.length; i++){
+          imageList.addAll(getUserStoryModel.data[i].data);
+          log('imageList: $imageList');
+        }*/
+        for(int i=0; i < getUserStoryModel.data.length; i++) {
+          /*for(int j=0; i < getUserStoryModel.data[i].data.length; j++){
+            imageList.addAll(getUserStoryModel.data[j].data);
+            log('imageList: $imageList');
+          }*/
+          imageList.addAll(getUserStoryModel.data[i].data);
+          log('imageList: $imageList');
+          // for(int j=0; getUserStoryModel.data[i].data.length; j++){
+          //
+          // }
+        }
+        log('0 Index: ${getUserStoryModel.data[0].data.length}');
 
       } else {
         log("User Story Api Else");
@@ -626,7 +645,9 @@ class HomeController extends GetxController {
   @override
   void dispose() {
     // TODO: implement dispose
+    storyController.dispose();
     super.dispose();
+
   }
 }
 

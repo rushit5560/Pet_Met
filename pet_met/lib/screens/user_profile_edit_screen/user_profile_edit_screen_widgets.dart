@@ -274,7 +274,9 @@ class UserPetListModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+    return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
       Text(
         "Your pets:",
         style: TextStyle(color: themeProvider.darkTheme
@@ -285,7 +287,8 @@ class UserPetListModule extends StatelessWidget {
 
       Row(
         children: [
-          controller.petList.length == 5 ? Container() : Stack(
+          controller.petList.length == 5 ? Container() :
+          Stack(
               children: [
             Container(
               height: 8.h,
@@ -338,7 +341,7 @@ class UserPetListModule extends StatelessWidget {
           ]),
           controller.petList.length == 5 ? Container() : const SizedBox(width: 5),
           Expanded(
-            child:  Container(
+            child: Container(
               height: 8.h,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
@@ -365,7 +368,7 @@ class UserPetListModule extends StatelessWidget {
                           width: 7.h,
                           margin: const EdgeInsets.only(
                               bottom: 5, right: 5),
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             // image: DecorationImage(
                             //     image: AssetImage(
                             //       controller.dogsTopList[index],
@@ -375,6 +378,7 @@ class UserPetListModule extends StatelessWidget {
                             borderRadius: BorderRadius.all(
                               Radius.circular(8),
                             ),
+                            border: Border.all(color: Colors.grey)
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -849,9 +853,9 @@ class BirthDateModule extends StatelessWidget {
             // endYear: 2020, // optional
             // width: 10,
 
-            // selectedDay: DateTime.now(), // optional
-            // selectedMonth: 10, // optional
-            // selectedYear: 1993, // optional
+            selectedDay: int.parse(controller.day),
+            selectedMonth: int.parse(controller.month),
+            selectedYear: int.parse(controller.year),
             onChangedDay: (value) {
               controller.day = value!;
               log('onChangedDay: ${controller.day}');

@@ -147,6 +147,15 @@ class UserProfileEditController extends GetxController {
         log('mobile: ${mobileController.text}');
         log('gender: ${getUserProfileModel.data.data[0].gender}');
 
+        // Get DOB of Pet
+        if(birthDate != "") {
+          String birthdate1 = birthDate;
+          List<String> bDate = birthdate1.split('-');
+          day = bDate[0];
+          month = bDate[1];
+          year = bDate[2];
+        }
+
         // userApiProfile
         if(getUserProfileModel.data.data[0].image != "") {
           List<String> profileSplitImageList = getUserProfileModel.data.data[0]

@@ -312,6 +312,12 @@ class UploadPetController extends GetxController {
     String url = ApiUrl.petProfileApi + petId;
     log("All Pet Profile Api Url : $url");
 
+    if(getProfile.meetingAvailability == "0"){
+      meetingAvailabilityValue.value = "No";
+    } else {
+      meetingAvailabilityValue.value = "Yes";
+    }
+
     try {
       Map<String, String> header = apiHeader.apiHeader();
       log("header : $header");
@@ -328,12 +334,17 @@ class UploadPetController extends GetxController {
         petNameController.text = getProfile.petName!;
         petDetailsController.text = getProfile.details!;
         weightController.text = getProfile.weight!.toString();
-
+        weightController.text = getProfile.weight!.toString();
+        meetingAvailabilityValue.value = getProfile.meetingAvailability!;
+        genderValue.value = getProfile.gender!;
         petApiCatId = "${getProfile.mainCategory}";
         petApiSubCatId = "${getProfile.subCategory}";
 
         log("petApiCatId : $petApiCatId");
         log("petApiSubCatId : $petApiSubCatId");
+        log("meetingAvailabilityValue: $meetingAvailabilityValue");
+
+
 
         // Get Pet category
         for(int i=0; i < petCategoryList.length; i++) {
@@ -341,8 +352,6 @@ class UploadPetController extends GetxController {
             petCategoryDropDownValue = petCategoryList[i];
           }
         }
-
-
 
         // Get DOB of Pet
         if(getProfile.dob != "") {
@@ -352,7 +361,7 @@ class UploadPetController extends GetxController {
           month = bDate[1];
           year = bDate[2];
         }
-
+        log('getProfile.dob: ${getProfile.dob}');
 
 
         // petApiProfile
@@ -362,7 +371,8 @@ class UploadPetController extends GetxController {
           for (int i = 0; i < profileSplitImageList.length; i++) {
             log("profileSplitImageList : ${profileSplitImageList[i]}");
           }
-          petApiProfile = profileSplitImageList[0];
+          petApiProfile = profileSplitImageList[3];
+          log('petApiProfile: $petApiProfile');
         }
 
         petImage = ApiUrl.apiImagePath + getProfile.image!;

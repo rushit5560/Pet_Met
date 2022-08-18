@@ -92,23 +92,29 @@ class _HomeScreenState extends State<HomeScreen> {
                         }
                       },
                       child: UserDetails.categoryId == "1" ?
-                      ClipRRect(
-                        // decoration: BoxDecoration(
-                        //   border: Border.all(color: Colors.black, width: 0.0),
-                        //   borderRadius: BorderRadius.circular(30),
-                        // ),
-                        borderRadius: BorderRadius.circular(30),
-                        child: Image.network(
-                          controller.userprofile.value,
-                          width: 60,
-                          height: 60,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, st, ob){
-                            return Image.asset(AppImages.petMetLogoImg, width: 40,
-                              height: 50,
-                              fit: BoxFit.cover,);
-                          },
-                          // width: controller.size.width * 0.05,
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          border: Border.all(color: Colors.black, width: 0.0),
+                        ),
+                        child: ClipRRect(
+                          // decoration: BoxDecoration(
+                          //   border: Border.all(color: Colors.black, width: 0.0),
+                          //   borderRadius: BorderRadius.circular(30),
+                          // ),
+                          borderRadius: BorderRadius.circular(30),
+                          child: Image.network(
+                            controller.userprofile.value,
+                            width: 60,
+                            height: 60,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, st, ob){
+                              return Image.asset(AppImages.petMetLogoImg, width: 40,
+                                height: 50,
+                                fit: BoxFit.cover,);
+                            },
+                            // width: controller.size.width * 0.05,
+                          ),
                         ),
                       ) :
                       UserDetails.categoryId == "2" ?
