@@ -312,12 +312,6 @@ class UploadPetController extends GetxController {
     String url = ApiUrl.petProfileApi + petId;
     log("All Pet Profile Api Url : $url");
 
-    if(getProfile.meetingAvailability == "0"){
-      meetingAvailabilityValue.value = "No";
-    } else {
-      meetingAvailabilityValue.value = "Yes";
-    }
-
     try {
       Map<String, String> header = apiHeader.apiHeader();
       log("header : $header");
@@ -335,10 +329,25 @@ class UploadPetController extends GetxController {
         petDetailsController.text = getProfile.details!;
         weightController.text = getProfile.weight!.toString();
         weightController.text = getProfile.weight!.toString();
-        meetingAvailabilityValue.value = getProfile.meetingAvailability!;
-        genderValue.value = getProfile.gender!;
+        //meetingAvailabilityValue.value = getProfile.meetingAvailability!;
+        //genderValue.value = getProfile.gender!;
         petApiCatId = "${getProfile.mainCategory}";
         petApiSubCatId = "${getProfile.subCategory}";
+
+        // Set Gender From Api
+        String gender = getProfile.gender!;
+        if(gender == "male") {
+          genderValue = "Male".obs;
+        } else if(gender == "female") {
+          genderValue = "Female".obs;
+        }
+
+        String meeting = getProfile.meetingAvailability!;
+        if(meeting == "0"){
+          meetingAvailabilityValue = "Yes".obs;
+        } else if(meeting == "1"){
+          meetingAvailabilityValue = "No".obs;
+        }
 
         log("petApiCatId : $petApiCatId");
         log("petApiSubCatId : $petApiSubCatId");
@@ -404,8 +413,23 @@ class UploadPetController extends GetxController {
   updatePetProfileFunction() async {
     isLoading(true);
 
-    birthDate = day + "-" + month + "-" + year;
-    log('birthDate: $birthDate');
+    // Set 0 Before Day & Month Value
+    String d = day;
+    String m = month;
+    for(int i=1; i < 10; i++) {
+      if(i.toString() == day) {
+        d = "0$day";
+      }
+    }
+    for(int i=1; i < 10; i++) {
+      if(i.toString() == month) {
+        m = "0$month";
+      }
+    }
+    birthDate = d + "-" + m + "-" + year;
+
+    // birthDate = day + "-" + month + "-" + year;
+     log('birthDate: $birthDate');
 
     String url = ApiUrl.petUpdateProfileApi;
     log("Update Pet Profile url: $url");
@@ -558,12 +582,14 @@ class UploadPetController extends GetxController {
       request.fields['dob'] = birthDate;
       request.fields['weight'] = weightController.text.trim();
       request.fields['details'] = petDetailsController.text.trim();
-      request.fields['gender'] = genderValue.value;
+      request.fields['gender'] = genderValue.value.toLowerCase();
       request.fields['userid'] = "${UserDetails.userId}";
       request.fields['petid'] = "$petId";
       request.fields['categoryID'] = "${UserDetails.categoryId}";
+      request.fields['meeting_availability'] = meetingAvailabilityValue.value == "Yes" ? "0" :"1"/*meetingAvailabilityValue.value*/;
 
       log('request.fields: ${request.fields}');
+      log('request.files: ${request.files}');
 
       var response = await request.send();
       log('response: ${response.request}');
@@ -597,8 +623,23 @@ class UploadPetController extends GetxController {
   addPetProfileFunction() async {
     isLoading(true);
 
-    birthDate = day + "-" + month + "-" + year;
-    log('birthDate: $birthDate');
+    // birthDate = day + "-" + month + "-" + year;
+    // log('birthDate: $birthDate');
+
+    // Set 0 Before Day & Month Value
+    String d = day;
+    String m = month;
+    for(int i=1; i < 10; i++) {
+      if(i.toString() == day) {
+        d = "0$day";
+      }
+    }
+    for(int i=1; i < 10; i++) {
+      if(i.toString() == month) {
+        m = "0$month";
+      }
+    }
+    birthDate = d + "-" + m + "-" + year;
 
     String url = ApiUrl.petUpdateProfileApi;
     log("Update Pet Profile url: $url");
@@ -625,9 +666,10 @@ class UploadPetController extends GetxController {
         request.fields['dob'] = birthDate;
         request.fields['weight'] = weightController.text.trim();
         request.fields['details'] = petDetailsController.text.trim();
-        request.fields['gender'] = genderValue.value;
+        request.fields['gender'] = genderValue.value.toLowerCase();
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['categoryID'] = "${UserDetails.categoryId}";
+        request.fields['meeting_availability'] = meetingAvailabilityValue.value == "Yes" ? "0" :"1";
         //request.fields['petid'] = "$petId";
         //request.fields['showimg'] = "jgjadg";
 

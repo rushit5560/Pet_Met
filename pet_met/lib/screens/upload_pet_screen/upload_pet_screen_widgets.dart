@@ -1151,7 +1151,6 @@ class _GenderDropDownState extends State<GenderDropDown> {
                       items: <String>[
                         'Male',
                         'Female',
-                        'Other',
                       ].map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
