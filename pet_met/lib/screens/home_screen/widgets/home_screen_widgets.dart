@@ -6,7 +6,6 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/controllers/index_screen_controller.dart';
-import 'package:pet_met/models/get_all_pet_list_model/get_all_pet_list_model.dart';
 import 'package:pet_met/screens/pet_meeting_details_screen/pet_meeting_details_screen.dart';
 import 'package:pet_met/screens/shop_and_grooming_screen/shop_and_grooming_screen.dart';
 import 'package:pet_met/screens/story_viewer_screen/story_viewer_screen.dart';
@@ -828,6 +827,7 @@ class PetListModule extends StatelessWidget {
     // setState(() {});
     Get.back();
   }
+
 }
 
 class AddPetStoryWidget extends StatelessWidget {
@@ -844,9 +844,12 @@ class AddPetStoryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        log('Index: $index');
-        log('controller.imageList.length: ${controller.userStoryList[index].data.length}');
-        Get.to(() => StoryViewerScreen(), arguments: index);
+        List<String> userWiseStoryList = [];
+        for(int i=0; i< controller.userStoryList[index].data.length; i++) {
+          userWiseStoryList.add(controller.userStoryList[index].data[i].image);
+        }
+
+        Get.to(() => StoryViewerScreen(), arguments: userWiseStoryList);
       },
       child:
           Container(

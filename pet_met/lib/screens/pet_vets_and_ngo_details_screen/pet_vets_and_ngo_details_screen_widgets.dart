@@ -261,7 +261,8 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
         ),
         GestureDetector(
           onTap: (){
-            _makingInstagramApp();
+            String url = "${screenController.vetsNgoDetailsData[0].instagram}";
+            _makingInstagramApp(url);
           },
           child: Container(
             height: screenController.size.width * 0.018.w,
@@ -277,9 +278,8 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
         ),
         GestureDetector(
           onTap: (){
-            var fbUrl =
-                "fb://facewebmodal/f?href="  "https://facebook.com/AliForDigitalIsrael/";
-            launchFacebook(fbUrl, "https://facebook.com/AliForDigitalIsrael/");
+            var fbUrl = "${screenController.vetsNgoDetailsData[0].instagram}";
+            launchFacebook(fbUrl, fbUrl);
           },
           child: Container(
             height: screenController.size.width * 0.018.w,
@@ -295,7 +295,8 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
         ),
         GestureDetector(
           onTap: (){
-            launchWhatsApp(context);
+            String number = "${screenController.vetsNgoDetailsData[0].phone}";
+            launchWhatsApp(context, number);
           },
           child: Container(
             height: screenController.size.width * 0.018.w,
@@ -311,7 +312,8 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
         ),
         GestureDetector(
           onTap: (){
-            _makingPhoneCall();
+            String number = "${screenController.vetsNgoDetailsData[0].phone}";
+            _makingPhoneCall(number);
           },
           child: Container(
             height: screenController.size.width * 0.018.w,
@@ -329,8 +331,8 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
     ).commonSymmetricPadding(horizontal: 15);
   }
 
-  _makingPhoneCall() async {
-    var url = Uri.parse("tel: ${screenController.vetsNgoDetailsData[0].phone}");
+  _makingPhoneCall(String number) async {
+    var url = Uri.parse("tel:$number");
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {
@@ -338,11 +340,11 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
     }
   }
 
-  void launchWhatsApp(BuildContext context) {
+  void launchWhatsApp(BuildContext context, String number) {
     FocusManager.instance.primaryFocus?.unfocus();
 
     var whatsappUrl =
-        "whatsapp://send?phone= ${screenController.vetsNgoDetailsData[0].phone}"
+        "whatsapp://send?phone=$number"
         "&text=${Uri.encodeComponent("Hello")}";
     try {
       launch(whatsappUrl);
@@ -371,8 +373,8 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
     }
   }
 
-  _makingInstagramApp() async {
-    var url = 'https://www.instagram.com/<INSTAGRAM_PROFILE>/';
+  _makingInstagramApp(String url) async {
+    // var url = 'https://www.instagram.com/<INSTAGRAM_PROFILE>/';
 
     if (await canLaunch(url)) {
       await launch(

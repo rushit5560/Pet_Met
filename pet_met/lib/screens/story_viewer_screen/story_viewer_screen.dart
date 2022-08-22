@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pet_met/controllers/home_controller.dart';
 import 'package:pet_met/controllers/story_viewer_controller.dart';
+import 'package:pet_met/utils/api_url.dart';
 import 'package:story_view/story_view.dart';
 
 class StoryViewerScreen extends StatelessWidget {
@@ -15,49 +15,24 @@ class StoryViewerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /*return Container(
-      height: Get.height/2,
-      width: Get.width,
-      child: ListView.builder(
-        itemCount: controller.imageList.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index){
-          return StoryView(
-              onStoryShow: (s) {
-                print("Showing a story");
-              },
-              onComplete: () {
-                print("Completed a cycle");
-              },
-              progressPosition: ProgressPosition.top,
-              repeat: false,
-              controller: controller.storyController,
-              storyItems:[
-                StoryItem.pageImage(
-                url: controller.imageList[index].image,
-                //caption: "Still sampling",
-                controller: controller.storyController,
-              ),
-              ]
-          );
-        },
-      ),
-    );*/
-
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Container(
+      body: SizedBox(
         height: Get.height,
         width: Get.width,
         child: ListView.builder(
-          itemCount: controller.userStoryList[controller.index].data.length,
+          itemCount: controller.storyImagesList.length,
           scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index){
-            log('controller.userStoryList[controller.index].data.length ${controller.userStoryList[controller.index].data.length}');
-            log('controller.imageList: ${controller.imageList[controller.index].image}');
-            return Container(
+          itemBuilder: (context, i){
+
+            String imgUrl = ApiUrl.apiImagePath
+                + "asset/uploads/userstory/"
+                + controller.storyImagesList[i];
+            log("imgUrl : $imgUrl");
+
+            return SizedBox(
               height: Get.height,
-              width: Get.width/2,
+              width: Get.width,
               child: StoryView(
                   onStoryShow: (s) {
                     log("Showing a story");
@@ -68,11 +43,13 @@ class StoryViewerScreen extends StatelessWidget {
                   progressPosition: ProgressPosition.top,
                   repeat: false,
                   controller: controller.storyController,
+
                   storyItems:[
                     StoryItem.pageImage(
-                      url: controller.userStoryList[controller.index].data[index].image,
-                      //caption: "Still sampling",
+                      url: "https://petomate.com/asset/uploads/petimage/bJkRk_destination_map_marker.png",
                       controller: controller.storyController,
+                      duration: const Duration(seconds: 8),
+
                     ),
                   ]
               ),

@@ -273,7 +273,8 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            _makingInstagramApp();
+            String url = "${screenController.shopData[0].instagram}";
+            _makingInstagramApp(url);
           },
           child: Container(
             height: screenController.size.width * 0.018.w,
@@ -289,9 +290,8 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            var fbUrl = "fb://facewebmodal/f?href="
-                "https://facebook.com/AliForDigitalIsrael/";
-            launchFacebook(fbUrl, "https://facebook.com/AliForDigitalIsrael/");
+            var fbUrl = "${screenController.shopData[0].instagram}";
+            launchFacebook(fbUrl, fbUrl);
           },
           child: Container(
             height: screenController.size.width * 0.018.w,
@@ -307,7 +307,8 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            launchWhatsApp(context);
+            String number = "${screenController.shopData[0].phonenumber}";
+            launchWhatsApp(context, number);
           },
           child: Container(
             height: screenController.size.width * 0.018.w,
@@ -323,7 +324,8 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            _makingPhoneCall();
+            String number = "${screenController.shopData[0].phonenumber}";
+            _makingPhoneCall(number);
           },
           child: Container(
             height: screenController.size.width * 0.018.w,
@@ -341,8 +343,8 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
     ).commonSymmetricPadding(horizontal: 15);
   }
 
-  _makingPhoneCall() async {
-    var url = Uri.parse("tel:${screenController.shopData[0].phonenumber}");
+  _makingPhoneCall(String number) async {
+    var url = Uri.parse("tel:$number");
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {
@@ -350,11 +352,11 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
     }
   }
 
-  void launchWhatsApp(BuildContext context) {
+  void launchWhatsApp(BuildContext context, String number) {
     FocusManager.instance.primaryFocus?.unfocus();
 
     var whatsappUrl =
-        "whatsapp://send?phone= ${screenController.shopData[0].phonenumber}"
+        "whatsapp://send?phone= $number"
         "&text=${Uri.encodeComponent("Hello")}";
     try {
       launch(whatsappUrl);
@@ -383,8 +385,8 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
     }
   }
 
-  _makingInstagramApp() async {
-    var url = 'https://www.instagram.com/<INSTAGRAM_PROFILE>/';
+  _makingInstagramApp(String url) async {
+    // var url = 'https://www.instagram.com/<INSTAGRAM_PROFILE>/';
 
     if (await canLaunch(url)) {
       await launch(

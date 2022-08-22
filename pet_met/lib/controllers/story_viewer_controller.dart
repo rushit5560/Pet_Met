@@ -8,11 +8,13 @@ import 'package:http/http.dart' as http;
 import 'package:pet_met/utils/user_details.dart';
 import 'package:story_view/story_view.dart';
 
-class StoryViewerController extends GetxController{
+class StoryViewerController extends GetxController {
+  List<String> storyImagesList = Get.arguments;
+
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 
-  int index = Get.arguments;
+
   final storyController = StoryController();
 
   List<GetUserStoryModelDatum> userStoryList = [];
@@ -25,49 +27,31 @@ class StoryViewerController extends GetxController{
     log("Get User story Api Url : $url");
 
     try {
-      // Map<String, String> header = apiHeader.apiHeader();
-      // log("header : $header");
-
-      http.Response response = await http.get(Uri.parse(url) /*headers: header*/);
+      http.Response response =
+          await http.get(Uri.parse(url));
       log("Get All USer Story Api response : ${response.body}");
 
-      GetUserStoryModel getUserStoryModel =
-      GetUserStoryModel.fromJson(json.decode(response.body));
+      GetUserStoryModel getUserStoryModel = GetUserStoryModel.fromJson(json.decode(response.body));
       isSuccessStatus = getUserStoryModel.success.obs;
 
       if (isSuccessStatus.value) {
-        // bannerList.clear();
-        // for(int i=0; i< getUserStoryModel.data.length; i++){
-        //   userStoryList.addAll(getUserStoryModel.data);
-        //   log("userStoryList Length : ${userStoryList.length}");
-        //   imageList.addAll(getUserStoryModel.data[i].data);
-        //   log('imageList: $imageList');
-        // }
+        userStoryList.clear();
 
-        userStoryList.addAll(getUserStoryModel.data);
+        for (int i = 0; i < getUserStoryModel.data.length; i++) {
+          if (getUserStoryModel.data[i].data != []) {
+            userStoryList.add(getUserStoryModel.data[i]);
+          }
+        }
+
         log("userStoryList Length : ${userStoryList.length}");
-        /*for(int i=0; i < getUserStoryModel.data.length; i++){
-          imageList.addAll(getUserStoryModel.data[i].data);
-          log('imageList: $imageList');
-        }*/
-        //for(int i=0; i < getUserStoryModel.data.length; i++) {
-          /*for(int j=0; i < getUserStoryModel.data[i].data.length; j++){
-            imageList.addAll(getUserStoryModel.data[j].data);
-            log('imageList: $imageList');
-          }*/
-          imageList.addAll(getUserStoryModel.data[index].data);
-          log('imageList: $imageList');
-          // for(int j=0; getUserStoryModel.data[i].data.length; j++){
-          //
-          // }
-       // }
-        log('0 Index: ${getUserStoryModel.data[0].data.length}');
+
+        // imageList.addAll(getUserStoryModel.data[index].data);
+        // log('imageList: $imageList');
 
       } else {
         log("User Story Api Else");
       }
-
-    } catch(e) {
+    } catch (e) {
       log("Get All USer Story Api Error ::: $e");
     } finally {
       isLoading(false);
@@ -75,10 +59,4 @@ class StoryViewerController extends GetxController{
     }
   }
 
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-    getUserStory();
-  }
 }

@@ -60,8 +60,13 @@ class PetNameAndSocialMediaButtonModule extends StatelessWidget {
           ),
         ),
         GestureDetector(
-          onTap: (){
-            _makingPhoneCall();
+          onTap: () {
+            if(screenController.meetingStatus.value == true){
+              _makingPhoneCall(screenController.phoneNo);
+            } else if(screenController.meetingStatus.value == false){
+              screenController.openCheckout();
+            }
+
           },
           child: Container(
             height: screenController.size.width * 0.018.w,
@@ -79,8 +84,8 @@ class PetNameAndSocialMediaButtonModule extends StatelessWidget {
     ).commonSymmetricPadding(horizontal: 15);
   }
 
-  _makingPhoneCall() async {
-    var url = Uri.parse("tel:9776765434");
+  _makingPhoneCall(String phoneNo) async {
+    var url = Uri.parse("tel:$phoneNo");
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {
@@ -224,14 +229,30 @@ class CallUsForMeetupModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      "Call Us For Meet up  at (+91) ",//todo
-      style: TextStyle(
-          color: AppColors.accentTextColor,
-          fontWeight: FontWeight.bold,
-          fontSize: 12.sp),
-    ).commonSymmetricPadding(horizontal: 15);
+    return GestureDetector(
+      onTap: () {
+        _makingPhoneCall(screenController.phoneNo);
+      },
+      child: Text(
+        "Call Us For Meet up  at (+91) ${screenController.phoneNo}",
+        style: TextStyle(
+            color: AppColors.accentTextColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 12.sp),
+      ).commonSymmetricPadding(horizontal: 15),
+    );
   }
+
+  _makingPhoneCall(String phoneNo) async {
+    var url = Uri.parse("tel:$phoneNo");
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+
 }
 
 class PetMeetingOverViewModule extends StatelessWidget {

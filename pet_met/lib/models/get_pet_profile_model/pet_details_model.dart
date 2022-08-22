@@ -8,18 +8,21 @@ class GetPetDetailsModel {
   GetPetDetailsModel({
     required this.success,
     required this.date,
+    required this.user,
     required this.meettingstatus,
     required this.message,
   });
 
   bool success;
   List<PetData> date;
+  List<User> user;
   bool meettingstatus;
   String message;
 
   factory GetPetDetailsModel.fromJson(Map<String, dynamic> json) => GetPetDetailsModel(
     success: json["success"] ?? false,
     date: List<PetData>.from(json["date"].map((x) => PetData.fromJson(x ?? {}))),
+    user: List<User>.from(json["user"].map((x) => User.fromJson(x ?? {}))),
     meettingstatus: json["meettingstatus"] ?? false,
     message: json["message"] ?? "",
   );
@@ -27,6 +30,7 @@ class GetPetDetailsModel {
   Map<String, dynamic> toJson() => {
     "success": success,
     "date": List<dynamic>.from(date.map((x) => x.toJson())),
+    "user": List<dynamic>.from(user.map((x) => x.toJson())),
     "meettingstatus": meettingstatus,
     "message": message,
   };
@@ -117,5 +121,101 @@ class PetData {
     "created_date": createdDate,
     "updated_date": updatedDate,
     "modified_by": modifiedBy,
+  };
+}
+
+class User {
+  User({
+    required this.id,
+    // required this.name,
+    // required this.email,
+    // required this.emailVerifiedAt,
+    // required this.password,
+    // required this.rememberToken,
+    // required this.image,
+    // required this.country,
+    // required this.state,
+    // required this.city,
+    // required this.categoryId,
+    // required this.forgotpasswordToken,
+    // required this.createdAt,
+    // required this.updatedAt,
+    // required this.bod,
+    required this.phone,
+    // required this.gender,
+    // required this.isActive,
+    // required this.isVerified,
+    // required this.startdate,
+    // required this.enddate,
+  });
+
+  String id;
+  // String name;
+  // String email;
+  // dynamic emailVerifiedAt;
+  // String password;
+  // String rememberToken;
+  // String image;
+  // String country;
+  // String state;
+  // String city;
+  // String categoryId;
+  // dynamic forgotpasswordToken;
+  // dynamic createdAt;
+  // dynamic updatedAt;
+  // String bod;
+  String phone;
+  // String gender;
+  // String isActive;
+  // String isVerified;
+  // String startdate;
+  // String enddate;
+
+  factory User.fromJson(Map<String, dynamic> json) => User(
+    id: json["id"] ?? "",
+    // name: json["name"],
+    // email: json["email"],
+    // emailVerifiedAt: json["email_verified_at"],
+    // password: json["password"],
+    // rememberToken: json["remember_token"],
+    // image: json["image"],
+    // country: json["country"],
+    // state: json["state"],
+    // city: json["city"],
+    // categoryId: json["categoryID"],
+    // forgotpasswordToken: json["forgotpassword_token"],
+    // createdAt: json["created_at"],
+    // updatedAt: json["updated_at"],
+    // bod: json["bod"],
+    phone: json["phone"] ?? "",
+    // gender: json["gender"],
+    // isActive: json["is_active"],
+    // isVerified: json["is_verified"],
+    // startdate: json["startdate"],
+    // enddate: json["enddate"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    // "name": name,
+    // "email": email,
+    // "email_verified_at": emailVerifiedAt,
+    // "password": password,
+    // "remember_token": rememberToken,
+    // "image": image,
+    // "country": country,
+    // "state": state,
+    // "city": city,
+    // "categoryID": categoryId,
+    // "forgotpassword_token": forgotpasswordToken,
+    // "created_at": createdAt,
+    // "updated_at": updatedAt,
+    // "bod": bod,
+    "phone": phone,
+    // "gender": gender,
+    // "is_active": isActive,
+    // "is_verified": isVerified,
+    // "startdate": startdate,
+    // "enddate": enddate,
   };
 }

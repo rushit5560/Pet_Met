@@ -243,20 +243,18 @@ class HomeController extends GetxController {
       isSuccessStatus = getUserStoryModel.success.obs;
 
       if (isSuccessStatus.value) {
-        // bannerList.clear();
-        // for(int i=0; i< getUserStoryModel.data.length; i++){
-        //   userStoryList.addAll(getUserStoryModel.data);
-        //   log("userStoryList Length : ${userStoryList.length}");
-        //   imageList.addAll(getUserStoryModel.data[i].data);
-        //   log('imageList: $imageList');
-        // }
+        userStoryList.clear();
 
-        userStoryList.addAll(getUserStoryModel.data);
-        log("userStoryList Length : ${userStoryList.length}");
-        /*for(int i=0; i < getUserStoryModel.data.length; i++){
-          imageList.addAll(getUserStoryModel.data[i].data);
-          log('imageList: $imageList');
-        }*/
+        for(int i = 0; i < getUserStoryModel.data.length; i++) {
+          if(getUserStoryModel.data[i].data.isNotEmpty) {
+            userStoryList.add(getUserStoryModel.data[i]);
+          }
+        }
+
+
+
+        log("userStoryList Length 1212 : ${userStoryList.length}");
+
         for(int i=0; i < getUserStoryModel.data.length; i++) {
           /*for(int j=0; i < getUserStoryModel.data[i].data.length; j++){
             imageList.addAll(getUserStoryModel.data[j].data);
@@ -354,7 +352,7 @@ class HomeController extends GetxController {
           }
         });
       } else {
-        print("uploading without a photo");
+        log("uploading without a photo");
         var request = http.MultipartRequest('POST', Uri.parse(url));
 
         // var stream = http.ByteStream(file!.openRead());
@@ -366,7 +364,7 @@ class HomeController extends GetxController {
 
         request.fields['userid'] = "${UserDetails.userId}";
         request.fields['categoryID'] = "${UserDetails.categoryId}";
-        //request.fields['showimg'] = "jgjadg";
+
 
         // var multiPart = http.MultipartFile(
         //   'file',
