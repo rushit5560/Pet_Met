@@ -36,19 +36,23 @@ class Data {
   Data({
     required this.data,
     required this.petdata,
+    required this.showstatus,
   });
 
   List<TrainerData> data;
   List<TrainerPet> petdata;
+  bool showstatus;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     data: List<TrainerData>.from(json["data"].map((x) => TrainerData.fromJson(x)) ?? {}),
     petdata: List<TrainerPet>.from(json["petdata"].map((x) => TrainerPet.fromJson(x)) ?? {}),
+    showstatus: json["showstatus"] ?? false,
   );
 
   Map<String, dynamic> toJson() => {
     "data": List<dynamic>.from(data.map((x) => x.toJson())),
     "petdata": List<dynamic>.from(petdata.map((x) => x.toJson())),
+    "showstatus": showstatus,
   };
 }
 

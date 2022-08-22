@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pet_met/controllers/login_controller.dart';
@@ -167,7 +168,7 @@ class LoginModule extends StatelessWidget {
                 Expanded(
                   child: GestureDetector(
                     onTap: () async {
-                      // await controller.signInWithGoogleFunction();
+                       await controller.signInWithGoogleFunction();
                     },
                     child: Container(
                       height: controller.size.height * 0.065,
@@ -212,7 +213,8 @@ class LoginModule extends StatelessWidget {
                 Expanded(
                   child: GestureDetector(
                     onTap: () async {
-                      // await controller.signInWithFacebookFunction();
+                      //await controller.signInWithFacebookFunction();
+                      Fluttertoast.showToast(msg: 'This feature coming soon');
                     },
                     child: Container(
                       height: controller.size.height * 0.065,

@@ -338,7 +338,7 @@ class ContactInfoModule extends StatelessWidget {
                   if(controller.shopMeetingStatus.value == true){
                     // open phone dialer
                     _makingPhoneCall();
-                  } else if(controller.meetingStatus.value == false) {
+                  } else if(controller.shopMeetingStatus.value == false) {
                     controller.openCheckout();
                   }
                 }

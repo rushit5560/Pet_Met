@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/controllers/shop_user_profile_screen_controller.dart';
+import 'package:pet_met/screens/pet_pricing_screen/pet_pricing_screen.dart';
 import 'package:pet_met/screens/upload_pet_screen/upload_pet_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
@@ -438,15 +439,50 @@ class AddShopOffersListModule extends StatelessWidget {
                         child: GestureDetector(
                           onTap:(){
                             if(index == 0){
-                              getFromGallery();
+                              if(screenController.showStatus.value == true){
+                                // open gallery
+                                getFromGallery();
+                              } else if(screenController.showStatus.value == false) {
+                                //screenController.openCheckout();
+                                Get.to(() => PetPricingScreen());
+                              }
+
                             } else if(index == 1){
-                              getFromGallery2();
+                              //getFromGallery2();
+                              if(screenController.showStatus.value == true){
+                                // open gallery
+                                getFromGallery2();
+                              } else if(screenController.showStatus.value == false) {
+                                //screenController.openCheckout();
+                                Get.to(() => PetPricingScreen());
+                              }
                             } else if(index == 2){
-                              getFromGallery3();
+                              //getFromGallery3();
+                              if(screenController.showStatus.value == true){
+                                // open gallery
+                                getFromGallery3();
+                              } else if(screenController.showStatus.value == false) {
+                                //screenController.openCheckout();
+                                Get.to(() => PetPricingScreen());
+                              }
                             } else if(index == 3){
-                              getFromGallery4();
+                              //getFromGallery4();
+                              if(screenController.showStatus.value == true){
+                                // open gallery
+                                getFromGallery4();
+                              } else if(screenController.showStatus.value == false) {
+                                //screenController.openCheckout();
+                                Get.to(() => PetPricingScreen());
+                              }
                             } else if(index == 4){
-                              getFromGallery5();
+                              //getFromGallery5();
+                              if(screenController.showStatus.value == true){
+                                // open gallery
+                                getFromGallery5();
+                              } else if(screenController.showStatus.value == false) {
+                                //screenController.openCheckout();
+                                Get.to(() => PetPricingScreen());
+                              }
                             }
                           },
                           child: Container(
@@ -922,10 +958,17 @@ class MeetingAvailabilityModule extends StatelessWidget {
                       child: GestureDetector(
                         onTap: () {
                           //screenController.openCheckout();
-                          Get.to(() => UploadPetScreen(),
-                              transition: Transition.native,
-                              duration: const Duration(milliseconds: 500),
-                              arguments: [PetOption.addOption, ""]);
+
+
+                          if(screenController.showStatus.value == true){
+                            Get.to(() => UploadPetScreen(),
+                                transition: Transition.native,
+                                duration: const Duration(milliseconds: 500),
+                                arguments: [PetOption.addOption, ""]);
+                          } else if(screenController.showStatus.value == false) {
+                            //screenController.openCheckout();
+                            Get.to(() => PetPricingScreen());
+                          }
                         },
                         child: Container(
                           height: 15,

@@ -92,10 +92,11 @@ class PetTrackerPricingController extends GetxController {
     Map<String, dynamic> data = {
       "userid": UserDetails.userId.toString(),
       "planid" : petPlanId,
-      "price" : price,
+      "price" : price.toString(),
       "transition_orderid": orderId ?? "123",
       "transition_paymentId": paymentId,
-      "signature": signature ?? "123"
+      "signature": signature ?? "123",
+      "categoryID": UserDetails.categoryId
     };
 
     log("Add Order Api Url : $url");
@@ -105,13 +106,15 @@ class PetTrackerPricingController extends GetxController {
     try {
       Map<String, String> header = apiHeader.apiHeader();
       http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
-      log("Vet Details Api Response : ${response.body}");
+      log("Add Order Api Response : ${response.body}");
       AddOrderModel addOrderModel =
       AddOrderModel.fromJson(json.decode(response.body));
       isSuccessStatus = addOrderModel.success.obs;
 
       if (isSuccessStatus.value) {
         Fluttertoast.showToast(msg: addOrderModel.message);
+        Get.back();
+        Get.back();
       } else {
         log("Add Order Api Else Else");
       }

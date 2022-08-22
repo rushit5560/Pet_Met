@@ -86,6 +86,8 @@ class TrainersAndUsersScreenController extends GetxController {
   String trainerApiProfile4 = "";
   String trainerApiProfile5 = "";
 
+  RxBool showStatus = false.obs;
+
   /// Get All Role Profile
   Future<void> getAllRoleProfileFunction() async {
     isLoading(true);
@@ -136,6 +138,8 @@ class TrainersAndUsersScreenController extends GetxController {
         trainerApiProfile3 = getTrainersProfileModel.data.data[0].image3;
         trainerApiProfile4 = getTrainersProfileModel.data.data[0].image4;
         trainerApiProfile5 = getTrainersProfileModel.data.data[0].image5;
+
+        showStatus = getTrainersProfileModel.data.showstatus.obs;
 
         // ngoApiProfile
         if(getTrainersProfileModel.data.data[0].image != "") {

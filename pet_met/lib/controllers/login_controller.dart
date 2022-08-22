@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'dart:developer';
 
-// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_login_facebook/flutter_login_facebook.dart';
+import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-// import 'package:google_sign_in/google_sign_in.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:pet_met/models/login_screen_model/login_model.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:http/http.dart' as http;
@@ -30,8 +30,8 @@ class LoginController extends GetxController {
 
   final formKey = GlobalKey<FormState>();
 
-  // FacebookUserProfile? profile;
-  // final FacebookLogin  plugin = FacebookLogin(debug: true);
+  FacebookUserProfile? profile;
+  final FacebookLogin  plugin = FacebookLogin(debug: true);
 
   Future<void> submitLoginForm() async {
     if (formKey.currentState!.validate()) {
@@ -103,7 +103,7 @@ class LoginController extends GetxController {
     }
   }
 
-  /*Future signInWithGoogleFunction() async {
+  Future signInWithGoogleFunction() async {
     isLoading(true);
     // SharedPreferences prefs = await SharedPreferences.getInstance();
     final FirebaseAuth auth = FirebaseAuth.instance;
@@ -131,7 +131,7 @@ class LoginController extends GetxController {
         String email = result.user!.email!;
         //String password = passController.text.trim();
         mailController.text = email;
-        //passController.text = password;
+        passController.text = "12345678";
 
         await userLoginFunction();
 
@@ -146,9 +146,9 @@ class LoginController extends GetxController {
       }
     }
     isLoading(false);
-  }*/
+  }
 
-  /*Future signInWithFacebookFunction() async {
+  Future signInWithFacebookFunction() async {
     await plugin.logIn(
       permissions: [
         FacebookPermission.publicProfile,
@@ -159,9 +159,9 @@ class LoginController extends GetxController {
     await subPartOfFacebookLogin();
     await plugin.logOut();
 
-  }*/
+  }
 
-  /*subPartOfFacebookLogin() async {
+  subPartOfFacebookLogin() async {
     // SharedPreferences prefs = await SharedPreferences.getInstance();
     final plugin1 = plugin;
     final token = await plugin1.accessToken;
@@ -203,6 +203,6 @@ class LoginController extends GetxController {
       }
 
     }
-  }*/
+  }
 
 }

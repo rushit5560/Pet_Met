@@ -97,6 +97,8 @@ class ShopUserProfileScreenController extends GetxController {
   bool vetNgoProfile = false;
   bool trainerProfile = false;
 
+  RxBool showStatus = false.obs;
+
   /// Get All Role Profile
   Future<void> getAllRoleProfileFunction() async {
     isLoading(true);
@@ -149,6 +151,8 @@ class ShopUserProfileScreenController extends GetxController {
         shopApiPicture3 = getShopProfileModel.data.data[0].image3;
         shopApiPicture4 = getShopProfileModel.data.data[0].image4;
         shopApiPicture5 = getShopProfileModel.data.data[0].image5;
+
+        showStatus = getShopProfileModel.data.showstatus.obs;
 
 
         // shopApiProfile
@@ -1732,7 +1736,7 @@ class ShopUserProfileScreenController extends GetxController {
       'description': detailsController.text,
       'retry': {'enabled': true, 'max_count': 1},
       'send_sms_hash': true,
-      'prefill': {'contact': '8888888888', 'email': 'test@razorpay.com'},
+      'prefill': {'contact': contactNumber.text, 'email': 'test@razorpay.com'},
       'external': {
         'wallets': ['paytm']
       }
@@ -1748,11 +1752,11 @@ class ShopUserProfileScreenController extends GetxController {
 
   void _handlePaymentSuccess(PaymentSuccessResponse response)async {
     log('Success Response: ${response.orderId}');
-    // await addOrderFunction(
-    //     orderId: response.orderId,
-    //     paymentId: response.paymentId!,
-    //     signature: response.signature
-    // );
+    /*await petAddOrderFunction(
+        orderId: response.orderId,
+        paymentId: response.paymentId!,
+        signature: response.signature
+    );*/
 
     Fluttertoast.showToast(
         msg: "SUCCESS: " + response.paymentId!,

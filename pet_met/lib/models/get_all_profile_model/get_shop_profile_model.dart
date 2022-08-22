@@ -60,19 +60,23 @@ class GetShopProfileModelData {
   GetShopProfileModelData({
     required this.data,
     required this.petdata,
+    required this.showstatus,
   });
 
   List<DataData> data;
   List<ShopPet> petdata;
+  bool showstatus;
 
   factory GetShopProfileModelData.fromJson(Map<String, dynamic> json) => GetShopProfileModelData(
     data: List<DataData>.from(json["data"].map((x) => DataData.fromJson(x)) ?? {}),
     petdata: List<ShopPet>.from(json["petdata"].map((x) => ShopPet.fromJson(x)) ?? {}),
+    showstatus: json["showstatus"] ?? false,
   );
 
   Map<String, dynamic> toJson() => {
     "data": List<dynamic>.from(data.map((x) => x.toJson())),
     "petdata": List<dynamic>.from(petdata.map((x) => x.toJson())),
+    "showstatus": showstatus,
   };
 }
 
