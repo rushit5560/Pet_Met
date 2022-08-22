@@ -4,11 +4,13 @@ import 'package:get/get.dart';
 import 'package:pet_met/screens/about_screen/about_screen.dart';
 import 'package:pet_met/screens/change_password_screen/change_password_screen.dart';
 import 'package:pet_met/screens/faq_screen/faq_screen.dart';
+import 'package:pet_met/screens/meeting_orders_screen/meeting_orders_screen.dart';
 import 'package:pet_met/screens/pet_activity_screen/pet_activity_screen.dart';
 import 'package:pet_met/screens/pet_care_info_screen/pet_care_info_screen.dart';
 import 'package:pet_met/screens/pet_pricing_screen/pet_pricing_screen.dart';
 import 'package:pet_met/screens/privacy_policy_screen/privacy_policy_screen.dart';
 import 'package:pet_met/screens/rate_app_screen/rate_app_screen.dart';
+import 'package:pet_met/screens/subscription_report_screen/subscription_report_screen.dart';
 import 'package:pet_met/screens/support_screen/support_screen.dart';
 import 'package:pet_met/screens/user_profile_screen/user_profile_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
@@ -470,7 +472,7 @@ class _BuildMenuState extends State<BuildMenu> {
                               height: 22,
                             ),
                             titleWidget: Text(
-                              "Plan",
+                              "Subscription",
                               style: TextStyle(
                                 color: themeProvider.darkTheme
                                     ? AppColors.whiteColor
@@ -480,6 +482,59 @@ class _BuildMenuState extends State<BuildMenu> {
                               ),
                             ),
                           ),
+
+
+                          UserDetails.categoryId == "1" || UserDetails.categoryId == "2"
+                          ? drawerListTile(
+                            onTap: () {
+                              indexController.drawerController.close!();
+                              Get.to(()=> MeetingOrdersScreen());
+                            },
+                            leading: Icon(
+                              Icons.edit_note_rounded,
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.greyTextColor,
+                              size: 22,
+                            ),
+                            titleWidget: Text(
+                              "Meeting Report",
+                              style: TextStyle(
+                                color: themeProvider.darkTheme
+                                    ? AppColors.whiteColor
+                                    : AppColors.greyTextColor,
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ) : Container(),
+
+                          UserDetails.categoryId == "2" || UserDetails.categoryId == "4"
+                              ? drawerListTile(
+                            onTap: () {
+                              indexController.drawerController.close!();
+                              Get.to(()=> SubscriptionReportScreen());
+                            },
+                            leading: Icon(
+                              Icons.edit_note_rounded,
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.greyTextColor,
+                              size: 22,
+                            ),
+                            titleWidget: Text(
+                              "Subscription Report",
+                              style: TextStyle(
+                                color: themeProvider.darkTheme
+                                    ? AppColors.whiteColor
+                                    : AppColors.greyTextColor,
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ) : Container(),
+
+
                         ],
                       ),
                     ),

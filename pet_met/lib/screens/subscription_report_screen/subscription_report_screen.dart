@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pet_met/controllers/meeting_orders_screen_controller.dart';
+import 'package:pet_met/controllers/subscription_report_screen_controller.dart';
 import 'package:pet_met/utils/common_widgets/background_widgets.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/enums.dart';
 
 import '../../utils/app_images.dart';
-import 'meeting_orders_screen_widgets.dart';
+import 'subscription_report_screen_widgets.dart';
 
-class MeetingOrdersScreen extends StatelessWidget {
-  MeetingOrdersScreen({Key? key}) : super(key: key);
-  final  meetingOrdersScreenController = Get.put(MeetingOrdersScreenController());
+class SubscriptionReportScreen extends StatelessWidget {
+  SubscriptionReportScreen({Key? key}) : super(key: key);
+  final subscriptionReportScreenController = Get.put(SubscriptionReportScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -26,33 +26,35 @@ class MeetingOrdersScreen extends StatelessWidget {
                 : AppImages.backgroundImgLight),
           ),
           BackGroundLeftShadow(
-            height: meetingOrdersScreenController.size.height * 0.3,
-            width: meetingOrdersScreenController.size.height * 0.3,
-            topPad: meetingOrdersScreenController.size.height * 0.28,
-            leftPad: -meetingOrdersScreenController.size.width * 0.15,
+            height: subscriptionReportScreenController.size.height * 0.3,
+            width: subscriptionReportScreenController.size.height * 0.3,
+            topPad: subscriptionReportScreenController.size.height * 0.28,
+            leftPad: -subscriptionReportScreenController.size.width * 0.15,
           ),
 
           SafeArea(
             child: Column(
               children: [
                 CustomAppBar(
-                  title: "Meetings",
+                  title: "Subscription Report",
                   appBarOption: AppBarOption.singleBackButtonOption,
                 ),
                 const SizedBox(height: 15),
 
 
+
                 Expanded(
                   child: Obx(
-                      ()=> meetingOrdersScreenController.isLoading.value
-                          ? const CustomAnimationLoader()
-                          : MeetingOrderListModule(),
+                        ()=> subscriptionReportScreenController.isLoading.value
+                        ? const CustomAnimationLoader()
+                        : SubscriptionOrderListModule(),
                   ),
                 ),
 
               ],
             ),
           ),
+
 
         ],
       ),

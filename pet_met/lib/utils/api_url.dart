@@ -74,6 +74,7 @@ class ApiUrl {
   static const subCategoryWisePetsApi = apiMainPath + "/subcategorywisepet/";
 
     static const meetingOrderApi = apiMainPath + "/meettingorder";
+    static const subscriptionOrderApi = apiMainPath + "/allorder";
 
 }
 
