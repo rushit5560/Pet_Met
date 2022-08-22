@@ -58,6 +58,7 @@ class ApiUrl {
 
   /// Order
   static const addOrderApi = apiMainPath + "/orderadd";
+  static const petAddOrderApi = apiMainPath + "/meettingpetadd";
 
   /// Follow && Unfollow && Status
    static const followStatusApi = apiMainPath + "/followstatus";
