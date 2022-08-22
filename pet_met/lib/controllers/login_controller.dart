@@ -30,8 +30,11 @@ class LoginController extends GetxController {
 
   final formKey = GlobalKey<FormState>();
 
-  FacebookUserProfile? profile;
-  final FacebookLogin  plugin = FacebookLogin(debug: true);
+  // FacebookUserProfile? profile;
+  // final FacebookLogin  plugin = FacebookLogin(debug: true);
+
+  final fb = FacebookLogin();
+
 
   Future<void> submitLoginForm() async {
     if (formKey.currentState!.validate()) {
@@ -149,19 +152,65 @@ class LoginController extends GetxController {
   }
 
   Future signInWithFacebookFunction() async {
-    await plugin.logIn(
+    //await fb.logOut();
+    final res = await fb.logIn(permissions: [
+      FacebookPermission.publicProfile,
+      FacebookPermission.email,
+    ]);
+
+    // Check result status
+    switch (res.status) {
+      case FacebookLoginStatus.success:
+      // Logged in
+
+      // Send access token to server for validation and auth
+        final FacebookAccessToken accessToken = res.accessToken!;
+        print('Access token: ${accessToken.token}');
+
+        // Get profile data
+        final profile = await fb.getUserProfile();
+        print('Hello, ${profile!.name}! You ID: ${profile.userId}');
+
+        // Get user profile image url
+        final imageUrl = await fb.getProfileImageUrl(width: 100);
+        print('Your profile image: $imageUrl');
+
+        // Get email (since we request email permission)
+        final email = await fb.getUserEmail();
+        // But user can decline permission
+        if (email != null){
+          log('And your email is $email');
+          mailController.text = email;
+          passController.text = "12345678";
+
+          await userLoginFunction();
+        }
+
+
+        break;
+      case FacebookLoginStatus.cancel:
+      // User cancel log in
+        break;
+      case FacebookLoginStatus.error:
+      // Log in failed
+        print('Error while log in: ${res.error}');
+        break;
+    }
+
+    //await plugin.logOut();
+    /*await plugin.logIn(
       permissions: [
         FacebookPermission.publicProfile,
         FacebookPermission.email,
       ],
     );
 
-    await subPartOfFacebookLogin();
-    await plugin.logOut();
+    await subPartOfFacebookLogin();*/
+
 
   }
 
-  subPartOfFacebookLogin() async {
+  /*subPartOfFacebookLogin() async {
     // SharedPreferences prefs = await SharedPreferences.getInstance();
     final plugin1 = plugin;
     final token = await plugin1.accessToken;
@@ -187,7 +236,7 @@ class LoginController extends GetxController {
           //passwordFieldController.text = "${userNameFieldController.text}@123";
 
           await userLoginFunction();
-
+          await plugin.logOut();
 
           // prefs.setString('userId', profile!.userId);
           // prefs.setString('userName', profile!.firstName!);
@@ -203,6 +252,6 @@ class LoginController extends GetxController {
       }
 
     }
-  }
+  }*/
 
 }

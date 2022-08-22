@@ -1,5 +1,6 @@
 import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/screens/about_screen/about_screen.dart';
 import 'package:pet_met/screens/change_password_screen/change_password_screen.dart';
@@ -40,6 +41,8 @@ class _BuildMenuState extends State<BuildMenu> {
   final controller = Get.find<HomeController>();
 
   final indexController = Get.find<IndexScreenController>();
+
+  final fb = FacebookLogin();
 
   @override
   Widget build(BuildContext context) {
@@ -602,6 +605,7 @@ class _BuildMenuState extends State<BuildMenu> {
                         GestureDetector(
                           onTap: () async {
                             await indexController.userLogOutFunction();
+                            await fb.logOut();
                           },
                           child: Row(
                             children: [
