@@ -443,8 +443,15 @@ class DogOwnerListModule extends StatelessWidget {
                               //       PetOption.updateOption,
                               //       controller.petList[index].id
                               //     ]);
-                              Get.to(()=> PetMeetingDetailsScreen(), arguments: controller.petList[index].id);
-                            },
+                                    Get.to(
+                                      () => PetMeetingDetailsScreen(),
+                                      arguments: [
+                                        controller.petList[index].id,
+                                        controller.followUserId,
+                                        controller.followCategoryId,
+                                      ],
+                                    );
+                                  },
                             child: Container(
                               height: 8.h,
                               width: 7.h,
@@ -461,7 +468,7 @@ class DogOwnerListModule extends StatelessWidget {
                                 border: Border.all(color: Colors.grey)
                               ),
                               child: Image.network(
-                                  ApiUrl.apiImagePath +controller.petList[index].image,
+                                  ApiUrl.apiImagePath + controller.petList[index].image,
                                   errorBuilder: (context, st, ob) {
                                 return Image.asset(AppImages.petMetLogoImg);
                               }, fit: BoxFit.cover),

@@ -40,7 +40,7 @@ class ApiUrl {
   static const topPetListApi = apiMainPath + "/pettop";
 
   /// Pet Profile Management
-  static const petProfileApi = apiMainPath + "/petdetails/";
+  static const petProfileApi = apiMainPath + "/petdetails";
   static const petUpdateProfileApi = apiMainPath + "/petadd"; // add/update
 
   /// All Role Profile Managemnet
@@ -72,7 +72,13 @@ class ApiUrl {
   static const addUserStoryApi = apiMainPath + "/userstory"; // Add
 
   static const subCategoryWisePetsApi = apiMainPath + "/subcategorywisepet/";
+
+    static const meetingOrderApi = apiMainPath + "/meettingorder";
+
 }
+
+
+
 
 class ApiHeader {
   // UserDetails userDetails = UserDetails();

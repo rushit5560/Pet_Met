@@ -21,7 +21,7 @@ class GetPetProfileModel {
 
   factory GetPetProfileModel.fromJson(Map<String, dynamic> json) => GetPetProfileModel(
     success: json["success"] ?? false,
-    data: List<PetDatum>.from(json["data"].map((x) => PetDatum.fromJson(x)) ?? {}),
+    data: List<PetDatum>.from(json["data"].map((x) => PetDatum.fromJson(x ?? {}))/* ?? {}*/),
     message: json["message"] ?? "",
   );
 

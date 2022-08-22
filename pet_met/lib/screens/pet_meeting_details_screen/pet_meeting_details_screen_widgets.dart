@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
@@ -15,6 +17,7 @@ class PetMeetingDetailsBannerImageModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log("Image1212 : ${ApiUrl.apiImagePath + screenController.image}");
     return Container(
       width: screenController.size.width,
       height: screenController.size.height * 0.038.h,
@@ -222,7 +225,7 @@ class CallUsForMeetupModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      "Call Us For Meet up  at (+91) 90912 45678",
+      "Call Us For Meet up  at (+91) ",//todo
       style: TextStyle(
           color: AppColors.accentTextColor,
           fontWeight: FontWeight.bold,

@@ -3,18 +3,24 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:pet_met/models/get_pet_profile_model/get_pet_profile_model.dart';
+import 'package:pet_met/models/get_pet_profile_model/pet_details_model.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:http/http.dart' as http;
+import 'package:pet_met/utils/user_details.dart';
 
 class PetMeetingDetailsScreenController extends GetxController {
+  String petId = Get.arguments[0];
+  String petUserId = Get.arguments[1];
+  String petUserCatId = Get.arguments[2];
+
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
   final size = Get.size;
 
-  String petId = Get.arguments;
+
 
   ApiHeader apiHeader = ApiHeader();
-  PetDatum getProfile = PetDatum();
+  PetData getProfile = PetData();
   String image = "";
   String petName = "";
   String mettingAvailability = "";
@@ -24,24 +30,35 @@ class PetMeetingDetailsScreenController extends GetxController {
   /// Get Pet Profile
   Future<void> getProfileFunction() async {
     isLoading(true);
-    String url = ApiUrl.petProfileApi + petId;
+    String url = ApiUrl.petProfileApi;
     log("All Pet Profile Api Url : $url");
 
     try {
       Map<String, String> header = apiHeader.apiHeader();
       log("header : $header");
 
-      http.Response response = await http.get(Uri.parse(url), headers: header);
+      Map<String, dynamic> bodyData = {
+        "userid": UserDetails.userId,
+        "categoryid" : UserDetails.categoryId,
+        "meettingpetuserid" : petUserId,
+        "meettingpetusercategory" : petUserCatId
+      };
+      log("bodyData : $bodyData");
+
+      http.Response response = await http.post(
+          Uri.parse(url),
+          headers: header,
+          body: bodyData
+      );
       log("Get Pet Profile Api response : ${response.body}");
 
-      GetPetProfileModel getPetProfileModel =
-      GetPetProfileModel.fromJson(json.decode(response.body));
-      isSuccessStatus = getPetProfileModel.success!.obs;
+      GetPetDetailsModel getPetProfileModel = GetPetDetailsModel.fromJson(json.decode(response.body));
+      isSuccessStatus = getPetProfileModel.success.obs;
 
       if (isSuccessStatus.value) {
 
-         getProfile = getPetProfileModel.data![0];
-         image = getProfile.image!;
+         getProfile = getPetProfileModel.date[0];
+         image = getPetProfileModel.date[0].image!;
          petName = getProfile.petName!;
          mettingAvailability = getProfile.meetingAvailability!;
          dob= getProfile.dob!;
@@ -78,7 +95,6 @@ class PetMeetingDetailsScreenController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     getProfileFunction();
   }
