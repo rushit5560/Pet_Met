@@ -154,62 +154,80 @@ class PetTrainerListModule extends StatelessWidget {
             ),
           ],
         ),
-        child: Row(
+        child: Stack(
+          alignment: Alignment.topRight,
           children: [
-            Container(
-              width: 75,
-              height: 65,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                  border: Border.all(color: Colors.grey),
-                  // boxShadow: const [
-                  //   BoxShadow(
-                  //       color: Colors.grey,
-                  //       blurRadius: 1.5,
-                  //       spreadRadius: 1.5
-                  //   )
-                  // ]
-                //color: Colors.grey,
-              ),
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Image.network(imgUrl,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, er, ob) {
-                    return Image.asset(AppImages.petMetLogoImg);
-                  })),
-            ),
-            SizedBox(width: 3.w),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    trainerSingleItem.name,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12.sp,
-                      color: themeProvider.darkTheme
-                          ? AppColors.whiteColor
-                          : AppColors.blackTextColor,
-                    ),
+            Row(
+              children: [
+                Container(
+                  width: 75,
+                  height: 65,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(color: Colors.grey),
+                    // boxShadow: const [
+                    //   BoxShadow(
+                    //       color: Colors.grey,
+                    //       blurRadius: 1.5,
+                    //       spreadRadius: 1.5
+                    //   )
+                    // ]
+                    //color: Colors.grey,
                   ),
-                  SizedBox(height: 1.w),
-                  Text(
-                    trainerSingleItem.address,
-                    maxLines: 4,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: themeProvider.darkTheme
-                          ? AppColors.whiteColor
-                          : AppColors.blackTextColor,
-                    ),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: Image.network(imgUrl,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, er, ob) {
+                            return Image.asset(AppImages.petMetLogoImg);
+                          })),
+                ),
+                SizedBox(width: 3.w),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        trainerSingleItem.name,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12.sp,
+                          color: themeProvider.darkTheme
+                              ? AppColors.whiteColor
+                              : AppColors.blackTextColor,
+                        ),
+                      ),
+                      SizedBox(height: 1.w),
+                      Text(
+                        trainerSingleItem.address,
+                        maxLines: 4,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: themeProvider.darkTheme
+                              ? AppColors.whiteColor
+                              : AppColors.blackTextColor,
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
+            trainerSingleItem.isVerified == "0"
+                ? Container(
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.accentTextColor,
+              ),
+              child: const Icon(
+                Icons.check_rounded,
+                color: Colors.white,
+                size: 18,
+              ),
+            )
+                : Container(),
           ],
         ).commonAllSidePadding(padding: 2.w),
       ).commonAllSidePadding(padding: 10),

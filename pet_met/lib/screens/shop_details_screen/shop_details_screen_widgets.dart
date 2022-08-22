@@ -57,9 +57,30 @@ class OffersModule extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Text(
-          "Offers:",
-          style: TextStyle(color: AppColors.accentTextColor),
+        Row(
+          children: [
+            const Expanded(
+              child: Text(
+                "Offers:",
+                style: TextStyle(color: AppColors.accentTextColor),
+              ),
+            ),
+
+            screenController.isVerified == true
+                ? Container(
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.accentTextColor,
+              ),
+              child: const Icon(
+                Icons.check_rounded,
+                color: Colors.white,
+                size: 18,
+              ),
+            )
+                : Container(),
+
+          ],
         ),
         SizedBox(height: 10),
         Row(

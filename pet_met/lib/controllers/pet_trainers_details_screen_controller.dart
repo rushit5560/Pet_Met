@@ -18,6 +18,7 @@ class PetTrainersDetailsScreenController extends GetxController {
   ApiHeader apiHeader = ApiHeader();
   //TrainerData trainerDetails = TrainerData();
   List<TrainerData> trainerDetails = [];
+  bool isVerified = false;
 
   Future<void> getTrainerDetailsFunction() async {
     isLoading(true);
@@ -34,6 +35,14 @@ class PetTrainersDetailsScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         trainerDetails = trainerDetailsModel.data;
+
+        String isVerify = "${trainerDetailsModel.data[0].isVerified}";
+        if(isVerify == "0") {
+          isVerified = true;
+        } else {
+          isVerified = false;
+        }
+
       } else {
         log("Trainer Details Api Else");
       }

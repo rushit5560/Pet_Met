@@ -6,7 +6,6 @@ import 'package:pet_met/screens/pet_vets_and_ngo_details_screen/pet_vets_and_ngo
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:pet_met/utils/validations.dart';
 import 'package:provider/provider.dart';
@@ -155,9 +154,12 @@ class VetsAndNgoListModule extends StatelessWidget {
             ),
           ],
         ),
-        child: Row(
+        child: Stack(
+          alignment: Alignment.topRight,
           children: [
-            /*Container(
+            Row(
+              children: [
+                /*Container(
               width: 22.w,
               height: 22.w,
               decoration: BoxDecoration(
@@ -165,61 +167,76 @@ class VetsAndNgoListModule extends StatelessWidget {
                 color: Colors.grey,
               ),
             ),*/
-            Container(
-              width: 75,
-              height: 65,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                  border: Border.all(color: Colors.grey),
-                // boxShadow: const [
-                //   BoxShadow(
-                //     color: Colors.grey,
-                //     blurRadius: 1.5,
-                //     spreadRadius: 1.5
-                //   )
-                // ]
-                //color: Colors.grey,
-              ),
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Image.network(imgUrl,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, er, ob) {
-                    return Image.asset(AppImages.petMetLogoImg);
-                  })),
-            ),
-            SizedBox(width: 3.w),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    vetAndNgoData.name,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12.sp,
-                      color: themeProvider.darkTheme
-                          ? AppColors.whiteColor
-                          : AppColors.blackTextColor,
-                    ),
+                Container(
+                  width: 75,
+                  height: 65,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    border: Border.all(color: Colors.grey),
+                    // boxShadow: const [
+                    //   BoxShadow(
+                    //     color: Colors.grey,
+                    //     blurRadius: 1.5,
+                    //     spreadRadius: 1.5
+                    //   )
+                    // ]
+                    //color: Colors.grey,
                   ),
-                  SizedBox(height: 1.w),
-                  Text(
-                    vetAndNgoData.address,
-                    maxLines: 4,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w300,
-                      color: themeProvider.darkTheme
-                          ? AppColors.whiteColor
-                          : AppColors.blackTextColor,
-                    ),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: Image.network(imgUrl,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, er, ob) {
+                            return Image.asset(AppImages.petMetLogoImg);
+                          })),
+                ),
+                SizedBox(width: 3.w),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        vetAndNgoData.name,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12.sp,
+                          color: themeProvider.darkTheme
+                              ? AppColors.whiteColor
+                              : AppColors.blackTextColor,
+                        ),
+                      ),
+                      SizedBox(height: 1.w),
+                      Text(
+                        vetAndNgoData.address,
+                        maxLines: 4,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w300,
+                          color: themeProvider.darkTheme
+                              ? AppColors.whiteColor
+                              : AppColors.blackTextColor,
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
+            vetAndNgoData.isVerified == "0"
+                ? Container(
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.accentTextColor,
+              ),
+              child: const Icon(
+                Icons.check_rounded,
+                color: Colors.white,
+                size: 18,
+              ),
+            )
+                : Container(),
           ],
         ).commonAllSidePadding(padding: 2.w),
       ).commonAllSidePadding(padding: 10),

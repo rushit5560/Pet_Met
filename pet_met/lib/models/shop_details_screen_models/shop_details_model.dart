@@ -56,6 +56,7 @@ class ShopData {
     this.meetingimages,
     this.sortorder,
     this.status,
+    this.isVerified,
     // this.createdBy,
     // this.modifiedBy,
     // this.createdDate,
@@ -81,6 +82,7 @@ class ShopData {
   List<String>? meetingimages;
   String? sortorder;
   String? status;
+  String? isVerified;
   // int createdBy;
   // dynamic modifiedBy;
   // DateTime createdDate;
@@ -108,6 +110,7 @@ class ShopData {
         List<String>.from(json["meetingimages"].map((x) => x ?? {})),
         sortorder: json["sortorder"] ?? "",
         status: json["status"] ?? "",
+        isVerified: json["is_verified"] ?? "1",
         // createdBy: json["created_by"],
         // modifiedBy: json["modified_by"],
         // createdDate: DateTime.parse(json["created_date"]),
@@ -134,6 +137,7 @@ class ShopData {
         "meetingimages": List<dynamic>.from(meetingimages!.map((x) => x)),
         "sortorder": sortorder,
         "status": status,
+        "is_verified": isVerified,
         // "created_by": createdBy,
         // "modified_by": modifiedBy,
         // "created_date": createdDate.toIso8601String(),

@@ -51,6 +51,7 @@ class Trainers {
     required this.modifiedBy,
     required this.createdDate,
     required this.modifiedDate,
+    required this.isVerified,
   });
 
   String id;
@@ -71,6 +72,7 @@ class Trainers {
   String modifiedBy;
   String createdDate;
   String modifiedDate;
+  String isVerified;
 
   factory Trainers.fromJson(Map<String, dynamic> json) => Trainers(
     id: json["id"] ?? "",
@@ -91,6 +93,7 @@ class Trainers {
     modifiedBy: json["modified_by"] ?? "",
     createdDate: json["created_date"] ?? "",
     modifiedDate: json["modified_date"] ?? "",
+    isVerified: json["is_verified"] ?? "1",
   );
 
   Map<String, dynamic> toJson() => {
@@ -112,6 +115,7 @@ class Trainers {
     "modified_by": modifiedBy,
     "created_date": createdDate,
     "modified_date": modifiedDate,
+    "is_verified": isVerified,
   };
 }
 

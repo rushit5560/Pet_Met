@@ -16,6 +16,7 @@ class ShopDetailsScreenController extends GetxController {
 
   //ShopData shopData = ShopData();
   List<ShopData> shopData = [];
+  bool isVerified = false;
 
   /// Get Shop Details
   Future<void> getShopDetailsFunction() async {
@@ -33,7 +34,14 @@ class ShopDetailsScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         shopData = shopDetailsModel.data;
-       // log("shopDetails : ${shopData.showimg}");
+
+        String isVerify = "${shopDetailsModel.data[0].isVerified}";
+        if(isVerify == "0") {
+          isVerified = true;
+        } else {
+          isVerified = false;
+        }
+
       } else {
         log("Shop Details Api Else");
       }

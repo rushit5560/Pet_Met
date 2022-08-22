@@ -59,14 +59,30 @@ class NgoAchivementPictureListModule extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Text(
-                  "NGO Achievement Picture",
-                  style: TextStyle(
-                    color: AppColors.accentTextColor,
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.bold,
+                Expanded(
+                  child: Text(
+                    "NGO Achievement Picture",
+                    style: TextStyle(
+                      color: AppColors.accentTextColor,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
+
+                screenController.isVerified == true
+                    ? Container(
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.accentTextColor,
+                        ),
+                        child: const Icon(
+                          Icons.check_rounded,
+                          color: Colors.white,
+                          size: 18,
+                        ),
+                      )
+                    : Container(),
               ],
             ),
           ),
