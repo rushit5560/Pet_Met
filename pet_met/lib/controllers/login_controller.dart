@@ -165,15 +165,15 @@ class LoginController extends GetxController {
 
       // Send access token to server for validation and auth
         final FacebookAccessToken accessToken = res.accessToken!;
-        print('Access token: ${accessToken.token}');
+        log('Access token: ${accessToken.token}');
 
         // Get profile data
         final profile = await fb.getUserProfile();
-        print('Hello, ${profile!.name}! You ID: ${profile.userId}');
+        log('Hello, ${profile!.name}! You ID: ${profile.userId}');
 
         // Get user profile image url
         final imageUrl = await fb.getProfileImageUrl(width: 100);
-        print('Your profile image: $imageUrl');
+        log('Your profile image: $imageUrl');
 
         // Get email (since we request email permission)
         final email = await fb.getUserEmail();

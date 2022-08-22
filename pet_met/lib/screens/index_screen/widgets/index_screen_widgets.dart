@@ -42,7 +42,7 @@ class _BuildMenuState extends State<BuildMenu> {
 
   final indexController = Get.find<IndexScreenController>();
 
-  final fb = FacebookLogin();
+
 
   @override
   Widget build(BuildContext context) {
@@ -605,7 +605,7 @@ class _BuildMenuState extends State<BuildMenu> {
                         GestureDetector(
                           onTap: () async {
                             await indexController.userLogOutFunction();
-                            await fb.logOut();
+
                           },
                           child: Row(
                             children: [

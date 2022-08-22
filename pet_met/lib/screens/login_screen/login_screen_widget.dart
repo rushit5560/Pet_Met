@@ -168,7 +168,8 @@ class LoginModule extends StatelessWidget {
                 Expanded(
                   child: GestureDetector(
                     onTap: () async {
-                       await controller.signInWithGoogleFunction();
+                       //await controller.signInWithGoogleFunction();
+                      Fluttertoast.showToast(msg: 'This feature is coming soon');
                     },
                     child: Container(
                       height: controller.size.height * 0.065,
@@ -213,8 +214,8 @@ class LoginModule extends StatelessWidget {
                 Expanded(
                   child: GestureDetector(
                     onTap: () async {
-                      await controller.signInWithFacebookFunction();
-                      //Fluttertoast.showToast(msg: 'This feature coming soon');
+                      //await controller.signInWithFacebookFunction();
+                      Fluttertoast.showToast(msg: 'This feature is coming soon');
                     },
                     child: Container(
                       height: controller.size.height * 0.065,

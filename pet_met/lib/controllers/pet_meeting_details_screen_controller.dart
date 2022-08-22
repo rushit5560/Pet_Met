@@ -25,6 +25,7 @@ class PetMeetingDetailsScreenController extends GetxController {
 
   ApiHeader apiHeader = ApiHeader();
   PetData getProfile = PetData();
+  String meetingPetId = "";
   String image = "";
   String petName = "";
   String mettingAvailability = "";
@@ -68,6 +69,7 @@ class PetMeetingDetailsScreenController extends GetxController {
       if (isSuccessStatus.value) {
 
          getProfile = getPetProfileModel.date[0];
+         meetingPetId = getPetProfileModel.date[0].id!;
          image = getPetProfileModel.date[0].image!;
          petName = getProfile.petName!;
          mettingAvailability = getProfile.meetingAvailability!;
@@ -154,7 +156,7 @@ class PetMeetingDetailsScreenController extends GetxController {
       "meettingpetuserid" : petUserId,
       "meettingpetusercategory": petUserCatId,
       "userpetid": "1",
-      "meettingpetid": "10",
+      "meettingpetid": meetingPetId,
       "price": "200",
       "transition_orderid": orderId ?? "123",
       "transition_paymentId": paymentId,
