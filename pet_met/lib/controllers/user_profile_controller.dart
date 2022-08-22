@@ -5,6 +5,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:pet_met/models/add_order_screen_model/pet_add_order_model.dart';
 import 'package:pet_met/models/follow_user_model/follow_user_model.dart';
 import 'package:pet_met/models/follow_user_model/get_follow_status_model.dart';
 import 'package:pet_met/models/follow_user_model/unfollow_user_model.dart';
@@ -57,10 +58,12 @@ class UserProfileController extends GetxController {
 
   String userprofile= "";
   String userName = "";
+  String userMobileNumber = "";
 
   String shopProfile= "";
   String shopName = "";
   String shopDescription = "";
+  String shopMobileNumber = "";
 
   String ngoProfile= "";
   String ngoName = "";
@@ -71,6 +74,7 @@ class UserProfileController extends GetxController {
   String trainerDescription = "";
 
   RxBool meetingStatus = false.obs;
+  RxBool shopMeetingStatus = false.obs;
 
   late Razorpay _razorpay;
 
@@ -156,8 +160,7 @@ class UserProfileController extends GetxController {
 
         userprofile = ApiUrl.apiImagePath + "asset/uploads/product/" + getUserProfileModel.data.data[0].image;
         userName = getUserProfileModel.data.data[0].name;
-
-
+        userMobileNumber = getUserProfileModel.data.data[0].phone;
 
         log("petList Length : ${petList.length}");
       } else {
@@ -253,11 +256,12 @@ class UserProfileController extends GetxController {
       if (isSuccessStatus.value) {
         shopPetList.clear();
         shopPetList.addAll(petShopProfileModel.data.petdata);
-        meetingStatus = petShopProfileModel.data.meettingstatus.obs;
+        shopMeetingStatus = petShopProfileModel.data.meettingstatus.obs;
 
         shopProfile = ApiUrl.apiImagePath  + petShopProfileModel.data.data[0].showimg;
         shopName = petShopProfileModel.data.data[0].shopename;
         shopDescription = petShopProfileModel.data.data[0].fullText;
+        shopMobileNumber = petShopProfileModel.data.data[0].phonenumber;
 
 
         log("petList Length : ${petList.length}");
@@ -559,7 +563,7 @@ class UserProfileController extends GetxController {
       'description': followCategoryId == "1" ? "" : followCategoryId == "2" ? shopDescription : followCategoryId == "3" ? ngoDescription : followCategoryId == "4" ? trainerDescription : "",
       'retry': {'enabled': true, 'max_count': 1},
       'send_sms_hash': true,
-      'prefill': {'contact': '8888888888', 'email': 'test@razorpay.com'},
+      'prefill': {'contact': followCategoryId == "1" ? userMobileNumber : followCategoryId == "2" ? shopMobileNumber : "", 'email': 'test@razorpay.com'},
       'external': {
         'wallets': ['paytm']
       }
@@ -574,11 +578,11 @@ class UserProfileController extends GetxController {
 
   void _handlePaymentSuccess(PaymentSuccessResponse response)async {
     log('Success Response: ${response.orderId}');
-    /*await addOrderFunction(
+    await petAddOrderFunction(
         orderId: response.orderId,
         paymentId: response.paymentId!,
         signature: response.signature
-    );*/
+    );
 
     Fluttertoast.showToast(
         msg: "SUCCESS: " + response.paymentId!,
@@ -603,6 +607,48 @@ class UserProfileController extends GetxController {
         msg: "EXTERNAL_WALLET: " + response.walletName!,
         toastLength: Toast.LENGTH_SHORT);
     log("response Wallet : ${response.walletName}");
+  }
+
+  Future<void> petAddOrderFunction(
+      { String ? orderId,required String paymentId, String ? signature}) async {
+    isLoading(true);
+    String url = ApiUrl.petAddOrderApi;
+
+    Map<String, dynamic> data = {
+      "userid": UserDetails.userId.toString(),
+      "categoryID" : UserDetails.categoryId,
+      "meettingpetuserid" : followUserId,
+      "meettingpetusercategory": followCategoryId,
+      "userpetid": "1",
+      "meettingpetid": "10",
+      "price": "200",
+      "transition_orderid": orderId ?? "123",
+      "transition_paymentId": paymentId,
+      "signature": signature ?? "123"
+    };
+
+    log("Add Order Api Url : $url");
+    //log("pet plan id : $petPlanId");
+    log('Add Order body: $data');
+
+    try {
+      Map<String, String> header = apiHeader.apiHeader();
+      http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
+      log("Vet Details Api Response : ${response.body}");
+      PetAddOrderModel petAddOrderModel =
+      PetAddOrderModel.fromJson(json.decode(response.body));
+      isSuccessStatus = petAddOrderModel.success.obs;
+
+      if (isSuccessStatus.value) {
+        Fluttertoast.showToast(msg: petAddOrderModel.message);
+      } else {
+        log("Pet Add Order Api Else Else");
+      }
+    } catch (e) {
+      log("Pet Add Order Error ::: $e");
+    } finally {
+      isLoading(false);
+    }
   }
 
   @override

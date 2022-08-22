@@ -12,6 +12,7 @@ import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../services/providers/dark_theme_provider.dart';
 import '../../../utils/app_colors.dart';
@@ -326,10 +327,20 @@ class ContactInfoModule extends StatelessWidget {
 
             GestureDetector(
               onTap: () {
-                if(controller.meetingStatus.value == true) {
-                  // open phone dialer
-                } else if(controller.meetingStatus.value == false) {
-                  controller.openCheckout();
+                if(controller.followCategoryId == "1"){
+                  if(controller.meetingStatus.value == true){
+                    // open phone dialer
+                    _makingPhoneCall();
+                  } else if(controller.meetingStatus.value == false) {
+                    controller.openCheckout();
+                  }
+                } else if(controller.followCategoryId == "2"){
+                  if(controller.shopMeetingStatus.value == true){
+                    // open phone dialer
+                    _makingPhoneCall();
+                  } else if(controller.meetingStatus.value == false) {
+                    controller.openCheckout();
+                  }
                 }
               },
               child: const ContactContainerWidget(
@@ -341,6 +352,15 @@ class ContactInfoModule extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _makingPhoneCall() async {
+    var url = Uri.parse("tel: ${controller.followCategoryId == "1" ?controller.userMobileNumber : controller.followCategoryId == "2" ? controller.shopMobileNumber : ""}");
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
 
