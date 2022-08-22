@@ -11,6 +11,7 @@ import 'package:pet_met/models/follow_user_model/unfollow_user_model.dart';
 import 'package:pet_met/models/get_all_profile_model/get_shop_profile_model.dart';
 import 'package:pet_met/models/get_all_profile_model/get_vet_and_ngo_profile_model.dart';
 import 'package:pet_met/models/trainers_update_profile_model/trainers_get_profile_model.dart';
+import 'package:pet_met/models/user_profile_screen_model/pet_shop_profile_model.dart';
 import 'package:pet_met/models/user_profile_screen_model/pet_user_profile_model.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_images.dart';
@@ -32,7 +33,7 @@ class UserProfileController extends GetxController {
   ApiHeader apiHeader = ApiHeader();
 
   List<Petdatum1> petList = [];
-  List<ShopPet> shopPetList = [];
+  List<ShopPetdatum> shopPetList = [];
   List<NgoPet> ngoPetList = [];
   List<TrainerPet> trainerPetList = [];
 
@@ -173,7 +174,7 @@ class UserProfileController extends GetxController {
 
   /// Get Shop Profile
   Future<void> getShopProfileFunction() async {
-    isLoading(true);
+    /*isLoading(true);
     String url = ApiUrl.allRoleGetProfileApi;
     log("All Role Profile Api Url : $url");
 
@@ -215,6 +216,54 @@ class UserProfileController extends GetxController {
         log("Get All Role Profile Api Else");
       }
 
+
+    } catch(e) {
+      log("All Role Profile Api Error ::: $e");
+    } finally {
+      //isLoading(false);
+      await followStatus();
+    }*/
+
+    isLoading(true);
+    String url = ApiUrl.allPetUserProfileApi;
+    log("All Role Profile Api Url : $url");
+
+    try {
+      Map<String, dynamic> data = {
+        "userid" : UserDetails.userId,
+        "categoryID" : UserDetails.categoryId,
+        "meettingpetuserid": followUserId,
+        "meettingpetusercategory": followCategoryId,
+      };
+
+      log("Body Data : $data");
+
+      Map<String, String> header = apiHeader.apiHeader();
+      log("header : $header");
+
+      http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
+      log("Get All Role Profile Api response : ${response.body}");
+
+      // PetUserProfileModel getUserProfileModel =
+      // PetUserProfileModel.fromJson(json.decode(response.body));
+      PetShopProfileModel petShopProfileModel =
+      PetShopProfileModel.fromJson(json.decode(response.body));
+      isSuccessStatus = petShopProfileModel.success.obs;
+
+      if (isSuccessStatus.value) {
+        shopPetList.clear();
+        shopPetList.addAll(petShopProfileModel.data.petdata);
+        meetingStatus = petShopProfileModel.data.meettingstatus.obs;
+
+        shopProfile = ApiUrl.apiImagePath  + petShopProfileModel.data.data[0].showimg;
+        shopName = petShopProfileModel.data.data[0].shopename;
+        shopDescription = petShopProfileModel.data.data[0].fullText;
+
+
+        log("petList Length : ${petList.length}");
+      } else {
+        log("Get All Role Profile Api Else");
+      }
 
     } catch(e) {
       log("All Role Profile Api Error ::: $e");
@@ -564,11 +613,11 @@ class UserProfileController extends GetxController {
       await getUserProfileFunction();
     } else if(followCategoryId == "2"){
       await getShopProfileFunction();
-    } else if(followCategoryId == "3"){
+    } /*else if(followCategoryId == "3"){
       await getNgoProfileFunction();
     } else if(followCategoryId == "4"){
       await getTrainerProfileFunction();
-    }
+    }*/
     _razorpay = Razorpay();
     _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
     _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
