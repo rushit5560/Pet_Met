@@ -309,7 +309,7 @@ class UploadPetController extends GetxController {
   /// Get Pet Profile
   Future<void> getProfileFunction() async {
     isLoading(true);
-    String url = ApiUrl.petProfileApi + petId;
+    String url = ApiUrl.petDetailsApi + petId;
     log("All Pet Profile Api Url : $url");
 
     try {

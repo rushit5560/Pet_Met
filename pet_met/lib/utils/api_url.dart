@@ -41,6 +41,7 @@ class ApiUrl {
 
   /// Pet Profile Management
   static const petProfileApi = apiMainPath + "/petdetails";
+  static const petDetailsApi = apiMainPath + "/petdetailss/";
   static const petUpdateProfileApi = apiMainPath + "/petadd"; // add/update
 
   /// All Role Profile Managemnet
