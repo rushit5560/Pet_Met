@@ -16,7 +16,7 @@ class StoryViewerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      //backgroundColor: Colors.white,
       body: SizedBox(
         height: Get.height,
         width: Get.width,
@@ -24,7 +24,7 @@ class StoryViewerScreen extends StatelessWidget {
           itemCount: controller.storyImagesList.length,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, i){
-
+            log('controller.storyImagesList.length: ${controller.storyImagesList.length}');
             String imgUrl = ApiUrl.apiImagePath
                 + "asset/uploads/userstory/"
                 + controller.storyImagesList[i];
@@ -39,6 +39,7 @@ class StoryViewerScreen extends StatelessWidget {
                   },
                   onComplete: () {
                     log("Completed a cycle");
+                    Get.back();
                   },
                   progressPosition: ProgressPosition.top,
                   repeat: false,
@@ -47,6 +48,7 @@ class StoryViewerScreen extends StatelessWidget {
                   storyItems:[
                     StoryItem.pageImage(
                       url: "https://petomate.com/asset/uploads/petimage/bJkRk_destination_map_marker.png",
+                     // url: imgUrl,
                       controller: controller.storyController,
                       duration: const Duration(seconds: 8),
 

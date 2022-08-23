@@ -1,9 +1,6 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pet_met/controllers/home_controller.dart';
 import 'package:pet_met/controllers/index_screen_controller.dart';
 import 'package:pet_met/screens/home_screen/widgets/home_screen_widgets.dart';
@@ -11,19 +8,16 @@ import 'package:pet_met/screens/ngo_user_profile_screen/ngo_user_profile_screen.
 import 'package:pet_met/screens/shop_user_profile_screen/shop_user_profile_screen.dart';
 import 'package:pet_met/screens/trainers_and_users_profile_screen/trainers_and_user_profile_screen.dart';
 import 'package:pet_met/screens/user_profile_edit_screen/user_profile_edit_screen.dart';
-import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_images.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:pet_met/utils/user_details.dart';
-import 'package:provider/provider.dart';
-
-import '../../../utils/app_colors.dart';
-import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 import '../../utils/common_widgets/custom_appbar.dart';
 import '../../utils/enums.dart';
+
+
+
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -41,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     log('User profile: ${controller.userprofile}');
-    var themeProvider = Provider.of<DarkThemeProvider>(context);
+    // var themeProvider = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -76,19 +70,31 @@ class _HomeScreenState extends State<HomeScreen> {
                         if (UserDetails.categoryId == "1") {
                           Get.to(() => UserProfileEditScreen(),
                               transition: Transition.native,
-                              duration: const Duration(milliseconds: 500));
+                              duration: const Duration(milliseconds: 500))!.then((value) {
+                                controller.isLoading(true);
+                                controller.isLoading(false);
+                          });
                         } else if (UserDetails.categoryId == "2") {
                           Get.to(() => ShopUserProfileScreen(),
                               transition: Transition.native,
-                              duration: const Duration(milliseconds: 500));
+                              duration: const Duration(milliseconds: 500))!.then((value) {
+                            controller.isLoading(true);
+                            controller.isLoading(false);
+                          });
                         } else if (UserDetails.categoryId == "3") {
                           Get.to(() => NgoUserProfileScreen(),
                               transition: Transition.native,
-                              duration: const Duration(milliseconds: 500));
+                              duration: const Duration(milliseconds: 500))!.then((value) {
+                            controller.isLoading(true);
+                            controller.isLoading(false);
+                          });
                         } else if (UserDetails.categoryId == "4") {
                           Get.to(() => TrainersAndUserProfileScreenController(),
                               transition: Transition.native,
-                              duration: const Duration(milliseconds: 500));
+                              duration: const Duration(milliseconds: 500))!.then((value) {
+                            controller.isLoading(true);
+                            controller.isLoading(false);
+                          });
                         }
                       },
                       child: UserDetails.categoryId == "1"
@@ -106,13 +112,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 borderRadius: BorderRadius.circular(30),
                                 child: Image.network(
                                   controller.userprofile.value,
-                                  width: 60,
-                                  height: 60,
+                                  width: 50,
+                                  height: 50,
                                   fit: BoxFit.cover,
                                   errorBuilder: (context, st, ob) {
                                     return Image.asset(
                                       AppImages.petMetLogoImg,
-                                      width: 40,
+                                      width: 50,
                                       height: 50,
                                       fit: BoxFit.cover,
                                     );
@@ -126,13 +132,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                   borderRadius: BorderRadius.circular(30),
                                   child: Image.network(
                                     controller.shopProfile.value,
-                                    width: 40,
+                                    width: 50,
                                     height: 50,
                                     fit: BoxFit.cover,
                                     errorBuilder: (context, st, ob) {
                                       return Image.asset(
                                         AppImages.petMetLogoImg,
-                                        width: 40,
+                                        width: 50,
                                         height: 50,
                                         fit: BoxFit.cover,
                                       );
@@ -145,13 +151,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                       borderRadius: BorderRadius.circular(30),
                                       child: Image.network(
                                         controller.ngoProfile.value,
-                                        width: 40,
+                                        width: 50,
                                         height: 50,
                                         fit: BoxFit.cover,
                                         errorBuilder: (context, st, ob) {
                                           return Image.asset(
                                               AppImages.petMetLogoImg,
-                                              width: 40,
+                                              width: 50,
                                               height: 50,
                                               fit: BoxFit.cover);
                                         },
@@ -164,13 +170,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                               BorderRadius.circular(30),
                                           child: Image.network(
                                             controller.trainerProfile.value,
-                                            width: 40,
+                                            width: 50,
                                             height: 50,
                                             fit: BoxFit.cover,
                                             errorBuilder: (context, st, ob) {
                                               return Image.asset(
                                                   AppImages.petMetLogoImg,
-                                                  width: 40,
+                                                  width: 50,
                                                   height: 50,
                                                   fit: BoxFit.cover);
                                             },

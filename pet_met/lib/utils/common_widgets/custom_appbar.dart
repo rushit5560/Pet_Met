@@ -76,7 +76,7 @@ class CustomAppBar extends StatelessWidget {
           // Right Side Button Module
           SizedBox(
             height: 25,
-            width: 15,
+            width: 25,
             child: trailingWidget,
           ).commonSymmetricPadding(horizontal: 20, vertical: 8),
         ],

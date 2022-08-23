@@ -34,7 +34,7 @@ class PetTrainerBannerImageModule extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15),
         child: Image.network(
-          ApiUrl.apiImagePath + screenController.trainerDetails[0].image!,
+          ApiUrl.apiImagePath + screenController.trainerDetails[0].image,
           fit: BoxFit.cover,
           errorBuilder: (context, er, ob) {
             return Image.asset(AppImages.petMetLogoImg);
@@ -271,31 +271,31 @@ class PetTrainerPicturesModule extends StatelessWidget {
     AlertDialog alert = AlertDialog(
       title: index == 1 ?
       Image.network(
-          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image1!,
+          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image1,
           fit: BoxFit.cover,
           errorBuilder: (context, er, da) {
             return Image.asset(AppImages.petMetLogoImg);
           }) : index == 2  ?
       Image.network(
-          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image2!,
+          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image2,
           fit: BoxFit.cover,
           errorBuilder: (context, er, da) {
             return Image.asset(AppImages.petMetLogoImg);
           }) :index == 3  ?
       Image.network(
-          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image3!,
+          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image3,
           fit: BoxFit.cover,
           errorBuilder: (context, er, da) {
             return Image.asset(AppImages.petMetLogoImg);
           }):index == 4  ?
       Image.network(
-          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image4!,
+          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image4,
           fit: BoxFit.cover,
           errorBuilder: (context, er, da) {
             return Image.asset(AppImages.petMetLogoImg);
           }) :index == 5  ?
       Image.network(
-          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image5!,
+          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image5,
           fit: BoxFit.cover,
           errorBuilder: (context, er, da) {
             return Image.asset(AppImages.petMetLogoImg);
@@ -331,7 +331,7 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
       children: [
         Expanded(
           child: Text(
-            screenController.trainerDetails[0].name!,
+            screenController.trainerDetails[0].name,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
@@ -492,7 +492,7 @@ class PetTrainerPlaceTimePaymentModule extends StatelessWidget {
             SizedBox(width: screenController.size.width * 0.008.w),
             Expanded(
               child: Text(
-                screenController.trainerDetails[0].address!,
+                screenController.trainerDetails[0].address,
                 style: TextStyle(
                   color: themeProvider.darkTheme
                       ? AppColors.whiteColor
@@ -521,7 +521,7 @@ class PetTrainerPlaceTimePaymentModule extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                    "Open: " + screenController.trainerDetails[0].open!,
+                    "Open: " + screenController.trainerDetails[0].open,
                     style: TextStyle(
                       color: themeProvider.darkTheme
                           ? AppColors.whiteColor
@@ -530,7 +530,7 @@ class PetTrainerPlaceTimePaymentModule extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   Text(
-                    "Close: " + screenController.trainerDetails[0].close!,
+                    "Close: " + screenController.trainerDetails[0].close,
                     style: TextStyle(
                       color: themeProvider.darkTheme
                           ? AppColors.whiteColor

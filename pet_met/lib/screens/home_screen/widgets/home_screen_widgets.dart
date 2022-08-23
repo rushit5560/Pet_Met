@@ -847,8 +847,9 @@ class AddPetStoryWidget extends StatelessWidget {
         List<String> userWiseStoryList = [];
         for(int i=0; i< controller.userStoryList[index].data.length; i++) {
           userWiseStoryList.add(controller.userStoryList[index].data[i].image);
-        }
 
+        }
+        log('userWiseStoryList: $userWiseStoryList');
         Get.to(() => StoryViewerScreen(), arguments: userWiseStoryList);
       },
       child:
