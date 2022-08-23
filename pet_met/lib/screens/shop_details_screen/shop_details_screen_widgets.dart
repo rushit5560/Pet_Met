@@ -51,6 +51,7 @@ class BannerImageModule extends StatelessWidget {
 class OffersModule extends StatelessWidget {
   OffersModule({Key? key}) : super(key: key);
   final screenController = Get.find<ShopDetailsScreenController>();
+  int index= 0;
 
   @override
   Widget build(BuildContext context) {
@@ -83,113 +84,151 @@ class OffersModule extends StatelessWidget {
           ],
         ),
         SizedBox(height: 10),
+        const SizedBox(height: 10),
+        screenController.shopData[0].image1 == ""
+            && screenController.shopData[0].image2 == ""
+            && screenController.shopData[0].image3 == ""
+            && screenController.shopData[0].image4 == ""
+            && screenController.shopData[0].image5 == ""
+            ? Text("No offers available!",
+          textAlign: TextAlign.start,
+          style: TextStyle(
+            color: themeProvider.darkTheme
+                ? AppColors.whiteColor.withOpacity(0.4)
+                : AppColors.blackTextColor,
+          ),):
         Row(
           children: [
             Expanded(
-                child: SizedBox(
-                  height: screenController.size.width * 0.18,
-                  //width: screenController.size.width * 0.18,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.grey)
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.network(
-                          ApiUrl.apiImagePath + "asset/uploads/product/"
-                              "${screenController.shopData[0].image1}",
-                          height: 40, width: 40,
-                           errorBuilder: (context, er, da) {
-                        return Image.asset(AppImages.petMetLogoImg);
-                      }),
+                child: GestureDetector(
+                  onTap: (){
+                    imageAlertDialog(context, index = 1);
+                  },
+                  child: SizedBox(
+                    height: screenController.size.width * 0.18,
+                    //width: screenController.size.width * 0.18,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: Colors.grey)
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(6),
+                        child: Image.network(
+                            ApiUrl.apiImagePath + "asset/uploads/product/"
+                                "${screenController.shopData[0].image1}",
+                            height: 40, width: 40,
+                             errorBuilder: (context, er, da) {
+                          return Image.asset(AppImages.petMetLogoImg);
+                        }),
+                      ),
                     ),
                   ),
                 )),
             SizedBox(width: 10),
             Expanded(
-                child: SizedBox(
-                  height: screenController.size.width * 0.18,
-                  //width: screenController.size.width * 0.18,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: Colors.grey)
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.network(
-                          ApiUrl.apiImagePath + "asset/uploads/product/"
-                              "${screenController.shopData[0].image2}",
-                          height: 40, width: 40,
-                           errorBuilder: (context, er, da) {
-                        return Image.asset(AppImages.petMetLogoImg);
-                      }),
-                    ),
-                  ),
-                )),
-            SizedBox(width: 10),
-            Expanded(
-                child: SizedBox(
-                  height: screenController.size.width * 0.18,
-                  //width: screenController.size.width * 0.18,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: Colors.grey)
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.network(
-                          ApiUrl.apiImagePath + "asset/uploads/product/"
-                              "${screenController.shopData[0].image3}",
-                          fit: BoxFit.cover,
-                          height: 40, width: 40,
-                          errorBuilder: (context, er, da) {
-                        return Image.asset(AppImages.petMetLogoImg);
-                      }),
-                    ),
-                  ),
-                )),
-            SizedBox(width: 10),
-            Expanded(
-                child: SizedBox(
-                  height: screenController.size.width * 0.18,
-                  //width: screenController.size.width * 0.18,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: Colors.grey)
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.network(
-                          ApiUrl.apiImagePath + "asset/uploads/product/"
-                              "${screenController.shopData[0].image4}",
-                          fit: BoxFit.cover, errorBuilder: (context, er, da) {
-                        return Image.asset(AppImages.petMetLogoImg);
-                      }),
-                    ),
-                  ),
-                )),
-            SizedBox(width: 10),
-            Expanded(
-                child: SizedBox(
-                  height: screenController.size.width * 0.18,
-                  //width: screenController.size.width * 0.18,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: Colors.grey)
-                    ),
-                    child: ClipRRect(
+                child: GestureDetector(
+                  onTap: (){
+                    imageAlertDialog(context, index = 2);
+                  },
+                  child: SizedBox(
+                    height: screenController.size.width * 0.18,
+                    //width: screenController.size.width * 0.18,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: Colors.grey)
+                      ),
+                      child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image.network(
                             ApiUrl.apiImagePath + "asset/uploads/product/"
-                                "${screenController.shopData[0].image5}",
+                                "${screenController.shopData[0].image2}",
+                            height: 40, width: 40,
+                             errorBuilder: (context, er, da) {
+                          return Image.asset(AppImages.petMetLogoImg);
+                        }),
+                      ),
+                    ),
+                  ),
+                )),
+            SizedBox(width: 10),
+            Expanded(
+                child: GestureDetector(
+                  onTap: (){
+                    imageAlertDialog(context, index = 3);
+                  },
+                  child: SizedBox(
+                    height: screenController.size.width * 0.18,
+                    //width: screenController.size.width * 0.18,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: Colors.grey)
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.network(
+                            ApiUrl.apiImagePath + "asset/uploads/product/"
+                                "${screenController.shopData[0].image3}",
+                            fit: BoxFit.cover,
+                            height: 40, width: 40,
+                            errorBuilder: (context, er, da) {
+                          return Image.asset(AppImages.petMetLogoImg);
+                        }),
+                      ),
+                    ),
+                  ),
+                )),
+            SizedBox(width: 10),
+            Expanded(
+                child: GestureDetector(
+                  onTap: (){
+                    imageAlertDialog(context, index = 4);
+                  },
+                  child: SizedBox(
+                    height: screenController.size.width * 0.18,
+                    //width: screenController.size.width * 0.18,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: Colors.grey)
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.network(
+                            ApiUrl.apiImagePath + "asset/uploads/product/"
+                                "${screenController.shopData[0].image4}",
                             fit: BoxFit.cover, errorBuilder: (context, er, da) {
                           return Image.asset(AppImages.petMetLogoImg);
                         }),
+                      ),
+                    ),
+                  ),
+                )),
+            SizedBox(width: 10),
+            Expanded(
+                child: GestureDetector(
+                  onTap: (){
+                    imageAlertDialog(context, index = 5);
+                  },
+                  child: SizedBox(
+                    height: screenController.size.width * 0.18,
+                    //width: screenController.size.width * 0.18,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: Colors.grey)
+                      ),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.network(
+                              ApiUrl.apiImagePath + "asset/uploads/product/"
+                                  "${screenController.shopData[0].image5}",
+                              fit: BoxFit.cover, errorBuilder: (context, er, da) {
+                            return Image.asset(AppImages.petMetLogoImg);
+                          }),
+                      ),
                     ),
                   ),
                 ))
@@ -216,7 +255,7 @@ class OffersModule extends StatelessWidget {
   Widget _offerListTile(int i, BuildContext context) {
     return GestureDetector(
       onTap: () {
-        imageAlertDialog(context, i);
+       // imageAlertDialog(context, i);
       },
       child: SizedBox(
         height: screenController.size.width * 0.18,
@@ -233,7 +272,7 @@ class OffersModule extends StatelessWidget {
     );
   }
 
-  imageAlertDialog(BuildContext context, int i) {
+  imageAlertDialog(BuildContext context, index) {
     Widget cancelButton = TextButton(
       child: Text("No, cancel"),
       onPressed: () {
@@ -249,12 +288,40 @@ class OffersModule extends StatelessWidget {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-        title: /*Image.network(
-          ApiUrl.apiImagePath + screenController.shopData.offersimages![i],
-          fit: BoxFit.cover, errorBuilder: (context, er, da) {
-        return Image.asset(AppImages.petMetLogoImg);
-      }),*/
-        Image.asset(AppImages.petMetLogoImg)
+        title: index == 1 ?
+        Image.network(
+          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.shopData[0].image1!,
+          fit: BoxFit.cover,
+            errorBuilder: (context, er, da) {
+            return Image.asset(AppImages.petMetLogoImg);
+          }) : index == 2  ?
+        Image.network(
+            ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.shopData[0].image2!,
+            fit: BoxFit.cover,
+            errorBuilder: (context, er, da) {
+              return Image.asset(AppImages.petMetLogoImg);
+            }) :index == 3  ?
+        Image.network(
+            ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.shopData[0].image3!,
+            fit: BoxFit.cover,
+            errorBuilder: (context, er, da) {
+              return Image.asset(AppImages.petMetLogoImg);
+            }):index == 4  ?
+        Image.network(
+            ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.shopData[0].image4!,
+            fit: BoxFit.cover,
+            errorBuilder: (context, er, da) {
+              return Image.asset(AppImages.petMetLogoImg);
+            }) :index == 5  ?
+        Image.network(
+            ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.shopData[0].image4!,
+            fit: BoxFit.cover,
+            errorBuilder: (context, er, da) {
+              return Image.asset(AppImages.petMetLogoImg);
+            })
+            :
+        Image.asset(AppImages.petMetLogoImg),
+        //Image.asset(AppImages.petMetLogoImg)
       // content: Text(
       //     "If you change timing slot duration your all schedule slot should been deleted you won't be able to recover this again!"),
       // actions: [

@@ -79,6 +79,9 @@ class LoginController extends GetxController {
           shopProfile: loginModel.data.showimg,
         );
         log('shop Name: ${loginModel.data.shopename}');
+
+        mailController.clear();
+        passController.clear();
         //await userPreference.setRoleId(roleId);
         // Going to Index Screen
         Get.to(() => IndexScreen(),

@@ -45,6 +45,7 @@ class NgoAchivementPictureListModule extends StatelessWidget {
   NgoAchivementPictureListModule({Key? key}) : super(key: key);
 
   final screenController = Get.find<PetVetsAndNgoDetailsScreenController>();
+  int index= 0;
 
   @override
   Widget build(BuildContext context) {
@@ -86,164 +87,150 @@ class NgoAchivementPictureListModule extends StatelessWidget {
               ],
             ),
           ),
-          /*SizedBox(
-            height: 10.h,
-            // child: screenController.vetsNgoDetailsData.vetNgoimages!.isEmpty ?
-            // const Center(child: Text("Empty Trainer Picture")):
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemCount: */
-          /*screenController.vetsNgoDetailsData.vetNgoimages!.length*/
-          /*5,
-              separatorBuilder: (context, index) {
-                return const SizedBox(width: 8);
-              },
-              itemBuilder: (context, i) {
-                // String imgUrl = ApiUrl.apiImagePath +
-                //     screenController.vetsNgoDetailsData.vetNgoimages![i];
-                return Stack(
-                  children: [
-                    GestureDetector(
-                      onTap:(){
-                       // imageAlertDialog(context, i);
-                      },
-                      child: Container(
-                        height: 10.h,
-                        width: 10.h,
 
-                        margin: const EdgeInsets.only(bottom: 5, right: 5),
+          const SizedBox(height: 10),
+
+          Row(
+            children: [
+              screenController.vetsNgoDetailsData[0].image1 == null ? Container():
+              Expanded(
+                  child: GestureDetector(
+                    onTap: (){
+                      imageAlertDialog(context, index = 1);
+                    },
+                    child: SizedBox(
+                      height: screenController.size.width * 0.18,
+                      //width: screenController.size.width * 0.18,
+                      child: Container(
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
+                            borderRadius: BorderRadius.circular(8),
                             border: Border.all(color: Colors.grey)
                         ),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          */
-          /*child: Image.network(
-                            imgUrl,
-                            fit: BoxFit.cover,
-                            // color: AppColors.greyTextColor,
-                            errorBuilder: (context, er, ob) {
-                              return Image.asset(AppImages.petMetLogoImg);
-                            },
-                          ),*//*
-                          child: Image.asset(AppImages.petMetLogoImg),
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.network(
+                              ApiUrl.apiImagePath + "asset/uploads/product/"
+                                  "${screenController.vetsNgoDetailsData[0].image1}",
+                              height: 40, width: 40,
+                              errorBuilder: (context, er, da) {
+                                return Image.asset(AppImages.petMetLogoImg);
+                              }),
                         ),
                       ),
                     ),
-                  ],
-                );
-              },
-            ),
-          ),*/
-          SizedBox(height: 10),
-          Row(
-            children: [
+                  )),
+              screenController.vetsNgoDetailsData[0].image1 == null ? Container(): SizedBox(width: 10),
+
+              screenController.vetsNgoDetailsData[0].image2 == null ? Container():
               Expanded(
-                  child: SizedBox(
-                    height: screenController.size.width * 0.18,
-                    //width: screenController.size.width * 0.18,
-                    child: Container(
-                      decoration: BoxDecoration(
+                  child: GestureDetector(
+                    onTap: (){
+                      imageAlertDialog(context, index = 2);
+                    },
+                    child: SizedBox(
+                      height: screenController.size.width * 0.18,
+                      //width: screenController.size.width * 0.18,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: Colors.grey)
+                        ),
+                        child: ClipRRect(
                           borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.grey)
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                            ApiUrl.apiImagePath + "asset/uploads/product/"
-                                "${screenController.vetsNgoDetailsData[0].image1}",
-                            height: 40, width: 40,
-                            errorBuilder: (context, er, da) {
-                              return Image.asset(AppImages.petMetLogoImg);
-                            }),
+                          child: Image.network(
+                              ApiUrl.apiImagePath + "asset/uploads/product/"
+                                  "${screenController.vetsNgoDetailsData[0].image2}",
+                              height: 40, width: 40,
+                              errorBuilder: (context, er, da) {
+                                return Image.asset(AppImages.petMetLogoImg);
+                              }),
+                        ),
                       ),
                     ),
                   )),
-              SizedBox(width: 10),
+              screenController.vetsNgoDetailsData[0].image2 == null ? Container(): SizedBox(width: 10),
+
+              screenController.vetsNgoDetailsData[0].image3 == null ? Container() :
               Expanded(
-                  child: SizedBox(
-                    height: screenController.size.width * 0.18,
-                    //width: screenController.size.width * 0.18,
-                    child: Container(
-                      decoration: BoxDecoration(
+                  child: GestureDetector(
+                    onTap: (){
+                      imageAlertDialog(context, index = 3);
+                    },
+                    child: SizedBox(
+                      height: screenController.size.width * 0.18,
+                      //width: screenController.size.width * 0.18,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: Colors.grey)
+                        ),
+                        child: ClipRRect(
                           borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.grey)
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                            ApiUrl.apiImagePath + "asset/uploads/product/"
-                                "${screenController.vetsNgoDetailsData[0].image2}",
-                            height: 40, width: 40,
-                            errorBuilder: (context, er, da) {
-                              return Image.asset(AppImages.petMetLogoImg);
-                            }),
+                          child: Image.network(
+                              ApiUrl.apiImagePath + "asset/uploads/product/"
+                                  "${screenController.vetsNgoDetailsData[0].image3}",
+                              fit: BoxFit.cover,
+                              height: 40, width: 40,
+                              errorBuilder: (context, er, da) {
+                                return Image.asset(AppImages.petMetLogoImg);
+                              }),
+                        ),
                       ),
                     ),
                   )),
-              SizedBox(width: 10),
+              screenController.vetsNgoDetailsData[0].image3 == null ? Container() : SizedBox(width: 10),
+
+              screenController.vetsNgoDetailsData[0].image4 == null ? Container() :
               Expanded(
-                  child: SizedBox(
-                    height: screenController.size.width * 0.18,
-                    //width: screenController.size.width * 0.18,
-                    child: Container(
-                      decoration: BoxDecoration(
+                  child: GestureDetector(
+                    onTap: (){
+                      imageAlertDialog(context, index = 4);
+                    },
+                    child: SizedBox(
+                      height: screenController.size.width * 0.18,
+                      //width: screenController.size.width * 0.18,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: Colors.grey)
+                        ),
+                        child: ClipRRect(
                           borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.grey)
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                            ApiUrl.apiImagePath + "asset/uploads/product/"
-                                "${screenController.vetsNgoDetailsData[0].image3}",
-                            fit: BoxFit.cover,
-                            height: 40, width: 40,
-                            errorBuilder: (context, er, da) {
-                              return Image.asset(AppImages.petMetLogoImg);
-                            }),
+                          child: Image.network(
+                              ApiUrl.apiImagePath + "asset/uploads/product/"
+                                  "${screenController.vetsNgoDetailsData[0].image4}",
+                              fit: BoxFit.cover, errorBuilder: (context, er, da) {
+                            return Image.asset(AppImages.petMetLogoImg);
+                          }),
+                        ),
                       ),
                     ),
                   )),
-              SizedBox(width: 10),
+              screenController.vetsNgoDetailsData[0].image4 == null ? Container() : SizedBox(width: 10),
+
+              screenController.vetsNgoDetailsData[0].image5 == null ? Container() :
               Expanded(
-                  child: SizedBox(
-                    height: screenController.size.width * 0.18,
-                    //width: screenController.size.width * 0.18,
-                    child: Container(
-                      decoration: BoxDecoration(
+                  child: GestureDetector(
+                    onTap: (){
+                      imageAlertDialog(context, index = 5);
+                    },
+                    child: SizedBox(
+                      height: screenController.size.width * 0.18,
+                      //width: screenController.size.width * 0.18,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: Colors.grey)
+                        ),
+                        child: ClipRRect(
                           borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.grey)
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                            ApiUrl.apiImagePath + "asset/uploads/product/"
-                                "${screenController.vetsNgoDetailsData[0].image4}",
-                            fit: BoxFit.cover, errorBuilder: (context, er, da) {
-                          return Image.asset(AppImages.petMetLogoImg);
-                        }),
-                      ),
-                    ),
-                  )),
-              SizedBox(width: 10),
-              Expanded(
-                  child: SizedBox(
-                    height: screenController.size.width * 0.18,
-                    //width: screenController.size.width * 0.18,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.grey)
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                            ApiUrl.apiImagePath + "asset/uploads/product/"
-                                "${screenController.vetsNgoDetailsData[0].image5}",
-                            fit: BoxFit.cover, errorBuilder: (context, er, da) {
-                          return Image.asset(AppImages.petMetLogoImg);
-                        }),
+                          child: Image.network(
+                              ApiUrl.apiImagePath + "asset/uploads/product/"
+                                  "${screenController.vetsNgoDetailsData[0].image5}",
+                              fit: BoxFit.cover, errorBuilder: (context, er, da) {
+                            return Image.asset(AppImages.petMetLogoImg);
+                          }),
+                        ),
                       ),
                     ),
                   ))
@@ -251,6 +238,73 @@ class NgoAchivementPictureListModule extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+
+  imageAlertDialog(BuildContext context, index) {
+    Widget cancelButton = TextButton(
+      child: Text("No, cancel"),
+      onPressed: () {
+        Get.back();
+      },
+    );
+    Widget continueButton = TextButton(
+      child: Text("Yes, delete it"),
+      onPressed: () async {
+        Get.back();
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: index == 1 ?
+      Image.network(
+          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.vetsNgoDetailsData[0].image1!,
+          fit: BoxFit.cover,
+          errorBuilder: (context, er, da) {
+            return Image.asset(AppImages.petMetLogoImg);
+          }) : index == 2  ?
+      Image.network(
+          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.vetsNgoDetailsData[0].image2!,
+          fit: BoxFit.cover,
+          errorBuilder: (context, er, da) {
+            return Image.asset(AppImages.petMetLogoImg);
+          }) :index == 3  ?
+      Image.network(
+          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.vetsNgoDetailsData[0].image3!,
+          fit: BoxFit.cover,
+          errorBuilder: (context, er, da) {
+            return Image.asset(AppImages.petMetLogoImg);
+          }):index == 4  ?
+      Image.network(
+          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.vetsNgoDetailsData[0].image4!,
+          fit: BoxFit.cover,
+          errorBuilder: (context, er, da) {
+            return Image.asset(AppImages.petMetLogoImg);
+          }) :index == 5  ?
+      Image.network(
+          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.vetsNgoDetailsData[0].image5!,
+          fit: BoxFit.cover,
+          errorBuilder: (context, er, da) {
+            return Image.asset(AppImages.petMetLogoImg);
+          })
+          :
+      Container(),
+      //Image.asset(AppImages.petMetLogoImg)
+      // content: Text(
+      //     "If you change timing slot duration your all schedule slot should been deleted you won't be able to recover this again!"),
+      // actions: [
+      //   continueButton,
+      //   cancelButton,
+      // ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }

@@ -78,6 +78,10 @@ class RegisterController extends GetxController {
         log("isSuccessStatus : ${isSuccessStatus.value}");
         Fluttertoast.showToast(msg: registerModel.messege!);
 
+        mailController.clear();
+        nameController.clear();
+        passController.clear();
+
         // User Data Set in Prefs
         /*await userPreference.setUserDetails(
             userId: registerModel.data[0].id,

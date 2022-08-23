@@ -52,9 +52,9 @@ class UploadPetController extends GetxController {
   File? imageFile;
   String? petImage;
 
-  String month= "";
-  String day = "";
-  String year = "";
+  String month= "${DateTime.now().month}";
+  String day = "${DateTime.now().day}";
+  String year = "${DateTime.now().year}";
 
   String birthDate= "";
 

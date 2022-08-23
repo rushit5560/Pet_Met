@@ -177,6 +177,7 @@ class PetMeetingDetailsScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         Fluttertoast.showToast(msg: petAddOrderModel.message);
+        meetingStatus.value = true;
       } else {
         log("Pet Add Order Api Else Else");
       }

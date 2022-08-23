@@ -50,142 +50,67 @@ class PetTrainerBannerImageModule extends StatelessWidget {
 class PetTrainerPicturesModule extends StatelessWidget {
   PetTrainerPicturesModule({Key? key}) : super(key: key);
   final screenController = Get.find<PetTrainersDetailsScreenController>();
+  int index= 0;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(
-            top: 15,
-            bottom: 15,
-            left: 15, right: 15
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                child: Text(
-                  "Trainer Picture",
-                  style: TextStyle(
-                    color: AppColors.accentTextColor,
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
+        Row(
+          children: [
+            Expanded(
+              child: Text(
+                "Trainer Picture",
+                style: TextStyle(
+                  color: AppColors.accentTextColor,
+                  fontSize: 13.sp,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
-
-
-              screenController.isVerified == true
-                  ? Container(
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppColors.accentTextColor,
-                ),
-                child: const Icon(
-                  Icons.check_rounded,
-                  color: Colors.white,
-                  size: 18,
-                ),
-              )
-                  : Container(),
-
-            ],
-          ),
-        ),
-        /*Padding(
-          padding: const EdgeInsets.only(
-              // top: 15,
-              // bottom: 15,
-              left: 15, right: 15
-          ),
-          child: SizedBox(
-            height: 10.h,
-            child: screenController.trainerDetails.meetingimages!.isEmpty ?
-                const Center(child: Text("Empty Trainer Picture")):
-            ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemCount: screenController.trainerDetails.meetingimages!.length,
-              separatorBuilder: (context, index) {
-                return const SizedBox(width: 8);
-              },
-              itemBuilder: (context, i) {
-                String imgUrl = ApiUrl.apiImagePath +
-                    screenController.trainerDetails.meetingimages![i];
-                return Stack(
-                  children: [
-                    GestureDetector(
-                      onTap:(){
-                        imageAlertDialog(context, i);
-                      },
-                      child: Container(
-                        height: 10.h,
-                        width: 10.h,
-
-                        margin: const EdgeInsets.only(bottom: 5, right: 5),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: Colors.grey)
-                          ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image.network(
-                            imgUrl,
-                            fit: BoxFit.cover,
-                            // color: AppColors.greyTextColor,
-                            errorBuilder: (context, er, ob) {
-                              return Image.asset(AppImages.petMetLogoImg);
-                            },
-                          ),
-                        ),
-                        */
-        /*decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: NetworkImage(imgUrl),
-                              onError: (context, er){
-                                Image.asset(AppImages.petMetLogoImg);
-                              },
-                              fit: BoxFit.cover),
-                          color: AppColors.greyTextColor,
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(8),
-                          ),
-                        ),*//*
-                      ),
-                    ),
-                    // i == 0
-                    //     ? Positioned(
-                    //         right: 0,
-                    //         bottom: 0,
-                    //         child: GestureDetector(
-                    //           onTap: () {
-                    //             Get.toNamed(AppRouteNames.uploadPetRoute);
-                    //           },
-                    //           child: Container(
-                    //             height: 15,
-                    //             width: 15,
-                    //             decoration: const BoxDecoration(
-                    //                 color: Colors.green, shape: BoxShape.circle),
-                    //             child: const Icon(
-                    //               Icons.add,
-                    //               color: AppColors.whiteColor,
-                    //               size: 12,
-                    //             ),
-                    //           ),
-                    //         ),
-                    //       )
-                    //     : const SizedBox()
-                  ],
-                );
-              },
             ),
+
+
+            screenController.isVerified == true
+                ? Container(
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.accentTextColor,
+              ),
+              child: const Icon(
+                Icons.check_rounded,
+                color: Colors.white,
+                size: 18,
+              ),
+            )
+                : Container(),
+
+          ],
+        ),
+
+        SizedBox(height: 10),
+        screenController.trainerDetails[0].image1 == ""
+            && screenController.trainerDetails[0].image2 == ""
+            && screenController.trainerDetails[0].image3 == ""
+            && screenController.trainerDetails[0].image4 == ""
+            && screenController.trainerDetails[0].image5 == ""
+            ? Text(
+          "No pictures available!",
+          textAlign: TextAlign.start,
+          style: TextStyle(
+            color: themeProvider.darkTheme
+                ? AppColors.whiteColor.withOpacity(0.4)
+                : AppColors.blackTextColor,
           ),
-        ),*/
-        //SizedBox(height: 5),
-        Padding(
-          padding: const EdgeInsets.only(left: 15, right: 15),
-          child: Row(
-            children: [
-              Expanded(
+        ):
+
+        Row(
+          children: [
+            screenController.trainerDetails[0].image1 == null ? Container():
+            Expanded(
+                child: GestureDetector(
+                  onTap: (){
+                    imageAlertDialog(context, index = 1);
+                  },
                   child: SizedBox(
                     height: screenController.size.width * 0.18,
                     //width: screenController.size.width * 0.18,
@@ -205,9 +130,16 @@ class PetTrainerPicturesModule extends StatelessWidget {
                             }),
                       ),
                     ),
-                  )),
-              SizedBox(width: 10),
-              Expanded(
+                  ),
+                )),
+            screenController.trainerDetails[0].image1 == null ? Container() : SizedBox(width: 10),
+
+            screenController.trainerDetails[0].image2 == null ? Container() :
+            Expanded(
+                child: GestureDetector(
+                  onTap: (){
+                    imageAlertDialog(context, index = 2);
+                  },
                   child: SizedBox(
                     height: screenController.size.width * 0.18,
                     //width: screenController.size.width * 0.18,
@@ -227,9 +159,16 @@ class PetTrainerPicturesModule extends StatelessWidget {
                             }),
                       ),
                     ),
-                  )),
-              SizedBox(width: 10),
-              Expanded(
+                  ),
+                )),
+            screenController.trainerDetails[0].image2 == null ? Container() : SizedBox(width: 10),
+
+            screenController.trainerDetails[0].image3 == null ? Container() :
+            Expanded(
+                child: GestureDetector(
+                  onTap: (){
+                    imageAlertDialog(context, index = 3);
+                  },
                   child: SizedBox(
                     height: screenController.size.width * 0.18,
                     //width: screenController.size.width * 0.18,
@@ -250,9 +189,16 @@ class PetTrainerPicturesModule extends StatelessWidget {
                             }),
                       ),
                     ),
-                  )),
-              SizedBox(width: 10),
-              Expanded(
+                  ),
+                )),
+            screenController.trainerDetails[0].image3 == null ? Container() : SizedBox(width: 10),
+
+            screenController.trainerDetails[0].image4 == null ? Container() :
+            Expanded(
+                child: GestureDetector(
+                  onTap: (){
+                    imageAlertDialog(context, index = 4);
+                  },
                   child: SizedBox(
                     height: screenController.size.width * 0.18,
                     //width: screenController.size.width * 0.18,
@@ -271,9 +217,16 @@ class PetTrainerPicturesModule extends StatelessWidget {
                         }),
                       ),
                     ),
-                  )),
-              SizedBox(width: 10),
-              Expanded(
+                  ),
+                )),
+            screenController.trainerDetails[0].image4 == null ? Container() : SizedBox(width: 10),
+
+            screenController.trainerDetails[0].image5 == null ? Container() :
+            Expanded(
+                child: GestureDetector(
+                  onTap: (){
+                    imageAlertDialog(context, index = 5);
+                  },
                   child: SizedBox(
                     height: screenController.size.width * 0.18,
                     //width: screenController.size.width * 0.18,
@@ -292,15 +245,15 @@ class PetTrainerPicturesModule extends StatelessWidget {
                         }),
                       ),
                     ),
-                  ))
-            ],
-          ),
+                  ),
+                ))
+          ],
         )
       ],
     );
   }
 
-  imageAlertDialog(BuildContext context, int i){
+  imageAlertDialog(BuildContext context, index) {
     Widget cancelButton = TextButton(
       child: Text("No, cancel"),
       onPressed: () {
@@ -316,15 +269,40 @@ class PetTrainerPicturesModule extends StatelessWidget {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Image.network(
-        ApiUrl.apiImagePath +
-            screenController.trainerDetails[0].meetingimages![i],
-        fit: BoxFit.cover,
-        // color: AppColors.greyTextColor,
-        errorBuilder: (context, er, ob) {
-          return Image.asset(AppImages.petMetLogoImg);
-        },
-      ),
+      title: index == 1 ?
+      Image.network(
+          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image1!,
+          fit: BoxFit.cover,
+          errorBuilder: (context, er, da) {
+            return Image.asset(AppImages.petMetLogoImg);
+          }) : index == 2  ?
+      Image.network(
+          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image2!,
+          fit: BoxFit.cover,
+          errorBuilder: (context, er, da) {
+            return Image.asset(AppImages.petMetLogoImg);
+          }) :index == 3  ?
+      Image.network(
+          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image3!,
+          fit: BoxFit.cover,
+          errorBuilder: (context, er, da) {
+            return Image.asset(AppImages.petMetLogoImg);
+          }):index == 4  ?
+      Image.network(
+          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image4!,
+          fit: BoxFit.cover,
+          errorBuilder: (context, er, da) {
+            return Image.asset(AppImages.petMetLogoImg);
+          }) :index == 5  ?
+      Image.network(
+          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image5!,
+          fit: BoxFit.cover,
+          errorBuilder: (context, er, da) {
+            return Image.asset(AppImages.petMetLogoImg);
+          })
+          :
+      Container(),
+      //Image.asset(AppImages.petMetLogoImg)
       // content: Text(
       //     "If you change timing slot duration your all schedule slot should been deleted you won't be able to recover this again!"),
       // actions: [
@@ -601,23 +579,32 @@ class PetTrainerOverViewModule extends StatelessWidget {
               fontSize: 12.sp),
         ),
         SizedBox(height: screenController.size.height * 0.003.h),
-        // Html(
-        //   data: screenController.trainerDetails.fullText,
-        //   style: {
-        //     "p": Style(
-        //         color: themeProvider.darkTheme
-        //             ? AppColors.whiteColor
-        //             : AppColors.blackTextColor)
-        //   },
-        // ),
-        Text(
-          screenController.trainerDetails[0].fullText!,
-          style: TextStyle(
-            color: themeProvider.darkTheme
-                ? AppColors.whiteColor
-                : AppColors.blackTextColor,
-          ),
+        Html(
+          data: screenController.trainerDetails[0].fullText,
+          style: {
+            "p": Style(
+              // fontSize: const FontSize(18.0),
+                fontWeight: FontWeight.bold,
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.blackTextColor),
+            "body": Style(
+              // fontSize: const FontSize(18.0),
+              fontWeight: FontWeight.bold,
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.blackTextColor,
+            ),
+          },
         ),
+        // Text(
+        //   screenController.trainerDetails[0].fullText!,
+        //   style: TextStyle(
+        //     color: themeProvider.darkTheme
+        //         ? AppColors.whiteColor
+        //         : AppColors.blackTextColor,
+        //   ),
+        // ),
         SizedBox(height: screenController.size.height * 0.003.h),
       ],
     ).commonSymmetricPadding(horizontal: 15);
