@@ -54,7 +54,7 @@ class Data {
     required this.isActive,
   });
 
-  int id;
+  String id;
   String name;
   String email;
   String emailVerifiedAt;
@@ -74,7 +74,7 @@ class Data {
   String isActive;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    id: json["id"] ?? 0,
+    id: json["id"] ?? "",
     name: json["name"] ?? "",
     email: json["email"] ?? "",
     emailVerifiedAt: json["email_verified_at"] ?? "",

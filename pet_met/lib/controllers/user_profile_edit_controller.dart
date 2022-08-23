@@ -31,9 +31,9 @@ class UserProfileEditController extends GetxController {
   ApiHeader apiHeader = ApiHeader();
 
   String birthDate = "";
-  String month= "";
-  String day = "";
-  String year = "";
+  String month= "${DateTime.now().month}";
+  String day = "${DateTime.now().day}";
+  String year = "${DateTime.now().year}";
 
   var nameController = TextEditingController();
   var emailController = TextEditingController();

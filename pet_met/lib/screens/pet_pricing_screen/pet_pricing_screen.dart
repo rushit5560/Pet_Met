@@ -41,7 +41,7 @@ class PetPricingScreen extends StatelessWidget {
               children: [
                 CustomAppBar(
                   appBarOption: AppBarOption.singleBackButtonOption,
-                  title: "Plans",
+                  title: "Subscription",
                 ),
                 Obx(
                   () => Expanded(
