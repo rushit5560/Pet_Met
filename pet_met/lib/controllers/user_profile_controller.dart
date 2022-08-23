@@ -23,13 +23,16 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 
 class UserProfileController extends GetxController {
+  String followUserId = Get.arguments[0];
+  String followCategoryId = Get.arguments[1];
+  String petId = Get.arguments[2];
+
+
   final size = Get.size;
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 
-  String followUserId = Get.arguments[0];
-  String followCategoryId = Get.arguments[1];
-  String petId = Get.arguments[2];
+
 
   ApiHeader apiHeader = ApiHeader();
 
@@ -75,6 +78,8 @@ class UserProfileController extends GetxController {
 
   RxBool meetingStatus = false.obs;
   RxBool shopMeetingStatus = false.obs;
+
+  String userCategoryId = "";
 
   late Razorpay _razorpay;
 
@@ -157,7 +162,7 @@ class UserProfileController extends GetxController {
         petList.clear();
         petList.addAll(getUserProfileModel.data.petdata);
         meetingStatus = getUserProfileModel.data.meettingstatus.obs;
-
+        userCategoryId = getUserProfileModel.data.data[0].categoryId;
         userprofile = ApiUrl.apiImagePath + "asset/uploads/product/" + getUserProfileModel.data.data[0].image;
         userName = getUserProfileModel.data.data[0].name;
         userMobileNumber = getUserProfileModel.data.data[0].phone;
@@ -177,56 +182,6 @@ class UserProfileController extends GetxController {
 
   /// Get Shop Profile
   Future<void> getShopProfileFunction() async {
-    /*isLoading(true);
-    String url = ApiUrl.allRoleGetProfileApi;
-    log("All Role Profile Api Url : $url");
-
-    try {
-      Map<String, dynamic> data = {
-        "id": followUserId,
-        // "uid": "${UserDetails.selfId}",
-        "categoryID": followCategoryId,
-      };
-
-      log("Body Data : $data");
-
-      Map<String, String> header = apiHeader.apiHeader();
-      log("header : $header");
-
-      http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
-      log("Get All Role Profile Api response : ${response.body}");
-
-      GetShopProfileModel getShopProfileModel =
-      GetShopProfileModel.fromJson(json.decode(response.body));
-      isSuccessStatus = getShopProfileModel.success.obs;
-
-      if (isSuccessStatus.value) {
-        shopPetList.clear();
-        shopPetList.addAll(getShopProfileModel.data.petdata);
-
-        shopProfile = ApiUrl.apiImagePath + getShopProfileModel.data.data[0].showimg;
-        shopName = getShopProfileModel.data.data[0].shopename;
-        shopDescription = getShopProfileModel.data.data[0].fullText;
-        log('shopProfile: $shopProfile');
-
-        //profileImage = getPetListModel.data.
-        // for(int i= 0; i < getPetListModel.data.petdata.length ; i++){
-        //   followUserId = getPetListModel.data.petdata[i].id;
-        //   log('followUserId: $followUserId');
-        // }
-        log("petList Length : ${petList.length}");
-      } else {
-        log("Get All Role Profile Api Else");
-      }
-
-
-    } catch(e) {
-      log("All Role Profile Api Error ::: $e");
-    } finally {
-      //isLoading(false);
-      await followStatus();
-    }*/
-
     isLoading(true);
     String url = ApiUrl.allPetUserProfileApi;
     log("All Role Profile Api Url : $url");
@@ -257,7 +212,7 @@ class UserProfileController extends GetxController {
         shopPetList.clear();
         shopPetList.addAll(petShopProfileModel.data.petdata);
         shopMeetingStatus = petShopProfileModel.data.meettingstatus.obs;
-
+        userCategoryId = petShopProfileModel.data.data[0].categoryId;
         shopProfile = ApiUrl.apiImagePath  + petShopProfileModel.data.data[0].showimg;
         shopName = petShopProfileModel.data.data[0].shopename;
         shopDescription = petShopProfileModel.data.data[0].fullText;
@@ -641,6 +596,7 @@ class UserProfileController extends GetxController {
 
       if (isSuccessStatus.value) {
         Fluttertoast.showToast(msg: petAddOrderModel.message);
+        meetingStatus.value = true;
       } else {
         log("Pet Add Order Api Else Else");
       }

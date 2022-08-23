@@ -189,7 +189,7 @@ class IndexScreenState extends State<IndexScreen> {
                         ),
                         title: const Text(
                           "Doctor",
-                          style: const TextStyle(color: AppColors.whiteColor),
+                          style: TextStyle(color: AppColors.whiteColor),
                         ),
                       ),
                     ],

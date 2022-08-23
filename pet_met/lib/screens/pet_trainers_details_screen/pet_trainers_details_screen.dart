@@ -60,8 +60,9 @@ class PetTrainersDetailsScreen extends StatelessWidget {
                                     height: petTrainersDetailsScreenController
                                             .size.height *
                                         0.005.w),
-                                CallUsTextModule(),
-                                SizedBox(height: 10),
+                                petTrainersDetailsScreenController.isShowStatus.value
+                                    ? CallUsTextModule() : Container(),
+                                const SizedBox(height: 10),
                                 PetTrainerOverViewModule(),
                               ],
                             ).commonSymmetricPadding(horizontal: 5),

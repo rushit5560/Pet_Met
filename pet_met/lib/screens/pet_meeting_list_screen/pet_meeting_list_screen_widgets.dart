@@ -58,7 +58,14 @@ class PetMeetingListModule extends StatelessWidget {
             child: GestureDetector(
               onTap: (){
                 // Get.toNamed(AppRouteNames.userProfileRoute);
-                Get.to(()=> PetMeetingDetailsScreen(), arguments: screenController.subCatPetList[i].id);
+                Get.to(
+                        ()=> PetMeetingDetailsScreen(),
+                    arguments: [
+                      screenController.subCatPetList[i].id,
+                      screenController.subCatPetList[i].userid,
+                      screenController.subCatPetList[i].categoryId,
+                    ],
+                );
               },
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),

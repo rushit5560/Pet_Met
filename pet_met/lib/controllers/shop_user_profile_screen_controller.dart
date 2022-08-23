@@ -1703,19 +1703,21 @@ class ShopUserProfileScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         // User Data Set in Prefs
-        // await userPreference.setUserDetails(
-        //     selfId: loginModel.data.uid,
-        //     userId: loginModel.data.id,
-        //     userName: loginModel.data.name,
-        //     userEmail: loginModel.data.email,
-        //     userProfileImage: loginModel.data.image,
-        //     token: loginModel.data.rememberToken,
-        //     roleId: loginModel.data.categoryId
-        // );
+        await userPreference.setUserDetails(
+            selfId: loginModel.data.uid,
+            userId: loginModel.data.id,
+            userName: loginModel.data.name,
+            userEmail: loginModel.data.email,
+            userProfileImage: loginModel.data.image,
+            token: loginModel.data.rememberToken,
+            roleId: loginModel.data.categoryId,
+            shopName: loginModel.data.shopename,
+            shopProfile: loginModel.data.showimg,
+        );
         passwordController.clear();
         //await userPreference.setRoleId(roleId);
         // Going to Index Screen
-        Get.to(() => IndexScreen(),
+        Get.offAll(() => IndexScreen(),
             transition: Transition.native,
             duration: const Duration(milliseconds: 500));
       } else {

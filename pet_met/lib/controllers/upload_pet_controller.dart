@@ -18,10 +18,13 @@ import 'package:pet_met/utils/user_details.dart';
 import 'package:sizer/sizer.dart';
 import 'package:http/http.dart' as http;
 import '../utils/app_colors.dart';
+import 'user_profile_edit_controller.dart';
 
 class UploadPetController extends GetxController {
   PetOption petOption = Get.arguments[0];
   String petId = Get.arguments[1] ?? "";
+
+  final userUpdateProfileController = Get.find<UserProfileEditController>();
 
   final size = Get.size;
   RxBool isLoading = false.obs;
@@ -607,6 +610,7 @@ class UploadPetController extends GetxController {
           // log(updateUserProfileModel.dataVendor.email);
           // log(updateUserProfileModel.dataVendor.phoneNo);
           Get.back();
+
         } else {
           log('False False');
         }

@@ -639,7 +639,7 @@ class ShopUserProfileScreen extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          "Yes",
+                          "Submit",
                           style: TextStyle(
                             color: AppColors.whiteColor,
                             fontSize: 12.sp,
@@ -662,14 +662,12 @@ class ShopUserProfileScreen extends StatelessWidget {
                         minimumSize: Size(controller.size.width * 0.3, 30),
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(12),
-                          ),
+                          borderRadius: BorderRadius.all(Radius.circular(12)),
                         ),
                       ),
                       child: Center(
                         child: Text(
-                          "Close",
+                          "Cancel",
                           style: TextStyle(
                             color: themeProvider.darkTheme
                                 ? AppColors.darkThemeBoxColor

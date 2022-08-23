@@ -11,11 +11,13 @@ class TrainerDetailsModel {
     required this.success,
     required this.data,
     required this.message,
+    required this.showstatus,
   });
 
   bool success;
   List<TrainerData> data;
   String message;
+  bool showstatus;
 
   factory TrainerDetailsModel.fromJson(Map<String, dynamic> json) =>
       TrainerDetailsModel(
@@ -23,67 +25,69 @@ class TrainerDetailsModel {
         data: List<TrainerData>.from(
             json["data"].map((x) => TrainerData.fromJson(x ?? {}))),
         message: json["message"] ?? "",
+        showstatus: json["showstatus"] ?? false,
       );
 
   Map<String, dynamic> toJson() => {
         "success": success,
         "data": List<dynamic>.from(data.map((x) => x.toJson())),
         "message": message,
+    "showstatus": showstatus,
       };
 }
 
 class TrainerData {
   TrainerData({
-     this.id,
-     this.name,
-     this.address,
-     this.phone,
-     this.open,
-     this.close,
-     this.fullText,
-     this.instagram,
-     this.facebook,
-     this.image,
-     this.trainerimages,
-    this.image1,
-    this.image2,
-    this.image3,
-    this.image4,
-    this.image5,
-     this.meetingimages,
-     this.isActive,
-     this.userid,
-     this.createdBy,
-     this.modifiedBy,
-     this.createdDate,
-     this.modifiedDate,
-    this.isVerified,
+    required this.id,
+    required this.name,
+    required this.address,
+    required this.phone,
+    required this.open,
+    required this.close,
+    required this.fullText,
+    required this.instagram,
+    required this.facebook,
+    required this.image,
+    // required this.trainerimages,
+    required this.image1,
+    required this.image2,
+    required this.image3,
+    required this.image4,
+    required this.image5,
+    // required this.meetingimages,
+    required this.isActive,
+    required this.userid,
+    required this.createdBy,
+    required this.modifiedBy,
+    required this.createdDate,
+    required this.modifiedDate,
+    required this.isVerified,
   });
 
-  String ? id;
-  String ? name;
-  String ? address;
-  String ? phone;
-  String ? open;
-  String ? close;
-  String ? fullText;
-  String ? instagram;
-  String ? facebook;
-  String ? image;
-  List<String> ? trainerimages;
-  String ? image1;
-  String ? image2;
-  String ? image3;
-  String ? image4;
-  String ? image5;
-  List<String> ? meetingimages;
-  String ? isActive;
-  String ? userid;
-  String ? createdBy;
-  String ? modifiedBy;
-  String ? createdDate;
-  String ? modifiedDate;
-  String? isVerified;
+  String id;
+  String name;
+  String address;
+  String phone;
+  String open;
+  String close;
+  String fullText;
+  String instagram;
+  String facebook;
+  String image;
+  // List<String> trainerimages;
+  String image1;
+  String image2;
+  String image3;
+  String image4;
+  String image5;
+  // List<String> meetingimages;
+  String isActive;
+  String userid;
+  String createdBy;
+  String modifiedBy;
+  String createdDate;
+  String modifiedDate;
+  String isVerified;
 
   factory TrainerData.fromJson(Map<String, dynamic> json) => TrainerData(
     id: json["id"] ?? 0,
@@ -96,13 +100,13 @@ class TrainerData {
     instagram: json["instagram"] ?? "",
     facebook: json["facebook"] ?? "",
     image: json["image"] ?? "",
-    trainerimages: List<String>.from(json["trainerimages"].map((x) => x) ?? {}),
-    image1: json["image1"],
-    image2: json["image2"],
-    image3: json["image3"],
-    image4: json["image4"],
-    image5: json["image5"],
-    meetingimages: List<String>.from(json["meetingimages"].map((x) => x) ?? {}),
+    // trainerimages: List<String>.from(json["trainerimages"].map((x) => x) ?? {}),
+    image1: json["image1"] ?? "",
+    image2: json["image2"] ?? "",
+    image3: json["image3"] ?? "",
+    image4: json["image4"] ?? "",
+    image5: json["image5"] ?? "",
+    // meetingimages: List<String>.from(json["meetingimages"].map((x) => x) ?? {}),
     isActive: json["is_active"] ?? "",
     userid: json["userid"] ?? "",
     createdBy: json["created_by"] ?? "",
@@ -123,13 +127,13 @@ class TrainerData {
     "instagram": instagram,
     "facebook": facebook,
     "image": image,
-    "trainerimages": List<dynamic>.from(trainerimages!.map((x) => x)),
+    // "trainerimages": List<dynamic>.from(trainerimages.map((x) => x)),
     "image1": image1,
     "image2": image2,
     "image3": image3,
     "image4": image4,
     "image5": image5,
-    "meetingimages": List<dynamic>.from(meetingimages!.map((x) => x)),
+    // "meetingimages": List<dynamic>.from(meetingimages.map((x) => x)),
     "is_active": isActive,
     "userid": userid,
     "created_by": createdBy,

@@ -323,7 +323,9 @@ class UserPetListModule extends StatelessWidget {
                   Get.to(() => UploadPetScreen(),
                       transition: Transition.native,
                       duration: const Duration(milliseconds: 500),
-                      arguments: [PetOption.addOption, ""]);
+                      arguments: [PetOption.addOption, ""])!.then((value) async {
+                    await controller.getAllRoleProfileFunction();
+                  });
                 },
                 child: Container(
                   height: 15,

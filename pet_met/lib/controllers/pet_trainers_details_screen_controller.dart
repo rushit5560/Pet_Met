@@ -19,6 +19,7 @@ class PetTrainersDetailsScreenController extends GetxController {
   //TrainerData trainerDetails = TrainerData();
   List<TrainerData> trainerDetails = [];
   bool isVerified = false;
+  RxBool isShowStatus = false.obs;
 
   Future<void> getTrainerDetailsFunction() async {
     isLoading(true);
@@ -35,6 +36,8 @@ class PetTrainersDetailsScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         trainerDetails = trainerDetailsModel.data;
+
+        isShowStatus = trainerDetailsModel.showstatus.obs;
 
         String isVerify = "${trainerDetailsModel.data[0].isVerified}";
         if(isVerify == "0") {

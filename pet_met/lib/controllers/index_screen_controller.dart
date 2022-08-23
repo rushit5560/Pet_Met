@@ -82,4 +82,12 @@ class IndexScreenController extends GetxController {
         duration: const Duration(milliseconds: 500));
   }
 
+
+  @override
+  void onInit() {
+    isLoading(true);
+    isLoading(false);
+    super.onInit();
+  }
+
 }
