@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:pet_met/controllers/shop_user_profile_screen_controller.dart';
 import 'package:pet_met/models/get_all_category_model/get_all_category_model.dart';
 import 'package:pet_met/models/get_all_sub_category_model/get_all_sub_category_model.dart';
 import 'package:pet_met/models/get_pet_profile_model/get_pet_profile_model.dart';
@@ -24,7 +25,8 @@ class UploadPetController extends GetxController {
   PetOption petOption = Get.arguments[0];
   String petId = Get.arguments[1] ?? "";
 
-  final userUpdateProfileController = Get.find<UserProfileEditController>();
+  // final userUpdateProfileController = Get.find<UserProfileEditController>();
+  // final shopUserProfileScreenController = Get.find<ShopUserProfileScreenController>();
 
   final size = Get.size;
   RxBool isLoading = false.obs;
@@ -441,129 +443,6 @@ class UploadPetController extends GetxController {
     log("header : $header");
 
     try {
-      /*if (imageFile != null) {
-        log("uploading with a photo");
-        var request = http.MultipartRequest('POST', Uri.parse(url));
-
-        var stream = http.ByteStream(imageFile!.openRead());
-        stream.cast();
-
-        var length = await imageFile!.length();
-
-        request.files.add(await http.MultipartFile.fromPath("image", imageFile!.path));
-        request.headers.addAll(header);
-
-        request.fields['pet_name'] = petNameController.text.trim();
-        request.fields['main_category'] = "${petCategoryDropDownValue.categoryId}";
-        request.fields['sub_category'] = "${petSubCategoryDropDownValue.categoryId}";
-        request.fields['dob'] = birthDate;
-        request.fields['weight'] = weightController.text.trim();
-        request.fields['details'] = petDetailsController.text.trim();
-        request.fields['gender'] = genderValue.value;
-        request.fields['userid'] = "${UserDetails.userId}";
-        request.fields['petid'] = "$petId";
-        request.fields['categoryID'] = "${UserDetails.categoryId}";
-        //request.fields['showimg'] = "jgjadg";
-
-        var multiPart = http.MultipartFile(
-          'image',
-          stream,
-          length,
-
-          //filename: "",
-        );
-
-        // var multiFile = await http.MultipartFile.fromPath(
-        //  "image",
-        //   file!.path,
-        // );
-
-        request.files.add(multiPart);
-
-        log('request.fields: ${request.fields}');
-        log('request.files: ${request.files}');
-        //log('request.files length : ${request.files.length}');
-        //log('request.files name : ${request.files.first.filename}');
-        //log('request.files filetype : ${request.files.first.contentType}');
-        log('request.headers: ${request.headers}');
-
-        var response = await request.send();
-        log('response: ${response.request}');
-
-        response.stream.transform(utf8.decoder).listen((value) async {
-          UpdatePetProfileModel updatePetProfileModel =
-          UpdatePetProfileModel.fromJson(json.decode(value));
-          log('response1 :::::: ${updatePetProfileModel.success}');
-          isSuccessStatus = updatePetProfileModel.success.obs;
-
-          if (isSuccessStatus.value) {
-            Fluttertoast.showToast(msg: updatePetProfileModel.message);
-            await getProfileFunction();
-            // log(updateUserProfileModel.dataVendor.userName);
-            // log(updateUserProfileModel.dataVendor.email);
-            // log(updateUserProfileModel.dataVendor.phoneNo);
-            Get.back();
-          } else {
-            log('False False');
-          }
-        });
-      }
-      else {
-        print("uploading without a photo");
-        var request = http.MultipartRequest('POST', Uri.parse(url));
-
-        // var stream = http.ByteStream(file!.openRead());
-        // stream.cast();
-        //
-        // var length = await file!.length();
-
-        request.headers.addAll(header);
-
-        request.fields['pet_name'] = petNameController.text.trim();
-        request.fields['main_category'] = "${petCategoryDropDownValue.categoryId}";
-        request.fields['sub_category'] = "${petSubCategoryDropDownValue.categoryId}";
-        request.fields['dob'] = birthDate;
-        request.fields['weight'] = weightController.text.trim();
-        request.fields['details'] = petDetailsController.text.trim();
-        request.fields['gender'] = genderValue.value;
-        request.fields['userid'] = "${UserDetails.userId}";
-        request.fields['petid'] = "$petId";
-        request.fields['categoryID'] = "${UserDetails.categoryId}";
-        //request.fields['showimg'] = "jgjadg";
-
-        // var multiPart = http.MultipartFile(
-        //   'file',
-        //   stream,
-        //   length,
-        // );
-        //
-        // request.files.add(multiPart);
-
-        log('request.fields: ${request.fields}');
-        log('request.files: ${request.files}');
-        log('request.headers: ${request.headers}');
-
-        var response = await request.send();
-        log('response: ${response.request}');
-
-        response.stream.transform(utf8.decoder).listen((value) async {
-          UpdatePetProfileModel updatePetProfileModel =
-          UpdatePetProfileModel.fromJson(json.decode(value));
-          log('response1 :::::: ${updatePetProfileModel.success}');
-          isSuccessStatus = updatePetProfileModel.success.obs;
-
-          if (isSuccessStatus.value) {
-            Fluttertoast.showToast(msg: updatePetProfileModel.message);
-            await getProfileFunction();
-            // log(updateUserProfileModel.dataVendor.userName);
-            // log(updateUserProfileModel.dataVendor.email);
-            // log(updateUserProfileModel.dataVendor.phoneNo);
-            Get.back();
-          } else {
-            log('False False');
-          }
-        });
-      }*/
       var request = http.MultipartRequest('POST', Uri.parse(url));
       request.headers.addAll(header);
 
@@ -605,10 +484,11 @@ class UploadPetController extends GetxController {
 
         if (isSuccessStatus.value) {
           Fluttertoast.showToast(msg: updatePetProfileModel.message);
-          await getProfileFunction();
-          // log(updateUserProfileModel.dataVendor.userName);
-          // log(updateUserProfileModel.dataVendor.email);
-          // log(updateUserProfileModel.dataVendor.phoneNo);
+          // if(UserDetails.categoryId == "1") {
+          //   await userUpdateProfileController.getAllRoleProfileFunction();
+          // } else if(UserDetails.categoryId == "2") {
+          //   await shopUserProfileScreenController.getAllRoleProfileFunction();
+          // }
           Get.back();
 
         } else {
@@ -710,10 +590,11 @@ class UploadPetController extends GetxController {
 
           if (isSuccessStatus.value) {
             Fluttertoast.showToast(msg: updatePetProfileModel.message);
-            await getProfileFunction();
-            // log(updateUserProfileModel.dataVendor.userName);
-            // log(updateUserProfileModel.dataVendor.email);
-            // log(updateUserProfileModel.dataVendor.phoneNo);
+            // if(UserDetails.categoryId == "1") {
+            //   await userUpdateProfileController.getAllRoleProfileFunction();
+            // } else if(UserDetails.categoryId == "2") {
+            //   await shopUserProfileScreenController.getAllRoleProfileFunction();
+            // }
             Get.back();
           } else {
             log('False False');

@@ -11,6 +11,7 @@ import 'package:pet_met/models/vet_and_ngo_update_profile_model/vet_and_ngo_upda
 import 'package:pet_met/screens/index_screen/index_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:http/http.dart' as http;
+import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 
@@ -86,7 +87,8 @@ class NgoUserProfileScreenController extends GetxController {
   RxString? selectedCloseTime = "".obs;
 
   /// Get All Role Profile
-  Future<void> getAllRoleProfileFunction() async {
+  Future<void> getAllRoleProfileFunction({ProfileChangeOption profileChangeOption =
+      ProfileChangeOption.stay}) async {
     isLoading(true);
     //birthDate = day + "-" + month + "-" + year;
     String url = ApiUrl.allRoleGetProfileApi;
@@ -157,6 +159,23 @@ class NgoUserProfileScreenController extends GetxController {
           ngoActiveStatusValue.value = "Active";
         } else if (allRoleProfileModel.data.data[0].isActive == "1") {
           ngoActiveStatusValue.value = "Inactive";
+        }
+
+
+        await userPreference.setUserDetails(
+          selfId: UserDetails.userId,
+          userId: UserDetails.userId,
+          userName: allRoleProfileModel.data.data[0].name,
+          userEmail: allRoleProfileModel.data.data[0].email,
+          userProfileImage: ApiUrl.apiImagePath + allRoleProfileModel.data.data[0].image,
+          token: "",
+          roleId: UserDetails.categoryId,
+          shopName: "",
+          shopProfile: "",
+        );
+
+        if(profileChangeOption == ProfileChangeOption.back) {
+          Get.back();
         }
 
         log('Address: ${addressController.text}');
@@ -411,11 +430,7 @@ class NgoUserProfileScreenController extends GetxController {
 
         if (isSuccessStatus.value) {
           Fluttertoast.showToast(msg: vetAndNgoUpdateProfileModel.message);
-          // await getAllRoleProfileFunction();
-          // log(updateUserProfileModel.dataVendor.userName);
-          // log(updateUserProfileModel.dataVendor.email);
-          // log(updateUserProfileModel.dataVendor.phoneNo);
-          Get.back();
+          await getAllRoleProfileFunction(profileChangeOption: ProfileChangeOption.back);
         } else {
           log('False False');
         }

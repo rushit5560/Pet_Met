@@ -279,6 +279,8 @@ class LoginModule extends StatelessWidget {
                     Get.to(() => RegisterScreen(),
                         transition: Transition.native,
                         duration: const Duration(milliseconds: 500));
+                    controller.mailController.clear();
+                    controller.passController.clear();
                   },
                   child: Text(
                     "Register",

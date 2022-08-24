@@ -315,11 +315,6 @@ class UserPetListModule extends StatelessWidget {
               bottom: 0,
               child: GestureDetector(
                 onTap: () {
-                  // petOption == PetOption.addOption ?
-                  // ""
-                  //     : "";
-                  //    // :
-
                   Get.to(() => UploadPetScreen(),
                       transition: Transition.native,
                       duration: const Duration(milliseconds: 500),

@@ -15,6 +15,7 @@ import 'package:pet_met/screens/index_screen/index_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_route_names.dart';
+import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
@@ -100,7 +101,8 @@ class ShopUserProfileScreenController extends GetxController {
   RxBool showStatus = false.obs;
 
   /// Get All Role Profile
-  Future<void> getAllRoleProfileFunction() async {
+  Future<void> getAllRoleProfileFunction({ProfileChangeOption profileChangeOption =
+      ProfileChangeOption.stay}) async {
     isLoading(true);
     birthDate = day + "-" + month + "-" + year;
     String url = ApiUrl.allRoleGetProfileApi;
@@ -163,6 +165,22 @@ class ShopUserProfileScreenController extends GetxController {
             log("profileSplitImageList : ${profileSplitImageList[i]}");
           }
           shopApiProfile = profileSplitImageList[3];
+        }
+
+        await userPreference.setUserDetails(
+          selfId: UserDetails.userId,
+          userId: UserDetails.userId,
+          userName: getShopProfileModel.data.data[0].shopename,
+          userEmail: getShopProfileModel.data.data[0].email,
+          userProfileImage: ApiUrl.apiImagePath + getShopProfileModel.data.data[0].showimg,
+          token: "",
+          roleId: UserDetails.categoryId,
+          shopName: getShopProfileModel.data.data[0].shopename,
+          shopProfile: getShopProfileModel.data.data[0].showimg,
+        );
+
+        if(profileChangeOption == ProfileChangeOption.back) {
+          Get.back();
         }
 
 
@@ -372,11 +390,7 @@ class ShopUserProfileScreenController extends GetxController {
 
         if (isSuccessStatus.value) {
           Fluttertoast.showToast(msg: shopProfileModel.message);
-          await getAllRoleProfileFunction();
-          // log(updateUserProfileModel.dataVendor.userName);
-          // log(updateUserProfileModel.dataVendor.email);
-          // log(updateUserProfileModel.dataVendor.phoneNo);
-          Get.back();
+          await getAllRoleProfileFunction(profileChangeOption: ProfileChangeOption.back);
         } else {
           log('False False');
         }

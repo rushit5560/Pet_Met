@@ -78,9 +78,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                     ? ClipRRect(
                                         borderRadius: BorderRadius.circular(30),
                                         child: Image.network(
-                                          ApiUrl.apiImagePath +
-                                              "asset/uploads/product/" +
-                                              UserDetails.userProfileImage,
+                                          UserDetails.userProfileImage,
                                           width: 50,
                                           height: 50,
                                           fit: BoxFit.cover,
@@ -99,9 +97,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                             borderRadius:
                                                 BorderRadius.circular(30),
                                             child: Image.network(
-                                              ApiUrl.apiImagePath +
-                                                  "asset/uploads/product/" +
-                                                  UserDetails.shopProfile,
+                                              UserDetails.shopProfile,
                                               width: 50,
                                               height: 50,
                                               fit: BoxFit.cover,
@@ -120,10 +116,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                                 borderRadius:
                                                     BorderRadius.circular(30),
                                                 child: Image.network(
-                                                  ApiUrl.apiImagePath +
-                                                      "asset/uploads/product/" +
-                                                      UserDetails
-                                                          .userProfileImage,
+                                                  UserDetails.userProfileImage,
                                                   width: 50,
                                                   height: 50,
                                                   fit: BoxFit.cover,
@@ -144,8 +137,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                                         BorderRadius.circular(
                                                             30),
                                                     child: Image.network(
-                                                      UserDetails
-                                                          .userProfileImage,
+                                                      UserDetails.userProfileImage,
                                                       width: 50,
                                                       height: 50,
                                                       fit: BoxFit.cover,

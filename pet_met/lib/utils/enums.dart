@@ -8,3 +8,7 @@ enum PetOption {
   addOption,
   updateOption,
 }
+
+enum ProfileChangeOption {
+  stay, back
+}

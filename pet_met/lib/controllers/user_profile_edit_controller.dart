@@ -16,6 +16,7 @@ import 'package:pet_met/screens/index_screen/index_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_route_names.dart';
+import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 import 'package:sizer/sizer.dart';
@@ -70,7 +71,9 @@ class UserProfileEditController extends GetxController {
   UserPreference userPreference = UserPreference();
 
   /// Get User Profile
-  Future<void> getAllRoleProfileFunction() async {
+  Future<void> getAllRoleProfileFunction(
+      {ProfileChangeOption profileChangeOption =
+          ProfileChangeOption.stay}) async {
     isLoading(true);
     birthDate = day + "-" + month + "-" + year;
     String url = ApiUrl.allRoleGetProfileApi;
@@ -105,6 +108,18 @@ class UserProfileEditController extends GetxController {
         emailController.text = getUserProfileModel.data.data[0].email;
         birthDate = getUserProfileModel.data.data[0].bod;
 
+        await userPreference.setUserDetails(
+          selfId: UserDetails.userId,
+          userId: UserDetails.userId,
+          userName: getUserProfileModel.data.data[0].name,
+          userEmail: getUserProfileModel.data.data[0].email,
+          userProfileImage: userProfile,
+          token: getUserProfileModel.data.data[0].rememberToken,
+          roleId: UserDetails.categoryId,
+          shopName: "",
+          shopProfile: "",
+        );
+
         // Set Gender From Api
         String gender = getUserProfileModel.data.data[0].gender;
         if(gender == "male") {
@@ -135,15 +150,22 @@ class UserProfileEditController extends GetxController {
           }
           userApiProfile = profileSplitImageList[0];
         }
+
+        if(profileChangeOption == ProfileChangeOption.back) {
+          Get.back();
+        }
+
       } else {
         log("Get All User Profile Api Else");
       }
     } catch(e) {
       log("Get USer Profile Api Error ::: $e");
-    } finally {
+    } /*finally {
       //isLoading(false);
       await multiAccountFunction();
-    }
+    }*/
+
+    await multiAccountFunction();
   }
 
   multiAccountFunction() async {
@@ -324,6 +346,8 @@ class UserProfileEditController extends GetxController {
 
         if (isSuccessStatus.value) {
           Fluttertoast.showToast(msg: updateUserProfileModel.message);
+
+          await getAllRoleProfileFunction(profileChangeOption: ProfileChangeOption.back);
         } else {
           log('False False');
         }
@@ -331,9 +355,10 @@ class UserProfileEditController extends GetxController {
 
     } catch (e) {
       log("updateUserProfileFunction Error ::: $e");
-    } finally {
+    }/* finally {
       isLoading(false);
-    }
+    }*/
+
   }
 
   loadUI() {

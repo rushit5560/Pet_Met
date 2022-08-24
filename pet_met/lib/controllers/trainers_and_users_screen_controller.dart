@@ -14,6 +14,7 @@ import 'package:pet_met/models/trainers_update_profile_model/trainers_update_pro
 import 'package:pet_met/screens/index_screen/index_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_route_names.dart';
+import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:http/http.dart' as http;
 import 'package:pet_met/utils/user_preference.dart';
@@ -89,7 +90,8 @@ class TrainersAndUsersScreenController extends GetxController {
   RxBool showStatus = false.obs;
 
   /// Get All Role Profile
-  Future<void> getAllRoleProfileFunction() async {
+  Future<void> getAllRoleProfileFunction({ProfileChangeOption profileChangeOption =
+      ProfileChangeOption.stay}) async {
     isLoading(true);
     //birthDate = day + "-" + month + "-" + year;
     String url = ApiUrl.allRoleGetProfileApi;
@@ -155,6 +157,22 @@ class TrainersAndUsersScreenController extends GetxController {
           trainerActiveStatusValue.value = "Active";
         } else if (getTrainersProfileModel.data.data[0].isActive == "1") {
           trainerActiveStatusValue.value = "Inactive";
+        }
+
+        await userPreference.setUserDetails(
+          selfId: UserDetails.userId,
+          userId: UserDetails.userId,
+          userName: getTrainersProfileModel.data.data[0].name,
+          userEmail: getTrainersProfileModel.data.data[0].email,
+          userProfileImage: ApiUrl.apiImagePath + getTrainersProfileModel.data.data[0].image,
+          token: "",
+          roleId: UserDetails.categoryId,
+          shopName: "",
+          shopProfile: "",
+        );
+
+        if(profileChangeOption == ProfileChangeOption.back) {
+          Get.back();
         }
 
 
@@ -409,8 +427,7 @@ class TrainersAndUsersScreenController extends GetxController {
 
           if (isSuccessStatus.value) {
             Fluttertoast.showToast(msg: updateTrainersProfileModel.message);
-            // await getAllRoleProfileFunction();
-            Get.back();
+            await getAllRoleProfileFunction(profileChangeOption: ProfileChangeOption.back);
           } else {
             log('False False');
           }

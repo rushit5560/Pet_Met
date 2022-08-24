@@ -118,17 +118,21 @@ class PetTopListModule extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Html(
-                          data: homeController.petTopList[i].details,
-                          style: {
-                            "body": Style(
-                              color: themeProvider.darkTheme
-                                  ? AppColors.whiteColor
-                                  : AppColors.blackTextColor.withOpacity(0.6),
-                              fontSize: const FontSize(15.0),
-                              fontWeight: FontWeight.w500,
-                            ),
-                          },
+                        SizedBox(
+                          height: 50,
+                          child: Html(
+                            data: homeController.petTopList[i].details,
+                            shrinkWrap: true,
+                            style: {
+                              "body": Style(
+                                color: themeProvider.darkTheme
+                                    ? AppColors.whiteColor
+                                    : AppColors.blackTextColor.withOpacity(0.6),
+                                fontSize: const FontSize(15.0),
+                                fontWeight: FontWeight.w500,
+                              ),
+                            },
+                          ),
                         ),
                         // Text(
                         //   homeController.petTopList[index].details,

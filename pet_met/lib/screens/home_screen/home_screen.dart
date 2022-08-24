@@ -69,31 +69,34 @@ class _HomeScreenState extends State<HomeScreen> {
                         log('UserDetails.roleId: ${UserDetails.categoryId}');
                         if (UserDetails.categoryId == "1") {
                           Get.to(() => UserProfileEditScreen(),
-                              transition: Transition.native,
-                              duration: const Duration(milliseconds: 500))!.then((value) {
-                                controller.isLoading(true);
-                                controller.isLoading(false);
+                                  transition: Transition.native,
+                                  duration: const Duration(milliseconds: 500))!
+                              .then((value) async {
+                            await controller.getUserProfileFunction();
+
+                            indexController.isLoading(true);
+                            indexController.isLoading(false);
                           });
                         } else if (UserDetails.categoryId == "2") {
                           Get.to(() => ShopUserProfileScreen(),
-                              transition: Transition.native,
-                              duration: const Duration(milliseconds: 500))!.then((value) {
-                            controller.isLoading(true);
-                            controller.isLoading(false);
+                                  transition: Transition.native,
+                                  duration: const Duration(milliseconds: 500))!
+                              .then((value) async {
+                            await controller.getShopProfileFunction();
                           });
                         } else if (UserDetails.categoryId == "3") {
                           Get.to(() => NgoUserProfileScreen(),
-                              transition: Transition.native,
-                              duration: const Duration(milliseconds: 500))!.then((value) {
-                            controller.isLoading(true);
-                            controller.isLoading(false);
+                                  transition: Transition.native,
+                                  duration: const Duration(milliseconds: 500))!
+                              .then((value) async {
+                            await controller.getNgoProfileFunction();
                           });
                         } else if (UserDetails.categoryId == "4") {
                           Get.to(() => TrainersAndUserProfileScreenController(),
-                              transition: Transition.native,
-                              duration: const Duration(milliseconds: 500))!.then((value) {
-                            controller.isLoading(true);
-                            controller.isLoading(false);
+                                  transition: Transition.native,
+                                  duration: const Duration(milliseconds: 500))!
+                              .then((value) async {
+                            await controller.getTrainerProfileFunction();
                           });
                         }
                       },
