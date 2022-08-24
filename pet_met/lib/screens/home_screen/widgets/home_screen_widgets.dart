@@ -130,6 +130,15 @@ class PetTopListModule extends StatelessWidget {
                                     : AppColors.blackTextColor.withOpacity(0.6),
                                 fontSize: const FontSize(15.0),
                                 fontWeight: FontWeight.w500,
+                                maxLines: 2,
+                              ),
+                              "p": Style(
+                                color: themeProvider.darkTheme
+                                    ? AppColors.whiteColor
+                                    : AppColors.blackTextColor.withOpacity(0.6),
+                                fontSize: const FontSize(15.0),
+                                fontWeight: FontWeight.w500,
+                                maxLines: 2,
                               ),
                             },
                           ),
