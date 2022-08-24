@@ -72,6 +72,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   transition: Transition.native,
                                   duration: const Duration(milliseconds: 500))!
                               .then((value) async {
+                            controller.petTopList.clear();
+                            controller.pageIndex = 1;
                             await controller.getUserProfileFunction();
 
                             indexController.isLoading(true);
@@ -82,21 +84,33 @@ class _HomeScreenState extends State<HomeScreen> {
                                   transition: Transition.native,
                                   duration: const Duration(milliseconds: 500))!
                               .then((value) async {
+                            controller.petTopList.clear();
+                            controller.pageIndex = 1;
                             await controller.getShopProfileFunction();
+                            indexController.isLoading(true);
+                            indexController.isLoading(false);
                           });
                         } else if (UserDetails.categoryId == "3") {
                           Get.to(() => NgoUserProfileScreen(),
                                   transition: Transition.native,
                                   duration: const Duration(milliseconds: 500))!
                               .then((value) async {
+                            controller.petTopList.clear();
+                            controller.pageIndex = 1;
                             await controller.getNgoProfileFunction();
+                            indexController.isLoading(true);
+                            indexController.isLoading(false);
                           });
                         } else if (UserDetails.categoryId == "4") {
                           Get.to(() => TrainersAndUserProfileScreenController(),
                                   transition: Transition.native,
                                   duration: const Duration(milliseconds: 500))!
                               .then((value) async {
+                            controller.petTopList.clear();
+                            controller.pageIndex = 1;
                             await controller.getTrainerProfileFunction();
+                            indexController.isLoading(true);
+                            indexController.isLoading(false);
                           });
                         }
                       },
