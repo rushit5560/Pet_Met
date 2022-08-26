@@ -14,7 +14,7 @@ class SubscriptionReportScreenController extends GetxController {
   List<SubscriptionOrders> subscriptionOrderList = [];
 
 
-  Future<void> getUserMeetingOrderFunction() async {
+  Future<void> getUserSubscriptionReportFunction() async {
     isLoading(true);
     String url = ApiUrl.subscriptionOrderApi;
     log("Subscription Api Url : $url");
@@ -39,17 +39,24 @@ class SubscriptionReportScreenController extends GetxController {
       if(isSuccessStatus.value) {
         subscriptionOrderList.clear();
         subscriptionOrderList.addAll(subscriptionOrdersModel.date.orderdetails);
-        log("meetingOrderList : ${subscriptionOrderList.length}");
+        log("subscriptionOrderList : ${subscriptionOrderList.length}");
       } else {
-        log("getUserMeetingOrderFunction Else");
+        log("subscriptionOrderList Else");
       }
 
     } catch(e) {
-      log("getUserMeetingOrderFunction Error ::: $e");
+      log("subscriptionOrderList Error ::: $e");
     } finally {
       isLoading(false);
     }
 
+  }
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    getUserSubscriptionReportFunction();
   }
 
 }

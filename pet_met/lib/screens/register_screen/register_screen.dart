@@ -192,7 +192,7 @@ class RegisterScreen extends StatelessWidget {
                                       fontWeight: FontWeight.bold,
                                     ),),
                                   ),
-                                  Text(" && ",
+                                  Text(" & ",
                                     style: TextStyle(
                                       color: themeProvider.darkTheme
                                           ? AppColors.whiteColor.withOpacity(0.75)

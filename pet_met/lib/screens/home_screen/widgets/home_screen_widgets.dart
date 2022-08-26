@@ -731,7 +731,10 @@ class PetListModule extends StatelessWidget {
                 title: Text(
                   "Select Image From Camera",
                   style: TextStyle(
-                    color: AppColors.blackTextColor.withOpacity(0.7),
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.darkThemeColor,
+                    //color: AppColors.blackTextColor.withOpacity(0.7),
                     fontSize: 13.sp,
                     fontWeight: FontWeight.w600,
                   ),
@@ -744,7 +747,10 @@ class PetListModule extends StatelessWidget {
                 title: Text(
                   "Select Image From Gallery",
                   style: TextStyle(
-                    color: AppColors.blackTextColor.withOpacity(0.7),
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.darkThemeColor,
+                    //color: AppColors.blackTextColor.withOpacity(0.7),
                     fontSize: 13.sp,
                     fontWeight: FontWeight.w600,
                   ),

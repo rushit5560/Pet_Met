@@ -50,10 +50,11 @@ class ChangePasswordScreenController extends GetxController{
       isSuccessStatus = changePasswordScreenModel.success.obs;
 
       if (isSuccessStatus.value) {
+
+        Fluttertoast.showToast(msg: changePasswordScreenModel.message);
         currentPasswordController.clear();
         newPasswordController.clear();
         confirmPasswordController.clear();
-        Fluttertoast.showToast(msg: changePasswordScreenModel.message);
       } else {
         Fluttertoast.showToast(msg: changePasswordScreenModel.message);
       }

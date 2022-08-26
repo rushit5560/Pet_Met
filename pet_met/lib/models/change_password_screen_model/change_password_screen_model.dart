@@ -64,7 +64,7 @@ class Data {
   String country;
   String state;
   String city;
-  int categoryId;
+  String categoryId;
   String forgotpasswordToken;
   String createdAt;
   String updatedAt;
@@ -84,7 +84,7 @@ class Data {
     country: json["country"] ?? "",
     state: json["state"] ?? "",
     city: json["city"] ?? "",
-    categoryId: json["categoryID"] ?? 0,
+    categoryId: json["categoryID"] ?? "",
     forgotpasswordToken: json["forgotpassword_token"] ?? "",
     createdAt: json["created_at"] ?? "",
     updatedAt: json["updated_at"] ?? "",

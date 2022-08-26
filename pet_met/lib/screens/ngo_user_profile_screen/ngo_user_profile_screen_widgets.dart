@@ -330,8 +330,12 @@ class NameOfNgoListModule extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text("Name of NGO/Vet picture:",
-            style: TextStyle(color: Colors.black)),
+        Text("Name of NGO/Vet picture:",
+            style: TextStyle(
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.darkThemeColor,
+            )),
         const SizedBox(height: 8),
         /*Container(
           height: screenController.size.width * 0.16,
@@ -838,7 +842,9 @@ class EmailTextFieldModule extends StatelessWidget {
             Text(
               "Email",
               style: TextStyle(
-                color: AppColors.blackTextColor.withOpacity(0.7),
+                color:  themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.darkThemeColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -876,7 +882,9 @@ class NameTextFieldModule extends StatelessWidget {
             Text(
               "Name",
               style: TextStyle(
-                color: AppColors.blackTextColor.withOpacity(0.7),
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.darkThemeColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -914,7 +922,9 @@ class NgoBankAccountNumberTextFieldModule extends StatelessWidget {
             Text(
               "Ngo Bank Account Number",
               style: TextStyle(
-                color: AppColors.blackTextColor.withOpacity(0.7),
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.darkThemeColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -952,7 +962,9 @@ class IfscCodeTextFieldModule extends StatelessWidget {
             Text(
               "IFSC Code",
               style: TextStyle(
-                color: AppColors.blackTextColor.withOpacity(0.7),
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.darkThemeColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -991,7 +1003,9 @@ class NgoAddressTextFieldModule extends StatelessWidget {
             Text(
               "Ngo Address",
               style: TextStyle(
-                color: AppColors.blackTextColor.withOpacity(0.7),
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.darkThemeColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -1029,7 +1043,9 @@ class NgoContactTextFieldModule extends StatelessWidget {
             Text(
               "Ngo Contact",
               style: TextStyle(
-                color: AppColors.blackTextColor.withOpacity(0.7),
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.darkThemeColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -1068,7 +1084,9 @@ class NgoDetailsTextFieldModule extends StatelessWidget {
             Text(
               "Ngo Details",
               style: TextStyle(
-                color: AppColors.blackTextColor.withOpacity(0.7),
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.darkThemeColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -1106,7 +1124,9 @@ class InstagramTextFieldModule extends StatelessWidget {
             Text(
               "Instagram Link",
               style: TextStyle(
-                color: AppColors.blackTextColor.withOpacity(0.7),
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.darkThemeColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -1144,7 +1164,9 @@ class FacebookLinkTextFieldModule extends StatelessWidget {
             Text(
               "Facebook Link",
               style: TextStyle(
-                color: AppColors.blackTextColor.withOpacity(0.7),
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.darkThemeColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -1182,7 +1204,9 @@ class IsActiveTextFieldModule extends StatelessWidget {
             Text(
               "Active Status",
               style: TextStyle(
-                color: AppColors.blackTextColor.withOpacity(0.7),
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.darkThemeColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -1309,7 +1333,9 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
               Text(
                 "Open time",
                 style: TextStyle(
-                  color: AppColors.blackTextColor.withOpacity(0.7),
+                  color: themeProvider.darkTheme
+                      ? AppColors.whiteColor
+                      : AppColors.darkThemeColor,
                   fontSize: 11.sp,
                   fontWeight: FontWeight.bold,
                 ),
@@ -1400,12 +1426,16 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                                   : "No time selected!",
                               // textAlign: TextAlign.center,
                               maxLines: 1,
-                              style: const TextStyle(color: Colors.black)),
+                              style: TextStyle(color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.darkThemeColor,)),
                         ),
                         IconButton(
-                          icon: const Icon(
+                          icon: Icon(
                             Icons.timer_outlined,
-                            color: Colors.black,
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor
+                                : AppColors.darkThemeColor,
                             size: 20,
                           ),
                           tooltip: 'DOB',
@@ -1429,7 +1459,9 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
               Text(
                 "Close time",
                 style: TextStyle(
-                  color: AppColors.blackTextColor.withOpacity(0.7),
+                  color: themeProvider.darkTheme
+                      ? AppColors.whiteColor
+                      : AppColors.darkThemeColor,
                   fontSize: 11.sp,
                   fontWeight: FontWeight.bold,
                 ),
@@ -1520,12 +1552,16 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                                   : "No time selected!",
                               // textAlign: TextAlign.center,
                               maxLines: 1,
-                              style: const TextStyle(color: Colors.black)),
+                              style: TextStyle(color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.darkThemeColor,)),
                         ),
                         IconButton(
-                          icon: const Icon(
+                          icon: Icon(
                             Icons.timer_outlined,
-                            color: Colors.black,
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor
+                                : AppColors.darkThemeColor,
                             size: 20,
                           ),
                           tooltip: 'DOB',

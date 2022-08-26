@@ -15,6 +15,8 @@ class SubscriptionOrderListModule extends StatelessWidget {
     return screenController.subscriptionOrderList.isEmpty
         ? const Center(child: Text("Orders Not Found!"))
         : ListView.builder(
+      shrinkWrap: true,
+      physics: const AlwaysScrollableScrollPhysics(),
       itemCount: screenController.subscriptionOrderList.length,
       itemBuilder: (context, i) {
 
@@ -50,6 +52,7 @@ class SubscriptionOrderListModule extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(height: 5),
               Row(
                 children: [
                   const Expanded(
@@ -65,6 +68,7 @@ class SubscriptionOrderListModule extends StatelessWidget {
                   ),
                 ],
               ),
+              SizedBox(height: 5),
               Row(
                 children: [
                   const Expanded(
@@ -84,7 +88,7 @@ class SubscriptionOrderListModule extends StatelessWidget {
               ),
             ],
           ).commonAllSidePadding(padding: 8),
-        );
+        ).commonSymmetricPadding(vertical: 7);
       },
     ).commonAllSidePadding(padding: 10);
   }

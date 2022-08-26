@@ -185,6 +185,7 @@ class SplashScreen extends StatelessWidget {
             ],
           ),
         ),
+        SizedBox(height: 10),
         Text(
           "Adopt and sell pet on a smartphone. Easily to use and\ncute interface",
           textAlign: TextAlign.center,
@@ -211,21 +212,25 @@ class SplashScreen extends StatelessWidget {
               Expanded(
                 child: Image.asset(
                   "assets/images/Group-4-light.png",
+                  fit: BoxFit.fill,
                 ),
               ),
               Expanded(
                 child: Image.asset(
                   "assets/images/Group-2-light.png",
+                  fit: BoxFit.fill,
                 ),
               ),
               Expanded(
                 child: Image.asset(
                   "assets/images/Group-3-light.png",
+                  fit: BoxFit.fill,
                 ),
               ),
               Expanded(
                 child: Image.asset(
                   "assets/images/Group-1-light.png",
+                  fit: BoxFit.fill,
                 ),
               ),
             ],
@@ -237,21 +242,25 @@ class SplashScreen extends StatelessWidget {
               Expanded(
                 child: Image.asset(
                   "assets/images/Group-4-light.png",
+                  fit: BoxFit.fill,
                 ),
               ),
               Expanded(
                 child: Image.asset(
                   "assets/images/Group-2-light.png",
+                  fit: BoxFit.fill,
                 ),
               ),
               Expanded(
                 child: Image.asset(
                   "assets/images/Group-3-light.png",
+                  fit: BoxFit.fill,
                 ),
               ),
               Expanded(
                 child: Image.asset(
                   "assets/images/Group-1-light.png",
+                  fit: BoxFit.fill,
                 ),
               ),
             ],
@@ -263,21 +272,26 @@ class SplashScreen extends StatelessWidget {
               Expanded(
                 child: Image.asset(
                   "assets/images/Group-4-light.png",
+                  fit: BoxFit.fill,
                 ),
               ),
               Expanded(
                 child: Image.asset(
                   "assets/images/Group-2-light.png",
+                  fit: BoxFit.fill,
                 ),
               ),
               Expanded(
                 child: Image.asset(
                   "assets/images/Group-3-light.png",
+                  fit: BoxFit.fill,
                 ),
               ),
               Expanded(
                 child: Image.asset(
                   "assets/images/Group-1-light.png",
+                  fit: BoxFit.fill,
+
                 ),
               ),
             ],
@@ -290,53 +304,95 @@ class SplashScreen extends StatelessWidget {
   darkThemeBottomShapes() {
     return Column(
       children: [
-        Row(
-          children: [
-            Image.asset(
-              AppImages.darkWave4Img,
-            ),
-            Image.asset(
-              AppImages.darkWave2Img,
-            ),
-            Image.asset(
-              AppImages.darkWave3Img,
-            ),
-            Image.asset(
-              AppImages.darkWave1Img,
-            ),
-          ],
+        Expanded(
+          child: Row(
+            children: [
+              Expanded(
+                child: Image.asset(
+                  AppImages.darkWave4Img,
+                  fit: BoxFit.fill,
+                ),
+              ),
+              Expanded(
+                child: Image.asset(
+                  AppImages.darkWave2Img,
+                  fit: BoxFit.fill,
+                ),
+              ),
+              Expanded(
+                child: Image.asset(
+                  AppImages.darkWave3Img,
+                  fit: BoxFit.fill,
+                ),
+              ),
+              Expanded(
+                child: Image.asset(
+                  AppImages.darkWave1Img,
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ],
+          ),
         ),
-        Row(
-          children: [
-            Image.asset(
-              AppImages.darkWave4Img,
-            ),
-            Image.asset(
-              AppImages.darkWave2Img,
-            ),
-            Image.asset(
-              AppImages.darkWave3Img,
-            ),
-            Image.asset(
-              AppImages.darkWave1Img,
-            ),
-          ],
+        Expanded(
+          child: Row(
+            children: [
+              Expanded(
+                child: Image.asset(
+                  AppImages.darkWave4Img,
+                  fit: BoxFit.fill,
+                ),
+              ),
+              Expanded(
+                child: Image.asset(
+                  AppImages.darkWave2Img,
+                  fit: BoxFit.fill,
+                ),
+              ),
+              Expanded(
+                child: Image.asset(
+                  AppImages.darkWave3Img,
+                  fit: BoxFit.fill,
+                ),
+              ),
+              Expanded(
+                child: Image.asset(
+                  AppImages.darkWave1Img,
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ],
+          ),
         ),
-        Row(
-          children: [
-            Image.asset(
-              AppImages.darkWave4Img,
-            ),
-            Image.asset(
-              AppImages.darkWave2Img,
-            ),
-            Image.asset(
-              AppImages.darkWave3Img,
-            ),
-            Image.asset(
-              AppImages.darkWave1Img,
-            ),
-          ],
+        Expanded(
+          child: Row(
+            children: [
+              Expanded(
+                child: Image.asset(
+                  AppImages.darkWave4Img,
+                  fit: BoxFit.fill,
+                ),
+              ),
+              Expanded(
+                child: Image.asset(
+                  AppImages.darkWave2Img,
+                  fit: BoxFit.fill,
+                ),
+              ),
+              Expanded(
+                child: Image.asset(
+                  AppImages.darkWave3Img,
+                  fit: BoxFit.fill,
+                ),
+              ),
+              Expanded(
+                child: Image.asset(
+                  AppImages.darkWave1Img,
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );

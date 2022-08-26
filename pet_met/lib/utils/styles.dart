@@ -46,7 +46,7 @@ class Styles {
       // canvasColor:
       //     isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
 
-       //brightness: isDarkTheme ? Brightness.light : Brightness.dark,
+       brightness: isDarkTheme ? Brightness.dark : Brightness.light,
       buttonTheme: Theme.of(context).buttonTheme.copyWith(
           colorScheme: isDarkTheme
               ? const ColorScheme.light()

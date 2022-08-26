@@ -407,16 +407,16 @@ class SaveButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(()=>
-    screenController.isLoading.value ?
-    SizedBox(
-      // width: double.infinity,
-      height: 60,
-      child: LoadingAnimationWidget.staggeredDotsWave(
-        color: AppColors.accentTextColor,
-        size: 40,
-      ),
-    ):
+    return
+    // screenController.isLoading.value ?
+    // SizedBox(
+    //   // width: double.infinity,
+    //   height: 60,
+    //   child: LoadingAnimationWidget.staggeredDotsWave(
+    //     color: AppColors.accentTextColor,
+    //     size: 40,
+    //   ),
+    // ):
       Padding(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         child: GestureDetector(
@@ -449,7 +449,6 @@ class SaveButton extends StatelessWidget {
             ),
           ),
         ),
-      ),
     );
   }
 }

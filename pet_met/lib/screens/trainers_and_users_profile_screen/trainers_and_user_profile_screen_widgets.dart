@@ -329,9 +329,11 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           "Trainers Achievement Picture:",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: themeProvider.darkTheme
+          ? AppColors.whiteColor
+              : AppColors.darkThemeColor,),
         ),
         const SizedBox(height: 8),
         SizedBox(
@@ -781,7 +783,9 @@ class EmailTextFieldModule extends StatelessWidget {
             Text(
               "Email",
               style: TextStyle(
-                color: AppColors.blackTextColor.withOpacity(0.7),
+                color: themeProvider.darkTheme
+              ? AppColors.whiteColor
+                  : AppColors.darkThemeColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -819,7 +823,9 @@ class TrainersContactNumberTextField extends StatelessWidget {
             Text(
               "Trainers Contact",
               style: TextStyle(
-                color: AppColors.blackTextColor.withOpacity(0.7),
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.darkThemeColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -857,7 +863,9 @@ class TrainersAddressTextFieldModule extends StatelessWidget {
             Text(
               "Trainers Address",
               style: TextStyle(
-                color: AppColors.blackTextColor.withOpacity(0.7),
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.darkThemeColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -893,7 +901,9 @@ class TrainersDetailsModule extends StatelessWidget {
         Text(
           "Trainers Details",
           style: TextStyle(
-            color: AppColors.blackTextColor.withOpacity(0.7),
+            color: themeProvider.darkTheme
+                ? AppColors.whiteColor
+                : AppColors.darkThemeColor,
             fontSize: 11.sp,
             fontWeight: FontWeight.bold,
           ),
@@ -982,7 +992,9 @@ class InstagramTextFieldModule extends StatelessWidget {
             Text(
               "Instagram Link",
               style: TextStyle(
-                color: AppColors.blackTextColor.withOpacity(0.7),
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.darkThemeColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -1020,7 +1032,9 @@ class FacebookLinkTextFieldModule extends StatelessWidget {
             Text(
               "Facebook Link",
               style: TextStyle(
-                color: AppColors.blackTextColor.withOpacity(0.7),
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.darkThemeColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -1058,7 +1072,9 @@ class IsActiveTextFieldModule extends StatelessWidget {
             Text(
               "Active",
               style: TextStyle(
-                color: AppColors.blackTextColor.withOpacity(0.7),
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.darkThemeColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -1189,7 +1205,9 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
               Text(
                 "Available From",
                 style: TextStyle(
-                  color: AppColors.blackTextColor.withOpacity(0.7),
+                  color: themeProvider.darkTheme
+                ? AppColors.whiteColor
+                    : AppColors.darkThemeColor,
                   fontSize: 11.sp,
                   fontWeight: FontWeight.bold,
                 ),
@@ -1236,12 +1254,16 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                                   : "No time selected!",
                               // textAlign: TextAlign.center,
                               maxLines: 1,
-                              style: const TextStyle(color: Colors.black)),
+                              style:  TextStyle(color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.darkThemeColor)),
                         ),
                         IconButton(
-                          icon: const Icon(
+                          icon:  Icon(
                             Icons.timer_outlined,
-                            color: Colors.black,
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor
+                                : AppColors.darkThemeColor,
                             size: 20,
                           ),
                           tooltip: 'DOB',
@@ -1265,7 +1287,9 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
               Text(
                 "Available To",
                 style: TextStyle(
-                  color: AppColors.blackTextColor.withOpacity(0.7),
+                  color: themeProvider.darkTheme
+                ? AppColors.whiteColor
+                    : AppColors.darkThemeColor,
                   fontSize: 11.sp,
                   fontWeight: FontWeight.bold,
                 ),
@@ -1312,12 +1336,16 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                                   : "No time selected!",
                               // textAlign: TextAlign.center,
                               maxLines: 1,
-                              style: const TextStyle(color: Colors.black)),
+                              style: TextStyle(color: themeProvider.darkTheme
+                              ? AppColors.whiteColor
+                                  : AppColors.darkThemeColor)),
                         ),
                         IconButton(
-                          icon: const Icon(
+                          icon: Icon(
                             Icons.timer_outlined,
-                            color: Colors.black,
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor
+                                : AppColors.darkThemeColor,
                             size: 20,
                           ),
                           tooltip: 'DOB',
