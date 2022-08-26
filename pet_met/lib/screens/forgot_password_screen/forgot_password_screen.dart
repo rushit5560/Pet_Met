@@ -56,7 +56,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                   ),
                 ),
                 ForgotPasswordModule(),
-                const SubmitButtonModule(),
+                SubmitButtonModule(),
                 const SizedBox(height: 15),
               ],
             ),

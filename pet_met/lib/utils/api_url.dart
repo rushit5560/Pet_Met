@@ -78,6 +78,8 @@ class ApiUrl {
     static const meetingOrderApi = apiMainPath + "/meettingorder";
     static const subscriptionOrderApi = apiMainPath + "/allorder";
 
+  static const forgotPasswordApi = apiMainPath + "/forgetpassword";
+
 }
 
 

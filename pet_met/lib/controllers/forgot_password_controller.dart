@@ -1,22 +1,61 @@
 import 'dart:async';
+import 'dart:developer';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/config.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/screens/home_screen/home_screen.dart';
 import 'package:pet_met/screens/shop_and_grooming_screen/shop_and_grooming_screen.dart';
+import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_route_names.dart';
-
+import 'package:http/http.dart' as http;
 class ForgotPasswordController extends GetxController {
   final size = Get.size;
 
   RxBool isOpened = false.obs;
 
+  RxBool isLoading = false.obs;
+  RxBool isSuccessStatus = false.obs;
+
+
   RxInt selectedbottomIndex = 2.obs;
   RxBool slectedAddress = true.obs;
 
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
+
   var drawerController = ZoomDrawerController();
 
-  List<AddressModel> addressList = [
+
+  Future<void> forgotPasswordFunction() async {
+    isLoading(true);
+    String url =ApiUrl.forgotPasswordApi;
+    log("Forgot password api url : $url");
+
+    try {
+      Map<String, dynamic> bodyData = {
+        "email" : emailController.text.trim().toLowerCase()
+      };
+      http.Response response = await http.post(Uri.parse(url), body: bodyData);
+      log("Forgot password Response : ${response.body}");
+
+
+      if(isSuccessStatus.value) {
+        Fluttertoast.showToast(msg: "Please check your mail!");
+      } else {
+        Fluttertoast.showToast(msg: "msg");
+      }
+
+    } catch(e) {
+      log("forgotPasswordFunction Error ::: $e");
+    }
+
+    isLoading(false);
+  }
+
+
+  /*List<AddressModel> addressList = [
     AddressModel(
       title: "Honduras",
       address: "1691 Vetug Boulevard",
@@ -27,14 +66,12 @@ class ForgotPasswordController extends GetxController {
       address: "272 Wecdo Heights",
       isChecked: false,
     ),
-  ];
+  ];*/
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
+
 }
 
+/*
 class AddressModel {
   final String? title;
   final String? address;
@@ -48,3 +85,4 @@ class AddressModel {
 
   // NOTE: implementing functionality here in the next step!
 }
+*/

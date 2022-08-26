@@ -167,6 +167,7 @@ class PetCategoriesSearchListModule extends StatelessWidget {
 
               if(screenController.searchList[i].categoryId == singleItem.categoryId) {
                 screenController.searchList[i].isSelected = true;
+                screenController.selectedSubCatId = screenController.searchList[i].categoryId;
                 /*if(screenController.searchList[i].isSelected == true) {
                   screenController.searchList[i].isSelected = false;
                 } else if(screenController.searchList[i].isSelected == false) {
