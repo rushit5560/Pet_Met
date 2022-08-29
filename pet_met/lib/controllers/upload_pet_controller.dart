@@ -42,10 +42,12 @@ class UploadPetController extends GetxController {
   var weightController = TextEditingController();
 
   PetDatum getProfile = PetDatum();
-  RxList<PetCategory> petCategoryList = [PetCategory(categoryName: 'Select Category')].obs;
+  RxList<PetCategory> petCategoryList =
+      [PetCategory(categoryName: 'Select Category')].obs;
   PetCategory petCategoryDropDownValue = PetCategory();
 
-  RxList<PetSubCategory> petSubCategoryList = [PetSubCategory(categoryName: 'Select Sub Category')].obs;
+  RxList<PetSubCategory> petSubCategoryList =
+      [PetSubCategory(categoryName: 'Select Sub Category')].obs;
   PetSubCategory petSubCategoryDropDownValue = PetSubCategory();
 
   RxString selectedPetGenderValue = "Male".obs;
@@ -57,11 +59,11 @@ class UploadPetController extends GetxController {
   File? imageFile;
   String? petImage;
 
-  String month= "${DateTime.now().month}";
+  String month = "${DateTime.now().month}";
   String day = "${DateTime.now().day}";
   String year = "${DateTime.now().year}";
 
-  String birthDate= "";
+  String birthDate = "";
 
   String petApiCatId = "";
   String petApiSubCatId = "";
@@ -191,7 +193,7 @@ class UploadPetController extends GetxController {
       log("Get Pet Category Api response : ${response.body}");
 
       GetPetCategoryModel getPetCategoryModel =
-      GetPetCategoryModel.fromJson(json.decode(response.body));
+          GetPetCategoryModel.fromJson(json.decode(response.body));
       isSuccessStatus = getPetCategoryModel.success.obs;
 
       if (isSuccessStatus.value) {
@@ -202,19 +204,20 @@ class UploadPetController extends GetxController {
       } else {
         log("Pet Category Api Else");
       }
-    } catch(e) {
+    } catch (e) {
       log("Pet Category Api Error ::: $e");
     } finally {
-      if(petOption == PetOption.addOption) {
+      if (petOption == PetOption.addOption) {
         isLoading(false);
-      } else if(petOption == PetOption.updateOption) {
-      await getProfileFunction();
+      } else if (petOption == PetOption.updateOption) {
+        await getProfileFunction();
       }
     }
   }
 
   /// Get Sub category using cat id
-  getSubCategoryUsingCategoryId({required String petSubCatId, bool usingCatDDId = false}) async {
+  getSubCategoryUsingCategoryId(
+      {required String petSubCatId, bool usingCatDDId = false}) async {
     // isLoading(true);
 
     String url = ApiUrl.getAllSubCategoryApi;
@@ -224,20 +227,22 @@ class UploadPetController extends GetxController {
     Map<String, String> header = apiHeader.apiHeader();
     log("header : $header");
 
-    try{
-      http.Response response = await http.get(Uri.parse(finalUrl), headers: header);
+    try {
+      http.Response response =
+          await http.get(Uri.parse(finalUrl), headers: header);
       log('Sub Category response : ${response.body}');
 
-      GetPetSubCategoryModel getPetSubCategoryModel = GetPetSubCategoryModel.fromJson(json.decode(response.body));
+      GetPetSubCategoryModel getPetSubCategoryModel =
+          GetPetSubCategoryModel.fromJson(json.decode(response.body));
       isSuccessStatus = getPetSubCategoryModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         petSubCategoryList.addAll(getPetSubCategoryModel.data);
         petSubCategoryDropDownValue = petSubCategoryList[0];
         log('petSubCategoryList : ${petSubCategoryList.length}');
 
         // When update pet that time getting pet subcategory id
-        if(usingCatDDId == false) {
+        if (usingCatDDId == false) {
           if (petOption == PetOption.updateOption) {
             for (int i = 0; i < petSubCategoryList.length; i++) {
               if (petSubCategoryList[i].categoryId == petApiSubCatId) {
@@ -246,14 +251,12 @@ class UploadPetController extends GetxController {
             }
           }
         }
-
-
       } else {
         log('getSubCategoryUsingCategoryId false false');
       }
-    } catch(e) {
+    } catch (e) {
       log('getSubCategoryUsingCategoryId Error : $e');
-    } finally{
+    } finally {
       isLoading(false);
       //await getAllRoleProfileFunction();
       // if(petOption == PetOption.addOption) {
@@ -325,7 +328,7 @@ class UploadPetController extends GetxController {
       log("Get Pet Profile Api response : ${response.body}");
 
       GetPetProfileModel getPetProfileModel =
-      GetPetProfileModel.fromJson(json.decode(response.body));
+          GetPetProfileModel.fromJson(json.decode(response.body));
       isSuccessStatus = getPetProfileModel.success!.obs;
 
       if (isSuccessStatus.value) {
@@ -341,16 +344,16 @@ class UploadPetController extends GetxController {
 
         // Set Gender From Api
         String gender = getProfile.gender!;
-        if(gender == "male") {
+        if (gender == "male") {
           genderValue = "Male".obs;
-        } else if(gender == "female") {
+        } else if (gender == "female") {
           genderValue = "Female".obs;
         }
 
         String meeting = getProfile.meetingAvailability!;
-        if(meeting == "0"){
+        if (meeting == "0") {
           meetingAvailabilityValue = "Yes".obs;
-        } else if(meeting == "1"){
+        } else if (meeting == "1") {
           meetingAvailabilityValue = "No".obs;
         }
 
@@ -358,30 +361,29 @@ class UploadPetController extends GetxController {
         log("petApiSubCatId : $petApiSubCatId");
         log("meetingAvailabilityValue: $meetingAvailabilityValue");
 
-
-
         // Get Pet category
-        for(int i=0; i < petCategoryList.length; i++) {
-          if(petCategoryList[i].categoryId == getProfile.mainCategory) {
+        for (int i = 0; i < petCategoryList.length; i++) {
+          if (petCategoryList[i].categoryId == getProfile.mainCategory) {
             petCategoryDropDownValue = petCategoryList[i];
           }
         }
 
         // Get DOB of Pet
-        if(getProfile.dob != "") {
+        if (getProfile.dob != "") {
           String birthdate1 = getProfile.dob!;
           List<String> bDate = birthdate1.split('-');
-          day = bDate[0];
+          year = bDate[0];
           month = bDate[1];
-          year = bDate[2];
+          day = bDate[2];
         }
-        log('getProfile.dob: ${getProfile.dob}');
-
+        log('day : $day');
+        log('month : $month');
+        log('year : $year');
 
         // petApiProfile
-        if(getPetProfileModel.data![0].image != "") {
-          List<String> profileSplitImageList = getPetProfileModel.data![0]
-              .image!.split('/');
+        if (getPetProfileModel.data![0].image != "") {
+          List<String> profileSplitImageList =
+              getPetProfileModel.data![0].image!.split('/');
           for (int i = 0; i < profileSplitImageList.length; i++) {
             log("profileSplitImageList : ${profileSplitImageList[i]}");
           }
@@ -400,17 +402,14 @@ class UploadPetController extends GetxController {
       } else {
         log("Pet Profile Api Else");
       }
-
-    } catch(e) {
+    } catch (e) {
       log("Pet Profile Api Error ::: $e");
     } finally {
-      if(petOption == PetOption.updateOption) {
+      if (petOption == PetOption.updateOption) {
         await getSubCategoryUsingCategoryId(petSubCatId: petApiCatId);
       } else {
         isLoading(false);
       }
-
-
     }
   }
 
@@ -421,20 +420,20 @@ class UploadPetController extends GetxController {
     // Set 0 Before Day & Month Value
     String d = day;
     String m = month;
-    for(int i=1; i < 10; i++) {
-      if(i.toString() == day) {
+    for (int i = 1; i < 10; i++) {
+      if (i.toString() == day) {
         d = "0$day";
       }
     }
-    for(int i=1; i < 10; i++) {
-      if(i.toString() == month) {
+    for (int i = 1; i < 10; i++) {
+      if (i.toString() == month) {
         m = "0$month";
       }
     }
     birthDate = d + "-" + m + "-" + year;
 
     // birthDate = day + "-" + month + "-" + year;
-     log('birthDate: $birthDate');
+    log('birthDate: $birthDate');
 
     String url = ApiUrl.petUpdateProfileApi;
     log("Update Pet Profile url: $url");
@@ -451,7 +450,8 @@ class UploadPetController extends GetxController {
         var stream = http.ByteStream(imageFile!.openRead());
         stream.cast();
         var length = await imageFile!.length();
-        request.files.add(await http.MultipartFile.fromPath("image", imageFile!.path));
+        request.files
+            .add(await http.MultipartFile.fromPath("image", imageFile!.path));
         var multiPart = http.MultipartFile('image', stream, length);
         request.files.add(multiPart);
       } else if (imageFile == null) {
@@ -459,8 +459,10 @@ class UploadPetController extends GetxController {
       }
 
       request.fields['pet_name'] = petNameController.text.trim();
-      request.fields['main_category'] = "${petCategoryDropDownValue.categoryId}";
-      request.fields['sub_category'] = "${petSubCategoryDropDownValue.categoryId}";
+      request.fields['main_category'] =
+          "${petCategoryDropDownValue.categoryId}";
+      request.fields['sub_category'] =
+          "${petSubCategoryDropDownValue.categoryId}";
       request.fields['dob'] = birthDate;
       request.fields['weight'] = weightController.text.trim();
       request.fields['details'] = petDetailsController.text.trim();
@@ -468,7 +470,10 @@ class UploadPetController extends GetxController {
       request.fields['userid'] = "${UserDetails.userId}";
       request.fields['petid'] = "$petId";
       request.fields['categoryID'] = "${UserDetails.categoryId}";
-      request.fields['meeting_availability'] = meetingAvailabilityValue.value == "Yes" ? "0" :"1"/*meetingAvailabilityValue.value*/;
+      request.fields['meeting_availability'] =
+          meetingAvailabilityValue.value == "Yes"
+              ? "0"
+              : "1" /*meetingAvailabilityValue.value*/;
 
       log('request.fields: ${request.fields}');
       log('request.files: ${request.files}');
@@ -478,7 +483,7 @@ class UploadPetController extends GetxController {
 
       response.stream.transform(utf8.decoder).listen((value) async {
         UpdatePetProfileModel updatePetProfileModel =
-        UpdatePetProfileModel.fromJson(json.decode(value));
+            UpdatePetProfileModel.fromJson(json.decode(value));
         log('response1 :::::: ${updatePetProfileModel.success}');
         isSuccessStatus = updatePetProfileModel.success.obs;
 
@@ -490,12 +495,10 @@ class UploadPetController extends GetxController {
           //   await shopUserProfileScreenController.getAllRoleProfileFunction();
           // }
           Get.back();
-
         } else {
           log('False False');
         }
       });
-
     } catch (e) {
       log("updateUserProfileFunction Error ::: $e");
     } finally {
@@ -513,13 +516,13 @@ class UploadPetController extends GetxController {
     // Set 0 Before Day & Month Value
     String d = day;
     String m = month;
-    for(int i=1; i < 10; i++) {
-      if(i.toString() == day) {
+    for (int i = 1; i < 10; i++) {
+      if (i.toString() == day) {
         d = "0$day";
       }
     }
-    for(int i=1; i < 10; i++) {
-      if(i.toString() == month) {
+    for (int i = 1; i < 10; i++) {
+      if (i.toString() == month) {
         m = "0$month";
       }
     }
@@ -533,74 +536,78 @@ class UploadPetController extends GetxController {
 
     try {
       //if (imageFile != null) {
-        log("uploading with a photo");
-        var request = http.MultipartRequest('POST', Uri.parse(url));
+      log("uploading with a photo");
+      var request = http.MultipartRequest('POST', Uri.parse(url));
 
-        var stream = http.ByteStream(imageFile!.openRead());
-        stream.cast();
+      var stream = http.ByteStream(imageFile!.openRead());
+      stream.cast();
 
-        var length = await imageFile!.length();
+      var length = await imageFile!.length();
 
-        request.files.add(await http.MultipartFile.fromPath("image", imageFile!.path));
-        request.headers.addAll(header);
+      request.files
+          .add(await http.MultipartFile.fromPath("image", imageFile!.path));
+      request.headers.addAll(header);
 
-        request.fields['pet_name'] = petNameController.text.trim();
-        request.fields['main_category'] = "${petCategoryDropDownValue.categoryId}";
-        request.fields['sub_category'] = "${petSubCategoryDropDownValue.categoryId}";
-        request.fields['dob'] = birthDate;
-        request.fields['weight'] = weightController.text.trim();
-        request.fields['details'] = petDetailsController.text.trim();
-        request.fields['gender'] = genderValue.value.toLowerCase();
-        request.fields['userid'] = "${UserDetails.userId}";
-        request.fields['categoryID'] = "${UserDetails.categoryId}";
-        request.fields['meeting_availability'] = meetingAvailabilityValue.value == "Yes" ? "0" :"1";
-        //request.fields['petid'] = "$petId";
-        //request.fields['showimg'] = "jgjadg";
+      request.fields['pet_name'] = petNameController.text.trim();
+      request.fields['main_category'] =
+          "${petCategoryDropDownValue.categoryId}";
+      request.fields['sub_category'] =
+          "${petSubCategoryDropDownValue.categoryId}";
+      request.fields['dob'] = birthDate;
+      request.fields['weight'] = weightController.text.trim();
+      request.fields['details'] = petDetailsController.text.trim();
+      request.fields['gender'] = genderValue.value.toLowerCase();
+      request.fields['userid'] = "${UserDetails.userId}";
+      request.fields['categoryID'] = "${UserDetails.categoryId}";
+      request.fields['meeting_availability'] =
+          meetingAvailabilityValue.value == "Yes" ? "0" : "1";
+      //request.fields['petid'] = "$petId";
+      //request.fields['showimg'] = "jgjadg";
 
-        var multiPart = http.MultipartFile(
-          'image',
-          stream,
-          length,
+      var multiPart = http.MultipartFile(
+        'image',
+        stream,
+        length,
 
-          //filename: "",
-        );
+        //filename: "",
+      );
 
-        // var multiFile = await http.MultipartFile.fromPath(
-        //  "image",
-        //   file!.path,
-        // );
+      // var multiFile = await http.MultipartFile.fromPath(
+      //  "image",
+      //   file!.path,
+      // );
 
-        request.files.add(multiPart);
+      request.files.add(multiPart);
 
-        log('request.fields: ${request.fields}');
-        log('request.files: ${request.files}');
-        //log('request.files length : ${request.files.length}');
-        //log('request.files name : ${request.files.first.filename}');
-        //log('request.files filetype : ${request.files.first.contentType}');
-        log('request.headers: ${request.headers}');
+      log('request.fields: ${request.fields}');
+      log('request.files: ${request.files}');
+      //log('request.files length : ${request.files.length}');
+      //log('request.files name : ${request.files.first.filename}');
+      //log('request.files filetype : ${request.files.first.contentType}');
+      log('request.headers: ${request.headers}');
 
-        var response = await request.send();
-        log('response: ${response.request}');
+      var response = await request.send();
+      log('response: ${response.request}');
 
-        response.stream.transform(utf8.decoder).listen((value) async {
-          UpdatePetProfileModel updatePetProfileModel =
-          UpdatePetProfileModel.fromJson(json.decode(value));
-          log('response1 :::::: ${updatePetProfileModel.success}');
-          isSuccessStatus = updatePetProfileModel.success.obs;
+      response.stream.transform(utf8.decoder).listen((value) async {
+        UpdatePetProfileModel updatePetProfileModel =
+            UpdatePetProfileModel.fromJson(json.decode(value));
+        log('response1 :::::: ${updatePetProfileModel.success}');
+        isSuccessStatus = updatePetProfileModel.success.obs;
 
-          if (isSuccessStatus.value) {
-            Fluttertoast.showToast(msg: updatePetProfileModel.message);
-            // if(UserDetails.categoryId == "1") {
-            //   await userUpdateProfileController.getAllRoleProfileFunction();
-            // } else if(UserDetails.categoryId == "2") {
-            //   await shopUserProfileScreenController.getAllRoleProfileFunction();
-            // }
-            Get.back();
-          } else {
-            log('False False');
-          }
-        });
-     // }
+        if (isSuccessStatus.value) {
+          Fluttertoast.showToast(msg: updatePetProfileModel.message);
+          // if(UserDetails.categoryId == "1") {
+          //   await userUpdateProfileController.getAllRoleProfileFunction();
+          // } else if(UserDetails.categoryId == "2") {
+          //   await shopUserProfileScreenController.getAllRoleProfileFunction();
+          // }
+          Get.back();
+        } else {
+          log('False False');
+        }
+      });
+      // }
       /*else {
         print("uploading without a photo");
         var request = http.MultipartRequest('POST', Uri.parse(url));
@@ -668,10 +675,8 @@ class UploadPetController extends GetxController {
     isLoading(false);
   }
 
-
-
   @override
-  void onInit() async{
+  void onInit() async {
     super.onInit();
     getPetCategoryFunction();
     petSubCategoryDropDownValue = petSubCategoryList[0];
@@ -686,6 +691,5 @@ class UploadPetController extends GetxController {
     // } else if(petOption == PetOption.updateOption) {
     //   getProfileFunction();
     // }
-
   }
 }

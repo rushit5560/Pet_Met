@@ -51,7 +51,7 @@ class BannerImageModule extends StatelessWidget {
 class OffersModule extends StatelessWidget {
   OffersModule({Key? key}) : super(key: key);
   final screenController = Get.find<ShopDetailsScreenController>();
-  int index= 0;
+  int index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,6 @@ class OffersModule extends StatelessWidget {
                 style: TextStyle(color: AppColors.accentTextColor),
               ),
             ),
-
             screenController.isVerified == true
                 ? /*Container(
               decoration: const BoxDecoration(
@@ -79,166 +78,169 @@ class OffersModule extends StatelessWidget {
                 size: 18,
               ),
             )*/
-            Icon(
-            Icons.verified,
-            color: Colors.green,
-            size: 19,
-            )
+                Icon(
+                    Icons.verified,
+                    color: Colors.green,
+                    size: 19,
+                  )
                 : Container(),
-
           ],
         ),
         SizedBox(height: 10),
         const SizedBox(height: 10),
-        screenController.shopData[0].image1 == ""
-            && screenController.shopData[0].image2 == ""
-            && screenController.shopData[0].image3 == ""
-            && screenController.shopData[0].image4 == ""
-            && screenController.shopData[0].image5 == ""
-            ? Text("No offers available!",
-          textAlign: TextAlign.start,
-          style: TextStyle(
-            color: themeProvider.darkTheme
-                ? AppColors.whiteColor.withOpacity(0.4)
-                : AppColors.blackTextColor,
-          ),):
-        Row(
-          children: [
-            Expanded(
-                child: GestureDetector(
-                  onTap: (){
-                    imageAlertDialog(context, index = 1);
-                  },
-                  child: SizedBox(
-                    height: screenController.size.width * 0.18,
-                    //width: screenController.size.width * 0.18,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: Colors.grey)
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(6),
-                        child: Image.network(
-                            ApiUrl.apiImagePath + "asset/uploads/product/"
-                                "${screenController.shopData[0].image1}",
-                            height: 40, width: 40,
-                             errorBuilder: (context, er, da) {
-                          return Image.asset(AppImages.petMetLogoImg);
-                        }),
-                      ),
-                    ),
-                  ),
-                )),
-            SizedBox(width: 10),
-            Expanded(
-                child: GestureDetector(
-                  onTap: (){
-                    imageAlertDialog(context, index = 2);
-                  },
-                  child: SizedBox(
-                    height: screenController.size.width * 0.18,
-                    //width: screenController.size.width * 0.18,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.grey)
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                            ApiUrl.apiImagePath + "asset/uploads/product/"
-                                "${screenController.shopData[0].image2}",
-                            height: 40, width: 40,
-                             errorBuilder: (context, er, da) {
-                          return Image.asset(AppImages.petMetLogoImg);
-                        }),
-                      ),
-                    ),
-                  ),
-                )),
-            SizedBox(width: 10),
-            Expanded(
-                child: GestureDetector(
-                  onTap: (){
-                    imageAlertDialog(context, index = 3);
-                  },
-                  child: SizedBox(
-                    height: screenController.size.width * 0.18,
-                    //width: screenController.size.width * 0.18,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.grey)
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                            ApiUrl.apiImagePath + "asset/uploads/product/"
-                                "${screenController.shopData[0].image3}",
-                            fit: BoxFit.cover,
-                            height: 40, width: 40,
-                            errorBuilder: (context, er, da) {
-                          return Image.asset(AppImages.petMetLogoImg);
-                        }),
-                      ),
-                    ),
-                  ),
-                )),
-            SizedBox(width: 10),
-            Expanded(
-                child: GestureDetector(
-                  onTap: (){
-                    imageAlertDialog(context, index = 4);
-                  },
-                  child: SizedBox(
-                    height: screenController.size.width * 0.18,
-                    //width: screenController.size.width * 0.18,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.grey)
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                            ApiUrl.apiImagePath + "asset/uploads/product/"
-                                "${screenController.shopData[0].image4}",
-                            fit: BoxFit.cover, errorBuilder: (context, er, da) {
-                          return Image.asset(AppImages.petMetLogoImg);
-                        }),
-                      ),
-                    ),
-                  ),
-                )),
-            SizedBox(width: 10),
-            Expanded(
-                child: GestureDetector(
-                  onTap: (){
-                    imageAlertDialog(context, index = 5);
-                  },
-                  child: SizedBox(
-                    height: screenController.size.width * 0.18,
-                    //width: screenController.size.width * 0.18,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.grey)
-                      ),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
+        screenController.shopData[0].image1 == "" &&
+                screenController.shopData[0].image2 == "" &&
+                screenController.shopData[0].image3 == "" &&
+                screenController.shopData[0].image4 == "" &&
+                screenController.shopData[0].image5 == ""
+            ? Text(
+                "No offers available!",
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  color: themeProvider.darkTheme
+                      ? AppColors.whiteColor.withOpacity(0.4)
+                      : AppColors.blackTextColor,
+                ),
+              )
+            : Row(
+                children: [
+                  Expanded(
+                      child: GestureDetector(
+                    onTap: () {
+                      imageAlertDialog(context, index = 1);
+                    },
+                    child: SizedBox(
+                      height: screenController.size.width * 0.18,
+                      //width: screenController.size.width * 0.18,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: Colors.grey)),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(6),
                           child: Image.network(
-                              ApiUrl.apiImagePath + "asset/uploads/product/"
-                                  "${screenController.shopData[0].image5}",
-                              fit: BoxFit.cover, errorBuilder: (context, er, da) {
+                              ApiUrl.apiImagePath +
+                                  "asset/uploads/product/"
+                                      "${screenController.shopData[0].image1}",
+                              height: 40,
+                              width: 40, errorBuilder: (context, er, da) {
                             return Image.asset(AppImages.petMetLogoImg);
                           }),
+                        ),
                       ),
                     ),
-                  ),
-                ))
-          ],
-        )
+                  )),
+                  SizedBox(width: 10),
+                  Expanded(
+                      child: GestureDetector(
+                    onTap: () {
+                      imageAlertDialog(context, index = 2);
+                    },
+                    child: SizedBox(
+                      height: screenController.size.width * 0.18,
+                      //width: screenController.size.width * 0.18,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: Colors.grey)),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.network(
+                              ApiUrl.apiImagePath +
+                                  "asset/uploads/product/"
+                                      "${screenController.shopData[0].image2}",
+                              height: 40,
+                              width: 40, errorBuilder: (context, er, da) {
+                            return Image.asset(AppImages.petMetLogoImg);
+                          }),
+                        ),
+                      ),
+                    ),
+                  )),
+                  SizedBox(width: 10),
+                  Expanded(
+                      child: GestureDetector(
+                    onTap: () {
+                      imageAlertDialog(context, index = 3);
+                    },
+                    child: SizedBox(
+                      height: screenController.size.width * 0.18,
+                      //width: screenController.size.width * 0.18,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: Colors.grey)),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.network(
+                              ApiUrl.apiImagePath +
+                                  "asset/uploads/product/"
+                                      "${screenController.shopData[0].image3}",
+                              fit: BoxFit.cover,
+                              height: 40,
+                              width: 40, errorBuilder: (context, er, da) {
+                            return Image.asset(AppImages.petMetLogoImg);
+                          }),
+                        ),
+                      ),
+                    ),
+                  )),
+                  SizedBox(width: 10),
+                  Expanded(
+                      child: GestureDetector(
+                    onTap: () {
+                      imageAlertDialog(context, index = 4);
+                    },
+                    child: SizedBox(
+                      height: screenController.size.width * 0.18,
+                      //width: screenController.size.width * 0.18,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: Colors.grey)),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.network(
+                              ApiUrl.apiImagePath +
+                                  "asset/uploads/product/"
+                                      "${screenController.shopData[0].image4}",
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, er, da) {
+                            return Image.asset(AppImages.petMetLogoImg);
+                          }),
+                        ),
+                      ),
+                    ),
+                  )),
+                  SizedBox(width: 10),
+                  Expanded(
+                      child: GestureDetector(
+                    onTap: () {
+                      imageAlertDialog(context, index = 5);
+                    },
+                    child: SizedBox(
+                      height: screenController.size.width * 0.18,
+                      //width: screenController.size.width * 0.18,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: Colors.grey)),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.network(
+                              ApiUrl.apiImagePath +
+                                  "asset/uploads/product/"
+                                      "${screenController.shopData[0].image5}",
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, er, da) {
+                            return Image.asset(AppImages.petMetLogoImg);
+                          }),
+                        ),
+                      ),
+                    ),
+                  ))
+                ],
+              )
         /*SizedBox(
           height: screenController.size.width * 0.18,
           child: screenController.shopData.offersimages!.isEmpty ?
@@ -260,7 +262,7 @@ class OffersModule extends StatelessWidget {
   Widget _offerListTile(int i, BuildContext context) {
     return GestureDetector(
       onTap: () {
-       // imageAlertDialog(context, i);
+        // imageAlertDialog(context, i);
       },
       child: SizedBox(
         height: screenController.size.width * 0.18,
@@ -272,7 +274,7 @@ class OffersModule extends StatelessWidget {
               fit: BoxFit.cover, errorBuilder: (context, er, da) {
             return Image.asset(AppImages.petMetLogoImg);
           }),*/
-            Image.asset(AppImages.petMetLogoImg)),
+                Image.asset(AppImages.petMetLogoImg)),
       ).commonSymmetricPadding(horizontal: 5),
     );
   }
@@ -293,40 +295,34 @@ class OffersModule extends StatelessWidget {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-        title: index == 1 ?
-        Image.network(
-          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.shopData[0].image1!,
-          fit: BoxFit.cover,
-            errorBuilder: (context, er, da) {
-            return Image.asset(AppImages.petMetLogoImg);
-          }) : index == 2  ?
-        Image.network(
-            ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.shopData[0].image2!,
-            fit: BoxFit.cover,
-            errorBuilder: (context, er, da) {
-              return Image.asset(AppImages.petMetLogoImg);
-            }) :index == 3  ?
-        Image.network(
-            ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.shopData[0].image3!,
-            fit: BoxFit.cover,
-            errorBuilder: (context, er, da) {
-              return Image.asset(AppImages.petMetLogoImg);
-            }):index == 4  ?
-        Image.network(
-            ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.shopData[0].image4!,
-            fit: BoxFit.cover,
-            errorBuilder: (context, er, da) {
-              return Image.asset(AppImages.petMetLogoImg);
-            }) :index == 5  ?
-        Image.network(
-            ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.shopData[0].image4!,
-            fit: BoxFit.cover,
-            errorBuilder: (context, er, da) {
+      title: index == 1
+          ? Image.network(ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.shopData[0].image1!,
+              fit: BoxFit.cover, errorBuilder: (context, er, da) {
               return Image.asset(AppImages.petMetLogoImg);
             })
-            :
-        Image.asset(AppImages.petMetLogoImg),
-        //Image.asset(AppImages.petMetLogoImg)
+          : index == 2
+              ? Image.network(ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.shopData[0].image2!,
+                  fit: BoxFit.cover, errorBuilder: (context, er, da) {
+                  return Image.asset(AppImages.petMetLogoImg);
+                })
+              : index == 3
+                  ? Image.network(ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.shopData[0].image3!,
+                      fit: BoxFit.cover, errorBuilder: (context, er, da) {
+                      return Image.asset(AppImages.petMetLogoImg);
+                    })
+                  : index == 4
+                      ? Image.network(ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.shopData[0].image4!,
+                          fit: BoxFit.cover, errorBuilder: (context, er, da) {
+                          return Image.asset(AppImages.petMetLogoImg);
+                        })
+                      : index == 5
+                          ? Image.network(
+                              ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.shopData[0].image4!,
+                              fit: BoxFit.cover, errorBuilder: (context, er, da) {
+                              return Image.asset(AppImages.petMetLogoImg);
+                            })
+                          : Image.asset(AppImages.petMetLogoImg),
+      //Image.asset(AppImages.petMetLogoImg)
       // content: Text(
       //     "If you change timing slot duration your all schedule slot should been deleted you won't be able to recover this again!"),
       // actions: [
@@ -448,8 +444,7 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
   void launchWhatsApp(BuildContext context, String number) {
     FocusManager.instance.primaryFocus?.unfocus();
 
-    var whatsappUrl =
-        "whatsapp://send?phone= $number"
+    var whatsappUrl = "whatsapp://send?phone= $number"
         "&text=${Uri.encodeComponent("Hello")}";
     try {
       launch(whatsappUrl);
@@ -626,7 +621,7 @@ class MeetingAvailabilityModule extends StatelessWidget {
           "Meeting Availability",
           style: TextStyle(
               color: AppColors.accentTextColor,
-              fontWeight: FontWeight.bold,
+              // fontWeight: FontWeight.bold,
               fontSize: 12.sp),
         ),
         SizedBox(height: screenController.size.height * 0.001.h),
@@ -635,18 +630,17 @@ class MeetingAvailabilityModule extends StatelessWidget {
           child: screenController.shopData[0].meetingimages!.isEmpty
               ? const Text("Empty Meeting")
               : ListView.builder(
-            itemCount: screenController.shopData[0].meetingimages!.length,
-            shrinkWrap: true,
-            physics: const BouncingScrollPhysics(),
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, i) {
-              log('Meeting image: ${screenController.shopData[0].meetingimages!
-                  .length}');
-              String imgUrl = ApiUrl.apiImagePath +
-                  screenController.shopData[0].meetingimages![i];
-              return _meetingAvailabilityListTile(imgUrl);
-            },
-          ),
+                  itemCount: screenController.shopData[0].meetingimages!.length,
+                  shrinkWrap: true,
+                  physics: const BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, i) {
+                    log('Meeting image: ${screenController.shopData[0].meetingimages!.length}');
+                    String imgUrl = ApiUrl.apiImagePath +
+                        screenController.shopData[0].meetingimages![i];
+                    return _meetingAvailabilityListTile(imgUrl);
+                  },
+                ),
         ),
       ],
     ).commonSymmetricPadding(horizontal: 15);
@@ -677,8 +671,8 @@ class MeetingAvailabilityModule extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             child: Image.network(imgUrl, fit: BoxFit.fill,
                 errorBuilder: (context, er, data) {
-                  return Image.asset(AppImages.petMetLogoImg);
-                }),
+              return Image.asset(AppImages.petMetLogoImg);
+            }),
           ),
         ),
       ).commonSymmetricPadding(horizontal: 5),

@@ -126,8 +126,8 @@ class PetTrackerPriceModule extends StatelessWidget {
                             arguments: controller.planData[index].id,
                           );
                         }*/
-                        Get.to(()=>
-                            PetTrackerPricingScreen(),
+                        Get.to(
+                          () => PetTrackerPricingScreen(),
                           transition: Transition.native,
                           duration: const Duration(milliseconds: 500),
                           arguments: controller.planData[index].id,
@@ -151,7 +151,7 @@ class PetTrackerPriceModule extends StatelessWidget {
                             color: themeProvider.darkTheme
                                 ? AppColors.accentColor
                                 : AppColors.whiteColor,
-                            fontSize: 10.sp,
+                            fontSize: 1.sp,
                           ),
                         ),
                       ),
@@ -181,22 +181,24 @@ class PetTrackerPriceModule extends StatelessWidget {
               ),
               child: Stack(
                 children: [
-                  Positioned(
-                    left: 12,
-                    top: 25,
-                    child: Text(
-                      "₹",
-                      style: TextStyle(
-                        color: AppColors.whiteColor,
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.bold,
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15),
+                      child: Text(
+                        "₹",
+                        style: TextStyle(
+                          color: AppColors.whiteColor,
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
                   Align(
-                    alignment: Alignment.centerLeft,
+                    alignment: Alignment.center,
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 24, top: 8),
+                      padding: const EdgeInsets.only(left: 10),
                       child: Text(
                         petPriceText.toString().toUpperCase(),
                         style: TextStyle(

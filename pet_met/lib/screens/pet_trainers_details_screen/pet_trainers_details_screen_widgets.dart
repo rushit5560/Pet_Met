@@ -50,7 +50,7 @@ class PetTrainerBannerImageModule extends StatelessWidget {
 class PetTrainerPicturesModule extends StatelessWidget {
   PetTrainerPicturesModule({Key? key}) : super(key: key);
   final screenController = Get.find<PetTrainersDetailsScreenController>();
-  int index= 0;
+  int index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -68,187 +68,198 @@ class PetTrainerPicturesModule extends StatelessWidget {
                 ),
               ),
             ),
-
-
             screenController.isVerified == true
                 ? Container(
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.accentTextColor,
-              ),
-              child: const Icon(
-                Icons.check_rounded,
-                color: Colors.white,
-                size: 18,
-              ),
-            )
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.accentTextColor,
+                    ),
+                    child: const Icon(
+                      Icons.check_rounded,
+                      color: Colors.white,
+                      size: 18,
+                    ),
+                  )
                 : Container(),
-
           ],
         ),
-
         SizedBox(height: 10),
-        screenController.trainerDetails[0].image1 == ""
-            && screenController.trainerDetails[0].image2 == ""
-            && screenController.trainerDetails[0].image3 == ""
-            && screenController.trainerDetails[0].image4 == ""
-            && screenController.trainerDetails[0].image5 == ""
+        screenController.trainerDetails[0].image1 == "" &&
+                screenController.trainerDetails[0].image2 == "" &&
+                screenController.trainerDetails[0].image3 == "" &&
+                screenController.trainerDetails[0].image4 == "" &&
+                screenController.trainerDetails[0].image5 == ""
             ? Text(
-          "No pictures available!",
-          textAlign: TextAlign.start,
-          style: TextStyle(
-            color: themeProvider.darkTheme
-                ? AppColors.whiteColor.withOpacity(0.4)
-                : AppColors.blackTextColor,
-          ),
-        ):
-
-        Row(
-          children: [
-            screenController.trainerDetails[0].image1 == null ? Container():
-            Expanded(
-                child: GestureDetector(
-                  onTap: (){
-                    imageAlertDialog(context, index = 1);
-                  },
-                  child: SizedBox(
-                    height: screenController.size.width * 0.18,
-                    //width: screenController.size.width * 0.18,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.grey)
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                            ApiUrl.apiImagePath + "asset/uploads/product/"
-                                "${screenController.trainerDetails[0].image1}",
-                            height: 40, width: 40,
-                            errorBuilder: (context, er, da) {
-                              return Image.asset(AppImages.petMetLogoImg);
-                            }),
-                      ),
-                    ),
-                  ),
-                )),
-            screenController.trainerDetails[0].image1 == null ? Container() : SizedBox(width: 10),
-
-            screenController.trainerDetails[0].image2 == null ? Container() :
-            Expanded(
-                child: GestureDetector(
-                  onTap: (){
-                    imageAlertDialog(context, index = 2);
-                  },
-                  child: SizedBox(
-                    height: screenController.size.width * 0.18,
-                    //width: screenController.size.width * 0.18,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.grey)
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                            ApiUrl.apiImagePath + "asset/uploads/product/"
-                                "${screenController.trainerDetails[0].image2}",
-                            height: 40, width: 40,
-                            errorBuilder: (context, er, da) {
-                              return Image.asset(AppImages.petMetLogoImg);
-                            }),
-                      ),
-                    ),
-                  ),
-                )),
-            screenController.trainerDetails[0].image2 == null ? Container() : SizedBox(width: 10),
-
-            screenController.trainerDetails[0].image3 == null ? Container() :
-            Expanded(
-                child: GestureDetector(
-                  onTap: (){
-                    imageAlertDialog(context, index = 3);
-                  },
-                  child: SizedBox(
-                    height: screenController.size.width * 0.18,
-                    //width: screenController.size.width * 0.18,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.grey)
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                            ApiUrl.apiImagePath + "asset/uploads/product/"
-                                "${screenController.trainerDetails[0].image3}",
-                            fit: BoxFit.cover,
-                            height: 40, width: 40,
-                            errorBuilder: (context, er, da) {
-                              return Image.asset(AppImages.petMetLogoImg);
-                            }),
-                      ),
-                    ),
-                  ),
-                )),
-            screenController.trainerDetails[0].image3 == null ? Container() : SizedBox(width: 10),
-
-            screenController.trainerDetails[0].image4 == null ? Container() :
-            Expanded(
-                child: GestureDetector(
-                  onTap: (){
-                    imageAlertDialog(context, index = 4);
-                  },
-                  child: SizedBox(
-                    height: screenController.size.width * 0.18,
-                    //width: screenController.size.width * 0.18,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.grey)
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                            ApiUrl.apiImagePath + "asset/uploads/product/"
-                                "${screenController.trainerDetails[0].image4}",
-                            fit: BoxFit.cover, errorBuilder: (context, er, da) {
-                          return Image.asset(AppImages.petMetLogoImg);
-                        }),
-                      ),
-                    ),
-                  ),
-                )),
-            screenController.trainerDetails[0].image4 == null ? Container() : SizedBox(width: 10),
-
-            screenController.trainerDetails[0].image5 == null ? Container() :
-            Expanded(
-                child: GestureDetector(
-                  onTap: (){
-                    imageAlertDialog(context, index = 5);
-                  },
-                  child: SizedBox(
-                    height: screenController.size.width * 0.18,
-                    //width: screenController.size.width * 0.18,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.grey)
-                      ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.network(
-                            ApiUrl.apiImagePath + "asset/uploads/product/"
-                                "${screenController.trainerDetails[0].image5}",
-                            fit: BoxFit.cover, errorBuilder: (context, er, da) {
-                          return Image.asset(AppImages.petMetLogoImg);
-                        }),
-                      ),
-                    ),
-                  ),
-                ))
-          ],
-        )
+                "No pictures available!",
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  color: themeProvider.darkTheme
+                      ? AppColors.whiteColor.withOpacity(0.4)
+                      : AppColors.blackTextColor,
+                ),
+              )
+            : Row(
+                children: [
+                  screenController.trainerDetails[0].image1 == null
+                      ? Container()
+                      : Expanded(
+                          child: GestureDetector(
+                          onTap: () {
+                            imageAlertDialog(context, index = 1);
+                          },
+                          child: SizedBox(
+                            height: screenController.size.width * 0.18,
+                            //width: screenController.size.width * 0.18,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(color: Colors.grey)),
+                              padding: const EdgeInsets.all(5),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.network(
+                                    ApiUrl.apiImagePath +
+                                        "asset/uploads/product/"
+                                            "${screenController.trainerDetails[0].image1}",
+                                    height: 40,
+                                    width: 40, errorBuilder: (context, er, da) {
+                                  return Image.asset(AppImages.petMetLogoImg);
+                                }),
+                              ),
+                            ),
+                          ),
+                        )),
+                  screenController.trainerDetails[0].image1 == null
+                      ? Container()
+                      : SizedBox(width: 10),
+                  screenController.trainerDetails[0].image2 == null
+                      ? Container()
+                      : Expanded(
+                          child: GestureDetector(
+                          onTap: () {
+                            imageAlertDialog(context, index = 2);
+                          },
+                          child: SizedBox(
+                            height: screenController.size.width * 0.18,
+                            //width: screenController.size.width * 0.18,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(color: Colors.grey)),
+                              padding: const EdgeInsets.all(5),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.network(
+                                    ApiUrl.apiImagePath +
+                                        "asset/uploads/product/"
+                                            "${screenController.trainerDetails[0].image2}",
+                                    height: 40,
+                                    width: 40, errorBuilder: (context, er, da) {
+                                  return Image.asset(AppImages.petMetLogoImg);
+                                }),
+                              ),
+                            ),
+                          ),
+                        )),
+                  screenController.trainerDetails[0].image2 == null
+                      ? Container()
+                      : SizedBox(width: 10),
+                  screenController.trainerDetails[0].image3 == null
+                      ? Container()
+                      : Expanded(
+                          child: GestureDetector(
+                          onTap: () {
+                            imageAlertDialog(context, index = 3);
+                          },
+                          child: SizedBox(
+                            height: screenController.size.width * 0.18,
+                            //width: screenController.size.width * 0.18,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(color: Colors.grey)),
+                              padding: const EdgeInsets.all(5),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.network(
+                                    ApiUrl.apiImagePath +
+                                        "asset/uploads/product/"
+                                            "${screenController.trainerDetails[0].image3}",
+                                    fit: BoxFit.cover,
+                                    height: 40,
+                                    width: 40, errorBuilder: (context, er, da) {
+                                  return Image.asset(AppImages.petMetLogoImg);
+                                }),
+                              ),
+                            ),
+                          ),
+                        )),
+                  screenController.trainerDetails[0].image3 == null
+                      ? Container()
+                      : SizedBox(width: 10),
+                  screenController.trainerDetails[0].image4 == null
+                      ? Container()
+                      : Expanded(
+                          child: GestureDetector(
+                          onTap: () {
+                            imageAlertDialog(context, index = 4);
+                          },
+                          child: SizedBox(
+                            height: screenController.size.width * 0.18,
+                            //width: screenController.size.width * 0.18,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(color: Colors.grey)),
+                              padding: const EdgeInsets.all(5),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.network(
+                                    ApiUrl.apiImagePath +
+                                        "asset/uploads/product/"
+                                            "${screenController.trainerDetails[0].image4}",
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (context, er, da) {
+                                  return Image.asset(AppImages.petMetLogoImg);
+                                }),
+                              ),
+                            ),
+                          ),
+                        )),
+                  screenController.trainerDetails[0].image4 == null
+                      ? Container()
+                      : SizedBox(width: 10),
+                  screenController.trainerDetails[0].image5 == null
+                      ? Container()
+                      : Expanded(
+                          child: GestureDetector(
+                          onTap: () {
+                            imageAlertDialog(context, index = 5);
+                          },
+                          child: SizedBox(
+                            height: screenController.size.width * 0.18,
+                            //width: screenController.size.width * 0.18,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(color: Colors.grey)),
+                              padding: const EdgeInsets.all(5),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.network(
+                                    ApiUrl.apiImagePath +
+                                        "asset/uploads/product/"
+                                            "${screenController.trainerDetails[0].image5}",
+                                    fit: BoxFit.cover,
+                                    errorBuilder: (context, er, da) {
+                                  return Image.asset(AppImages.petMetLogoImg);
+                                }),
+                              ),
+                            ),
+                          ),
+                        ))
+                ],
+              )
       ],
     );
   }
@@ -269,39 +280,33 @@ class PetTrainerPicturesModule extends StatelessWidget {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: index == 1 ?
-      Image.network(
-          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image1,
-          fit: BoxFit.cover,
-          errorBuilder: (context, er, da) {
-            return Image.asset(AppImages.petMetLogoImg);
-          }) : index == 2  ?
-      Image.network(
-          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image2,
-          fit: BoxFit.cover,
-          errorBuilder: (context, er, da) {
-            return Image.asset(AppImages.petMetLogoImg);
-          }) :index == 3  ?
-      Image.network(
-          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image3,
-          fit: BoxFit.cover,
-          errorBuilder: (context, er, da) {
-            return Image.asset(AppImages.petMetLogoImg);
-          }):index == 4  ?
-      Image.network(
-          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image4,
-          fit: BoxFit.cover,
-          errorBuilder: (context, er, da) {
-            return Image.asset(AppImages.petMetLogoImg);
-          }) :index == 5  ?
-      Image.network(
-          ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image5,
-          fit: BoxFit.cover,
-          errorBuilder: (context, er, da) {
-            return Image.asset(AppImages.petMetLogoImg);
-          })
-          :
-      Container(),
+      title: index == 1
+          ? Image.network(ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image1,
+              fit: BoxFit.cover, errorBuilder: (context, er, da) {
+              return Image.asset(AppImages.petMetLogoImg);
+            })
+          : index == 2
+              ? Image.network(ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image2,
+                  fit: BoxFit.cover, errorBuilder: (context, er, da) {
+                  return Image.asset(AppImages.petMetLogoImg);
+                })
+              : index == 3
+                  ? Image.network(ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image3,
+                      fit: BoxFit.cover, errorBuilder: (context, er, da) {
+                      return Image.asset(AppImages.petMetLogoImg);
+                    })
+                  : index == 4
+                      ? Image.network(ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image4,
+                          fit: BoxFit.cover, errorBuilder: (context, er, da) {
+                          return Image.asset(AppImages.petMetLogoImg);
+                        })
+                      : index == 5
+                          ? Image.network(
+                              ApiUrl.apiImagePath + "asset/uploads/product/" + screenController.trainerDetails[0].image5,
+                              fit: BoxFit.cover, errorBuilder: (context, er, da) {
+                              return Image.asset(AppImages.petMetLogoImg);
+                            })
+                          : Container(),
       //Image.asset(AppImages.petMetLogoImg)
       // content: Text(
       //     "If you change timing slot duration your all schedule slot should been deleted you won't be able to recover this again!"),
@@ -341,7 +346,7 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
           ),
         ),
         GestureDetector(
-          onTap: (){
+          onTap: () {
             String url = "${screenController.trainerDetails[0].instagram}";
             _makingInstagramApp(url);
           },
@@ -358,7 +363,7 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
           ).commonSymmetricPadding(horizontal: 2),
         ),
         GestureDetector(
-          onTap: (){
+          onTap: () {
             var fbUrl = "${screenController.trainerDetails[0].instagram}";
             launchFacebook(fbUrl, fbUrl);
           },
@@ -375,7 +380,7 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
           ).commonSymmetricPadding(horizontal: 2),
         ),
         GestureDetector(
-          onTap: (){
+          onTap: () {
             String number = "${screenController.trainerDetails[0].phone}";
             launchWhatsApp(context, number);
           },
@@ -392,7 +397,7 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
           ).commonSymmetricPadding(horizontal: 2),
         ),
         GestureDetector(
-          onTap: (){
+          onTap: () {
             String number = "${screenController.trainerDetails[0].phone}";
             _makingPhoneCall(number);
           },
@@ -424,8 +429,7 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
   void launchWhatsApp(BuildContext context, String number) {
     FocusManager.instance.primaryFocus?.unfocus();
 
-    var whatsappUrl =
-        "whatsapp://send?phone=$number"
+    var whatsappUrl = "whatsapp://send?phone=$number"
         "&text=${Uri.encodeComponent("Hello")}";
     try {
       launch(whatsappUrl);
@@ -439,7 +443,7 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
     }
   }
 
-  Future<void> launchFacebook(String fbUrl,String fbWebUrl) async {
+  Future<void> launchFacebook(String fbUrl, String fbWebUrl) async {
     try {
       bool launched = await launch(fbUrl, forceSafariVC: false);
       log("Launched Native app $launched");
@@ -554,11 +558,16 @@ class CallUsTextModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text("Call Us Today at " + "${screenController.trainerDetails[0].phone}" + " To Learn More!",
-      style: const TextStyle(color: AppColors.accentTextColor, fontWeight: FontWeight.bold,)).commonSymmetricPadding(horizontal: 15);
+    return Text(
+        "Call Us Today at " +
+            "${screenController.trainerDetails[0].phone}" +
+            " To Learn More!",
+        style: const TextStyle(
+          color: AppColors.accentTextColor,
+          fontWeight: FontWeight.bold,
+        )).commonSymmetricPadding(horizontal: 15);
   }
 }
-
 
 class PetTrainerOverViewModule extends StatelessWidget {
   PetTrainerOverViewModule({Key? key}) : super(key: key);
@@ -583,7 +592,7 @@ class PetTrainerOverViewModule extends StatelessWidget {
           data: screenController.trainerDetails[0].fullText,
           style: {
             "p": Style(
-              // fontSize: const FontSize(18.0),
+                // fontSize: const FontSize(18.0),
                 fontWeight: FontWeight.bold,
                 color: themeProvider.darkTheme
                     ? AppColors.whiteColor

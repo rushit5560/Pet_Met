@@ -25,6 +25,8 @@ class ShopUserProfileScreen extends StatelessWidget {
               children: [
                 CustomAppBar(
                   appBarOption: AppBarOption.singleBackButtonOption,
+                  title: "Shop Profile",
+                  // centerWidget: true,
                   trailingWidget: GestureDetector(
                     onTap: () {
                       modelBottomSheet(context);
@@ -54,15 +56,12 @@ class ShopUserProfileScreen extends StatelessWidget {
                                     const SizedBox(height: 30),
                                     MeetingAvailabilityModule(),
                                     const SizedBox(height: 30),
-
                                     EmailTextFieldModule(),
                                     const SizedBox(height: 15),
                                     ShopNameTextFieldModule(),
                                     const SizedBox(height: 15),
                                     ContactNumberTextFieldModule(),
-
                                     const SizedBox(height: 15),
-
                                     AddressTextFieldModule(),
                                     const SizedBox(height: 15),
                                     DetailsTextFieldModule(),
@@ -70,7 +69,6 @@ class ShopUserProfileScreen extends StatelessWidget {
                                     InstagramTextFieldModule(),
                                     const SizedBox(height: 15),
                                     FacebookLinkTextFieldModule(),
-
                                     const SizedBox(height: 15),
                                     OpenAndCloseShopTimeModule(),
                                     const SizedBox(height: 30),
@@ -132,7 +130,10 @@ class ShopUserProfileScreen extends StatelessWidget {
                                         fontWeight: FontWeight.bold,
                                         fontSize: 17),
                                   ),
-                                  const SizedBox(child: Divider(color: AppColors.greyColor,)),
+                                  const SizedBox(
+                                      child: Divider(
+                                    color: AppColors.greyColor,
+                                  )),
                                   Row(
                                     children: [
                                       Expanded(
@@ -222,7 +223,10 @@ class ShopUserProfileScreen extends StatelessWidget {
                                         fontWeight: FontWeight.bold,
                                         fontSize: 17),
                                   ),
-                                  const SizedBox(child: Divider(color: AppColors.greyColor,)),
+                                  const SizedBox(
+                                      child: Divider(
+                                    color: AppColors.greyColor,
+                                  )),
                                   Row(
                                     children: [
                                       Expanded(
@@ -293,7 +297,7 @@ class ShopUserProfileScreen extends StatelessWidget {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                                 border: Border.all(color: Colors.grey),
-                            color: Colors.grey.shade200),
+                                color: Colors.grey.shade200),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
@@ -308,7 +312,10 @@ class ShopUserProfileScreen extends StatelessWidget {
                                         fontWeight: FontWeight.bold,
                                         fontSize: 17),
                                   ),
-                                  const SizedBox(child: Divider(color: AppColors.greyColor,)),
+                                  const SizedBox(
+                                      child: Divider(
+                                    color: AppColors.greyColor,
+                                  )),
                                   Row(
                                     children: [
                                       Expanded(
@@ -383,7 +390,7 @@ class ShopUserProfileScreen extends StatelessWidget {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                                 border: Border.all(color: Colors.grey),
-                            color: Colors.grey.shade200),
+                                color: Colors.grey.shade200),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
@@ -398,7 +405,10 @@ class ShopUserProfileScreen extends StatelessWidget {
                                         fontWeight: FontWeight.bold,
                                         fontSize: 17),
                                   ),
-                                  const SizedBox(child: Divider(color: AppColors.greyColor,)),
+                                  const SizedBox(
+                                      child: Divider(
+                                    color: AppColors.greyColor,
+                                  )),
                                   Row(
                                     children: [
                                       Expanded(

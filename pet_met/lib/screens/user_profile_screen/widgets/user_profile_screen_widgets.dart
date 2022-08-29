@@ -77,66 +77,64 @@ class ProfileImage extends StatelessWidget {
     // );
     return controller.followCategoryId == "1"
         ? ClipRRect(
-          borderRadius: BorderRadius.circular(30),
-          child: Image.network(controller.userprofile,
-              width: double.infinity,
-              height: controller.size.height * 0.2,
-              fit: BoxFit.cover,
-              errorBuilder: (context, er, bt) {
-              return Image.asset(AppImages.petMetLogoImg,
+            borderRadius: BorderRadius.circular(30),
+            child: Image.network(controller.userprofile,
+                width: double.infinity,
+                height: controller.size.height * 0.2,
+                fit: BoxFit.cover, errorBuilder: (context, er, bt) {
+              return Image.asset(
+                AppImages.petMetLogoImg,
                 width: double.infinity,
                 height: controller.size.height * 0.2,
                 fit: BoxFit.cover,
               );
             }),
-        )
+          )
         : controller.followCategoryId == "2"
             ? ClipRRect(
-
-              borderRadius: BorderRadius.circular(30),
-              child: Image.network(controller.shopProfile,
-                  width: double.infinity,
-                  height: controller.size.height * 0.2,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, er, bt) {
-                  return Image.asset(AppImages.petMetLogoImg,
+                borderRadius: BorderRadius.circular(30),
+                child: Image.network(controller.shopProfile,
                     width: double.infinity,
                     height: controller.size.height * 0.2,
-                    fit: BoxFit.cover,);
+                    fit: BoxFit.cover, errorBuilder: (context, er, bt) {
+                  return Image.asset(
+                    AppImages.petMetLogoImg,
+                    width: double.infinity,
+                    height: controller.size.height * 0.2,
+                    fit: BoxFit.cover,
+                  );
                 }),
-            )
+              )
             : controller.followCategoryId == "3"
                 ? ClipRRect(
-                  borderRadius: BorderRadius.circular(30),
-                  child: Image.network(controller.ngoProfile,
-                      width: 100,
-                      height: 100,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, er, bt) {
+                    borderRadius: BorderRadius.circular(30),
+                    child: Image.network(controller.ngoProfile,
+                        width: 100,
+                        height: 100,
+                        fit: BoxFit.cover, errorBuilder: (context, er, bt) {
                       return Image.asset(AppImages.petMetLogoImg);
                     }),
-                )
+                  )
                 : controller.followCategoryId == "4"
                     ? ClipRRect(
-                      borderRadius: BorderRadius.circular(30),
-                      child: Image.network(controller.trainerProfile,
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
-                          errorBuilder: (context, er, bt) {
+                        borderRadius: BorderRadius.circular(30),
+                        child: Image.network(controller.trainerProfile,
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover, errorBuilder: (context, er, bt) {
                           return Image.asset(AppImages.petMetLogoImg);
                         }),
-                    )
+                      )
                     : Container();
     /*return ClipRRect(
       borderRadius: BorderRadius.circular(30),
-      child: Image.asset(AppImages.petMetLogoImg)*//*Image.network(ApiUrl.apiImagePath + controller.getProfile.image!,
+      child: Image.asset(AppImages.petMetLogoImg)*/ /*Image.network(ApiUrl.apiImagePath + controller.getProfile.image!,
           width: 100,
           height: 100,
           fit: BoxFit.cover,
           errorBuilder: (context, er, bt) {
             return Image.asset(AppImages.petMetLogoImg);
-          }),*//*
+          }),*/ /*
     );*/
   }
 }
@@ -345,22 +343,21 @@ class ContactInfoModule extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-
             GestureDetector(
               onTap: () {
-                if(controller.followCategoryId == "1"){
-                  if(controller.meetingStatus.value == true){
+                if (controller.followCategoryId == "1") {
+                  if (controller.meetingStatus.value == true) {
                     // open phone dialer
                     _makingPhoneCall();
-                  } else if(controller.meetingStatus.value == false) {
+                  } else if (controller.meetingStatus.value == false) {
                     controller.openCheckout();
                   }
-                } else if(controller.followCategoryId == "2"){
-                  if(controller.shopMeetingStatus.value == true){
+                } else if (controller.followCategoryId == "2") {
+                  if (controller.shopMeetingStatus.value == true) {
                     // open phone dialer
                     _makingPhoneCall();
-                  } else if(controller.shopMeetingStatus.value == false) {
-                    controller.openCheckout();
+                  } else if (controller.shopMeetingStatus.value == false) {
+                    // controller.openCheckout();
                   }
                 }
               },
@@ -368,7 +365,6 @@ class ContactInfoModule extends StatelessWidget {
                 imagePath: AppImages.phoneGreenImg,
               ),
             ),
-
           ],
         ),
       ),
@@ -376,7 +372,8 @@ class ContactInfoModule extends StatelessWidget {
   }
 
   _makingPhoneCall() async {
-    var url = Uri.parse("tel: ${controller.followCategoryId == "1" ?controller.userMobileNumber : controller.followCategoryId == "2" ? controller.shopMobileNumber : ""}");
+    var url = Uri.parse(
+        "tel: ${controller.followCategoryId == "1" ? controller.userMobileNumber : controller.followCategoryId == "2" ? controller.shopMobileNumber : ""}");
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {
@@ -393,7 +390,7 @@ class DogOwnerListModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return controller.followCategoryId == "3" ||
-        controller.followCategoryId == "4"
+            controller.followCategoryId == "4"
         ? Container()
         : Column(
             children: [
@@ -517,11 +514,13 @@ class DogOwnerListModule extends StatelessWidget {
                                                 border: Border.all(
                                                     color: Colors.grey)),
                                             child: ClipRRect(
-                                              borderRadius: BorderRadius.circular(6),
+                                              borderRadius:
+                                                  BorderRadius.circular(6),
                                               child: Image.network(
-                                                  ApiUrl.apiImagePath + controller
-                                                      .shopPetList[index].image,
-                                                  errorBuilder:
+                                                  ApiUrl.apiImagePath +
+                                                      controller
+                                                          .shopPetList[index]
+                                                          .image, errorBuilder:
                                                       (context, st, ob) {
                                                 return Image.asset(
                                                     AppImages.petMetLogoImg);
@@ -706,14 +705,15 @@ class AboutModule extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           Text(
-            controller.followCategoryId == "1" ?
-            "Lorem Ipsum" :
-              controller.followCategoryId == "2" ?
-                controller.shopDescription :
-                  controller.followCategoryId == "3" ?
-                    controller.ngoDescription :
-                      controller.followCategoryId == "4" ?
-                         controller.trainerDescription : "",
+            controller.followCategoryId == "1"
+                ? "Lorem Ipsum"
+                : controller.followCategoryId == "2"
+                    ? controller.shopDescription
+                    : controller.followCategoryId == "3"
+                        ? controller.ngoDescription
+                        : controller.followCategoryId == "4"
+                            ? controller.trainerDescription
+                            : "",
             style: TextStyle(
                 fontSize: 12.sp,
                 color: themeProvider.darkTheme

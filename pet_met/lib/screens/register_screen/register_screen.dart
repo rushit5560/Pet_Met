@@ -168,51 +168,61 @@ class RegisterScreen extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("By Signing up i Agree to the ",
+                              Text(
+                                "By Signing up i Agree to the ",
                                 style: TextStyle(
-                                color: themeProvider.darkTheme
-                                    ? AppColors.whiteColor.withOpacity(0.75)
-                                    : AppColors.greyTextColor,
-                                fontSize: 11.sp,
-                                fontWeight: FontWeight.w400,
-                              ),),
+                                  color: themeProvider.darkTheme
+                                      ? AppColors.whiteColor.withOpacity(0.75)
+                                      : AppColors.greyTextColor,
+                                  fontSize: 11.sp,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
                               Row(
                                 children: [
                                   GestureDetector(
-                                    onTap: (){
-
-                                    },
-                                    child: Text("term and Condition",
+                                    onTap: () {},
+                                    child: Text(
+                                      "terms and Conditions",
                                       style: TextStyle(
-                                      color: themeProvider.darkTheme
-                                          ? AppColors.whiteColor.withOpacity(0.75)
-                                          : AppColors.greyTextColor,
-
-                                      fontSize: 11.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),),
+                                        color: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                                .withOpacity(0.75)
+                                            : AppColors.greyTextColor,
+                                        fontSize: 11.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                   ),
-                                  Text(" & ",
+                                  Text(
+                                    " & ",
                                     style: TextStyle(
                                       color: themeProvider.darkTheme
-                                          ? AppColors.whiteColor.withOpacity(0.75)
+                                          ? AppColors.whiteColor
+                                              .withOpacity(0.75)
                                           : AppColors.greyTextColor,
                                       fontSize: 11.sp,
                                       fontWeight: FontWeight.bold,
-                                    ),),
+                                    ),
+                                  ),
                                   GestureDetector(
-                                    onTap: (){
+                                    onTap: () {
                                       Get.to(() => PrivacyPolicyScreen(),
                                           transition: Transition.native,
-                                          duration: const Duration(milliseconds: 500));
+                                          duration: const Duration(
+                                              milliseconds: 500));
                                     },
-                                    child: Text("privacy Policy", style: TextStyle(
-                                      color: themeProvider.darkTheme
-                                          ? AppColors.whiteColor.withOpacity(0.75)
-                                          : AppColors.greyTextColor,
-                                      fontSize: 11.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),),
+                                    child: Text(
+                                      "privacy Policy",
+                                      style: TextStyle(
+                                        color: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                                .withOpacity(0.75)
+                                            : AppColors.greyTextColor,
+                                        fontSize: 11.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                   )
                                 ],
                               )

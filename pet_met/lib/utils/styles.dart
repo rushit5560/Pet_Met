@@ -24,6 +24,46 @@ class Styles {
   );
 
   static ThemeData themeData(bool isDarkTheme, BuildContext context) {
+    var timePickerTheme = TimePickerThemeData(
+      backgroundColor:
+          isDarkTheme ? AppColors.darkThemeColor : AppColors.whiteColor,
+      hourMinuteShape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(8)),
+        side: BorderSide(
+            color:
+                isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
+            width: 1),
+      ),
+      // dayPeriodBorderSide: BorderSide(
+      //     color: isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
+      //     width: 4),
+      // dayPeriodColor:
+      //     isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(8)),
+        side: BorderSide(
+          color: isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
+          width: 1,
+        ),
+      ),
+      // dayPeriodTextColor:
+      //     isDarkTheme ? AppColors.darkThemeColor : AppColors.whiteColor,
+      // dayPeriodShape: const RoundedRectangleBorder(
+      //   borderRadius: BorderRadius.all(Radius.circular(8)),
+      //   side: BorderSide(color: Colors.orange, width: 4),
+      // ),
+      hourMinuteTextStyle:
+          const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      dayPeriodTextStyle:
+          const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+      // helpTextStyle: const TextStyle(
+      //     fontSize: 12, fontWeight: FontWeight.bold, color: Colors.white),
+      // inputDecorationTheme: const InputDecorationTheme(
+      //   border: InputBorder.none,
+      //   contentPadding: EdgeInsets.all(0),
+      // ),
+      // entryModeIconColor: Colors.orange,
+    );
     return ThemeData(
       //primarySwatch: primarySwatch,
       primaryColor: isDarkTheme ? Colors.black : Colors.white,
@@ -38,19 +78,34 @@ class Styles {
       hintColor: isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
       highlightColor:
           isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
-       hoverColor: isDarkTheme ? AppColors.greyColor : AppColors.darkThemeColor,
-       focusColor: isDarkTheme ? AppColors.greyColor : AppColors.darkThemeColor,
+      hoverColor: isDarkTheme ? AppColors.greyColor : AppColors.darkThemeColor,
+      focusColor: isDarkTheme ? AppColors.greyColor : AppColors.darkThemeColor,
       disabledColor: AppColors.greyColor,
-      // // textSelectionColor: isDarkTheme ? Colors.white : Colors.black,
-       cardColor: isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
+
+      // colorScheme: isDarkTheme
+      //     ? const ColorScheme.dark(
+      //         primary: AppColors.darkThemeColor,
+      //         secondary: AppColors.whiteColor,
+      //         brightness: Brightness.dark,
+      //       )
+      //     : const ColorScheme.light(
+      //         primary: AppColors.whiteColor,
+      //         secondary: AppColors.darkThemeColor,
+      //         brightness: Brightness.light,
+      //       ),
+      timePickerTheme: timePickerTheme,
+
+      canvasColor: AppColors.greyColor,
+      cardColor: isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
       // canvasColor:
       //     isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
 
-       brightness: isDarkTheme ? Brightness.dark : Brightness.light,
+      brightness: isDarkTheme ? Brightness.dark : Brightness.light,
       buttonTheme: Theme.of(context).buttonTheme.copyWith(
-          colorScheme: isDarkTheme
-              ? const ColorScheme.light()
-              : const ColorScheme.dark()),
+            colorScheme: isDarkTheme
+                ? const ColorScheme.light()
+                : const ColorScheme.dark(),
+          ),
       // appBarTheme: const AppBarTheme(
       //   elevation: 0.0,
 

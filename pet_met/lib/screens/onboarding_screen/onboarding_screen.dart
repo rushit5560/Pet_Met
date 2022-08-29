@@ -22,7 +22,7 @@ class OnboardingScreen extends StatelessWidget {
           alignment: Alignment.bottomCenter,
           children: [
             Positioned(
-              top: -20,
+              top: -60,
               child: Image.asset(
                 themeProvider.darkTheme
                     ? AppImages.onboardBackImgImgDark
@@ -51,69 +51,67 @@ class OnboardingScreen extends StatelessWidget {
                       onPageChanged: controller.selectedPageIndex,
                       itemCount: controller.onBoardingPages.length,
                       itemBuilder: (context, index) {
-                        return Container(
-                          // padding: const EdgeInsets.symmetric(horizontal: 30),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(height: 2.h),
-                              // Spacer(),
-                              Image.asset(
-                                controller.onBoardingPages[index].imageAsset,
-                                height: 39.h,
-                              ).commonSymmetricPadding(horizontal: 30),
-                              // SizedBox(height: 35.h),
-                              SizedBox(height: 5.h),
-                              Row(
-                                children: [
-                                  Image.asset(
-                                    controller.onBoardingPages[index].logo,
-                                    width: 25.w,
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 4.h),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: controller.size.width * 0.6,
-                                    child: Text(
-                                      controller.onBoardingPages[index].title,
-                                      style: TextStyle(
-                                        color: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.blackTextColor,
-                                        fontSize: 17.sp,
-                                        fontWeight: FontWeight.bold,
-                                        height: 1.2,
-                                      ),
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(height: 3.5.h),
+                            // Spacer(),
+                            Image.asset(
+                              controller.onBoardingPages[index].imageAsset,
+                              height: 40.h,
+                              // width: double.infinity,
+                            ).commonSymmetricPadding(horizontal: 30),
+                            // SizedBox(height: 35.h),
+                            SizedBox(height: 5.h),
+                            Row(
+                              children: [
+                                Image.asset(
+                                  controller.onBoardingPages[index].logo,
+                                  width: 25.w,
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 3.h),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: controller.size.width * 0.6,
+                                  child: Text(
+                                    controller.onBoardingPages[index].title,
+                                    style: TextStyle(
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor
+                                          : AppColors.blackTextColor,
+                                      fontSize: 16.sp,
+                                      fontWeight: FontWeight.bold,
+                                      height: 1.2,
                                     ),
                                   ),
-                                ],
-                              ),
-                              SizedBox(height: 1.5.h),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: controller.size.width * 0.6,
-                                    child: Text(
-                                      controller
-                                          .onBoardingPages[index].description,
-                                      //textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 11.sp,
-                                        color: AppColors.greyTextColor,
-                                        fontWeight: FontWeight.w400,
-                                        height: 1.4,
-                                      ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 1.2.h),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: controller.size.width * 0.6,
+                                  child: Text(
+                                    controller
+                                        .onBoardingPages[index].description,
+                                    //textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 11.sp,
+                                      color: AppColors.greyTextColor,
+                                      fontWeight: FontWeight.w400,
+                                      height: 1.4,
                                     ),
                                   ),
-                                ],
-                              ),
-                              SizedBox(height: 1.5.h),
-                            ],
-                          ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 1.5.h),
+                          ],
                         );
                       },
                     ),
@@ -154,13 +152,13 @@ class OnboardingScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 4.h),
+                  SizedBox(height: 3.h),
                   // Next Button
                   GestureDetector(
                     onTap: controller.forwardAction,
                     child: Container(
                       width: double.infinity,
-                      height: 60,
+                      height: 55,
                       decoration: const BoxDecoration(
                         color: AppColors.accentColor,
                         borderRadius: BorderRadius.all(

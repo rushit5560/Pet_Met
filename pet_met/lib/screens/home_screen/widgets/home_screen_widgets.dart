@@ -20,7 +20,6 @@ import 'package:sizer/sizer.dart';
 import '../../../controllers/home_controller.dart';
 import '../../../services/providers/dark_theme_provider.dart';
 
-
 class PetTopListModule extends StatelessWidget {
   PetTopListModule({Key? key}) : super(key: key);
   final HomeController homeController = Get.find<HomeController>();
@@ -35,7 +34,7 @@ class PetTopListModule extends StatelessWidget {
       itemBuilder: (context, i) {
         // PetList singlePet = homeController.petTopList[i];
 
-        if(i < homeController.petTopList.length) {
+        if (i < homeController.petTopList.length) {
           return Row(
             children: [
               Expanded(
@@ -50,7 +49,6 @@ class PetTopListModule extends StatelessWidget {
                     color: themeProvider.darkTheme
                         ? AppColors.darkThemeBoxColor
                         : AppColors.whiteColor,
-
                   ),
                   child: GestureDetector(
                     onTap: () {
@@ -71,11 +69,13 @@ class PetTopListModule extends StatelessWidget {
                       //   fit: BoxFit.cover,
                       // )
                       child: Image.network(
-                        ApiUrl.apiImagePath + homeController.petTopList[i].image,
+                        ApiUrl.apiImagePath +
+                            homeController.petTopList[i].image,
                         errorBuilder: (context, st, ob) {
                           return Image.asset(AppImages.petMetLogoImg);
                         },
-                        fit: BoxFit.cover,),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
@@ -195,28 +195,25 @@ class PetTopListModule extends StatelessWidget {
               ),
             ],
           ).commonAllSidePadding(padding: 10);
-        }
-        else {
+        } else {
           return homeController.hasMore
               ? const CustomAnimationLoader()
               : Center(
-              child: Text(
-                "No more pets!",
-                style: TextStyle(
-                  color: themeProvider.darkTheme
-                      ? AppColors.whiteColor
-                      : AppColors.blackTextColor.withOpacity(0.6),
-                  fontSize: 15,
-                  fontWeight: FontWeight.w500,
-                ),
-              ));
+                  child: Text(
+                  "No more pets!",
+                  style: TextStyle(
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.blackTextColor.withOpacity(0.6),
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ));
         }
       },
     );
   }
 }
-
-
 
 /*class PetTopListModule extends StatefulWidget {
   const PetTopListModule({Key? key}) : super(key: key);
@@ -670,7 +667,7 @@ class PetListModule extends StatelessWidget {
               right: 0,
               bottom: 0,
               child: GestureDetector(
-                onTap: (){
+                onTap: () {
                   modelBottomSheet(context);
                 },
                 child: Container(
@@ -686,7 +683,6 @@ class PetListModule extends StatelessWidget {
                 ),
               ),
             )
-            
           ],
         ),
         Expanded(
@@ -712,7 +708,7 @@ class PetListModule extends StatelessWidget {
     );
   }
 
-  modelBottomSheet(BuildContext context){
+  modelBottomSheet(BuildContext context) {
     showModalBottomSheet<void>(
       context: context,
       constraints: null,
@@ -727,7 +723,7 @@ class PetListModule extends StatelessWidget {
               ListTile(
                 onTap: getFromCamera,
                 contentPadding:
-                EdgeInsets.only(left: controller.size.width * 0.1),
+                    EdgeInsets.only(left: controller.size.width * 0.1),
                 title: Text(
                   "Select Image From Camera",
                   style: TextStyle(
@@ -742,7 +738,7 @@ class PetListModule extends StatelessWidget {
               ),
               ListTile(
                 contentPadding:
-                EdgeInsets.only(left: controller.size.width * 0.1),
+                    EdgeInsets.only(left: controller.size.width * 0.1),
                 onTap: getFromGallery,
                 title: Text(
                   "Select Image From Gallery",
@@ -790,15 +786,10 @@ class PetListModule extends StatelessWidget {
 
       log('Camera Image Path : ${controller.imageFile!.path}');
 
-
       //Fluttertoast.showToast(msg: '${image.path}', toastLength: Toast.LENGTH_LONG);
       //renameImage();
       //});
-    } else {
-
-
-    }
-
+    } else {}
 
     // if(controller.imageFile != null){
     //
@@ -832,21 +823,16 @@ class PetListModule extends StatelessWidget {
       log('Camera File Path : ${controller.imageFile}');
       log('Camera Image Path : ${controller.imageFile!.path}');
 
-
       //Fluttertoast.showToast(msg: '${image.path}', toastLength: Toast.LENGTH_LONG);
       //renameImage();
       //});
-    } else {
-
-
-    }
+    } else {}
 
     controller.imageFile = File(pickedFile!.path);
     controller.addUserStoryFunction();
     // setState(() {});
-    Get.back();
+    // Get.back();
   }
-
 }
 
 class AddPetStoryWidget extends StatelessWidget {
@@ -864,38 +850,35 @@ class AddPetStoryWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         List<String> userWiseStoryList = [];
-        for(int i=0; i< controller.userStoryList[index].data.length; i++) {
+        for (int i = 0; i < controller.userStoryList[index].data.length; i++) {
           userWiseStoryList.add(controller.userStoryList[index].data[i].image);
-
         }
         log('userWiseStoryList: $userWiseStoryList');
         Get.to(() => StoryViewerScreen(), arguments: userWiseStoryList);
       },
-      child:
-          Container(
-            height: controller.size.width * 0.16,
-            width: controller.size.width * 0.16,
-            margin: const EdgeInsets.only(bottom: 5, right: 5),
-            decoration: const BoxDecoration(
-              // image: DecorationImage(
-              //     image: AssetImage(
-              //       controller.dogsTopList[index],
-              //     ),
-              //     fit: BoxFit.cover),
-              color: AppColors.greyTextColor,
-              borderRadius: BorderRadius.all(
-                Radius.circular(8),
-              ),
+      child: Container(
+          height: controller.size.width * 0.16,
+          width: controller.size.width * 0.16,
+          margin: const EdgeInsets.only(bottom: 5, right: 5),
+          decoration: const BoxDecoration(
+            // image: DecorationImage(
+            //     image: AssetImage(
+            //       controller.dogsTopList[index],
+            //     ),
+            //     fit: BoxFit.cover),
+            color: AppColors.greyTextColor,
+            borderRadius: BorderRadius.all(
+              Radius.circular(8),
             ),
-            child: /*Image.network(
+          ),
+          child: /*Image.network(
                 ApiUrl.apiImagePath + "asset/uploads/userstory/" + controller.userStoryList[index].image,
               errorBuilder: (context, st, ob){
                 return Image.asset(AppImages.petMetLogoImg);
               },
               fit: BoxFit.cover,
             )*/
-            Image.asset(AppImages.petMetLogoImg)
-          ),
+              Image.asset(AppImages.petMetLogoImg)),
     );
   }
 }
@@ -1085,7 +1068,8 @@ class PetShopAndGroomingText extends StatelessWidget {
             // indexController.selectedBottomIndex.value = 0;
             // indexController.isLoading(false);
             // log("indexController.selectedbottomIndex.value : ${indexController.selectedBottomIndex.value}");
-            Get.to(()=> ShopAndGroomingScreen(),
+            Get.to(
+              () => ShopAndGroomingScreen(),
               transition: Transition.zoom,
               duration: const Duration(milliseconds: 500),
             );

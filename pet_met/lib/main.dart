@@ -6,8 +6,6 @@ import 'package:pet_met/screens/splash_screen/splash_screen.dart';
 import 'package:pet_met/services/providers/dark_theme_provider.dart';
 
 import 'package:pet_met/utils/app_colors.dart';
-import 'package:pet_met/utils/app_route_names.dart';
-import 'package:pet_met/utils/app_routes.dart';
 import 'package:pet_met/utils/styles.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -15,7 +13,7 @@ import 'package:sizer/sizer.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
- // WidgetsFlutterBinding.ensureInitialized();
+  // WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
       systemNavigationBarColor: AppColors.blackColor,
@@ -71,6 +69,7 @@ class _MyAppState extends State<MyApp> {
               return GetMaterialApp(
                 debugShowCheckedModeBanner: false,
                 // theme: appThemeData,
+                
                 theme: Styles.themeData(themeChangeProvider.darkTheme, context),
                 //initialRoute: AppRouteNames.splashRoute,
                 //getPages: AppRoutes().routes,

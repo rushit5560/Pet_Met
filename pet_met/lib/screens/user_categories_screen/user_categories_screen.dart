@@ -97,137 +97,196 @@ class _UserCategoriesScreenState extends State<UserCategoriesScreen> {
                                     width: double.infinity,
                                     child: ListView.separated(
                                       itemBuilder: (context, index) {
-                                        return Container(
-                                          height: 55,
-                                          width: double.infinity,
-                                          decoration: BoxDecoration(
-                                            color: themeProvider.darkTheme
-                                                ? AppColors.darkThemeColor
-                                                : AppColors.whiteColor,
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: AppColors.whiteColor
-                                                    .withOpacity(0.15),
-                                                blurRadius: 15,
-                                                spreadRadius: 1,
-                                                offset: const Offset(4, 4),
+                                        return GestureDetector(
+                                          onTap: () {
+                                            controller.isLoading(true);
+
+                                            if (index == 0) {
+                                              controller
+                                                  .individualPetBool(true);
+                                              controller
+                                                  .petShoopsGroomingBool(false);
+                                              controller
+                                                  .petvetsandNgoBool(false);
+                                              controller
+                                                  .petTrainerAndBreederBool(
+                                                      false);
+                                              controller.roleId = 1;
+                                              log('roleId: ${controller.roleId}');
+                                            } else if (index == 1) {
+                                              controller
+                                                  .individualPetBool(false);
+                                              controller
+                                                  .petShoopsGroomingBool(true);
+                                              controller
+                                                  .petvetsandNgoBool(false);
+                                              controller
+                                                  .petTrainerAndBreederBool(
+                                                      false);
+                                              controller.roleId = 2;
+                                              log('roleId: ${controller.roleId}');
+                                            } else if (index == 2) {
+                                              controller
+                                                  .individualPetBool(false);
+                                              controller
+                                                  .petShoopsGroomingBool(false);
+                                              controller
+                                                  .petvetsandNgoBool(true);
+                                              controller
+                                                  .petTrainerAndBreederBool(
+                                                      false);
+                                              controller.roleId = 3;
+                                              log('roleId: ${controller.roleId}');
+                                            } else if (index == 3) {
+                                              controller
+                                                  .individualPetBool(false);
+                                              controller
+                                                  .petShoopsGroomingBool(false);
+                                              controller
+                                                  .petvetsandNgoBool(false);
+                                              controller
+                                                  .petTrainerAndBreederBool(
+                                                      true);
+                                              controller.roleId = 4;
+                                              log('roleId: ${controller.roleId}');
+                                            }
+
+                                            controller.isLoading(false);
+                                          },
+                                          child: Container(
+                                            height: 55,
+                                            width: double.infinity,
+                                            decoration: BoxDecoration(
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.darkThemeColor
+                                                  : AppColors.whiteColor,
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: AppColors.whiteColor
+                                                      .withOpacity(0.15),
+                                                  blurRadius: 15,
+                                                  spreadRadius: 1,
+                                                  offset: const Offset(4, 4),
+                                                ),
+                                              ],
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                Radius.circular(8),
                                               ),
-                                            ],
-                                            borderRadius: const BorderRadius.all(
-                                              Radius.circular(8),
                                             ),
-                                          ),
-                                          child: Row(
-                                            children: [
-                                              Transform.scale(
-                                                scale: 1.2,
-                                                child: Checkbox(
-                                                  shape:
-                                                      const RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                      Radius.circular(5.0),
+                                            child: Row(
+                                              children: [
+                                                Transform.scale(
+                                                  scale: 1.2,
+                                                  child: Checkbox(
+                                                    shape:
+                                                        const RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                        Radius.circular(5.0),
+                                                      ),
                                                     ),
+                                                    value: controller
+                                                        .boolsList[index].value,
+                                                    checkColor:
+                                                        AppColors.whiteColor,
+                                                    activeColor:
+                                                        AppColors.greyTextColor,
+                                                    fillColor:
+                                                        MaterialStateProperty
+                                                            .all(AppColors
+                                                                .greyTextColor),
+                                                    focusColor:
+                                                        AppColors.greyTextColor,
+                                                    // overlayColor:
+                                                    //     MaterialStateProperty.all(
+                                                    //   AppColors.greyTextColor,
+                                                    // ),
+                                                    onChanged: (val) {
+                                                      // controller.isLoading(true);
+
+                                                      // if (index == 0) {
+                                                      //   controller
+                                                      //       .individualPetBool(
+                                                      //           true);
+                                                      //   controller
+                                                      //       .petShoopsGroomingBool(
+                                                      //           false);
+                                                      //   controller
+                                                      //       .petvetsandNgoBool(
+                                                      //           false);
+                                                      //   controller
+                                                      //       .petTrainerAndBreederBool(
+                                                      //           false);
+                                                      //   controller.roleId = 1;
+                                                      //   log('roleId: ${controller.roleId}');
+                                                      // } else if (index == 1) {
+                                                      //   controller
+                                                      //       .individualPetBool(
+                                                      //           false);
+                                                      //   controller
+                                                      //       .petShoopsGroomingBool(
+                                                      //           true);
+                                                      //   controller
+                                                      //       .petvetsandNgoBool(
+                                                      //           false);
+                                                      //   controller
+                                                      //       .petTrainerAndBreederBool(
+                                                      //           false);
+                                                      //   controller.roleId = 2;
+                                                      //   log('roleId: ${controller.roleId}');
+                                                      // } else if (index == 2) {
+                                                      //   controller
+                                                      //       .individualPetBool(
+                                                      //           false);
+                                                      //   controller
+                                                      //       .petShoopsGroomingBool(
+                                                      //           false);
+                                                      //   controller
+                                                      //       .petvetsandNgoBool(
+                                                      //           true);
+                                                      //   controller
+                                                      //       .petTrainerAndBreederBool(
+                                                      //           false);
+                                                      //   controller.roleId = 3;
+                                                      //   log('roleId: ${controller.roleId}');
+                                                      // } else if (index == 3) {
+                                                      //   controller
+                                                      //       .individualPetBool(
+                                                      //           false);
+                                                      //   controller
+                                                      //       .petShoopsGroomingBool(
+                                                      //           false);
+                                                      //   controller
+                                                      //       .petvetsandNgoBool(
+                                                      //           false);
+                                                      //   controller
+                                                      //       .petTrainerAndBreederBool(
+                                                      //           true);
+                                                      //   controller.roleId = 4;
+                                                      //   log('roleId: ${controller.roleId}');
+                                                      // }
+
+                                                      // controller.isLoading(false);
+                                                    },
                                                   ),
-                                                  value: controller
-                                                      .boolsList[index].value,
-                                                  checkColor:
-                                                      AppColors.whiteColor,
-                                                  activeColor:
-                                                      AppColors.greyTextColor,
-                                                  fillColor:
-                                                      MaterialStateProperty.all(
-                                                          AppColors
-                                                              .greyTextColor),
-                                                  focusColor:
-                                                      AppColors.greyTextColor,
-                                                  // overlayColor:
-                                                  //     MaterialStateProperty.all(
-                                                  //   AppColors.greyTextColor,
-                                                  // ),
-                                                  onChanged: (val) {
-                                                    controller.isLoading(true);
-
-                                                    if (index == 0) {
-                                                      controller
-                                                          .individualPetBool(
-                                                              true);
-                                                      controller
-                                                          .petShoopsGroomingBool(
-                                                              false);
-                                                      controller
-                                                          .petvetsandNgoBool(
-                                                              false);
-                                                      controller
-                                                          .petTrainerAndBreederBool(
-                                                              false);
-                                                      controller.roleId = 1;
-                                                      log('roleId: ${controller.roleId}');
-                                                    } else if (index == 1) {
-                                                      controller
-                                                          .individualPetBool(
-                                                              false);
-                                                      controller
-                                                          .petShoopsGroomingBool(
-                                                              true);
-                                                      controller
-                                                          .petvetsandNgoBool(
-                                                              false);
-                                                      controller
-                                                          .petTrainerAndBreederBool(
-                                                              false);
-                                                      controller.roleId = 2;
-                                                      log('roleId: ${controller.roleId}');
-                                                    } else if (index == 2) {
-                                                      controller
-                                                          .individualPetBool(
-                                                              false);
-                                                      controller
-                                                          .petShoopsGroomingBool(
-                                                              false);
-                                                      controller
-                                                          .petvetsandNgoBool(
-                                                              true);
-                                                      controller
-                                                          .petTrainerAndBreederBool(
-                                                              false);
-                                                      controller.roleId = 3;
-                                                      log('roleId: ${controller.roleId}');
-                                                    } else if (index == 3) {
-                                                      controller
-                                                          .individualPetBool(
-                                                              false);
-                                                      controller
-                                                          .petShoopsGroomingBool(
-                                                              false);
-                                                      controller
-                                                          .petvetsandNgoBool(
-                                                              false);
-                                                      controller
-                                                          .petTrainerAndBreederBool(
-                                                              true);
-                                                      controller.roleId = 4;
-                                                      log('roleId: ${controller.roleId}');
-                                                    }
-
-                                                    controller.isLoading(false);
-                                                  },
                                                 ),
-                                              ),
-                                              const SizedBox(width: 10),
-                                              Text(
-                                                controller
-                                                    .userTypeCategories[index],
-                                                style: TextStyle(
-                                                  color: themeProvider.darkTheme
-                                                      ? AppColors.whiteColor
-                                                      : AppColors
-                                                          .blackTextColor,
-                                                  fontSize: 12.sp,
-                                                  fontWeight: FontWeight.w500,
+                                                const SizedBox(width: 10),
+                                                Text(
+                                                  controller.userTypeCategories[
+                                                      index],
+                                                  style: TextStyle(
+                                                    color: themeProvider
+                                                            .darkTheme
+                                                        ? AppColors.whiteColor
+                                                        : AppColors
+                                                            .blackTextColor,
+                                                    fontSize: 12.sp,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
                                                 ),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
                                         );
                                       },
