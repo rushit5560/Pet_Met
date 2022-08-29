@@ -217,7 +217,7 @@ class ShopListModule extends StatelessWidget {
               ],
             ),
             shopSingleItem.isVerified == "0"
-                ? Container(
+                ? /*Container(
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       color: AppColors.accentTextColor,
@@ -227,7 +227,12 @@ class ShopListModule extends StatelessWidget {
                       color: Colors.white,
                       size: 18,
                     ),
-                  )
+                  )*/
+            Icon(
+              Icons.verified,
+              color: Colors.green,
+              size: 19,
+            )
                 : Container(),
           ],
         ).commonAllSidePadding(padding: 2.w),

@@ -996,7 +996,9 @@ class _BirthDateDropDownState extends State<BirthDateDropDown> {
             monthFlex: 3,
             yearFlex: 2,
             textStyle: TextStyle(
-              color: AppColors.blackTextColor.withOpacity(0.6),
+              color:  themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.blackTextColor,
               fontSize: 12.sp,
               fontWeight: FontWeight.w400,
             ),

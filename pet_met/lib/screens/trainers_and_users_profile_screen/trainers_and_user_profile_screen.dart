@@ -138,7 +138,8 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                       width: Get.width,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: Colors.grey)
+                          border: Border.all(color: Colors.grey),
+                          color: Colors.grey.shade200
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -207,7 +208,8 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                       width: Get.width,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: Colors.grey)
+                          border: Border.all(color: Colors.grey),
+                          color: Colors.grey.shade200
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -271,7 +273,8 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                       width: Get.width,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: Colors.grey)
+                          border: Border.all(color: Colors.grey),
+                          color: Colors.grey.shade200
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -337,7 +340,8 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                       width: Get.width,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: Colors.grey)
+                          border: Border.all(color: Colors.grey),
+                          color: Colors.grey.shade200
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),

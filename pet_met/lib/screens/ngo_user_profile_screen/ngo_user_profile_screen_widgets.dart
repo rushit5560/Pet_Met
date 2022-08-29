@@ -228,7 +228,9 @@ class UploadImageModule extends StatelessWidget {
                 title: Text(
                   "Select Image From Camera",
                   style: TextStyle(
-                    color: AppColors.blackTextColor.withOpacity(0.7),
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.blackTextColor,
                     fontSize: 13.sp,
                     fontWeight: FontWeight.w600,
                   ),
@@ -241,7 +243,9 @@ class UploadImageModule extends StatelessWidget {
                 title: Text(
                   "Select Image From Gallery",
                   style: TextStyle(
-                    color: AppColors.blackTextColor.withOpacity(0.7),
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.blackTextColor,
                     fontSize: 13.sp,
                     fontWeight: FontWeight.w600,
                   ),
@@ -394,183 +398,186 @@ class NameOfNgoListModule extends StatelessWidget {
               itemBuilder: (context, index) {
                 return SizedBox(
                   // height: screenController.size.width * 0.16,
-                  child: Stack(
-                    alignment: Alignment.bottomRight,
-                    children: [
-                      Container(
-                          height: screenController.size.width * 0.16,
-                          width: screenController.size.width * 0.16,
-                          margin: const EdgeInsets.only(bottom: 5, right: 10),
-                          decoration: BoxDecoration(
-                            // image: DecorationImage(
-                            //     image: AssetImage(
-                            //       controller.dogsTopList[index],
-                            //     ),
-                            //     fit: BoxFit.cover),
-                            //color: AppColors.greyTextColor,
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(8),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Stack(
+                      alignment: Alignment.bottomRight,
+                      children: [
+                        Container(
+                            height: screenController.size.width * 0.16,
+                            width: screenController.size.width * 0.16,
+                            margin: const EdgeInsets.only(bottom: 5, right: 10),
+                            decoration: BoxDecoration(
+                              // image: DecorationImage(
+                              //     image: AssetImage(
+                              //       controller.dogsTopList[index],
+                              //     ),
+                              //     fit: BoxFit.cover),
+                              //color: AppColors.greyTextColor,
+                              border: Border.all(color: Colors.grey),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(8),
+                              ),
+                            ),
+                            child: index == 0
+                                ? screenController.ngoPictureFile1 != null
+                                    ? Image.file(
+                                        screenController.ngoPictureFile1!,
+                                        height: 65,
+                                        fit: BoxFit.fill,
+                                      )
+                                    : screenController.ngoImage1 != null
+                                        ? Image.network(
+                                            screenController.ngoImage1!,
+                                            height: 50,
+                                            width: 50,
+                                            fit: BoxFit.fill,
+                                            errorBuilder: (context, er, st) {
+                                              return Image.asset(
+                                                AppImages.petMetLogoImg,
+                                                fit: BoxFit.fill,
+                                              );
+                                            },
+                                          )
+                                        : Image.asset(AppImages.petMetLogoImg)
+                                : index == 1
+                                    ? screenController.ngoPictureFile2 != null
+                                        ? Image.file(
+                                            screenController.ngoPictureFile2!,
+                                            height: 65,
+                                            fit: BoxFit.fill,
+                                          )
+                                        : screenController.ngoImage2 != null
+                                            ? Image.network(
+                                                screenController.ngoImage2!,
+                                                height: 50,
+                                                width: 50,
+                                                fit: BoxFit.fill,
+                                                errorBuilder: (context, er, st) {
+                                                  return Image.asset(
+                                                    AppImages.petMetLogoImg,
+                                                    fit: BoxFit.fill,
+                                                  );
+                                                },
+                                              )
+                                            : Image.asset(AppImages.petMetLogoImg)
+                                    : index == 2
+                                        ? screenController.ngoPictureFile3 != null
+                                            ? Image.file(
+                                                screenController.ngoPictureFile3!,
+                                                height: 65,
+                                                fit: BoxFit.fill,
+                                              )
+                                            : screenController.ngoImage3 != null
+                                                ? Image.network(
+                                                    screenController.ngoImage3!,
+                                                    height: 65,
+                                                    fit: BoxFit.fill,
+                                                    errorBuilder:
+                                                        (context, er, st) {
+                                                      return Image.asset(
+                                                        AppImages.petMetLogoImg,
+                                                        fit: BoxFit.fill,
+                                                        height: 50,
+                                                        width: 50,
+                                                      );
+                                                    },
+                                                  )
+                                                : Image.asset(
+                                                    AppImages.petMetLogoImg)
+                                        : index == 3
+                                            ? screenController.ngoPictureFile4 !=
+                                                    null
+                                                ? Image.file(
+                                                    screenController
+                                                        .ngoPictureFile4!,
+                                                    height: 65,
+                                                    fit: BoxFit.fill,
+                                                  )
+                                                : screenController.ngoImage4 !=
+                                                        null
+                                                    ? Image.network(
+                                                        screenController
+                                                            .ngoImage4!,
+                                                        height: 50,
+                                                        width: 50,
+                                                        fit: BoxFit.fill,
+                                                        errorBuilder:
+                                                            (context, er, st) {
+                                                          return Image.asset(
+                                                            AppImages
+                                                                .petMetLogoImg,
+                                                            fit: BoxFit.fill,
+                                                          );
+                                                        },
+                                                      )
+                                                    : Image.asset(
+                                                        AppImages.petMetLogoImg)
+                                            : index == 4
+                                                ? screenController
+                                                            .ngoPictureFile5 !=
+                                                        null
+                                                    ? Image.file(
+                                                        screenController
+                                                            .ngoPictureFile5!,
+                                                        height: 65,
+                                                        fit: BoxFit.fill,
+                                                      )
+                                                    : screenController
+                                                                .ngoImage5 !=
+                                                            null
+                                                        ? Image.network(
+                                                            screenController
+                                                                .ngoImage5!,
+                                                            height: 50,
+                                                            width: 50,
+                                                            fit: BoxFit.fill,
+                                                            errorBuilder:
+                                                                (context, er,
+                                                                    st) {
+                                                              return Image.asset(
+                                                                AppImages
+                                                                    .petMetLogoImg,
+                                                                fit: BoxFit.fill,
+                                                              );
+                                                            },
+                                                          )
+                                                        : Image.asset(AppImages
+                                                            .petMetLogoImg)
+                                                : Container()),
+                        Positioned(
+                          right: 0,
+                          bottom: 0,
+                          child: GestureDetector(
+                            onTap: () {
+                              if (index == 0) {
+                                getFromGallery();
+                              } else if (index == 1) {
+                                getFromGallery2();
+                              } else if (index == 2) {
+                                getFromGallery3();
+                              } else if (index == 3) {
+                                getFromGallery4();
+                              } else if (index == 4) {
+                                getFromGallery5();
+                              }
+                            },
+                            child: Container(
+                              height: 15,
+                              width: 15,
+                              decoration: const BoxDecoration(
+                                  color: AppColors.accentColor,
+                                  shape: BoxShape.circle),
+                              child: const Icon(
+                                Icons.add,
+                                color: AppColors.whiteColor,
+                                size: 12,
+                              ),
                             ),
                           ),
-                          child: index == 0
-                              ? screenController.ngoPictureFile1 != null
-                                  ? Image.file(
-                                      screenController.ngoPictureFile1!,
-                                      height: 65,
-                                      fit: BoxFit.fill,
-                                    )
-                                  : screenController.ngoImage1 != null
-                                      ? Image.network(
-                                          screenController.ngoImage1!,
-                                          height: 50,
-                                          width: 50,
-                                          fit: BoxFit.fill,
-                                          errorBuilder: (context, er, st) {
-                                            return Image.asset(
-                                              AppImages.petMetLogoImg,
-                                              fit: BoxFit.fill,
-                                            );
-                                          },
-                                        )
-                                      : Image.asset(AppImages.petMetLogoImg)
-                              : index == 1
-                                  ? screenController.ngoPictureFile2 != null
-                                      ? Image.file(
-                                          screenController.ngoPictureFile2!,
-                                          height: 65,
-                                          fit: BoxFit.fill,
-                                        )
-                                      : screenController.ngoImage2 != null
-                                          ? Image.network(
-                                              screenController.ngoImage2!,
-                                              height: 50,
-                                              width: 50,
-                                              fit: BoxFit.fill,
-                                              errorBuilder: (context, er, st) {
-                                                return Image.asset(
-                                                  AppImages.petMetLogoImg,
-                                                  fit: BoxFit.fill,
-                                                );
-                                              },
-                                            )
-                                          : Image.asset(AppImages.petMetLogoImg)
-                                  : index == 2
-                                      ? screenController.ngoPictureFile3 != null
-                                          ? Image.file(
-                                              screenController.ngoPictureFile3!,
-                                              height: 65,
-                                              fit: BoxFit.fill,
-                                            )
-                                          : screenController.ngoImage3 != null
-                                              ? Image.network(
-                                                  screenController.ngoImage3!,
-                                                  height: 65,
-                                                  fit: BoxFit.fill,
-                                                  errorBuilder:
-                                                      (context, er, st) {
-                                                    return Image.asset(
-                                                      AppImages.petMetLogoImg,
-                                                      fit: BoxFit.fill,
-                                                      height: 50,
-                                                      width: 50,
-                                                    );
-                                                  },
-                                                )
-                                              : Image.asset(
-                                                  AppImages.petMetLogoImg)
-                                      : index == 3
-                                          ? screenController.ngoPictureFile4 !=
-                                                  null
-                                              ? Image.file(
-                                                  screenController
-                                                      .ngoPictureFile4!,
-                                                  height: 65,
-                                                  fit: BoxFit.fill,
-                                                )
-                                              : screenController.ngoImage4 !=
-                                                      null
-                                                  ? Image.network(
-                                                      screenController
-                                                          .ngoImage4!,
-                                                      height: 50,
-                                                      width: 50,
-                                                      fit: BoxFit.fill,
-                                                      errorBuilder:
-                                                          (context, er, st) {
-                                                        return Image.asset(
-                                                          AppImages
-                                                              .petMetLogoImg,
-                                                          fit: BoxFit.fill,
-                                                        );
-                                                      },
-                                                    )
-                                                  : Image.asset(
-                                                      AppImages.petMetLogoImg)
-                                          : index == 4
-                                              ? screenController
-                                                          .ngoPictureFile5 !=
-                                                      null
-                                                  ? Image.file(
-                                                      screenController
-                                                          .ngoPictureFile5!,
-                                                      height: 65,
-                                                      fit: BoxFit.fill,
-                                                    )
-                                                  : screenController
-                                                              .ngoImage5 !=
-                                                          null
-                                                      ? Image.network(
-                                                          screenController
-                                                              .ngoImage5!,
-                                                          height: 50,
-                                                          width: 50,
-                                                          fit: BoxFit.fill,
-                                                          errorBuilder:
-                                                              (context, er,
-                                                                  st) {
-                                                            return Image.asset(
-                                                              AppImages
-                                                                  .petMetLogoImg,
-                                                              fit: BoxFit.fill,
-                                                            );
-                                                          },
-                                                        )
-                                                      : Image.asset(AppImages
-                                                          .petMetLogoImg)
-                                              : Container()),
-                      Positioned(
-                        right: 0,
-                        bottom: 0,
-                        child: GestureDetector(
-                          onTap: () {
-                            if (index == 0) {
-                              getFromGallery();
-                            } else if (index == 1) {
-                              getFromGallery2();
-                            } else if (index == 2) {
-                              getFromGallery3();
-                            } else if (index == 3) {
-                              getFromGallery4();
-                            } else if (index == 4) {
-                              getFromGallery5();
-                            }
-                          },
-                          child: Container(
-                            height: 15,
-                            width: 15,
-                            decoration: const BoxDecoration(
-                                color: AppColors.accentColor,
-                                shape: BoxShape.circle),
-                            child: const Icon(
-                              Icons.add,
-                              color: AppColors.whiteColor,
-                              size: 12,
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 );
               }),

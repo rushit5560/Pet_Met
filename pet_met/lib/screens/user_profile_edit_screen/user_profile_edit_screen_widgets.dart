@@ -288,7 +288,7 @@ class UserPetListModule extends StatelessWidget {
       Row(
         children: [
           controller.petList.length == 5 ? Container() :
-          Stack(
+          /*Stack(
               children: [
             Container(
               height: 8.h,
@@ -335,7 +335,44 @@ class UserPetListModule extends StatelessWidget {
                 ),
               ),
             )
-          ]),
+          ]),*/
+          GestureDetector(
+            onTap: (){
+              Get.to(() => UploadPetScreen(),
+                  transition: Transition.native,
+                  duration: const Duration(milliseconds: 500),
+                  arguments: [PetOption.addOption, ""])!.then((value) async {
+                await controller.getAllRoleProfileFunction();
+              });
+            },
+            child: Container(
+              height: 8.h,
+              width: 8.h,
+              margin: const EdgeInsets.only(bottom: 5, right: 5),
+              decoration: BoxDecoration(
+                // image: DecorationImage(
+                //     image: AssetImage(
+                //       controller.dogsTopList[index],
+                //     ),
+                //     fit: BoxFit.cover),
+                //color: AppColors.greyTextColor,
+                border: Border.all(color: Colors.grey),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+              child: /*ClipRRect(
+                      borderRadius:
+                      const BorderRadius.all(Radius.circular(8)),
+                      child: Image.asset(AppImages.petMetLogoImg,
+                          fit: BoxFit.cover))*/
+              Icon(
+                Icons.add,
+                color: AppColors.accentTextColor,
+                size: 30,
+              ),
+            ),
+          ),
           controller.petList.length == 5 ? Container() : const SizedBox(width: 5),
           Expanded(
             child: Container(
@@ -784,8 +821,8 @@ class BirthDateModule extends StatelessWidget {
             yearFlex: 2,
             textStyle: TextStyle(
               color: themeProvider.darkTheme
-                  ? AppColors.greyTextColor.withOpacity(0.7)
-                  : AppColors.blackTextColor.withOpacity(0.7),
+            ? AppColors.whiteColor
+                : AppColors.blackTextColor,
               fontSize: 12.sp,
               fontWeight: FontWeight.w400,
             ),

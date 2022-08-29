@@ -241,12 +241,24 @@ class ProfileDetailsModule extends StatelessWidget {
                     ? await controller.followUserFunction()
                     : await controller.unfollowUserFunction();
               },
-              child: Text(
-                controller.status.value == true ? "Follow" : "Unfollow",
-                style: TextStyle(
-                  color: AppColors.accentTextColor,
-                  fontSize: 13.sp,
-                  fontWeight: FontWeight.bold,
+              child: Container(
+                height: 35,
+                width: 72,
+                decoration: BoxDecoration(
+                  color: AppColors.accentColor.withOpacity(0.3),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    controller.status.value == true ? "Follow" : "Unfollow",
+                    style: TextStyle(
+                      color: AppColors.accentTextColor,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ),
             ),

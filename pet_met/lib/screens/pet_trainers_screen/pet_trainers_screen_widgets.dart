@@ -216,16 +216,21 @@ class PetTrainerListModule extends StatelessWidget {
               ],
             ),
             trainerSingleItem.isVerified == "0"
-                ? Container(
+                ? /*Container(
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: AppColors.accentTextColor,
               ),
               child: const Icon(
-                Icons.check_rounded,
+                Icons.verified,
                 color: Colors.white,
                 size: 18,
               ),
+            )*/
+            Icon(
+              Icons.verified,
+              color: Colors.green,
+              size: 19,
             )
                 : Container(),
           ],

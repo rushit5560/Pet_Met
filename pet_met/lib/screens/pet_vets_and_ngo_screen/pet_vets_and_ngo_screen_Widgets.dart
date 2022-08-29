@@ -225,7 +225,7 @@ class VetsAndNgoListModule extends StatelessWidget {
               ],
             ),
             vetAndNgoData.isVerified == "0"
-                ? Container(
+                ? /*Container(
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: AppColors.accentTextColor,
@@ -235,6 +235,11 @@ class VetsAndNgoListModule extends StatelessWidget {
                 color: Colors.white,
                 size: 18,
               ),
+            )*/
+            Icon(
+              Icons.verified,
+              color: Colors.green,
+              size: 19,
             )
                 : Container(),
           ],

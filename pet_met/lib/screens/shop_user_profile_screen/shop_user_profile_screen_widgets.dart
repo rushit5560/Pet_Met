@@ -233,7 +233,7 @@ class UploadImageModule extends StatelessWidget {
                   "Select Image From Camera",
                   style: TextStyle(
                     color: themeProvider.darkTheme
-                        ? AppColors.whiteColor.withOpacity(0.4)
+                        ? AppColors.whiteColor
                         : AppColors.blackTextColor,
                     fontSize: 13.sp,
                     fontWeight: FontWeight.w600,
@@ -248,7 +248,7 @@ class UploadImageModule extends StatelessWidget {
                   "Select Image From Gallery",
                   style: TextStyle(
                     color: themeProvider.darkTheme
-                        ? AppColors.whiteColor.withOpacity(0.4)
+                        ? AppColors.whiteColor
                         : AppColors.blackTextColor,
                     fontSize: 13.sp,
                     fontWeight: FontWeight.w600,
@@ -340,8 +340,8 @@ class AddShopOffersListModule extends StatelessWidget {
         "Add Shops offers:",
         style: TextStyle(
           color: themeProvider.darkTheme
-              ? AppColors.whiteColor.withOpacity(0.4)
-              : AppColors.blackTextColor,
+              ? AppColors.whiteColor
+              : AppColors.darkThemeColor,
         ),
       ),
       const SizedBox(height: 8),
@@ -352,209 +352,212 @@ class AddShopOffersListModule extends StatelessWidget {
             itemCount: 5,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              return Stack(
-                alignment: Alignment.bottomRight,
-                children: [
-                  Container(
-                      height: screenController.size.width * 0.16,
-                      width: screenController.size.width * 0.16,
-                      margin: const EdgeInsets.only(bottom: 5, right: 5),
-                      decoration: BoxDecoration(
-                        // image: DecorationImage(
-                        //     image: AssetImage(
-                        //       controller.dogsTopList[index],
-                        //     ),
-                        //     fit: BoxFit.cover),
-                        //color: AppColors.greyTextColor,
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(8),
+              return Padding(
+                padding: const EdgeInsets.only(left: 5),
+                child: Stack(
+                  alignment: Alignment.bottomRight,
+                  children: [
+                    Container(
+                        height: screenController.size.width * 0.16,
+                        width: screenController.size.width * 0.16,
+                        margin: const EdgeInsets.only(bottom: 5, right: 5),
+                        decoration: BoxDecoration(
+                          // image: DecorationImage(
+                          //     image: AssetImage(
+                          //       controller.dogsTopList[index],
+                          //     ),
+                          //     fit: BoxFit.cover),
+                          //color: AppColors.greyTextColor,
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(5),
+                          ),
+                        ),
+                        child: index == 0
+                            ? screenController.shopOfferFile1 != null
+                                ? Image.file(
+                                    screenController.shopOfferFile1!,
+                                    height: 65,
+                                    fit: BoxFit.fill,
+                                  )
+                                : screenController.offerImage1 != null
+                                    ? Image.network(
+                                        screenController.offerImage1!,
+                                        height: 65,
+                                        fit: BoxFit.fill,
+                                        errorBuilder: (context, er, st) {
+                                          return Image.asset(
+                                            AppImages.petMetLogoImg,
+                                            fit: BoxFit.fill,
+                                          );
+                                        },
+                                      )
+                                    : Image.asset(
+                                        AppImages.petMetLogoImg,
+                                        fit: BoxFit.fill,
+                                      )
+                            : index == 1
+                                ? screenController.shopOfferFile2 != null
+                                    ? Image.file(
+                                        screenController.shopOfferFile2!,
+                                        height: 65,
+                                        fit: BoxFit.fill,
+                                      )
+                                    : screenController.offerImage2 != null
+                                        ? Image.network(
+                                            screenController.offerImage2!,
+                                            height: 65,
+                                            fit: BoxFit.fill,
+                                            errorBuilder: (context, er, st) {
+                                              return Image.asset(
+                                                AppImages.petMetLogoImg,
+                                                fit: BoxFit.fill,
+                                              );
+                                            },
+                                          )
+                                        : Image.asset(AppImages.petMetLogoImg)
+                                : index == 2
+                                    ? screenController.shopOfferFile3 != null
+                                        ? Image.file(
+                                            screenController.shopOfferFile3!,
+                                            height: 65,
+                                            fit: BoxFit.fill,
+                                          )
+                                        : screenController.offerImage3 != null
+                                            ? Image.network(
+                                                screenController.offerImage3!,
+                                                height: 65,
+                                                fit: BoxFit.fill,
+                                                errorBuilder: (context, er, st) {
+                                                  return Image.asset(
+                                                    AppImages.petMetLogoImg,
+                                                    fit: BoxFit.fill,
+                                                  );
+                                                },
+                                              )
+                                            : Image.asset(AppImages.petMetLogoImg)
+                                    : index == 3
+                                        ? screenController.shopOfferFile4 != null
+                                            ? Image.file(
+                                                screenController.shopOfferFile4!,
+                                                height: 65,
+                                                fit: BoxFit.fill,
+                                              )
+                                            : screenController.offerImage4 != null
+                                                ? Image.network(
+                                                    screenController.offerImage4!,
+                                                    height: 65,
+                                                    fit: BoxFit.fill,
+                                                    errorBuilder:
+                                                        (context, er, st) {
+                                                      return Image.asset(
+                                                        AppImages.petMetLogoImg,
+                                                        fit: BoxFit.fill,
+                                                      );
+                                                    },
+                                                  )
+                                                : Image.asset(
+                                                    AppImages.petMetLogoImg)
+                                        : index == 4
+                                            ? screenController.shopOfferFile5 !=
+                                                    null
+                                                ? Image.file(
+                                                    screenController
+                                                        .shopOfferFile5!,
+                                                    height: 65,
+                                                    fit: BoxFit.fill,
+                                                  )
+                                                : screenController.offerImage5 !=
+                                                        null
+                                                    ? Image.network(
+                                                        screenController
+                                                            .offerImage5!,
+                                                        height: 65,
+                                                        fit: BoxFit.fill,
+                                                        errorBuilder:
+                                                            (context, er, st) {
+                                                          return Image.asset(
+                                                            AppImages
+                                                                .petMetLogoImg,
+                                                            fit: BoxFit.fill,
+                                                          );
+                                                        },
+                                                      )
+                                                    : Image.asset(
+                                                        AppImages.petMetLogoImg)
+                                            : Container()),
+                    Positioned(
+                      right: 0,
+                      bottom: 0,
+                      child: GestureDetector(
+                        onTap: () {
+                          if (index == 0) {
+                            if (screenController.showStatus.value == true) {
+                              // open gallery
+                              getFromGallery();
+                            } else if (screenController.showStatus.value ==
+                                false) {
+                              //screenController.openCheckout();
+                              Get.to(() => PetPricingScreen());
+                            }
+                          } else if (index == 1) {
+                            //getFromGallery2();
+                            if (screenController.showStatus.value == true) {
+                              // open gallery
+                              getFromGallery2();
+                            } else if (screenController.showStatus.value ==
+                                false) {
+                              //screenController.openCheckout();
+                              Get.to(() => PetPricingScreen());
+                            }
+                          } else if (index == 2) {
+                            //getFromGallery3();
+                            if (screenController.showStatus.value == true) {
+                              // open gallery
+                              getFromGallery3();
+                            } else if (screenController.showStatus.value ==
+                                false) {
+                              //screenController.openCheckout();
+                              Get.to(() => PetPricingScreen());
+                            }
+                          } else if (index == 3) {
+                            //getFromGallery4();
+                            if (screenController.showStatus.value == true) {
+                              // open gallery
+                              getFromGallery4();
+                            } else if (screenController.showStatus.value ==
+                                false) {
+                              //screenController.openCheckout();
+                              Get.to(() => PetPricingScreen());
+                            }
+                          } else if (index == 4) {
+                            //getFromGallery5();
+                            if (screenController.showStatus.value == true) {
+                              // open gallery
+                              getFromGallery5();
+                            } else if (screenController.showStatus.value ==
+                                false) {
+                              //screenController.openCheckout();
+                              Get.to(() => PetPricingScreen());
+                            }
+                          }
+                        },
+                        child: Container(
+                          height: 15,
+                          width: 15,
+                          decoration: const BoxDecoration(
+                              color: AppColors.accentColor,
+                              shape: BoxShape.circle),
+                          child: const Icon(
+                            Icons.add,
+                            color: AppColors.whiteColor,
+                            size: 12,
+                          ),
                         ),
                       ),
-                      child: index == 0
-                          ? screenController.shopOfferFile1 != null
-                              ? Image.file(
-                                  screenController.shopOfferFile1!,
-                                  height: 65,
-                                  fit: BoxFit.fill,
-                                )
-                              : screenController.offerImage1 != null
-                                  ? Image.network(
-                                      screenController.offerImage1!,
-                                      height: 65,
-                                      fit: BoxFit.fill,
-                                      errorBuilder: (context, er, st) {
-                                        return Image.asset(
-                                          AppImages.petMetLogoImg,
-                                          fit: BoxFit.fill,
-                                        );
-                                      },
-                                    )
-                                  : Image.asset(
-                                      AppImages.petMetLogoImg,
-                                      fit: BoxFit.fill,
-                                    )
-                          : index == 1
-                              ? screenController.shopOfferFile2 != null
-                                  ? Image.file(
-                                      screenController.shopOfferFile2!,
-                                      height: 65,
-                                      fit: BoxFit.fill,
-                                    )
-                                  : screenController.offerImage2 != null
-                                      ? Image.network(
-                                          screenController.offerImage2!,
-                                          height: 65,
-                                          fit: BoxFit.fill,
-                                          errorBuilder: (context, er, st) {
-                                            return Image.asset(
-                                              AppImages.petMetLogoImg,
-                                              fit: BoxFit.fill,
-                                            );
-                                          },
-                                        )
-                                      : Image.asset(AppImages.petMetLogoImg)
-                              : index == 2
-                                  ? screenController.shopOfferFile3 != null
-                                      ? Image.file(
-                                          screenController.shopOfferFile3!,
-                                          height: 65,
-                                          fit: BoxFit.fill,
-                                        )
-                                      : screenController.offerImage3 != null
-                                          ? Image.network(
-                                              screenController.offerImage3!,
-                                              height: 65,
-                                              fit: BoxFit.fill,
-                                              errorBuilder: (context, er, st) {
-                                                return Image.asset(
-                                                  AppImages.petMetLogoImg,
-                                                  fit: BoxFit.fill,
-                                                );
-                                              },
-                                            )
-                                          : Image.asset(AppImages.petMetLogoImg)
-                                  : index == 3
-                                      ? screenController.shopOfferFile4 != null
-                                          ? Image.file(
-                                              screenController.shopOfferFile4!,
-                                              height: 65,
-                                              fit: BoxFit.fill,
-                                            )
-                                          : screenController.offerImage4 != null
-                                              ? Image.network(
-                                                  screenController.offerImage4!,
-                                                  height: 65,
-                                                  fit: BoxFit.fill,
-                                                  errorBuilder:
-                                                      (context, er, st) {
-                                                    return Image.asset(
-                                                      AppImages.petMetLogoImg,
-                                                      fit: BoxFit.fill,
-                                                    );
-                                                  },
-                                                )
-                                              : Image.asset(
-                                                  AppImages.petMetLogoImg)
-                                      : index == 4
-                                          ? screenController.shopOfferFile5 !=
-                                                  null
-                                              ? Image.file(
-                                                  screenController
-                                                      .shopOfferFile5!,
-                                                  height: 65,
-                                                  fit: BoxFit.fill,
-                                                )
-                                              : screenController.offerImage5 !=
-                                                      null
-                                                  ? Image.network(
-                                                      screenController
-                                                          .offerImage5!,
-                                                      height: 65,
-                                                      fit: BoxFit.fill,
-                                                      errorBuilder:
-                                                          (context, er, st) {
-                                                        return Image.asset(
-                                                          AppImages
-                                                              .petMetLogoImg,
-                                                          fit: BoxFit.fill,
-                                                        );
-                                                      },
-                                                    )
-                                                  : Image.asset(
-                                                      AppImages.petMetLogoImg)
-                                          : Container()),
-                  Positioned(
-                    right: 0,
-                    bottom: 0,
-                    child: GestureDetector(
-                      onTap: () {
-                        if (index == 0) {
-                          if (screenController.showStatus.value == true) {
-                            // open gallery
-                            getFromGallery();
-                          } else if (screenController.showStatus.value ==
-                              false) {
-                            //screenController.openCheckout();
-                            Get.to(() => PetPricingScreen());
-                          }
-                        } else if (index == 1) {
-                          //getFromGallery2();
-                          if (screenController.showStatus.value == true) {
-                            // open gallery
-                            getFromGallery2();
-                          } else if (screenController.showStatus.value ==
-                              false) {
-                            //screenController.openCheckout();
-                            Get.to(() => PetPricingScreen());
-                          }
-                        } else if (index == 2) {
-                          //getFromGallery3();
-                          if (screenController.showStatus.value == true) {
-                            // open gallery
-                            getFromGallery3();
-                          } else if (screenController.showStatus.value ==
-                              false) {
-                            //screenController.openCheckout();
-                            Get.to(() => PetPricingScreen());
-                          }
-                        } else if (index == 3) {
-                          //getFromGallery4();
-                          if (screenController.showStatus.value == true) {
-                            // open gallery
-                            getFromGallery4();
-                          } else if (screenController.showStatus.value ==
-                              false) {
-                            //screenController.openCheckout();
-                            Get.to(() => PetPricingScreen());
-                          }
-                        } else if (index == 4) {
-                          //getFromGallery5();
-                          if (screenController.showStatus.value == true) {
-                            // open gallery
-                            getFromGallery5();
-                          } else if (screenController.showStatus.value ==
-                              false) {
-                            //screenController.openCheckout();
-                            Get.to(() => PetPricingScreen());
-                          }
-                        }
-                      },
-                      child: Container(
-                        height: 15,
-                        width: 15,
-                        decoration: const BoxDecoration(
-                            color: AppColors.accentColor,
-                            shape: BoxShape.circle),
-                        child: const Icon(
-                          Icons.add,
-                          color: AppColors.whiteColor,
-                          size: 12,
-                        ),
-                      ),
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               );
             }),
       )
@@ -976,7 +979,7 @@ class MeetingAvailabilityModule extends StatelessWidget {
           Text("Add Meeting Availability for Pets:",
               style: TextStyle(
                 color: themeProvider.darkTheme
-                    ? AppColors.whiteColor.withOpacity(0.4)
+                    ? AppColors.whiteColor
                     : AppColors.blackTextColor,
               )),
           const SizedBox(height: 8),
@@ -984,7 +987,8 @@ class MeetingAvailabilityModule extends StatelessWidget {
             children: [
               screenController.petList.length == 5
                   ? Container()
-                  : Stack(children: [
+                  : /*Stack(
+                  children: [
                       Container(
                         height: 8.h,
                         width: 8.h,
@@ -1038,7 +1042,47 @@ class MeetingAvailabilityModule extends StatelessWidget {
                           ),
                         ),
                       )
-                    ]),
+                    ]),*/
+              GestureDetector(
+                onTap: (){
+                  if (screenController.showStatus.value == true) {
+                    Get.to(() => UploadPetScreen(),
+                        transition: Transition.native,
+                        duration: const Duration(milliseconds: 500),
+                        arguments: [PetOption.addOption, ""]);
+                  } else if (screenController.showStatus.value == false) {
+                    //screenController.openCheckout();
+                    Get.to(() => PetPricingScreen());
+                  }
+                },
+                child: Container(
+                  height: 8.h,
+                  width: 8.h,
+                  margin: const EdgeInsets.only(bottom: 5, right: 5),
+                  decoration: BoxDecoration(
+                    // image: DecorationImage(
+                    //     image: AssetImage(
+                    //       controller.dogsTopList[index],
+                    //     ),
+                    //     fit: BoxFit.cover),
+                    //color: AppColors.greyTextColor,
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(8),
+                    ),
+                  ),
+                  child: /*ClipRRect(
+                      borderRadius:
+                      const BorderRadius.all(Radius.circular(8)),
+                      child: Image.asset(AppImages.petMetLogoImg,
+                          fit: BoxFit.cover))*/
+                  Icon(
+                    Icons.add,
+                    color: AppColors.accentTextColor,
+                    size: 30,
+                  ),
+                ),
+              ),
               screenController.petList.length == 5
                   ? Container()
                   : const SizedBox(width: 5),
@@ -1122,7 +1166,7 @@ class EmailTextFieldModule extends StatelessWidget {
               "Email",
               style: TextStyle(
                 color: themeProvider.darkTheme
-                    ? AppColors.whiteColor.withOpacity(0.4)
+                    ? AppColors.whiteColor
                     : AppColors.blackTextColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
@@ -1162,7 +1206,7 @@ class ShopNameTextFieldModule extends StatelessWidget {
               "Shop Name",
               style: TextStyle(
                 color: themeProvider.darkTheme
-                    ? AppColors.whiteColor.withOpacity(0.4)
+                    ? AppColors.whiteColor
                     : AppColors.blackTextColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
@@ -1201,7 +1245,7 @@ class ContactNumberTextFieldModule extends StatelessWidget {
               "Contact Number",
               style: TextStyle(
                 color: themeProvider.darkTheme
-                    ? AppColors.whiteColor.withOpacity(0.4)
+                    ? AppColors.whiteColor
                     : AppColors.blackTextColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
@@ -1241,7 +1285,7 @@ class AddressTextFieldModule extends StatelessWidget {
               "Address",
               style: TextStyle(
                 color: themeProvider.darkTheme
-                    ? AppColors.whiteColor.withOpacity(0.4)
+                    ? AppColors.whiteColor
                     : AppColors.blackTextColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
@@ -1281,7 +1325,7 @@ class DetailsTextFieldModule extends StatelessWidget {
               "Details",
               style: TextStyle(
                 color: themeProvider.darkTheme
-                    ? AppColors.whiteColor.withOpacity(0.4)
+                    ? AppColors.whiteColor
                     : AppColors.blackTextColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
@@ -1321,7 +1365,7 @@ class InstagramTextFieldModule extends StatelessWidget {
               "Instagram Link",
               style: TextStyle(
                 color: themeProvider.darkTheme
-                    ? AppColors.whiteColor.withOpacity(0.4)
+                    ? AppColors.whiteColor
                     : AppColors.blackTextColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
@@ -1361,7 +1405,7 @@ class FacebookLinkTextFieldModule extends StatelessWidget {
               "Facebook Link",
               style: TextStyle(
                 color: themeProvider.darkTheme
-                    ? AppColors.whiteColor.withOpacity(0.4)
+                    ? AppColors.whiteColor
                     : AppColors.blackTextColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
@@ -1405,7 +1449,7 @@ class CommonTextFieldModule extends StatelessWidget {
               fieldName!,
               style: TextStyle(
                 color: themeProvider.darkTheme
-                    ? AppColors.whiteColor.withOpacity(0.4)
+                    ? AppColors.whiteColor
                     : AppColors.blackTextColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
@@ -1446,7 +1490,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                 "Open shop time",
                 style: TextStyle(
                   color: themeProvider.darkTheme
-                      ? AppColors.whiteColor.withOpacity(0.4)
+                      ? AppColors.whiteColor
                       : AppColors.blackTextColor,
                   fontSize: 11.sp,
                   fontWeight: FontWeight.bold,
@@ -1493,13 +1537,15 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                                 : "No time selected!",
                             // textAlign: TextAlign.center,
                             maxLines: 1,
-                            style: const TextStyle(color: Colors.black)),
+                            style: TextStyle(color: themeProvider.darkTheme
+                                ? AppColors.whiteColor
+                                : AppColors.blackTextColor)),
                       ),
                       IconButton(
                         icon: Icon(
                           Icons.timer_outlined,
                           color: themeProvider.darkTheme
-                              ? AppColors.whiteColor.withOpacity(0.4)
+                              ? AppColors.whiteColor
                               : AppColors.blackTextColor,
                           size: 20,
                         ),
@@ -1524,7 +1570,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                 "Close shop time",
                 style: TextStyle(
                   color: themeProvider.darkTheme
-                      ? AppColors.whiteColor.withOpacity(0.4)
+                      ? AppColors.whiteColor
                       : AppColors.blackTextColor,
                   fontSize: 11.sp,
                   fontWeight: FontWeight.bold,
@@ -1571,13 +1617,15 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                                 : "No time selected!",
                             // textAlign: TextAlign.center,
                             maxLines: 1,
-                            style: const TextStyle(color: Colors.black)),
+                            style: TextStyle(color: themeProvider.darkTheme
+                                ? AppColors.whiteColor
+                                : AppColors.blackTextColor)),
                       ),
                       IconButton(
                         icon: Icon(
                           Icons.timer_outlined,
                           color: themeProvider.darkTheme
-                              ? AppColors.whiteColor.withOpacity(0.4)
+                              ? AppColors.whiteColor
                               : AppColors.blackTextColor,
                           size: 20,
                         ),

@@ -31,7 +31,7 @@ class LocateScreen extends StatelessWidget {
             ),
 
             // UI Module
-            const Center(
+            /*const Center(
               child: Text(
                 "Coming Soon!",
                 maxLines: 1,
@@ -42,7 +42,26 @@ class LocateScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
+            ),*/
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  AppImages.petActivityImg,
+                  width: locateScreenController.size.width * 0.45,
+                ),
+                Text(
+                  "Coming Soon!",
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 25,
+                    color: AppColors.accentTextColor,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            )
 
 
           ],

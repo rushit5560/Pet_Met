@@ -68,7 +68,7 @@ class OffersModule extends StatelessWidget {
             ),
 
             screenController.isVerified == true
-                ? Container(
+                ? /*Container(
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 color: AppColors.accentTextColor,
@@ -78,6 +78,11 @@ class OffersModule extends StatelessWidget {
                 color: Colors.white,
                 size: 18,
               ),
+            )*/
+            Icon(
+            Icons.verified,
+            color: Colors.green,
+            size: 19,
             )
                 : Container(),
 

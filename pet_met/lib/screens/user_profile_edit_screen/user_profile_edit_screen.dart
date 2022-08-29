@@ -157,18 +157,33 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                /*Padding(
+                  padding: const EdgeInsets.only(right: 10, top: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap: (){
+                          Get.back();
+                        },
+                          child: Icon(Icons.close)),
+                    ],
+                  ),
+                ),*/
+
                 controller.userProfileAvail == true
                     ? GestureDetector(
                   onTap: ()async{
                     await multipleAccountDialog(context, controller.userEmail.value, "1");
                   },
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(10.0),
                     child: Container(
                       width: Get.width,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: Colors.grey)
+                          border: Border.all(color: Colors.grey),
+                        color: Colors.grey.shade200
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -237,7 +252,8 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                       width: Get.width,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: Colors.grey)
+                          border: Border.all(color: Colors.grey),
+                          color: Colors.grey.shade200
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -301,7 +317,8 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                       width: Get.width,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: Colors.grey)
+                          border: Border.all(color: Colors.grey),
+                          color: Colors.grey.shade200
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -367,7 +384,8 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                       width: Get.width,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: Colors.grey)
+                          border: Border.all(color: Colors.grey),
+                          color: Colors.grey.shade200
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),

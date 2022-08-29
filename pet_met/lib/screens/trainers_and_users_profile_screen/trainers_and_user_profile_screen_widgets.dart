@@ -227,7 +227,9 @@ class UploadImageModule extends StatelessWidget {
                 title: Text(
                   "Select Image From Camera",
                   style: TextStyle(
-                    color: AppColors.blackTextColor.withOpacity(0.7),
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.blackTextColor,
                     fontSize: 13.sp,
                     fontWeight: FontWeight.w600,
                   ),
@@ -240,7 +242,9 @@ class UploadImageModule extends StatelessWidget {
                 title: Text(
                   "Select Image From Gallery",
                   style: TextStyle(
-                    color: AppColors.blackTextColor.withOpacity(0.7),
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.blackTextColor,
                     fontSize: 13.sp,
                     fontWeight: FontWeight.w600,
                   ),
@@ -745,7 +749,9 @@ class TrainersNameTextFieldModule extends StatelessWidget {
             Text(
               "Trainers Name",
               style: TextStyle(
-                color: AppColors.blackTextColor.withOpacity(0.7),
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.darkThemeColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -1229,7 +1235,10 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.grey),
+                    //border: Border.all(color: Colors.grey),
+                    color: themeProvider.darkTheme
+                        ? AppColors.darkThemeBoxColor
+                        : AppColors.whiteColor,
                     //color: Colors.transparent,
                     //   boxShadow: [
                     //     BoxShadow(
@@ -1312,7 +1321,10 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                   decoration: BoxDecoration(
                     //color: Colors.transparent,
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.grey),
+                    //border: Border.all(color: Colors.grey),
+                    color: themeProvider.darkTheme
+                        ? AppColors.darkThemeBoxColor
+                        : AppColors.whiteColor,
                     // boxShadow: [
                     //   BoxShadow(
                     //     color: themeProvider.darkTheme
@@ -1367,7 +1379,10 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
 
   Future<void> timePicker(BuildContext context) async {
     final TimeOfDay? result = await showTimePicker(
-        context: context, cancelText: "Cancel", initialTime: TimeOfDay.now());
+        context: context,
+        cancelText: "Cancel",
+        initialTime: TimeOfDay.now(),
+    );
     if (result != null) {
       //setState(() {
       screenController.selectedOpenTime!.value = result.format(context);
