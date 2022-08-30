@@ -36,6 +36,9 @@ class _BuildMenuState extends State<BuildMenu> {
 
   final indexController = Get.find<IndexScreenController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     final themeChange = Provider.of<DarkThemeProvider>(context);
@@ -137,7 +140,8 @@ class _BuildMenuState extends State<BuildMenu> {
                                                         BorderRadius.circular(
                                                             30),
                                                     child: Image.network(
-                                                      UserDetails.userProfileImage,
+                                                      UserDetails
+                                                          .userProfileImage,
                                                       width: 50,
                                                       height: 50,
                                                       fit: BoxFit.cover,
@@ -170,7 +174,8 @@ class _BuildMenuState extends State<BuildMenu> {
                                               ? UserDetails.shopName
                                               : UserDetails.categoryId == "3"
                                                   ? UserDetails.userName
-                                                  : UserDetails.categoryId == "4"
+                                                  : UserDetails.categoryId ==
+                                                          "4"
                                                       ? UserDetails.userName
                                                       : "",
                                       style: TextStyle(

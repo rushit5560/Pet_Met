@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/payment_failed_controller.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/app_images.dart';
 import '../../utils/common_widgets/background_widgets.dart';
@@ -11,6 +13,9 @@ class PaymentFailedScreen extends StatelessWidget {
   PaymentFailedScreen({Key? key}) : super(key: key);
 
   final controller = Get.put(PaymentFailedController());
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {

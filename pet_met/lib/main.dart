@@ -56,7 +56,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    // final controller = Get.put(SplashController());
+   
 
     return Sizer(
       builder: (context, orientation, deviceType) {
@@ -69,7 +69,7 @@ class _MyAppState extends State<MyApp> {
               return GetMaterialApp(
                 debugShowCheckedModeBanner: false,
                 // theme: appThemeData,
-                
+
                 theme: Styles.themeData(themeChangeProvider.darkTheme, context),
                 //initialRoute: AppRouteNames.splashRoute,
                 //getPages: AppRoutes().routes,

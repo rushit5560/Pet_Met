@@ -4,9 +4,10 @@ import 'package:provider/provider.dart';
 import '../services/providers/dark_theme_provider.dart';
 
 const root = "assets/images/";
-DarkThemeProvider themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
 
 class AppImages {
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
   static const petMetLogoImg = root + "petmet_logo.png";
 
   // static var tealBackgroundImg = themeProvider.darkTheme
@@ -97,6 +98,7 @@ class AppIcons {
   static const backButtonImg = root + "left_back_arrow.png";
   static const drawerButtonImg = root + "drawer_icon.png";
   static const locationImg = root + "location.png";
+  static const clockImg = root + "clock.png";
   static const bottomBar1Img = root + "mate-branding_icon.png";
   static const bottomBar2Img = root + "trainging_icon.png";
   static const bottomBar3Img = root + "home.png";
@@ -114,6 +116,7 @@ class AppIcons {
   static const callIconImg = root + "call_icon.png";
   static const whatsappImg = root + "whatsapp_icon.png";
   static const profilePetImg = root + "dog1.png";
+  static const messageImg = root + "message.png";
 }
 
 class AppShades {

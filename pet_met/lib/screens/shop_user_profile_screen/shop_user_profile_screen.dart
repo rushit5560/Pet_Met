@@ -8,11 +8,17 @@ import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/validations.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../services/providers/dark_theme_provider.dart';
 
 class ShopUserProfileScreen extends StatelessWidget {
   ShopUserProfileScreen({Key? key}) : super(key: key);
   final controller = Get.put(ShopUserProfileScreenController());
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +26,7 @@ class ShopUserProfileScreen extends StatelessWidget {
       child: Scaffold(
         body: Stack(
           children: [
-            const BackgroundImage(),
+            BackgroundImage(),
             Column(
               children: [
                 CustomAppBar(
@@ -115,9 +121,12 @@ class ShopUserProfileScreen extends StatelessWidget {
                           child: Container(
                             width: Get.width,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                border: Border.all(color: Colors.grey),
-                                color: Colors.grey.shade200),
+                              borderRadius: BorderRadius.circular(15),
+                              border: Border.all(color: Colors.grey),
+                              color: themeProvider.darkTheme
+                                  ? AppColors.blackTextColor
+                                  : Colors.grey.shade200,
+                            ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
@@ -206,9 +215,12 @@ class ShopUserProfileScreen extends StatelessWidget {
                           child: Container(
                             width: Get.width,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                border: Border.all(color: Colors.grey),
-                                color: Colors.grey.shade200),
+                              borderRadius: BorderRadius.circular(15),
+                              border: Border.all(color: Colors.grey),
+                              color: themeProvider.darkTheme
+                                  ? AppColors.darkThemeBoxColor
+                                  : AppColors.whiteColor,
+                            ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
@@ -295,9 +307,12 @@ class ShopUserProfileScreen extends StatelessWidget {
                           child: Container(
                             width: Get.width,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                border: Border.all(color: Colors.grey),
-                                color: Colors.grey.shade200),
+                              borderRadius: BorderRadius.circular(15),
+                              border: Border.all(color: Colors.grey),
+                              color: themeProvider.darkTheme
+                                  ? AppColors.darkThemeBoxColor
+                                  : AppColors.whiteColor,
+                            ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
@@ -388,9 +403,12 @@ class ShopUserProfileScreen extends StatelessWidget {
                           child: Container(
                             width: Get.width,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                border: Border.all(color: Colors.grey),
-                                color: Colors.grey.shade200),
+                              borderRadius: BorderRadius.circular(15),
+                              border: Border.all(color: Colors.grey),
+                              color: themeProvider.darkTheme
+                                  ? AppColors.darkThemeBoxColor
+                                  : AppColors.whiteColor,
+                            ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(

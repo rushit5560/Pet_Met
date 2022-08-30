@@ -4,10 +4,16 @@ import 'package:pet_met/controllers/locate_screen_controller.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/background_widgets.dart';
+import 'package:provider/provider.dart';
+
+import '../../services/providers/dark_theme_provider.dart';
 
 class LocateScreen extends StatelessWidget {
   LocateScreen({Key? key}) : super(key: key);
   final locateScreenController = Get.put(LocateScreenController());
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +68,6 @@ class LocateScreen extends StatelessWidget {
                 ),
               ],
             )
-
-
           ],
         ),
       ),

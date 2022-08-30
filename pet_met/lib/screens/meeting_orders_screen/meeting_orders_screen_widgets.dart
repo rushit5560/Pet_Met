@@ -3,11 +3,16 @@ import 'package:get/get.dart';
 import 'package:pet_met/controllers/meeting_orders_screen_controller.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
+import 'package:provider/provider.dart';
+import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/app_images.dart';
 
 class MeetingOrderListModule extends StatelessWidget {
   MeetingOrderListModule({Key? key}) : super(key: key);
   final screenController = Get.find<MeetingOrdersScreenController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {

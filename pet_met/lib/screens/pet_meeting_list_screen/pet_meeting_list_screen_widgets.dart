@@ -9,12 +9,17 @@ import 'package:pet_met/screens/user_profile_screen/user_profile_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/app_images.dart';
 
 class PetMeetingListModule extends StatelessWidget {
   PetMeetingListModule({Key? key}) : super(key: key);
   final screenController = Get.find<PetMeetingListScreenController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -56,15 +61,15 @@ class PetMeetingListModule extends StatelessWidget {
               //     fit: BoxFit.cover),
             ),
             child: GestureDetector(
-              onTap: (){
+              onTap: () {
                 // Get.toNamed(AppRouteNames.userProfileRoute);
                 Get.to(
-                        ()=> PetMeetingDetailsScreen(),
-                    arguments: [
-                      screenController.subCatPetList[i].id,
-                      screenController.subCatPetList[i].userid,
-                      screenController.subCatPetList[i].categoryId,
-                    ],
+                  () => PetMeetingDetailsScreen(),
+                  arguments: [
+                    screenController.subCatPetList[i].id,
+                    screenController.subCatPetList[i].userid,
+                    screenController.subCatPetList[i].categoryId,
+                  ],
                 );
               },
               child: ClipRRect(
@@ -74,11 +79,14 @@ class PetMeetingListModule extends StatelessWidget {
                 //   fit: BoxFit.cover,
                 // )
                 child: Image.network(
-                  ApiUrl.apiImagePath + "asset/uploads/petimage/" + screenController.subCatPetList[i].image,
-                  errorBuilder: (context, st, ob){
+                  ApiUrl.apiImagePath +
+                      "asset/uploads/petimage/" +
+                      screenController.subCatPetList[i].image,
+                  errorBuilder: (context, st, ob) {
                     return Image.asset(AppImages.petMetLogoImg);
                   },
-                  fit: BoxFit.cover,),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
@@ -96,11 +104,11 @@ class PetMeetingListModule extends StatelessWidget {
               ),
             ),
             child: GestureDetector(
-              onTap: (){
+              onTap: () {
                 //Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
                 log('Follow Userid: ${screenController.subCatPetList[i].userid}');
                 log('Follow Categoryid: ${screenController.subCatPetList[i].categoryId}');
-                Get.to(()=> UserProfileScreen(),
+                Get.to(() => UserProfileScreen(),
                     transition: Transition.native,
                     duration: const Duration(milliseconds: 500),
                     arguments: [

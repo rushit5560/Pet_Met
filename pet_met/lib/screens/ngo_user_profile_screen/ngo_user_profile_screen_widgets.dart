@@ -12,10 +12,16 @@ import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
 import 'package:pet_met/utils/validations.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../services/providers/dark_theme_provider.dart';
+
 class BackgroundImage extends StatelessWidget {
-  const BackgroundImage({Key? key}) : super(key: key);
+  BackgroundImage({Key? key}) : super(key: key);
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +67,9 @@ class UploadImageModule extends StatelessWidget {
 
   final screenController = Get.find<NgoUserProfileScreenController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -103,7 +112,7 @@ class UploadImageModule extends StatelessWidget {
                               : screenController.imageFile!,
                           width: double.infinity,
                           height: screenController.size.height * 0.2,
-                          fit: BoxFit.cover,
+                          fit: BoxFit.fill,
                         ),
                       ),
 
@@ -329,6 +338,9 @@ class NameOfNgoListModule extends StatelessWidget {
   NameOfNgoListModule({Key? key}) : super(key: key);
   final screenController = Get.find<NgoUserProfileScreenController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -453,18 +465,22 @@ class NameOfNgoListModule extends StatelessWidget {
                                                 height: 50,
                                                 width: 50,
                                                 fit: BoxFit.fill,
-                                                errorBuilder: (context, er, st) {
+                                                errorBuilder:
+                                                    (context, er, st) {
                                                   return Image.asset(
                                                     AppImages.petMetLogoImg,
                                                     fit: BoxFit.fill,
                                                   );
                                                 },
                                               )
-                                            : Image.asset(AppImages.petMetLogoImg)
+                                            : Image.asset(
+                                                AppImages.petMetLogoImg)
                                     : index == 2
-                                        ? screenController.ngoPictureFile3 != null
+                                        ? screenController.ngoPictureFile3 !=
+                                                null
                                             ? Image.file(
-                                                screenController.ngoPictureFile3!,
+                                                screenController
+                                                    .ngoPictureFile3!,
                                                 height: 65,
                                                 fit: BoxFit.fill,
                                               )
@@ -486,7 +502,8 @@ class NameOfNgoListModule extends StatelessWidget {
                                                 : Image.asset(
                                                     AppImages.petMetLogoImg)
                                         : index == 3
-                                            ? screenController.ngoPictureFile4 !=
+                                            ? screenController
+                                                        .ngoPictureFile4 !=
                                                     null
                                                 ? Image.file(
                                                     screenController
@@ -535,10 +552,12 @@ class NameOfNgoListModule extends StatelessWidget {
                                                             errorBuilder:
                                                                 (context, er,
                                                                     st) {
-                                                              return Image.asset(
+                                                              return Image
+                                                                  .asset(
                                                                 AppImages
                                                                     .petMetLogoImg,
-                                                                fit: BoxFit.fill,
+                                                                fit:
+                                                                    BoxFit.fill,
                                                               );
                                                             },
                                                           )
@@ -839,6 +858,9 @@ class EmailTextFieldModule extends StatelessWidget {
 
   final screenController = Get.find<NgoUserProfileScreenController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -849,9 +871,9 @@ class EmailTextFieldModule extends StatelessWidget {
             Text(
               "Email",
               style: TextStyle(
-                color:  themeProvider.darkTheme
-                  ? AppColors.whiteColor
-                  : AppColors.darkThemeColor,
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.darkThemeColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -878,6 +900,9 @@ class NameTextFieldModule extends StatelessWidget {
   NameTextFieldModule({Key? key}) : super(key: key);
 
   final screenController = Get.find<NgoUserProfileScreenController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -919,6 +944,9 @@ class NgoBankAccountNumberTextFieldModule extends StatelessWidget {
 
   final screenController = Get.find<NgoUserProfileScreenController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -958,6 +986,9 @@ class NgoBankAccountNumberTextFieldModule extends StatelessWidget {
 class IfscCodeTextFieldModule extends StatelessWidget {
   IfscCodeTextFieldModule({Key? key}) : super(key: key);
   final screenController = Get.find<NgoUserProfileScreenController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -1000,6 +1031,9 @@ class NgoAddressTextFieldModule extends StatelessWidget {
 
   final screenController = Get.find<NgoUserProfileScreenController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -1039,6 +1073,9 @@ class NgoContactTextFieldModule extends StatelessWidget {
   NgoContactTextFieldModule({Key? key}) : super(key: key);
 
   final screenController = Get.find<NgoUserProfileScreenController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -1081,6 +1118,9 @@ class NgoDetailsTextFieldModule extends StatelessWidget {
 
   final screenController = Get.find<NgoUserProfileScreenController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -1120,6 +1160,8 @@ class InstagramTextFieldModule extends StatelessWidget {
   InstagramTextFieldModule({Key? key}) : super(key: key);
 
   final screenController = Get.find<NgoUserProfileScreenController>();
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -1161,6 +1203,9 @@ class FacebookLinkTextFieldModule extends StatelessWidget {
 
   final screenController = Get.find<NgoUserProfileScreenController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -1200,7 +1245,8 @@ class IsActiveTextFieldModule extends StatelessWidget {
   IsActiveTextFieldModule({Key? key}) : super(key: key);
 
   final screenController = Get.find<NgoUserProfileScreenController>();
-
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -1327,7 +1373,8 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
   OpenAndCloseShopTimeModule({Key? key}) : super(key: key);
 
   final screenController = Get.find<NgoUserProfileScreenController>();
-
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -1433,9 +1480,11 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                                   : "No time selected!",
                               // textAlign: TextAlign.center,
                               maxLines: 1,
-                              style: TextStyle(color: themeProvider.darkTheme
-                                  ? AppColors.whiteColor
-                                  : AppColors.darkThemeColor,)),
+                              style: TextStyle(
+                                color: themeProvider.darkTheme
+                                    ? AppColors.whiteColor
+                                    : AppColors.darkThemeColor,
+                              )),
                         ),
                         IconButton(
                           icon: Icon(
@@ -1559,9 +1608,11 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                                   : "No time selected!",
                               // textAlign: TextAlign.center,
                               maxLines: 1,
-                              style: TextStyle(color: themeProvider.darkTheme
-                                  ? AppColors.whiteColor
-                                  : AppColors.darkThemeColor,)),
+                              style: TextStyle(
+                                color: themeProvider.darkTheme
+                                    ? AppColors.whiteColor
+                                    : AppColors.darkThemeColor,
+                              )),
                         ),
                         IconButton(
                           icon: Icon(

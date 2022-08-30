@@ -7,8 +7,10 @@ import 'package:pet_met/controllers/support_controller.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../../utils/app_colors.dart';
+import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 import '../../utils/common_widgets/custom_appbar.dart';
 import '../../utils/enums.dart';
@@ -17,6 +19,8 @@ class SupportScreen extends StatelessWidget {
   SupportScreen({Key? key}) : super(key: key);
 
   final controller = Get.put(SupportController());
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +64,6 @@ class SupportScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   SizedBox(height: 4.h),
-
                                   Image.network(
                                     ApiUrl.apiImagePath +
                                         controller.featuredImage,

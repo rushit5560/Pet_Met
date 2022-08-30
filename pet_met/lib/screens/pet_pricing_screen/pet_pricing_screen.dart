@@ -10,14 +10,19 @@ import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/enums.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 
 class PetPricingScreen extends StatelessWidget {
   PetPricingScreen({Key? key}) : super(key: key);
   final controller = Get.put(PetPricingController());
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -54,11 +59,13 @@ class PetPricingScreen extends StatelessWidget {
                               child: Column(
                                 children: [
                                   SizedBox(
-                                      height: controller.size.height * 0.25),
-                                  Container(
-                                    height: controller.size.height * 0.4,
+                                      height: controller.size.height * 0.2),
+                                  SizedBox(
+                                    height: controller.size.height * 0.5,
                                     width: double.infinity,
                                     child: ListView.separated(
+                                      itemCount: controller.planData.length,
+                                      scrollDirection: Axis.horizontal,
                                       itemBuilder: (context, index) {
                                         return PetTrackerPriceModule(
                                           index: index,
@@ -77,8 +84,6 @@ class PetPricingScreen extends StatelessWidget {
                                       separatorBuilder: (context, ind) {
                                         return SizedBox(width: 12);
                                       },
-                                      itemCount: controller.planData.length,
-                                      scrollDirection: Axis.horizontal,
                                     ),
 
                                     // Row(

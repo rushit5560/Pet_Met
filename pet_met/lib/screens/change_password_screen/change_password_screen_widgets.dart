@@ -6,19 +6,24 @@ import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
 import 'package:pet_met/utils/validations.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../services/providers/dark_theme_provider.dart';
+
 class BackgroundImage extends StatelessWidget {
-  const BackgroundImage({Key? key}) : super(key: key);
+  BackgroundImage({Key? key}) : super(key: key);
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.topRight,
-      child: Image.asset(
-          themeProvider.darkTheme ?
-          AppImages.backgroundImgDark : AppImages.backgroundImgLight
-      ),
+      child: Image.asset(themeProvider.darkTheme
+          ? AppImages.backgroundImgDark
+          : AppImages.backgroundImgLight),
     );
   }
 }
@@ -79,6 +84,8 @@ class CurrentPasswordTextField extends StatelessWidget {
   CurrentPasswordTextField({Key? key}) : super(key: key);
 
   final screenController = Get.find<ChangePasswordScreenController>();
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -100,8 +107,8 @@ class CurrentPasswordTextField extends StatelessWidget {
           ],
         ),
         SizedBox(height: 1.5.h),
-        Obx(()=>
-           Stack(
+        Obx(
+          () => Stack(
             children: [
               Container(
                 height: screenController.size.height * 0.05,
@@ -138,42 +145,43 @@ class CurrentPasswordTextField extends StatelessWidget {
                   decoration: TextDecoration.none,
                 ),
                 decoration: InputDecoration(
-                  fillColor: themeProvider.darkTheme
-                      ? AppColors.darkThemeBoxColor
-                      : AppColors.whiteColor,
-                  filled: true,
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 15),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-                  ),
-                  hintText: "Current Password",
-                  hintStyle: TextStyle(
-                    color: themeProvider.darkTheme
-                        ? AppColors.whiteColor
-                        : AppColors.greyTextColor,
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  suffixIcon: Obx(
-                        () => GestureDetector(
-                      onTap: () {
-                        screenController.isPasswordVisible.value =
-                        !screenController.isPasswordVisible.value;
-                      },
-                      child: Icon(
-                          screenController.isPasswordVisible.value
-                              ? Icons.visibility_off_rounded
-                              : Icons.visibility_rounded,
-                          size: 20,
-                          color: Colors.grey),
+                    fillColor: themeProvider.darkTheme
+                        ? AppColors.darkThemeBoxColor
+                        : AppColors.whiteColor,
+                    filled: true,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide:
+                          const BorderSide(width: 0, style: BorderStyle.none),
                     ),
-                  )
-                ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide:
+                          const BorderSide(width: 0, style: BorderStyle.none),
+                    ),
+                    hintText: "Current Password",
+                    hintStyle: TextStyle(
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.greyTextColor,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w400,
+                    ),
+                    suffixIcon: Obx(
+                      () => GestureDetector(
+                        onTap: () {
+                          screenController.isPasswordVisible.value =
+                              !screenController.isPasswordVisible.value;
+                        },
+                        child: Icon(
+                            screenController.isPasswordVisible.value
+                                ? Icons.visibility_off_rounded
+                                : Icons.visibility_rounded,
+                            size: 20,
+                            color: Colors.grey),
+                      ),
+                    )),
               ),
             ],
           ),
@@ -187,6 +195,9 @@ class NewPasswordTextField extends StatelessWidget {
   NewPasswordTextField({Key? key}) : super(key: key);
 
   final screenController = Get.find<ChangePasswordScreenController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -208,8 +219,8 @@ class NewPasswordTextField extends StatelessWidget {
           ],
         ),
         SizedBox(height: 1.5.h),
-        Obx(()=>
-           Stack(
+        Obx(
+          () => Stack(
             children: [
               Container(
                 height: screenController.size.height * 0.05,
@@ -246,32 +257,34 @@ class NewPasswordTextField extends StatelessWidget {
                   decoration: TextDecoration.none,
                 ),
                 decoration: InputDecoration(
-                  fillColor: themeProvider.darkTheme
-                      ? AppColors.darkThemeBoxColor
-                      : AppColors.whiteColor,
-                  filled: true,
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 15),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-                  ),
-                  hintText: "New Password",
-                  hintStyle: TextStyle(
-                    color: themeProvider.darkTheme
-                        ? AppColors.whiteColor
-                        : AppColors.greyTextColor,
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.w400,
-                  ),
+                    fillColor: themeProvider.darkTheme
+                        ? AppColors.darkThemeBoxColor
+                        : AppColors.whiteColor,
+                    filled: true,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide:
+                          const BorderSide(width: 0, style: BorderStyle.none),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide:
+                          const BorderSide(width: 0, style: BorderStyle.none),
+                    ),
+                    hintText: "New Password",
+                    hintStyle: TextStyle(
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.greyTextColor,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w400,
+                    ),
                     suffixIcon: Obx(
-                          () => GestureDetector(
+                      () => GestureDetector(
                         onTap: () {
                           screenController.isNewPasswordVisible.value =
-                          !screenController.isNewPasswordVisible.value;
+                              !screenController.isNewPasswordVisible.value;
                         },
                         child: Icon(
                             screenController.isNewPasswordVisible.value
@@ -280,8 +293,7 @@ class NewPasswordTextField extends StatelessWidget {
                             size: 20,
                             color: Colors.grey),
                       ),
-                    )
-                ),
+                    )),
               ),
             ],
           ),
@@ -295,6 +307,8 @@ class ConfirmPasswordTextField extends StatelessWidget {
   ConfirmPasswordTextField({Key? key}) : super(key: key);
 
   final screenController = Get.find<ChangePasswordScreenController>();
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -316,8 +330,8 @@ class ConfirmPasswordTextField extends StatelessWidget {
           ],
         ),
         SizedBox(height: 1.5.h),
-        Obx(()=>
-           Stack(
+        Obx(
+          () => Stack(
             children: [
               Container(
                 height: screenController.size.height * 0.05,
@@ -339,7 +353,8 @@ class ConfirmPasswordTextField extends StatelessWidget {
               TextFormField(
                 controller: screenController.confirmPasswordController,
                 obscureText: screenController.isConfirmPasswordVisible.value,
-                validator: (val) => Validations().validateConfirmPassword(val!, screenController.newPasswordController.text),
+                validator: (val) => Validations().validateConfirmPassword(
+                    val!, screenController.newPasswordController.text),
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.visiblePassword,
                 cursorColor: themeProvider.darkTheme
@@ -354,32 +369,34 @@ class ConfirmPasswordTextField extends StatelessWidget {
                   decoration: TextDecoration.none,
                 ),
                 decoration: InputDecoration(
-                  fillColor: themeProvider.darkTheme
-                      ? AppColors.darkThemeBoxColor
-                      : AppColors.whiteColor,
-                  filled: true,
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 15),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-                  ),
-                  hintText: "Confirm Password",
-                  hintStyle: TextStyle(
-                    color: themeProvider.darkTheme
-                        ? AppColors.whiteColor
-                        : AppColors.greyTextColor,
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.w400,
-                  ),
+                    fillColor: themeProvider.darkTheme
+                        ? AppColors.darkThemeBoxColor
+                        : AppColors.whiteColor,
+                    filled: true,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide:
+                          const BorderSide(width: 0, style: BorderStyle.none),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide:
+                          const BorderSide(width: 0, style: BorderStyle.none),
+                    ),
+                    hintText: "Confirm Password",
+                    hintStyle: TextStyle(
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.greyTextColor,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.w400,
+                    ),
                     suffixIcon: Obx(
-                          () => GestureDetector(
+                      () => GestureDetector(
                         onTap: () {
                           screenController.isConfirmPasswordVisible.value =
-                          !screenController.isConfirmPasswordVisible.value;
+                              !screenController.isConfirmPasswordVisible.value;
                         },
                         child: Icon(
                             screenController.isConfirmPasswordVisible.value
@@ -388,8 +405,7 @@ class ConfirmPasswordTextField extends StatelessWidget {
                             size: 20,
                             color: Colors.grey),
                       ),
-                    )
-                ),
+                    )),
               ),
             ],
           ),
@@ -399,56 +415,53 @@ class ConfirmPasswordTextField extends StatelessWidget {
   }
 }
 
-
 class SaveButton extends StatelessWidget {
   SaveButton({Key? key}) : super(key: key);
   final screenController = Get.find<ChangePasswordScreenController>();
 
-
   @override
   Widget build(BuildContext context) {
     return
-    // screenController.isLoading.value ?
-    // SizedBox(
-    //   // width: double.infinity,
-    //   height: 60,
-    //   child: LoadingAnimationWidget.staggeredDotsWave(
-    //     color: AppColors.accentTextColor,
-    //     size: 40,
-    //   ),
-    // ):
-      Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-        child: GestureDetector(
-          onTap: () {
-            // controller.submitLoginForm();
-            if(screenController.formKey.currentState!.validate()){
-              screenController.changePasswordFunction();
-            }
-
-          },
-          child: Container(
-            width: double.infinity,
-            height: 60,
-            //margin: EdgeInsets.symmetric(horizontal: 20),
-            decoration: const BoxDecoration(
-              color: AppColors.accentColor,
-              borderRadius: BorderRadius.all(
-                Radius.circular(12),
-              ),
+        // screenController.isLoading.value ?
+        // SizedBox(
+        //   // width: double.infinity,
+        //   height: 60,
+        //   child: LoadingAnimationWidget.staggeredDotsWave(
+        //     color: AppColors.accentTextColor,
+        //     size: 40,
+        //   ),
+        // ):
+        Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+      child: GestureDetector(
+        onTap: () {
+          // controller.submitLoginForm();
+          if (screenController.formKey.currentState!.validate()) {
+            screenController.changePasswordFunction();
+          }
+        },
+        child: Container(
+          width: double.infinity,
+          height: 60,
+          //margin: EdgeInsets.symmetric(horizontal: 20),
+          decoration: const BoxDecoration(
+            color: AppColors.accentColor,
+            borderRadius: BorderRadius.all(
+              Radius.circular(12),
             ),
-            child: Center(
-              child: Text(
-                "Save",
-                style: TextStyle(
-                  color: AppColors.whiteColor,
-                  fontSize: 15.sp,
-                  fontWeight: FontWeight.w600,
-                ),
+          ),
+          child: Center(
+            child: Text(
+              "Save",
+              style: TextStyle(
+                color: AppColors.whiteColor,
+                fontSize: 15.sp,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),
         ),
+      ),
     );
   }
 }

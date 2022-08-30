@@ -4,12 +4,17 @@ import 'package:get/get.dart';
 import 'package:pet_met/controllers/faq_controller.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/app_images.dart';
 
 class BackgroundCurve extends StatelessWidget {
-  const BackgroundCurve({Key? key}) : super(key: key);
+  BackgroundCurve({Key? key}) : super(key: key);
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +48,8 @@ class FaqListModule extends StatelessWidget {
   }
 
   Widget faqQuestionsListItem(int index) {
+    DarkThemeProvider themeProvider =
+        Provider.of<DarkThemeProvider>(Get.context!);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18),
       child: Container(
@@ -58,12 +65,11 @@ class FaqListModule extends StatelessWidget {
             child: Text(
               controller.faqList[index].question,
               style: TextStyle(
-                fontSize: 14.sp,
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.blackTextColor,
-                fontWeight: FontWeight.w600
-              ),
+                  fontSize: 14.sp,
+                  color: themeProvider.darkTheme
+                      ? AppColors.whiteColor
+                      : AppColors.blackTextColor,
+                  fontWeight: FontWeight.w600),
             ).commonSymmetricPadding(horizontal: 10),
           ),
           theme: ExpandableThemeData(

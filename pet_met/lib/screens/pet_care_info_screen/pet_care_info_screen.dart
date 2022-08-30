@@ -26,6 +26,8 @@ class PetCareInfoScreen extends StatelessWidget {
   PetCareInfoScreen({Key? key}) : super(key: key);
 
   final controller = Get.put(PetCareInfoController());
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {

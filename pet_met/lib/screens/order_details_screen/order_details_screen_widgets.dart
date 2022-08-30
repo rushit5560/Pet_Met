@@ -6,10 +6,16 @@ import 'package:pet_met/screens/payment_failed_screen/payment_failed_screen.dart
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../services/providers/dark_theme_provider.dart';
+
 class BackgroundCurve extends StatelessWidget {
-  const BackgroundCurve({Key? key}) : super(key: key);
+  BackgroundCurve({Key? key}) : super(key: key);
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +31,8 @@ class BackgroundCurve extends StatelessWidget {
 class AddressModule extends StatelessWidget {
   AddressModule({Key? key}) : super(key: key);
   final addressController = Get.find<AddressController>();
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -108,8 +116,9 @@ class AddressModule extends StatelessWidget {
 }
 
 class PaymentDetailsModule extends StatelessWidget {
-  const PaymentDetailsModule({Key? key}) : super(key: key);
-
+  PaymentDetailsModule({Key? key}) : super(key: key);
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -196,8 +205,9 @@ class PaymentDetailsModule extends StatelessWidget {
 }
 
 class OrderDetailsModule extends StatelessWidget {
-  const OrderDetailsModule({Key? key}) : super(key: key);
-
+  OrderDetailsModule({Key? key}) : super(key: key);
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -220,7 +230,7 @@ class OrderDetailsModule extends StatelessWidget {
         SizedBox(height: 1.5.h),
         GestureDetector(
           onTap: () {
-            Get.to(()=> PaymentFailedScreen(),
+            Get.to(() => PaymentFailedScreen(),
                 transition: Transition.native,
                 duration: const Duration(milliseconds: 500));
           },
@@ -340,6 +350,9 @@ class OrderCountingModule extends StatelessWidget {
   OrderCountingModule({Key? key}) : super(key: key);
 
   final orderController = Get.find<OrderDetailsController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {

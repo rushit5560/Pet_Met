@@ -21,8 +21,10 @@ import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
 
 class BackgroundImage extends StatelessWidget {
-  const BackgroundImage({Key? key}) : super(key: key);
+  BackgroundImage({Key? key}) : super(key: key);
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -66,6 +68,8 @@ class UploadImageModule extends StatelessWidget {
   UploadImageModule({Key? key}) : super(key: key);
 
   final screenController = Get.find<ShopUserProfileScreenController>();
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -336,6 +340,9 @@ class AddShopOffersListModule extends StatelessWidget {
   AddShopOffersListModule({Key? key}) : super(key: key);
   final screenController = Get.find<ShopUserProfileScreenController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -377,45 +384,46 @@ class AddShopOffersListModule extends StatelessWidget {
                             Radius.circular(5),
                           ),
                         ),
+                        padding: const EdgeInsets.all(5),
                         child: index == 0
                             ? screenController.shopOfferFile1 != null
                                 ? Image.file(
                                     screenController.shopOfferFile1!,
                                     height: 65,
-                                    fit: BoxFit.fill,
+                                    fit: BoxFit.contain,
                                   )
                                 : screenController.offerImage1 != null
                                     ? Image.network(
                                         screenController.offerImage1!,
                                         height: 65,
-                                        fit: BoxFit.fill,
+                                        fit: BoxFit.contain,
                                         errorBuilder: (context, er, st) {
                                           return Image.asset(
                                             AppImages.petMetLogoImg,
-                                            fit: BoxFit.fill,
+                                            fit: BoxFit.contain,
                                           );
                                         },
                                       )
                                     : Image.asset(
                                         AppImages.petMetLogoImg,
-                                        fit: BoxFit.fill,
+                                        fit: BoxFit.contain,
                                       )
                             : index == 1
                                 ? screenController.shopOfferFile2 != null
                                     ? Image.file(
                                         screenController.shopOfferFile2!,
                                         height: 65,
-                                        fit: BoxFit.fill,
+                                        fit: BoxFit.contain,
                                       )
                                     : screenController.offerImage2 != null
                                         ? Image.network(
                                             screenController.offerImage2!,
                                             height: 65,
-                                            fit: BoxFit.fill,
+                                            fit: BoxFit.contain,
                                             errorBuilder: (context, er, st) {
                                               return Image.asset(
                                                 AppImages.petMetLogoImg,
-                                                fit: BoxFit.fill,
+                                                fit: BoxFit.contain,
                                               );
                                             },
                                           )
@@ -425,18 +433,18 @@ class AddShopOffersListModule extends StatelessWidget {
                                         ? Image.file(
                                             screenController.shopOfferFile3!,
                                             height: 65,
-                                            fit: BoxFit.fill,
+                                            fit: BoxFit.contain,
                                           )
                                         : screenController.offerImage3 != null
                                             ? Image.network(
                                                 screenController.offerImage3!,
                                                 height: 65,
-                                                fit: BoxFit.fill,
+                                                fit: BoxFit.contain,
                                                 errorBuilder:
                                                     (context, er, st) {
                                                   return Image.asset(
                                                     AppImages.petMetLogoImg,
-                                                    fit: BoxFit.fill,
+                                                    fit: BoxFit.contain,
                                                   );
                                                 },
                                               )
@@ -449,7 +457,7 @@ class AddShopOffersListModule extends StatelessWidget {
                                                 screenController
                                                     .shopOfferFile4!,
                                                 height: 65,
-                                                fit: BoxFit.fill,
+                                                fit: BoxFit.contain,
                                               )
                                             : screenController.offerImage4 !=
                                                     null
@@ -457,12 +465,12 @@ class AddShopOffersListModule extends StatelessWidget {
                                                     screenController
                                                         .offerImage4!,
                                                     height: 65,
-                                                    fit: BoxFit.fill,
+                                                    fit: BoxFit.contain,
                                                     errorBuilder:
                                                         (context, er, st) {
                                                       return Image.asset(
                                                         AppImages.petMetLogoImg,
-                                                        fit: BoxFit.fill,
+                                                        fit: BoxFit.contain,
                                                       );
                                                     },
                                                   )
@@ -475,7 +483,7 @@ class AddShopOffersListModule extends StatelessWidget {
                                                     screenController
                                                         .shopOfferFile5!,
                                                     height: 65,
-                                                    fit: BoxFit.fill,
+                                                    fit: BoxFit.contain,
                                                   )
                                                 : screenController
                                                             .offerImage5 !=
@@ -484,13 +492,13 @@ class AddShopOffersListModule extends StatelessWidget {
                                                         screenController
                                                             .offerImage5!,
                                                         height: 65,
-                                                        fit: BoxFit.fill,
+                                                        fit: BoxFit.contain,
                                                         errorBuilder:
                                                             (context, er, st) {
                                                           return Image.asset(
                                                             AppImages
                                                                 .petMetLogoImg,
-                                                            fit: BoxFit.fill,
+                                                            fit: BoxFit.contain,
                                                           );
                                                         },
                                                       )
@@ -980,6 +988,9 @@ class MeetingAvailabilityModule extends StatelessWidget {
 
   final screenController = Get.find<ShopUserProfileScreenController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -1164,6 +1175,9 @@ class EmailTextFieldModule extends StatelessWidget {
 
   final screenController = Get.find<ShopUserProfileScreenController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -1204,6 +1218,9 @@ class ShopNameTextFieldModule extends StatelessWidget {
 
   final screenController = Get.find<ShopUserProfileScreenController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -1242,6 +1259,9 @@ class ShopNameTextFieldModule extends StatelessWidget {
 class ContactNumberTextFieldModule extends StatelessWidget {
   ContactNumberTextFieldModule({Key? key}) : super(key: key);
   final screenController = Get.find<ShopUserProfileScreenController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -1283,6 +1303,9 @@ class AddressTextFieldModule extends StatelessWidget {
 
   final screenController = Get.find<ShopUserProfileScreenController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -1322,6 +1345,9 @@ class DetailsTextFieldModule extends StatelessWidget {
   DetailsTextFieldModule({Key? key}) : super(key: key);
 
   final screenController = Get.find<ShopUserProfileScreenController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -1363,6 +1389,8 @@ class InstagramTextFieldModule extends StatelessWidget {
 
   final screenController = Get.find<ShopUserProfileScreenController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -1402,6 +1430,8 @@ class FacebookLinkTextFieldModule extends StatelessWidget {
   FacebookLinkTextFieldModule({Key? key}) : super(key: key);
 
   final screenController = Get.find<ShopUserProfileScreenController>();
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -1446,6 +1476,8 @@ class CommonTextFieldModule extends StatelessWidget {
   CommonTextFieldModule({this.fieldName, this.fieldHinttext});
 
   final screenController = Get.find<ShopUserProfileScreenController>();
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -1485,6 +1517,9 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
   OpenAndCloseShopTimeModule({Key? key}) : super(key: key);
 
   final screenController = Get.find<ShopUserProfileScreenController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {

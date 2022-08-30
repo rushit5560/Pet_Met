@@ -4,10 +4,16 @@ import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/controllers/load_file_controller.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../services/providers/dark_theme_provider.dart';
+
 class BackgroundCurve extends StatelessWidget {
-  const BackgroundCurve({Key? key}) : super(key: key);
+  BackgroundCurve({Key? key}) : super(key: key);
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {

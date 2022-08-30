@@ -4,8 +4,10 @@ import 'package:pet_met/controllers/address_controller.dart';
 import 'package:pet_met/controllers/order_details_controller.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 import '../../utils/enums.dart';
@@ -16,6 +18,9 @@ class OrderDetailsScreen extends StatelessWidget {
 
   final controller = Get.put(OrderDetailsController());
   final addressController = Get.put(AddressController());
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +40,7 @@ class OrderDetailsScreen extends StatelessWidget {
               topPad: controller.size.height * 0.45,
               rightPad: -controller.size.width * 0.25,
             ),
-            const BackgroundCurve(),
+            BackgroundCurve(),
             Column(
               children: [
                 CustomAppBar(
@@ -59,7 +64,7 @@ class OrderDetailsScreen extends StatelessWidget {
                               // const PaymentDetailsModule(),
                               SizedBox(height: 1.5.h),
 
-                              const OrderDetailsModule(),
+                              OrderDetailsModule(),
                             ],
                           ),
                           // const Spacer(),

@@ -3,10 +3,12 @@ import 'package:get/get.dart';
 import 'package:pet_met/controllers/about_controller.dart';
 import 'package:pet_met/screens/about_screen/about_screen_widgets.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
+import 'package:provider/provider.dart';
 
 import 'package:sizer/sizer.dart';
 
 import '../../../utils/app_colors.dart';
+import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 import '../../utils/common_widgets/custom_appbar.dart';
 import '../../utils/enums.dart';
@@ -15,6 +17,8 @@ class AboutScreen extends StatelessWidget {
   AboutScreen({Key? key}) : super(key: key);
 
   final controller = Get.put(AboutController());
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +38,7 @@ class AboutScreen extends StatelessWidget {
               topPad: controller.size.height * 0.45,
               rightPad: -controller.size.width * 0.25,
             ),
-            const BackgroundCurve(),
+            BackgroundCurve(),
             Column(
               children: [
                 CustomAppBar(

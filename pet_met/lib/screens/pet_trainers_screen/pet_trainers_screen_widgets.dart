@@ -79,7 +79,6 @@ class SearchTrainersTextFieldModule extends StatelessWidget {
               ),
               suffixIcon: GestureDetector(
                 onTap: () async {
-
                   // if(screenController.searchFieldController.text.trim().isEmpty){
                   //   screenController.isLoading(true);
                   //   screenController.searchSubCatList.clear();
@@ -89,7 +88,7 @@ class SearchTrainersTextFieldModule extends StatelessWidget {
                   // }
                   // hideKeyboard();
 
-                  if(screenController.formKey.currentState!.validate()){
+                  if (screenController.formKey.currentState!.validate()) {
                     screenController.searchFieldController.clear();
                   }
                 },
@@ -110,7 +109,6 @@ class SearchTrainersTextFieldModule extends StatelessWidget {
     );
   }
 }
-
 
 class PetTrainerListModule extends StatelessWidget {
   PetTrainerListModule({Key? key}) : super(key: key);
@@ -135,7 +133,7 @@ class PetTrainerListModule extends StatelessWidget {
     String imgUrl = ApiUrl.apiImagePath + trainerSingleItem.image;
     return GestureDetector(
       onTap: () {
-        Get.to(()=> PetTrainersDetailsScreen(),
+        Get.to(() => PetTrainersDetailsScreen(),
             transition: Transition.native,
             duration: const Duration(milliseconds: 500),
             arguments: trainerSingleItem.id);
@@ -143,7 +141,8 @@ class PetTrainerListModule extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: themeProvider.darkTheme ? AppColors.darkThemeColor : Colors.white,
+          color:
+              themeProvider.darkTheme ? AppColors.darkThemeColor : Colors.white,
           boxShadow: const [
             BoxShadow(
               color: Colors.grey,
@@ -164,7 +163,7 @@ class PetTrainerListModule extends StatelessWidget {
                   height: 65,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    border: Border.all(color: Colors.grey),
+                    // border: Border.all(color: Colors.grey),
                     // boxShadow: const [
                     //   BoxShadow(
                     //       color: Colors.grey,
@@ -176,11 +175,10 @@ class PetTrainerListModule extends StatelessWidget {
                   ),
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
-                      child: Image.network(imgUrl,
-                          fit: BoxFit.cover,
+                      child: Image.network(imgUrl, fit: BoxFit.cover,
                           errorBuilder: (context, er, ob) {
-                            return Image.asset(AppImages.petMetLogoImg);
-                          })),
+                        return Image.asset(AppImages.petMetLogoImg);
+                      })),
                 ),
                 SizedBox(width: 3.w),
                 Expanded(
@@ -227,11 +225,11 @@ class PetTrainerListModule extends StatelessWidget {
                 size: 18,
               ),
             )*/
-            Icon(
-              Icons.verified,
-              color: Colors.green,
-              size: 19,
-            )
+                Icon(
+                    Icons.verified,
+                    color: AppColors.accentColor,
+                    size: 19,
+                  )
                 : Container(),
           ],
         ).commonAllSidePadding(padding: 2.w),

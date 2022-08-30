@@ -8,12 +8,17 @@ import 'package:pet_met/utils/common_widgets/background_widgets.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/enums.dart';
+import 'package:provider/provider.dart';
 
+import '../../services/providers/dark_theme_provider.dart';
 import 'pet_trainers_screen_widgets.dart';
 
 class PetTrainersScreen extends StatelessWidget {
   PetTrainersScreen({Key? key}) : super(key: key);
   final petTrainersScreenController = Get.put(PetTrainersScreenController());
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +49,12 @@ class PetTrainersScreen extends StatelessWidget {
                   child: petTrainersScreenController.isLoading.value
                       ? const CustomAnimationLoader()
                       : Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          //SearchTrainersTextFieldModule(),
-                          Expanded(child: PetTrainerListModule()),
-                        ],
-                      ),
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SearchTrainersTextFieldModule(),
+                            Expanded(child: PetTrainerListModule()),
+                          ],
+                        ),
                 ),
               ],
             ),

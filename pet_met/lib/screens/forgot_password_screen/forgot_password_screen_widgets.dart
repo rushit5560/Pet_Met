@@ -6,10 +6,16 @@ import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
 import 'package:pet_met/utils/validations.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../services/providers/dark_theme_provider.dart';
+
 class BackgroundCurve extends StatelessWidget {
-  const BackgroundCurve({Key? key}) : super(key: key);
+  BackgroundCurve({Key? key}) : super(key: key);
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +51,9 @@ class ForgotPasswordModule extends StatelessWidget {
   ForgotPasswordModule({Key? key}) : super(key: key);
 
   final controller = Get.find<ForgotPasswordController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {

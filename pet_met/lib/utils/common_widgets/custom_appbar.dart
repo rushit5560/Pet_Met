@@ -26,7 +26,8 @@ class CustomAppBar extends StatelessWidget {
   final AppBarOption appBarOption;
   final indexController = Get.put(IndexScreenController());
 
-  final themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -60,17 +61,17 @@ class CustomAppBar extends StatelessWidget {
           /*Expanded(
             child:*/
           isTitleText!
-                ? Text(
-              title,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontSize: 22,
-                color: AppColors.accentTextColor,
-                fontWeight: FontWeight.bold,
-              ),
-            )
-                : centerWidget!,
+              ? Text(
+                  title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontSize: 22,
+                    color: AppColors.accentTextColor,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+              : centerWidget!,
           // ),
 
           // Right Side Button Module
@@ -101,12 +102,12 @@ class CustomAppBar extends StatelessWidget {
     }
   }
 
-  trailingWidget1(){
+  trailingWidget1() {
     if (appBarOption == AppBarOption.singleBackButtonOption) {
       return Image.asset(
         AppIcons.profilePetImg,
       );
-    }else {
+    } else {
       return Container();
     }
   }

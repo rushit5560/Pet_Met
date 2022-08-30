@@ -19,6 +19,9 @@ class PetTrainerBannerImageModule extends StatelessWidget {
   PetTrainerBannerImageModule({Key? key}) : super(key: key);
   final screenController = Get.find<PetTrainersDetailsScreenController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -50,229 +53,238 @@ class PetTrainerBannerImageModule extends StatelessWidget {
 class PetTrainerPicturesModule extends StatelessWidget {
   PetTrainerPicturesModule({Key? key}) : super(key: key);
   final screenController = Get.find<PetTrainersDetailsScreenController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
   int index = 0;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Expanded(
-              child: Text(
-                "Trainer Picture",
-                style: TextStyle(
-                  color: AppColors.accentTextColor,
-                  fontSize: 13.sp,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            screenController.isVerified == true
-                ? Container(
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    "Trainer Picture",
+                    style: TextStyle(
                       color: AppColors.accentTextColor,
+                      fontSize: 13.sp,
+                      fontWeight: FontWeight.bold,
                     ),
-                    child: const Icon(
-                      Icons.check_rounded,
-                      color: Colors.white,
-                      size: 18,
-                    ),
-                  )
-                : Container(),
-          ],
-        ),
-        SizedBox(height: 10),
-        screenController.trainerDetails[0].image1 == "" &&
-                screenController.trainerDetails[0].image2 == "" &&
-                screenController.trainerDetails[0].image3 == "" &&
-                screenController.trainerDetails[0].image4 == "" &&
-                screenController.trainerDetails[0].image5 == ""
-            ? Text(
-                "No pictures available!",
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                  color: themeProvider.darkTheme
-                      ? AppColors.whiteColor.withOpacity(0.4)
-                      : AppColors.blackTextColor,
+                  ),
                 ),
-              )
-            : Row(
-                children: [
-                  screenController.trainerDetails[0].image1 == null
-                      ? Container()
-                      : Expanded(
-                          child: GestureDetector(
-                          onTap: () {
-                            imageAlertDialog(context, index = 1);
-                          },
-                          child: SizedBox(
-                            height: screenController.size.width * 0.18,
-                            //width: screenController.size.width * 0.18,
-                            child: Container(
-                              decoration: BoxDecoration(
+                screenController.isVerified == true
+                    ? const Icon(
+                        Icons.verified,
+                        color: AppColors.accentColor,
+                        size: 19,
+                      )
+                    : Container(),
+              ],
+            ),
+          ),
+          const SizedBox(height: 10),
+          screenController.trainerDetails[0].image1 == "" &&
+                  screenController.trainerDetails[0].image2 == "" &&
+                  screenController.trainerDetails[0].image3 == "" &&
+                  screenController.trainerDetails[0].image4 == "" &&
+                  screenController.trainerDetails[0].image5 == ""
+              ? Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20),
+                  child: Text(
+                    "No pictures available!",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor.withOpacity(0.4)
+                          : AppColors.blackTextColor,
+                    ),
+                  ),
+                )
+              : Row(
+                  children: [
+                    screenController.trainerDetails[0].image1 == null
+                        ? Container()
+                        : Expanded(
+                            child: GestureDetector(
+                            onTap: () {
+                              imageAlertDialog(context, index = 1);
+                            },
+                            child: SizedBox(
+                              height: screenController.size.width * 0.18,
+                              //width: screenController.size.width * 0.18,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(color: Colors.grey)),
+                                padding: const EdgeInsets.all(5),
+                                child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(color: Colors.grey)),
-                              padding: const EdgeInsets.all(5),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.network(
-                                    ApiUrl.apiImagePath +
-                                        "asset/uploads/product/"
-                                            "${screenController.trainerDetails[0].image1}",
-                                    height: 40,
-                                    width: 40, errorBuilder: (context, er, da) {
-                                  return Image.asset(AppImages.petMetLogoImg);
-                                }),
+                                  child: Image.network(
+                                      ApiUrl.apiImagePath +
+                                          "asset/uploads/product/"
+                                              "${screenController.trainerDetails[0].image1}",
+                                      height: 40,
+                                      width: 40,
+                                      errorBuilder: (context, er, da) {
+                                    return Image.asset(AppImages.petMetLogoImg);
+                                  }),
+                                ),
                               ),
                             ),
-                          ),
-                        )),
-                  screenController.trainerDetails[0].image1 == null
-                      ? Container()
-                      : SizedBox(width: 10),
-                  screenController.trainerDetails[0].image2 == null
-                      ? Container()
-                      : Expanded(
-                          child: GestureDetector(
-                          onTap: () {
-                            imageAlertDialog(context, index = 2);
-                          },
-                          child: SizedBox(
-                            height: screenController.size.width * 0.18,
-                            //width: screenController.size.width * 0.18,
-                            child: Container(
-                              decoration: BoxDecoration(
+                          )),
+                    screenController.trainerDetails[0].image1 == null
+                        ? Container()
+                        : const SizedBox(width: 10),
+                    screenController.trainerDetails[0].image2 == null
+                        ? Container()
+                        : Expanded(
+                            child: GestureDetector(
+                            onTap: () {
+                              imageAlertDialog(context, index = 2);
+                            },
+                            child: SizedBox(
+                              height: screenController.size.width * 0.18,
+                              //width: screenController.size.width * 0.18,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(color: Colors.grey)),
+                                padding: const EdgeInsets.all(5),
+                                child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(color: Colors.grey)),
-                              padding: const EdgeInsets.all(5),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.network(
-                                    ApiUrl.apiImagePath +
-                                        "asset/uploads/product/"
-                                            "${screenController.trainerDetails[0].image2}",
-                                    height: 40,
-                                    width: 40, errorBuilder: (context, er, da) {
-                                  return Image.asset(AppImages.petMetLogoImg);
-                                }),
+                                  child: Image.network(
+                                      ApiUrl.apiImagePath +
+                                          "asset/uploads/product/"
+                                              "${screenController.trainerDetails[0].image2}",
+                                      height: 40,
+                                      width: 40,
+                                      errorBuilder: (context, er, da) {
+                                    return Image.asset(AppImages.petMetLogoImg);
+                                  }),
+                                ),
                               ),
                             ),
-                          ),
-                        )),
-                  screenController.trainerDetails[0].image2 == null
-                      ? Container()
-                      : SizedBox(width: 10),
-                  screenController.trainerDetails[0].image3 == null
-                      ? Container()
-                      : Expanded(
-                          child: GestureDetector(
-                          onTap: () {
-                            imageAlertDialog(context, index = 3);
-                          },
-                          child: SizedBox(
-                            height: screenController.size.width * 0.18,
-                            //width: screenController.size.width * 0.18,
-                            child: Container(
-                              decoration: BoxDecoration(
+                          )),
+                    screenController.trainerDetails[0].image2 == null
+                        ? Container()
+                        : const SizedBox(width: 10),
+                    screenController.trainerDetails[0].image3 == null
+                        ? Container()
+                        : Expanded(
+                            child: GestureDetector(
+                            onTap: () {
+                              imageAlertDialog(context, index = 3);
+                            },
+                            child: SizedBox(
+                              height: screenController.size.width * 0.18,
+                              //width: screenController.size.width * 0.18,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(color: Colors.grey)),
+                                padding: const EdgeInsets.all(5),
+                                child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(color: Colors.grey)),
-                              padding: const EdgeInsets.all(5),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.network(
-                                    ApiUrl.apiImagePath +
-                                        "asset/uploads/product/"
-                                            "${screenController.trainerDetails[0].image3}",
-                                    fit: BoxFit.cover,
-                                    height: 40,
-                                    width: 40, errorBuilder: (context, er, da) {
-                                  return Image.asset(AppImages.petMetLogoImg);
-                                }),
+                                  child: Image.network(
+                                      ApiUrl.apiImagePath +
+                                          "asset/uploads/product/"
+                                              "${screenController.trainerDetails[0].image3}",
+                                      fit: BoxFit.cover,
+                                      height: 40,
+                                      width: 40,
+                                      errorBuilder: (context, er, da) {
+                                    return Image.asset(AppImages.petMetLogoImg);
+                                  }),
+                                ),
                               ),
                             ),
-                          ),
-                        )),
-                  screenController.trainerDetails[0].image3 == null
-                      ? Container()
-                      : SizedBox(width: 10),
-                  screenController.trainerDetails[0].image4 == null
-                      ? Container()
-                      : Expanded(
-                          child: GestureDetector(
-                          onTap: () {
-                            imageAlertDialog(context, index = 4);
-                          },
-                          child: SizedBox(
-                            height: screenController.size.width * 0.18,
-                            //width: screenController.size.width * 0.18,
-                            child: Container(
-                              decoration: BoxDecoration(
+                          )),
+                    screenController.trainerDetails[0].image3 == null
+                        ? Container()
+                        : const SizedBox(width: 10),
+                    screenController.trainerDetails[0].image4 == null
+                        ? Container()
+                        : Expanded(
+                            child: GestureDetector(
+                            onTap: () {
+                              imageAlertDialog(context, index = 4);
+                            },
+                            child: SizedBox(
+                              height: screenController.size.width * 0.18,
+                              //width: screenController.size.width * 0.18,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(color: Colors.grey)),
+                                padding: const EdgeInsets.all(5),
+                                child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(color: Colors.grey)),
-                              padding: const EdgeInsets.all(5),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.network(
-                                    ApiUrl.apiImagePath +
-                                        "asset/uploads/product/"
-                                            "${screenController.trainerDetails[0].image4}",
-                                    fit: BoxFit.cover,
-                                    errorBuilder: (context, er, da) {
-                                  return Image.asset(AppImages.petMetLogoImg);
-                                }),
+                                  child: Image.network(
+                                      ApiUrl.apiImagePath +
+                                          "asset/uploads/product/"
+                                              "${screenController.trainerDetails[0].image4}",
+                                      fit: BoxFit.cover,
+                                      errorBuilder: (context, er, da) {
+                                    return Image.asset(AppImages.petMetLogoImg);
+                                  }),
+                                ),
                               ),
                             ),
-                          ),
-                        )),
-                  screenController.trainerDetails[0].image4 == null
-                      ? Container()
-                      : SizedBox(width: 10),
-                  screenController.trainerDetails[0].image5 == null
-                      ? Container()
-                      : Expanded(
-                          child: GestureDetector(
-                          onTap: () {
-                            imageAlertDialog(context, index = 5);
-                          },
-                          child: SizedBox(
-                            height: screenController.size.width * 0.18,
-                            //width: screenController.size.width * 0.18,
-                            child: Container(
-                              decoration: BoxDecoration(
+                          )),
+                    screenController.trainerDetails[0].image4 == null
+                        ? Container()
+                        : const SizedBox(width: 10),
+                    screenController.trainerDetails[0].image5 == null
+                        ? Container()
+                        : Expanded(
+                            child: GestureDetector(
+                            onTap: () {
+                              imageAlertDialog(context, index = 5);
+                            },
+                            child: SizedBox(
+                              height: screenController.size.width * 0.18,
+                              //width: screenController.size.width * 0.18,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(color: Colors.grey)),
+                                padding: const EdgeInsets.all(5),
+                                child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
-                                  border: Border.all(color: Colors.grey)),
-                              padding: const EdgeInsets.all(5),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: Image.network(
-                                    ApiUrl.apiImagePath +
-                                        "asset/uploads/product/"
-                                            "${screenController.trainerDetails[0].image5}",
-                                    fit: BoxFit.cover,
-                                    errorBuilder: (context, er, da) {
-                                  return Image.asset(AppImages.petMetLogoImg);
-                                }),
+                                  child: Image.network(
+                                      ApiUrl.apiImagePath +
+                                          "asset/uploads/product/"
+                                              "${screenController.trainerDetails[0].image5}",
+                                      fit: BoxFit.cover,
+                                      errorBuilder: (context, er, da) {
+                                    return Image.asset(AppImages.petMetLogoImg);
+                                  }),
+                                ),
                               ),
                             ),
-                          ),
-                        ))
-                ],
-              )
-      ],
+                          ))
+                  ],
+                )
+        ],
+      ),
     );
   }
 
   imageAlertDialog(BuildContext context, index) {
     Widget cancelButton = TextButton(
-      child: Text("No, cancel"),
+      child: const Text("No, cancel"),
       onPressed: () {
         Get.back();
       },
     );
     Widget continueButton = TextButton(
-      child: Text("Yes, delete it"),
+      child: const Text("Yes, delete it"),
       onPressed: () async {
         Get.back();
       },
@@ -506,14 +518,14 @@ class PetTrainerPlaceTimePaymentModule extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: screenController.size.height * 0.001.h),
+        const SizedBox(height: 15),
 
         // Shop Time Module
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.asset(
-              AppIcons.locationImg,
+              AppIcons.clockImg,
               height: 20,
               width: 20,
               color: themeProvider.darkTheme
@@ -617,5 +629,44 @@ class PetTrainerOverViewModule extends StatelessWidget {
         SizedBox(height: screenController.size.height * 0.003.h),
       ],
     ).commonSymmetricPadding(horizontal: 15);
+  }
+}
+
+class PayButtonModule extends StatelessWidget {
+  PayButtonModule({Key? key}) : super(key: key);
+
+  final screenController = Get.find<PetTrainersDetailsScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: GestureDetector(
+        onTap: () async {
+          screenController.openCheckout();
+          Fluttertoast.showToast(msg: 'Processing payment to trainer.');
+        },
+        child: Container(
+          width: double.infinity,
+          height: 50,
+          decoration: const BoxDecoration(
+            color: AppColors.accentColor,
+            borderRadius: BorderRadius.all(
+              Radius.circular(12),
+            ),
+          ),
+          child: Center(
+            child: Text(
+              "Pay",
+              style: TextStyle(
+                color: AppColors.whiteColor,
+                fontSize: 15.sp,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

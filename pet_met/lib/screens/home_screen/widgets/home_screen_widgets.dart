@@ -24,6 +24,8 @@ class PetTopListModule extends StatelessWidget {
   PetTopListModule({Key? key}) : super(key: key);
   final HomeController homeController = Get.find<HomeController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -709,6 +711,8 @@ class PetListModule extends StatelessWidget {
   }
 
   modelBottomSheet(BuildContext context) {
+    DarkThemeProvider themeProvider =
+        Provider.of<DarkThemeProvider>(Get.context!);
     showModalBottomSheet<void>(
       context: context,
       constraints: null,

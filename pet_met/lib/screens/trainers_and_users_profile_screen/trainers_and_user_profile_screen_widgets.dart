@@ -13,10 +13,16 @@ import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
 import 'package:pet_met/utils/validations.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../services/providers/dark_theme_provider.dart';
+
 class BackgroundImage extends StatelessWidget {
-  const BackgroundImage({Key? key}) : super(key: key);
+  BackgroundImage({Key? key}) : super(key: key);
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +68,9 @@ class UploadImageModule extends StatelessWidget {
 
   final screenController = Get.find<TrainersAndUsersScreenController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -102,9 +111,9 @@ class UploadImageModule extends StatelessWidget {
                           themeProvider.darkTheme
                               ? screenController.imageFile!
                               : screenController.imageFile!,
-                          width: 100,
-                          height: 100,
-                          fit: BoxFit.cover,
+                          width: double.infinity,
+                          height: screenController.size.height * 0.2,
+                          fit: BoxFit.fill,
                         ),
                       ),
 
@@ -135,9 +144,9 @@ class UploadImageModule extends StatelessWidget {
                               themeProvider.darkTheme
                                   ? screenController.trainersProfile!
                                   : screenController.trainersProfile!,
-                              width: 100,
-                              height: 100,
-                              fit: BoxFit.cover,
+                              width: double.infinity,
+                              height: screenController.size.height * 0.2,
+                              fit: BoxFit.fill,
                               errorBuilder: (context, er, st) {
                                 //return Image.asset(AppImages.petMetLogoImg);
                                 return Column(
@@ -328,6 +337,9 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
   TrainersAchievmentPictureListModule({Key? key}) : super(key: key);
   final screenController = Get.find<TrainersAndUsersScreenController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -335,9 +347,11 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
       children: [
         Text(
           "Trainers Achievement Picture:",
-          style: TextStyle(color: themeProvider.darkTheme
-          ? AppColors.whiteColor
-              : AppColors.darkThemeColor,),
+          style: TextStyle(
+            color: themeProvider.darkTheme
+                ? AppColors.whiteColor
+                : AppColors.darkThemeColor,
+          ),
         ),
         const SizedBox(height: 8),
         SizedBox(
@@ -370,34 +384,39 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                                 ? Image.file(
                                     screenController.trainerPictureFile1!,
                                     height: 65,
-                          fit: BoxFit.fill,
+                                    fit: BoxFit.fill,
                                   )
                                 : screenController.trainerImage1 != null
                                     ? Image.network(
                                         screenController.trainerImage1!,
                                         height: 65,
-                          fit: BoxFit.fill,
+                                        fit: BoxFit.fill,
                                         errorBuilder: (context, er, st) {
                                           return Image.asset(
                                               AppImages.petMetLogoImg);
                                         },
                                       )
-                                    : Image.asset(AppImages.petMetLogoImg, fit: BoxFit.fill,)
+                                    : Image.asset(
+                                        AppImages.petMetLogoImg,
+                                        fit: BoxFit.fill,
+                                      )
                             : index == 1
                                 ? screenController.trainerPictureFile2 != null
                                     ? Image.file(
                                         screenController.trainerPictureFile2!,
                                         height: 65,
-                          fit: BoxFit.fill,
+                                        fit: BoxFit.fill,
                                       )
                                     : screenController.trainerImage2 != null
                                         ? Image.network(
                                             screenController.trainerImage2!,
                                             height: 65,
-                          fit: BoxFit.fill,
+                                            fit: BoxFit.fill,
                                             errorBuilder: (context, er, st) {
                                               return Image.asset(
-                                                  AppImages.petMetLogoImg, fit: BoxFit.fill,);
+                                                AppImages.petMetLogoImg,
+                                                fit: BoxFit.fill,
+                                              );
                                             },
                                           )
                                         : Image.asset(AppImages.petMetLogoImg)
@@ -408,17 +427,19 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                                             screenController
                                                 .trainerPictureFile3!,
                                             height: 65,
-                          fit: BoxFit.fill,
+                                            fit: BoxFit.fill,
                                           )
                                         : screenController.trainerImage3 != null
                                             ? Image.network(
                                                 screenController.trainerImage3!,
                                                 height: 65,
-                          fit: BoxFit.fill,
+                                                fit: BoxFit.fill,
                                                 errorBuilder:
                                                     (context, er, st) {
                                                   return Image.asset(
-                                                      AppImages.petMetLogoImg, fit: BoxFit.fill,);
+                                                    AppImages.petMetLogoImg,
+                                                    fit: BoxFit.fill,
+                                                  );
                                                 },
                                               )
                                             : Image.asset(
@@ -431,7 +452,7 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                                                 screenController
                                                     .trainerPictureFile4!,
                                                 height: 65,
-                          fit: BoxFit.fill,
+                                                fit: BoxFit.fill,
                                               )
                                             : screenController.trainerImage4 !=
                                                     null
@@ -439,7 +460,7 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                                                     screenController
                                                         .trainerImage4!,
                                                     height: 65,
-                          fit: BoxFit.fill,
+                                                    fit: BoxFit.fill,
                                                     errorBuilder:
                                                         (context, er, st) {
                                                       return Image.asset(
@@ -448,7 +469,9 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                                                     },
                                                   )
                                                 : Image.asset(
-                                                    AppImages.petMetLogoImg, fit: BoxFit.fill,)
+                                                    AppImages.petMetLogoImg,
+                                                    fit: BoxFit.fill,
+                                                  )
                                         : index == 4
                                             ? screenController
                                                         .trainerPictureFile5 !=
@@ -457,7 +480,7 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                                                     screenController
                                                         .trainerPictureFile5!,
                                                     height: 65,
-                          fit: BoxFit.fill,
+                                                    fit: BoxFit.fill,
                                                   )
                                                 : screenController
                                                             .trainerImage5 !=
@@ -466,12 +489,14 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                                                         screenController
                                                             .trainerImage5!,
                                                         height: 65,
-                          fit: BoxFit.fill,
+                                                        fit: BoxFit.fill,
                                                         errorBuilder:
                                                             (context, er, st) {
                                                           return Image.asset(
-                                                              AppImages
-                                                                  .petMetLogoImg, fit: BoxFit.fill,);
+                                                            AppImages
+                                                                .petMetLogoImg,
+                                                            fit: BoxFit.fill,
+                                                          );
                                                         },
                                                       )
                                                     : Image.asset(
@@ -484,46 +509,51 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                         onTap: () {
                           if (index == 0) {
                             //getFromGallery();
-                            if(screenController.showStatus.value == true){
+                            if (screenController.showStatus.value == true) {
                               // open gallery
                               getFromGallery();
-                            } else if(screenController.showStatus.value == false) {
+                            } else if (screenController.showStatus.value ==
+                                false) {
                               //screenController.openCheckout();
                               Get.to(() => PetPricingScreen());
                             }
                           } else if (index == 1) {
                             //getFromGallery2();
-                            if(screenController.showStatus.value == true){
+                            if (screenController.showStatus.value == true) {
                               // open gallery
                               getFromGallery2();
-                            } else if(screenController.showStatus.value == false) {
+                            } else if (screenController.showStatus.value ==
+                                false) {
                               //screenController.openCheckout();
                               Get.to(() => PetPricingScreen());
                             }
                           } else if (index == 2) {
                             //getFromGallery3();
-                            if(screenController.showStatus.value == true){
+                            if (screenController.showStatus.value == true) {
                               // open gallery
                               getFromGallery3();
-                            } else if(screenController.showStatus.value == false) {
+                            } else if (screenController.showStatus.value ==
+                                false) {
                               //screenController.openCheckout();
                               Get.to(() => PetPricingScreen());
                             }
                           } else if (index == 3) {
                             //getFromGallery4();
-                            if(screenController.showStatus.value == true){
+                            if (screenController.showStatus.value == true) {
                               // open gallery
                               getFromGallery4();
-                            } else if(screenController.showStatus.value == false) {
+                            } else if (screenController.showStatus.value ==
+                                false) {
                               //screenController.openCheckout();
                               Get.to(() => PetPricingScreen());
                             }
                           } else if (index == 4) {
                             //getFromGallery5();
-                            if(screenController.showStatus.value == true){
+                            if (screenController.showStatus.value == true) {
                               // open gallery
                               getFromGallery5();
-                            } else if(screenController.showStatus.value == false) {
+                            } else if (screenController.showStatus.value ==
+                                false) {
                               //screenController.openCheckout();
                               Get.to(() => PetPricingScreen());
                             }
@@ -738,6 +768,8 @@ class TrainersNameTextFieldModule extends StatelessWidget {
   // const TrainersNameTextFieldModule({Key? key}) : super(key: key);
 
   final screenController = Get.find<TrainersAndUsersScreenController>();
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -778,6 +810,8 @@ class EmailTextFieldModule extends StatelessWidget {
   // const TrainersNameTextFieldModule({Key? key}) : super(key: key);
 
   final screenController = Get.find<TrainersAndUsersScreenController>();
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -790,8 +824,8 @@ class EmailTextFieldModule extends StatelessWidget {
               "Email",
               style: TextStyle(
                 color: themeProvider.darkTheme
-              ? AppColors.whiteColor
-                  : AppColors.darkThemeColor,
+                    ? AppColors.whiteColor
+                    : AppColors.darkThemeColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -818,6 +852,9 @@ class TrainersContactNumberTextField extends StatelessWidget {
   TrainersContactNumberTextField({Key? key}) : super(key: key);
 
   final screenController = Get.find<TrainersAndUsersScreenController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -859,6 +896,9 @@ class TrainersAddressTextFieldModule extends StatelessWidget {
 
   final screenController = Get.find<TrainersAndUsersScreenController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -898,6 +938,9 @@ class TrainersDetailsModule extends StatelessWidget {
   TrainersDetailsModule({Key? key}) : super(key: key);
 
   final screenController = Get.find<TrainersAndUsersScreenController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -988,6 +1031,9 @@ class InstagramTextFieldModule extends StatelessWidget {
 
   final screenController = Get.find<TrainersAndUsersScreenController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -1027,6 +1073,9 @@ class FacebookLinkTextFieldModule extends StatelessWidget {
   FacebookLinkTextFieldModule({Key? key}) : super(key: key);
 
   final screenController = Get.find<TrainersAndUsersScreenController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -1068,6 +1117,9 @@ class IsActiveTextFieldModule extends StatelessWidget {
 
   final screenController = Get.find<TrainersAndUsersScreenController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -1094,20 +1146,20 @@ class IsActiveTextFieldModule extends StatelessWidget {
               height: screenController.size.height * 0.06,
               width: double.infinity,
               decoration: BoxDecoration(
-                  color: themeProvider.darkTheme
-                      ? AppColors.darkThemeBoxColor
-                      : AppColors.whiteColor,
-                  borderRadius: BorderRadius.circular(10),
-                  boxShadow: [
-                    BoxShadow(
-                      color: themeProvider.darkTheme
-                          ? AppColors.whiteColor.withOpacity(0.05)
-                          : AppColors.greyTextColor.withOpacity(0.5),
-                      blurRadius: 10,
-                      spreadRadius: 0.5,
-                      offset: const Offset(0, 0),
-                    ),
-                  ],
+                color: themeProvider.darkTheme
+                    ? AppColors.darkThemeBoxColor
+                    : AppColors.whiteColor,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor.withOpacity(0.05)
+                        : AppColors.greyTextColor.withOpacity(0.5),
+                    blurRadius: 10,
+                    spreadRadius: 0.5,
+                    offset: const Offset(0, 0),
+                  ),
+                ],
               ),
             ),
             Obx(
@@ -1167,7 +1219,8 @@ class IsActiveTextFieldModule extends StatelessWidget {
                       ),
                       onChanged: (value) {
                         screenController.isLoading(true);
-                        screenController.trainerActiveStatusValue.value = value!;
+                        screenController.trainerActiveStatusValue.value =
+                            value!;
                         log("ngoActiveStatusValue.value : ${screenController.trainerActiveStatusValue.value}");
                         screenController.isLoading(false);
                       },
@@ -1199,6 +1252,8 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
 
   final screenController = Get.find<TrainersAndUsersScreenController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -1212,8 +1267,8 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                 "Available From",
                 style: TextStyle(
                   color: themeProvider.darkTheme
-                ? AppColors.whiteColor
-                    : AppColors.darkThemeColor,
+                      ? AppColors.whiteColor
+                      : AppColors.darkThemeColor,
                   fontSize: 11.sp,
                   fontWeight: FontWeight.bold,
                 ),
@@ -1263,12 +1318,13 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                                   : "No time selected!",
                               // textAlign: TextAlign.center,
                               maxLines: 1,
-                              style:  TextStyle(color: themeProvider.darkTheme
-                                  ? AppColors.whiteColor
-                                  : AppColors.darkThemeColor)),
+                              style: TextStyle(
+                                  color: themeProvider.darkTheme
+                                      ? AppColors.whiteColor
+                                      : AppColors.darkThemeColor)),
                         ),
                         IconButton(
-                          icon:  Icon(
+                          icon: Icon(
                             Icons.timer_outlined,
                             color: themeProvider.darkTheme
                                 ? AppColors.whiteColor
@@ -1297,8 +1353,8 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                 "Available To",
                 style: TextStyle(
                   color: themeProvider.darkTheme
-                ? AppColors.whiteColor
-                    : AppColors.darkThemeColor,
+                      ? AppColors.whiteColor
+                      : AppColors.darkThemeColor,
                   fontSize: 11.sp,
                   fontWeight: FontWeight.bold,
                 ),
@@ -1348,9 +1404,10 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                                   : "No time selected!",
                               // textAlign: TextAlign.center,
                               maxLines: 1,
-                              style: TextStyle(color: themeProvider.darkTheme
-                              ? AppColors.whiteColor
-                                  : AppColors.darkThemeColor)),
+                              style: TextStyle(
+                                  color: themeProvider.darkTheme
+                                      ? AppColors.whiteColor
+                                      : AppColors.darkThemeColor)),
                         ),
                         IconButton(
                           icon: Icon(
@@ -1379,9 +1436,9 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
 
   Future<void> timePicker(BuildContext context) async {
     final TimeOfDay? result = await showTimePicker(
-        context: context,
-        cancelText: "Cancel",
-        initialTime: TimeOfDay.now(),
+      context: context,
+      cancelText: "Cancel",
+      initialTime: TimeOfDay.now(),
     );
     if (result != null) {
       //setState(() {

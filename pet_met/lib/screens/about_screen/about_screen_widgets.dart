@@ -4,10 +4,16 @@ import 'package:get/get.dart';
 import 'package:pet_met/controllers/about_controller.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../services/providers/dark_theme_provider.dart';
+
 class BackgroundCurve extends StatelessWidget {
-  const BackgroundCurve({Key? key}) : super(key: key);
+  BackgroundCurve({Key? key}) : super(key: key);
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +29,9 @@ class BackgroundCurve extends StatelessWidget {
 class AboutUsModule extends StatelessWidget {
   AboutUsModule({Key? key}) : super(key: key);
   final screenController = Get.find<AboutController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {

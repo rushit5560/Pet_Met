@@ -15,11 +15,16 @@ import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
 import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/validations.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-class BackgroundImage extends StatelessWidget {
-  const BackgroundImage({Key? key}) : super(key: key);
+import '../../services/providers/dark_theme_provider.dart';
 
+class BackgroundImage extends StatelessWidget {
+  BackgroundImage({Key? key}) : super(key: key);
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -40,6 +45,9 @@ class UploadImageModule extends StatefulWidget {
 
 class _UploadImageModuleState extends State<UploadImageModule> {
   final controller = Get.find<UploadPetController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -94,121 +102,122 @@ class _UploadImageModuleState extends State<UploadImageModule> {
         );
       },
       child: Container(
-        height: controller.size.height * 0.2,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: themeProvider.darkTheme
-              ? AppColors.darkThemeColor
-              : AppColors.whiteColor,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(15),
-          ),
-          // image: DecorationImage(
-          //   image: FileImage(
-          //     File(controller.imageFile!.path),
-          //   ),
-          // ),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.greyTextColor.withOpacity(0.3),
-              blurRadius: 35,
-              spreadRadius: 1,
-              offset: const Offset(0, 5),
+          height: controller.size.height * 0.2,
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: themeProvider.darkTheme
+                ? AppColors.darkThemeColor
+                : AppColors.whiteColor,
+            borderRadius: const BorderRadius.all(
+              Radius.circular(15),
             ),
-          ],
-        ),
-        child: controller.imageFile != null
-            ? Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(15),
-                child: Image.file(
-                  themeProvider.darkTheme
-                      ? controller.imageFile! : controller.imageFile!,
-                    width: double.infinity,
-                    height: controller.size.height * 0.2,
-                    fit: BoxFit.cover),
+            // image: DecorationImage(
+            //   image: FileImage(
+            //     File(controller.imageFile!.path),
+            //   ),
+            // ),
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.greyTextColor.withOpacity(0.3),
+                blurRadius: 35,
+                spreadRadius: 1,
+                offset: const Offset(0, 5),
               ),
-
-              //),
-              // const SizedBox(height: 20),
-              // Text(
-              //   "Upload Image",
-              //   style: TextStyle(
-              //     color: themeProvider.darkTheme
-              //         ? AppColors.whiteColor
-              //         : AppColors.blackTextColor,
-              //     fontSize: 15.sp,
-              //     fontWeight: FontWeight.w500,
-              //   ),
-              // ),
             ],
           ),
-        ):
-        controller.petImage != null ?
-        Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(15),
-                child: Image.network(
-                  themeProvider.darkTheme
-                      ? controller.petImage! : controller.petImage!,
-                    width: double.infinity,
-                    height: controller.size.height * 0.2,
-                    fit: BoxFit.cover,
-                  errorBuilder: (context, er, st){
-                    return Image.asset(AppImages.petMetLogoImg);
-                  },
-                ),
-              ),
-
-              //),
-              // const SizedBox(height: 20),
-              // Text(
-              //   "Upload Image",
-              //   style: TextStyle(
-              //     color: themeProvider.darkTheme
-              //         ? AppColors.whiteColor
-              //         : AppColors.blackTextColor,
-              //     fontSize: 15.sp,
-              //     fontWeight: FontWeight.w500,
-              //   ),
-              // ),
-            ],
-          ),
-        ):
-        Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      themeProvider.darkTheme
-                          ? AppImages.cameraPlaceHolderImgDark
-                          : AppImages.cameraPlaceHolderImglight,
-                      height: 65,
-                    ),
-                    const SizedBox(height: 20),
-                    Text(
-                      "Upload Image",
-                      style: TextStyle(
-                        color: themeProvider.darkTheme
-                            ? AppColors.whiteColor
-                            : AppColors.blackTextColor,
-                        fontSize: 15.sp,
-                        fontWeight: FontWeight.w500,
+          child: controller.imageFile != null
+              ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: Image.file(
+                            themeProvider.darkTheme
+                                ? controller.imageFile!
+                                : controller.imageFile!,
+                            width: double.infinity,
+                            height: controller.size.height * 0.2,
+                            fit: BoxFit.cover),
                       ),
-                    ),
-                  ],
-                ),
-              )
-      ),
+
+                      //),
+                      // const SizedBox(height: 20),
+                      // Text(
+                      //   "Upload Image",
+                      //   style: TextStyle(
+                      //     color: themeProvider.darkTheme
+                      //         ? AppColors.whiteColor
+                      //         : AppColors.blackTextColor,
+                      //     fontSize: 15.sp,
+                      //     fontWeight: FontWeight.w500,
+                      //   ),
+                      // ),
+                    ],
+                  ),
+                )
+              : controller.petImage != null
+                  ? Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Image.network(
+                              themeProvider.darkTheme
+                                  ? controller.petImage!
+                                  : controller.petImage!,
+                              width: double.infinity,
+                              height: controller.size.height * 0.2,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, er, st) {
+                                return Image.asset(AppImages.petMetLogoImg);
+                              },
+                            ),
+                          ),
+
+                          //),
+                          // const SizedBox(height: 20),
+                          // Text(
+                          //   "Upload Image",
+                          //   style: TextStyle(
+                          //     color: themeProvider.darkTheme
+                          //         ? AppColors.whiteColor
+                          //         : AppColors.blackTextColor,
+                          //     fontSize: 15.sp,
+                          //     fontWeight: FontWeight.w500,
+                          //   ),
+                          // ),
+                        ],
+                      ),
+                    )
+                  : Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            themeProvider.darkTheme
+                                ? AppImages.cameraPlaceHolderImgDark
+                                : AppImages.cameraPlaceHolderImglight,
+                            height: 65,
+                          ),
+                          const SizedBox(height: 20),
+                          Text(
+                            "Upload Image",
+                            style: TextStyle(
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor,
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )),
     );
   }
 
@@ -235,14 +244,10 @@ class _UploadImageModuleState extends State<UploadImageModule> {
       log('Camera File Path : ${controller.imageFile}');
       log('Camera Image Path : ${controller.imageFile!.path}');
 
-
       //Fluttertoast.showToast(msg: '${image.path}', toastLength: Toast.LENGTH_LONG);
       //renameImage();
       //});
-    } else {
-
-
-    }
+    } else {}
 
     controller.imageFile = File(pickedFile!.path);
     setState(() {});
@@ -273,14 +278,10 @@ class _UploadImageModuleState extends State<UploadImageModule> {
       log('Camera File Path : ${controller.imageFile}');
       log('Camera Image Path : ${controller.imageFile!.path}');
 
-
       //Fluttertoast.showToast(msg: '${image.path}', toastLength: Toast.LENGTH_LONG);
       //renameImage();
       //});
-    } else {
-
-
-    }
+    } else {}
 
     controller.imageFile = File(pickedFile!.path);
     setState(() {});
@@ -338,6 +339,9 @@ class PetNameTextFieldModule extends StatelessWidget {
 
   final controller = Get.find<UploadPetController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -373,7 +377,6 @@ class PetNameTextFieldModule extends StatelessWidget {
   }
 }
 
-
 /*class TypesOfPetDropDownModule extends StatefulWidget {
   const TypesOfPetDropDownModule({Key? key}) : super(key: key);
 
@@ -384,6 +387,9 @@ class PetNameTextFieldModule extends StatelessWidget {
 
 class TypesOfPetDropDownModule extends StatelessWidget {
   final controller = Get.find<UploadPetController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   TypesOfPetDropDownModule({Key? key}) : super(key: key);
 
@@ -472,11 +478,10 @@ class TypesOfPetDropDownModule extends StatelessWidget {
                       spreadRadius: 1,
                       offset: const Offset(0, 5),
                     ),
-                  ]
-              ),
+                  ]),
             ),
             Obx(
-                  () => Container(
+              () => Container(
                 padding: const EdgeInsets.only(left: 10),
                 width: Get.width,
                 //gives the width of the dropdown button
@@ -501,7 +506,8 @@ class TypesOfPetDropDownModule extends StatelessWidget {
                             : AppColors.blackTextColor.withOpacity(0.7),
                       ),
                       items: controller.petCategoryList
-                          .map<DropdownMenuItem<PetCategory>>((PetCategory value) {
+                          .map<DropdownMenuItem<PetCategory>>(
+                              (PetCategory value) {
                         return DropdownMenuItem<PetCategory>(
                           value: value,
                           child: Text(
@@ -532,12 +538,14 @@ class TypesOfPetDropDownModule extends StatelessWidget {
                         controller.isLoading(true);
                         controller.petCategoryDropDownValue = value!;
                         controller.petSubCategoryList.clear();
-                        controller.petSubCategoryList.add(PetSubCategory(categoryName: 'Select Sub Category'));
+                        controller.petSubCategoryList.add(PetSubCategory(
+                            categoryName: 'Select Sub Category'));
                         await controller.getSubCategoryUsingCategoryId(
-                            petSubCatId: "${controller.petCategoryDropDownValue.categoryId}",
-                                usingCatDDId: true,
+                          petSubCatId:
+                              "${controller.petCategoryDropDownValue.categoryId}",
+                          usingCatDDId: true,
                         );
-                         log("petCategoryDropDownValue : ${controller.petCategoryDropDownValue}");
+                        log("petCategoryDropDownValue : ${controller.petCategoryDropDownValue}");
                         controller.isLoading(false);
                       },
                     ),
@@ -556,6 +564,9 @@ class PetSubCategoryDropDownModule extends StatelessWidget {
   PetSubCategoryDropDownModule({Key? key}) : super(key: key);
 
   final controller = Get.find<UploadPetController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -642,11 +653,10 @@ class PetSubCategoryDropDownModule extends StatelessWidget {
                       spreadRadius: 1,
                       offset: const Offset(0, 5),
                     ),
-                  ]
-              ),
+                  ]),
             ),
             Obx(
-                  () => Container(
+              () => Container(
                 padding: const EdgeInsets.only(left: 10),
                 width: Get.width,
                 //gives the width of the dropdown button
@@ -671,7 +681,8 @@ class PetSubCategoryDropDownModule extends StatelessWidget {
                             : AppColors.blackTextColor.withOpacity(0.7),
                       ),
                       items: controller.petSubCategoryList
-                          .map<DropdownMenuItem<PetSubCategory>>((PetSubCategory value) {
+                          .map<DropdownMenuItem<PetSubCategory>>(
+                              (PetSubCategory value) {
                         return DropdownMenuItem<PetSubCategory>(
                           value: value,
                           child: Text(
@@ -726,6 +737,9 @@ class PetDetailsTextFieldModule extends StatelessWidget {
   PetDetailsTextFieldModule({Key? key}) : super(key: key);
   final controller = Get.find<UploadPetController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -761,8 +775,6 @@ class PetDetailsTextFieldModule extends StatelessWidget {
   }
 }
 
-
-
 class MeetingAvailabilityDropDown extends StatefulWidget {
   const MeetingAvailabilityDropDown({Key? key}) : super(key: key);
 
@@ -774,6 +786,9 @@ class MeetingAvailabilityDropDown extends StatefulWidget {
 class _MeetingAvailabilityDropDownState
     extends State<MeetingAvailabilityDropDown> {
   final controller = Get.find<UploadPetController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -858,11 +873,10 @@ class _MeetingAvailabilityDropDownState
                       spreadRadius: 1,
                       offset: const Offset(0, 5),
                     ),
-                  ]
-              ),
+                  ]),
             ),
             Obx(
-                  () => Container(
+              () => Container(
                 padding: const EdgeInsets.only(left: 10),
                 width: Get.width,
                 //gives the width of the dropdown button
@@ -886,10 +900,8 @@ class _MeetingAvailabilityDropDownState
                             ? AppColors.whiteColor
                             : AppColors.blackTextColor.withOpacity(0.7),
                       ),
-                      items: <String>[
-                        'Yes',
-                        'No'
-                      ].map<DropdownMenuItem<String>>((String value) {
+                      items: <String>['Yes', 'No']
+                          .map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: Text(
@@ -950,6 +962,9 @@ class BirthDateDropDown extends StatefulWidget {
 class _BirthDateDropDownState extends State<BirthDateDropDown> {
   final controller = Get.find<UploadPetController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -991,12 +1006,13 @@ class _BirthDateDropDownState extends State<BirthDateDropDown> {
             ],
           ),
           child: DropdownDatePicker(
-            boxDecoration: BoxDecoration(borderRadius: BorderRadius.circular(5)), // optional
+            boxDecoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5)), // optional
             dayFlex: 2,
             monthFlex: 3,
             yearFlex: 2,
             textStyle: TextStyle(
-              color:  themeProvider.darkTheme
+              color: themeProvider.darkTheme
                   ? AppColors.whiteColor
                   : AppColors.blackTextColor,
               fontSize: 12.sp,
@@ -1013,7 +1029,7 @@ class _BirthDateDropDownState extends State<BirthDateDropDown> {
             selectedMonth: int.parse(controller.month),
             selectedYear: int.parse(controller.year),
 
-            onChangedDay: (value){
+            onChangedDay: (value) {
               controller.day = value!;
               log('onChangedDay: ${controller.day}');
             },
@@ -1025,7 +1041,6 @@ class _BirthDateDropDownState extends State<BirthDateDropDown> {
               controller.year = value!;
               log('onChangedYear: ${controller.year}');
             },
-
           ),
         ),
       ],
@@ -1042,6 +1057,9 @@ class GenderDropDown extends StatefulWidget {
 
 class _GenderDropDownState extends State<GenderDropDown> {
   final controller = Get.find<UploadPetController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -1123,11 +1141,10 @@ class _GenderDropDownState extends State<GenderDropDown> {
                       spreadRadius: 1,
                       offset: const Offset(0, 5),
                     ),
-                  ]
-              ),
+                  ]),
             ),
             Obx(
-                  () => Container(
+              () => Container(
                 padding: const EdgeInsets.only(left: 10),
                 width: Get.width,
                 //gives the width of the dropdown button
@@ -1193,9 +1210,7 @@ class _GenderDropDownState extends State<GenderDropDown> {
                         // print("cityDropDownValue : ${authScreenController.cityDropDownValue}");
                         controller.isLoading(false);
                       },
-
                     ),
-
                   ),
                 ),
               ),
@@ -1211,6 +1226,9 @@ class WeightTextFieldModule extends StatelessWidget {
   WeightTextFieldModule({Key? key}) : super(key: key);
 
   final controller = Get.find<UploadPetController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -1247,12 +1265,10 @@ class WeightTextFieldModule extends StatelessWidget {
   }
 }
 
-
 class PetSubmitButton extends StatelessWidget {
   PetSubmitButton({Key? key}) : super(key: key);
 
   final controller = Get.find<UploadPetController>();
-
 
   @override
   Widget build(BuildContext context) {

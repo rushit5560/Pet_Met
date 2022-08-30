@@ -6,12 +6,17 @@ import 'package:pet_met/utils/common_widgets/background_widgets.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/enums.dart';
+import 'package:provider/provider.dart';
+import '../../services/providers/dark_theme_provider.dart';
 import 'shop_and_grooming_screen_widgets.dart';
 
 class ShopAndGroomingScreen extends StatelessWidget {
   ShopAndGroomingScreen({Key? key}) : super(key: key);
   final shopAndGroomingScreenController =
       Get.put(ShopAndGroomingScreenController());
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -39,18 +44,17 @@ class ShopAndGroomingScreen extends StatelessWidget {
                   appBarOption: AppBarOption.singleBackButtonOption,
                 ),
                 const SizedBox(height: 15),
-
                 Expanded(
-                  child: Obx(()=>
-                     shopAndGroomingScreenController.isLoading.value
+                  child: Obx(
+                    () => shopAndGroomingScreenController.isLoading.value
                         ? const CustomAnimationLoader()
                         : Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            //SearchShopTextFieldModule(),
-                            Expanded(child: ShopListModule()),
-                          ],
-                        ),
+                            children: [
+                              SearchShopTextFieldModule(),
+                              Expanded(child: ShopListModule()),
+                            ],
+                          ),
                   ),
                 ),
               ],

@@ -43,7 +43,7 @@ class SearchShopTextFieldModule extends StatelessWidget {
           ),
           TextFormField(
             controller: screenController.searchFieldController,
-             validator: (val) => Validations().validateSearchTextField(val!),
+            validator: (val) => Validations().validateSearchTextField(val!),
             cursorColor: themeProvider.darkTheme
                 ? AppColors.whiteColor
                 : AppColors.accentTextColor,
@@ -79,7 +79,6 @@ class SearchShopTextFieldModule extends StatelessWidget {
               ),
               suffixIcon: GestureDetector(
                 onTap: () async {
-
                   // if(screenController.searchFieldController.text.trim().isEmpty){
                   //   screenController.isLoading(true);
                   //   screenController.searchSubCatList.clear();
@@ -89,7 +88,7 @@ class SearchShopTextFieldModule extends StatelessWidget {
                   // }
                   // hideKeyboard();
 
-                  if(screenController.formKey.currentState!.validate()){
+                  if (screenController.formKey.currentState!.validate()) {
                     screenController.searchFieldController.clear();
                   }
                 },
@@ -110,7 +109,6 @@ class SearchShopTextFieldModule extends StatelessWidget {
     );
   }
 }
-
 
 class ShopListModule extends StatelessWidget {
   ShopListModule({Key? key}) : super(key: key);
@@ -135,7 +133,7 @@ class ShopListModule extends StatelessWidget {
     String imgUrl = ApiUrl.apiImagePath + shopSingleItem.showimg;
     return GestureDetector(
       onTap: () {
-        Get.to(()=> ShopDetailsScreen(),
+        Get.to(() => ShopDetailsScreen(),
             transition: Transition.native,
             duration: const Duration(milliseconds: 500),
             arguments: shopSingleItem.id);
@@ -165,7 +163,7 @@ class ShopListModule extends StatelessWidget {
                   height: 65,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
-                    border: Border.all(color: Colors.grey),
+                    // border: Border.all(color: Colors.grey),
                     //   boxShadow: const [
                     //     BoxShadow(
                     //         color: Colors.grey,
@@ -177,11 +175,10 @@ class ShopListModule extends StatelessWidget {
                   ),
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
-                      child: Image.network(imgUrl,
-                          fit: BoxFit.cover,
+                      child: Image.network(imgUrl, fit: BoxFit.cover,
                           errorBuilder: (context, er, ob) {
-                            return Image.asset(AppImages.petMetLogoImg);
-                          })),
+                        return Image.asset(AppImages.petMetLogoImg);
+                      })),
                 ),
                 SizedBox(width: 3.w),
                 Expanded(
@@ -228,11 +225,11 @@ class ShopListModule extends StatelessWidget {
                       size: 18,
                     ),
                   )*/
-            Icon(
-              Icons.verified,
-              color: Colors.green,
-              size: 19,
-            )
+                const Icon(
+                    Icons.verified,
+                    color: AppColors.accentColor,
+                    size: 19,
+                  )
                 : Container(),
           ],
         ).commonAllSidePadding(padding: 2.w),

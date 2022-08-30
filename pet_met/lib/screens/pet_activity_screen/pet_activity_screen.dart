@@ -6,14 +6,19 @@ import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
 import 'package:pet_met/utils/enums.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 import 'pet_activity_screen_widgets.dart';
 
 class PetActivityScreen extends StatelessWidget {
   PetActivityScreen({Key? key}) : super(key: key);
   final controller = Get.put(PetActivityController());
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +75,7 @@ class PetActivityScreen extends StatelessWidget {
                             ),
                           ),
                           child: Column(
-                            children: const [
+                            children: [
                               PetTrackingDetailsCheckModule(
                                 titleText: "Daily Distance Travel By Pet : ",
                                 detailsText: "10Kms",
@@ -104,7 +109,7 @@ class PetActivityScreen extends StatelessWidget {
 }
 
 class PetTrackingDetailsCheckModule extends StatelessWidget {
-  const PetTrackingDetailsCheckModule({
+  PetTrackingDetailsCheckModule({
     Key? key,
     this.titleText,
     this.detailsText,
@@ -112,6 +117,9 @@ class PetTrackingDetailsCheckModule extends StatelessWidget {
 
   final titleText;
   final detailsText;
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {

@@ -8,8 +8,11 @@ import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../services/providers/dark_theme_provider.dart';
 
 class PetMeetingDetailsBannerImageModule extends StatelessWidget {
   PetMeetingDetailsBannerImageModule({Key? key}) : super(key: key);
@@ -30,10 +33,11 @@ class PetMeetingDetailsBannerImageModule extends StatelessWidget {
       ),
       child: Image.network(
         ApiUrl.apiImagePath + screenController.image,
-        errorBuilder: (context, st, ob){
+        errorBuilder: (context, st, ob) {
           return Image.asset(AppImages.petMetLogoImg);
         },
-        fit: BoxFit.cover,),
+        fit: BoxFit.cover,
+      ),
       // child: Image.asset(AppImages.shopDetailsImg,
       // fit: BoxFit.cover,),
     ).commonSymmetricPadding(horizontal: 15);
@@ -61,12 +65,11 @@ class PetNameAndSocialMediaButtonModule extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            if(screenController.meetingStatus.value == true){
+            if (screenController.meetingStatus.value == true) {
               _makingPhoneCall(screenController.phoneNo);
-            } else if(screenController.meetingStatus.value == false){
+            } else if (screenController.meetingStatus.value == false) {
               screenController.openCheckout();
             }
-
           },
           child: Container(
             height: screenController.size.width * 0.018.w,
@@ -97,6 +100,9 @@ class PetNameAndSocialMediaButtonModule extends StatelessWidget {
 class PetPlaceTimePaymentModule extends StatelessWidget {
   PetPlaceTimePaymentModule({Key? key}) : super(key: key);
   final screenController = Get.find<PetMeetingDetailsScreenController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -180,7 +186,7 @@ class PetPlaceTimePaymentModule extends StatelessWidget {
             SizedBox(width: screenController.size.width * 0.008.w),
             Expanded(
               child: Text(
-              screenController.dob,
+                screenController.dob,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: themeProvider.darkTheme
@@ -207,7 +213,9 @@ class PetPlaceTimePaymentModule extends StatelessWidget {
             SizedBox(width: screenController.size.width * 0.008.w),
             Expanded(
               child: Text(
-                screenController.mettingAvailability == "0" ? "Availabel" : "Unavailable",
+                screenController.mettingAvailability == "0"
+                    ? "Availabel"
+                    : "Unavailable",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: themeProvider.darkTheme
@@ -251,13 +259,14 @@ class CallUsForMeetupModule extends StatelessWidget {
       throw 'Could not launch $url';
     }
   }
-
-
 }
 
 class PetMeetingOverViewModule extends StatelessWidget {
   PetMeetingOverViewModule({Key? key}) : super(key: key);
   final screenController = Get.find<PetMeetingDetailsScreenController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {

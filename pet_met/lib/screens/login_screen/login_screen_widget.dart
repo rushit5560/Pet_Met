@@ -11,10 +11,16 @@ import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_passfield.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
 import 'package:pet_met/utils/validations.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../services/providers/dark_theme_provider.dart';
+
 class BackgroundImage extends StatelessWidget {
-  const BackgroundImage({Key? key}) : super(key: key);
+  BackgroundImage({Key? key}) : super(key: key);
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +54,8 @@ class LoginModule extends StatelessWidget {
   LoginModule({Key? key}) : super(key: key);
 
   final controller = Get.find<LoginController>();
-
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -168,8 +175,9 @@ class LoginModule extends StatelessWidget {
                 Expanded(
                   child: GestureDetector(
                     onTap: () async {
-                       //await controller.signInWithGoogleFunction();
-                      Fluttertoast.showToast(msg: 'This feature is coming soon');
+                      //await controller.signInWithGoogleFunction();
+                      Fluttertoast.showToast(
+                          msg: 'This feature is coming soon');
                     },
                     child: Container(
                       height: controller.size.height * 0.065,
@@ -215,7 +223,8 @@ class LoginModule extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () async {
                       //await controller.signInWithFacebookFunction();
-                      Fluttertoast.showToast(msg: 'This feature is coming soon');
+                      Fluttertoast.showToast(
+                          msg: 'This feature is coming soon');
                     },
                     child: Container(
                       height: controller.size.height * 0.065,
@@ -338,7 +347,7 @@ class LoginModule extends StatelessWidget {
     );
   }
 
-  Widget emailTextFieldModule(){
+  Widget emailTextFieldModule() {
     return Stack(
       children: [
         Container(
@@ -375,111 +384,112 @@ class LoginModule extends StatelessWidget {
             decoration: TextDecoration.none,
           ),
           decoration: InputDecoration(
-              fillColor: themeProvider.darkTheme
-                  ? AppColors.darkThemeBoxColor
-                  : AppColors.whiteColor,
-              filled: true,
-              contentPadding: const EdgeInsets.symmetric(horizontal: 15),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-              ),
-              hintText: "Email Address",
-              hintStyle: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.greyTextColor,
-                fontSize: 13.sp,
-                fontWeight: FontWeight.w400,
-              ),
+            fillColor: themeProvider.darkTheme
+                ? AppColors.darkThemeBoxColor
+                : AppColors.whiteColor,
+            filled: true,
+            contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+            ),
+            hintText: "Email Address",
+            hintStyle: TextStyle(
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.greyTextColor,
+              fontSize: 13.sp,
+              fontWeight: FontWeight.w400,
+            ),
           ),
         ),
       ],
     );
   }
 
-  Widget passwordTextFieldModule(){
-    return Obx(()=>
-        Stack(
-          children: [
-            Container(
-              height: controller.size.height * 0.05,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                boxShadow: [
-                  BoxShadow(
-                    color: themeProvider.darkTheme
-                        ? AppColors.whiteColor.withOpacity(0.05)
-                        : AppColors.greyTextColor.withOpacity(0.5),
-                    blurRadius: 10,
-                    spreadRadius: 0.1,
-                    offset: const Offset(0, 0),
-                  ),
-                ],
-              ),
+  Widget passwordTextFieldModule() {
+    return Obx(
+      () => Stack(
+        children: [
+          Container(
+            height: controller.size.height * 0.05,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              boxShadow: [
+                BoxShadow(
+                  color: themeProvider.darkTheme
+                      ? AppColors.whiteColor.withOpacity(0.05)
+                      : AppColors.greyTextColor.withOpacity(0.5),
+                  blurRadius: 10,
+                  spreadRadius: 0.1,
+                  offset: const Offset(0, 0),
+                ),
+              ],
             ),
-            TextFormField(
-              controller: controller.passController,
-              validator: (val) => Validations().validatePassword(val!),
-              obscureText: controller.isPasswordVisible.value,
-              textInputAction: TextInputAction.done,
-              keyboardType: TextInputType.visiblePassword,
-              cursorColor: themeProvider.darkTheme
+          ),
+          TextFormField(
+            controller: controller.passController,
+            validator: (val) => Validations().validatePassword(val!),
+            obscureText: controller.isPasswordVisible.value,
+            textInputAction: TextInputAction.done,
+            keyboardType: TextInputType.visiblePassword,
+            cursorColor: themeProvider.darkTheme
+                ? AppColors.whiteColor
+                : AppColors.accentTextColor,
+            style: TextStyle(
+              color: themeProvider.darkTheme
                   ? AppColors.whiteColor
-                  : AppColors.accentTextColor,
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.blackTextColor,
-                fontSize: 13.sp,
-                fontWeight: FontWeight.w400,
-                decoration: TextDecoration.none,
-              ),
-              decoration: InputDecoration(
-                  fillColor: themeProvider.darkTheme
-                      ? AppColors.darkThemeBoxColor
-                      : AppColors.whiteColor,
-                  filled: true,
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 15),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-                  ),
-                  hintText: "Password",
-                  hintStyle: TextStyle(
-                    color: themeProvider.darkTheme
-                        ? AppColors.whiteColor
-                        : AppColors.greyTextColor,
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  suffixIcon: Obx(
-                        () => GestureDetector(
-                      onTap: () {
-                        controller.isPasswordVisible.value =
-                        !controller.isPasswordVisible.value;
-                      },
-                      child: Icon(
-                          controller.isPasswordVisible.value
-                              ? Icons.visibility_off_rounded
-                              : Icons.visibility_rounded,
-                          size: 20,
-                          color: Colors.grey),
-                    ),
-                  )
-              ),
+                  : AppColors.blackTextColor,
+              fontSize: 13.sp,
+              fontWeight: FontWeight.w400,
+              decoration: TextDecoration.none,
             ),
-          ],
-        ),
+            decoration: InputDecoration(
+                fillColor: themeProvider.darkTheme
+                    ? AppColors.darkThemeBoxColor
+                    : AppColors.whiteColor,
+                filled: true,
+                contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide:
+                      const BorderSide(width: 0, style: BorderStyle.none),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide:
+                      const BorderSide(width: 0, style: BorderStyle.none),
+                ),
+                hintText: "Password",
+                hintStyle: TextStyle(
+                  color: themeProvider.darkTheme
+                      ? AppColors.whiteColor
+                      : AppColors.greyTextColor,
+                  fontSize: 13.sp,
+                  fontWeight: FontWeight.w400,
+                ),
+                suffixIcon: Obx(
+                  () => GestureDetector(
+                    onTap: () {
+                      controller.isPasswordVisible.value =
+                          !controller.isPasswordVisible.value;
+                    },
+                    child: Icon(
+                        controller.isPasswordVisible.value
+                            ? Icons.visibility_off_rounded
+                            : Icons.visibility_rounded,
+                        size: 20,
+                        color: Colors.grey),
+                  ),
+                )),
+          ),
+        ],
+      ),
     );
   }
 }

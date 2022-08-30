@@ -34,7 +34,7 @@ class LoginScreen extends StatelessWidget {
           child: Stack(
             alignment: Alignment.topCenter,
             children: [
-              const BackgroundImage(),
+              BackgroundImage(),
               BackGroundLeftShadow(
                 height: controller.size.height * 0.3,
                 width: controller.size.height * 0.3,

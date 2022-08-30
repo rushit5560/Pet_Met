@@ -6,13 +6,18 @@ import 'package:pet_met/utils/common_widgets/background_widgets.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+import '../../services/providers/dark_theme_provider.dart';
 import 'pet_meeting_and_breading_screen_widgets.dart';
 
 class PetMeetingAndBreadingScreen extends StatelessWidget {
   PetMeetingAndBreadingScreen({Key? key}) : super(key: key);
   final petMeetingAndBreadingScreenController =
       Get.put(PetMeetingAndBreadingScreenController());
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -46,17 +51,25 @@ class PetMeetingAndBreadingScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             MeetingAndBreadingSearchFieldModule(),
-                            SizedBox(height: petMeetingAndBreadingScreenController.size.height * 0.002.h),
+                            SizedBox(
+                                height: petMeetingAndBreadingScreenController
+                                        .size.height *
+                                    0.002.h),
                             const PetCategoriesTextModule(),
                             SizedBox(
-                                height: petMeetingAndBreadingScreenController.size.height * 0.002.h),
+                                height: petMeetingAndBreadingScreenController
+                                        .size.height *
+                                    0.002.h),
                             Expanded(
-                                child: petMeetingAndBreadingScreenController.searchList.isNotEmpty
-                                    ? PetCategoriesSearchListModule()
-                                    : PetCategoriesListModule(),
+                              child: petMeetingAndBreadingScreenController
+                                      .searchList.isNotEmpty
+                                  ? PetCategoriesSearchListModule()
+                                  : PetCategoriesListModule(),
                             ),
                             SizedBox(
-                                height: petMeetingAndBreadingScreenController.size.height * 0.002.h),
+                                height: petMeetingAndBreadingScreenController
+                                        .size.height *
+                                    0.002.h),
                             MeetYourLovedOneButtonModule(),
                           ],
                         ).commonAllSidePadding(padding: 20),

@@ -41,7 +41,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               topPad: controller.size.height * 0.45,
               rightPad: -controller.size.width * 0.25,
             ),
-            const BackgroundCurve(),
+            BackgroundCurve(),
             Column(
               children: [
                 Padding(

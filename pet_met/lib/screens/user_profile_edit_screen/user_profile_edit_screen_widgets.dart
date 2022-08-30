@@ -14,11 +14,16 @@ import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
 import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/validations.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-class BackgroundImage extends StatelessWidget {
-  const BackgroundImage({Key? key}) : super(key: key);
+import '../../services/providers/dark_theme_provider.dart';
 
+class BackgroundImage extends StatelessWidget {
+  BackgroundImage({Key? key}) : super(key: key);
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -34,6 +39,8 @@ class UploadImageModule extends StatelessWidget {
   UploadImageModule({Key? key}) : super(key: key);
 
   final controller = Get.find<UserProfileEditController>();
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -272,23 +279,27 @@ class UserPetListModule extends StatelessWidget {
 
   final controller = Get.find<UserProfileEditController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
   @override
   Widget build(BuildContext context) {
-    return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         "Your pets:",
-        style: TextStyle(color: themeProvider.darkTheme
-            ? AppColors.whiteColor
-            : AppColors.blackTextColor, fontWeight: FontWeight.bold, fontSize: 17),
+        style: TextStyle(
+            color: themeProvider.darkTheme
+                ? AppColors.whiteColor
+                : AppColors.blackTextColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 17),
       ),
       const SizedBox(height: 8),
-
       Row(
         children: [
-          controller.petList.length == 5 ? Container() :
-          /*Stack(
+          controller.petList.length == 5
+              ? Container()
+              :
+              /*Stack(
               children: [
             Container(
               height: 8.h,
@@ -336,73 +347,75 @@ class UserPetListModule extends StatelessWidget {
               ),
             )
           ]),*/
-          GestureDetector(
-            onTap: (){
-              Get.to(() => UploadPetScreen(),
-                  transition: Transition.native,
-                  duration: const Duration(milliseconds: 500),
-                  arguments: [PetOption.addOption, ""])!.then((value) async {
-                await controller.getAllRoleProfileFunction();
-              });
-            },
-            child: Container(
-              height: 8.h,
-              width: 8.h,
-              margin: const EdgeInsets.only(bottom: 5, right: 5),
-              decoration: BoxDecoration(
-                // image: DecorationImage(
-                //     image: AssetImage(
-                //       controller.dogsTopList[index],
-                //     ),
-                //     fit: BoxFit.cover),
-                //color: AppColors.greyTextColor,
-                border: Border.all(color: Colors.grey),
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(8),
-                ),
-              ),
-              child: /*ClipRRect(
+              GestureDetector(
+                  onTap: () {
+                    Get.to(() => UploadPetScreen(),
+                            transition: Transition.native,
+                            duration: const Duration(milliseconds: 500),
+                            arguments: [PetOption.addOption, ""])!
+                        .then((value) async {
+                      await controller.getAllRoleProfileFunction();
+                    });
+                  },
+                  child: Container(
+                    height: 8.h,
+                    width: 8.h,
+                    margin: const EdgeInsets.only(bottom: 5, right: 5),
+                    decoration: BoxDecoration(
+                      // image: DecorationImage(
+                      //     image: AssetImage(
+                      //       controller.dogsTopList[index],
+                      //     ),
+                      //     fit: BoxFit.cover),
+                      //color: AppColors.greyTextColor,
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                    ),
+                    child: /*ClipRRect(
                       borderRadius:
                       const BorderRadius.all(Radius.circular(8)),
                       child: Image.asset(AppImages.petMetLogoImg,
                           fit: BoxFit.cover))*/
-              Icon(
-                Icons.add,
-                color: AppColors.accentTextColor,
-                size: 30,
-              ),
-            ),
-          ),
-          controller.petList.length == 5 ? Container() : const SizedBox(width: 5),
+                        Icon(
+                      Icons.add,
+                      color: AppColors.accentTextColor,
+                      size: 30,
+                    ),
+                  ),
+                ),
+          controller.petList.length == 5
+              ? Container()
+              : const SizedBox(width: 5),
           Expanded(
-            child: Container(
-              height: 8.h,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: controller.petList.length,
-                separatorBuilder: (context, index) {
-                  return const SizedBox(width: 8);
-                },
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      log('Pet Id : ${controller.petList[index].id}');
-                      Get.to(()=> UploadPetScreen(),
-                          transition: Transition.native,
-                          duration: const Duration(milliseconds: 500),
-                          arguments: [
-                            PetOption.updateOption,
-                            controller.petList[index].id
-                          ]);
-                    },
-                    child: Stack(
-                      children: [
-                        Container(
-                          height: 8.h,
-                          width: 7.h,
-                          margin: const EdgeInsets.only(
-                              bottom: 5, right: 5),
-                          decoration: BoxDecoration(
+              child: Container(
+            height: 8.h,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemCount: controller.petList.length,
+              separatorBuilder: (context, index) {
+                return const SizedBox(width: 8);
+              },
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    log('Pet Id : ${controller.petList[index].id}');
+                    Get.to(() => UploadPetScreen(),
+                        transition: Transition.native,
+                        duration: const Duration(milliseconds: 500),
+                        arguments: [
+                          PetOption.updateOption,
+                          controller.petList[index].id
+                        ]);
+                  },
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: 8.h,
+                        width: 7.h,
+                        margin: const EdgeInsets.only(bottom: 5, right: 5),
+                        decoration: BoxDecoration(
                             // image: DecorationImage(
                             //     image: AssetImage(
                             //       controller.dogsTopList[index],
@@ -412,24 +425,23 @@ class UserPetListModule extends StatelessWidget {
                             borderRadius: BorderRadius.all(
                               Radius.circular(8),
                             ),
-                            border: Border.all(color: Colors.grey)
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.all(Radius.circular(8)),
-                            child: Image.network(
-                                ApiUrl.apiImagePath + controller.petList[index].image,
-                                errorBuilder: (context, st, ob) {
-                                  return Image.asset(AppImages.petMetLogoImg);
-                                }, fit: BoxFit.cover),
-                          ),
+                            border: Border.all(color: Colors.grey)),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                          child: Image.network(
+                              ApiUrl.apiImagePath +
+                                  controller.petList[index].image,
+                              errorBuilder: (context, st, ob) {
+                            return Image.asset(AppImages.petMetLogoImg);
+                          }, fit: BoxFit.cover),
                         ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            )
-          )
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ))
         ],
       )
     ]);
@@ -482,6 +494,9 @@ class NameTextFieldModule extends StatelessWidget {
 
   final controller = Get.find<UserProfileEditController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -492,9 +507,9 @@ class NameTextFieldModule extends StatelessWidget {
             Text(
               "Name",
               style: TextStyle(
-                  color: themeProvider.darkTheme
-                      ? AppColors.whiteColor.withOpacity(0.7)
-                      : AppColors.blackTextColor.withOpacity(0.7),
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor.withOpacity(0.7)
+                    : AppColors.blackTextColor.withOpacity(0.7),
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -521,6 +536,9 @@ class EmailTextFieldModule extends StatelessWidget {
   EmailTextFieldModule({Key? key}) : super(key: key);
 
   final controller = Get.find<UserProfileEditController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -561,6 +579,8 @@ class MobileNumberTextFieldModule extends StatelessWidget {
   MobileNumberTextFieldModule({Key? key}) : super(key: key);
 
   final controller = Get.find<UserProfileEditController>();
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -601,6 +621,9 @@ class LocationTextFieldModule extends StatelessWidget {
   LocationTextFieldModule({Key? key}) : super(key: key);
 
   final controller = Get.find<UserProfileEditController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -645,6 +668,8 @@ class GenderDropDownModule extends StatefulWidget {
 
 class _GenderDropDownModuleState extends State<GenderDropDownModule> {
   final controller = Get.find<UserProfileEditController>();
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -666,7 +691,6 @@ class _GenderDropDownModuleState extends State<GenderDropDownModule> {
           ],
         ),
         const SizedBox(height: 8),
-
         Stack(
           children: [
             Container(
@@ -769,6 +793,8 @@ class BirthDateModule extends StatelessWidget {
   BirthDateModule({Key? key}) : super(key: key);
 
   final controller = Get.find<UserProfileEditController>();
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -821,8 +847,8 @@ class BirthDateModule extends StatelessWidget {
             yearFlex: 2,
             textStyle: TextStyle(
               color: themeProvider.darkTheme
-            ? AppColors.whiteColor
-                : AppColors.blackTextColor,
+                  ? AppColors.whiteColor
+                  : AppColors.blackTextColor,
               fontSize: 12.sp,
               fontWeight: FontWeight.w400,
             ),

@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/user_profile_controller.dart';
 import 'package:pet_met/screens/address_screen/address_screen.dart';
@@ -58,6 +59,7 @@ class ContactContainerWidget extends StatelessWidget {
           imagePath,
           height: 35,
           width: 35,
+          color: AppColors.accentColor,
         ),
       ),
     );
@@ -357,12 +359,25 @@ class ContactInfoModule extends StatelessWidget {
                     // open phone dialer
                     _makingPhoneCall();
                   } else if (controller.shopMeetingStatus.value == false) {
-                    // controller.openCheckout();
+                    controller.openCheckout();
                   }
                 }
               },
               child: const ContactContainerWidget(
                 imagePath: AppImages.phoneGreenImg,
+              ),
+            ),
+            const SizedBox(width: 15),
+            GestureDetector(
+              onTap: () {
+                if (controller.followCategoryId == "1") {
+                  _makingMessageChat();
+                } else if (controller.followCategoryId == "2") {
+                  _makingMessageChat();
+                }
+              },
+              child: const ContactContainerWidget(
+                imagePath: AppIcons.messageImg,
               ),
             ),
           ],
@@ -378,6 +393,22 @@ class ContactInfoModule extends StatelessWidget {
       await launchUrl(url);
     } else {
       throw 'Could not launch $url';
+    }
+  }
+
+  _makingMessageChat() async {
+    log("mobile number is : ${controller.userMobileNumber}");
+    log("controller.shopMobileNumber is : ${controller.shopMobileNumber}");
+    var url = Uri.parse(
+        "sms: ${controller.followCategoryId == "1" ? controller.userMobileNumber : controller.followCategoryId == "2" ? controller.shopMobileNumber : ""} ?body=Hi");
+
+    if (controller.userMobileNumber.isEmpty &&
+        controller.shopMobileNumber.isEmpty) {
+      Fluttertoast.showToast(msg: "Person has not provided his mobile number.");
+    } else if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not messages $url';
     }
   }
 }

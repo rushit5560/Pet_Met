@@ -28,7 +28,8 @@ class UploadPetScreen extends StatefulWidget {
 class _UploadPetScreenState extends State<UploadPetScreen> {
   final controller = Get.put(UploadPetController());
 
-  var themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -48,87 +49,77 @@ class _UploadPetScreenState extends State<UploadPetScreen> {
             //   topPad: controller.size.height * 0.45,
             //   rightPad: -controller.size.width * 0.15,
             // ),
-            const BackgroundImage(),
+            BackgroundImage(),
 
             Obx(
-              ()=> controller.isLoading.value
-              ? const CustomAnimationLoader()
-              : Column(
-                children: [
-                  CustomAppBar(
-                    appBarOption: AppBarOption.singleBackButtonOption,
-                    title: controller.petOption == PetOption.addOption ? "Add Pet" : "Update Pet",
-                  ),
-                  // Padding(
-                  //   padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.start,
-                  //     children: [
-                  //       GestureDetector(
-                  //         onTap: () {
-                  //           Get.back();
-                  //         },
-                  //         child: Image.asset(
-                  //           "assets/icons/left_back_arrow.png",
-                  //           width: controller.size.width * 0.07,
-                  //         ),
-                  //       ),
-                  //       const SizedBox(),
-                  //     ],
-                  //   ),
-                  // ),
-                  Expanded(
-                    child: SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 20),
-                        child: Form(
-                          key: controller.updatePetFormKey,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(height: 15),
-                              UploadImageModule(),
-
-                              const SizedBox(height: 30),
-
-                              PetNameTextFieldModule(),
-
-                              const SizedBox(height: 15),
-                              TypesOfPetDropDownModule(),
-
-                              const SizedBox(height: 15),
-
-                              PetSubCategoryDropDownModule(),
-
-                              const SizedBox(height: 15),
-                              PetDetailsTextFieldModule(),
-                              const SizedBox(height: 15),
-                              MeetingAvailabilityDropDown(),
-
-                              const SizedBox(height: 15),
-                              const GenderDropDown(),
-
-                              const SizedBox(height: 15),
-                              BirthDateDropDown(),
-
-                              const SizedBox(height: 15),
-
-
-                              WeightTextFieldModule(),
-
-                              const SizedBox(height: 30),
-                              PetSubmitButton(),
-                              const SizedBox(height: 15),
-                            ],
+              () => controller.isLoading.value
+                  ? const CustomAnimationLoader()
+                  : Column(
+                      children: [
+                        CustomAppBar(
+                          appBarOption: AppBarOption.singleBackButtonOption,
+                          title: controller.petOption == PetOption.addOption
+                              ? "Add Pet"
+                              : "Update Pet",
+                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+                        //   child: Row(
+                        //     mainAxisAlignment: MainAxisAlignment.start,
+                        //     children: [
+                        //       GestureDetector(
+                        //         onTap: () {
+                        //           Get.back();
+                        //         },
+                        //         child: Image.asset(
+                        //           "assets/icons/left_back_arrow.png",
+                        //           width: controller.size.width * 0.07,
+                        //         ),
+                        //       ),
+                        //       const SizedBox(),
+                        //     ],
+                        //   ),
+                        // ),
+                        Expanded(
+                          child: SingleChildScrollView(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 20),
+                              child: Form(
+                                key: controller.updatePetFormKey,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const SizedBox(height: 15),
+                                    UploadImageModule(),
+                                    const SizedBox(height: 30),
+                                    PetNameTextFieldModule(),
+                                    const SizedBox(height: 15),
+                                    TypesOfPetDropDownModule(),
+                                    const SizedBox(height: 15),
+                                    PetSubCategoryDropDownModule(),
+                                    const SizedBox(height: 15),
+                                    PetDetailsTextFieldModule(),
+                                    const SizedBox(height: 15),
+                                    MeetingAvailabilityDropDown(),
+                                    const SizedBox(height: 15),
+                                    const GenderDropDown(),
+                                    const SizedBox(height: 15),
+                                    BirthDateDropDown(),
+                                    const SizedBox(height: 15),
+                                    WeightTextFieldModule(),
+                                    const SizedBox(height: 30),
+                                    PetSubmitButton(),
+                                    const SizedBox(height: 15),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
             ),
           ],
         ),

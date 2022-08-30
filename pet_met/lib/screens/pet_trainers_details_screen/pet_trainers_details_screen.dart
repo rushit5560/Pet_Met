@@ -6,8 +6,10 @@ import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../services/providers/dark_theme_provider.dart';
 import 'pet_trainers_details_screen_widgets.dart';
 
 class PetTrainersDetailsScreen extends StatelessWidget {
@@ -15,9 +17,13 @@ class PetTrainersDetailsScreen extends StatelessWidget {
   final petTrainersDetailsScreenController =
       Get.put(PetTrainersDetailsScreenController());
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: PayButtonModule(),
       body: SafeArea(
         child: Stack(
           children: [
@@ -60,8 +66,10 @@ class PetTrainersDetailsScreen extends StatelessWidget {
                                     height: petTrainersDetailsScreenController
                                             .size.height *
                                         0.005.w),
-                                petTrainersDetailsScreenController.isShowStatus.value
-                                    ? CallUsTextModule() : Container(),
+                                petTrainersDetailsScreenController
+                                        .isShowStatus.value
+                                    ? CallUsTextModule()
+                                    : Container(),
                                 const SizedBox(height: 10),
                                 PetTrainerOverViewModule(),
                               ],

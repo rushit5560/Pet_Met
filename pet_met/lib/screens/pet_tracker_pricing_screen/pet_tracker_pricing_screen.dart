@@ -9,14 +9,19 @@ import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/enums.dart';
+import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 
 class PetTrackerPricingScreen extends StatelessWidget {
   PetTrackerPricingScreen({Key? key}) : super(key: key);
   final controller = Get.put(PetTrackerPricingController());
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -53,14 +58,13 @@ class PetTrackerPricingScreen extends StatelessWidget {
                               child: Column(
                                 children: [
                                   SizedBox(
-                                      height: controller.size.height * 0.25),
+                                      height: controller.size.height * 0.18),
                                   Container(
-                                    height: controller.size.height * 0.45,
+                                    height: controller.size.height * 0.58,
                                     width: double.infinity,
                                     child: PetTrackerPriceModule(
                                       controller: controller,
-                                      planTypeText:
-                                          controller.name,
+                                      planTypeText: controller.name,
                                     ),
                                   ),
                                 ],
@@ -79,7 +83,7 @@ class PetTrackerPricingScreen extends StatelessWidget {
 }
 
 class PetTrackerPriceModule extends StatelessWidget {
-  const PetTrackerPriceModule({
+  PetTrackerPriceModule({
     Key? key,
     required this.controller,
     required this.planTypeText,
@@ -88,13 +92,16 @@ class PetTrackerPriceModule extends StatelessWidget {
   final PetTrackerPricingController controller;
   final String planTypeText;
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
         Container(
-          height: controller.size.height * 0.4,
+          height: controller.size.height * 0.52,
           width: controller.size.width * 0.8,
           decoration: BoxDecoration(
             color: themeProvider.darkTheme
@@ -137,17 +144,23 @@ class PetTrackerPriceModule extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 10),
-                Column(
-                  children: [
-                    PetTrackingDetailsCheckModule(
-                      detailsText: controller.overview,
+                SizedBox(
+                  height: controller.size.height * 0.24,
+                  width: controller.size.width * 0.75,
+                  child: SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
+                    child: Column(
+                      children: [
+                        PetTrackingDetailsCheckModule(
+                          detailsText: controller.overview,
+                        ),
+                        PetTrackingDetailsCheckModule(
+                          detailsText: "valid for ${controller.overview} days",
+                        ),
+                        PetTrackingDetailsCheckModule(),
+                      ],
                     ),
-                    PetTrackingDetailsCheckModule(
-                      detailsText:
-                          "valid for ${controller.overview} days",
-                    ),
-                    const PetTrackingDetailsCheckModule(),
-                  ],
+                  ),
                 ),
                 const SizedBox(height: 20),
                 Row(
@@ -205,22 +218,24 @@ class PetTrackerPriceModule extends StatelessWidget {
               ),
               child: Stack(
                 children: [
-                  Positioned(
-                    left: 12,
-                    top: 25,
-                    child: Text(
-                      "₹",
-                      style: TextStyle(
-                        color: AppColors.whiteColor,
-                        fontSize: 15.sp,
-                        fontWeight: FontWeight.bold,
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 12),
+                      child: Text(
+                        "₹",
+                        style: TextStyle(
+                          color: AppColors.whiteColor,
+                          fontSize: 15.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 28, top: 8),
+                      padding: const EdgeInsets.only(left: 28),
                       child: Text(
                         controller.price.toString(),
                         style: TextStyle(
@@ -242,12 +257,15 @@ class PetTrackerPriceModule extends StatelessWidget {
 }
 
 class PetTrackingDetailsCheckModule extends StatelessWidget {
-  const PetTrackingDetailsCheckModule({
+  PetTrackingDetailsCheckModule({
     Key? key,
     this.detailsText,
   }) : super(key: key);
 
   final String? detailsText;
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -276,15 +294,17 @@ class PetTrackingDetailsCheckModule extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
+              SizedBox(
                 width: size.width * 0.58,
                 child: Text(
                   detailsText == null
                       ? "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
                       : detailsText!,
                   style: TextStyle(
-                    color: AppColors.greyTextColor,
-                    fontSize: 8.5.sp,
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.darkThemeColor,
+                    fontSize: 10.5.sp,
                     fontWeight: FontWeight.w400,
                   ),
                 ),

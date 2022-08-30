@@ -6,13 +6,18 @@ import 'package:pet_met/utils/common_widgets/background_widgets.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/enums.dart';
+import 'package:provider/provider.dart';
 
+import '../../services/providers/dark_theme_provider.dart';
 import 'pet_vets_and_ngo_screen_Widgets.dart';
 
 class PetVetsAndNgoScreen extends StatelessWidget {
   PetVetsAndNgoScreen({Key? key}) : super(key: key);
   final petVetsAndNgoScreenController =
       Get.put(PetVetsAndNgoScreenController());
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -44,11 +49,11 @@ class PetVetsAndNgoScreen extends StatelessWidget {
                   child: petVetsAndNgoScreenController.isLoading.value
                       ? const CustomAnimationLoader()
                       : Column(
-                        children: [
-                          //SearchVetAndNgoTextFieldModule(),
-                          Expanded(child: VetsAndNgoListModule()),
-                        ],
-                      ),
+                          children: [
+                            SearchVetAndNgoTextFieldModule(),
+                            Expanded(child: VetsAndNgoListModule()),
+                          ],
+                        ),
                 ),
               ],
             ),

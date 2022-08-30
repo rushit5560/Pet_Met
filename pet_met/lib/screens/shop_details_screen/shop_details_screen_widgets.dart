@@ -21,6 +21,9 @@ class BannerImageModule extends StatelessWidget {
   BannerImageModule({Key? key}) : super(key: key);
   final screenController = Get.find<ShopDetailsScreenController>();
 
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -51,6 +54,8 @@ class BannerImageModule extends StatelessWidget {
 class OffersModule extends StatelessWidget {
   OffersModule({Key? key}) : super(key: key);
   final screenController = Get.find<ShopDetailsScreenController>();
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
   int index = 0;
 
   @override
@@ -78,9 +83,9 @@ class OffersModule extends StatelessWidget {
                 size: 18,
               ),
             )*/
-                Icon(
+                const Icon(
                     Icons.verified,
-                    color: Colors.green,
+                    color: AppColors.accentColor,
                     size: 19,
                   )
                 : Container(),
@@ -683,6 +688,9 @@ class MeetingAvailabilityModule extends StatelessWidget {
 class OverViewModule extends StatelessWidget {
   OverViewModule({Key? key}) : super(key: key);
   final screenController = Get.find<ShopDetailsScreenController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {

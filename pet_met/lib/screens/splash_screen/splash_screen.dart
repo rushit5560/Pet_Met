@@ -13,12 +13,13 @@ class SplashScreen extends StatelessWidget {
   SplashScreen({Key? key}) : super(key: key);
 
   final controller = Get.put(SplashController());
+
   @override
-  // final themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
   Widget build(BuildContext context) {
+    DarkThemeProvider themeProvider = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
       // backgroundColor: const Color(0xFFFFFFFF),
-     /* body: SafeArea(
+      /* body: SafeArea(
         child: Stack(
           children: [
             SizedBox(
@@ -107,9 +108,8 @@ class SplashScreen extends StatelessWidget {
                       : AppImages.splashLogoImgLight,
                   fit: BoxFit.cover,
                   // width: Get.width/1.5,
-                  height: Get.height/3.5,
+                  height: Get.height / 3.5,
                 ),
-
                 SizedBox(height: 8.h),
                 Image.asset(
                   AppImages.petMetLogoImg,
@@ -122,7 +122,6 @@ class SplashScreen extends StatelessWidget {
                   fit: BoxFit.cover,
                   width: 25.w,
                 ),
-
                 const SizedBox(height: 20),
                 Text(
                   "``Your Personal pet Companion.,,",
@@ -135,15 +134,11 @@ class SplashScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-
-
-
               ],
             ),
             Expanded(
-              child: backgroundWaveShape(controller),
+              child: backgroundWaveShape(controller, context),
             )
-
 
             //backgroundWaveShape(controller),
           ],
@@ -152,7 +147,8 @@ class SplashScreen extends StatelessWidget {
     );
   }
 
-  backgroundWaveShape(controller) {
+  backgroundWaveShape(controller, context) {
+    DarkThemeProvider themeProvider = Provider.of<DarkThemeProvider>(context);
     return Column(
       children: [
         Expanded(
@@ -169,7 +165,6 @@ class SplashScreen extends StatelessWidget {
                       : lightThemeBottomShapes(),
                 ),
               ),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -180,8 +175,6 @@ class SplashScreen extends StatelessWidget {
                   SizedBox(width: 12.w),
                 ],
               ),
-
-
             ],
           ),
         ),
@@ -291,7 +284,6 @@ class SplashScreen extends StatelessWidget {
                 child: Image.asset(
                   "assets/images/Group-1-light.png",
                   fit: BoxFit.fill,
-
                 ),
               ),
             ],

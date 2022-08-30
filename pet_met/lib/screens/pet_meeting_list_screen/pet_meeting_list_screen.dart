@@ -6,13 +6,18 @@ import 'package:pet_met/utils/common_widgets/background_widgets.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/enums.dart';
+import 'package:provider/provider.dart';
 
+import '../../services/providers/dark_theme_provider.dart';
 import 'pet_meeting_list_screen_widgets.dart';
 
 class PetMeetingListScreen extends StatelessWidget {
   PetMeetingListScreen({Key? key}) : super(key: key);
   final petMeetingListScreenController =
       Get.put(PetMeetingListScreenController());
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {

@@ -11,7 +11,6 @@ import '../../utils/common_widgets/custom_appbar.dart';
 import '../../utils/enums.dart';
 import '../../utils/validations.dart';
 
-
 class UserProfileEditScreen extends StatefulWidget {
   UserProfileEditScreen({Key? key}) : super(key: key);
 
@@ -44,97 +43,100 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
             //   rightPad: -controller.size.width * 0.15,
             // ),
             BackgroundImage(),
-            Obx(()=>
-            controller.isLoading.value ?
-            CustomAnimationLoader():
-               Column(
-                children: [
-                  CustomAppBar(
-                    appBarOption: AppBarOption.singleBackButtonOption,
-                    title: "Profile Edit",
-                    trailingWidget: GestureDetector(
-                      onTap: () {
-                        modelBottomSheet(context);
-                      },
-                      // child: Image.asset(
-                      //   AppImages.userProfileImg,
-                      //   width: controller.size.width * 0.12,
-                      // ),
-                      child: const Icon(Icons.person, color: AppColors.accentColor,),
-                    ),
-                  ),
-                  // Padding(
-                  //   padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.start,
-                  //     children: [
-                  //       GestureDetector(
-                  //         onTap: () {
-                  //           Get.back();
-                  //         },
-                  //         child: Image.asset(
-                  //           "assets/icons/left_back_arrow.png",
-                  //           width: controller.size.width * 0.07,
-                  //         ),
-                  //       ),
-                  //       const SizedBox(),
-                  //     ],
-                  //   ),
-                  // ),
-                  Expanded(
-                    child: Obx(()=>
-                    controller.isLoading.value ?
-                        CustomAnimationLoader():
-                       SingleChildScrollView(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 20),
-                          child: Form(
-                            key: controller.formKey,
-                            child: Column(
-                              children: [
-                                const SizedBox(height: 25),
-                                UploadImageModule(),
-                                const SizedBox(height: 30),
-                                // TextFieldSection(
-                                //   fieldName: "Name",
-                                //   fieldHinttext: "Your Pet Title",
-                                // ),
-                                UserPetListModule(),
-                                const SizedBox(height: 15),
-                                NameTextFieldModule(),
-
-                                const SizedBox(height: 15),
-                                EmailTextFieldModule(),
-                                const SizedBox(height: 15),
-                                // TextFieldSection(
-                                //   fieldName: "Mobile Number",
-                                //   fieldHinttext: "**** ** ***",
-                                // ),
-                                MobileNumberTextFieldModule(),
-                                const SizedBox(height: 15),
-
-                                //LocationTextFieldModule(),
-                                // TextFieldSection(
-                                //   fieldName: "Location",
-                                //   fieldHinttext: "**** ** ***",
-                                // ),
-                                const SizedBox(height: 15),
-                                GenderDropDownModule(),
-                                SizedBox(height: 15),
-                                BirthDateModule(),
-                                const SizedBox(height: 30),
-                                SubmitButton(),
-                                const SizedBox(height: 15),
-                              ],
+            Obx(
+              () => controller.isLoading.value
+                  ? CustomAnimationLoader()
+                  : Column(
+                      children: [
+                        CustomAppBar(
+                          appBarOption: AppBarOption.singleBackButtonOption,
+                          title: "Profile Edit",
+                          trailingWidget: GestureDetector(
+                            onTap: () {
+                              modelBottomSheet(context);
+                            },
+                            // child: Image.asset(
+                            //   AppImages.userProfileImg,
+                            //   width: controller.size.width * 0.12,
+                            // ),
+                            child: const Icon(
+                              Icons.person,
+                              color: AppColors.accentColor,
                             ),
                           ),
                         ),
-                      ),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+                        //   child: Row(
+                        //     mainAxisAlignment: MainAxisAlignment.start,
+                        //     children: [
+                        //       GestureDetector(
+                        //         onTap: () {
+                        //           Get.back();
+                        //         },
+                        //         child: Image.asset(
+                        //           "assets/icons/left_back_arrow.png",
+                        //           width: controller.size.width * 0.07,
+                        //         ),
+                        //       ),
+                        //       const SizedBox(),
+                        //     ],
+                        //   ),
+                        // ),
+                        Expanded(
+                          child: Obx(
+                            () => controller.isLoading.value
+                                ? CustomAnimationLoader()
+                                : SingleChildScrollView(
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 20, vertical: 20),
+                                      child: Form(
+                                        key: controller.formKey,
+                                        child: Column(
+                                          children: [
+                                            const SizedBox(height: 25),
+                                            UploadImageModule(),
+                                            const SizedBox(height: 30),
+                                            // TextFieldSection(
+                                            //   fieldName: "Name",
+                                            //   fieldHinttext: "Your Pet Title",
+                                            // ),
+                                            UserPetListModule(),
+                                            const SizedBox(height: 15),
+                                            NameTextFieldModule(),
+
+                                            const SizedBox(height: 15),
+                                            EmailTextFieldModule(),
+                                            const SizedBox(height: 15),
+                                            // TextFieldSection(
+                                            //   fieldName: "Mobile Number",
+                                            //   fieldHinttext: "**** ** ***",
+                                            // ),
+                                            MobileNumberTextFieldModule(),
+                                            const SizedBox(height: 15),
+
+                                            //LocationTextFieldModule(),
+                                            // TextFieldSection(
+                                            //   fieldName: "Location",
+                                            //   fieldHinttext: "**** ** ***",
+                                            // ),
+                                            const SizedBox(height: 15),
+                                            GenderDropDownModule(),
+                                            SizedBox(height: 15),
+                                            BirthDateModule(),
+                                            const SizedBox(height: 30),
+                                            SubmitButton(),
+                                            const SizedBox(height: 15),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
             ),
           ],
         ),
@@ -142,7 +144,7 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
     );
   }
 
-  modelBottomSheet(BuildContext context){
+  modelBottomSheet(BuildContext context) {
     showModalBottomSheet<void>(
       context: context,
       constraints: null,
@@ -173,271 +175,381 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
 
                 controller.userProfileAvail == true
                     ? GestureDetector(
-                  onTap: ()async{
-                    await multipleAccountDialog(context, controller.userEmail.value, "1");
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      width: Get.width,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: Colors.grey),
-                        color: Colors.grey.shade200
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "User",
-                              style: TextStyle(color: themeProvider.darkTheme
-                                  ? AppColors.whiteColor
-                                  : AppColors.blackTextColor,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17),
+                        onTap: () async {
+                          await multipleAccountDialog(
+                              context, controller.userEmail.value, "1");
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                            width: Get.width,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              border: Border.all(color: Colors.grey),
+                              color: themeProvider.darkTheme
+                                  ? AppColors.blackTextColor
+                                  : Colors.grey.shade200,
                             ),
-                            const SizedBox(child: Divider(color: AppColors.greyColor,)),
-
-                            Row(
-                              children: [
-                                Expanded(
-                                    flex: 30,
-                                    child: Text("User Name", style: TextStyle(color: themeProvider.darkTheme
-                                        ? AppColors.whiteColor
-                                        : AppColors.blackTextColor, fontWeight: FontWeight.bold,),)),
-                                const SizedBox(width: 8),
-                                Expanded(
-                                    flex: 70,
-                                    child: Text(controller.userName.value, style: TextStyle(color: themeProvider.darkTheme
-                                        ? AppColors.whiteColor
-                                        : AppColors.blackTextColor,),)),
-                              ],
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "User",
+                                    style: TextStyle(
+                                        color: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                            : AppColors.blackTextColor,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 17),
+                                  ),
+                                  const SizedBox(
+                                      child: Divider(
+                                    color: AppColors.greyColor,
+                                  )),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                          flex: 30,
+                                          child: Text(
+                                            "User Name",
+                                            style: TextStyle(
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.blackTextColor,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          )),
+                                      const SizedBox(width: 8),
+                                      Expanded(
+                                          flex: 70,
+                                          child: Text(
+                                            controller.userName.value,
+                                            style: TextStyle(
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.blackTextColor,
+                                            ),
+                                          )),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        flex: 30,
+                                        child: Text(
+                                          "Email",
+                                          style: TextStyle(
+                                            color: themeProvider.darkTheme
+                                                ? AppColors.whiteColor
+                                                : AppColors.blackTextColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 8),
+                                      Expanded(
+                                          flex: 70,
+                                          child: Text(
+                                            controller.userEmail.value,
+                                            style: TextStyle(
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.blackTextColor,
+                                            ),
+                                          )),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
-                            const SizedBox(height: 10),
-                            Row(
-                              children: [
-                                Expanded(
-                                  flex: 30,
-                                  child: Text("Email", style: TextStyle(color: themeProvider.darkTheme
-                                      ? AppColors.whiteColor
-                                      : AppColors.blackTextColor, fontWeight: FontWeight.bold,),),
-                                ),
-                                const SizedBox(width: 8),
-                                Expanded(
-                                    flex: 70,
-                                    child: Text(controller.userEmail.value, style: TextStyle(color: themeProvider.darkTheme
-                                        ? AppColors.whiteColor
-                                        : AppColors.blackTextColor,),)),
-                              ],
-                            ),
-
-
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                ) : Container(),
-
+                      )
+                    : Container(),
                 controller.shopProfile == true
                     ? GestureDetector(
-                  onTap: ()async{
-                    await multipleAccountDialog(context, controller.shopEmail.value, "2");
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      width: Get.width,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: Colors.grey),
-                          color: Colors.grey.shade200
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Shop",  style: TextStyle(color: themeProvider.darkTheme
-                                ? AppColors.whiteColor
-                                : AppColors.blackTextColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17),),
-                            const SizedBox(child: Divider(color: AppColors.greyColor,)),
-
-                            Row(
-                              children: [
-                                Expanded(
-                                    flex: 30,
-                                    child: Text("Shop Name", style: TextStyle(color: themeProvider.darkTheme
-                                        ? AppColors.whiteColor
-                                        : AppColors.blackTextColor, fontWeight: FontWeight.bold),)),
-                                Expanded(
-                                    flex: 70,
-                                    child: Text(controller.shopName.value, style: TextStyle(color: themeProvider.darkTheme
-                                        ? AppColors.whiteColor
-                                        : AppColors.blackTextColor,),)),
-                              ],
+                        onTap: () async {
+                          await multipleAccountDialog(
+                              context, controller.shopEmail.value, "2");
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: Get.width,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              border: Border.all(color: Colors.grey),
+                              color: themeProvider.darkTheme
+                                  ? AppColors.blackTextColor
+                                  : Colors.grey.shade200,
                             ),
-                            const SizedBox(height: 10),
-                            Row(
-                              children: [
-                                Expanded(
-                                    flex: 30,
-                                    child: Text("Email", style: TextStyle(color: themeProvider.darkTheme
-                                        ? AppColors.whiteColor
-                                        : AppColors.blackTextColor, fontWeight: FontWeight.bold),)),
-                                const SizedBox(width: 8),
-                                Expanded(
-                                    flex: 70,
-                                    child: Text(controller.shopEmail.value, style: TextStyle(color: themeProvider.darkTheme
-                                        ? AppColors.whiteColor
-                                        : AppColors.blackTextColor,),)),
-                              ],
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Shop",
+                                    style: TextStyle(
+                                        color: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                            : AppColors.blackTextColor,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 17),
+                                  ),
+                                  const SizedBox(
+                                      child: Divider(
+                                    color: AppColors.greyColor,
+                                  )),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                          flex: 30,
+                                          child: Text(
+                                            "Shop Name",
+                                            style: TextStyle(
+                                                color: themeProvider.darkTheme
+                                                    ? AppColors.whiteColor
+                                                    : AppColors.blackTextColor,
+                                                fontWeight: FontWeight.bold),
+                                          )),
+                                      Expanded(
+                                          flex: 70,
+                                          child: Text(
+                                            controller.shopName.value,
+                                            style: TextStyle(
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.blackTextColor,
+                                            ),
+                                          )),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                          flex: 30,
+                                          child: Text(
+                                            "Email",
+                                            style: TextStyle(
+                                                color: themeProvider.darkTheme
+                                                    ? AppColors.whiteColor
+                                                    : AppColors.blackTextColor,
+                                                fontWeight: FontWeight.bold),
+                                          )),
+                                      const SizedBox(width: 8),
+                                      Expanded(
+                                          flex: 70,
+                                          child: Text(
+                                            controller.shopEmail.value,
+                                            style: TextStyle(
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.blackTextColor,
+                                            ),
+                                          )),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
-
-
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                ) : Container(),
-
+                      )
+                    : Container(),
                 controller.vetNgoProfile == true
                     ? GestureDetector(
-                  onTap: ()async{
-                    await multipleAccountDialog(context, controller.ngoEmail.value, "3");
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      width: Get.width,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: Colors.grey),
-                          color: Colors.grey.shade200
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Vet & NGO",  style: TextStyle(color: themeProvider.darkTheme
-                                ? AppColors.whiteColor
-                                : AppColors.blackTextColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17),),
-                            const SizedBox(child: Divider(color: AppColors.greyColor,)),
-
-                            Row(
-                              children: [
-                                Expanded(
-                                    flex: 30,
-                                    child: Text("Vet/Ngo Name", style: TextStyle(color: themeProvider.darkTheme
-                                        ? AppColors.whiteColor
-                                        : AppColors.blackTextColor, fontWeight: FontWeight.bold,),)),
-                                const SizedBox(width: 8),
-                                Expanded(
-                                    flex: 70,
-                                    child: Text(controller.ngoName.value, style: TextStyle(color: themeProvider.darkTheme
-                                        ? AppColors.whiteColor
-                                        : AppColors.blackTextColor,),)),
-                              ],
+                        onTap: () async {
+                          await multipleAccountDialog(
+                              context, controller.ngoEmail.value, "3");
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: Get.width,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              border: Border.all(color: Colors.grey),
+                              color: themeProvider.darkTheme
+                                  ? AppColors.blackTextColor
+                                  : Colors.grey.shade200,
                             ),
-                            const SizedBox(height: 10),
-                            Row(
-                              children: [
-                                Expanded(
-                                  flex: 30,
-                                  child: Text("Email", style: TextStyle(color: themeProvider.darkTheme
-                                      ? AppColors.whiteColor
-                                      : AppColors.blackTextColor, fontWeight: FontWeight.bold,),),
-                                ),
-                                const SizedBox(width: 8),
-                                Expanded(
-                                    flex: 70,
-                                    child: Text(controller.ngoEmail.value, style: TextStyle(color: themeProvider.darkTheme
-                                        ? AppColors.whiteColor
-                                        : AppColors.blackTextColor,),)),
-                              ],
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Vet & NGO",
+                                    style: TextStyle(
+                                        color: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                            : AppColors.blackTextColor,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 17),
+                                  ),
+                                  const SizedBox(
+                                      child: Divider(
+                                    color: AppColors.greyColor,
+                                  )),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                          flex: 30,
+                                          child: Text(
+                                            "Vet/Ngo Name",
+                                            style: TextStyle(
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.blackTextColor,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          )),
+                                      const SizedBox(width: 8),
+                                      Expanded(
+                                          flex: 70,
+                                          child: Text(
+                                            controller.ngoName.value,
+                                            style: TextStyle(
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.blackTextColor,
+                                            ),
+                                          )),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        flex: 30,
+                                        child: Text(
+                                          "Email",
+                                          style: TextStyle(
+                                            color: themeProvider.darkTheme
+                                                ? AppColors.whiteColor
+                                                : AppColors.blackTextColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(width: 8),
+                                      Expanded(
+                                          flex: 70,
+                                          child: Text(
+                                            controller.ngoEmail.value,
+                                            style: TextStyle(
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.blackTextColor,
+                                            ),
+                                          )),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
-
-
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                ) : Container(),
-
+                      )
+                    : Container(),
                 controller.trainerProfile == true
                     ? GestureDetector(
-                  onTap: ()async{
-                    await multipleAccountDialog(context, controller.trainerEmail.value, "4");
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      width: Get.width,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: Colors.grey),
-                          color: Colors.grey.shade200
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Trainer",  style: TextStyle(color: themeProvider.darkTheme
-                                ? AppColors.whiteColor
-                                : AppColors.blackTextColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17),),
-                            const SizedBox(child: Divider(color: AppColors.greyColor,)),
-
-                            Row(
-                              children: [
-                                Expanded(
-                                    flex: 30,
-                                    child: Text("Trainer Name", style: TextStyle(color: themeProvider.darkTheme
-                                        ? AppColors.whiteColor
-                                        : AppColors.blackTextColor, fontWeight: FontWeight.bold),)),
-                                const SizedBox(width: 8),
-                                Expanded(
-                                    flex: 70,
-                                    child: Text(controller.trainerName.value, style: TextStyle(color: themeProvider.darkTheme
-                                        ? AppColors.whiteColor
-                                        : AppColors.blackTextColor,),)),
-                              ],
+                        onTap: () async {
+                          await multipleAccountDialog(
+                              context, controller.trainerEmail.value, "4");
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            width: Get.width,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              border: Border.all(color: Colors.grey),
+                              color: themeProvider.darkTheme
+                                  ? AppColors.blackTextColor
+                                  : Colors.grey.shade200,
                             ),
-                            const SizedBox(height: 10),
-                            Row(
-                              children: [
-                                Expanded(
-                                    flex: 30,
-                                    child: Text("Email", style: TextStyle(color: themeProvider.darkTheme
-                                        ? AppColors.whiteColor
-                                        : AppColors.blackTextColor, fontWeight: FontWeight.bold),)),
-                                const SizedBox(width: 8),
-                                Expanded(
-                                    flex: 70,
-                                    child: Text(controller.trainerEmail.value, style: TextStyle(color: themeProvider.darkTheme
-                                        ? AppColors.whiteColor
-                                        : AppColors.blackTextColor,),)),
-                              ],
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Trainer",
+                                    style: TextStyle(
+                                        color: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                            : AppColors.blackTextColor,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 17),
+                                  ),
+                                  const SizedBox(
+                                      child: Divider(
+                                    color: AppColors.greyColor,
+                                  )),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                          flex: 30,
+                                          child: Text(
+                                            "Trainer Name",
+                                            style: TextStyle(
+                                                color: themeProvider.darkTheme
+                                                    ? AppColors.whiteColor
+                                                    : AppColors.blackTextColor,
+                                                fontWeight: FontWeight.bold),
+                                          )),
+                                      const SizedBox(width: 8),
+                                      Expanded(
+                                          flex: 70,
+                                          child: Text(
+                                            controller.trainerName.value,
+                                            style: TextStyle(
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.blackTextColor,
+                                            ),
+                                          )),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 10),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                          flex: 30,
+                                          child: Text(
+                                            "Email",
+                                            style: TextStyle(
+                                                color: themeProvider.darkTheme
+                                                    ? AppColors.whiteColor
+                                                    : AppColors.blackTextColor,
+                                                fontWeight: FontWeight.bold),
+                                          )),
+                                      const SizedBox(width: 8),
+                                      Expanded(
+                                          flex: 70,
+                                          child: Text(
+                                            controller.trainerEmail.value,
+                                            style: TextStyle(
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.blackTextColor,
+                                            ),
+                                          )),
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
-
-
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                ) : Container(),
+                      )
+                    : Container(),
               ],
             ),
           ),
@@ -446,11 +558,10 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
     );
   }
 
-  multipleAccountDialog(BuildContext context, String email, String categoryId){
+  multipleAccountDialog(BuildContext context, String email, String categoryId) {
     return showDialog(
       barrierColor: themeProvider.darkTheme
-          ? AppColors.darkThemeBoxColor
-          .withOpacity(0.3)
+          ? AppColors.darkThemeBoxColor.withOpacity(0.3)
           : AppColors.accentColor.withOpacity(0.3),
       context: context,
       builder: (ctx) => Dialog(
@@ -474,21 +585,18 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
           height: controller.size.height * 0.35,
           width: controller.size.width * 0.8,
           child: Column(
-            mainAxisAlignment:
-            MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment:
-            CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
                     "Password",
                     style: TextStyle(
-                        color: themeProvider.darkTheme
-                            ? AppColors.whiteColor.withOpacity(0.7)
-                            : AppColors.blackTextColor.withOpacity(0.7),
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor.withOpacity(0.7)
+                          : AppColors.blackTextColor.withOpacity(0.7),
                       fontSize: 11.sp,
                       fontWeight: FontWeight.bold,
                     ),
@@ -506,93 +614,95 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
               //   textInputType: TextInputType.visiblePassword,
               //   validator: (val) => Validations().validatePassword(val!),
               // ),
-              Obx(()=>
-                  Stack(
-                    children: [
-                      Container(
-                        height: controller.size.height * 0.05,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          boxShadow: [
-                            BoxShadow(
-                              color: themeProvider.darkTheme
-                                  ? AppColors.whiteColor.withOpacity(0.05)
-                                  : AppColors.greyTextColor.withOpacity(0.5),
-                              blurRadius: 10,
-                              spreadRadius: 0.1,
-                              offset: const Offset(0, 0),
-                            ),
-                          ],
-                        ),
+              Obx(
+                () => Stack(
+                  children: [
+                    Container(
+                      height: controller.size.height * 0.05,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        boxShadow: [
+                          BoxShadow(
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor.withOpacity(0.05)
+                                : AppColors.greyTextColor.withOpacity(0.5),
+                            blurRadius: 10,
+                            spreadRadius: 0.1,
+                            offset: const Offset(0, 0),
+                          ),
+                        ],
                       ),
-                      TextFormField(
-                        controller: controller.passwordController,
-                        validator: (val) => Validations().validatePassword(val!),
-                        obscureText: controller.isPasswordVisible.value,
-                        textInputAction: TextInputAction.done,
-                        keyboardType: TextInputType.visiblePassword,
-                        cursorColor: themeProvider.darkTheme
+                    ),
+                    TextFormField(
+                      controller: controller.passwordController,
+                      validator: (val) => Validations().validatePassword(val!),
+                      obscureText: controller.isPasswordVisible.value,
+                      textInputAction: TextInputAction.done,
+                      keyboardType: TextInputType.visiblePassword,
+                      cursorColor: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.accentTextColor,
+                      style: TextStyle(
+                        color: themeProvider.darkTheme
                             ? AppColors.whiteColor
-                            : AppColors.accentTextColor,
-                        style: TextStyle(
-                          color: themeProvider.darkTheme
-                              ? AppColors.whiteColor
-                              : AppColors.blackTextColor,
-                          fontSize: 13.sp,
-                          fontWeight: FontWeight.w400,
-                          decoration: TextDecoration.none,
-                        ),
-                        decoration: InputDecoration(
-                            fillColor: themeProvider.darkTheme
-                                ? AppColors.darkThemeBoxColor
-                                : AppColors.whiteColor,
-                            filled: true,
-                            contentPadding: const EdgeInsets.symmetric(horizontal: 15),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-                            ),
-                            hintText: "Current Password",
-                            hintStyle: TextStyle(
-                              color: themeProvider.darkTheme
-                                  ? AppColors.whiteColor
-                                  : AppColors.greyTextColor,
-                              fontSize: 13.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                            suffixIcon: Obx(
-                                  () => GestureDetector(
-                                onTap: () {
-                                  controller.isPasswordVisible.value =
-                                  !controller.isPasswordVisible.value;
-                                },
-                                child: Icon(
-                                    controller.isPasswordVisible.value
-                                        ? Icons.visibility_off_rounded
-                                        : Icons.visibility_rounded,
-                                    size: 20,
-                                    color: Colors.grey),
-                              ),
-                            )
-                        ),
+                            : AppColors.blackTextColor,
+                        fontSize: 13.sp,
+                        fontWeight: FontWeight.w400,
+                        decoration: TextDecoration.none,
                       ),
-                    ],
-                  ),
+                      decoration: InputDecoration(
+                          fillColor: themeProvider.darkTheme
+                              ? AppColors.darkThemeBoxColor
+                              : AppColors.whiteColor,
+                          filled: true,
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 15),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(
+                                width: 0, style: BorderStyle.none),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(
+                                width: 0, style: BorderStyle.none),
+                          ),
+                          hintText: "Current Password",
+                          hintStyle: TextStyle(
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor
+                                : AppColors.greyTextColor,
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          suffixIcon: Obx(
+                            () => GestureDetector(
+                              onTap: () {
+                                controller.isPasswordVisible.value =
+                                    !controller.isPasswordVisible.value;
+                              },
+                              child: Icon(
+                                  controller.isPasswordVisible.value
+                                      ? Icons.visibility_off_rounded
+                                      : Icons.visibility_rounded,
+                                  size: 20,
+                                  color: Colors.grey),
+                            ),
+                          )),
+                    ),
+                  ],
+                ),
               ),
 
               // const SizedBox(height: 20),
               Row(
-                mainAxisAlignment:
-                MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
-                    onPressed: ()async {
-                      await controller.userLoginFunction(email: email, categoryId: categoryId);
+                    onPressed: () async {
+                      await controller.userLoginFunction(
+                          email: email, categoryId: categoryId);
                     },
                     style: ElevatedButton.styleFrom(
                       primary: AppColors.accentColor,
@@ -600,13 +710,9 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                         controller.size.width * 0.3,
                         30,
                       ),
-                      padding:
-                      const EdgeInsets.symmetric(
-                          horizontal: 16),
-                      shape:
-                      const RoundedRectangleBorder(
-                        borderRadius:
-                        BorderRadius.all(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
                           Radius.circular(12),
                         ),
                       ),
@@ -623,8 +729,7 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                     ),
                   ),
                   SizedBox(
-                    width:
-                    controller.size.width * 0.05,
+                    width: controller.size.width * 0.05,
                   ),
                   ElevatedButton(
                     onPressed: () {
@@ -633,18 +738,11 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                     style: ElevatedButton.styleFrom(
                       primary: themeProvider.darkTheme
                           ? AppColors.whiteColor
-                          : AppColors.greyTextColor
-                          .withOpacity(0.3),
-                      minimumSize: Size(
-                          controller.size.width * 0.3,
-                          30),
-                      padding:
-                      const EdgeInsets.symmetric(
-                          horizontal: 16),
-                      shape:
-                      const RoundedRectangleBorder(
-                        borderRadius:
-                        BorderRadius.all(
+                          : AppColors.greyTextColor.withOpacity(0.3),
+                      minimumSize: Size(controller.size.width * 0.3, 30),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
                           Radius.circular(12),
                         ),
                       ),
@@ -653,12 +751,9 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                       child: Text(
                         "Close",
                         style: TextStyle(
-                          color: themeProvider
-                              .darkTheme
-                              ? AppColors
-                              .darkThemeBoxColor
-                              : AppColors
-                              .blackTextColor,
+                          color: themeProvider.darkTheme
+                              ? AppColors.darkThemeBoxColor
+                              : AppColors.blackTextColor,
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w500,
                         ),
@@ -674,7 +769,7 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
     );
   }
 
- /* modelBottomSheet(BuildContext context){
+  /* modelBottomSheet(BuildContext context){
     showModalBottomSheet<void>(
       context: context,
       constraints: null,
@@ -1077,7 +1172,6 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
       ),
     );
   }*/
-
 
   /*Widget textfieldSection({
     String? fieldName,
