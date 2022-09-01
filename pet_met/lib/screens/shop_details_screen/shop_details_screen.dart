@@ -48,12 +48,12 @@ class ShopDetailsScreen extends StatelessWidget {
                                     height: shopDetailsScreenController
                                             .size.height *
                                         0.003.w),
-                                OffersModule(),
+                                shopDetailsScreenController.showStatus.value == true ? OffersModule() : Container(),
                                 SizedBox(
                                     height: shopDetailsScreenController
                                             .size.height *
                                         0.005.w),
-                                ShopNameAndSocialMediaButtonModule(),
+                                shopDetailsScreenController.showStatus.value == true ? ShopNameAndSocialMediaButtonModule() : Container(),
                                 SizedBox(
                                     height: shopDetailsScreenController
                                             .size.height *
@@ -63,7 +63,7 @@ class ShopDetailsScreen extends StatelessWidget {
                                     height: shopDetailsScreenController
                                             .size.height *
                                         0.005.w),
-                                MeetingAvailabilityModule(),
+                                shopDetailsScreenController.showStatus.value == true ? MeetingAvailabilityModule() : Container(),
                                 SizedBox(
                                     height: shopDetailsScreenController
                                             .size.height *

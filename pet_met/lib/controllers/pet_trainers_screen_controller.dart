@@ -15,6 +15,7 @@ class PetTrainersScreenController extends GetxController {
   TextEditingController searchFieldController = TextEditingController();
 
   List<Trainers> trainersList = [];
+  List<Trainers> searchTrainersList = [];
 
   // Get All Trainers
   Future<void> getAllTrainerFunction() async {
@@ -35,6 +36,8 @@ class PetTrainersScreenController extends GetxController {
       if (isSuccessStatus.value) {
         trainersList.clear();
         trainersList.addAll(allTrainerModel.data);
+        searchTrainersList.clear();
+        searchTrainersList.addAll(allTrainerModel.data);
         log("trainersList Length : ${trainersList.length}");
       } else {
         log("Get All Trainer Api Else");

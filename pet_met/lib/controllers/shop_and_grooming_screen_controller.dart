@@ -17,6 +17,7 @@ class ShopAndGroomingScreenController extends GetxController {
   ApiHeader apiHeader = ApiHeader();
 
   List<ShopData> shopsList = [];
+  List<ShopData> searchShopsList = [];
 
   /// Get All Shop
   Future<void> getAllShopFunction() async {
@@ -38,7 +39,10 @@ class ShopAndGroomingScreenController extends GetxController {
       if (isSuccessStatus.value) {
         shopsList.clear();
         shopsList.addAll(allShopModel.data);
+        searchShopsList.clear();
+        searchShopsList.addAll(allShopModel.data);
         log("shopList Length : ${shopsList.length}");
+        log('searchShopsList length: ${searchShopsList.length}');
       } else {
         log("Get All Shop Api Else");
       }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/shop_and_grooming_screen_controller.dart';
@@ -7,6 +9,7 @@ import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
+import 'package:pet_met/utils/common_functions/hide_keyboard.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:pet_met/utils/validations.dart';
 import 'package:provider/provider.dart';
@@ -77,7 +80,7 @@ class SearchShopTextFieldModule extends StatelessWidget {
                 fontSize: 13.sp,
                 fontWeight: FontWeight.w400,
               ),
-              suffixIcon: GestureDetector(
+              /*suffixIcon: GestureDetector(
                 onTap: () async {
                   // if(screenController.searchFieldController.text.trim().isEmpty){
                   //   screenController.isLoading(true);
@@ -88,9 +91,6 @@ class SearchShopTextFieldModule extends StatelessWidget {
                   // }
                   // hideKeyboard();
 
-                  if (screenController.formKey.currentState!.validate()) {
-                    screenController.searchFieldController.clear();
-                  }
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -101,8 +101,21 @@ class SearchShopTextFieldModule extends StatelessWidget {
                     color: Colors.white,
                   ).commonAllSidePadding(padding: 5),
                 ).commonAllSidePadding(padding: 8),
-              ),
+              ),*/
             ),
+            onChanged: (value) {
+              if(screenController.searchFieldController.text.isNotEmpty){
+                screenController.isLoading(true);
+                screenController.searchShopsList = screenController.shopsList
+                    .where((u) => (u.shopename.toLowerCase().contains(value.toLowerCase()))).toList();
+                screenController.isLoading(false);
+                log('screenController.searchShopsList: ${screenController.searchShopsList.length}');
+              } else {
+                screenController.isLoading(true);
+                screenController.searchShopsList.clear();
+                screenController.isLoading(false);
+              }
+            },
           ),
         ],
       ).commonSymmetricPadding(horizontal: 20),
@@ -118,13 +131,24 @@ class ShopListModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return screenController.searchShopsList.isEmpty ?
+    ListView.builder(
       itemCount: screenController.shopsList.length,
       shrinkWrap: true,
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, i) {
         ShopData shopSingleItem = screenController.shopsList[i];
         return _shopListTile(shopSingleItem);
+      },
+    ).commonAllSidePadding(padding: 10):
+
+    ListView.builder(
+      itemCount: screenController.searchShopsList.length,
+      shrinkWrap: true,
+      physics: const BouncingScrollPhysics(),
+      itemBuilder: (context, i) {
+        ShopData searchShopItem = screenController.searchShopsList[i];
+        return searchShopListTile(searchShopItem);
       },
     ).commonAllSidePadding(padding: 10);
   }
@@ -230,6 +254,114 @@ class ShopListModule extends StatelessWidget {
                     color: AppColors.accentColor,
                     size: 19,
                   )
+                : Container(),
+          ],
+        ).commonAllSidePadding(padding: 2.w),
+      ).commonAllSidePadding(padding: 10),
+    );
+  }
+
+  Widget searchShopListTile(ShopData searchShopItem) {
+    String imgUrl = ApiUrl.apiImagePath + searchShopItem.showimg;
+    return GestureDetector(
+      onTap: () {
+        Get.to(() => ShopDetailsScreen(),
+            transition: Transition.native,
+            duration: const Duration(milliseconds: 500),
+            arguments: searchShopItem.id);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: themeProvider.darkTheme
+              ? AppColors.darkThemeColor
+              : AppColors.whiteColor,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade300,
+              blurRadius: 1,
+              spreadRadius: 1,
+              blurStyle: BlurStyle.outer,
+            ),
+          ],
+        ),
+        child: Stack(
+          alignment: Alignment.topRight,
+          children: [
+            Row(
+              children: [
+                Container(
+                  width: 75,
+                  height: 65,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    // border: Border.all(color: Colors.grey),
+                    //   boxShadow: const [
+                    //     BoxShadow(
+                    //         color: Colors.grey,
+                    //         blurRadius: 1.5,
+                    //         spreadRadius: 1.5
+                    //     )
+                    //   ]
+                    //color: Colors.grey,
+                  ),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: Image.network(imgUrl, fit: BoxFit.cover,
+                          errorBuilder: (context, er, ob) {
+                            return Image.asset(AppImages.petMetLogoImg);
+                          })),
+                ),
+                SizedBox(width: 3.w),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        searchShopItem.shopename,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12.sp,
+                          color: themeProvider.darkTheme
+                              ? AppColors.whiteColor
+                              : AppColors.blackTextColor,
+                        ),
+                      ),
+                      SizedBox(height: 1.w),
+                      Text(
+                        searchShopItem.address,
+                        maxLines: 4,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: themeProvider.darkTheme
+                              ? AppColors.whiteColor
+                              : AppColors.blackTextColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            searchShopItem.isVerified == "0"
+                ? /*Container(
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.accentTextColor,
+                    ),
+                    child: const Icon(
+                      Icons.check_rounded,
+                      color: Colors.white,
+                      size: 18,
+                    ),
+                  )*/
+            const Icon(
+              Icons.verified,
+              color: AppColors.accentColor,
+              size: 19,
+            )
                 : Container(),
           ],
         ).commonAllSidePadding(padding: 2.w),

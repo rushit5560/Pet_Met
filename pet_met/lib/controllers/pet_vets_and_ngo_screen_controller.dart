@@ -17,6 +17,7 @@ class PetVetsAndNgoScreenController extends GetxController {
   TextEditingController searchFieldController = TextEditingController();
 
   List<VetAndNgoData> vetAndNgoList = [];
+  List<VetAndNgoData> searchVetAndNgoList = [];
 
   Future<void> getAllVetAndNgoFunction() async {
     isLoading(true);
@@ -35,6 +36,9 @@ class PetVetsAndNgoScreenController extends GetxController {
       if (isSuccessStatus.value) {
         vetAndNgoList.clear();
         vetAndNgoList.addAll(allVetAndNgoModel.data);
+        searchVetAndNgoList.clear();
+        searchVetAndNgoList.addAll(allVetAndNgoModel.data);
+        //log('searchVetAndNgoList length: ${searchVetAndNgoList.length}');
         log('vetAndNgoList Length : ${vetAndNgoList.length}');
       } else {
         log('Vet And Ngo Api Else Else');

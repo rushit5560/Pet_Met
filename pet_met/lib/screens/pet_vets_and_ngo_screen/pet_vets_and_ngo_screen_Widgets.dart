@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/pet_vets_and_ngo_screen_controller.dart';
@@ -76,7 +78,7 @@ class SearchVetAndNgoTextFieldModule extends StatelessWidget {
                 fontSize: 13.sp,
                 fontWeight: FontWeight.w400,
               ),
-              suffixIcon: GestureDetector(
+              /*suffixIcon: GestureDetector(
                 onTap: () async {
                   // if(screenController.searchFieldController.text.trim().isEmpty){
                   //   screenController.isLoading(true);
@@ -100,8 +102,21 @@ class SearchVetAndNgoTextFieldModule extends StatelessWidget {
                     color: Colors.white,
                   ).commonAllSidePadding(padding: 5),
                 ).commonAllSidePadding(padding: 8),
-              ),
+              ),*/
             ),
+            onChanged: (value) {
+              if(screenController.searchFieldController.text.isNotEmpty){
+                screenController.isLoading(true);
+                screenController.searchVetAndNgoList = screenController.vetAndNgoList
+                    .where((u) => (u.name.toLowerCase().contains(value.toLowerCase()))).toList();
+                screenController.isLoading(false);
+                log('screenController.searchVetAndNgoList: ${screenController.searchVetAndNgoList.length}');
+              } else {
+                screenController.isLoading(true);
+                screenController.searchVetAndNgoList.clear();
+                screenController.isLoading(false);
+              }
+            },
           ),
         ],
       ).commonSymmetricPadding(horizontal: 20),
@@ -117,13 +132,24 @@ class VetsAndNgoListModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return screenController.searchVetAndNgoList.isEmpty ?
+      ListView.builder(
       itemCount: screenController.vetAndNgoList.length,
       shrinkWrap: true,
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, i) {
         VetAndNgoData vetAndNgoData = screenController.vetAndNgoList[i];
         return _vetsAndNgoListTile(vetAndNgoData);
+      },
+    ).commonAllSidePadding(padding: 10):
+
+    ListView.builder(
+      itemCount: screenController.searchVetAndNgoList.length,
+      shrinkWrap: true,
+      physics: const BouncingScrollPhysics(),
+      itemBuilder: (context, i) {
+        VetAndNgoData searchVetAndNgoData = screenController.searchVetAndNgoList[i];
+        return searchVetsAndNgoListTile(searchVetAndNgoData);
       },
     ).commonAllSidePadding(padding: 10);
   }
@@ -240,6 +266,125 @@ class VetsAndNgoListModule extends StatelessWidget {
                     color: AppColors.accentColor,
                     size: 19,
                   )
+                : Container(),
+          ],
+        ).commonAllSidePadding(padding: 2.w),
+      ).commonAllSidePadding(padding: 10),
+    );
+  }
+
+  Widget searchVetsAndNgoListTile(VetAndNgoData searchVetAndNgoData) {
+    String imgUrl =
+        ApiUrl.apiImagePath + "asset/uploads/product/" + searchVetAndNgoData.image;
+    return GestureDetector(
+      onTap: () {
+        Get.to(
+              () => PetVetsAndNgoDetailsScreen(),
+          transition: Transition.native,
+          duration: const Duration(milliseconds: 500),
+          arguments: searchVetAndNgoData.id,
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: themeProvider.darkTheme
+              ? AppColors.darkThemeColor
+              : AppColors.whiteColor,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade300,
+              blurRadius: 5,
+              blurStyle: BlurStyle.outer,
+            ),
+          ],
+        ),
+        child: Stack(
+          alignment: Alignment.topRight,
+          children: [
+            Row(
+              children: [
+                /*Container(
+              width: 22.w,
+              height: 22.w,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                color: Colors.grey,
+              ),
+            ),*/
+                Container(
+                  width: 75,
+                  height: 65,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    // border: Border.all(color: Colors.grey),
+                    // boxShadow: const [
+                    //   BoxShadow(
+                    //     color: Colors.grey,
+                    //     blurRadius: 1.5,
+                    //     spreadRadius: 1.5
+                    //   )
+                    // ]
+                    //color: Colors.grey,
+                  ),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: Image.network(imgUrl, fit: BoxFit.cover,
+                          errorBuilder: (context, er, ob) {
+                            return Image.asset(AppImages.petMetLogoImg);
+                          })),
+                ),
+                SizedBox(width: 3.w),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        searchVetAndNgoData.name,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12.sp,
+                          color: themeProvider.darkTheme
+                              ? AppColors.whiteColor
+                              : AppColors.blackTextColor,
+                        ),
+                      ),
+                      SizedBox(height: 1.w),
+                      Text(
+                        searchVetAndNgoData.address,
+                        maxLines: 4,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w300,
+                          color: themeProvider.darkTheme
+                              ? AppColors.whiteColor
+                              : AppColors.blackTextColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            searchVetAndNgoData.isVerified == "0"
+                ? /*Container(
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.accentTextColor,
+              ),
+              child: const Icon(
+                Icons.check_rounded,
+                color: Colors.white,
+                size: 18,
+              ),
+            )*/
+            const Icon(
+              Icons.verified,
+              color: AppColors.accentColor,
+              size: 19,
+            )
                 : Container(),
           ],
         ).commonAllSidePadding(padding: 2.w),

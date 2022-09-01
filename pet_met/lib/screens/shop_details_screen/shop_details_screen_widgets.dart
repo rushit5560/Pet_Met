@@ -500,6 +500,7 @@ class ShopPlaceTimePaymentModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log('screenController.showStatus: ${screenController.showStatus.value}');
     return Column(
       children: [
         // Shop Address Module
@@ -527,9 +528,10 @@ class ShopPlaceTimePaymentModule extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: screenController.size.height * 0.001.h),
+        screenController.showStatus.value == true ? SizedBox(height: screenController.size.height * 0.001.h) : Container(),
 
         // Shop Time Module
+        screenController.showStatus.value == true ?
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -573,10 +575,11 @@ class ShopPlaceTimePaymentModule extends StatelessWidget {
               ),
             ),
           ],
-        ),
+        ) : Container(),
         SizedBox(height: screenController.size.height * 0.001.h),
 
         // Payment Module
+        screenController.showStatus.value == true ?
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -607,7 +610,7 @@ class ShopPlaceTimePaymentModule extends StatelessWidget {
               ),
             ),
           ],
-        ),
+        ) : Container(),
       ],
     ).commonSymmetricPadding(horizontal: 15);
   }

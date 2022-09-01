@@ -11,12 +11,14 @@ class ShopDetailsModel {
     required this.success,
     required this.data,
     required this.message,
+    required this.showstatus,
     this.error,
   });
 
   bool success;
   List<ShopData> data;
   String message;
+  bool showstatus;
   String? error;
 
   factory ShopDetailsModel.fromJson(Map<String, dynamic> json) =>
@@ -24,6 +26,7 @@ class ShopDetailsModel {
         success: json["success"] ?? false,
         data: List<ShopData>.from(json["data"].map((x) => ShopData.fromJson(x ?? {}))),
         message: json["message"] ?? "",
+        showstatus: json["showstatus"],
         error: json["error"] ?? "",
       );
 
@@ -31,6 +34,7 @@ class ShopDetailsModel {
         "success": success,
         "data": List<dynamic>.from(data.map((x) => x.toJson())),
         "message": message,
+        "showstatus": showstatus,
         "error": error,
       };
 }

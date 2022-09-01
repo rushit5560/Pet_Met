@@ -46,15 +46,17 @@ class PetTrainersScreen extends StatelessWidget {
                     appBarOption: AppBarOption.drawerButtonOption),
                 const SizedBox(height: 15),
                 Expanded(
-                  child: petTrainersScreenController.isLoading.value
-                      ? const CustomAnimationLoader()
-                      : Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SearchTrainersTextFieldModule(),
-                            Expanded(child: PetTrainerListModule()),
-                          ],
-                        ),
+                  child: Obx(()=>
+                     petTrainersScreenController.isLoading.value
+                        ? const CustomAnimationLoader()
+                        : Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SearchTrainersTextFieldModule(),
+                              Expanded(child: PetTrainerListModule()),
+                            ],
+                          ),
+                  ),
                 ),
               ],
             ),

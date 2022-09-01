@@ -46,14 +46,16 @@ class PetVetsAndNgoScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 15),
                 Expanded(
-                  child: petVetsAndNgoScreenController.isLoading.value
-                      ? const CustomAnimationLoader()
-                      : Column(
-                          children: [
-                            SearchVetAndNgoTextFieldModule(),
-                            Expanded(child: VetsAndNgoListModule()),
-                          ],
-                        ),
+                  child: Obx(()=>
+                     petVetsAndNgoScreenController.isLoading.value
+                        ? const CustomAnimationLoader()
+                        : Column(
+                            children: [
+                              SearchVetAndNgoTextFieldModule(),
+                              Expanded(child: VetsAndNgoListModule()),
+                            ],
+                          ),
+                  ),
                 ),
               ],
             ),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/pet_trainers_screen_controller.dart';
@@ -77,7 +79,7 @@ class SearchTrainersTextFieldModule extends StatelessWidget {
                 fontSize: 13.sp,
                 fontWeight: FontWeight.w400,
               ),
-              suffixIcon: GestureDetector(
+              /*suffixIcon: GestureDetector(
                 onTap: () async {
                   // if(screenController.searchFieldController.text.trim().isEmpty){
                   //   screenController.isLoading(true);
@@ -101,8 +103,21 @@ class SearchTrainersTextFieldModule extends StatelessWidget {
                     color: Colors.white,
                   ).commonAllSidePadding(padding: 5),
                 ).commonAllSidePadding(padding: 8),
-              ),
+              ),*/
             ),
+            onChanged: (value) {
+              if(screenController.searchFieldController.text.isNotEmpty){
+                screenController.isLoading(true);
+                screenController.searchTrainersList = screenController.trainersList
+                    .where((u) => (u.name.toLowerCase().contains(value.toLowerCase()))).toList();
+                screenController.isLoading(false);
+                log('screenController.searchTrainersList: ${screenController.searchTrainersList.length}');
+              } else {
+                screenController.isLoading(true);
+                screenController.searchTrainersList.clear();
+                screenController.isLoading(false);
+              }
+            },
           ),
         ],
       ).commonSymmetricPadding(horizontal: 20),
@@ -118,13 +133,23 @@ class PetTrainerListModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return screenController.searchTrainersList.isEmpty ?
+      ListView.builder(
       itemCount: screenController.trainersList.length,
       shrinkWrap: true,
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, i) {
         Trainers trainerSingleItem = screenController.trainersList[i];
         return _petTrainerListTile(trainerSingleItem);
+      },
+    ).commonAllSidePadding(padding: 10):
+    ListView.builder(
+      itemCount: screenController.searchTrainersList.length,
+      shrinkWrap: true,
+      physics: const BouncingScrollPhysics(),
+      itemBuilder: (context, i) {
+        Trainers searchTrainerSingleItem = screenController.searchTrainersList[i];
+        return searchPetTrainerListTile(searchTrainerSingleItem);
       },
     ).commonAllSidePadding(padding: 10);
   }
@@ -230,6 +255,114 @@ class PetTrainerListModule extends StatelessWidget {
                     color: AppColors.accentColor,
                     size: 19,
                   )
+                : Container(),
+          ],
+        ).commonAllSidePadding(padding: 2.w),
+      ).commonAllSidePadding(padding: 10),
+    );
+  }
+
+  Widget searchPetTrainerListTile(Trainers searchTrainerSingleItem) {
+    String imgUrl = ApiUrl.apiImagePath + searchTrainerSingleItem.image;
+    return GestureDetector(
+      onTap: () {
+        Get.to(() => PetTrainersDetailsScreen(),
+            transition: Transition.native,
+            duration: const Duration(milliseconds: 500),
+            arguments: searchTrainerSingleItem.id);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color:
+          themeProvider.darkTheme ? AppColors.darkThemeColor : Colors.white,
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.grey,
+              blurRadius: 2,
+              spreadRadius: 1,
+              offset: Offset(0, 0),
+              blurStyle: BlurStyle.outer,
+            ),
+          ],
+        ),
+        child: Stack(
+          alignment: Alignment.topRight,
+          children: [
+            Row(
+              children: [
+                Container(
+                  width: 75,
+                  height: 65,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    // border: Border.all(color: Colors.grey),
+                    // boxShadow: const [
+                    //   BoxShadow(
+                    //       color: Colors.grey,
+                    //       blurRadius: 1.5,
+                    //       spreadRadius: 1.5
+                    //   )
+                    // ]
+                    //color: Colors.grey,
+                  ),
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: Image.network(imgUrl, fit: BoxFit.cover,
+                          errorBuilder: (context, er, ob) {
+                            return Image.asset(AppImages.petMetLogoImg);
+                          })),
+                ),
+                SizedBox(width: 3.w),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        searchTrainerSingleItem.name,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12.sp,
+                          color: themeProvider.darkTheme
+                              ? AppColors.whiteColor
+                              : AppColors.blackTextColor,
+                        ),
+                      ),
+                      SizedBox(height: 1.w),
+                      Text(
+                        searchTrainerSingleItem.address,
+                        maxLines: 4,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: themeProvider.darkTheme
+                              ? AppColors.whiteColor
+                              : AppColors.blackTextColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            searchTrainerSingleItem.isVerified == "0"
+                ? /*Container(
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.accentTextColor,
+              ),
+              child: const Icon(
+                Icons.verified,
+                color: Colors.white,
+                size: 18,
+              ),
+            )*/
+            Icon(
+              Icons.verified,
+              color: AppColors.accentColor,
+              size: 19,
+            )
                 : Container(),
           ],
         ).commonAllSidePadding(padding: 2.w),
