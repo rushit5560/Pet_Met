@@ -113,7 +113,8 @@ class _UserCategoriesScreenState extends State<UserCategoriesScreen> {
                                                       false);
                                               controller.roleId = 1;
                                               log('roleId: ${controller.roleId}');
-                                            } else if (index == 1) {
+                                            }
+                                            else if (index == 1) {
                                               controller
                                                   .individualPetBool(false);
                                               controller
@@ -125,7 +126,8 @@ class _UserCategoriesScreenState extends State<UserCategoriesScreen> {
                                                       false);
                                               controller.roleId = 2;
                                               log('roleId: ${controller.roleId}');
-                                            } else if (index == 2) {
+                                            }
+                                            else if (index == 2) {
                                               controller
                                                   .individualPetBool(false);
                                               controller
@@ -137,7 +139,8 @@ class _UserCategoriesScreenState extends State<UserCategoriesScreen> {
                                                       false);
                                               controller.roleId = 3;
                                               log('roleId: ${controller.roleId}');
-                                            } else if (index == 3) {
+                                            }
+                                            else if (index == 3) {
                                               controller
                                                   .individualPetBool(false);
                                               controller
@@ -203,71 +206,62 @@ class _UserCategoriesScreenState extends State<UserCategoriesScreen> {
                                                     //   AppColors.greyTextColor,
                                                     // ),
                                                     onChanged: (val) {
-                                                      // controller.isLoading(true);
+                                                      controller.isLoading(true);
 
-                                                      // if (index == 0) {
-                                                      //   controller
-                                                      //       .individualPetBool(
-                                                      //           true);
-                                                      //   controller
-                                                      //       .petShoopsGroomingBool(
-                                                      //           false);
-                                                      //   controller
-                                                      //       .petvetsandNgoBool(
-                                                      //           false);
-                                                      //   controller
-                                                      //       .petTrainerAndBreederBool(
-                                                      //           false);
-                                                      //   controller.roleId = 1;
-                                                      //   log('roleId: ${controller.roleId}');
-                                                      // } else if (index == 1) {
-                                                      //   controller
-                                                      //       .individualPetBool(
-                                                      //           false);
-                                                      //   controller
-                                                      //       .petShoopsGroomingBool(
-                                                      //           true);
-                                                      //   controller
-                                                      //       .petvetsandNgoBool(
-                                                      //           false);
-                                                      //   controller
-                                                      //       .petTrainerAndBreederBool(
-                                                      //           false);
-                                                      //   controller.roleId = 2;
-                                                      //   log('roleId: ${controller.roleId}');
-                                                      // } else if (index == 2) {
-                                                      //   controller
-                                                      //       .individualPetBool(
-                                                      //           false);
-                                                      //   controller
-                                                      //       .petShoopsGroomingBool(
-                                                      //           false);
-                                                      //   controller
-                                                      //       .petvetsandNgoBool(
-                                                      //           true);
-                                                      //   controller
-                                                      //       .petTrainerAndBreederBool(
-                                                      //           false);
-                                                      //   controller.roleId = 3;
-                                                      //   log('roleId: ${controller.roleId}');
-                                                      // } else if (index == 3) {
-                                                      //   controller
-                                                      //       .individualPetBool(
-                                                      //           false);
-                                                      //   controller
-                                                      //       .petShoopsGroomingBool(
-                                                      //           false);
-                                                      //   controller
-                                                      //       .petvetsandNgoBool(
-                                                      //           false);
-                                                      //   controller
-                                                      //       .petTrainerAndBreederBool(
-                                                      //           true);
-                                                      //   controller.roleId = 4;
-                                                      //   log('roleId: ${controller.roleId}');
-                                                      // }
+                                                      if (index == 0) {
+                                                        controller
+                                                            .individualPetBool(true);
+                                                        controller
+                                                            .petShoopsGroomingBool(false);
+                                                        controller
+                                                            .petvetsandNgoBool(false);
+                                                        controller
+                                                            .petTrainerAndBreederBool(
+                                                            false);
+                                                        controller.roleId = 1;
+                                                        log('roleId: ${controller.roleId}');
+                                                      }
+                                                      else if (index == 1) {
+                                                        controller
+                                                            .individualPetBool(false);
+                                                        controller
+                                                            .petShoopsGroomingBool(true);
+                                                        controller
+                                                            .petvetsandNgoBool(false);
+                                                        controller
+                                                            .petTrainerAndBreederBool(
+                                                            false);
+                                                        controller.roleId = 2;
+                                                        log('roleId: ${controller.roleId}');
+                                                      }
+                                                      else if (index == 2) {
+                                                        controller
+                                                            .individualPetBool(false);
+                                                        controller
+                                                            .petShoopsGroomingBool(false);
+                                                        controller
+                                                            .petvetsandNgoBool(true);
+                                                        controller
+                                                            .petTrainerAndBreederBool(
+                                                            false);
+                                                        controller.roleId = 3;
+                                                        log('roleId: ${controller.roleId}');
+                                                      }
+                                                      else if (index == 3) {
+                                                        controller
+                                                            .individualPetBool(false);
+                                                        controller
+                                                            .petShoopsGroomingBool(false);
+                                                        controller
+                                                            .petvetsandNgoBool(false);
+                                                        controller
+                                                            .petTrainerAndBreederBool(
+                                                            true);
+                                                        controller.roleId = 4;
+                                                        log('roleId: ${controller.roleId}');
+                                                      }
 
-                                                      // controller.isLoading(false);
+                                                      controller.isLoading(false);
                                                     },
                                                   ),
                                                 ),
