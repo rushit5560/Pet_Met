@@ -37,6 +37,8 @@ class HomeController extends GetxController {
   List<DatumDatum> imageList = [];
   List<GetUserStoryModelDatum> userStoryList = [];
 
+  List<Userstory> ownUserStoryList = [];
+
   List<Petdatum> petList = [];
   List<ShopPet> shopPetList = [];
   List<NgoPet> ngoPetList = [];
@@ -245,28 +247,29 @@ class HomeController extends GetxController {
       if (isSuccessStatus.value) {
         userStoryList.clear();
 
-        for(int i = 0; i < getUserStoryModel.data.length; i++) {
-          if(getUserStoryModel.data[i].data.isNotEmpty) {
-            userStoryList.add(getUserStoryModel.data[i]);
+        for(int i = 0; i < getUserStoryModel.date.length; i++) {
+          if(getUserStoryModel.date[i].data.isNotEmpty) {
+            userStoryList.add(getUserStoryModel.date[i]);
           }
         }
 
-
-
         log("userStoryList Length 1212 : ${userStoryList.length}");
 
-        for(int i=0; i < getUserStoryModel.data.length; i++) {
-          /*for(int j=0; i < getUserStoryModel.data[i].data.length; j++){
-            imageList.addAll(getUserStoryModel.data[j].data);
-            log('imageList: $imageList');
-          }*/
-          imageList.addAll(getUserStoryModel.data[i].data);
-          log('imageList: $imageList');
-          // for(int j=0; getUserStoryModel.data[i].data.length; j++){
-          //
-          // }
-        }
-        log('0 Index: ${getUserStoryModel.data[0].data.length}');
+        ownUserStoryList = getUserStoryModel.userstory;
+        log('ownUserStoryList: $ownUserStoryList');
+
+        // for(int i=0; i < getUserStoryModel.date.length; i++) {
+        //   /*for(int j=0; i < getUserStoryModel.data[i].data.length; j++){
+        //     imageList.addAll(getUserStoryModel.data[j].data);
+        //     log('imageList: $imageList');
+        //   }*/
+        //   imageList.addAll(getUserStoryModel.date[i].data);
+        //   log('imageList: $imageList');
+        //   // for(int j=0; getUserStoryModel.data[i].data.length; j++){
+        //   //
+        //   // }
+        // }
+        // log('0 Index: ${getUserStoryModel.date[0].data.length}');
 
       } else {
         log("User Story Api Else");

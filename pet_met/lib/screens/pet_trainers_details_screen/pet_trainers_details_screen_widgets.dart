@@ -524,13 +524,20 @@ class PetTrainerPlaceTimePaymentModule extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(
+            /*Image.asset(
               AppIcons.clockImg,
               height: 20,
               width: 20,
               color: themeProvider.darkTheme
                   ? AppColors.whiteColor
                   : AppColors.blackTextColor,
+            ),*/
+            Icon(
+              Icons.watch_later_outlined,
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.greyTextColor,
+              size: 20,
             ),
             SizedBox(width: screenController.size.width * 0.008.w),
             Expanded(

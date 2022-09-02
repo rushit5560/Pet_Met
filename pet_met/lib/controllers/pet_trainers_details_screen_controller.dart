@@ -65,11 +65,11 @@ class PetTrainersDetailsScreenController extends GetxController {
     var options = {
       'key': 'rzp_test_dxCkKqtRKnvZdA',
       'amount': 200 * 100,
-      'name': UserDetails.userName,
+      'name': trainerDetails[0].name,
       'description': "",
       'retry': {'enabled': true, 'max_count': 1},
       'send_sms_hash': true,
-      'prefill': {'contact': "8347839822", 'email': 'test@razorpay.com'},
+      'prefill': {'contact': trainerDetails[0].phone, 'email': 'test@razorpay.com'},
       'external': {
         'wallets': ['paytm']
       }

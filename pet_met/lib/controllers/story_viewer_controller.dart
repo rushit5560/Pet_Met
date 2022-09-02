@@ -37,9 +37,19 @@ class StoryViewerController extends GetxController {
       if (isSuccessStatus.value) {
         userStoryList.clear();
 
-        for (int i = 0; i < getUserStoryModel.data.length; i++) {
-          if (getUserStoryModel.data[i].data != []) {
+        /*for (int i = 0; i < getUserStoryModel.date[0].data.length; i++) {
+          if (getUserStoryModel.date.data[i].data != []) {
             userStoryList.add(getUserStoryModel.data[i]);
+          }
+        }*/
+        for(int i = 0; i < getUserStoryModel.date.length; i++){
+          /*for(int j = 0; j < getUserStoryModel.date[i].data.length; j++){
+            if (getUserStoryModel.date[i].data != []) {
+              userStoryList.add(getUserStoryModel.date[i]);
+            }
+          }*/
+          if (getUserStoryModel.date[i].data != []) {
+            userStoryList.add(getUserStoryModel.date[i]);
           }
         }
 

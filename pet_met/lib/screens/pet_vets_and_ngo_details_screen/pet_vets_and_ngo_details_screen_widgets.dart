@@ -77,21 +77,16 @@ class NgoAchivementPictureListModule extends StatelessWidget {
                   ),
                 ),
                 screenController.isVerified == true
-                    ? Container(
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.accentTextColor,
-                        ),
-                        child: const Icon(
-                          Icons.verified,
-                          color: AppColors.accentTextColor,
-                          size: 19,
-                        ))
+                    ? const Icon(
+                  Icons.verified,
+                  color: AppColors.accentColor,
+                  size: 19,
+                )
                     : Container(),
               ],
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 7),
           Row(
             children: [
               screenController.vetsNgoDetailsData[0].image1 == null
@@ -102,7 +97,7 @@ class NgoAchivementPictureListModule extends StatelessWidget {
                         imageAlertDialog(context, index = 1);
                       },
                       child: SizedBox(
-                        height: screenController.size.width * 0.18,
+                        height: screenController.size.width * 0.16,
                         //width: screenController.size.width * 0.18,
                         child: Container(
                           decoration: BoxDecoration(
@@ -134,7 +129,7 @@ class NgoAchivementPictureListModule extends StatelessWidget {
                         imageAlertDialog(context, index = 2);
                       },
                       child: SizedBox(
-                        height: screenController.size.width * 0.18,
+                        height: screenController.size.width * 0.16,
                         //width: screenController.size.width * 0.18,
                         child: Container(
                           decoration: BoxDecoration(
@@ -166,7 +161,7 @@ class NgoAchivementPictureListModule extends StatelessWidget {
                         imageAlertDialog(context, index = 3);
                       },
                       child: SizedBox(
-                        height: screenController.size.width * 0.18,
+                        height: screenController.size.width * 0.16,
                         //width: screenController.size.width * 0.18,
                         child: Container(
                           decoration: BoxDecoration(
@@ -199,7 +194,7 @@ class NgoAchivementPictureListModule extends StatelessWidget {
                         imageAlertDialog(context, index = 4);
                       },
                       child: SizedBox(
-                        height: screenController.size.width * 0.18,
+                        height: screenController.size.width * 0.16,
                         //width: screenController.size.width * 0.18,
                         child: Container(
                           padding: const EdgeInsets.all(5),
@@ -231,7 +226,7 @@ class NgoAchivementPictureListModule extends StatelessWidget {
                         imageAlertDialog(context, index = 5);
                       },
                       child: SizedBox(
-                        height: screenController.size.width * 0.18,
+                        height: screenController.size.width * 0.16,
                         //width: screenController.size.width * 0.18,
                         child: Container(
                           decoration: BoxDecoration(
@@ -509,13 +504,20 @@ class VetAndNgoPlaceTimePaymentModule extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(
+            /*Image.asset(
               AppIcons.clockImg,
               height: 20,
               width: 20,
               color: themeProvider.darkTheme
                   ? AppColors.whiteColor
                   : AppColors.blackTextColor,
+            ),*/
+            Icon(
+              Icons.watch_later_outlined,
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.greyTextColor,
+              size: 20,
             ),
             SizedBox(width: screenController.size.width * 0.008.w),
             Expanded(

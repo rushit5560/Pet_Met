@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/ngo_user_profile_screen_controller.dart';
 import 'package:pet_met/screens/ngo_user_profile_screen/ngo_user_profile_screen_widgets.dart';
+import 'package:pet_met/screens/user_categories_screen/user_categories_screen.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
@@ -240,6 +241,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                         ),
                       )
                     : Container(),
+
                 controller.shopProfile == true
                     ? GestureDetector(
                         onTap: () async {
@@ -332,6 +334,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                         ),
                       )
                     : Container(),
+
                 controller.vetNgoProfile == true
                     ? GestureDetector(
                         onTap: () async {
@@ -428,6 +431,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                         ),
                       )
                     : Container(),
+
                 controller.trainerProfile == true
                     ? GestureDetector(
                         onTap: () async {
@@ -521,7 +525,25 @@ class NgoUserProfileScreen extends StatelessWidget {
                         ),
                       )
                     : Container(),
-                const SizedBox(height: 10),
+
+                controller.userProfile == false || controller.shopProfile == false || controller.vetNgoProfile == false || controller.trainerProfile == false ?
+                GestureDetector(
+                  onTap: (){
+                    Get.to(() => const UserCategoriesScreen());
+                  },
+                  child: Container(
+                    height: 35, width: 35,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25),
+                        color: Colors.grey.shade400
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(25),
+                      child: Icon(Icons.add, size: 30),
+                    ),
+                  ),
+                ) : Container(),
+                SizedBox(height: 7)
               ],
             ),
           ),

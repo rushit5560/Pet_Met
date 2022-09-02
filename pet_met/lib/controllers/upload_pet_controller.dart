@@ -338,6 +338,7 @@ class UploadPetController extends GetxController {
         weightController.text = getProfile.weight!.toString();
         weightController.text = getProfile.weight!.toString();
         //meetingAvailabilityValue.value = getProfile.meetingAvailability!;
+        birthDate = getProfile.dob!;
         //genderValue.value = getProfile.gender!;
         petApiCatId = "${getProfile.mainCategory}";
         petApiSubCatId = "${getProfile.subCategory}";
@@ -368,13 +369,21 @@ class UploadPetController extends GetxController {
           }
         }
 
-        // Get DOB of Pet
+        /*// Get DOB of Pet
         if (getProfile.dob != "") {
           String birthdate1 = getProfile.dob!;
           List<String> bDate = birthdate1.split('-');
           year = bDate[0];
           month = bDate[1];
           day = bDate[2];
+        }*/
+        // Get DOB of Pet
+        if (birthDate != "") {
+          String birthdate1 = birthDate;
+          List<String> bDate = birthdate1.split('-');
+          day = bDate[0];
+          month = bDate[1];
+          year = bDate[2];
         }
         log('day : $day');
         log('month : $month');
@@ -382,6 +391,7 @@ class UploadPetController extends GetxController {
 
         // petApiProfile
         if (getPetProfileModel.data![0].image != "") {
+          // For split image
           List<String> profileSplitImageList =
               getPetProfileModel.data![0].image!.split('/');
           for (int i = 0; i < profileSplitImageList.length; i++) {

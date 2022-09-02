@@ -346,6 +346,45 @@ class OffersModule extends StatelessWidget {
   }
 }
 
+class PayButtonModule extends StatelessWidget {
+  PayButtonModule({Key? key}) : super(key: key);
+
+  final screenController = Get.find<ShopDetailsScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: GestureDetector(
+        onTap: () async {
+          screenController.openCheckout();
+          Fluttertoast.showToast(msg: 'Processing payment to trainer.');
+        },
+        child: Container(
+          width: double.infinity,
+          height: 50,
+          decoration: const BoxDecoration(
+            color: AppColors.accentColor,
+            borderRadius: BorderRadius.all(
+              Radius.circular(12),
+            ),
+          ),
+          child: Center(
+            child: Text(
+              "Pay",
+              style: TextStyle(
+                color: AppColors.whiteColor,
+                fontSize: 15.sp,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
   ShopNameAndSocialMediaButtonModule({Key? key}) : super(key: key);
   final screenController = Get.find<ShopDetailsScreenController>();

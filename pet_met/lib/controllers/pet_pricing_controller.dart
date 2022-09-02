@@ -8,6 +8,7 @@ import 'package:pet_met/models/get_all_plan_list_model/get_all_plan_list_model.d
 import 'package:pet_met/utils/api_url.dart';
 import 'package:http/http.dart' as http;
 import 'package:pet_met/utils/app_route_names.dart';
+import 'package:pet_met/utils/user_details.dart';
 
 class PetPricingController extends GetxController {
   final size = Get.size;
@@ -33,11 +34,9 @@ class PetPricingController extends GetxController {
 
   ApiHeader apiHeader = ApiHeader();
 
-  List<PlanData> planData = [
-    PlanData(),
-  ];
-
-  AllPlanListModel plansList = AllPlanListModel();
+  List<PlanData> planData = [];
+  RxBool status = false.obs;
+ // AllPlanListModel plansList = AllPlanListModel();
 
   Future<void> getAllPlansListFunction() async {
     isLoading(true);
@@ -46,17 +45,25 @@ class PetPricingController extends GetxController {
     log("get all plan Api Url : $url");
 
     try {
+      Map<String, dynamic> bodyData = {
+        "id": UserDetails.userId,
+        "categoryID" : UserDetails.categoryId,
+      };
+      log("bodyData : $bodyData");
+
       Map<String, String> header = apiHeader.apiHeader();
-      http.Response response = await http.get(Uri.parse(url), headers: header);
+      http.Response response = await http.post(Uri.parse(url), headers: header, body: bodyData);
       log("get all plan Api Response : ${response.body}");
       AllPlanListModel planListModel =
           AllPlanListModel.fromJson(json.decode(response.body));
-      isSuccessStatus = planListModel.success!.obs;
+      isSuccessStatus = planListModel.success.obs;
 
       log('isSuccessStatus: $isSuccessStatus');
 
       if (isSuccessStatus.value) {
-        planData = planListModel.data!;
+        planData = planListModel.date;
+        status = planListModel.status.obs;
+        log('status: $status');
         log("get all plan name  : ${planData.first.name}");
         log("get all plan overview  : ${planData.first.overview}");
       } else {

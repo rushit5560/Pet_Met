@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:pet_met/models/add_order_screen_model/add_order_screen_model.dart';
+import 'package:pet_met/models/get_plan_details_model/get_plan_details_model.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/user_details.dart';
 
@@ -48,32 +49,40 @@ class PetTrackerPricingController extends GetxController {
   ApiHeader apiHeader = ApiHeader();
 
   //SinglePlanDetails planDetailsData = SinglePlanDetails();
-  List<SinglePlanDetails> planDetailsData = [];
+  List<Date> planDetailsData = [];
+  RxBool status = false.obs;
 
   Future<void> getplanDetailsFunction() async {
     isLoading(true);
-    String url = ApiUrl.getPlanDetailsApi + "/$petPlanId";
+    String url = ApiUrl.getPlanDetailsApi;
 
     log("pet plan Details Api Url : $url");
     log("pet plan id : $petPlanId");
 
     try {
+      Map<String, dynamic> bodyData = {
+        "planid":petPlanId,
+        "id": UserDetails.userId,
+        "categoryID" : UserDetails.categoryId,
+      };
+      log("bodyData : $bodyData");
+
       Map<String, String> header = apiHeader.apiHeader();
-      http.Response response = await http.get(Uri.parse(url), headers: header);
-      log("Vet Details Api Response : ${response.body}");
-      SinglePlanDetailModel vetsNgoDetailsModel =
+      http.Response response = await http.post(Uri.parse(url), headers: header, body: bodyData);
+      log("Plan Details Api Response : ${response.body}");
+      SinglePlanDetailModel singlePlanDetailModel =
           SinglePlanDetailModel.fromJson(json.decode(response.body));
-      isSuccessStatus = vetsNgoDetailsModel.success!.obs;
+      isSuccessStatus = singlePlanDetailModel.success.obs;
 
       if (isSuccessStatus.value) {
-        planDetailsData = vetsNgoDetailsModel.data!.obs;
+        planDetailsData = singlePlanDetailModel.date.obs;
         for(int i=0; i < planDetailsData.length; i++){
-          price= int.parse(planDetailsData[i].rs!);
-          name= planDetailsData[i].name!;
-          overview= planDetailsData[i].overview!;
+          price= int.parse(planDetailsData[i].rs);
+          name= planDetailsData[i].name;
+          overview= planDetailsData[i].overview;
         }
-
-        //log("plan Details overview  : ${planDetailsData}");
+        status = singlePlanDetailModel.status.obs;
+        log("status: $status");
       } else {
         log("plan Details  Api Else Else");
       }
@@ -213,7 +222,7 @@ class PetTrackerModel {
   });
 }
 
-class SinglePlanDetailModel {
+/*class SinglePlanDetailModel {
   bool? success;
   List<SinglePlanDetails>? data;
   String? message;
@@ -272,4 +281,4 @@ class SinglePlanDetails {
     data['days'] = this.days;
     return data;
   }
-}
+}*/

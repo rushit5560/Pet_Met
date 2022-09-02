@@ -183,7 +183,7 @@ class PetTrackerPriceModule extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          "Buy",
+                          controller.status.value == false ? "Buy" : "Purchased",
                           style: TextStyle(
                             color: themeProvider.darkTheme
                                 ? AppColors.accentColor

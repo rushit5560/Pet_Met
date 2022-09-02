@@ -73,12 +73,12 @@ class PetPricingScreen extends StatelessWidget {
                                               .planData[index].rs
                                               .toString(),
                                           overviewText: controller
-                                              .planData[index].overview!,
+                                              .planData[index].overview,
                                           planDays: controller
                                               .planData[index].days
                                               .toString(),
                                           planType:
-                                              controller.planData[index].name!,
+                                              controller.planData[index].name,
                                         );
                                       },
                                       separatorBuilder: (context, ind) {

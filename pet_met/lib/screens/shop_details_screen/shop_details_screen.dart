@@ -20,6 +20,7 @@ class ShopDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: PayButtonModule(),
       body: SafeArea(
         child: Stack(
           children: [

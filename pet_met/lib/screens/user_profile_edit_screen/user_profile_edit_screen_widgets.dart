@@ -181,7 +181,9 @@ class UploadImageModule extends StatelessWidget {
                 title: Text(
                   "Select Image From Camera",
                   style: TextStyle(
-                    color: AppColors.blackTextColor.withOpacity(0.7),
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.blackTextColor,
                     fontSize: 13.sp,
                     fontWeight: FontWeight.w600,
                   ),
@@ -194,7 +196,9 @@ class UploadImageModule extends StatelessWidget {
                 title: Text(
                   "Select Image From Gallery",
                   style: TextStyle(
-                    color: AppColors.blackTextColor.withOpacity(0.7),
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.blackTextColor,
                     fontSize: 13.sp,
                     fontWeight: FontWeight.w600,
                   ),

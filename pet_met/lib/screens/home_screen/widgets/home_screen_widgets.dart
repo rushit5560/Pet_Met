@@ -6,6 +6,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/controllers/index_screen_controller.dart';
+import 'package:pet_met/screens/own_user_story_viewer_screen/own_user_story_viewer_screen.dart';
 import 'package:pet_met/screens/pet_meeting_details_screen/pet_meeting_details_screen.dart';
 import 'package:pet_met/screens/shop_and_grooming_screen/shop_and_grooming_screen.dart';
 import 'package:pet_met/screens/story_viewer_screen/story_viewer_screen.dart';
@@ -648,22 +649,32 @@ class PetListModule extends StatelessWidget {
       children: [
         Stack(
           children: [
-            Container(
-              height: controller.size.width * 0.16,
-              width: controller.size.width * 0.16,
-              margin: const EdgeInsets.only(bottom: 5, right: 5),
-              decoration: const BoxDecoration(
-                // image: DecorationImage(
-                //     image: AssetImage(
-                //       controller.dogsTopList[index],
-                //     ),
-                //     fit: BoxFit.cover),
-                color: AppColors.greyTextColor,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(8),
+            GestureDetector(
+              onTap: (){
+                // List<String> userWiseStoryList = [];
+                // for (int i = 0; i < controller.userStoryList[index].data.length; i++) {
+                //   userWiseStoryList.add(controller.userStoryList[index].data[i].image);
+                // }
+                // log('userWiseStoryList: $userWiseStoryList');
+                Get.to(() => OwnUserStoryViewerScreen(), arguments: controller.ownUserStoryList);
+              },
+              child: Container(
+                height: controller.size.width * 0.16,
+                width: controller.size.width * 0.16,
+                margin: const EdgeInsets.only(bottom: 5, right: 5),
+                decoration: const BoxDecoration(
+                  // image: DecorationImage(
+                  //     image: AssetImage(
+                  //       controller.dogsTopList[index],
+                  //     ),
+                  //     fit: BoxFit.cover),
+                  color: AppColors.greyTextColor,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(8),
+                  ),
                 ),
+                child: Image.asset(AppImages.petMetLogoImg, fit: BoxFit.cover),
               ),
-              child: Image.asset(AppImages.petMetLogoImg, fit: BoxFit.cover),
             ),
             Positioned(
               right: 0,
