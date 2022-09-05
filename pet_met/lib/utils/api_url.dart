@@ -62,7 +62,7 @@ class ApiUrl {
   static const petAddOrderApi = apiMainPath + "/meettingpetadd";
 
   /// Follow && Unfollow && Status
-   static const followStatusApi = apiMainPath + "/followstatus";
+  static const followStatusApi = apiMainPath + "/followstatus";
   static const followUserApi = apiMainPath + "/followuser";
   static const unfollowUserApi = apiMainPath + "/unfollowuser";
 
@@ -75,15 +75,11 @@ class ApiUrl {
 
   static const subCategoryWisePetsApi = apiMainPath + "/subcategorywisepet/";
 
-    static const meetingOrderApi = apiMainPath + "/meettingorder";
-    static const subscriptionOrderApi = apiMainPath + "/allorder";
+  static const meetingOrderApi = apiMainPath + "/meettingorder";
+  static const subscriptionOrderApi = apiMainPath + "/allorder";
 
   static const forgotPasswordApi = apiMainPath + "/forgetpassword";
-
 }
-
-
-
 
 class ApiHeader {
   // UserDetails userDetails = UserDetails();

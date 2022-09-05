@@ -29,7 +29,7 @@ class Validations {
 
   String? validateInstagramLink(String value) {
     if (value.isEmpty) {
-      return 'Instagram Link is required';
+      return 'Instagram link is required';
     } else if(!value.contains('www.instagram.com/') || value.contains(' ')) {
       return 'Invalid instagram link';
     }
@@ -38,7 +38,7 @@ class Validations {
 
   String? validateFacebookLink(String value) {
     if (value.isEmpty) {
-      return 'Facebook Link is required';
+      return 'Facebook link is required';
     } else if(!value.contains('www.facebook.com/') || value.contains(' ')) {
       return 'Invalid facebook link';
     }

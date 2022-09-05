@@ -124,8 +124,8 @@ class HomeController extends GetxController {
     } catch (e) {
       log("Banner Api Error ::: $e");
     } finally {
-      //isLoading(false);
-       await getAllPetFunction();
+      isLoading(false);
+       // await getAllPetFunction();
     }
   }
 
