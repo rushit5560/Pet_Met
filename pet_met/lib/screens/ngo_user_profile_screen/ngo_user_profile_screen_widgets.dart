@@ -147,7 +147,7 @@ class UploadImageModule extends StatelessWidget {
                                       screenController.ngoProfile!,
                               width: double.infinity,
                               height: screenController.size.height * 0.2,
-                              fit: BoxFit.cover,
+                              fit: BoxFit.fill,
                               errorBuilder: (context, er, st) {
                                 //return Image.asset(AppImages.petMetLogoImg);
                                 return Column(
@@ -202,6 +202,7 @@ class UploadImageModule extends StatelessWidget {
                                 ? AppImages.cameraPlaceHolderImgDark
                                 : AppImages.cameraPlaceHolderImglight,
                             height: 65,
+                            fit: BoxFit.fill,
                           ),
                           const SizedBox(height: 20),
                           Text(
@@ -925,7 +926,7 @@ class NameTextFieldModule extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         CustomLightTextField(
-          readOnly: false,
+          readOnly: true,
           fieldController: screenController.nameController,
           height: screenController.size.height * 0.05,
           width: double.infinity,
@@ -1277,14 +1278,16 @@ class IsActiveTextFieldModule extends StatelessWidget {
                       ? AppColors.darkThemeBoxColor
                       : AppColors.whiteColor,
                   borderRadius: BorderRadius.circular(15),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.greyTextColor.withOpacity(0.3),
-                      blurRadius: 35,
-                      spreadRadius: 1,
-                      offset: const Offset(0, 5),
-                    ),
-                  ]),
+                boxShadow: [
+                  BoxShadow(
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor.withOpacity(0.05)
+                        : AppColors.greyTextColor.withOpacity(0.5),
+                    blurRadius: 10,
+                    spreadRadius: 0.5,
+                    offset: const Offset(0, 0),
+                  ),
+                ]),
             ),
             Obx(
               () => Container(
@@ -1451,22 +1454,21 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
               // )
               Obx(
                 () => Container(
-                  height: Get.height * 0.05,
+                  height: Get.height * 0.06,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.grey),
-                    //color: Colors.transparent,
-                    //   boxShadow: [
-                    //     BoxShadow(
-                    //       color: themeProvider.darkTheme
-                    //           ? AppColors.whiteColor.withOpacity(0.05)
-                    //           : AppColors.greyTextColor.withOpacity(0.5),
-                    //       blurRadius: 10,
-                    //       spreadRadius: 0.5,
-                    //       offset: const Offset(0, 0),
-                    //     ),
-                    //   ],
+                    color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: themeProvider.darkTheme
+                              ? AppColors.whiteColor.withOpacity(0.05)
+                              : AppColors.greyTextColor.withOpacity(0.5),
+                          blurRadius: 10,
+                          spreadRadius: 0.5,
+                          offset: const Offset(0, 0),
+                        ),
+                      ]
                   ),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 5),
@@ -1579,22 +1581,22 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
               )*/
               Obx(
                 () => Container(
-                  height: Get.height * 0.05,
+                  height: Get.height * 0.06,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     //color: Colors.transparent,
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(color: Colors.grey),
-                    // boxShadow: [
-                    //   BoxShadow(
-                    //     color: themeProvider.darkTheme
-                    //         ? AppColors.whiteColor.withOpacity(0.05)
-                    //         : AppColors.greyTextColor.withOpacity(0.5),
-                    //     blurRadius: 10,
-                    //     spreadRadius: 0.5,
-                    //     offset: const Offset(0, 0),
-                    //   ),
-                    // ],
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: themeProvider.darkTheme
+                              ? AppColors.whiteColor.withOpacity(0.05)
+                              : AppColors.greyTextColor.withOpacity(0.5),
+                          blurRadius: 10,
+                          spreadRadius: 0.5,
+                          offset: const Offset(0, 0),
+                        ),
+                      ]
                   ),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 5),

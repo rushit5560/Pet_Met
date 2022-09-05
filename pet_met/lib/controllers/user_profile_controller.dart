@@ -67,6 +67,8 @@ class UserProfileController extends GetxController {
   String shopName = "";
   String shopDescription = "";
   String shopMobileNumber = "";
+  String shopFacebookLink = "";
+  String shopInstaLink = "";
 
   String ngoProfile= "";
   String ngoName = "";
@@ -217,7 +219,8 @@ class UserProfileController extends GetxController {
         shopName = petShopProfileModel.data.data[0].shopename;
         shopDescription = petShopProfileModel.data.data[0].fullText;
         shopMobileNumber = petShopProfileModel.data.data[0].phonenumber;
-
+        shopFacebookLink = petShopProfileModel.data.data[0].facebook;
+        shopInstaLink = petShopProfileModel.data.data[0].instagram;
 
         log("petList Length : ${petList.length}");
       } else {

@@ -80,16 +80,17 @@ class SearchShopTextFieldModule extends StatelessWidget {
                 fontSize: 13.sp,
                 fontWeight: FontWeight.w400,
               ),
-              /*suffixIcon: GestureDetector(
+              suffixIcon: GestureDetector(
                 onTap: () async {
-                  // if(screenController.searchFieldController.text.trim().isEmpty){
-                  //   screenController.isLoading(true);
-                  //   screenController.searchSubCatList.clear();
-                  //   screenController.isLoading(false);
-                  // } else{
-                  //   await screenController.getSearchCategoryAndSubCategoryFunction();
-                  // }
-                  // hideKeyboard();
+                  screenController.isLoading(true);
+                  if(screenController.searchFieldController.text.trim().isNotEmpty){
+                    screenController.searchShopsList = screenController.shopsList
+                        .where((u) => (u.shopename.toLowerCase().contains(screenController.searchFieldController.text.toLowerCase()))).toList();
+                    //screenController.searchFieldController.clear();
+                    hideKeyboard();
+                    log('screenController.searchShopsList: ${screenController.searchShopsList.length}');
+                  }
+                  screenController.isLoading(false);
 
                 },
                 child: Container(
@@ -101,16 +102,10 @@ class SearchShopTextFieldModule extends StatelessWidget {
                     color: Colors.white,
                   ).commonAllSidePadding(padding: 5),
                 ).commonAllSidePadding(padding: 8),
-              ),*/
+              ),
             ),
             onChanged: (value) {
-              if(screenController.searchFieldController.text.isNotEmpty){
-                screenController.isLoading(true);
-                screenController.searchShopsList = screenController.shopsList
-                    .where((u) => (u.shopename.toLowerCase().contains(value.toLowerCase()))).toList();
-                screenController.isLoading(false);
-                log('screenController.searchShopsList: ${screenController.searchShopsList.length}');
-              } else {
+              if(value.isEmpty) {
                 screenController.isLoading(true);
                 screenController.searchShopsList.clear();
                 screenController.isLoading(false);

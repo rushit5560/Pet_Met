@@ -40,6 +40,9 @@ class UserProfileEditController extends GetxController {
   var emailController = TextEditingController();
   var mobileController = TextEditingController();
   var locationController = TextEditingController();
+  var detailsController = TextEditingController();
+  var instagramController = TextEditingController();
+  var facebookController = TextEditingController();
 
   var passwordController = TextEditingController();
 
@@ -333,6 +336,9 @@ class UserProfileEditController extends GetxController {
       request.fields['phone'] = mobileController.text.trim();
       request.fields['gender'] = selectedGenderValue.value.toLowerCase();
       request.fields['userid'] = UserDetails.userId;
+      //request.fields['full_text'] = detailsController.text.trim();
+      // request.fields['instagram'] = instagramController.text.trim();
+      // request.fields['facebook'] = facebookController.text.trim();
 
       var response = await request.send();
       log('response: ${response.request}');

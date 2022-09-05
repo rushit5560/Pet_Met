@@ -157,6 +157,7 @@ class UploadImageModule extends StatelessWidget {
                                       themeProvider.darkTheme
                                           ? AppImages.cameraPlaceHolderImgDark
                                           : AppImages.cameraPlaceHolderImglight,
+                                      fit: BoxFit.fill,
                                       height: 65,
                                     ),
                                     const SizedBox(height: 20),
@@ -792,7 +793,7 @@ class TrainersNameTextFieldModule extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         CustomLightTextField(
-          readOnly: false,
+          readOnly: true,
           fieldController: screenController.nameController,
           height: screenController.size.height * 0.05,
           width: double.infinity,
@@ -1286,25 +1287,22 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
               // ),
               Obx(
                 () => Container(
-                  height: Get.height * 0.05,
+                  height: Get.height * 0.06,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     //border: Border.all(color: Colors.grey),
-                    color: themeProvider.darkTheme
-                        ? AppColors.darkThemeBoxColor
-                        : AppColors.whiteColor,
-                    //color: Colors.transparent,
-                    //   boxShadow: [
-                    //     BoxShadow(
-                    //       color: themeProvider.darkTheme
-                    //           ? AppColors.whiteColor.withOpacity(0.05)
-                    //           : AppColors.greyTextColor.withOpacity(0.5),
-                    //       blurRadius: 10,
-                    //       spreadRadius: 0.5,
-                    //       offset: const Offset(0, 0),
-                    //     ),
-                    //   ],
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor.withOpacity(0.05)
+                            : AppColors.greyTextColor.withOpacity(0.5),
+                        blurRadius: 10,
+                        spreadRadius: 0.5,
+                        offset: const Offset(0, 0),
+                      ),
+                    ],
                   ),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 5),
@@ -1372,25 +1370,23 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
               // ),
               Obx(
                 () => Container(
-                  height: Get.height * 0.05,
+                  height: Get.height * 0.06,
                   width: double.infinity,
                   decoration: BoxDecoration(
                     //color: Colors.transparent,
                     borderRadius: BorderRadius.circular(10),
                     //border: Border.all(color: Colors.grey),
-                    color: themeProvider.darkTheme
-                        ? AppColors.darkThemeBoxColor
-                        : AppColors.whiteColor,
-                    // boxShadow: [
-                    //   BoxShadow(
-                    //     color: themeProvider.darkTheme
-                    //         ? AppColors.whiteColor.withOpacity(0.05)
-                    //         : AppColors.greyTextColor.withOpacity(0.5),
-                    //     blurRadius: 10,
-                    //     spreadRadius: 0.5,
-                    //     offset: const Offset(0, 0),
-                    //   ),
-                    // ],
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor.withOpacity(0.05)
+                            : AppColors.greyTextColor.withOpacity(0.5),
+                        blurRadius: 10,
+                        spreadRadius: 0.5,
+                        offset: const Offset(0, 0),
+                      ),
+                    ],
                   ),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 5),

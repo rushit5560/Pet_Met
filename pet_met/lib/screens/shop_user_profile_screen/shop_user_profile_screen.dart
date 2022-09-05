@@ -51,12 +51,12 @@ class ShopUserProfileScreen extends StatelessWidget {
                         : SingleChildScrollView(
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 20),
+                                  horizontal: 20),
                               child: Form(
                                 key: controller.formKey,
                                 child: Column(
                                   children: [
-                                    const SizedBox(height: 25),
+                                    const SizedBox(height: 15),
                                     UploadImageModule(),
                                     const SizedBox(height: 30),
                                     AddShopOffersListModule(),

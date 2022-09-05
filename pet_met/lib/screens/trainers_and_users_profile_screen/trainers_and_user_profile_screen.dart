@@ -126,9 +126,6 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
     showModalBottomSheet<void>(
       context: context,
       constraints: null,
-      backgroundColor: themeProvider.darkTheme
-          ? AppColors.blackTextColor
-          : Colors.grey.shade200,
       builder: (BuildContext context) {
         return Container(
           color: themeProvider.darkTheme
@@ -522,7 +519,7 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                     : Container(),
 
                 controller.userProfile == false || controller.shopProfile == false || controller.vetNgoProfile == false || controller.trainerProfile == false ?
-                GestureDetector(
+                  GestureDetector(
                   onTap: (){
                     Get.to(() => const UserCategoriesScreen());
                   },
@@ -537,7 +534,8 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                       child: Icon(Icons.add, size: 30),
                     ),
                   ),
-                ) : Container(),
+                )
+                    : Container(),
                 const SizedBox(height: 7)
               ],
             ),

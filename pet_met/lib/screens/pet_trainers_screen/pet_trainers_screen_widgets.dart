@@ -9,6 +9,7 @@ import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/app_route_names.dart';
+import 'package:pet_met/utils/common_functions/hide_keyboard.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:pet_met/utils/validations.dart';
 import 'package:provider/provider.dart';
@@ -79,20 +80,17 @@ class SearchTrainersTextFieldModule extends StatelessWidget {
                 fontSize: 13.sp,
                 fontWeight: FontWeight.w400,
               ),
-              /*suffixIcon: GestureDetector(
+              suffixIcon: GestureDetector(
                 onTap: () async {
-                  // if(screenController.searchFieldController.text.trim().isEmpty){
-                  //   screenController.isLoading(true);
-                  //   screenController.searchSubCatList.clear();
-                  //   screenController.isLoading(false);
-                  // } else{
-                  //   await screenController.getSearchCategoryAndSubCategoryFunction();
-                  // }
-                  // hideKeyboard();
-
-                  if (screenController.formKey.currentState!.validate()) {
-                    screenController.searchFieldController.clear();
+                  screenController.isLoading(true);
+                  if(screenController.searchFieldController.text.trim().isNotEmpty){
+                    screenController.searchTrainersList = screenController.trainersList
+                        .where((u) => (u.name.toLowerCase().contains(screenController.searchFieldController.text.toLowerCase()))).toList();
+                    //screenController.searchFieldController.clear();
+                    hideKeyboard();
+                    log('screenController.searchTrainersList: ${screenController.searchTrainersList.length}');
                   }
+                  screenController.isLoading(false);
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -103,21 +101,16 @@ class SearchTrainersTextFieldModule extends StatelessWidget {
                     color: Colors.white,
                   ).commonAllSidePadding(padding: 5),
                 ).commonAllSidePadding(padding: 8),
-              ),*/
+              ),
             ),
             onChanged: (value) {
-              if(screenController.searchFieldController.text.isNotEmpty){
-                screenController.isLoading(true);
-                screenController.searchTrainersList = screenController.trainersList
-                    .where((u) => (u.name.toLowerCase().contains(value.toLowerCase()))).toList();
-                screenController.isLoading(false);
-                log('screenController.searchTrainersList: ${screenController.searchTrainersList.length}');
-              } else {
+              if(value.isEmpty) {
                 screenController.isLoading(true);
                 screenController.searchTrainersList.clear();
                 screenController.isLoading(false);
               }
             },
+
           ),
         ],
       ).commonSymmetricPadding(horizontal: 20),

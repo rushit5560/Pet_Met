@@ -423,7 +423,7 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            var fbUrl = "${screenController.shopData[0].instagram}";
+            var fbUrl = "${screenController.shopData[0].facebook}";
             launchFacebook(fbUrl, fbUrl);
           },
           child: Container(

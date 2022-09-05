@@ -345,7 +345,7 @@ class ContactInfoModule extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            GestureDetector(
+            /*GestureDetector(
               onTap: () {
                 if (controller.followCategoryId == "1") {
                   if (controller.meetingStatus.value == true) {
@@ -379,11 +379,79 @@ class ContactInfoModule extends StatelessWidget {
               child: const ContactContainerWidget(
                 imagePath: AppIcons.messageImg,
               ),
+            ),*/
+            GestureDetector(
+              onTap: () {
+                if (controller.followCategoryId == "1") {
+                  //var fbUrl = "${controller.shopData[0].facebook}";
+                  //launchFacebook(fbUrl, fbUrl);
+                } else if (controller.followCategoryId == "2") {
+                  var fbUrl = controller.shopFacebookLink;
+                  log('fbUrl: $fbUrl}');
+                  if(controller.shopFacebookLink.isEmpty){
+                    Fluttertoast.showToast(msg: "Person has not provided his facebook link.");
+                  } else{
+                    launchFacebook(fbUrl, fbUrl);
+                  }
+                }
+              },
+              child: const ContactContainerWidget(
+                imagePath: AppImages.fbImg,
+              ),
             ),
+            const SizedBox(width: 15),
+            GestureDetector(
+              onTap: () {
+                if (controller.followCategoryId == "1") {
+                  // String url = "${screenController.shopData[0].instagram}";
+                  // _makingInstagramApp(url);
+                } else if (controller.followCategoryId == "2") {
+                  String instaUrl = controller.shopInstaLink;
+                  log('instaUrl: $instaUrl}');
+                  if(controller.shopInstaLink.isEmpty){
+                    Fluttertoast.showToast(msg: "Person has not provided his instagram link.");
+                  }else{
+                    _makingInstagramApp(instaUrl);
+                  }
+
+                }
+              },
+              child: const ContactContainerWidget(
+                imagePath: AppImages.instaImg,
+              ),
+            )
           ],
         ),
       ),
     );
+  }
+
+  Future<void> launchFacebook(String fbUrl, String fbWebUrl) async {
+    try {
+      bool launched = await launch(fbUrl, forceSafariVC: false);
+      log("Launched Native app $launched");
+
+      if (!launched) {
+        await launch(fbWebUrl, forceSafariVC: false);
+        log("Launched browser $launched");
+      }
+    } catch (e) {
+      await launch(fbWebUrl, forceSafariVC: false);
+      log("Inside catch");
+    }
+  }
+
+  _makingInstagramApp(String url) async {
+    // var url = 'https://www.instagram.com/<INSTAGRAM_PROFILE>/';
+
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        universalLinksOnly: true,
+      );
+    } else {
+      throw 'There was a problem to open the url: $url';
+    }
   }
 
   _makingPhoneCall() async {

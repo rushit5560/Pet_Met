@@ -89,7 +89,7 @@ class UploadImageModule extends StatelessWidget {
                         : controller.imageFile!,
                     width: double.infinity,
                     height: controller.size.height * 0.2,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                   ),
                 ),
               )
@@ -103,7 +103,7 @@ class UploadImageModule extends StatelessWidget {
                             : controller.userProfile,
                         width: double.infinity,
                         height: controller.size.height * 0.2,
-                        fit: BoxFit.cover,
+                        fit: BoxFit.fill,
                         errorBuilder: (context, er, bt) {
                           //return Image.asset(AppImages.petMetLogoImg, height: 65);
                           return Column(
@@ -115,6 +115,7 @@ class UploadImageModule extends StatelessWidget {
                                     ? AppImages.cameraPlaceHolderImgDark
                                     : AppImages.cameraPlaceHolderImglight,
                                 height: 65,
+                                fit: BoxFit.fill,
                               ),
                               const SizedBox(height: 20),
                               Text(
@@ -512,8 +513,8 @@ class NameTextFieldModule extends StatelessWidget {
               "Name",
               style: TextStyle(
                 color: themeProvider.darkTheme
-                    ? AppColors.whiteColor.withOpacity(0.7)
-                    : AppColors.blackTextColor.withOpacity(0.7),
+                    ? AppColors.whiteColor
+                    : AppColors.blackTextColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -522,7 +523,7 @@ class NameTextFieldModule extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         CustomLightTextField(
-          readOnly: false,
+          readOnly: true,
           fieldController: controller.nameController,
           height: controller.size.height * 0.05,
           width: double.infinity,
@@ -555,8 +556,8 @@ class EmailTextFieldModule extends StatelessWidget {
               "Email",
               style: TextStyle(
                 color: themeProvider.darkTheme
-                    ? AppColors.whiteColor.withOpacity(0.7)
-                    : AppColors.blackTextColor.withOpacity(0.7),
+                    ? AppColors.whiteColor
+                    : AppColors.blackTextColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -597,8 +598,8 @@ class MobileNumberTextFieldModule extends StatelessWidget {
               "Mobile Number",
               style: TextStyle(
                 color: themeProvider.darkTheme
-                    ? AppColors.whiteColor.withOpacity(0.7)
-                    : AppColors.blackTextColor.withOpacity(0.7),
+                    ? AppColors.whiteColor
+                    : AppColors.blackTextColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -663,6 +664,133 @@ class LocationTextFieldModule extends StatelessWidget {
   }
 }
 
+class DetailsTextFieldModule extends StatelessWidget {
+  DetailsTextFieldModule({Key? key}) : super(key: key);
+
+  final controller = Get.find<UserProfileEditController>();
+
+  DarkThemeProvider themeProvider =
+  Provider.of<DarkThemeProvider>(Get.context!);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Details",
+              style: TextStyle(
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.blackTextColor,
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          readOnly: false,
+          fieldController: controller.detailsController,
+          height: controller.size.height * 0.05,
+          width: double.infinity,
+          hintText: "Details",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.text,
+          validator: (val) => Validations().validateDetails(val!),
+        ),
+      ],
+    );
+  }
+}
+
+class InstagramTextFieldModule extends StatelessWidget {
+  InstagramTextFieldModule({Key? key}) : super(key: key);
+
+  final controller = Get.find<UserProfileEditController>();
+
+  DarkThemeProvider themeProvider =
+  Provider.of<DarkThemeProvider>(Get.context!);
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Instagram Link",
+              style: TextStyle(
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.blackTextColor,
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          readOnly: false,
+          fieldController: controller.instagramController,
+          height: controller.size.height * 0.05,
+          width: double.infinity,
+          hintText: "Instagram Link",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.text,
+          validator: (val) => Validations().validateInstagramLink(val!),
+        ),
+      ],
+    );
+  }
+}
+
+class FacebookLinkTextFieldModule extends StatelessWidget {
+  FacebookLinkTextFieldModule({Key? key}) : super(key: key);
+
+  final controller = Get.find<UserProfileEditController>();
+  DarkThemeProvider themeProvider =
+  Provider.of<DarkThemeProvider>(Get.context!);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Facebook Link",
+              style: TextStyle(
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.blackTextColor,
+                fontSize: 11.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          readOnly: false,
+          fieldController: controller.facebookController,
+          height: controller.size.height * 0.05,
+          width: double.infinity,
+          hintText: "Facebook Link",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.text,
+          validator: (val) => Validations().validateFacebookLink(val!),
+        ),
+      ],
+    );
+  }
+}
+
 class GenderDropDownModule extends StatefulWidget {
   GenderDropDownModule({Key? key}) : super(key: key);
 
@@ -686,8 +814,8 @@ class _GenderDropDownModuleState extends State<GenderDropDownModule> {
               "Gender",
               style: TextStyle(
                 color: themeProvider.darkTheme
-                    ? AppColors.whiteColor.withOpacity(0.7)
-                    : AppColors.blackTextColor.withOpacity(0.7),
+                    ? AppColors.whiteColor
+                    : AppColors.blackTextColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -701,27 +829,28 @@ class _GenderDropDownModuleState extends State<GenderDropDownModule> {
               height: controller.size.height * 0.06,
               width: double.infinity,
               decoration: BoxDecoration(
-                  color: themeProvider.darkTheme
-                      ? AppColors.darkThemeBoxColor
-                      : AppColors.whiteColor,
+                  color: Colors.transparent,
                   borderRadius: BorderRadius.circular(15),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.greyTextColor.withOpacity(0.3),
-                      blurRadius: 35,
-                      spreadRadius: 1,
-                      offset: const Offset(0, 5),
-                    ),
-                  ]),
+                boxShadow: [
+                  BoxShadow(
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor.withOpacity(0.05)
+                        : AppColors.greyTextColor.withOpacity(0.5),
+                    blurRadius: 10,
+                    spreadRadius: 0.5,
+                    offset: const Offset(0, 0),
+                  ),
+                ],
+              ),
             ),
             Obx(
               () => Container(
                 padding: const EdgeInsets.only(left: 10),
                 width: Get.width,
                 //gives the width of the dropdown button
-                decoration: const BoxDecoration(
+                decoration:  BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
-                  //color: Colors.grey.shade200,
+                  color: Colors.white,
                 ),
                 child: Theme(
                   data: Theme.of(context).copyWith(
@@ -812,7 +941,7 @@ class BirthDateModule extends StatelessWidget {
               style: TextStyle(
                 color: themeProvider.darkTheme
                     ? AppColors.whiteColor
-                    : AppColors.blackTextColor.withOpacity(0.7),
+                    : AppColors.blackTextColor,
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -823,32 +952,34 @@ class BirthDateModule extends StatelessWidget {
         Container(
           height: controller.size.height * 0.08,
           width: double.infinity,
-          padding: const EdgeInsets.only(left: 15, right: 15),
+          //padding: const EdgeInsets.only(left: 15, right: 15),
           decoration: BoxDecoration(
-            color: themeProvider.darkTheme
-                ? AppColors.darkThemeColor
-                : AppColors.whiteColor,
+            color: Colors.transparent,
             borderRadius: BorderRadius.all(
               Radius.circular(15),
             ),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.greyTextColor.withOpacity(0.3),
-                blurRadius: 35,
-                spreadRadius: 1,
-                offset: const Offset(0, 5),
-              ),
-            ],
+
           ),
           child: DropdownDatePicker(
             boxDecoration: BoxDecoration(
               // border: Border.,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(5),
+              boxShadow: [
+                BoxShadow(
+                  color: themeProvider.darkTheme
+                      ? AppColors.whiteColor.withOpacity(0.05)
+                      : AppColors.greyTextColor.withOpacity(0.5),
+                  blurRadius: 10,
+                  spreadRadius: 0.5,
+                  offset: const Offset(0, 0),
+                ),
+              ],
             ),
             // optional
-            dayFlex: 2,
+            dayFlex: 3,
             monthFlex: 3,
-            yearFlex: 2,
+            yearFlex: 3,
             textStyle: TextStyle(
               color: themeProvider.darkTheme
                   ? AppColors.whiteColor
