@@ -124,8 +124,8 @@ class HomeController extends GetxController {
     } catch (e) {
       log("Banner Api Error ::: $e");
     } finally {
-      isLoading(false);
-       // await getAllPetFunction();
+      //isLoading(false);
+        await getAllPetFunction();
     }
   }
 
@@ -177,6 +177,7 @@ class HomeController extends GetxController {
         // bannerList.clear();
         petTopList.addAll(getPetTopListModel.data);
         log("petList Length : ${petTopList.length}");
+        log('pet image1: ${ApiUrl.apiImagePath + petTopList[0].image}');
       } else {
         log("Pet Api Else");
       }
@@ -211,6 +212,7 @@ class HomeController extends GetxController {
           // bannerList.clear();
           petTopList.addAll(getPetTopListModel.data);
           log("petList Length : ${petTopList.length}");
+          log('pet image1: ${ApiUrl.apiImagePath + petTopList[0].image}');
 
           // If get all pet then change the hasMore flag
           if (getPetTopListModel.data.length < 10) {
@@ -230,7 +232,7 @@ class HomeController extends GetxController {
   /// Get User Story
   Future<void> getUserStory() async {
     isLoading(true);
-    String url = ApiUrl.getUserStoryApi + UserDetails.userId;
+    String url = ApiUrl.getUserStoryApi + UserDetails.selfId;
     log("Get User story Api Url : $url");
 
     try {
@@ -306,7 +308,7 @@ class HomeController extends GetxController {
         request.files.add(await http.MultipartFile.fromPath("image", imageFile!.path));
         //request.headers.addAll(header);
 
-        request.fields['userid'] = UserDetails.userId;
+        request.fields['userid'] = UserDetails.selfId;
         request.fields['categoryID'] = UserDetails.categoryId;
 
         // request.fields['name'] = "demo1";
@@ -365,7 +367,7 @@ class HomeController extends GetxController {
 
         //request.headers.addAll(header);
 
-        request.fields['userid'] = "${UserDetails.userId}";
+        request.fields['userid'] = "${UserDetails.selfId}";
         request.fields['categoryID'] = "${UserDetails.categoryId}";
 
 
@@ -415,7 +417,7 @@ class HomeController extends GetxController {
 
     try {
       Map<String, dynamic> data = {
-        "id": UserDetails.userId,
+        "id": UserDetails.selfId,
         // "uid": "${UserDetails.selfId}",
         "categoryID": UserDetails.categoryId,
       };
@@ -465,7 +467,7 @@ class HomeController extends GetxController {
 
     try {
       Map<String, dynamic> data = {
-        "id": UserDetails.userId,
+        "id": UserDetails.selfId,
         // "uid": "${UserDetails.selfId}",
         "categoryID": UserDetails.categoryId,
       };
@@ -518,7 +520,7 @@ class HomeController extends GetxController {
 
     try {
       Map<String, dynamic> data = {
-        "id": UserDetails.userId,
+        "id": UserDetails.selfId,
         // "uid": "${UserDetails.selfId}",
         "categoryID": UserDetails.categoryId,
       };
@@ -570,7 +572,7 @@ class HomeController extends GetxController {
 
     try {
       Map<String, dynamic> data = {
-        "id": UserDetails.userId,
+        "id": UserDetails.selfId,
         // "uid": "${UserDetails.selfId}",
         "categoryID": UserDetails.categoryId,
       };

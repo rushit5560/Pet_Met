@@ -46,7 +46,7 @@ class PetPricingController extends GetxController {
 
     try {
       Map<String, dynamic> bodyData = {
-        "id": UserDetails.userId,
+        "id": UserDetails.selfId,
         "categoryID" : UserDetails.categoryId,
       };
       log("bodyData : $bodyData");

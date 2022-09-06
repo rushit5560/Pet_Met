@@ -413,7 +413,7 @@ class NameOfNgoListModule extends StatelessWidget {
                   // height: screenController.size.width * 0.16,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 5),
-                    child: Stack(
+                    /*child: Stack(
                       alignment: Alignment.bottomRight,
                       children: [
                         Container(
@@ -597,6 +597,170 @@ class NameOfNgoListModule extends StatelessWidget {
                           ),
                         )
                       ],
+                    ),*/
+                    child: GestureDetector(
+                      onTap: (){
+                        if(index == 0){
+                          getFromGallery();
+                        } else if(index == 1){
+                          getFromGallery2();
+                        } else if(index == 2){
+                          getFromGallery3();
+                        } else if(index == 3){
+                          getFromGallery4();
+                        } else if(index == 4){
+                          getFromGallery5();
+                        }
+                      },
+                      child: Container(
+                          height: screenController.size.width * 0.16,
+                          width: screenController.size.width * 0.16,
+                          margin: const EdgeInsets.only(bottom: 5, right: 10),
+                          decoration: BoxDecoration(
+                            // image: DecorationImage(
+                            //     image: AssetImage(
+                            //       controller.dogsTopList[index],
+                            //     ),
+                            //     fit: BoxFit.cover),
+                            //color: AppColors.greyTextColor,
+                            border: Border.all(color: Colors.grey),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8),
+                            ),
+                          ),
+                          child: index == 0
+                              ? screenController.ngoPictureFile1 != null
+                                  ? Image.file(
+                                      screenController.ngoPictureFile1!,
+                                      height: 65,
+                                      fit: BoxFit.fill,
+                                    )
+                                  : screenController.ngoImage1 != null
+                                      ? Image.network(
+                                          screenController.ngoImage1!,
+                                          height: 50,
+                                          width: 50,
+                                          fit: BoxFit.fill,
+                                          errorBuilder: (context, er, st) {
+                                            return Icon(
+                                              Icons.add,
+                                              color: AppColors.accentTextColor,
+                                            );
+                                          },
+                                        )
+                                      : Icon(
+                                        Icons.add,
+                                        color: AppColors.accentTextColor,
+                                      )
+                              : index == 1
+                                  ? screenController.ngoPictureFile2 != null
+                                      ? Image.file(
+                                          screenController.ngoPictureFile2!,
+                                          height: 65,
+                                          fit: BoxFit.fill,
+                                        )
+                                      : screenController.ngoImage2 != null
+                                          ? Image.network(
+                                              screenController.ngoImage2!,
+                                              height: 50,
+                                              width: 50,
+                                              fit: BoxFit.fill,
+                                              errorBuilder: (context, er, st) {
+                                                return Icon(
+                                                  Icons.add,
+                                                  color: AppColors.accentTextColor,
+                                                );
+                                              },
+                                            )
+                                          : Icon(
+                                            Icons.add,
+                                            color: AppColors.accentTextColor,
+                                          )
+                                  : index == 2
+                                      ? screenController.ngoPictureFile3 != null
+                                          ? Image.file(
+                                              screenController.ngoPictureFile3!,
+                                              height: 65,
+                                              fit: BoxFit.fill,
+                                            )
+                                          : screenController.ngoImage3 != null
+                                              ? Image.network(
+                                                  screenController.ngoImage3!,
+                                                  height: 65,
+                                                  fit: BoxFit.fill,
+                                                  errorBuilder:
+                                                      (context, er, st) {
+                                                    return Icon(
+                                                      Icons.add,
+                                                      color: AppColors.accentTextColor,
+                                                    );
+                                                  },
+                                                )
+                                              : Icon(
+                                                Icons.add,
+                                                color:
+                                                    AppColors.accentTextColor,
+                                              )
+                                      : index == 3
+                                          ? screenController.ngoPictureFile4 !=
+                                                  null
+                                              ? Image.file(
+                                                  screenController
+                                                      .ngoPictureFile4!,
+                                                  height: 65,
+                                                  fit: BoxFit.fill,
+                                                )
+                                              : screenController.ngoImage4 != null
+                                                  ? Image.network(
+                                                      screenController.ngoImage4!,
+                                                      height: 50,
+                                                      width: 50,
+                                                      fit: BoxFit.fill,
+                                                      errorBuilder:
+                                                          (context, er, st) {
+                                                        return Icon(
+                                                          Icons.add,
+                                                          color: AppColors.accentTextColor,
+                                                        );
+                                                      },
+                                                    )
+                                                  : Icon(
+                                                    Icons.add,
+                                                    color: AppColors
+                                                        .accentTextColor,
+                                                  )
+                                          : index == 4
+                                              ? screenController
+                                                          .ngoPictureFile5 !=
+                                                      null
+                                                  ? Image.file(
+                                                      screenController
+                                                          .ngoPictureFile5!,
+                                                      height: 65,
+                                                      fit: BoxFit.fill,
+                                                    )
+                                                  : screenController.ngoImage5 !=
+                                                          null
+                                                      ? Image.network(
+                                                          screenController
+                                                              .ngoImage5!,
+                                                          height: 50,
+                                                          width: 50,
+                                                          fit: BoxFit.fill,
+                                                          errorBuilder:
+                                                              (context, er, st) {
+                                                            return Icon(
+                                                              Icons.add,
+                                                              color: AppColors.accentTextColor,
+                                                            );
+                                                          },
+                                                        )
+                                                      : Icon(
+                                                        Icons.add,
+                                                        color: AppColors
+                                                            .accentTextColor,
+                                                      )
+                                              : Container()),
                     ),
                   ),
                 );
@@ -1248,6 +1412,7 @@ class IsActiveTextFieldModule extends StatelessWidget {
   final screenController = Get.find<NgoUserProfileScreenController>();
   DarkThemeProvider themeProvider =
       Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -1278,16 +1443,16 @@ class IsActiveTextFieldModule extends StatelessWidget {
                       ? AppColors.darkThemeBoxColor
                       : AppColors.whiteColor,
                   borderRadius: BorderRadius.circular(15),
-                boxShadow: [
-                  BoxShadow(
-                    color: themeProvider.darkTheme
-                        ? AppColors.whiteColor.withOpacity(0.05)
-                        : AppColors.greyTextColor.withOpacity(0.5),
-                    blurRadius: 10,
-                    spreadRadius: 0.5,
-                    offset: const Offset(0, 0),
-                  ),
-                ]),
+                  boxShadow: [
+                    BoxShadow(
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor.withOpacity(0.05)
+                          : AppColors.greyTextColor.withOpacity(0.5),
+                      blurRadius: 10,
+                      spreadRadius: 0.5,
+                      offset: const Offset(0, 0),
+                    ),
+                  ]),
             ),
             Obx(
               () => Container(
@@ -1378,6 +1543,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
   final screenController = Get.find<NgoUserProfileScreenController>();
   DarkThemeProvider themeProvider =
       Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -1457,8 +1623,8 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                   height: Get.height * 0.06,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
                       boxShadow: [
                         BoxShadow(
                           color: themeProvider.darkTheme
@@ -1468,8 +1634,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                           spreadRadius: 0.5,
                           offset: const Offset(0, 0),
                         ),
-                      ]
-                  ),
+                      ]),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 5),
                     child: Row(
@@ -1584,8 +1749,8 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                   height: Get.height * 0.06,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    //color: Colors.transparent,
-                    borderRadius: BorderRadius.circular(10),
+                      //color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(10),
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
@@ -1596,8 +1761,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                           spreadRadius: 0.5,
                           offset: const Offset(0, 0),
                         ),
-                      ]
-                  ),
+                      ]),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 5),
                     child: Row(

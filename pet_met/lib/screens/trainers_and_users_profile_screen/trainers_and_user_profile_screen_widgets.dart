@@ -362,7 +362,7 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
               itemCount: 5,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return Stack(
+                /*return Stack(
                   alignment: Alignment.bottomRight,
                   children: [
                     Container(
@@ -575,6 +575,198 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                       ),
                     )
                   ],
+                );*/
+                return Padding(
+                  padding: const EdgeInsets.only(left: 5),
+                  child: GestureDetector(
+                    onTap: (){
+                      if(index == 0){
+                        if (screenController.showStatus.value == true) {
+                          // open gallery
+                          getFromGallery();
+                        } else if (screenController.showStatus.value ==
+                            false) {
+                          //screenController.openCheckout();
+                          Get.to(() => PetPricingScreen());
+                        }
+                      } else if(index == 1){
+                        if (screenController.showStatus.value == true) {
+                          // open gallery
+                          getFromGallery2();
+                        } else if (screenController.showStatus.value ==
+                            false) {
+                          //screenController.openCheckout();
+                          Get.to(() => PetPricingScreen());
+                        }
+                      } else if(index == 2){
+                        if (screenController.showStatus.value == true) {
+                          // open gallery
+                          getFromGallery3();
+                        } else if (screenController.showStatus.value ==
+                            false) {
+                          //screenController.openCheckout();
+                          Get.to(() => PetPricingScreen());
+                        }
+                      } else if(index == 3){
+                        if (screenController.showStatus.value == true) {
+                          // open gallery
+                          getFromGallery4();
+                        } else if (screenController.showStatus.value ==
+                            false) {
+                          //screenController.openCheckout();
+                          Get.to(() => PetPricingScreen());
+                        }
+                      } else if(index == 4){
+                        if (screenController.showStatus.value == true) {
+                          // open gallery
+                          getFromGallery5();
+                        } else if (screenController.showStatus.value ==
+                            false) {
+                          //screenController.openCheckout();
+                          Get.to(() => PetPricingScreen());
+                        }
+                      }
+                    },
+                    child: Container(
+                        height: screenController.size.width * 0.16,
+                        width: screenController.size.width * 0.16,
+                        margin: const EdgeInsets.only(bottom: 5, right: 5),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(8),
+                          ),
+                        ),
+                        child: index == 0
+                            ? screenController.trainerPictureFile1 != null
+                            ? Image.file(
+                          screenController.trainerPictureFile1!,
+                          height: 65,
+                          fit: BoxFit.fill,
+                        )
+                            : screenController.trainerImage1 != null
+                            ? Image.network(
+                          screenController.trainerImage1!,
+                          height: 65,
+                          fit: BoxFit.fill,
+                          errorBuilder: (context, er, st) {
+                            return Icon(
+                              Icons.add,
+                              color: AppColors.accentTextColor,
+                            );
+                          },
+                        )
+                            : Icon(
+                              Icons.add,
+                              color: AppColors.accentTextColor,
+                            )
+
+                            : index == 1
+                            ? screenController.trainerPictureFile2 != null
+                            ? Image.file(
+                          screenController.trainerPictureFile2!,
+                          height: 65,
+                          fit: BoxFit.fill,
+                        )
+                            : screenController.trainerImage2 != null
+                            ? Image.network(
+                          screenController.trainerImage2!,
+                          height: 65,
+                          fit: BoxFit.fill,
+                          errorBuilder: (context, er, st) {
+                            return Icon(
+                              Icons.add,
+                              color: AppColors.accentTextColor,
+                            );
+                          },
+                        )
+                            : Icon(
+                              Icons.add,
+                              color: AppColors.accentTextColor,
+                            )
+
+                            : index == 2
+                            ? screenController.trainerPictureFile3 != null
+                            ? Image.file(
+                          screenController
+                              .trainerPictureFile3!,
+                          height: 65,
+                          fit: BoxFit.fill,
+                        )
+                            : screenController.trainerImage3 != null
+                            ? Image.network(
+                          screenController.trainerImage3!,
+                          height: 65,
+                          fit: BoxFit.fill,
+                          errorBuilder:
+                              (context, er, st) {
+                            return Icon(
+                              Icons.add,
+                              color: AppColors.accentTextColor,
+                            );
+                          },
+                        )
+                            : Icon(
+                              Icons.add,
+                              color: AppColors.accentTextColor,
+                            )
+
+                            : index == 3
+                            ? screenController.trainerPictureFile4 != null
+                            ? Image.file(
+                          screenController
+                              .trainerPictureFile4!,
+                          height: 65,
+                          fit: BoxFit.fill,
+                        )
+                            : screenController.trainerImage4 != null
+                            ? Image.network(
+                          screenController
+                              .trainerImage4!,
+                          height: 65,
+                          fit: BoxFit.fill,
+                          errorBuilder:
+                              (context, er, st) {
+                            return Icon(
+                              Icons.add,
+                              color: AppColors.accentTextColor,
+                            );
+                          },
+                        )
+                            : Icon(
+                              Icons.add,
+                              color: AppColors.accentTextColor,
+                            )
+
+                            : index == 4
+                            ? screenController.trainerPictureFile5 != null
+                            ? Image.file(
+                          screenController
+                              .trainerPictureFile5!,
+                          height: 65,
+                          fit: BoxFit.fill,
+                        )
+                            : screenController.trainerImage5 != null
+                            ? Image.network(
+                          screenController
+                              .trainerImage5!,
+                          height: 65,
+                          fit: BoxFit.fill,
+                          errorBuilder:
+                              (context, er, st) {
+                            return Icon(
+                              Icons.add,
+                              color: AppColors.accentTextColor,
+                            );
+                          },
+                        )
+                            : Icon(
+                              Icons.add,
+                              color: AppColors.accentTextColor,
+                            )
+
+                            : Container()),
+                  ),
                 );
               }),
         )

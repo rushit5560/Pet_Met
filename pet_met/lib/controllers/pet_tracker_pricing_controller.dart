@@ -62,7 +62,7 @@ class PetTrackerPricingController extends GetxController {
     try {
       Map<String, dynamic> bodyData = {
         "planid":petPlanId,
-        "id": UserDetails.userId,
+        "id": UserDetails.selfId,
         "categoryID" : UserDetails.categoryId,
       };
       log("bodyData : $bodyData");
@@ -99,7 +99,7 @@ class PetTrackerPricingController extends GetxController {
     String url = ApiUrl.addOrderApi;
 
     Map<String, dynamic> data = {
-      "userid": UserDetails.userId.toString(),
+      "userid": UserDetails.selfId.toString(),
       "planid" : petPlanId,
       "price" : price.toString(),
       "transition_orderid": orderId ?? "123",

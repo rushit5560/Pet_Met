@@ -24,7 +24,8 @@ class BackgroundImage extends StatelessWidget {
   BackgroundImage({Key? key}) : super(key: key);
 
   DarkThemeProvider themeProvider =
-      Provider.of<DarkThemeProvider>(Get.context!);
+  Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -69,7 +70,7 @@ class UploadImageModule extends StatelessWidget {
 
   final screenController = Get.find<ShopUserProfileScreenController>();
   DarkThemeProvider themeProvider =
-      Provider.of<DarkThemeProvider>(Get.context!);
+  Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -101,122 +102,122 @@ class UploadImageModule extends StatelessWidget {
         ),
         child: screenController.imageFile != null
             ? Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: Image.file(
-                          themeProvider.darkTheme
-                              ? screenController.imageFile!
-                              : screenController.imageFile!,
-                          width: double.infinity,
-                          height: screenController.size.height * 0.2,
-                          fit: BoxFit.fill),
-                    ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: Image.file(
+                    themeProvider.darkTheme
+                        ? screenController.imageFile!
+                        : screenController.imageFile!,
+                    width: double.infinity,
+                    height: screenController.size.height * 0.2,
+                    fit: BoxFit.fill),
+              ),
 
-                    //),
-                    // const SizedBox(height: 20),
-                    // Text(
-                    //   "Upload Image",
-                    //   style: TextStyle(
-                    //     color: themeProvider.darkTheme
-                    //         ? AppColors.whiteColor
-                    //         : AppColors.blackTextColor,
-                    //     fontSize: 15.sp,
-                    //     fontWeight: FontWeight.w500,
-                    //   ),
-                    // ),
-                  ],
-                ),
-              )
+              //),
+              // const SizedBox(height: 20),
+              // Text(
+              //   "Upload Image",
+              //   style: TextStyle(
+              //     color: themeProvider.darkTheme
+              //         ? AppColors.whiteColor
+              //         : AppColors.blackTextColor,
+              //     fontSize: 15.sp,
+              //     fontWeight: FontWeight.w500,
+              //   ),
+              // ),
+            ],
+          ),
+        )
             : screenController.shopImage != null
-                ? Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image.network(
-                              themeProvider.darkTheme
-                                  ? ApiUrl.apiImagePath +
-                                      screenController.shopImage!
-                                  : ApiUrl.apiImagePath +
-                                      screenController.shopImage!,
-                              width: double.infinity,
-                              height: screenController.size.height * 0.2,
-                              fit: BoxFit.fill,
-                              errorBuilder: (context, er, st) {
-                            //return Image.asset(AppImages.petMetLogoImg);
-                            return Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  themeProvider.darkTheme
-                                      ? AppImages.cameraPlaceHolderImgDark
-                                      : AppImages.cameraPlaceHolderImglight,
-                                  height: 65,
-                                  fit: BoxFit.fill,
-                                ),
-                                const SizedBox(height: 20),
-                                Text(
-                                  "Upload Image",
-                                  style: TextStyle(
-                                    color: themeProvider.darkTheme
-                                        ? AppColors.whiteColor
-                                        : AppColors.blackTextColor,
-                                    fontSize: 15.sp,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            );
-                          }),
-                        ),
-
-                        //),
-                        // const SizedBox(height: 20),
-                        // Text(
-                        //   "Upload Image",
-                        //   style: TextStyle(
-                        //     color: themeProvider.darkTheme
-                        //         ? AppColors.whiteColor
-                        //         : AppColors.blackTextColor,
-                        //     fontSize: 15.sp,
-                        //     fontWeight: FontWeight.w500,
-                        //   ),
-                        // ),
-                      ],
-                    ),
-                  )
-                : Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          themeProvider.darkTheme
-                              ? AppImages.cameraPlaceHolderImgDark
-                              : AppImages.cameraPlaceHolderImglight,
-                          height: 65,
-                        ),
-                        const SizedBox(height: 20),
-                        Text(
-                          "Upload Image",
-                          style: TextStyle(
-                            color: themeProvider.darkTheme
-                                ? AppColors.whiteColor
-                                : AppColors.blackTextColor,
-                            fontSize: 15.sp,
-                            fontWeight: FontWeight.w500,
+            ? Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: Image.network(
+                    themeProvider.darkTheme
+                        ? ApiUrl.apiImagePath +
+                        screenController.shopImage!
+                        : ApiUrl.apiImagePath +
+                        screenController.shopImage!,
+                    width: double.infinity,
+                    height: screenController.size.height * 0.2,
+                    fit: BoxFit.fill,
+                    errorBuilder: (context, er, st) {
+                      //return Image.asset(AppImages.petMetLogoImg);
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            themeProvider.darkTheme
+                                ? AppImages.cameraPlaceHolderImgDark
+                                : AppImages.cameraPlaceHolderImglight,
+                            height: 65,
+                            fit: BoxFit.fill,
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
+                          const SizedBox(height: 20),
+                          Text(
+                            "Upload Image",
+                            style: TextStyle(
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor,
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      );
+                    }),
+              ),
+
+              //),
+              // const SizedBox(height: 20),
+              // Text(
+              //   "Upload Image",
+              //   style: TextStyle(
+              //     color: themeProvider.darkTheme
+              //         ? AppColors.whiteColor
+              //         : AppColors.blackTextColor,
+              //     fontSize: 15.sp,
+              //     fontWeight: FontWeight.w500,
+              //   ),
+              // ),
+            ],
+          ),
+        )
+            : Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset(
+                themeProvider.darkTheme
+                    ? AppImages.cameraPlaceHolderImgDark
+                    : AppImages.cameraPlaceHolderImglight,
+                height: 65,
+              ),
+              const SizedBox(height: 20),
+              Text(
+                "Upload Image",
+                style: TextStyle(
+                  color: themeProvider.darkTheme
+                      ? AppColors.whiteColor
+                      : AppColors.blackTextColor,
+                  fontSize: 15.sp,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -236,7 +237,7 @@ class UploadImageModule extends StatelessWidget {
               ListTile(
                 onTap: getFromCamera,
                 contentPadding:
-                    EdgeInsets.only(left: screenController.size.width * 0.1),
+                EdgeInsets.only(left: screenController.size.width * 0.1),
                 title: Text(
                   "Select Image From Camera",
                   style: TextStyle(
@@ -250,7 +251,7 @@ class UploadImageModule extends StatelessWidget {
               ),
               ListTile(
                 contentPadding:
-                    EdgeInsets.only(left: screenController.size.width * 0.1),
+                EdgeInsets.only(left: screenController.size.width * 0.1),
                 onTap: getFromGallery,
                 title: Text(
                   "Select Image From Gallery",
@@ -342,7 +343,7 @@ class AddShopOffersListModule extends StatelessWidget {
   final screenController = Get.find<ShopUserProfileScreenController>();
 
   DarkThemeProvider themeProvider =
-      Provider.of<DarkThemeProvider>(Get.context!);
+  Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -366,7 +367,7 @@ class AddShopOffersListModule extends StatelessWidget {
             itemBuilder: (context, index) {
               return Padding(
                 padding: const EdgeInsets.only(left: 5),
-                child: Stack(
+                /*child: Stack(
                   alignment: Alignment.bottomRight,
                   children: [
                     Container(
@@ -577,6 +578,197 @@ class AddShopOffersListModule extends StatelessWidget {
                       ),
                     )
                   ],
+                ),*/
+                child: GestureDetector(
+                  onTap: () {
+                    if (index == 0) {
+                      if (screenController.showStatus.value == true) {
+                        // open gallery
+                        getFromGallery();
+                      } else if (screenController.showStatus.value ==
+                          false) {
+                        //screenController.openCheckout();
+                        Get.to(() => PetPricingScreen());
+                      }
+                    } else if (index == 1) {
+                      if (screenController.showStatus.value == true) {
+                        // open gallery
+                        getFromGallery2();
+                      } else if (screenController.showStatus.value ==
+                          false) {
+                        //screenController.openCheckout();
+                        Get.to(() => PetPricingScreen());
+                      }
+                    } else if (index == 2) {
+                      if (screenController.showStatus.value == true) {
+                        // open gallery
+                        getFromGallery3();
+                      } else if (screenController.showStatus.value ==
+                          false) {
+                        //screenController.openCheckout();
+                        Get.to(() => PetPricingScreen());
+                      }
+                    } else if (index == 3) {
+                      if (screenController.showStatus.value == true) {
+                        // open gallery
+                        getFromGallery4();
+                      } else if (screenController.showStatus.value ==
+                          false) {
+                        //screenController.openCheckout();
+                        Get.to(() => PetPricingScreen());
+                      }
+                    } else if (index == 4) {
+                      if (screenController.showStatus.value == true) {
+                        // open gallery
+                        getFromGallery5();
+                      } else if (screenController.showStatus.value ==
+                          false) {
+                        //screenController.openCheckout();
+                        Get.to(() => PetPricingScreen());
+                      }
+                    }
+                  },
+                  child: Container(
+                      height: screenController.size.width * 0.16,
+                      width: screenController.size.width * 0.16,
+                      margin: const EdgeInsets.only(bottom: 5, right: 5),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(5),
+                        ),
+                      ),
+                      //padding: const EdgeInsets.all(5),
+                      child: index == 0
+                          ? screenController.shopOfferFile1 != null
+                          ? Image.file(
+                        screenController.shopOfferFile1!,
+                        height: 65,
+                        fit: BoxFit.fill,
+                      )
+                          : screenController.offerImage1 != null
+                          ? Image.network(
+                        screenController.offerImage1!,
+                        height: 65,
+                        fit: BoxFit.fill,
+                        errorBuilder: (context, er, st) {
+                          return Icon(
+                            Icons.add,
+                            color: AppColors.accentTextColor,
+                          );
+                        },
+                      ):
+                          Icon(
+                        Icons.add,
+                        color: AppColors.accentTextColor,
+                      )
+
+                          : index == 1
+                          ? screenController.shopOfferFile2 != null
+                          ? Image.file(
+                        screenController.shopOfferFile2!,
+                        height: 65,
+                        fit: BoxFit.fill,
+                      )
+                          : screenController.offerImage2 != null
+                          ? Image.network(
+                        screenController.offerImage2!,
+                        height: 65,
+                        fit: BoxFit.fill,
+                        errorBuilder: (context, er, st) {
+                          return Icon(
+                            Icons.add,
+                            color: AppColors.accentTextColor,
+                          );
+                        },
+                      ):
+                          Icon(
+                        Icons.add,
+                        color: AppColors.accentTextColor,
+                      )
+
+                          : index == 2
+                          ? screenController.shopOfferFile3 != null
+                          ? Image.file(
+                        screenController.shopOfferFile3!,
+                        height: 65,
+                        fit: BoxFit.fill,
+                      )
+                          : screenController.offerImage3 != null
+                          ? Image.network(
+                        screenController.offerImage3!,
+                        height: 65,
+                        fit: BoxFit.fill,
+                        errorBuilder:
+                            (context, er, st) {
+                          return Icon(
+                            Icons.add,
+                            color: AppColors.accentTextColor,
+                          );
+                        },
+                      ):
+                          Icon(
+                        Icons.add,
+                        color: AppColors.accentTextColor,
+                      )
+
+                          : index == 3
+                          ? screenController.shopOfferFile4 != null
+                          ? Image.file(
+                        screenController
+                            .shopOfferFile4!,
+                        height: 65,
+                        fit: BoxFit.fill,
+                      )
+                          : screenController.offerImage4 != null
+                          ? Image.network(
+                        screenController
+                            .offerImage4!,
+                        height: 65,
+                        fit: BoxFit.fill,
+                        errorBuilder:
+                            (context, er, st) {
+                          return Icon(
+                            Icons.add,
+                            color: AppColors.accentTextColor,
+                          );
+                        },
+                      ):
+                          Icon(
+                        Icons.add,
+                        color: AppColors.accentTextColor,
+                      )
+
+                          : index == 4
+                          ? screenController.shopOfferFile5 != null
+                          ? Image.file(
+                        screenController
+                            .shopOfferFile5!,
+                        height: 65,
+                        fit: BoxFit.fill,
+                      )
+                          : screenController.offerImage5 != null
+                          ? Image.network(
+                        screenController
+                            .offerImage5!,
+                        height: 65,
+                        fit: BoxFit.fill,
+                        errorBuilder:
+                            (context, er, st) {
+                          return Icon(
+                            Icons.add,
+                            color: AppColors.accentTextColor,
+                          );
+                        },
+                      )
+                          : Icon(
+                        Icons.add,
+                        color: AppColors.accentTextColor,
+                      )
+
+                          : Container()
+
+                          ),
                 ),
               );
             }),
@@ -990,7 +1182,7 @@ class MeetingAvailabilityModule extends StatelessWidget {
   final screenController = Get.find<ShopUserProfileScreenController>();
 
   DarkThemeProvider themeProvider =
-      Provider.of<DarkThemeProvider>(Get.context!);
+  Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -1065,105 +1257,107 @@ class MeetingAvailabilityModule extends StatelessWidget {
                       ),
                     )
                   ]),*/
-                GestureDetector(
-                    onTap: () {
-                      if (screenController.showStatus.value == true) {
-                        Get.to(() => UploadPetScreen(),
-                            transition: Transition.native,
-                            duration: const Duration(milliseconds: 500),
-                            arguments: [PetOption.addOption, ""]);
-                      } else if (screenController.showStatus.value == false) {
-                        //screenController.openCheckout();
-                        Get.to(() => PetPricingScreen());
-                      }
-                    },
-                    child: Container(
-                      height: 8.h,
-                      width: 8.h,
-                      margin: const EdgeInsets.only(bottom: 5, right: 5),
-                      decoration: BoxDecoration(
-                        // image: DecorationImage(
-                        //     image: AssetImage(
-                        //       controller.dogsTopList[index],
-                        //     ),
-                        //     fit: BoxFit.cover),
-                        //color: AppColors.greyTextColor,
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(8),
-                        ),
-                      ),
-                      child: /*ClipRRect(
+            GestureDetector(
+              onTap: () {
+                if (screenController.showStatus.value == true) {
+                  Get.to(() => UploadPetScreen(),
+                      transition: Transition.native,
+                      duration: const Duration(milliseconds: 500),
+                      arguments: [PetOption.addOption, ""]);
+                } else if (screenController.showStatus.value == false) {
+                  //screenController.openCheckout();
+                  Get.to(() => PetPricingScreen());
+                }
+              },
+              child: Container(
+                height: 8.h,
+                width: 8.h,
+                margin: const EdgeInsets.only(bottom: 5, right: 5),
+                decoration: BoxDecoration(
+                  // image: DecorationImage(
+                  //     image: AssetImage(
+                  //       controller.dogsTopList[index],
+                  //     ),
+                  //     fit: BoxFit.cover),
+                  //color: AppColors.greyTextColor,
+                  border: Border.all(color: Colors.grey),
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(8),
+                  ),
+                ),
+                child: /*ClipRRect(
                     borderRadius:
                     const BorderRadius.all(Radius.circular(8)),
                     child: Image.asset(AppImages.petMetLogoImg,
                         fit: BoxFit.cover))*/
-                          Icon(
-                        Icons.add,
-                        color: AppColors.accentTextColor,
-                        size: 30,
-                      ),
-                    ),
-                  ),
+                Icon(
+                  Icons.add,
+                  color: AppColors.accentTextColor,
+                  size: 30,
+                ),
+              ),
+            ),
             screenController.petList.length == 5
                 ? Container()
                 : const SizedBox(width: 5),
             Expanded(
                 child: SizedBox(
-              height: 8.h,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: screenController.petList.length,
-                separatorBuilder: (context, index) {
-                  return const SizedBox(width: 8);
-                },
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      log('Pet Id : ${screenController.petList[index].id}');
-                      Get.to(() => UploadPetScreen(),
-                          transition: Transition.native,
-                          duration: const Duration(milliseconds: 500),
-                          arguments: [
-                            PetOption.updateOption,
-                            screenController.petList[index].id
-                          ]);
+                  height: 8.h,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: screenController.petList.length,
+                    separatorBuilder: (context, index) {
+                      return const SizedBox(width: 8);
                     },
-                    child: Stack(
-                      children: [
-                        Container(
-                          height: 8.h,
-                          width: 7.h,
-                          margin: const EdgeInsets.only(bottom: 5, right: 5),
-                          decoration: BoxDecoration(
-                            // image: DecorationImage(
-                            //     image: AssetImage(
-                            //       controller.dogsTopList[index],
-                            //     ),
-                            //     fit: BoxFit.cover),
-                            //color: AppColors.greyTextColor,
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(8),
-                            ),
-                          ),
-                          child: ClipRRect(
-                            borderRadius:
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          log('Pet Id : ${screenController.petList[index].id}');
+                          Get.to(() => UploadPetScreen(),
+                              transition: Transition.native,
+                              duration: const Duration(milliseconds: 500),
+                              arguments: [
+                                PetOption.updateOption,
+                                screenController.petList[index].id
+                              ]);
+                        },
+                        child: Stack(
+                          children: [
+                            Container(
+                              height: 8.h,
+                              width: 7.h,
+                              margin: const EdgeInsets.only(
+                                  bottom: 5, right: 5),
+                              decoration: BoxDecoration(
+                                // image: DecorationImage(
+                                //     image: AssetImage(
+                                //       controller.dogsTopList[index],
+                                //     ),
+                                //     fit: BoxFit.cover),
+                                //color: AppColors.greyTextColor,
+                                border: Border.all(color: Colors.grey),
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(8),
+                                ),
+                              ),
+                              child: ClipRRect(
+                                borderRadius:
                                 const BorderRadius.all(Radius.circular(8)),
-                            child: Image.network(
-                                ApiUrl.apiImagePath +
-                                    screenController.petList[index].image,
-                                errorBuilder: (context, st, ob) {
-                              return Image.asset(AppImages.petMetLogoImg);
-                            }, fit: BoxFit.cover),
-                          ),
+                                child: Image.network(
+                                    ApiUrl.apiImagePath +
+                                        screenController.petList[index].image,
+                                    errorBuilder: (context, st, ob) {
+                                      return Image.asset(
+                                          AppImages.petMetLogoImg);
+                                    }, fit: BoxFit.cover),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ))
+                      );
+                    },
+                  ),
+                ))
           ],
         )
       ],
@@ -1177,7 +1371,7 @@ class EmailTextFieldModule extends StatelessWidget {
   final screenController = Get.find<ShopUserProfileScreenController>();
 
   DarkThemeProvider themeProvider =
-      Provider.of<DarkThemeProvider>(Get.context!);
+  Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -1220,7 +1414,7 @@ class ShopNameTextFieldModule extends StatelessWidget {
   final screenController = Get.find<ShopUserProfileScreenController>();
 
   DarkThemeProvider themeProvider =
-      Provider.of<DarkThemeProvider>(Get.context!);
+  Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -1262,7 +1456,7 @@ class ContactNumberTextFieldModule extends StatelessWidget {
   final screenController = Get.find<ShopUserProfileScreenController>();
 
   DarkThemeProvider themeProvider =
-      Provider.of<DarkThemeProvider>(Get.context!);
+  Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -1305,7 +1499,7 @@ class AddressTextFieldModule extends StatelessWidget {
   final screenController = Get.find<ShopUserProfileScreenController>();
 
   DarkThemeProvider themeProvider =
-      Provider.of<DarkThemeProvider>(Get.context!);
+  Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -1348,7 +1542,7 @@ class DetailsTextFieldModule extends StatelessWidget {
   final screenController = Get.find<ShopUserProfileScreenController>();
 
   DarkThemeProvider themeProvider =
-      Provider.of<DarkThemeProvider>(Get.context!);
+  Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -1391,7 +1585,8 @@ class InstagramTextFieldModule extends StatelessWidget {
   final screenController = Get.find<ShopUserProfileScreenController>();
 
   DarkThemeProvider themeProvider =
-      Provider.of<DarkThemeProvider>(Get.context!);
+  Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -1432,7 +1627,7 @@ class FacebookLinkTextFieldModule extends StatelessWidget {
 
   final screenController = Get.find<ShopUserProfileScreenController>();
   DarkThemeProvider themeProvider =
-      Provider.of<DarkThemeProvider>(Get.context!);
+  Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -1478,7 +1673,7 @@ class CommonTextFieldModule extends StatelessWidget {
 
   final screenController = Get.find<ShopUserProfileScreenController>();
   DarkThemeProvider themeProvider =
-      Provider.of<DarkThemeProvider>(Get.context!);
+  Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -1520,7 +1715,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
   final screenController = Get.find<ShopUserProfileScreenController>();
 
   DarkThemeProvider themeProvider =
-      Provider.of<DarkThemeProvider>(Get.context!);
+  Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -1553,55 +1748,56 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                 validator: (val) => Validations().validateOpenTime(val!),
               ),*/
               Obx(
-                () => Container(
-                  height: Get.height * 0.06,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: themeProvider.darkTheme
-                            ? AppColors.whiteColor.withOpacity(0.05)
-                            : AppColors.greyTextColor.withOpacity(0.5),
-                        blurRadius: 10,
-                        spreadRadius: 0.5,
-                        offset: const Offset(0, 0),
+                    () =>
+                    Container(
+                      height: Get.height * 0.06,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor.withOpacity(0.05)
+                                : AppColors.greyTextColor.withOpacity(0.5),
+                            blurRadius: 10,
+                            spreadRadius: 0.5,
+                            offset: const Offset(0, 0),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(width: 10),
-                      Expanded(
-                        child: Text(
-                            screenController.selectedOpenTime != null
-                                ? screenController.selectedOpenTime!.value
-                                : "No time selected!",
-                            // textAlign: TextAlign.center,
-                            maxLines: 1,
-                            style: TextStyle(
-                                color: themeProvider.darkTheme
-                                    ? AppColors.whiteColor
-                                    : AppColors.blackTextColor)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                                screenController.selectedOpenTime != null
+                                    ? screenController.selectedOpenTime!.value
+                                    : "No time selected!",
+                                // textAlign: TextAlign.center,
+                                maxLines: 1,
+                                style: TextStyle(
+                                    color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.blackTextColor)),
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.timer_outlined,
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor,
+                              size: 20,
+                            ),
+                            tooltip: 'Open Time',
+                            onPressed: () {
+                              timePicker(context);
+                            },
+                          ),
+                        ],
                       ),
-                      IconButton(
-                        icon: Icon(
-                          Icons.timer_outlined,
-                          color: themeProvider.darkTheme
-                              ? AppColors.whiteColor
-                              : AppColors.blackTextColor,
-                          size: 20,
-                        ),
-                        tooltip: 'Open Time',
-                        onPressed: () {
-                          timePicker(context);
-                        },
-                      ),
-                    ],
-                  ),
-                ),
+                    ),
               )
             ],
           ),
@@ -1633,55 +1829,56 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
               //   validator: (val) => Validations().validateCloseTime(val!),
               // ),
               Obx(
-                () => Container(
-                  height: Get.height * 0.06,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: themeProvider.darkTheme
-                            ? AppColors.whiteColor.withOpacity(0.05)
-                            : AppColors.greyTextColor.withOpacity(0.5),
-                        blurRadius: 10,
-                        spreadRadius: 0.5,
-                        offset: const Offset(0, 0),
+                    () =>
+                    Container(
+                      height: Get.height * 0.06,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor.withOpacity(0.05)
+                                : AppColors.greyTextColor.withOpacity(0.5),
+                            blurRadius: 10,
+                            spreadRadius: 0.5,
+                            offset: const Offset(0, 0),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: Text(
-                            screenController.selectedCloseTime != null
-                                ? screenController.selectedCloseTime!.value
-                                : "No time selected!",
-                            // textAlign: TextAlign.center,
-                            maxLines: 1,
-                            style: TextStyle(
-                                color: themeProvider.darkTheme
-                                    ? AppColors.whiteColor
-                                    : AppColors.blackTextColor)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                                screenController.selectedCloseTime != null
+                                    ? screenController.selectedCloseTime!.value
+                                    : "No time selected!",
+                                // textAlign: TextAlign.center,
+                                maxLines: 1,
+                                style: TextStyle(
+                                    color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.blackTextColor)),
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.timer_outlined,
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor,
+                              size: 20,
+                            ),
+                            tooltip: 'Close Time',
+                            onPressed: () {
+                              closeTimePicker(context);
+                            },
+                          ),
+                        ],
                       ),
-                      IconButton(
-                        icon: Icon(
-                          Icons.timer_outlined,
-                          color: themeProvider.darkTheme
-                              ? AppColors.whiteColor
-                              : AppColors.blackTextColor,
-                          size: 20,
-                        ),
-                        tooltip: 'Close Time',
-                        onPressed: () {
-                          closeTimePicker(context);
-                        },
-                      ),
-                    ],
-                  ),
-                ),
+                    ),
               )
             ],
           ),
@@ -1692,7 +1889,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
 
   Future<void> timePicker(BuildContext context) async {
     DarkThemeProvider themeProvider =
-        Provider.of<DarkThemeProvider>(Get.context!, listen: false);
+    Provider.of<DarkThemeProvider>(Get.context!, listen: false);
     TimePickerThemeData(
       backgroundColor: themeProvider.darkTheme
           ? AppColors.darkThemeColor
@@ -1712,7 +1909,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
 
   Future<void> closeTimePicker(BuildContext context) async {
     final TimeOfDay? result =
-        await showTimePicker(context: context, initialTime: TimeOfDay.now());
+    await showTimePicker(context: context, initialTime: TimeOfDay.now());
     if (result != null) {
       //setState(() {
       screenController.selectedCloseTime!.value = result.format(context);

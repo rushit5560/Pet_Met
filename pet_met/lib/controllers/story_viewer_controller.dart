@@ -23,7 +23,7 @@ class StoryViewerController extends GetxController {
   /// Get User Story
   Future<void> getUserStory() async {
     isLoading(true);
-    String url = ApiUrl.getUserStoryApi + UserDetails.userId;
+    String url = ApiUrl.getUserStoryApi + UserDetails.selfId;
     log("Get User story Api Url : $url");
 
     try {

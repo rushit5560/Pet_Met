@@ -142,7 +142,7 @@ class UserProfileController extends GetxController {
 
     try {
       Map<String, dynamic> data = {
-        "userid" : UserDetails.userId,
+        "userid" : UserDetails.selfId,
         "categoryID" : UserDetails.categoryId,
         "meettingpetuserid": followUserId,
         "meettingpetusercategory": followCategoryId,
@@ -190,7 +190,7 @@ class UserProfileController extends GetxController {
 
     try {
       Map<String, dynamic> data = {
-        "userid" : UserDetails.userId,
+        "userid" : UserDetails.selfId,
         "categoryID" : UserDetails.categoryId,
         "meettingpetuserid": followUserId,
         "meettingpetusercategory": followCategoryId,
@@ -347,7 +347,7 @@ class UserProfileController extends GetxController {
 
     try {
       Map<String, dynamic> data = {
-        "userid": "${UserDetails.userId}",
+        "userid": "${UserDetails.selfId}",
         "followuserid": "$followUserId",
         "categoryID": "$followCategoryId",
       };
@@ -442,7 +442,7 @@ class UserProfileController extends GetxController {
 
     try {
       Map<String, dynamic> data = {
-        "userid": "${UserDetails.userId}",
+        "userid": "${UserDetails.selfId}",
         "followuserid": "$followUserId",
         "categoryID": "$followCategoryId",
       };
@@ -481,9 +481,9 @@ class UserProfileController extends GetxController {
 
     try {
       Map<String, dynamic> data = {
-        "userid": "${UserDetails.userId}",
-        "followuserid": "$followUserId",
-        "categoryID": "$followCategoryId",
+        "userid": UserDetails.selfId,
+        "followuserid": followUserId,
+        "categoryID": followCategoryId,
       };
 
       log("Body Data : $data");
@@ -573,7 +573,7 @@ class UserProfileController extends GetxController {
     String url = ApiUrl.petAddOrderApi;
 
     Map<String, dynamic> data = {
-      "userid": UserDetails.userId.toString(),
+      "userid": UserDetails.selfId.toString(),
       "categoryID" : UserDetails.categoryId,
       "meettingpetuserid" : followUserId,
       "meettingpetusercategory": followCategoryId,

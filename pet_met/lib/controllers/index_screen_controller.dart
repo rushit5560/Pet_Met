@@ -47,7 +47,7 @@ class IndexScreenController extends GetxController {
 
   Future<void> deleteAccountFunction() async {
     isLoading(true);
-    String url = ApiUrl.deleteAccountApi + "${UserDetails.userId}";
+    String url = ApiUrl.deleteAccountApi + UserDetails.selfId;
     log('Delete Account Api Url : $url');
 
     try {

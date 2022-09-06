@@ -477,9 +477,9 @@ class UploadPetController extends GetxController {
       request.fields['weight'] = weightController.text.trim();
       request.fields['details'] = petDetailsController.text.trim();
       request.fields['gender'] = genderValue.value.toLowerCase();
-      request.fields['userid'] = "${UserDetails.userId}";
-      request.fields['petid'] = "$petId";
-      request.fields['categoryID'] = "${UserDetails.categoryId}";
+      request.fields['userid'] = UserDetails.selfId;
+      request.fields['petid'] = petId;
+      request.fields['categoryID'] = UserDetails.categoryId;
       request.fields['meeting_availability'] =
           meetingAvailabilityValue.value == "Yes"
               ? "0"
@@ -567,8 +567,8 @@ class UploadPetController extends GetxController {
       request.fields['weight'] = weightController.text.trim();
       request.fields['details'] = petDetailsController.text.trim();
       request.fields['gender'] = genderValue.value.toLowerCase();
-      request.fields['userid'] = "${UserDetails.userId}";
-      request.fields['categoryID'] = "${UserDetails.categoryId}";
+      request.fields['userid'] = UserDetails.selfId;
+      request.fields['categoryID'] = UserDetails.categoryId;
       request.fields['meeting_availability'] =
           meetingAvailabilityValue.value == "Yes" ? "0" : "1";
       //request.fields['petid'] = "$petId";

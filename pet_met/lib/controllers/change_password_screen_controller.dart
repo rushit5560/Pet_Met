@@ -36,7 +36,7 @@ class ChangePasswordScreenController extends GetxController{
       "oldpassword": currentPasswordController.text.trim(),
       "password": newPasswordController.text.trim(),
       "password_confirmation": confirmPasswordController.text.trim(),
-      "userID": "${UserDetails.userId}"
+      "userID": UserDetails.selfId
     };
     log("data : $data");
 

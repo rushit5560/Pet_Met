@@ -68,6 +68,7 @@ class ApiUrl {
 
   /// Multi Account
   static const multiAccountApi = apiMainPath + "/multipleaccount";
+  static const multipleAccountLoginApi = apiMainPath + "/multipleaccountlogin";
 
   /// User Story
   static const getUserStoryApi = apiMainPath + "/followwisestory/"; //get

@@ -145,8 +145,9 @@ class NgoUserProfileScreen extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                controller.userProfile == true
-                    ? GestureDetector(
+                // controller.userProfile == true
+                //     ?
+                GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.userEmail.value, "1");
@@ -239,11 +240,12 @@ class NgoUserProfileScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                      )
-                    : Container(),
+                      ),
+                   // : Container(),
 
-                controller.shopProfile == true
-                    ? GestureDetector(
+                // controller.shopProfile == true
+                //     ?
+                GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.shopEmail.value, "2");
@@ -332,11 +334,12 @@ class NgoUserProfileScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                      )
-                    : Container(),
+                      ),
+                   // : Container(),
 
-                controller.vetNgoProfile == true
-                    ? GestureDetector(
+                // controller.vetNgoProfile == true
+                //     ?
+                GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.ngoEmail.value, "3");
@@ -429,11 +432,12 @@ class NgoUserProfileScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                      )
-                    : Container(),
+                      ),
+                  //  : Container(),
 
-                controller.trainerProfile == true
-                    ? GestureDetector(
+                // controller.trainerProfile == true
+                //     ?
+                GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.trainerEmail.value, "4");
@@ -523,10 +527,10 @@ class NgoUserProfileScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                      )
-                    : Container(),
+                      ),
+                   // : Container(),
 
-                controller.userProfile == false || controller.shopProfile == false || controller.vetNgoProfile == false || controller.trainerProfile == false ?
+                //controller.userProfile == false || controller.shopProfile == false || controller.vetNgoProfile == false || controller.trainerProfile == false ?
                 GestureDetector(
                   onTap: (){
                     Get.to(() => const UserCategoriesScreen());
@@ -542,7 +546,8 @@ class NgoUserProfileScreen extends StatelessWidget {
                       child: Icon(Icons.add, size: 30),
                     ),
                   ),
-                ) : Container(),
+                ),
+                    //: Container(),
                 SizedBox(height: 7)
               ],
             ),
@@ -585,7 +590,7 @@ class NgoUserProfileScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Row(
+                /*Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
@@ -680,7 +685,9 @@ class NgoUserProfileScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),
+                ),*/
+
+                Text("Are you sure want to switch the account?"),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -688,7 +695,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                       onPressed: () async {
                         if (controller.loginPasswordForm.currentState!
                             .validate()) {
-                          await controller.userLoginFunction(
+                          await controller.userMultipleAccountLoginFunction(
                               email: email, categoryId: categoryId);
                         }
                       },
@@ -705,7 +712,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          "Yes",
+                          "Submit",
                           style: TextStyle(
                             color: AppColors.whiteColor,
                             fontSize: 12.sp,
@@ -720,7 +727,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {
                         Get.back();
-                        controller.passwordController.clear();
+                        //controller.passwordController.clear();
                       },
                       style: ElevatedButton.styleFrom(
                         primary: themeProvider.darkTheme
@@ -736,7 +743,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          "Close",
+                          "Cancel",
                           style: TextStyle(
                             color: themeProvider.darkTheme
                                 ? AppColors.darkThemeBoxColor

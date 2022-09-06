@@ -21,7 +21,7 @@ class MeetingOrdersScreenController extends GetxController {
 
     try {
       Map<String, dynamic> bodyData = {
-        "userid" : UserDetails.userId,
+        "userid" : UserDetails.selfId,
         "categoryID" : UserDetails.categoryId
       };
 

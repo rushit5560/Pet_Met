@@ -48,7 +48,7 @@ class PetMeetingDetailsScreenController extends GetxController {
       log("header : $header");
 
       Map<String, dynamic> bodyData = {
-        "userid": UserDetails.userId,
+        "userid": UserDetails.selfId,
         "categoryID" : UserDetails.categoryId,
         "meettingpetuserid" : petUserId,
         "meettingpetusercategory" : petUserCatId,
@@ -151,7 +151,7 @@ class PetMeetingDetailsScreenController extends GetxController {
     String url = ApiUrl.petAddOrderApi;
 
     Map<String, dynamic> data = {
-      "userid": UserDetails.userId.toString(),
+      "userid": UserDetails.selfId.toString(),
       "categoryID" : UserDetails.categoryId,
       "meettingpetuserid" : petUserId,
       "meettingpetusercategory": petUserCatId,

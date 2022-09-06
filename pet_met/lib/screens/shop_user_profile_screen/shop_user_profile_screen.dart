@@ -111,8 +111,9 @@ class ShopUserProfileScreen extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                controller.userProfile == true
-                    ? GestureDetector(
+                // controller.userProfile == true
+                //     ?
+                     GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.userEmail.value, "1");
@@ -205,11 +206,12 @@ class ShopUserProfileScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                      )
-                    : Container(),
+                      ),
+                    //: Container(),
 
-                controller.shopProfile == true
-                    ? GestureDetector(
+                // controller.shopProfile == true
+                //     ?
+                GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.shopEmail.value, "2");
@@ -298,11 +300,12 @@ class ShopUserProfileScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                      )
-                    : Container(),
+                      ),
+                   // : Container(),
 
-                controller.vetNgoProfile == true
-                    ? GestureDetector(
+                // controller.vetNgoProfile == true
+                //     ?
+                GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.ngoEmail.value, "3");
@@ -395,11 +398,12 @@ class ShopUserProfileScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                      )
-                    : Container(),
+                      ),
+                  //  : Container(),
 
-                controller.trainerProfile == true
-                    ? GestureDetector(
+                // controller.trainerProfile == true
+                //     ?
+                GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.trainerEmail.value, "4");
@@ -489,10 +493,10 @@ class ShopUserProfileScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                      )
-                    : Container(),
+                      ),
+                    //: Container(),
 
-                controller.userProfile == false || controller.shopProfile == false || controller.vetNgoProfile == false || controller.trainerProfile == false ?
+                //controller.userProfile == false || controller.shopProfile == false || controller.vetNgoProfile == false || controller.trainerProfile == false ?
                 GestureDetector(
                   onTap: (){
                     Get.to(() => const UserCategoriesScreen());
@@ -508,7 +512,8 @@ class ShopUserProfileScreen extends StatelessWidget {
                       child: Icon(Icons.add, size: 30),
                     ),
                   ),
-                ) : Container(),
+                ),
+                //: Container(),
                 SizedBox(height: 7)
               ],
             ),
@@ -550,7 +555,7 @@ class ShopUserProfileScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Row(
+                /*Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
@@ -565,17 +570,7 @@ class ShopUserProfileScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                //const SizedBox(height: 8),
-                // CustomLightTextField(
-                //   readOnly: false,
-                //   fieldController: controller.passwordController,
-                //   height: Get.height * 0.05,
-                //   width: double.infinity,
-                //   hintText: "Password",
-                //   textInputAction: TextInputAction.next,
-                //   textInputType: TextInputType.text,
-                //   validator: (val) => Validations().validateName(val!),
-                // ),
+
                 Obx(
                   () => Stack(
                     children: [
@@ -656,8 +651,8 @@ class ShopUserProfileScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),
-
+                ),*/
+                Text("Are you sure want to switch the account?"),
                 // const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -665,7 +660,7 @@ class ShopUserProfileScreen extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () async {
                         if (controller.loginFormKey.currentState!.validate()) {
-                          await controller.userLoginFunction(
+                          await controller.userMultipleAccountLoginFunction(
                               email: email, categoryId: categoryId);
                         }
                       },

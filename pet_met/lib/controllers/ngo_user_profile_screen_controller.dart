@@ -96,7 +96,7 @@ class NgoUserProfileScreenController extends GetxController {
 
     try {
       Map<String, dynamic> data = {
-        "id": UserDetails.userId,
+        "id": UserDetails.selfId,
         "categoryID": UserDetails.categoryId,
       };
 
@@ -163,8 +163,8 @@ class NgoUserProfileScreenController extends GetxController {
 
 
         await userPreference.setUserDetails(
-          selfId: UserDetails.userId,
-          userId: UserDetails.userId,
+          selfId: UserDetails.selfId,
+          userId: UserDetails.selfId,
           userName: allRoleProfileModel.data.data[0].name,
           userEmail: allRoleProfileModel.data.data[0].email,
           userProfileImage: ApiUrl.apiImagePath + allRoleProfileModel.data.data[0].image,
@@ -217,33 +217,33 @@ class NgoUserProfileScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
 
-        bool userAvail = multiAccountUserModel.data.user.isEmpty ? false : true;
-        if(userAvail == true) {
-          userProfile = true;
-          userEmail.value = "${multiAccountUserModel.data.user[0].email}";
-          userName.value = "${multiAccountUserModel.data.user[0].name}";
-        }
-
-        bool shopAvail = multiAccountUserModel.data.shope.isEmpty ? false : true;
-        if(shopAvail == true) {
-          shopProfile = true;
-          shopEmail.value = "${multiAccountUserModel.data.shope[0].email}";
-          shopName.value = "${multiAccountUserModel.data.shope[0].shopename}";
-        }
-
-        bool vetNgoAvail = multiAccountUserModel.data.vetNgo.isEmpty ? false : true;
-        if(vetNgoAvail == true) {
-          vetNgoProfile = true;
-          ngoEmail.value = "${multiAccountUserModel.data.vetNgo[0].email}";
-          ngoName.value = "${multiAccountUserModel.data.vetNgo[0].name}";
-        }
-
-        bool trainerAvail = multiAccountUserModel.data.trainer.isEmpty ? false : true;
-        if(trainerAvail == true) {
-          trainerProfile = true;
-          trainerEmail.value = "${multiAccountUserModel.data.trainer[0].email}";
-          trainerName.value = "${multiAccountUserModel.data.trainer[0].name}";
-        }
+        // bool userAvail = multiAccountUserModel.data.user.isEmpty ? false : true;
+        // if(userAvail == true) {
+        //   userProfile = true;
+          userEmail.value = multiAccountUserModel.data.user.email;
+          userName.value = multiAccountUserModel.data.user.name;
+        // }
+        //
+        // bool shopAvail = multiAccountUserModel.data.shope.isEmpty ? false : true;
+        // if(shopAvail == true) {
+        //   shopProfile = true;
+        //   shopEmail.value = "${multiAccountUserModel.data.shope[0].email}";
+           shopName.value = "${multiAccountUserModel.data.shop.name}";
+        // }
+        //
+        // bool vetNgoAvail = multiAccountUserModel.data.vetNgo.isEmpty ? false : true;
+        // if(vetNgoAvail == true) {
+        //   vetNgoProfile = true;
+        //   ngoEmail.value = "${multiAccountUserModel.data.vetNgo[0].email}";
+           ngoName.value = "${multiAccountUserModel.data.vetNgo.name}";
+        // }
+        //
+        // bool trainerAvail = multiAccountUserModel.data.trainer.isEmpty ? false : true;
+        // if(trainerAvail == true) {
+        //   trainerProfile = true;
+        //   trainerEmail.value = "${multiAccountUserModel.data.trainer[0].email}";
+           trainerName.value = "${multiAccountUserModel.data.trainer.name}";
+        // }
 
 
       } else {
@@ -258,7 +258,7 @@ class NgoUserProfileScreenController extends GetxController {
     }
   }
 
-  Future<void> userLoginFunction({required String email, required categoryId}) async {
+  /*Future<void> userLoginFunction({required String email, required categoryId}) async {
     isLoading(true);
     String url = ApiUrl.loginApi;
     log('Login Api Url : $url');
@@ -288,6 +288,53 @@ class NgoUserProfileScreenController extends GetxController {
             token: loginModel.data.rememberToken,
             roleId: loginModel.data.categoryId,
             shopName: loginModel.data.shopename,
+          shopProfile: loginModel.data.showimg,
+        );
+        // passwordController.clear();
+        //await userPreference.setRoleId(roleId);
+        // Going to Index Screen
+        Get.offAll(() => IndexScreen(),
+            transition: Transition.native,
+            duration: const Duration(milliseconds: 500));
+      } else {
+        Fluttertoast.showToast(msg: loginModel.error);
+      }
+    } catch (e) {
+      log('User Login Api Error ::: $e');
+    } finally {
+      isLoading(false);
+    }
+  }*/
+
+  Future<void> userMultipleAccountLoginFunction({required String email, required categoryId}) async {
+    isLoading(true);
+    String url = ApiUrl.multipleAccountLoginApi;
+    log('Login Api Url : $url');
+
+    try {
+      Map<String, dynamic> data = {
+        "email": email,
+        "categoryID": "$categoryId",
+      };
+      log("data : $data");
+
+      http.Response response = await http.post(Uri.parse(url), body: data);
+      log("Login Api Response : ${response.body}");
+
+      LoginModel loginModel = LoginModel.fromJson(json.decode(response.body));
+      isSuccessStatus = loginModel.success.obs;
+      log('isSuccessStatus: $isSuccessStatus');
+      if (isSuccessStatus.value) {
+        // User Data Set in Prefs
+        await userPreference.setUserDetails(
+          selfId: loginModel.data.uid,
+          userId: loginModel.data.id,
+          userName: loginModel.data.name,
+          userEmail: loginModel.data.email,
+          userProfileImage: loginModel.data.image,
+          token: loginModel.data.rememberToken,
+          roleId: loginModel.data.categoryId,
+          shopName: loginModel.data.shopename,
           shopProfile: loginModel.data.showimg,
         );
         // passwordController.clear();
@@ -415,8 +462,8 @@ class NgoUserProfileScreenController extends GetxController {
       request.fields['is_active'] = ngoStatus;
       request.fields['ifsc_code'] = ifscCodeController.text.trim();
       request.fields['account_code'] = accountNumberController.text.trim();
-      request.fields['userid'] = UserDetails.userId;
-      request.fields['uid'] = UserDetails.userId;
+      request.fields['userid'] = UserDetails.selfId;
+      request.fields['uid'] = UserDetails.selfId;
 
 
       var response = await request.send();

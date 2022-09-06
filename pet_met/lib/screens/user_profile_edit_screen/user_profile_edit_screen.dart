@@ -179,8 +179,9 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                   ),
                 ),*/
 
-                controller.userProfileAvail == true
-                    ? GestureDetector(
+                /*controller.userProfileAvail == true
+                    ?*/
+                GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.userEmail.value, "1");
@@ -273,11 +274,12 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                             ),
                           ),
                         ),
-                      )
-                    : Container(),
+                      ),
+                    //: Container(),
 
-                controller.shopProfile == true
-                    ? GestureDetector(
+                /*controller.shopProfile == true
+                    ?*/
+                GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.shopEmail.value, "2");
@@ -366,11 +368,12 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                             ),
                           ),
                         ),
-                      )
-                    : Container(),
+                      ),
+                    //: Container(),
 
-                controller.vetNgoProfile == true
-                    ? GestureDetector(
+                /*controller.vetNgoProfile == true
+                    ? */
+                GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.ngoEmail.value, "3");
@@ -463,11 +466,12 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                             ),
                           ),
                         ),
-                      )
-                    : Container(),
+                      ),
+                    //: Container(),
 
-                controller.trainerProfile == true
-                    ? GestureDetector(
+                /*controller.trainerProfile == true
+                    ? */
+                GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.trainerEmail.value, "4");
@@ -557,11 +561,11 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                             ),
                           ),
                         ),
-                      )
-                    : Container(),
+                      ),
+                   // : Container(),
 
-                controller.userProfileAvail == false || controller.shopProfile == false || controller.vetNgoProfile == false || controller.trainerProfile == false ?
-                    GestureDetector(
+                //controller.userProfileAvail == false || controller.shopProfile == false || controller.vetNgoProfile == false || controller.trainerProfile == false ?
+                    /*GestureDetector(
                       onTap: (){
                         Get.to(() => const UserCategoriesScreen());
                       },
@@ -576,7 +580,8 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                           child: Icon(Icons.add, size: 30),
                         ),
                       ),
-                    ) : Container(),
+                    ),*/
+                        //: Container(),
 
                 SizedBox(height: 7)
               ],
@@ -617,7 +622,7 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
+              /*Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
@@ -631,19 +636,9 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                     ),
                   ),
                 ],
-              ),
-              //const SizedBox(height: 8),
-              // CustomLightTextField(
-              //   readOnly: false,
-              //   fieldController: controller.passwordController,
-              //   height: Get.height * 0.05,
-              //   width: double.infinity,
-              //   hintText: "Password",
-              //   textInputAction: TextInputAction.next,
-              //   textInputType: TextInputType.visiblePassword,
-              //   validator: (val) => Validations().validatePassword(val!),
-              // ),
-              Obx(
+              ),*/
+
+              /*Obx(
                 () => Stack(
                   children: [
                     Container(
@@ -722,15 +717,16 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                     ),
                   ],
                 ),
-              ),
+              ),*/
 
+              Text("Are you sure want to switch the account?"),
               // const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
                     onPressed: () async {
-                      await controller.userLoginFunction(
+                      await controller.userMultipleAccountLoginFunction(
                           email: email, categoryId: categoryId);
                     },
                     style: ElevatedButton.styleFrom(
@@ -748,7 +744,7 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                     ),
                     child: Center(
                       child: Text(
-                        "Yes",
+                        "Submit",
                         style: TextStyle(
                           color: AppColors.whiteColor,
                           fontSize: 12.sp,
@@ -778,7 +774,7 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                     ),
                     child: Center(
                       child: Text(
-                        "Close",
+                        "Cancel",
                         style: TextStyle(
                           color: themeProvider.darkTheme
                               ? AppColors.darkThemeBoxColor
