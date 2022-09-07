@@ -225,21 +225,21 @@ class MultiAccountUserModel {
 
 class Data {
   Data({
-    required this.userdata,
+    // required this.userdata,
     required this.user,
     required this.shop,
     required this.vetNgo,
     required this.trainer,
   });
 
-  UserData userdata;
+  // UserData userdata;
   User user;
   Shop shop;
   VetNgo vetNgo;
   Trainer trainer;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    userdata: UserData.fromJson(json["userdata"] ?? {}),
+    // userdata: UserData.fromJson(json["userdata"] ?? {}),
     user: User.fromJson(json["user"] ?? {}),
     shop: Shop.fromJson(json["shop"] ?? {}),
     vetNgo: VetNgo.fromJson(json["vetNgo"] ?? {}),
@@ -250,7 +250,7 @@ class Data {
   );
 
   Map<String, dynamic> toJson() => {
-    "userdata": userdata.toJson(),
+    // "userdata": userdata.toJson(),
     "user": user.toJson(),
     "shop": shop.toJson(),
     "vet_ngo": vetNgo.toJson(),

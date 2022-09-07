@@ -554,7 +554,7 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
         alertDialogBox(context);
       },
       child: Container(
-        width: Get.width / 1.5,
+        // width: Get.width / 1.5,
         height: 35,
         decoration: const BoxDecoration(
           color: AppColors.accentTextColor,
@@ -562,16 +562,25 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
             Radius.circular(12),
           ),
         ),
-        child: Center(
-          child: Text(
-            "Click donate for Pet Lovers",
-            style: TextStyle(
-              color: AppColors.whiteColor,
-              fontSize: 13.sp,
-              fontWeight: FontWeight.w600,
+        child: Row(
+          // mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              "Click to Donate",
+              style: TextStyle(
+                color: AppColors.whiteColor,
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w600,
+              ),
             ),
-          ),
-        ),
+            const SizedBox(width: 8),
+            const Icon(Icons.favorite_rounded,
+              color: AppColors.whiteColor,
+              size: 18,
+            )
+          ],
+        ).commonSymmetricPadding(horizontal: 20),
       ),
     ).commonSymmetricPadding(horizontal: 25);
   }

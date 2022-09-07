@@ -87,7 +87,7 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                         Expanded(
                           child: Obx(
                             () => controller.isLoading.value
-                                ? CustomAnimationLoader()
+                                ? const CustomAnimationLoader()
                                 : SingleChildScrollView(
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -96,9 +96,9 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                         key: controller.formKey,
                                         child: Column(
                                           children: [
-                                            const SizedBox(height: 25),
+                                            // const SizedBox(height: 15),
                                             UploadImageModule(),
-                                            const SizedBox(height: 30),
+                                            const SizedBox(height: 20),
                                             // TextFieldSection(
                                             //   fieldName: "Name",
                                             //   fieldHinttext: "Your Pet Title",
@@ -719,7 +719,7 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                 ),
               ),*/
 
-              Text("Are you sure want to switch the account?"),
+              const Text("Are you sure want to switch the account?"),
               // const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -744,7 +744,7 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                     ),
                     child: Center(
                       child: Text(
-                        "Submit",
+                        "Yes",
                         style: TextStyle(
                           color: AppColors.whiteColor,
                           fontSize: 12.sp,
@@ -774,7 +774,7 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                     ),
                     child: Center(
                       child: Text(
-                        "Cancel",
+                        "No",
                         style: TextStyle(
                           color: themeProvider.darkTheme
                               ? AppColors.darkThemeBoxColor

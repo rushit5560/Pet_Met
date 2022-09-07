@@ -18,7 +18,7 @@ class StoryViewerController extends GetxController {
   final storyController = StoryController();
 
   List<GetUserStoryModelDatum> userStoryList = [];
-  List<DatumDatum> imageList = [];
+  List<Userstory> imageList = [];
 
   /// Get User Story
   Future<void> getUserStory() async {

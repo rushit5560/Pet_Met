@@ -1,4 +1,5 @@
 import 'package:day_night_switcher/day_night_switcher.dart';
+import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/screens/about_screen/about_screen.dart';
@@ -12,6 +13,7 @@ import 'package:pet_met/screens/subscription_report_screen/subscription_report_s
 import 'package:pet_met/screens/support_screen/support_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_images.dart';
+import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:pet_met/utils/theme_preferences.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:provider/provider.dart';
@@ -215,6 +217,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  /// Home
                                   drawerListTile(
                                     onTap: () {
                                       indexController.drawerController.close!();
@@ -232,6 +235,8 @@ class _BuildMenuState extends State<BuildMenu> {
                                       ),
                                     ),
                                   ),
+
+                                  /// Pet care
                                   drawerListTile(
                                     onTap: () {
                                       indexController.drawerController.close!();
@@ -257,52 +262,8 @@ class _BuildMenuState extends State<BuildMenu> {
                                       ),
                                     ),
                                   ),
-                                  drawerListTile(
-                                    onTap: () {
-                                      indexController.drawerController.close!();
-                                      Get.to(() => SupportScreen());
-                                    },
-                                    leading: Image.asset(
-                                      AppIcons.supportImg,
-                                      color: themeProvider.darkTheme
-                                          ? AppColors.whiteColor
-                                          : AppColors.greyTextColor,
-                                      height: 22,
-                                    ),
-                                    titleWidget: Text(
-                                      "Support",
-                                      style: TextStyle(
-                                        color: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.greyTextColor,
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),
-                                  drawerListTile(
-                                    onTap: () {
-                                      indexController.drawerController.close!();
-                                      Get.to(() => AboutScreen());
-                                    },
-                                    leading: Image.asset(
-                                      AppIcons.aboutImg,
-                                      color: themeProvider.darkTheme
-                                          ? AppColors.whiteColor
-                                          : AppColors.greyTextColor,
-                                      height: 22,
-                                    ),
-                                    titleWidget: Text(
-                                      "About",
-                                      style: TextStyle(
-                                        color: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.greyTextColor,
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),
+
+                                  /// Faq
                                   drawerListTile(
                                     onTap: () {
                                       indexController.drawerController.close!();
@@ -326,52 +287,9 @@ class _BuildMenuState extends State<BuildMenu> {
                                       ),
                                     ),
                                   ),
-                                  drawerListTile(
-                                    onTap: () {
-                                      indexController.drawerController.close!();
-                                      Get.to(() => PrivacyPolicyScreen());
-                                    },
-                                    leading: Image.asset(
-                                      AppIcons.privacyPolicyImg,
-                                      color: themeProvider.darkTheme
-                                          ? AppColors.whiteColor
-                                          : AppColors.greyTextColor,
-                                      height: 22,
-                                    ),
-                                    titleWidget: Text(
-                                      "Privacy Policy",
-                                      style: TextStyle(
-                                        color: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.greyTextColor,
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),
-                                  drawerListTile(
-                                    onTap: () {
-                                      indexController.drawerController.close!();
-                                    },
-                                    leading: Image.asset(
-                                      AppIcons.shareImg,
-                                      color: themeProvider.darkTheme
-                                          ? AppColors.whiteColor
-                                          : AppColors.greyTextColor,
-                                      height: 22,
-                                    ),
-                                    titleWidget: Text(
-                                      "Share App",
-                                      style: TextStyle(
-                                        color: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.greyTextColor,
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),
-                                  drawerListTile(
+
+                                  /// Delete Account
+                                  /*drawerListTile(
                                     onTap: () async {
                                       indexController.drawerController.close!();
                                       await deleteAccountDialog();
@@ -393,33 +311,9 @@ class _BuildMenuState extends State<BuildMenu> {
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
-                                  ),
-                                  drawerListTile(
-                                    onTap: () {
-                                      indexController.drawerController.close!();
-                                      Get.to(() => ChangePasswordScreen(),
-                                          transition: Transition.native,
-                                          duration: const Duration(
-                                              milliseconds: 500));
-                                    },
-                                    leading: Icon(
-                                      Icons.edit_note_rounded,
-                                      color: themeProvider.darkTheme
-                                          ? AppColors.whiteColor
-                                          : AppColors.greyTextColor,
-                                      size: 22,
-                                    ),
-                                    titleWidget: Text(
-                                      "Change Password",
-                                      style: TextStyle(
-                                        color: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.greyTextColor,
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),
+                                  ),*/
+
+
                                   /*drawerListTile(
                               onTap: () {
                                 indexController.drawerController.close!();
@@ -466,91 +360,261 @@ class _BuildMenuState extends State<BuildMenu> {
                                 ),
                               ),
                             ),*/
-                                  UserDetails.categoryId == "2" ||
-                                          UserDetails.categoryId == "4"
-                                      ? drawerListTile(
-                                          onTap: () {
-                                            indexController
-                                                .drawerController.close!();
-                                            Get.to(() => PetPricingScreen(),
-                                                transition: Transition.native,
-                                                duration: const Duration(
-                                                    milliseconds: 500));
-                                          },
-                                          leading: Image.asset(
-                                            AppIcons.rateImg,
+
+
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 8.0),
+                                    child: ExpandablePanel(
+                                      header: Row(
+                                        children: [
+                                          Icon(Icons.settings_rounded,
                                             color: themeProvider.darkTheme
                                                 ? AppColors.whiteColor
                                                 : AppColors.greyTextColor,
-                                            height: 22,
-                                          ),
-                                          titleWidget: Text(
-                                            "Subscription",
-                                            style: TextStyle(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.greyTextColor,
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w500,
+                                            size: 22,),
+                                          const SizedBox(width: 20),
+                                          Expanded(
+                                            child: Text(
+                                              "Settings",
+                                              style: TextStyle(
+                                                color: themeProvider.darkTheme
+                                                    ? AppColors.whiteColor
+                                                    : AppColors.greyTextColor,
+                                                fontSize: 12.sp,
+                                                fontWeight: FontWeight.w500,
+                                              ),
                                             ),
                                           ),
-                                        )
-                                      : Container(),
-                                  UserDetails.categoryId == "1" ||
-                                          UserDetails.categoryId == "2"
-                                      ? drawerListTile(
-                                          onTap: () {
-                                            indexController
-                                                .drawerController.close!();
-                                            Get.to(() => MeetingOrdersScreen());
-                                          },
-                                          leading: Icon(
-                                            Icons.edit_note_rounded,
-                                            color: themeProvider.darkTheme
-                                                ? AppColors.whiteColor
-                                                : AppColors.greyTextColor,
-                                            size: 22,
-                                          ),
-                                          titleWidget: Text(
-                                            "Meeting Report",
-                                            style: TextStyle(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.greyTextColor,
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        )
-                                      : Container(),
-                                  UserDetails.categoryId == "2" ||
-                                          UserDetails.categoryId == "4"
-                                      ? drawerListTile(
-                                          onTap: () {
-                                            indexController
-                                                .drawerController.close!();
-                                            Get.to(() =>
-                                                SubscriptionReportScreen());
-                                          },
-                                          leading: Icon(
-                                            Icons.edit_note_rounded,
-                                            color: themeProvider.darkTheme
-                                                ? AppColors.whiteColor
-                                                : AppColors.greyTextColor,
-                                            size: 22,
-                                          ),
-                                          titleWidget: Text(
-                                            "Subscription Report",
-                                            style: TextStyle(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.greyTextColor,
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        )
-                                      : Container(),
+                                        ],
+                                      ).commonSymmetricPadding(horizontal: 16, vertical: 10),
+                                      collapsed: Container(),
+                                        expanded: Column(
+                                           children: [
+
+                                             /// Support
+                                             drawerListTile(
+                                               onTap: () {
+                                                 indexController.drawerController.close!();
+                                                 Get.to(() => SupportScreen());
+                                               },
+                                               leading: Image.asset(
+                                                 AppIcons.supportImg,
+                                                 color: themeProvider.darkTheme
+                                                     ? AppColors.whiteColor
+                                                     : AppColors.greyTextColor,
+                                                 height: 22,
+                                               ),
+                                               titleWidget: Text(
+                                                 "Support",
+                                                 style: TextStyle(
+                                                   color: themeProvider.darkTheme
+                                                       ? AppColors.whiteColor
+                                                       : AppColors.greyTextColor,
+                                                   fontSize: 12.sp,
+                                                   fontWeight: FontWeight.w500,
+                                                 ),
+                                               ),
+                                             ),
+
+                                             /// About
+                                             drawerListTile(
+                                               onTap: () {
+                                                 indexController.drawerController.close!();
+                                                 Get.to(() => AboutScreen());
+                                               },
+                                               leading: Image.asset(
+                                                 AppIcons.aboutImg,
+                                                 color: themeProvider.darkTheme
+                                                     ? AppColors.whiteColor
+                                                     : AppColors.greyTextColor,
+                                                 height: 22,
+                                               ),
+                                               titleWidget: Text(
+                                                 "About",
+                                                 style: TextStyle(
+                                                   color: themeProvider.darkTheme
+                                                       ? AppColors.whiteColor
+                                                       : AppColors.greyTextColor,
+                                                   fontSize: 12.sp,
+                                                   fontWeight: FontWeight.w500,
+                                                 ),
+                                               ),
+                                             ),
+
+                                             /// Privacy policy
+                                             drawerListTile(
+                                               onTap: () {
+                                                 indexController.drawerController.close!();
+                                                 Get.to(() => PrivacyPolicyScreen());
+                                               },
+                                               leading: Image.asset(
+                                                 AppIcons.privacyPolicyImg,
+                                                 color: themeProvider.darkTheme
+                                                     ? AppColors.whiteColor
+                                                     : AppColors.greyTextColor,
+                                                 height: 22,
+                                               ),
+                                               titleWidget: Text(
+                                                 "Privacy Policy",
+                                                 style: TextStyle(
+                                                   color: themeProvider.darkTheme
+                                                       ? AppColors.whiteColor
+                                                       : AppColors.greyTextColor,
+                                                   fontSize: 12.sp,
+                                                   fontWeight: FontWeight.w500,
+                                                 ),
+                                               ),
+                                             ),
+
+                                             /// Share App
+                                             drawerListTile(
+                                               onTap: () {
+                                                 indexController.drawerController.close!();
+                                               },
+                                               leading: Image.asset(
+                                                 AppIcons.shareImg,
+                                                 color: themeProvider.darkTheme
+                                                     ? AppColors.whiteColor
+                                                     : AppColors.greyTextColor,
+                                                 height: 22,
+                                               ),
+                                               titleWidget: Text(
+                                                 "Share App",
+                                                 style: TextStyle(
+                                                   color: themeProvider.darkTheme
+                                                       ? AppColors.whiteColor
+                                                       : AppColors.greyTextColor,
+                                                   fontSize: 12.sp,
+                                                   fontWeight: FontWeight.w500,
+                                                 ),
+                                               ),
+                                             ),
+
+                                             /// Change password
+                                             drawerListTile(
+                                               onTap: () {
+                                                 indexController.drawerController.close!();
+                                                 Get.to(() => ChangePasswordScreen(),
+                                                     transition: Transition.native,
+                                                     duration: const Duration(
+                                                         milliseconds: 500));
+                                               },
+                                               leading: Icon(
+                                                 Icons.edit_note_rounded,
+                                                 color: themeProvider.darkTheme
+                                                     ? AppColors.whiteColor
+                                                     : AppColors.greyTextColor,
+                                                 size: 22,
+                                               ),
+                                               titleWidget: Text(
+                                                 "Change Password",
+                                                 style: TextStyle(
+                                                   color: themeProvider.darkTheme
+                                                       ? AppColors.whiteColor
+                                                       : AppColors.greyTextColor,
+                                                   fontSize: 12.sp,
+                                                   fontWeight: FontWeight.w500,
+                                                 ),
+                                               ),
+                                             ),
+
+                                             /// Subscription
+                                             UserDetails.categoryId == "2" ||
+                                                 UserDetails.categoryId == "4"
+                                                 ? drawerListTile(
+                                               onTap: () {
+                                                 indexController
+                                                     .drawerController.close!();
+                                                 Get.to(() => PetPricingScreen(),
+                                                     transition: Transition.native,
+                                                     duration: const Duration(
+                                                         milliseconds: 500));
+                                               },
+                                               leading: Image.asset(
+                                                 AppIcons.rateImg,
+                                                 color: themeProvider.darkTheme
+                                                     ? AppColors.whiteColor
+                                                     : AppColors.greyTextColor,
+                                                 height: 22,
+                                               ),
+                                               titleWidget: Text(
+                                                 "Subscription",
+                                                 style: TextStyle(
+                                                   color: themeProvider.darkTheme
+                                                       ? AppColors.whiteColor
+                                                       : AppColors.greyTextColor,
+                                                   fontSize: 12.sp,
+                                                   fontWeight: FontWeight.w500,
+                                                 ),
+                                               ),
+                                             )
+                                                 : Container(),
+
+                                             /// Meeting Report
+                                             UserDetails.categoryId == "1" || UserDetails.categoryId == "2"
+                                                 ? drawerListTile(
+                                               onTap: () {
+                                                 indexController
+                                                     .drawerController.close!();
+                                                 Get.to(() => MeetingOrdersScreen());
+                                               },
+                                               leading: Icon(
+                                                 Icons.edit_note_rounded,
+                                                 color: themeProvider.darkTheme
+                                                     ? AppColors.whiteColor
+                                                     : AppColors.greyTextColor,
+                                                 size: 22,
+                                               ),
+                                               titleWidget: Text(
+                                                 "Meeting Report",
+                                                 style: TextStyle(
+                                                   color: themeProvider.darkTheme
+                                                       ? AppColors.whiteColor
+                                                       : AppColors.greyTextColor,
+                                                   fontSize: 12.sp,
+                                                   fontWeight: FontWeight.w500,
+                                                 ),
+                                               ),
+                                             )
+                                                 : Container(),
+
+                                             /// Subscription report
+                                             UserDetails.categoryId == "2" ||
+                                                 UserDetails.categoryId == "4"
+                                                 ? drawerListTile(
+                                               onTap: () {
+                                                 indexController
+                                                     .drawerController.close!();
+                                                 Get.to(() =>
+                                                     SubscriptionReportScreen());
+                                               },
+                                               leading: Icon(
+                                                 Icons.edit_note_rounded,
+                                                 color: themeProvider.darkTheme
+                                                     ? AppColors.whiteColor
+                                                     : AppColors.greyTextColor,
+                                                 size: 22,
+                                               ),
+                                               titleWidget: Text(
+                                                 "Subscription Report",
+                                                 style: TextStyle(
+                                                   color: themeProvider.darkTheme
+                                                       ? AppColors.whiteColor
+                                                       : AppColors.greyTextColor,
+                                                   fontSize: 12.sp,
+                                                   fontWeight: FontWeight.w500,
+                                                 ),
+                                               ),
+                                             )
+                                                 : Container(),
+
+
+
+
+                                           ],
+                                        ),
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),

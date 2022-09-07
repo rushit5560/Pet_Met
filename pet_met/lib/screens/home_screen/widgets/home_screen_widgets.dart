@@ -32,7 +32,7 @@ class PetTopListModule extends StatelessWidget {
     return ListView.builder(
       shrinkWrap: true,
       itemCount: homeController.petTopList.length + 1,
-      // controller: homeController.scrollController,
+      controller: homeController.scrollController,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, i) {
         // PetList singlePet = homeController.petTopList[i];
@@ -97,102 +97,131 @@ class PetTopListModule extends StatelessWidget {
                   ),
                   child: GestureDetector(
                     onTap: () {
-                      //Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
-                      log('Follow Userid: ${homeController.petTopList[i].userid}');
-                      log('Follow Categoryid: ${homeController.petTopList[i].categoryId}');
-                      Get.to(() => UserProfileScreen(),
-                          transition: Transition.native,
-                          duration: const Duration(milliseconds: 500),
-                          arguments: [
-                            homeController.petTopList[i].userid,
-                            homeController.petTopList[i].categoryId,
-                            homeController.petTopList[i].id,
-                          ]);
+                      Get.to(
+                            () => PetMeetingDetailsScreen(),
+                        arguments: [
+                          homeController.petTopList[i].id,
+                          homeController.petTopList[i].userid,
+                          homeController.petTopList[i].categoryId
+                        ],
+                      );
                     },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    child: Stack(
                       children: [
-                        Text(
-                          homeController.petTopList[i].petName,
-                          style: TextStyle(
-                            color: AppColors.accentTextColor,
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 50,
-                          child: Html(
-                            data: homeController.petTopList[i].details,
-                            shrinkWrap: true,
-                            style: {
-                              "body": Style(
-                                color: themeProvider.darkTheme
-                                    ? AppColors.whiteColor
-                                    : AppColors.blackTextColor.withOpacity(0.6),
-                                fontSize: const FontSize(15.0),
-                                fontWeight: FontWeight.w500,
-                                maxLines: 2,
-                              ),
-                              "p": Style(
-                                color: themeProvider.darkTheme
-                                    ? AppColors.whiteColor
-                                    : AppColors.blackTextColor.withOpacity(0.6),
-                                fontSize: const FontSize(15.0),
-                                fontWeight: FontWeight.w500,
-                                maxLines: 2,
-                              ),
-                            },
-                          ),
-                        ),
-                        // Text(
-                        //   homeController.petTopList[index].details,
-                        //   style: TextStyle(
-                        //     color: themeProvider.darkTheme
-                        //         ? AppColors.whiteColor
-                        //         : AppColors.blackTextColor.withOpacity(0.6),
-                        //     fontSize: 10.sp,
-                        //     fontWeight: FontWeight.w500,
-                        //   ),
-                        // ),
-                        const SizedBox(height: 12),
-                        Text(
-                          homeController.petTopList[i].gender + ", 2 Years Old",
-                          style: TextStyle(
-                            color: themeProvider.darkTheme
-                                ? AppColors.whiteColor.withOpacity(0.65)
-                                : AppColors.greyTextColor,
-                            fontSize: 11.sp,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                        const SizedBox(height: 25),
-                        Row(
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const SizedBox(width: 3),
-                            Image.asset(
-                              AppIcons.locationImg,
-                              height: 16,
-                              color: themeProvider.darkTheme
-                                  ? AppColors.whiteColor.withOpacity(0.65)
-                                  : AppColors.blackTextColor.withOpacity(0.6),
-                            ),
-                            const SizedBox(width: 8),
                             Text(
-                              "Distance: 3.6 km",
+                              homeController.petTopList[i].petName,
+                              style: TextStyle(
+                                color: AppColors.accentTextColor,
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            SizedBox(
+                              height: 50,
+                              child: Html(
+                                data: homeController.petTopList[i].details,
+                                shrinkWrap: true,
+                                style: {
+                                  "body": Style(
+                                    color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.blackTextColor.withOpacity(0.6),
+                                    fontSize: const FontSize(15.0),
+                                    fontWeight: FontWeight.w500,
+                                    maxLines: 2,
+                                  ),
+                                  "p": Style(
+                                    color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.blackTextColor.withOpacity(0.6),
+                                    fontSize: const FontSize(15.0),
+                                    fontWeight: FontWeight.w500,
+                                    maxLines: 2,
+                                  ),
+                                },
+                              ),
+                            ),
+                            // Text(
+                            //   homeController.petTopList[index].details,
+                            //   style: TextStyle(
+                            //     color: themeProvider.darkTheme
+                            //         ? AppColors.whiteColor
+                            //         : AppColors.blackTextColor.withOpacity(0.6),
+                            //     fontSize: 10.sp,
+                            //     fontWeight: FontWeight.w500,
+                            //   ),
+                            // ),
+                            const SizedBox(height: 12),
+                            Text(
+                              homeController.petTopList[i].gender + ", 2 Years Old",
                               style: TextStyle(
                                 color: themeProvider.darkTheme
                                     ? AppColors.whiteColor.withOpacity(0.65)
-                                    : AppColors.blackTextColor.withOpacity(0.6),
-                                fontSize: 10.sp,
-                                fontWeight: FontWeight.w500,
+                                    : AppColors.greyTextColor,
+                                fontSize: 11.sp,
+                                fontWeight: FontWeight.w400,
                               ),
                             ),
+                            const SizedBox(height: 25),
+                            Row(
+                              children: [
+                                const SizedBox(width: 3),
+                                Image.asset(
+                                  AppIcons.locationImg,
+                                  height: 16,
+                                  color: themeProvider.darkTheme
+                                      ? AppColors.whiteColor.withOpacity(0.65)
+                                      : AppColors.blackTextColor.withOpacity(0.6),
+                                ),
+                                const SizedBox(width: 8),
+                                Text(
+                                  "Distance: 3.6 km",
+                                  style: TextStyle(
+                                    color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor.withOpacity(0.65)
+                                        : AppColors.blackTextColor.withOpacity(0.6),
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ],
+                        ).commonSymmetricPadding(horizontal: 12, vertical: 14),
+
+                        Positioned(
+                          top: 5,
+                          right: 5,
+                          child: GestureDetector(
+                            onTap: () {
+                              //Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
+                              log('Follow Userid: ${homeController.petTopList[i].userid}');
+                              log('Follow Categoryid: ${homeController.petTopList[i].categoryId}');
+                              Get.to(() => UserProfileScreen(),
+                                  transition: Transition.native,
+                                  duration: const Duration(milliseconds: 500),
+                                  arguments: [
+                                    homeController.petTopList[i].userid,
+                                    homeController.petTopList[i].categoryId,
+                                    homeController.petTopList[i].id,
+                                  ]);
+                            },
+                            child: Container(
+                              height: 23,
+                              width: 23,
+                              decoration: const BoxDecoration(
+                                color: AppColors.greyColor,
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                          ),
                         ),
                       ],
-                    ).commonSymmetricPadding(horizontal: 12, vertical: 14),
+                    ),
                   ),
                 ),
               ),
@@ -898,7 +927,7 @@ class AddPetStoryWidget extends StatelessWidget {
   }
 }
 
-class AllPetsListModule extends StatelessWidget {
+/*class AllPetsListModule extends StatelessWidget {
   AllPetsListModule({Key? key}) : super(key: key);
 
   final controller = Get.find<HomeController>();
@@ -953,7 +982,7 @@ class AllPetsListModule extends StatelessWidget {
       },
     );
   }
-}
+}*/
 
 class BannerModule extends StatelessWidget {
   BannerModule({Key? key}) : super(key: key);

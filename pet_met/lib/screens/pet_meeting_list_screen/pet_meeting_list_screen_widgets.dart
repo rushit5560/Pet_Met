@@ -105,89 +105,118 @@ class PetMeetingListModule extends StatelessWidget {
             ),
             child: GestureDetector(
               onTap: () {
-                //Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
-                log('Follow Userid: ${screenController.subCatPetList[i].userid}');
-                log('Follow Categoryid: ${screenController.subCatPetList[i].categoryId}');
-                Get.to(() => UserProfileScreen(),
-                    transition: Transition.native,
-                    duration: const Duration(milliseconds: 500),
-                    arguments: [
-                      screenController.subCatPetList[i].userid,
-                      screenController.subCatPetList[i].categoryId,
-                      screenController.subCatPetList[i].id,
-                    ]);
+                Get.to(
+                      () => PetMeetingDetailsScreen(),
+                  arguments: [
+                    screenController.subCatPetList[i].id,
+                    screenController.subCatPetList[i].userid,
+                    screenController.subCatPetList[i].categoryId,
+                  ],
+                );
               },
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Stack(
                 children: [
-                  Text(
-                    screenController.subCatPetList[i].petName,
-                    style: TextStyle(
-                      color: AppColors.accentTextColor,
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Html(
-                    data: screenController.subCatPetList[i].details,
-                    style: {
-                      "body": Style(
-                        color: themeProvider.darkTheme
-                            ? AppColors.whiteColor
-                            : AppColors.blackTextColor.withOpacity(0.6),
-                        fontSize: const FontSize(15.0),
-                        fontWeight: FontWeight.w500,
-                      ),
-                    },
-                  ),
-                  // Text(
-                  //   homeController.petTopList[index].details,
-                  //   style: TextStyle(
-                  //     color: themeProvider.darkTheme
-                  //         ? AppColors.whiteColor
-                  //         : AppColors.blackTextColor.withOpacity(0.6),
-                  //     fontSize: 10.sp,
-                  //     fontWeight: FontWeight.w500,
-                  //   ),
-                  // ),
-                  const SizedBox(height: 12),
-                  Text(
-                    screenController.subCatPetList[i].gender + ", 2 Years Old",
-                    style: TextStyle(
-                      color: themeProvider.darkTheme
-                          ? AppColors.whiteColor.withOpacity(0.65)
-                          : AppColors.greyTextColor,
-                      fontSize: 11.sp,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  const SizedBox(height: 25),
-                  Row(
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(width: 3),
-                      Image.asset(
-                        AppIcons.locationImg,
-                        height: 16,
-                        color: themeProvider.darkTheme
-                            ? AppColors.whiteColor.withOpacity(0.65)
-                            : AppColors.blackTextColor.withOpacity(0.6),
-                      ),
-                      const SizedBox(width: 8),
                       Text(
-                        "Distance: 3.6 km",
+                        screenController.subCatPetList[i].petName,
+                        style: TextStyle(
+                          color: AppColors.accentTextColor,
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Html(
+                        data: screenController.subCatPetList[i].details,
+                        style: {
+                          "body": Style(
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor
+                                : AppColors.blackTextColor.withOpacity(0.6),
+                            fontSize: const FontSize(15.0),
+                            fontWeight: FontWeight.w500,
+                          ),
+                        },
+                      ),
+                      // Text(
+                      //   homeController.petTopList[index].details,
+                      //   style: TextStyle(
+                      //     color: themeProvider.darkTheme
+                      //         ? AppColors.whiteColor
+                      //         : AppColors.blackTextColor.withOpacity(0.6),
+                      //     fontSize: 10.sp,
+                      //     fontWeight: FontWeight.w500,
+                      //   ),
+                      // ),
+                      const SizedBox(height: 12),
+                      Text(
+                        screenController.subCatPetList[i].gender + ", 2 Years Old",
                         style: TextStyle(
                           color: themeProvider.darkTheme
                               ? AppColors.whiteColor.withOpacity(0.65)
-                              : AppColors.blackTextColor.withOpacity(0.6),
-                          fontSize: 10.sp,
-                          fontWeight: FontWeight.w500,
+                              : AppColors.greyTextColor,
+                          fontSize: 11.sp,
+                          fontWeight: FontWeight.w400,
                         ),
                       ),
+                      const SizedBox(height: 25),
+                      Row(
+                        children: [
+                          const SizedBox(width: 3),
+                          Image.asset(
+                            AppIcons.locationImg,
+                            height: 16,
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor.withOpacity(0.65)
+                                : AppColors.blackTextColor.withOpacity(0.6),
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            "Distance: 3.6 km",
+                            style: TextStyle(
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor.withOpacity(0.65)
+                                  : AppColors.blackTextColor.withOpacity(0.6),
+                              fontSize: 10.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
+                  ).commonSymmetricPadding(horizontal: 12, vertical: 14),
+
+                  Positioned(
+                    top: 5,
+                    right: 5,
+                    child: GestureDetector(
+                      onTap: () {
+                        //Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
+                        log('Follow Userid: ${screenController.subCatPetList[i].userid}');
+                        log('Follow Categoryid: ${screenController.subCatPetList[i].categoryId}');
+                        Get.to(() => UserProfileScreen(),
+                            transition: Transition.native,
+                            duration: const Duration(milliseconds: 500),
+                            arguments: [
+                              screenController.subCatPetList[i].userid,
+                              screenController.subCatPetList[i].categoryId,
+                              screenController.subCatPetList[i].id,
+                            ]);
+                      },
+                      child: Container(
+                        height: 23,
+                        width: 23,
+                        decoration: const BoxDecoration(
+                          color: AppColors.greyColor,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                    ),
                   ),
                 ],
-              ).commonSymmetricPadding(horizontal: 12, vertical: 14),
+              ),
             ),
           ),
         ),

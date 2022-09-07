@@ -78,8 +78,8 @@ class UploadImageModule extends StatelessWidget {
         modelBottomSheet(context);
       },
       child: Container(
-          height: screenController.size.height * 0.2,
-          width: double.infinity,
+          height: screenController.size.width * 0.50,
+          width: screenController.size.width * 0.50,
           decoration: BoxDecoration(
             color: AppColors.whiteColor,
             borderRadius: const BorderRadius.all(

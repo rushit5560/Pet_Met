@@ -1189,7 +1189,7 @@ class MeetingAvailabilityModule extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Add Meeting Availability for Pets:",
+        Text("Add Your Pets:",
             style: TextStyle(
               color: themeProvider.darkTheme
                   ? AppColors.whiteColor
