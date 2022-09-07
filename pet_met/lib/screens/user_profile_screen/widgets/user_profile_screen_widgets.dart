@@ -81,8 +81,8 @@ class ProfileImage extends StatelessWidget {
         ? ClipRRect(
             borderRadius: BorderRadius.circular(30),
             child: Image.network(controller.userprofile,
-                width: double.infinity,
-                height: controller.size.height * 0.2,
+                width: controller.size.width * 0.50,
+                height: controller.size.width * 0.50,
                 fit: BoxFit.cover, errorBuilder: (context, er, bt) {
               return Image.asset(
                 AppImages.petMetLogoImg,
@@ -97,7 +97,7 @@ class ProfileImage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(30),
                 child: Image.network(controller.shopProfile,
                     width: double.infinity,
-                    height: controller.size.height * 0.2,
+                    height: controller.size.width * 0.50,
                     fit: BoxFit.cover, errorBuilder: (context, er, bt) {
                   return Image.asset(
                     AppImages.petMetLogoImg,
@@ -246,7 +246,7 @@ class ProfileDetailsModule extends StatelessWidget {
                 width: 72,
                 decoration: BoxDecoration(
                   color: AppColors.accentColor.withOpacity(0.3),
-                  borderRadius: BorderRadius.all(
+                  borderRadius: const BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),
@@ -367,20 +367,27 @@ class ContactInfoModule extends StatelessWidget {
                 imagePath: AppImages.phoneGreenImg,
               ),
             ),
-            const SizedBox(width: 15),
+            const SizedBox(width: 15),*/
             GestureDetector(
               onTap: () {
-                if (controller.followCategoryId == "1") {
+               /* if (controller.followCategoryId == "1") {
                   _makingMessageChat();
                 } else if (controller.followCategoryId == "2") {
                   _makingMessageChat();
+                }*/
+
+                if(controller.status.value == true) {
+                  // create chat room
+                } else if(controller.status.value == false){
+                  // show toast
                 }
+
               },
               child: const ContactContainerWidget(
                 imagePath: AppIcons.messageImg,
               ),
-            ),*/
-            GestureDetector(
+            ),
+            /*GestureDetector(
               onTap: () {
                 if (controller.followCategoryId == "1") {
                   //var fbUrl = "${controller.shopData[0].facebook}";
@@ -419,7 +426,7 @@ class ContactInfoModule extends StatelessWidget {
               child: const ContactContainerWidget(
                 imagePath: AppImages.instaImg,
               ),
-            )
+            )*/
           ],
         ),
       ),

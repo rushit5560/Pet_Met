@@ -360,8 +360,7 @@ class UserProfileController extends GetxController {
       http.Response response = await http.post(Uri.parse(url),body: data, /*headers: header*/);
       log("Get Follow Status Api response : ${response.body}");
 
-      GetFollowStatusModel getFollowStatusModel =
-      GetFollowStatusModel.fromJson(json.decode(response.body));
+      GetFollowStatusModel getFollowStatusModel = GetFollowStatusModel.fromJson(json.decode(response.body));
       isSuccessStatus = getFollowStatusModel.success.obs;
       status = getFollowStatusModel.success.obs;
       log('status: $status');
