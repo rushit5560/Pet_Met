@@ -20,6 +20,8 @@ class PetTrainersDetailsScreenController extends GetxController {
   final size = Get.size;
 
   late Razorpay _razorpay;
+  final formKey = GlobalKey<FormState>();
+  TextEditingController priceController = TextEditingController();
 
   ApiHeader apiHeader = ApiHeader();
   //TrainerData trainerDetails = TrainerData();
@@ -61,10 +63,10 @@ class PetTrainersDetailsScreenController extends GetxController {
     }
   }
 
-  void openCheckout() async {
+  void openCheckout({required int price}) async {
     var options = {
       'key': 'rzp_test_dxCkKqtRKnvZdA',
-      'amount': 200 * 100,
+      'amount': price * 100,
       'name': trainerDetails[0].name,
       'description': "",
       'retry': {'enabled': true, 'max_count': 1},

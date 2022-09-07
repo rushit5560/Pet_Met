@@ -16,6 +16,7 @@ import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
+import 'package:pet_met/utils/user_details.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../../controllers/home_controller.dart';
@@ -691,18 +692,51 @@ class PetListModule extends StatelessWidget {
                 height: controller.size.width * 0.16,
                 width: controller.size.width * 0.16,
                 margin: const EdgeInsets.only(bottom: 5, right: 5),
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   // image: DecorationImage(
                   //     image: AssetImage(
                   //       controller.dogsTopList[index],
                   //     ),
                   //     fit: BoxFit.cover),
-                  color: AppColors.greyTextColor,
+                  //color: AppColors.greyTextColor,
+                  border: Border.all(color: AppColors.accentColor),
                   borderRadius: BorderRadius.all(
                     Radius.circular(8),
                   ),
                 ),
-                child: Image.asset(AppImages.petMetLogoImg, fit: BoxFit.cover),
+                //child: Image.asset(AppImages.petMetLogoImg, fit: BoxFit.cover),
+                child: UserDetails.categoryId == "1" ?
+                Image.network(
+                   controller.userprofile.value,
+                  errorBuilder: (context, st, ob){
+                    return Image.asset(AppImages.petMetLogoImg);
+                  },
+                  fit: BoxFit.fill,
+                ):
+                UserDetails.categoryId == "2" ?
+                Image.network(
+                  controller.shopProfile.value,
+                  errorBuilder: (context, st, ob){
+                    return Image.asset(AppImages.petMetLogoImg);
+                  },
+                  fit: BoxFit.fill,
+                ):
+                UserDetails.categoryId == "3" ?
+                Image.network(
+                  controller.ngoProfile.value,
+                  errorBuilder: (context, st, ob){
+                    return Image.asset(AppImages.petMetLogoImg);
+                  },
+                  fit: BoxFit.fill,
+                ):
+                UserDetails.categoryId == "4" ?
+                Image.network(
+                  controller.trainerProfile.value,
+                  errorBuilder: (context, st, ob){
+                    return Image.asset(AppImages.petMetLogoImg);
+                  },
+                  fit: BoxFit.fill,
+                ) : Container(),
               ),
             ),
             Positioned(
@@ -716,7 +750,7 @@ class PetListModule extends StatelessWidget {
                   height: 15,
                   width: 15,
                   decoration: const BoxDecoration(
-                      color: Colors.green, shape: BoxShape.circle),
+                      color: AppColors.accentColor, shape: BoxShape.circle),
                   child: const Icon(
                     Icons.add,
                     color: AppColors.whiteColor,
@@ -891,6 +925,7 @@ class AddPetStoryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var themeProvider = Provider.of<DarkThemeProvider>(context);
     return GestureDetector(
       onTap: () {
         List<String> userWiseStoryList = [];
@@ -900,29 +935,40 @@ class AddPetStoryWidget extends StatelessWidget {
         log('userWiseStoryList: $userWiseStoryList');
         Get.to(() => StoryViewerScreen(), arguments: userWiseStoryList);
       },
-      child: Container(
-          height: controller.size.width * 0.16,
-          width: controller.size.width * 0.16,
-          margin: const EdgeInsets.only(bottom: 5, right: 5),
-          decoration: const BoxDecoration(
-            // image: DecorationImage(
-            //     image: AssetImage(
-            //       controller.dogsTopList[index],
-            //     ),
-            //     fit: BoxFit.cover),
-            color: AppColors.greyTextColor,
-            borderRadius: BorderRadius.all(
-              Radius.circular(8),
-            ),
+      child: Column(
+        children: [
+          Container(
+              height: controller.size.width * 0.16,
+              width: controller.size.width * 0.16,
+              margin: const EdgeInsets.only(bottom: 5, right: 5),
+              decoration: const BoxDecoration(
+                // image: DecorationImage(
+                //     image: AssetImage(
+                //       controller.dogsTopList[index],
+                //     ),
+                //     fit: BoxFit.cover),
+                color: AppColors.greyTextColor,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+              child: Image.network(
+                    ApiUrl.apiImagePath + "asset/uploads/userstory/" + controller.userStoryList[index].userimg,
+                  errorBuilder: (context, st, ob){
+                    return Image.asset(AppImages.petMetLogoImg);
+                  },
+                  fit: BoxFit.cover,
+                )
+                 // Image.asset(AppImages.petMetLogoImg)
           ),
-          child: /*Image.network(
-                ApiUrl.apiImagePath + "asset/uploads/userstory/" + controller.userStoryList[index].image,
-              errorBuilder: (context, st, ob){
-                return Image.asset(AppImages.petMetLogoImg);
-              },
-              fit: BoxFit.cover,
-            )*/
-              Image.asset(AppImages.petMetLogoImg)),
+          Text(controller.userStoryList[index].username,
+            style: TextStyle(
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.accentTextColor,
+            ),)
+        ],
+      ),
     );
   }
 }

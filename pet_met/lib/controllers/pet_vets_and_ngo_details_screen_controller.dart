@@ -62,10 +62,10 @@ class PetVetsAndNgoDetailsScreenController extends GetxController {
     }
   }
 
-  void openCheckout() async {
+  void openCheckout({required int price}) async {
     var options = {
       'key': 'rzp_test_dxCkKqtRKnvZdA',
-      'amount': priceController.text.trim(),
+      'amount': price * 100,
       'name': vetsNgoDetailsData[0].name,
       'description': vetsNgoDetailsData[0].fullText,
       'retry': {'enabled': true, 'max_count': 1},

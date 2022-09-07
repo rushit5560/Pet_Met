@@ -545,6 +545,8 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
   DonateForPetLoversButtonModule({Key? key}) : super(key: key);
 
   final screenController = Get.find<PetVetsAndNgoDetailsScreenController>();
+  DarkThemeProvider themeProvider =
+  Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -586,8 +588,7 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
   }
 
   alertDialogBox(BuildContext context) {
-    DarkThemeProvider themeProvider =
-        Provider.of<DarkThemeProvider>(Get.context!);
+
     return showDialog(
       barrierColor: themeProvider.darkTheme
           ? AppColors.darkThemeBoxColor.withOpacity(0.3)
@@ -719,7 +720,7 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
                       onPressed: () async {
                         //await screenController.userLoginFunction();
                         if (screenController.formKey.currentState!.validate()) {
-                          screenController.openCheckout();
+                          screenController.openCheckout(price: int.parse(screenController.priceController.text));
                           screenController.priceController.clear();
                         }
                       },

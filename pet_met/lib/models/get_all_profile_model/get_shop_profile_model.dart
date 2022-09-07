@@ -137,7 +137,7 @@ class DataData {
 
   factory DataData.fromJson(Map<String, dynamic> json) => DataData(
     id: json["id"] ?? "",
-    shopename: json["shopename"] ?? "",
+    shopename: json["name"] ?? "",
     email: json["email"] ?? "",
     address: json["address"] ?? "",
     phonenumber: json["phonenumber"] ?? "",
@@ -165,7 +165,7 @@ class DataData {
 
   Map<String, dynamic> toJson() => {
     "id": id,
-    "shopename": shopename,
+    "name": shopename,
     "email": email,
     "address": address,
     "phonenumber": phonenumber,

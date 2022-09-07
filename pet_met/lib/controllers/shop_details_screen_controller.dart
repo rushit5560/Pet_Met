@@ -16,6 +16,8 @@ class ShopDetailsScreenController extends GetxController {
   final size = Get.size;
 
   ApiHeader apiHeader = ApiHeader();
+  final formKey = GlobalKey<FormState>();
+  TextEditingController priceController = TextEditingController();
 
   //ShopData shopData = ShopData();
   List<ShopData> shopData = [];
@@ -59,10 +61,10 @@ class ShopDetailsScreenController extends GetxController {
     }
   }
 
-  void openCheckout() async {
+  void openCheckout({required int price}) async {
     var options = {
       'key': 'rzp_test_dxCkKqtRKnvZdA',
-      'amount': 200 * 100,
+      'amount': price * 100,
       'name': shopData[0].shopename,
       'description': "",
       'retry': {'enabled': true, 'max_count': 1},

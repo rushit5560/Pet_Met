@@ -127,7 +127,7 @@ class Datum {
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
     id: json["id"] ?? "",
-    shopename: json["shopename"] ?? "",
+    shopename: json["name"] ?? "",
     email: json["email"] ?? "",
     password: json["password"] ?? "",
     address: json["address"] ?? "",
@@ -162,7 +162,7 @@ class Datum {
 
   Map<String, dynamic> toJson() => {
     "id": id,
-    "shopename": shopename,
+    "name": shopename,
     "email": email,
     "password": password,
     "address": address,
