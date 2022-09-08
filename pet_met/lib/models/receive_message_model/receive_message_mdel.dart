@@ -4,37 +4,49 @@ class ReceiveMessageModel {
   ReceiveMessageModel({
     required this.docId,
     required this.roomId,
-    required this.senderId,
-    required this.receiverId,
+    // required this.username1,
+    // required this.username2,
     required this.message,
     required this.createdAt,
-    required this.seen,
+    required this.user1seen,
+    required this.user2seen,
+    required this.sender,
+    required this.receiver,
   });
 
   String docId;
   String roomId;
-  String senderId;
-  String receiverId;
+  // String username1;
+  // String username2;
+  String sender;
+  String receiver;
   String message;
   Timestamp createdAt;
-  bool seen;
+  bool user1seen;
+  bool user2seen;
 
   factory ReceiveMessageModel.fromJson(Map<String, dynamic> json, String id) => ReceiveMessageModel(
     docId: id,
-    roomId: json["room_id"] ?? "",
-    senderId: json["sender_id"] ?? "",
-    receiverId: json["receiver_id"] ?? "",
+    roomId: json["roomId"] ?? "",
+    // username1: json["username1"] ?? "",
+    // username2: json["username2"] ?? "",
+    sender: json["sender"] ?? "",
+    receiver: json["receiver"] ?? "",
     message: json["message"] ?? "",
     createdAt: json["created_at"] ?? Timestamp.now(),
-    seen: json["seen"] ?? false,
+    user1seen: json["user1seen"] ?? false,
+    user2seen: json["user2seen"] ?? false,
   );
 
   Map<String, dynamic> toJson() => {
     "room_id": roomId,
-    "sender_id": senderId,
-    "receiver_id": receiverId,
+    // "username1": username1,
+    // "username2": username2,
     "message": message,
     "created_at": createdAt,
-    "seen": seen,
+    "user1seen": user1seen,
+    "user2seen": user2seen,
+    "sender": sender,
+    "receiver": receiver,
   };
 }

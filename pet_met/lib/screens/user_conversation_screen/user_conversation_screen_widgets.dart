@@ -30,7 +30,9 @@ class SingleMessageBubble extends StatelessWidget {
         singleMsg.createdAt.microsecondsSinceEpoch)
         .minute;
 
-    singleMsg.senderId == UserDetails.userEmail
+    // String userName = UserDetails.roleId == 1 ? UserDetails.userEmail : UserDetails.shopName;
+
+    singleMsg.receiver == UserDetails.userEmail
         ? isSendByMe = true
         : isSendByMe = false;
     return Container(
@@ -138,22 +140,22 @@ class MessageWriteTextFieldModule extends StatelessWidget {
             contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             suffixIcon: GestureDetector(
               onTap: () async {
-                // controller.messageFieldController.clear();
                 if (screenController.messageFieldController.text.isNotEmpty) {
+
+                  String receiverEmail =  UserDetails.userEmail == screenController.userEmail ? screenController.shopEmail : UserDetails.userEmail;
                   /// Create Message Model Wise
                   SendMessageModel sendMsg = SendMessageModel(
                       roomId: screenController.roomId,
-                      senderId: UserDetails.userEmail,
-                      receiverId: screenController.receiverEmail,
-                      message: screenController.messageFieldController.text,
                       createdAt: Timestamp.now(),
-                      seen: false);
-
-                  /// Insert this Msg in Current List
-                  // controller.userChatList.insert(0, sendMsg);
+                      message: screenController.messageFieldController.text.trim(),
+                      user1seen: false,
+                      user2seen: false,
+                      sender: UserDetails.userEmail,
+                      receiver: receiverEmail,
+                  );
 
                   /// Msg Store in Firebase
-                  log('sendMsg: ${sendMsg.receiverId}');
+                  log('sendMsg: ${sendMsg.receiver}');
                   await screenController.sendMessageFunction(sendMsg);
                 }
               },

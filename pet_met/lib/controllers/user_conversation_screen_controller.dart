@@ -8,11 +8,10 @@ import 'package:pet_met/models/receive_message_model/send_message_model.dart';
 
 class UserConversationScreenController extends GetxController{
   String roomId = Get.arguments[0];
-  String receiverEmail = Get.arguments[1];
-  String headerName = Get.arguments[2];
-  String peerUniqueId = Get.arguments[3];
-  String customerId = Get.arguments[4];
-  String senderEmail = Get.arguments[5];
+  String headerName = Get.arguments[1];
+  String receiverName = Get.arguments[2];
+  String userEmail = Get.arguments[3];
+  String shopEmail = Get.arguments[4];
 
   RxBool isLoading = false.obs;
 

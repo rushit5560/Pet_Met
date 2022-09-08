@@ -8,7 +8,7 @@ import 'package:pet_met/firebase_database/firebase_database.dart';
 import 'package:pet_met/screens/address_screen/address_screen.dart';
 import 'package:pet_met/screens/pet_meeting_details_screen/pet_meeting_details_screen.dart';
 import 'package:pet_met/screens/upload_pet_screen/upload_pet_screen.dart';
-import 'package:pet_met/screens/user_conversation+_screen/user_conversation_screen.dart';
+import 'package:pet_met/screens/user_conversation_screen/user_conversation_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/enums.dart';
@@ -20,7 +20,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../services/providers/dark_theme_provider.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_images.dart';
-
 
 var themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
 
@@ -245,15 +244,16 @@ class ProfileDetailsModule extends StatelessWidget {
                     : await controller.unfollowUserFunction();
               },
               child: Container(
-                height: 35,
-                width: 72,
+                // height: 35,
+                // width: 72,
                 decoration: BoxDecoration(
                   color: AppColors.accentColor.withOpacity(0.3),
                   borderRadius: const BorderRadius.all(
                     Radius.circular(12),
                   ),
                 ),
-                child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: Text(
                     controller.status.value == true ? "Follow" : "Unfollow",
                     style: TextStyle(
@@ -331,7 +331,7 @@ class ContactInfoModule extends StatelessWidget {
         color: themeProvider.darkTheme
             ? AppColors.darkThemeColor
             : AppColors.whiteColor,
-        borderRadius: BorderRadius.all(
+        borderRadius: const BorderRadius.all(
           Radius.circular(12),
         ),
         boxShadow: [
@@ -373,124 +373,100 @@ class ContactInfoModule extends StatelessWidget {
             ),
             const SizedBox(width: 15),*/
             GestureDetector(
-              onTap: () {
-               /* if (controller.followCategoryId == "1") {
-                  _makingMessageChat();
-                } else if (controller.followCategoryId == "2") {
-                  _makingMessageChat();
-                }*/
-               // if(controller.followCategoryId == "1"){
-                  if(controller.status.value == false) {
-                    // create chat room
+              onTap: () async {
+                if (controller.status.value == false) {
+
+                  /// When loggedIn user have roleId 1
+                  if (UserDetails.roleId == 1) {
                     Timestamp timeStamp = Timestamp.now();
 
-                    /// CharRoom Id Generate
+                    // CharRoom Id Generate
                     String charRoomId =
-                        "${UserDetails.userName}_${controller.userName}";
+                        "${UserDetails.userEmail}_${controller.userEmail}";
 
-                    /// ChatRoom Data
+                    // ChatRoom Data
                     Map<String, dynamic> chatRoomData = {
-                      // "createdAt": timeStamp,
-                      // "createdBy": UserDetails.userEmail.toLowerCase(),
-                      // "peerId": controller.vendorEmail.toLowerCase(),
-                      // "roomId": charRoomId,
-                      // "createdName": UserDetails.userName,
-                      // "peerName": screenController.vendorBusinessName,
-                      // "users": [
-                      //   UserDetails.email,
-                      //   screenController.vendorEmail
-                      // ],
-                      // "customerid": UserDetails.uniqueId,
-                      // "vendorid": screenController.vendorUniqueId
-                      "userUid": UserDetails.selfId,
-                      "shopUid": UserDetails.selfId,
-                      "roomId": charRoomId,
+                      "username1": UserDetails.userName,
+                      "username2": controller.userName,
+                      "useremail1": UserDetails.userEmail,
+                      "useremail2": controller.userEmail,
+                      "chatRoomId": charRoomId,
                       "createdAt": timeStamp,
-                      "userId": UserDetails.userId,
-                      "shopId": controller.followCategoryId == "1" ? controller.userId : controller.followCategoryId == "2" ? controller.shopId: "",
-                      "useEmail": UserDetails.userEmail.toLowerCase(),
-                      "shopEmail": controller.followCategoryId == "1" ? controller.userEmail : controller.followCategoryId == "2" ? controller.userEmail : "",
-                      "users": [
-                        UserDetails.userEmail,
-                        controller.userEmail
-                      ],
-                      "userName": controller.followCategoryId == "1" ? controller.userName : controller.followCategoryId == "2" ? controller.shopName : "",
-
+                      "creator": UserDetails.roleId == 1 ? "User" : "Shop",
+                      "users": [UserDetails.userEmail, controller.userEmail],
                     };
 
                     log("chatRoomData : $chatRoomData");
 
-                    /// Create ChatRoom Function
+                    // Create ChatRoom Function
                     firebaseDatabase.createChatRoomOfTwoUsers(
                         charRoomId, chatRoomData);
 
+                    // Go to conversation screen
                     Get.to(
-                          () => UserConversationScreen(),
+                      () => UserConversationScreen(),
                       transition: Transition.zoom,
                       arguments: [
-                        charRoomId, //chatRoomId
+                        charRoomId,
+                        controller.followCategoryId == "1"
+                            ? controller.userName
+                            : controller.shopName,
+                        controller.userName,
+                        UserDetails.userEmail,
                         controller.userEmail,
-                        controller.followCategoryId == "1" ? controller.userName : controller.followCategoryId == "2" ? controller.shopName : "",
-                        UserDetails.selfId,
-                        controller.followCategoryId == "1" ? controller.userId : controller.followCategoryId == "2" ? controller.shopId: "",
+                      ],
+                    );
+                  } else if (UserDetails.roleId == 2) {
+                    Timestamp timeStamp = Timestamp.now();
+
+                    // CharRoom Id Generate
+                    String charRoomId =
+                        "${controller.userEmail}_${UserDetails.userEmail}";
+
+                    // ChatRoom Data
+                    Map<String, dynamic> chatRoomData = {
+                      "username1": controller.userName,
+                      "username2": UserDetails.userName,
+                      "useremail1": controller.userEmail,
+                      "useremail2": UserDetails.userEmail,
+                      "chatRoomId": charRoomId,
+                      "createdAt": timeStamp,
+                      "creator": UserDetails.roleId == 2 ? "Shop" : "User",
+                      "users": [controller.userEmail, UserDetails.userEmail],
+                    };
+
+                    log("chatRoomData : $chatRoomData");
+
+                    // Create ChatRoom Function
+                    firebaseDatabase.createChatRoomOfTwoUsers(
+                        charRoomId, chatRoomData);
+
+                    // Go to conversation screen
+                    Get.to(
+                      () => UserConversationScreen(),
+                      transition: Transition.zoom,
+                      arguments: [
+                        charRoomId,
+                        controller.followCategoryId == "1"
+                            ? controller.userName
+                            : controller.shopName,
+                        controller.userName,
+                        UserDetails.userEmail,
                         controller.userEmail,
                       ],
                     );
                   }
-                  else if(controller.status.value == true){
-                    // show toast
-                    Fluttertoast.showToast(msg: 'First follow user');
-                  }
-                // } else if(controller.followCategoryId == "2"){
-                //
-                // }
+                }
 
-
+                /// When loggedIn user as a shop
+                else if (controller.status.value == true) {
+                  Fluttertoast.showToast(msg: 'First follow user');
+                }
               },
               child: const ContactContainerWidget(
                 imagePath: AppIcons.messageImg,
               ),
             ),
-            /*GestureDetector(
-              onTap: () {
-                if (controller.followCategoryId == "1") {
-                  //var fbUrl = "${controller.shopData[0].facebook}";
-                  //launchFacebook(fbUrl, fbUrl);
-                } else if (controller.followCategoryId == "2") {
-                  var fbUrl = controller.shopFacebookLink;
-                  log('fbUrl: $fbUrl}');
-                  if(controller.shopFacebookLink.isEmpty){
-                    Fluttertoast.showToast(msg: "Person has not provided his facebook link.");
-                  } else{
-                    launchFacebook(fbUrl, fbUrl);
-                  }
-                }
-              },
-              child: const ContactContainerWidget(
-                imagePath: AppImages.fbImg,
-              ),
-            ),
-            const SizedBox(width: 15),
-            GestureDetector(
-              onTap: () {
-                if (controller.followCategoryId == "1") {
-                  // String url = "${screenController.shopData[0].instagram}";
-                  // _makingInstagramApp(url);
-                } else if (controller.followCategoryId == "2") {
-                  String instaUrl = controller.shopInstaLink;
-                  log('instaUrl: $instaUrl}');
-                  if(controller.shopInstaLink.isEmpty){
-                    Fluttertoast.showToast(msg: "Person has not provided his instagram link.");
-                  }else{
-                    _makingInstagramApp(instaUrl);
-                  }
-
-                }
-              },
-              child: const ContactContainerWidget(
-                imagePath: AppImages.instaImg,
-              ),
-            )*/
           ],
         ),
       ),
