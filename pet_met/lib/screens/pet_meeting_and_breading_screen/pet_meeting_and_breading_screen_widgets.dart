@@ -325,7 +325,7 @@ class PetCategoriesListModule extends StatelessWidget {
                     log("selectedItemValue : $selectedItemValue");
 
                     for(int i=0; i < screenController.catAndSubCatList.length; i++) {
-                      for(int j=0; j < screenController.catAndSubCatList[i].subCategory.length; i++) {
+                      for(int j=0; j < screenController.catAndSubCatList[i].subCategory.length; j++) {
 
                         if(screenController.catAndSubCatList[i].subCategory[j].categoryId == id) {
                           log("Sub cat Id : ${screenController.catAndSubCatList[i].subCategory[j].categoryId}");
