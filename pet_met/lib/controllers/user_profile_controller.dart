@@ -62,6 +62,8 @@ class UserProfileController extends GetxController {
   String userprofile= "";
   String userName = "";
   String userMobileNumber = "";
+  String userId = "";
+  String userEmail = "";
 
   String shopProfile= "";
   String shopName = "";
@@ -69,6 +71,7 @@ class UserProfileController extends GetxController {
   String shopMobileNumber = "";
   String shopFacebookLink = "";
   String shopInstaLink = "";
+  String shopId = "";
 
   String ngoProfile= "";
   String ngoName = "";
@@ -168,7 +171,8 @@ class UserProfileController extends GetxController {
         userprofile = ApiUrl.apiImagePath + "asset/uploads/product/" + getUserProfileModel.data.data[0].image;
         userName = getUserProfileModel.data.data[0].name;
         userMobileNumber = getUserProfileModel.data.data[0].phone;
-
+        userId = getUserProfileModel.data.data[0].id;
+        userEmail = getUserProfileModel.data.data[0].email;
         log("petList Length : ${petList.length}");
       } else {
         log("Get All Role Profile Api Else");
@@ -221,7 +225,7 @@ class UserProfileController extends GetxController {
         shopMobileNumber = petShopProfileModel.data.data[0].phonenumber;
         shopFacebookLink = petShopProfileModel.data.data[0].facebook;
         shopInstaLink = petShopProfileModel.data.data[0].instagram;
-
+        shopId = petShopProfileModel.data.data[0].id;
         log("petList Length : ${petList.length}");
       } else {
         log("Get All Role Profile Api Else");

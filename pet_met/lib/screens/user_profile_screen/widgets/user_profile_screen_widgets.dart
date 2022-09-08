@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/user_profile_controller.dart';
+import 'package:pet_met/firebase_database/firebase_database.dart';
 import 'package:pet_met/screens/address_screen/address_screen.dart';
 import 'package:pet_met/screens/pet_meeting_details_screen/pet_meeting_details_screen.dart';
 import 'package:pet_met/screens/upload_pet_screen/upload_pet_screen.dart';
+import 'package:pet_met/screens/user_conversation+_screen/user_conversation_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/enums.dart';
@@ -14,10 +16,11 @@ import 'package:pet_met/utils/user_details.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../services/providers/dark_theme_provider.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/app_images.dart';
+
 
 var themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
 
@@ -316,6 +319,7 @@ class ContactInfoModule extends StatelessWidget {
   ContactInfoModule({Key? key}) : super(key: key);
 
   final controller = Get.find<UserProfileController>();
+  final FirebaseDatabase firebaseDatabase = FirebaseDatabase();
 
   @override
   Widget build(BuildContext context) {
@@ -375,12 +379,72 @@ class ContactInfoModule extends StatelessWidget {
                 } else if (controller.followCategoryId == "2") {
                   _makingMessageChat();
                 }*/
+               // if(controller.followCategoryId == "1"){
+                  if(controller.status.value == false) {
+                    // create chat room
+                    Timestamp timeStamp = Timestamp.now();
 
-                if(controller.status.value == true) {
-                  // create chat room
-                } else if(controller.status.value == false){
-                  // show toast
-                }
+                    /// CharRoom Id Generate
+                    String charRoomId =
+                        "${UserDetails.userName}_${controller.userName}";
+
+                    /// ChatRoom Data
+                    Map<String, dynamic> chatRoomData = {
+                      // "createdAt": timeStamp,
+                      // "createdBy": UserDetails.userEmail.toLowerCase(),
+                      // "peerId": controller.vendorEmail.toLowerCase(),
+                      // "roomId": charRoomId,
+                      // "createdName": UserDetails.userName,
+                      // "peerName": screenController.vendorBusinessName,
+                      // "users": [
+                      //   UserDetails.email,
+                      //   screenController.vendorEmail
+                      // ],
+                      // "customerid": UserDetails.uniqueId,
+                      // "vendorid": screenController.vendorUniqueId
+                      "userUid": UserDetails.selfId,
+                      "shopUid": UserDetails.selfId,
+                      "roomId": charRoomId,
+                      "createdAt": timeStamp,
+                      "userId": UserDetails.userId,
+                      "shopId": controller.followCategoryId == "1" ? controller.userId : controller.followCategoryId == "2" ? controller.shopId: "",
+                      "useEmail": UserDetails.userEmail.toLowerCase(),
+                      "shopEmail": controller.followCategoryId == "1" ? controller.userEmail : controller.followCategoryId == "2" ? controller.userEmail : "",
+                      "users": [
+                        UserDetails.userEmail,
+                        controller.userEmail
+                      ],
+                      "userName": controller.followCategoryId == "1" ? controller.userName : controller.followCategoryId == "2" ? controller.shopName : "",
+
+                    };
+
+                    log("chatRoomData : $chatRoomData");
+
+                    /// Create ChatRoom Function
+                    firebaseDatabase.createChatRoomOfTwoUsers(
+                        charRoomId, chatRoomData);
+
+                    Get.to(
+                          () => UserConversationScreen(),
+                      transition: Transition.zoom,
+                      arguments: [
+                        charRoomId, //chatRoomId
+                        controller.userEmail,
+                        controller.followCategoryId == "1" ? controller.userName : controller.followCategoryId == "2" ? controller.shopName : "",
+                        UserDetails.selfId,
+                        controller.followCategoryId == "1" ? controller.userId : controller.followCategoryId == "2" ? controller.shopId: "",
+                        controller.userEmail,
+                      ],
+                    );
+                  }
+                  else if(controller.status.value == true){
+                    // show toast
+                    Fluttertoast.showToast(msg: 'First follow user');
+                  }
+                // } else if(controller.followCategoryId == "2"){
+                //
+                // }
+
 
               },
               child: const ContactContainerWidget(
