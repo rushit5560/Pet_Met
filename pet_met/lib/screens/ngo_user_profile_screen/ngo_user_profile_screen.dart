@@ -145,8 +145,8 @@ class NgoUserProfileScreen extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // controller.userProfile == true
-                //     ?
+                controller.userProfileAvail == true
+                    ?
                 GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
@@ -240,11 +240,11 @@ class NgoUserProfileScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                      ),
-                   // : Container(),
+                      )
+                   : Container(),
 
-                // controller.shopProfile == true
-                //     ?
+                controller.shopProfileAvail == true
+                    ?
                 GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
@@ -334,11 +334,11 @@ class NgoUserProfileScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                      ),
-                   // : Container(),
+                      )
+                   : Container(),
 
-                // controller.vetNgoProfile == true
-                //     ?
+                controller.vetNgoProfileAvail == true
+                    ?
                 GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
@@ -432,11 +432,11 @@ class NgoUserProfileScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                      ),
-                  //  : Container(),
+                      )
+                   : Container(),
 
-                // controller.trainerProfile == true
-                //     ?
+                controller.trainerProfileAvail == true
+                    ?
                 GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
@@ -527,8 +527,8 @@ class NgoUserProfileScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                      ),
-                   // : Container(),
+                      )
+                   : Container(),
 
                 //controller.userProfile == false || controller.shopProfile == false || controller.vetNgoProfile == false || controller.trainerProfile == false ?
                 GestureDetector(

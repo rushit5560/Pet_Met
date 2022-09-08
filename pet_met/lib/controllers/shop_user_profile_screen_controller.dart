@@ -93,10 +93,10 @@ class ShopUserProfileScreenController extends GetxController {
   String shopApiPicture4 = "";
   String shopApiPicture5 = "";
 
-  bool userProfile = false;
-  bool shopProfile = false;
-  bool vetNgoProfile = false;
-  bool trainerProfile = false;
+  bool userProfileAvail = false;
+  bool shopProfileAvail = false;
+  bool vetNgoProfileAvail = false;
+  bool trainerProfileAvail = false;
 
   RxBool showStatus = false.obs;
 
@@ -224,6 +224,11 @@ class ShopUserProfileScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
 
+        userProfileAvail = multiAccountUserModel.data.user.categoryId == "" ? false : true;
+        shopProfileAvail = multiAccountUserModel.data.shop.categoryID == "" ? false : true;
+        vetNgoProfileAvail = multiAccountUserModel.data.vetNgo.categoryId == "" ? false : true;
+        trainerProfileAvail = multiAccountUserModel.data.trainer.categoryID == "" ? false : true;
+
         // bool userAvail = multiAccountUserModel.data.user.isEmpty ? false : true;
         // if(userAvail == true) {
         //   userProfile = true;
@@ -242,7 +247,7 @@ class ShopUserProfileScreenController extends GetxController {
         // if(vetNgoAvail == true) {
         //   vetNgoProfile = true;
         //   ngoEmail.value = "${multiAccountUserModel.data.vetNgo[0].email}";
-           ngoName.value = "${multiAccountUserModel.data.vetNgo.name}";
+           ngoName.value = multiAccountUserModel.data.vetNgo.name;
         // }
         //
         // bool trainerAvail = multiAccountUserModel.data.trainer.isEmpty ? false : true;

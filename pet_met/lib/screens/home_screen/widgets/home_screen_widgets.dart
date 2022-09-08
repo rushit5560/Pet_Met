@@ -60,9 +60,9 @@ class PetTopListModule extends StatelessWidget {
                       Get.to(
                         () => PetMeetingDetailsScreen(),
                         arguments: [
-                          homeController.petTopList[i].id,
-                          homeController.petTopList[i].userid,
-                          homeController.petTopList[i].categoryId
+                          homeController.petTopList[i].data.id,
+                          homeController.petTopList[i].data.userid,
+                          homeController.petTopList[i].data.categoryId
                         ],
                       );
                     },
@@ -74,7 +74,7 @@ class PetTopListModule extends StatelessWidget {
                       // )
                       child: Image.network(
                         ApiUrl.apiImagePath +
-                            homeController.petTopList[i].image,
+                            homeController.petTopList[i].data.image,
                         errorBuilder: (context, st, ob) {
                           return Image.asset(AppImages.petMetLogoImg);
                         },
@@ -101,9 +101,9 @@ class PetTopListModule extends StatelessWidget {
                       Get.to(
                             () => PetMeetingDetailsScreen(),
                         arguments: [
-                          homeController.petTopList[i].id,
-                          homeController.petTopList[i].userid,
-                          homeController.petTopList[i].categoryId
+                          homeController.petTopList[i].data.id,
+                          homeController.petTopList[i].data.userid,
+                          homeController.petTopList[i].data.categoryId
                         ],
                       );
                     },
@@ -114,7 +114,7 @@ class PetTopListModule extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              homeController.petTopList[i].petName,
+                              homeController.petTopList[i].data.petName,
                               style: TextStyle(
                                 color: AppColors.accentTextColor,
                                 fontSize: 18.sp,
@@ -124,7 +124,7 @@ class PetTopListModule extends StatelessWidget {
                             SizedBox(
                               height: 50,
                               child: Html(
-                                data: homeController.petTopList[i].details,
+                                data: homeController.petTopList[i].data.details,
                                 shrinkWrap: true,
                                 style: {
                                   "body": Style(
@@ -158,7 +158,7 @@ class PetTopListModule extends StatelessWidget {
                             // ),
                             const SizedBox(height: 12),
                             Text(
-                              homeController.petTopList[i].gender + ", 2 Years Old",
+                              homeController.petTopList[i].data.gender + ", 2 Years Old",
                               style: TextStyle(
                                 color: themeProvider.darkTheme
                                     ? AppColors.whiteColor.withOpacity(0.65)
@@ -200,15 +200,15 @@ class PetTopListModule extends StatelessWidget {
                           child: GestureDetector(
                             onTap: () {
                               //Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
-                              log('Follow Userid: ${homeController.petTopList[i].userid}');
-                              log('Follow Categoryid: ${homeController.petTopList[i].categoryId}');
+                              log('Follow Userid: ${homeController.petTopList[i].data.userid}');
+                              log('Follow Categoryid: ${homeController.petTopList[i].data.categoryId}');
                               Get.to(() => UserProfileScreen(),
                                   transition: Transition.native,
                                   duration: const Duration(milliseconds: 500),
                                   arguments: [
-                                    homeController.petTopList[i].userid,
-                                    homeController.petTopList[i].categoryId,
-                                    homeController.petTopList[i].id,
+                                    homeController.petTopList[i].data.userid,
+                                    homeController.petTopList[i].data.categoryId,
+                                    homeController.petTopList[i].data.id,
                                   ]);
                             },
                             child: Container(

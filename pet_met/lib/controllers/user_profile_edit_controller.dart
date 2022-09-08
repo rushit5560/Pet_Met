@@ -63,11 +63,12 @@ class UserProfileEditController extends GetxController {
   List<Petdatum> petList = [];
 
   bool userProfileAvail = false;
-  bool shopProfile = false;
-  bool vetNgoProfile = false;
-  bool trainerProfile = false;
+  bool shopProfileAvail = false;
+  bool vetNgoProfileAvail = false;
+  bool trainerProfileAvail = false;
 
   String userApiProfile = "";
+
 
 
 
@@ -191,43 +192,38 @@ class UserProfileEditController extends GetxController {
       log("Multiple Account Api response : ${response.body}");
 
       MultiAccountUserModel multiAccountUserModel =
-      MultiAccountUserModel.fromJson(json.decode(response.body));
+          MultiAccountUserModel.fromJson(json.decode(response.body));
       isSuccessStatus = multiAccountUserModel.success.obs;
       log('isSuccessStatus: $isSuccessStatus');
 
       if (isSuccessStatus.value) {
+        userProfileAvail =
+            multiAccountUserModel.data.user.categoryId == "" ? false : true;
+        shopProfileAvail =
+            multiAccountUserModel.data.shop.categoryID == "" ? false : true;
+        vetNgoProfileAvail =
+            multiAccountUserModel.data.vetNgo.categoryId == "" ? false : true;
+        trainerProfileAvail =
+            multiAccountUserModel.data.trainer.categoryID == "" ? false : true;
 
-        // bool userAvail = multiAccountUserModel.data.user.isEmpty ? false : true;
-        // if(userAvail == true) {
-        //   userProfileAvail = true;
-           userEmail.value = multiAccountUserModel.data.user.email;
-           userName.value = multiAccountUserModel.data.user.name;
-        // }
+        log("data.user : ${multiAccountUserModel.data.user.categoryId}");
+        log("data.shop : ${multiAccountUserModel.data.shop.categoryID}");
+        log("data.vetNgo : ${multiAccountUserModel.data.vetNgo.categoryId}");
+        log("data.trainer : ${multiAccountUserModel.data.trainer.categoryID}");
 
-        // bool shopAvail = multiAccountUserModel.data.shope.isEmpty ? false : true;
-        // if(shopAvail == true) {
-        //   shopProfile = true;
-        //   shopEmail.value = "${multiAccountUserModel.data.shope[0].email}";
-           shopName.value = "${multiAccountUserModel.data.shop.name}";
-           log('shopName: $shopName');
-        // }
+        userEmail.value = multiAccountUserModel.data.user.email;
+        userName.value = multiAccountUserModel.data.user.name;
 
-        // bool vetNgoAvail = multiAccountUserModel.data.vetNgo.isEmpty ? false : true;
-        // if(vetNgoAvail == true) {
-        //   vetNgoProfile = true;
-        //   ngoEmail.value = "${multiAccountUserModel.data.vetNgo[0].email}";
-           ngoName.value = "${multiAccountUserModel.data.vetNgo.name}";
-           log('ngoName: ${ngoName.value}');
-        // }
+        shopEmail.value = "${multiAccountUserModel.data.shop.email}";
+        shopName.value = "${multiAccountUserModel.data.shop.name}";
+        log('shopName: $shopName');
 
-        // bool trainerAvail = multiAccountUserModel.data.trainer.isEmpty ? false : true;
-        // if(trainerAvail == true) {
-        //   trainerProfile = true;
-        //   trainerEmail.value = "${multiAccountUserModel.data.trainer[0].email}";
-           trainerName.value = "${multiAccountUserModel.data.trainer.name}";
-        // }
+        ngoEmail.value = "${multiAccountUserModel.data.vetNgo.email}";
+        ngoName.value = "${multiAccountUserModel.data.vetNgo.name}";
+        log('ngoName: ${ngoName.value}');
 
-
+        trainerEmail.value = "${multiAccountUserModel.data.trainer.email}";
+        trainerName.value = "${multiAccountUserModel.data.trainer.name}";
       } else {
         log("Get Multi Account Api Else");
         //await unfollowUserFunction();

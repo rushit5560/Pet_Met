@@ -12,7 +12,7 @@ class PetMeetingListScreenController extends GetxController {
   RxBool isSuccessStatus = false.obs;
   final size = Get.size;
 
-  List<PetList> subCatPetList = [];
+  List<PetDatum> subCatPetList = [];
 
 
   Future<void> getCategoryWisePetList() async {

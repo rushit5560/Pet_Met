@@ -35,7 +35,7 @@ class PetMeetingListModule extends StatelessWidget {
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, i) {
-              log("${ApiUrl.apiImagePath}${screenController.subCatPetList[i].image}");
+              log("${ApiUrl.apiImagePath}${screenController.subCatPetList[i].data.image}");
               return dogDisplayWidget(i);
             },
           );
@@ -66,9 +66,9 @@ class PetMeetingListModule extends StatelessWidget {
                 Get.to(
                   () => PetMeetingDetailsScreen(),
                   arguments: [
-                    screenController.subCatPetList[i].id,
-                    screenController.subCatPetList[i].userid,
-                    screenController.subCatPetList[i].categoryId,
+                    screenController.subCatPetList[i].data.id,
+                    screenController.subCatPetList[i].data.userid,
+                    screenController.subCatPetList[i].data.categoryId,
                   ],
                 );
               },
@@ -81,7 +81,7 @@ class PetMeetingListModule extends StatelessWidget {
                 child: Image.network(
                   ApiUrl.apiImagePath +
                       "asset/uploads/petimage/" +
-                      screenController.subCatPetList[i].image,
+                      screenController.subCatPetList[i].data.image,
                   errorBuilder: (context, st, ob) {
                     return Image.asset(AppImages.petMetLogoImg);
                   },
@@ -108,9 +108,9 @@ class PetMeetingListModule extends StatelessWidget {
                 Get.to(
                       () => PetMeetingDetailsScreen(),
                   arguments: [
-                    screenController.subCatPetList[i].id,
-                    screenController.subCatPetList[i].userid,
-                    screenController.subCatPetList[i].categoryId,
+                    screenController.subCatPetList[i].data.id,
+                    screenController.subCatPetList[i].data.userid,
+                    screenController.subCatPetList[i].data.categoryId,
                   ],
                 );
               },
@@ -121,7 +121,7 @@ class PetMeetingListModule extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        screenController.subCatPetList[i].petName,
+                        screenController.subCatPetList[i].data.petName,
                         style: TextStyle(
                           color: AppColors.accentTextColor,
                           fontSize: 18.sp,
@@ -129,7 +129,7 @@ class PetMeetingListModule extends StatelessWidget {
                         ),
                       ),
                       Html(
-                        data: screenController.subCatPetList[i].details,
+                        data: screenController.subCatPetList[i].data.details,
                         style: {
                           "body": Style(
                             color: themeProvider.darkTheme
@@ -152,7 +152,7 @@ class PetMeetingListModule extends StatelessWidget {
                       // ),
                       const SizedBox(height: 12),
                       Text(
-                        screenController.subCatPetList[i].gender + ", 2 Years Old",
+                        screenController.subCatPetList[i].data.gender + ", 2 Years Old",
                         style: TextStyle(
                           color: themeProvider.darkTheme
                               ? AppColors.whiteColor.withOpacity(0.65)
@@ -194,15 +194,15 @@ class PetMeetingListModule extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () {
                         //Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
-                        log('Follow Userid: ${screenController.subCatPetList[i].userid}');
-                        log('Follow Categoryid: ${screenController.subCatPetList[i].categoryId}');
+                        log('Follow Userid: ${screenController.subCatPetList[i].data.userid}');
+                        log('Follow Categoryid: ${screenController.subCatPetList[i].data.categoryId}');
                         Get.to(() => UserProfileScreen(),
                             transition: Transition.native,
                             duration: const Duration(milliseconds: 500),
                             arguments: [
-                              screenController.subCatPetList[i].userid,
-                              screenController.subCatPetList[i].categoryId,
-                              screenController.subCatPetList[i].id,
+                              screenController.subCatPetList[i].data.userid,
+                              screenController.subCatPetList[i].data.categoryId,
+                              screenController.subCatPetList[i].data.id,
                             ]);
                       },
                       child: Container(

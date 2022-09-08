@@ -48,10 +48,10 @@ class TrainersAndUsersScreenController extends GetxController {
   RxString trainerEmail = "".obs;
   RxString trainerName = "".obs;
 
-  bool userProfile = false;
-  bool shopProfile = false;
-  bool vetNgoProfile = false;
-  bool trainerProfile = false;
+  bool userProfileAvail = false;
+  bool shopProfileAvail = false;
+  bool vetNgoProfileAvail = false;
+  bool trainerProfileAvail = false;
 
   RxBool isPasswordVisible = true.obs;
 
@@ -213,6 +213,11 @@ class TrainersAndUsersScreenController extends GetxController {
       log('isSuccessStatus: $isSuccessStatus');
 
       if (isSuccessStatus.value) {
+
+        userProfileAvail = multiAccountUserModel.data.user.categoryId == "" ? false : true;
+        shopProfileAvail = multiAccountUserModel.data.shop.categoryID == "" ? false : true;
+        vetNgoProfileAvail = multiAccountUserModel.data.vetNgo.categoryId == "" ? false : true;
+        trainerProfileAvail = multiAccountUserModel.data.trainer.categoryID == "" ? false : true;
 
         // bool userAvail = multiAccountUserModel.data.user.isEmpty ? false : true;
         // if(userAvail == true) {

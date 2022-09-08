@@ -242,7 +242,7 @@ class Data {
     // userdata: UserData.fromJson(json["userdata"] ?? {}),
     user: User.fromJson(json["user"] ?? {}),
     shop: Shop.fromJson(json["shop"] ?? {}),
-    vetNgo: VetNgo.fromJson(json["vetNgo"] ?? {}),
+    vetNgo: VetNgo.fromJson(json["vet_ngo"] ?? {}),
     trainer: Trainer.fromJson(json["trainer"] ?? {}),
     //shop: Map.from(json["shop"]).map((k, v) => MapEntry<String, String>(k, v == null ? null : v)),
     //vetNgo: Map.from(json["vet_ngo"]).map((k, v) => MapEntry<String, String>(k, v == null ? null : v)),
@@ -651,94 +651,94 @@ class Shop {
   }
 }
 
-class VetNgo {
-  String ? uid;
-  String ? id;
-  String ? name;
-  String ? address;
-  String ? phone;
-  String ? open;
-  String ? close;
-  String ? fullText;
-  String ? instagram;
-  String ? facebook;
-  String ? image;
-  String ? vetNgoimages;
-  String ? image1;
-  String ? image2;
-  String ? image3;
-  String ? image4;
-  String ? image5;
-  String ? meetingimages;
-  String ? isActive;
-  String ? ifscCode;
-  String ? accountCode;
-  String ? userid;
-  String ? categoryID;
-  String ? createdBy;
-  String ? modifiedBy;
-  String ? createdDate;
-  String ? modifiedDate;
-  String ? rememberToken;
-  String ? isVerified;
-  String ? startdate;
-  String ? enddate;
-  String ? email;
-  String ? emailVerifiedAt;
-  String ? password;
-  String ? country;
-  String ? state;
-  String ? city;
-  String ? forgotpasswordToken;
-  String ? createdAt;
-  String ? updatedAt;
-  String ? bod;
-  String ? gender;
+/*class VetNgo {
+  String uid;
+  String id;
+  String name;
+  String address;
+  String phone;
+  String open;
+  String close;
+  String fullText;
+  String instagram;
+  String facebook;
+  String image;
+  String vetNgoimages;
+  String image1;
+  String image2;
+  String image3;
+  String image4;
+  String image5;
+  String meetingimages;
+  String isActive;
+  String ifscCode;
+  String accountCode;
+  String userid;
+  String categoryID;
+  String createdBy;
+  String modifiedBy;
+  String createdDate;
+  String modifiedDate;
+  String rememberToken;
+  String isVerified;
+  String startdate;
+  String enddate;
+  String email;
+  String emailVerifiedAt;
+  String password;
+  String country;
+  String state;
+  String city;
+  String forgotpasswordToken;
+  String createdAt;
+  String updatedAt;
+  String bod;
+  String gender;
 
   VetNgo(
       {
-        this.uid,
-        this.id,
-        this.name,
-        this.address,
-        this.phone,
-        this.open,
-        this.close,
-        this.fullText,
-        this.instagram,
-        this.facebook,
-        this.image,
-        this.vetNgoimages,
-        this.image1,
-        this.image2,
-        this.image3,
-        this.image4,
-        this.image5,
-        this.meetingimages,
-        this.isActive,
-        this.ifscCode,
-        this.accountCode,
-        this.userid,
-        this.categoryID,
-        this.createdBy,
-        this.modifiedBy,
-        this.createdDate,
-        this.modifiedDate,
-        this.rememberToken,
-        this.isVerified,
-        this.startdate,
-        this.enddate,
-        this.email,
-        this.emailVerifiedAt,
-        this.password,
-        this.country,
-        this.state,
-        this.city,
-        this.forgotpasswordToken,
-        this.createdAt,
-        this.updatedAt,
-        this.bod,
-        this.gender});
+        required this.uid,
+        required this.id,
+        required this.name,
+        required this.address,
+        required this.phone,
+        required this.open,
+        required this.close,
+        required this.fullText,
+        required this.instagram,
+        required this.facebook,
+        required this.image,
+        required this.vetNgoimages,
+        required this.image1,
+        required this.image2,
+        required this.image3,
+        required this.image4,
+        required this.image5,
+        required this.meetingimages,
+        required this.isActive,
+        required this.ifscCode,
+        required this.accountCode,
+        required this.userid,
+        required this.categoryID,
+        required this.createdBy,
+        required this.modifiedBy,
+        required this.createdDate,
+        required this.modifiedDate,
+        required this.rememberToken,
+        required this.isVerified,
+        required this.startdate,
+        required this.enddate,
+        required this.email,
+        required this.emailVerifiedAt,
+        required this.password,
+        required this.country,
+        required this.state,
+        required this.city,
+        required this.forgotpasswordToken,
+        required this.createdAt,
+        required this.updatedAt,
+        required this.bod,
+        required this.gender});
 
   VetNgo.fromJson(Map<String, dynamic> json) {
     uid = json['uid'] ?? "";
@@ -831,6 +831,186 @@ class VetNgo {
     data['gender'] = this.gender;
     return data;
   }
+}*/
+
+class VetNgo {
+  VetNgo({
+    required this.uid,
+    required this.id,
+    required this.name,
+    required this.address,
+    required this.phone,
+    required this.open,
+    required this.close,
+    required this.fullText,
+    required this.instagram,
+    required this.facebook,
+    required this.image,
+    required this.vetNgoimages,
+    required this.image1,
+    required this.image2,
+    required this.image3,
+    required this.image4,
+    required this.image5,
+    required this.meetingimages,
+    required this.isActive,
+    required this.ifscCode,
+    required this.accountCode,
+    required this.userid,
+    required this.categoryId,
+    // required this.createdBy,
+    // required this.modifiedBy,
+    // required this.createdDate,
+    // required this.modifiedDate,
+    required this.rememberToken,
+    required this.isVerified,
+    required this.startdate,
+    required this.enddate,
+    required this.email,
+    required this.emailVerifiedAt,
+    required this.password,
+    required this.country,
+    required this.state,
+    required this.city,
+    required this.forgotpasswordToken,
+    // required this.createdAt,
+    // required this.updatedAt,
+    required this.bod,
+    required this.gender,
+  });
+
+  String uid;
+  String id;
+  String name;
+  String address;
+  String phone;
+  String open;
+  String close;
+  String fullText;
+  String instagram;
+  String facebook;
+  String image;
+  String vetNgoimages;
+  String image1;
+  String image2;
+  String image3;
+  String image4;
+  String image5;
+  String meetingimages;
+  String isActive;
+  String ifscCode;
+  String accountCode;
+  String userid;
+  String categoryId;
+  // String createdBy;
+  // String modifiedBy;
+  // String createdDate;
+  // String modifiedDate;
+  String rememberToken;
+  String isVerified;
+  String startdate;
+  String enddate;
+  String email;
+  String emailVerifiedAt;
+  String password;
+  String country;
+  String state;
+  String city;
+  String forgotpasswordToken;
+  // String createdAt;
+  // String updatedAt;
+  String bod;
+  String gender;
+
+  factory VetNgo.fromJson(Map<String, dynamic> json) => VetNgo(
+    uid: json["uid"] ?? "",
+    id: json["id"] ?? "",
+    name: json["name"] ?? "",
+    address: json["address"] ?? "",
+    phone: json["phone"] ?? "",
+    open: json["open"] ?? "",
+    close: json["close"] ?? "",
+    fullText: json["full_text"] ?? "",
+    instagram: json["instagram"] ?? "",
+    facebook: json["facebook"] ?? "",
+    image: json["image"] ?? "",
+    vetNgoimages: json["vet_ngoimages"] ?? "",
+    image1: json["image1"] ?? "",
+    image2: json["image2"] ?? "",
+    image3: json["image3"] ?? "",
+    image4: json["image4"] ?? "",
+    image5: json["image5"] ?? "",
+    meetingimages: json["meetingimages"] ?? "",
+    isActive: json["is_active"] ?? "",
+    ifscCode: json["ifsc_code"] ?? "",
+    accountCode: json["account_code"] ?? "",
+    userid: json["userid"] ?? "",
+    categoryId: json["categoryID"] ?? "",
+    // createdBy: json["created_by"],
+    // modifiedBy: json["modified_by"],
+    // createdDate: json["created_date"],
+    // modifiedDate: json["modified_date"],
+    rememberToken: json["remember_token"] ?? "",
+    isVerified: json["is_verified"] ?? "",
+    startdate: json["startdate"] ?? "",
+    enddate: json["enddate"] ?? "",
+    email: json["email"] ?? "",
+    emailVerifiedAt: json["email_verified_at"] ?? "",
+    password: json["password"] ?? "",
+    country: json["country"] ?? "",
+    state: json["state"] ?? "",
+    city: json["city"] ?? "",
+    forgotpasswordToken: json["forgotpassword_token"] ?? "",
+    // createdAt: json["created_at"],
+    // updatedAt: json["updated_at"],
+    bod: json["bod"] ?? "",
+    gender: json["gender"] ?? "",
+  );
+
+  Map<String, dynamic> toJson() => {
+    "uid": uid,
+    "id": id,
+    "name": name,
+    "address": address,
+    "phone": phone,
+    "open": open,
+    "close": close,
+    "full_text": fullText,
+    "instagram": instagram,
+    "facebook": facebook,
+    "image": image,
+    "vet_ngoimages": vetNgoimages,
+    "image1": image1,
+    "image2": image2,
+    "image3": image3,
+    "image4": image4,
+    "image5": image5,
+    "meetingimages": meetingimages,
+    "is_active": isActive,
+    "ifsc_code": ifscCode,
+    "account_code": accountCode,
+    "userid": userid,
+    "categoryID": categoryId,
+    // "created_by": createdBy,
+    // "modified_by": modifiedBy,
+    // "created_date": createdDate,
+    // "modified_date": modifiedDate,
+    "remember_token": rememberToken,
+    "is_verified": isVerified,
+    "startdate": startdate,
+    "enddate": enddate,
+    "email": email,
+    "email_verified_at": emailVerifiedAt,
+    "password": password,
+    "country": country,
+    "state": state,
+    "city": city,
+    "forgotpassword_token": forgotpasswordToken,
+    // "created_at": createdAt,
+    // "updated_at": updatedAt,
+    "bod": bod,
+    "gender": gender,
+  };
 }
 
 class Trainer {

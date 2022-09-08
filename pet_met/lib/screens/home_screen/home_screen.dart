@@ -74,6 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               .then((value) async {
                             controller.petTopList.clear();
                             controller.pageIndex = 1;
+                            controller.hasMore = true;
                             await controller.getUserProfileFunction();
 
                             indexController.isLoading(true);
@@ -86,6 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               .then((value) async {
                             controller.petTopList.clear();
                             controller.pageIndex = 1;
+                            controller.hasMore = true;
                             await controller.getShopProfileFunction();
                             indexController.isLoading(true);
                             indexController.isLoading(false);
@@ -97,6 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               .then((value) async {
                             controller.petTopList.clear();
                             controller.pageIndex = 1;
+                            controller.hasMore = true;
                             await controller.getNgoProfileFunction();
                             indexController.isLoading(true);
                             indexController.isLoading(false);
@@ -108,6 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               .then((value) async {
                             controller.petTopList.clear();
                             controller.pageIndex = 1;
+                            controller.hasMore = true;
                             await controller.getTrainerProfileFunction();
                             indexController.isLoading(true);
                             indexController.isLoading(false);

@@ -179,8 +179,8 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                   ),
                 ),*/
 
-                /*controller.userProfileAvail == true
-                    ?*/
+                controller.userProfileAvail == true
+                    ?
                 GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
@@ -274,11 +274,11 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                             ),
                           ),
                         ),
-                      ),
-                    //: Container(),
+                      )
+                    : Container(),
 
-                /*controller.shopProfile == true
-                    ?*/
+                controller.shopProfileAvail == true
+                    ?
                 GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
@@ -368,11 +368,11 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                             ),
                           ),
                         ),
-                      ),
-                    //: Container(),
+                      )
+                    : Container(),
 
-                /*controller.vetNgoProfile == true
-                    ? */
+                controller.vetNgoProfileAvail == true
+                    ?
                 GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
@@ -466,11 +466,11 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                             ),
                           ),
                         ),
-                      ),
-                    //: Container(),
+                      )
+                    : Container(),
 
-                /*controller.trainerProfile == true
-                    ? */
+                controller.trainerProfileAvail == true
+                    ?
                 GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
@@ -561,8 +561,8 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                             ),
                           ),
                         ),
-                      ),
-                   // : Container(),
+                      )
+                   : Container(),
 
                 //controller.userProfileAvail == false || controller.shopProfile == false || controller.vetNgoProfile == false || controller.trainerProfile == false ?
                     /*GestureDetector(

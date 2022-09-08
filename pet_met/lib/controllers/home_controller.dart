@@ -33,7 +33,7 @@ class HomeController extends GetxController {
 
   RxBool isOpened = false.obs;
   List<Datum> bannerList = [];
-  List<PetList> petTopList = [];
+  List<PetDatum> petTopList = [];
   List<Userstory> imageList = [];
   List<GetUserStoryModelDatum> userStoryList = [];
 
@@ -124,7 +124,7 @@ class HomeController extends GetxController {
     } catch (e) {
       log("Banner Api Error ::: $e");
     } finally {
-      isLoading(false);
+      // isLoading(false);
         await getAllIncrementPetFunction();
     }
   }
@@ -212,7 +212,7 @@ class HomeController extends GetxController {
           // bannerList.clear();
           petTopList.addAll(getPetTopListModel.data);
           log("petList Length : ${petTopList.length}");
-          log('pet image1: ${ApiUrl.apiImagePath + petTopList[0].image}');
+          // log('pet image1: ${ApiUrl.apiImagePath + petTopList[0].image}');
 
           // If get all pet then change the hasMore flag
           if (getPetTopListModel.data.length < 10) {
@@ -634,14 +634,17 @@ class HomeController extends GetxController {
     } else if(UserDetails.categoryId == "4"){
       getTrainerProfileFunction();
     }
-    /*scrollController.addListener(() {
+
+    // getAllIncrementPetFunction();
+
+    scrollController.addListener(() {
       if(scrollController.position.maxScrollExtent == scrollController.offset) {
         //api call for more pet
         pageIndex++;
         log("pageIndex : $pageIndex");
         getAllIncrementPetFunction();
       }
-    });*/
+    });
   }
 
   @override
