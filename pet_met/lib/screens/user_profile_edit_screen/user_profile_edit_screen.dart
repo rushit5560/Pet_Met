@@ -51,7 +51,7 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                       children: [
                         CustomAppBar(
                           appBarOption: AppBarOption.singleBackButtonOption,
-                          title: "Profile Edit",
+                          title: "Edit Profile",
                           trailingWidget: GestureDetector(
                             onTap: () {
                               modelBottomSheet(context);
@@ -564,8 +564,8 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                       )
                    : Container(),
 
-                //controller.userProfileAvail == false || controller.shopProfile == false || controller.vetNgoProfile == false || controller.trainerProfile == false ?
-                    /*GestureDetector(
+                controller.userProfileAvail == false || controller.shopProfileAvail == false || controller.vetNgoProfileAvail == false || controller.trainerProfileAvail == false ?
+                    GestureDetector(
                       onTap: (){
                         Get.to(() => const UserCategoriesScreen());
                       },
@@ -580,8 +580,8 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                           child: Icon(Icons.add, size: 30),
                         ),
                       ),
-                    ),*/
-                        //: Container(),
+                    )
+                        : Container(),
 
                 SizedBox(height: 7)
               ],

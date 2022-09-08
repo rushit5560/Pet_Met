@@ -111,6 +111,9 @@ class UserProfileEditController extends GetxController {
         mobileController.text = getUserProfileModel.data.data[0].phone;
         emailController.text = getUserProfileModel.data.data[0].email;
         birthDate = getUserProfileModel.data.data[0].bod;
+        detailsController.text = getUserProfileModel.data.data[0].fullText;
+        facebookController.text = getUserProfileModel.data.data[0].facebook;
+        instagramController.text = getUserProfileModel.data.data[0].instagram;
 
         await userPreference.setUserDetails(
           selfId: UserDetails.selfId,
@@ -197,19 +200,20 @@ class UserProfileEditController extends GetxController {
       log('isSuccessStatus: $isSuccessStatus');
 
       if (isSuccessStatus.value) {
-        userProfileAvail =
-            multiAccountUserModel.data.user.categoryId == "" ? false : true;
-        shopProfileAvail =
-            multiAccountUserModel.data.shop.categoryID == "" ? false : true;
-        vetNgoProfileAvail =
-            multiAccountUserModel.data.vetNgo.categoryId == "" ? false : true;
-        trainerProfileAvail =
-            multiAccountUserModel.data.trainer.categoryID == "" ? false : true;
+        userProfileAvail = multiAccountUserModel.data.user.categoryID == "" ? false : true;
+        shopProfileAvail = multiAccountUserModel.data.shop.categoryID == "" ? false : true;
+        vetNgoProfileAvail = multiAccountUserModel.data.vetNgo.categoryID == "" ? false : true;
+        trainerProfileAvail = multiAccountUserModel.data.trainer.categoryID == "" ? false : true;
 
-        log("data.user : ${multiAccountUserModel.data.user.categoryId}");
+        log("data.user : ${multiAccountUserModel.data.user.categoryID}");
         log("data.shop : ${multiAccountUserModel.data.shop.categoryID}");
-        log("data.vetNgo : ${multiAccountUserModel.data.vetNgo.categoryId}");
+        log("data.vetNgo : ${multiAccountUserModel.data.vetNgo.categoryID}");
         log("data.trainer : ${multiAccountUserModel.data.trainer.categoryID}");
+
+        log('userProfileAvail1: $userProfileAvail');
+        log('shopProfileAvail1: $shopProfileAvail');
+        log('vetNgoProfileAvail1: $vetNgoProfileAvail');
+        log('trainerProfileAvail1: $trainerProfileAvail');
 
         userEmail.value = multiAccountUserModel.data.user.email;
         userName.value = multiAccountUserModel.data.user.name;
@@ -381,9 +385,9 @@ class UserProfileEditController extends GetxController {
       request.fields['phone'] = mobileController.text.trim();
       request.fields['gender'] = selectedGenderValue.value.toLowerCase();
       request.fields['userid'] = UserDetails.selfId;
-      //request.fields['full_text'] = detailsController.text.trim();
-      // request.fields['instagram'] = instagramController.text.trim();
-      // request.fields['facebook'] = facebookController.text.trim();
+      request.fields['full_text'] = detailsController.text.trim();
+      request.fields['instagram'] = instagramController.text.trim();
+      request.fields['facebook'] = facebookController.text.trim();
 
       var response = await request.send();
       log('response: ${response.request}');

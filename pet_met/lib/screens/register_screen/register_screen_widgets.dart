@@ -141,7 +141,7 @@ class NameTextFieldModule extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(width: 0, style: BorderStyle.none),
             ),
-            hintText: "Name",
+            hintText: "Username",
             hintStyle: TextStyle(
               color: themeProvider.darkTheme
                   ? AppColors.whiteColor

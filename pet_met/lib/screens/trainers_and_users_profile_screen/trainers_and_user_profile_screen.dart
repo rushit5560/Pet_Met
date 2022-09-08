@@ -137,8 +137,7 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                controller.userProfileAvail == true
-                    ?
+                controller.userProfileAvail == true ?
                 GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
@@ -235,8 +234,7 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                       )
                     : Container(),
 
-                controller.shopProfileAvail == true
-                    ?
+                controller.shopProfileAvail == true ?
                 GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
@@ -329,8 +327,7 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                       )
                     : Container(),
 
-                controller.vetNgoProfileAvail == true
-                    ?
+                controller.vetNgoProfileAvail == true ?
                 GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
@@ -427,8 +424,7 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                       )
                     : Container(),
 
-                controller.trainerProfileAvail == true
-                    ?
+                controller.trainerProfileAvail == true ?
                 GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
@@ -522,7 +518,7 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                       )
                     : Container(),
 
-               // controller.userProfile == false || controller.shopProfile == false || controller.vetNgoProfile == false || controller.trainerProfile == false ?
+                controller.userProfileAvail == false || controller.shopProfileAvail == false || controller.vetNgoProfileAvail == false || controller.trainerProfileAvail == false ?
                   GestureDetector(
                   onTap: (){
                     Get.to(() => const UserCategoriesScreen());
@@ -538,8 +534,8 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                       child: Icon(Icons.add, size: 30),
                     ),
                   ),
-                ),
-                   // : Container(),
+                )
+                    : Container(),
                 const SizedBox(height: 7)
               ],
             ),

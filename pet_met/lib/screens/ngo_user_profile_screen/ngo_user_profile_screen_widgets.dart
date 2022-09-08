@@ -353,7 +353,7 @@ class NameOfNgoListModule extends StatelessWidget {
                   ? AppColors.whiteColor
                   : AppColors.darkThemeColor,
             )),
-        const SizedBox(height: 8),
+        const SizedBox(height: 10),
         /*Container(
           height: screenController.size.width * 0.16,
           child: ListView.separated(
@@ -403,7 +403,7 @@ class NameOfNgoListModule extends StatelessWidget {
           ),
         ),*/
         SizedBox(
-          height: screenController.size.width * 0.16,
+          height: screenController.size.width * 0.17,
           child: ListView.builder(
               shrinkWrap: true,
               itemCount: 5,

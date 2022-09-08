@@ -374,7 +374,7 @@ class User {
     required this.country,
     required this.state,
     required this.city,
-    required this.categoryId,
+    required this.categoryID,
     required this.forgotpasswordToken,
     required this.createdAt,
     required this.updatedAt,
@@ -398,7 +398,7 @@ class User {
   String country;
   String state;
   String city;
-  String categoryId;
+  String categoryID;
   String forgotpasswordToken;
   String createdAt;
   String updatedAt;
@@ -422,7 +422,7 @@ class User {
     country: json["country"] ?? "",
     state: json["state"] ?? "",
     city: json["city"] ?? "",
-    categoryId: json["categoryID"] ?? "",
+    categoryID: json["categoryID"] ?? "",
     forgotpasswordToken: json["forgotpassword_token"] ?? "",
     createdAt: json["created_at"] ?? "",
     updatedAt: json["updated_at"] ?? "",
@@ -447,7 +447,7 @@ class User {
     "country": country,
     "state": state,
     "city": city,
-    "categoryID": categoryId,
+    "categoryID": categoryID,
     "forgotpassword_token": forgotpasswordToken,
     "created_at": createdAt,
     "updated_at": updatedAt,
@@ -555,50 +555,50 @@ class Shop {
         this.gender});
 
   Shop.fromJson(Map<String, dynamic> json) {
-    uid = json['uid'];
-    id = json['id'];
-    name = json['name'];
-    address = json['address'];
-    phonenumber = json['phonenumber'];
-    shopopen = json['shopopen'];
-    shopclose = json['shopclose'];
-    fullText = json['full_text'];
-    instagram = json['instagram'];
-    facebook = json['facebook'];
-    showimg = json['showimg'];
-    offersimages = json['offersimages'];
-    image1 = json['image1'];
-    image2 = json['image2'];
-    image3 = json['image3'];
-    image4 = json['image4'];
-    image5 = json['image5'];
-    meetingimages = json['meetingimages'];
-    sortorder = json['sortorder'];
-    status = json['status'];
-    userid = json['userid'];
-    isActive = json['is_active'];
-    categoryID = json['categoryID'];
-    createdBy = json['created_by'];
-    modifiedBy = json['modified_by'];
-    createdDate = json['created_date'];
-    modifiedDate = json['modified_date'];
-    rememberToken = json['remember_token'];
-    isVerified = json['is_verified'];
-    startdate = json['startdate'];
-    enddate = json['enddate'];
-    email = json['email'];
-    emailVerifiedAt = json['email_verified_at'];
-    password = json['password'];
-    image = json['image'];
-    country = json['country'];
-    state = json['state'];
-    city = json['city'];
-    forgotpasswordToken = json['forgotpassword_token'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-    bod = json['bod'];
-    phone = json['phone'];
-    gender = json['gender'];
+    uid = json['uid'] ?? "";
+    id = json['id'] ?? "";
+    name = json['name'] ?? "";
+    address = json['address'] ?? "";
+    phonenumber = json['phonenumber'] ?? "";
+    shopopen = json['shopopen'] ?? "";
+    shopclose = json['shopclose'] ?? "";
+    fullText = json['full_text'] ?? "";
+    instagram = json['instagram'] ?? "";
+    facebook = json['facebook'] ?? "";
+    showimg = json['showimg'] ?? "";
+    offersimages = json['offersimages'] ?? "";
+    image1 = json['image1'] ?? "";
+    image2 = json['image2'] ?? "";
+    image3 = json['image3'] ?? "";
+    image4 = json['image4'] ?? "";
+    image5 = json['image5'] ?? "";
+    meetingimages = json['meetingimages'] ?? "";
+    sortorder = json['sortorder'] ?? "";
+    status = json['status'] ?? "";
+    userid = json['userid'] ?? "";
+    isActive = json['is_active'] ?? "";
+    categoryID = json['categoryID'] ?? "";
+    createdBy = json['created_by'] ?? "";
+    modifiedBy = json['modified_by'] ?? "";
+    createdDate = json['created_date'] ?? "";
+    modifiedDate = json['modified_date'] ?? "";
+    rememberToken = json['remember_token'] ?? "";
+    isVerified = json['is_verified'] ?? "";
+    startdate = json['startdate'] ?? "";
+    enddate = json['enddate'] ?? "";
+    email = json['email'] ?? "";
+    emailVerifiedAt = json['email_verified_at'] ?? "";
+    password = json['password'] ?? "";
+    image = json['image'] ?? "";
+    country = json['country'] ?? "";
+    state = json['state'] ?? "";
+    city = json['city'] ?? "";
+    forgotpasswordToken = json['forgotpassword_token'] ?? "";
+    createdAt = json['created_at'] ?? "";
+    updatedAt = json['updated_at'] ?? "";
+    bod = json['bod'] ?? "";
+    phone = json['phone'] ?? "";
+    gender = json['gender'] ?? "";
   }
 
   Map<String, dynamic> toJson() {
@@ -857,7 +857,7 @@ class VetNgo {
     required this.ifscCode,
     required this.accountCode,
     required this.userid,
-    required this.categoryId,
+    required this.categoryID,
     // required this.createdBy,
     // required this.modifiedBy,
     // required this.createdDate,
@@ -901,7 +901,7 @@ class VetNgo {
   String ifscCode;
   String accountCode;
   String userid;
-  String categoryId;
+  String categoryID;
   // String createdBy;
   // String modifiedBy;
   // String createdDate;
@@ -945,7 +945,7 @@ class VetNgo {
     ifscCode: json["ifsc_code"] ?? "",
     accountCode: json["account_code"] ?? "",
     userid: json["userid"] ?? "",
-    categoryId: json["categoryID"] ?? "",
+    categoryID: json["categoryID"] ?? "",
     // createdBy: json["created_by"],
     // modifiedBy: json["modified_by"],
     // createdDate: json["created_date"],
@@ -990,7 +990,7 @@ class VetNgo {
     "ifsc_code": ifscCode,
     "account_code": accountCode,
     "userid": userid,
-    "categoryID": categoryId,
+    "categoryID": categoryID,
     // "created_by": createdBy,
     // "modified_by": modifiedBy,
     // "created_date": createdDate,

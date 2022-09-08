@@ -75,7 +75,7 @@ class OnboardingController extends GetxController {
             ? "assets/images/splash_peoples3_dark.png"
             : "assets/images/splash_peoples3_light.png",
         title: 'Get Started to Find your lovely friends',
-        description: 'meet your pet and get the happy daya of the day',
+        description: 'meet your pet and get the happy day of the day',
       ),
     ];
   }

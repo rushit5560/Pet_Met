@@ -71,6 +71,9 @@ class UserData {
     required this.bod,
     required this.phone,
     required this.gender,
+    required this.fullText,
+    required this.instagram,
+    required this.facebook,
     required this.isActive,
     required this.isVerified,
   });
@@ -92,6 +95,9 @@ class UserData {
   String bod;
   String phone;
   String gender;
+  String fullText;
+  String instagram;
+  String facebook;
   String isActive;
   String isVerified;
 
@@ -113,6 +119,9 @@ class UserData {
     bod: json["bod"] ?? "",
     phone: json["phone"] ?? "",
     gender: json["gender"] ?? "",
+    fullText: json["full_text"] ?? "",
+    instagram: json["instagram"] ?? "",
+    facebook: json["facebook"] ?? "",
     isActive: json["is_active"] ?? "",
     isVerified: json["is_verified"] ?? "",
   );
@@ -135,6 +144,9 @@ class UserData {
     "bod": bod,
     "phone": phone,
     "gender": gender,
+    "full_text": fullText,
+    "instagram": instagram,
+    "facebook": facebook,
     "is_active": isActive,
     "is_verified": isVerified,
   };

@@ -224,9 +224,9 @@ class ShopUserProfileScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
 
-        userProfileAvail = multiAccountUserModel.data.user.categoryId == "" ? false : true;
+        userProfileAvail = multiAccountUserModel.data.user.categoryID == "" ? false : true;
         shopProfileAvail = multiAccountUserModel.data.shop.categoryID == "" ? false : true;
-        vetNgoProfileAvail = multiAccountUserModel.data.vetNgo.categoryId == "" ? false : true;
+        vetNgoProfileAvail = multiAccountUserModel.data.vetNgo.categoryID == "" ? false : true;
         trainerProfileAvail = multiAccountUserModel.data.trainer.categoryID == "" ? false : true;
 
         // bool userAvail = multiAccountUserModel.data.user.isEmpty ? false : true;
@@ -239,21 +239,21 @@ class ShopUserProfileScreenController extends GetxController {
         // bool shopAvail = multiAccountUserModel.data.shope.isEmpty ? false : true;
         // if(shopAvail == true) {
         //   shopProfile = true;
-        //   shopEmail.value = "${multiAccountUserModel.data.shope[0].email}";
+           shopEmail.value = "${multiAccountUserModel.data.shop.email}";
            shopName.value = "${multiAccountUserModel.data.shop.name}";
         // }
         //
         // bool vetNgoAvail = multiAccountUserModel.data.vetNgo.isEmpty ? false : true;
         // if(vetNgoAvail == true) {
         //   vetNgoProfile = true;
-        //   ngoEmail.value = "${multiAccountUserModel.data.vetNgo[0].email}";
+           ngoEmail.value = multiAccountUserModel.data.vetNgo.email;
            ngoName.value = multiAccountUserModel.data.vetNgo.name;
         // }
         //
         // bool trainerAvail = multiAccountUserModel.data.trainer.isEmpty ? false : true;
         // if(trainerAvail == true) {
         //   trainerProfile = true;
-        //   trainerEmail.value = "${multiAccountUserModel.data.trainer[0].email}";
+           trainerEmail.value = "${multiAccountUserModel.data.trainer.email}";
            trainerName.value = "${multiAccountUserModel.data.trainer.name}";
         // }
 

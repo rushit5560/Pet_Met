@@ -354,9 +354,9 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                 : AppColors.darkThemeColor,
           ),
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: 10),
         SizedBox(
-          height: screenController.size.width * 0.16,
+          height: screenController.size.width * 0.17,
           child: ListView.builder(
               shrinkWrap: true,
               itemCount: 5,

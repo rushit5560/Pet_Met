@@ -1093,7 +1093,7 @@ class BannerModule extends StatelessWidget {
             ),
           ),
         ),
-        Container(
+        /*Container(
           padding: const EdgeInsets.only(left: 10),
           alignment: Alignment.centerLeft,
           child: Row(
@@ -1105,7 +1105,7 @@ class BannerModule extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: AppColors.accentColor,
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
@@ -1114,7 +1114,7 @@ class BannerModule extends StatelessWidget {
               Expanded(child: Container()),
             ],
           ),
-        ),
+        ),*/
       ],
     ).commonSymmetricPadding(horizontal: 20);
   }

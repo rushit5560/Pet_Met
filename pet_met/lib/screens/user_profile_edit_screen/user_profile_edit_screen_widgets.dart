@@ -50,26 +50,15 @@ class UploadImageModule extends StatelessWidget {
         modelBottomSheet(context);
       },
       child: Container(
-        height: controller.size.width * 0.50,
+        //height: controller.size.width * 0.50,
         width: controller.size.width * 0.50,
         decoration: BoxDecoration(
           color: themeProvider.darkTheme
               ? AppColors.darkThemeColor
               : AppColors.whiteColor,
           borderRadius: const BorderRadius.all(
-            Radius.circular(25),
+            Radius.circular(15),
           ),
-          // image: controller.imageFile != null ?
-          //   DecorationImage(
-          //       image: FileImage(
-          //           File(themeProvider.darkTheme
-          //           ? controller.imageFile!.path: controller.imageFile!.path))):
-          // DecorationImage(
-          //     image: NetworkImage(
-          //       themeProvider.darkTheme
-          //           ?
-          //       controller.userProfile : controller.userProfile,
-          //     )),
           boxShadow: [
             BoxShadow(
               color: AppColors.greyTextColor.withOpacity(0.3),
@@ -78,6 +67,7 @@ class UploadImageModule extends StatelessWidget {
               offset: const Offset(0, 5),
             ),
           ],
+          //border: Border.all(color: AppColors.accentTextColor)
         ),
         child: controller.imageFile != null
             ? Center(
@@ -513,8 +503,8 @@ class NameTextFieldModule extends StatelessWidget {
               "Name",
               style: TextStyle(
                 color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.blackTextColor,
+                    ? AppColors.whiteColor.withOpacity(0.7)
+                    : AppColors.blackTextColor.withOpacity(0.7),
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -556,8 +546,8 @@ class EmailTextFieldModule extends StatelessWidget {
               "Email",
               style: TextStyle(
                 color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.blackTextColor,
+                    ? AppColors.whiteColor.withOpacity(0.7)
+                    : AppColors.blackTextColor.withOpacity(0.7),
                 fontSize: 11.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -593,16 +583,17 @@ class MobileNumberTextFieldModule extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Mobile Number",
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.blackTextColor,
-                fontSize: 11.sp,
-                fontWeight: FontWeight.bold,
-              ),
+          children: const [
+            Text.rich(
+                TextSpan(
+                    text: 'Mobile Number ',
+                    children: <InlineSpan>[
+                      TextSpan(
+                        text: '*',
+                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+                      )
+                    ]
+                )
             ),
           ],
         ),
@@ -809,16 +800,17 @@ class _GenderDropDownModuleState extends State<GenderDropDownModule> {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Gender",
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.blackTextColor,
-                fontSize: 11.sp,
-                fontWeight: FontWeight.bold,
-              ),
+          children: const [
+            Text.rich(
+                TextSpan(
+                    text: 'Gender ',
+                    children: <InlineSpan>[
+                      TextSpan(
+                        text: '*',
+                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+                      )
+                    ]
+                )
             ),
           ],
         ),
@@ -935,16 +927,17 @@ class BirthDateModule extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Birthdate",
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.blackTextColor,
-                fontSize: 11.sp,
-                fontWeight: FontWeight.bold,
-              ),
+          children: const [
+            Text.rich(
+                TextSpan(
+                    text: 'Birthdate ',
+                    children: <InlineSpan>[
+                      TextSpan(
+                        text: '*',
+                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+                      )
+                    ]
+                )
             ),
           ],
         ),

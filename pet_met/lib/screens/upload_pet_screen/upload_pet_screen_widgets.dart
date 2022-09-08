@@ -51,87 +51,82 @@ class _UploadImageModuleState extends State<UploadImageModule> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        showModalBottomSheet<void>(
-          context: context,
-          constraints: null,
-          builder: (BuildContext context) {
-            return Container(
-              color: themeProvider.darkTheme
-                  ? AppColors.darkThemeColor
-                  : AppColors.whiteColor,
-              height: controller.size.height * 0.15,
-              child: Column(
-                children: [
-                  ListTile(
-                    onTap: getFromCamera,
-                    contentPadding:
-                        EdgeInsets.only(left: controller.size.width * 0.1),
-                    title: Text(
-                      "Select Image From Camera",
-                      style: TextStyle(
-                        color: themeProvider.darkTheme
-                            ? AppColors.whiteColor
-                            : AppColors.darkThemeColor,
-                        //color: AppColors.blackTextColor.withOpacity(0.7),
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.w600,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        GestureDetector(
+          onTap: () {
+            showModalBottomSheet<void>(
+              context: context,
+              constraints: null,
+              builder: (BuildContext context) {
+                return Container(
+                  color: themeProvider.darkTheme
+                      ? AppColors.darkThemeColor
+                      : AppColors.whiteColor,
+                  height: controller.size.height * 0.15,
+                  child: Column(
+                    children: [
+                      ListTile(
+                        onTap: getFromCamera,
+                        contentPadding:
+                            EdgeInsets.only(left: controller.size.width * 0.1),
+                        title: Text(
+                          "Select Image From Camera",
+                          style: TextStyle(
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor
+                                : AppColors.darkThemeColor,
+                            //color: AppColors.blackTextColor.withOpacity(0.7),
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  ListTile(
-                    contentPadding:
-                        EdgeInsets.only(left: controller.size.width * 0.1),
-                    onTap: getFromGallery,
-                    title: Text(
-                      "Select Image From Gallery",
-                      style: TextStyle(
-                        color: themeProvider.darkTheme
-                            ? AppColors.whiteColor
-                            : AppColors.darkThemeColor,
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.w600,
+                      ListTile(
+                        contentPadding:
+                            EdgeInsets.only(left: controller.size.width * 0.1),
+                        onTap: getFromGallery,
+                        title: Text(
+                          "Select Image From Gallery",
+                          style: TextStyle(
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor
+                                : AppColors.darkThemeColor,
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
+                );
+              },
             );
           },
-        );
-      },
-      child: Container(
-          height: controller.size.height * 0.2,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: themeProvider.darkTheme
-                ? AppColors.darkThemeColor
-                : AppColors.whiteColor,
-            borderRadius: const BorderRadius.all(
-              Radius.circular(15),
-            ),
-            // image: DecorationImage(
-            //   image: FileImage(
-            //     File(controller.imageFile!.path),
-            //   ),
-            // ),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.greyTextColor.withOpacity(0.3),
-                blurRadius: 35,
-                spreadRadius: 1,
-                offset: const Offset(0, 5),
+          child: Container(
+              //height: controller.size.height * 0.2,
+              width: controller.size.width * 0.50,
+              decoration: BoxDecoration(
+                color: themeProvider.darkTheme
+                    ? AppColors.darkThemeColor
+                    : AppColors.whiteColor,
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(15),
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.greyTextColor.withOpacity(0.3),
+                    blurRadius: 35,
+                    spreadRadius: 1,
+                    offset: const Offset(0, 5),
+                  ),
+                ],
+                //border: Border.all(color: AppColors.accentTextColor)
               ),
-            ],
-          ),
-          child: controller.imageFile != null
-              ? Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      ClipRRect(
+              child: controller.imageFile != null
+                  ? Center(
+                      child: ClipRRect(
                         borderRadius: BorderRadius.circular(15),
                         child: Image.file(
                             themeProvider.darkTheme
@@ -139,31 +134,12 @@ class _UploadImageModuleState extends State<UploadImageModule> {
                                 : controller.imageFile!,
                             width: double.infinity,
                             height: controller.size.height * 0.2,
-                            fit: BoxFit.cover),
+                            fit: BoxFit.fill),
                       ),
-
-                      //),
-                      // const SizedBox(height: 20),
-                      // Text(
-                      //   "Upload Image",
-                      //   style: TextStyle(
-                      //     color: themeProvider.darkTheme
-                      //         ? AppColors.whiteColor
-                      //         : AppColors.blackTextColor,
-                      //     fontSize: 15.sp,
-                      //     fontWeight: FontWeight.w500,
-                      //   ),
-                      // ),
-                    ],
-                  ),
-                )
-              : controller.petImage != null
-                  ? Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          ClipRRect(
+                    )
+                  : controller.petImage != null
+                      ? Center(
+                          child: ClipRRect(
                             borderRadius: BorderRadius.circular(15),
                             child: Image.network(
                               themeProvider.darkTheme
@@ -171,53 +147,40 @@ class _UploadImageModuleState extends State<UploadImageModule> {
                                   : controller.petImage!,
                               width: double.infinity,
                               height: controller.size.height * 0.2,
-                              fit: BoxFit.cover,
+                              fit: BoxFit.fill,
                               errorBuilder: (context, er, st) {
                                 return Image.asset(AppImages.petMetLogoImg);
                               },
                             ),
                           ),
-
-                          //),
-                          // const SizedBox(height: 20),
-                          // Text(
-                          //   "Upload Image",
-                          //   style: TextStyle(
-                          //     color: themeProvider.darkTheme
-                          //         ? AppColors.whiteColor
-                          //         : AppColors.blackTextColor,
-                          //     fontSize: 15.sp,
-                          //     fontWeight: FontWeight.w500,
-                          //   ),
-                          // ),
-                        ],
-                      ),
-                    )
-                  : Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            themeProvider.darkTheme
-                                ? AppImages.cameraPlaceHolderImgDark
-                                : AppImages.cameraPlaceHolderImglight,
-                            height: 65,
+                        )
+                      : Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                themeProvider.darkTheme
+                                    ? AppImages.cameraPlaceHolderImgDark
+                                    : AppImages.cameraPlaceHolderImglight,
+                                height: 65,
+                              ),
+                              const SizedBox(height: 20),
+                              Text(
+                                "Upload Image",
+                                style: TextStyle(
+                                  color: themeProvider.darkTheme
+                                      ? AppColors.whiteColor
+                                      : AppColors.blackTextColor,
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
                           ),
-                          const SizedBox(height: 20),
-                          Text(
-                            "Upload Image",
-                            style: TextStyle(
-                              color: themeProvider.darkTheme
-                                  ? AppColors.whiteColor
-                                  : AppColors.blackTextColor,
-                              fontSize: 15.sp,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
-                    )),
+                        )),
+        ),
+      ],
     );
   }
 

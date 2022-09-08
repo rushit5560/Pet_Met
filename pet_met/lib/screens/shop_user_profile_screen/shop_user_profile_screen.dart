@@ -224,8 +224,8 @@ class ShopUserProfileScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(15),
                               border: Border.all(color: Colors.grey),
                               color: themeProvider.darkTheme
-                                  ? AppColors.darkThemeBoxColor
-                                  : AppColors.whiteColor,
+                                  ? AppColors.blackTextColor
+                                  : Colors.grey.shade200,
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -318,8 +318,8 @@ class ShopUserProfileScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(15),
                               border: Border.all(color: Colors.grey),
                               color: themeProvider.darkTheme
-                                  ? AppColors.darkThemeBoxColor
-                                  : AppColors.whiteColor,
+                                  ? AppColors.blackTextColor
+                                  : Colors.grey.shade200,
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -416,8 +416,8 @@ class ShopUserProfileScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(15),
                               border: Border.all(color: Colors.grey),
                               color: themeProvider.darkTheme
-                                  ? AppColors.darkThemeBoxColor
-                                  : AppColors.whiteColor,
+                                  ? AppColors.blackTextColor
+                                  : Colors.grey.shade200,
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -496,7 +496,7 @@ class ShopUserProfileScreen extends StatelessWidget {
                       )
                     : Container(),
 
-                //controller.userProfile == false || controller.shopProfile == false || controller.vetNgoProfile == false || controller.trainerProfile == false ?
+                controller.userProfileAvail == false || controller.shopProfileAvail == false || controller.vetNgoProfileAvail == false || controller.trainerProfileAvail == false ?
                 GestureDetector(
                   onTap: (){
                     Get.to(() => const UserCategoriesScreen());
@@ -509,11 +509,11 @@ class ShopUserProfileScreen extends StatelessWidget {
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(25),
-                      child: Icon(Icons.add, size: 30),
+                      child: const Icon(Icons.add, size: 30),
                     ),
                   ),
-                ),
-                //: Container(),
+                )
+                : Container(),
                 SizedBox(height: 7)
               ],
             ),

@@ -55,18 +55,18 @@ class PrivacyPolicyScreen extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    privacyPolicyScreenController.title,
-                                    style: TextStyle(
-                                      color: AppColors.accentTextColor,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 12.sp,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                      height: privacyPolicyScreenController
-                                              .size.height *
-                                          0.001.h),
+                                  // Text(
+                                  //   privacyPolicyScreenController.title,
+                                  //   style: TextStyle(
+                                  //     color: AppColors.accentTextColor,
+                                  //     fontWeight: FontWeight.bold,
+                                  //     fontSize: 12.sp,
+                                  //   ),
+                                  // ),
+                                  // SizedBox(
+                                  //     height: privacyPolicyScreenController
+                                  //             .size.height *
+                                  //         0.001.h),
                                   Html(
                                     data: privacyPolicyScreenController
                                         .description,
