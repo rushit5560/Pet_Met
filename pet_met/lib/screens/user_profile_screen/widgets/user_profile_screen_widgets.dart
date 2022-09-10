@@ -85,12 +85,12 @@ class ProfileImage extends StatelessWidget {
             child: Image.network(controller.userprofile,
                 width: controller.size.width * 0.50,
                 height: controller.size.width * 0.50,
-                fit: BoxFit.cover, errorBuilder: (context, er, bt) {
+                fit: BoxFit.fill, errorBuilder: (context, er, bt) {
               return Image.asset(
                 AppImages.petMetLogoImg,
                 width: double.infinity,
                 height: controller.size.height * 0.2,
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
               );
             }),
           )
@@ -98,14 +98,14 @@ class ProfileImage extends StatelessWidget {
             ? ClipRRect(
                 borderRadius: BorderRadius.circular(30),
                 child: Image.network(controller.shopProfile,
-                    width: double.infinity,
+                    width: controller.size.width * 0.50,
                     height: controller.size.width * 0.50,
-                    fit: BoxFit.cover, errorBuilder: (context, er, bt) {
+                    fit: BoxFit.fill, errorBuilder: (context, er, bt) {
                   return Image.asset(
                     AppImages.petMetLogoImg,
                     width: double.infinity,
                     height: controller.size.height * 0.2,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                   );
                 }),
               )

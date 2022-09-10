@@ -43,6 +43,7 @@ class PetMeetingDetailsScreen extends StatelessWidget {
               children: [
                 CustomAppBar(
                   appBarOption: AppBarOption.singleBackButtonOption,
+                  title: 'Pet Details',
                 ),
                 Expanded(
                   child: Obx(

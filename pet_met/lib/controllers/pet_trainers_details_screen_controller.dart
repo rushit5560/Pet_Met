@@ -37,6 +37,7 @@ class PetTrainersDetailsScreenController extends GetxController {
     try {
       Map<String, String> header = apiHeader.apiHeader();
       http.Response response = await http.get(Uri.parse(url), headers: header);
+      log('Response: ${response.body}');
 
       TrainerDetailsModel trainerDetailsModel =
           TrainerDetailsModel.fromJson(json.decode(response.body));
@@ -47,7 +48,7 @@ class PetTrainersDetailsScreenController extends GetxController {
 
         isShowStatus = trainerDetailsModel.showstatus.obs;
 
-        String isVerify = "${trainerDetailsModel.data[0].isVerified}";
+        String isVerify = trainerDetailsModel.data[0].isVerified;
         if (isVerify == "0") {
           isVerified = true;
         } else {

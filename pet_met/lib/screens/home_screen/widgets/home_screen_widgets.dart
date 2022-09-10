@@ -1124,7 +1124,7 @@ class BannerModule extends StatelessWidget {
             ),
           ),
         ),
-        /*Container(
+        Container(
           padding: const EdgeInsets.only(left: 10),
           alignment: Alignment.centerLeft,
           child: Row(
@@ -1145,7 +1145,7 @@ class BannerModule extends StatelessWidget {
               Expanded(child: Container()),
             ],
           ),
-        ),*/
+        ),
       ],
     ).commonSymmetricPadding(horizontal: 20);
   }

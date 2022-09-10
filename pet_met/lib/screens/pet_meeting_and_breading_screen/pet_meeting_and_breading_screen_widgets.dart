@@ -78,7 +78,7 @@ class MeetingAndBreadingSearchFieldModule extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(width: 0, style: BorderStyle.none),
             ),
-            hintText: "Search",
+            hintText: "Search sub category",
             hintStyle: TextStyle(
               color: themeProvider.darkTheme
                   ? AppColors.whiteColor.withOpacity(0.75)

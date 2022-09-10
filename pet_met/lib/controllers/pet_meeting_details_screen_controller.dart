@@ -130,9 +130,10 @@ class PetMeetingDetailsScreenController extends GetxController {
 
   void _handlePaymentError(PaymentFailureResponse response) {
     print('Error Response: $response');
-    Fluttertoast.showToast(
-        msg: "ERROR: " + response.code.toString() + " - " + response.message!,
-        toastLength: Toast.LENGTH_SHORT);
+    // Fluttertoast.showToast(
+    //     msg: "ERROR: " + response.code.toString() + " - " + response.message!,
+    //     toastLength: Toast.LENGTH_SHORT);
+    Fluttertoast.showToast(msg: 'Payment processing cancelled by user');
     log(response.message.toString());
     log(response.code.toString());
   }

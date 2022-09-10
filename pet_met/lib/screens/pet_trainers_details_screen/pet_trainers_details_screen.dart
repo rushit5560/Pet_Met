@@ -37,6 +37,7 @@ class PetTrainersDetailsScreen extends StatelessWidget {
               children: [
                 CustomAppBar(
                   appBarOption: AppBarOption.singleBackButtonOption,
+                  title: 'Trainer Details',
                 ),
                 Expanded(
                   child: Obx(

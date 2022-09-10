@@ -360,8 +360,13 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            String url = "${screenController.trainerDetails[0].instagram}";
-            _makingInstagramApp(url);
+            String url = screenController.trainerDetails[0].instagram;
+            if(url.isEmpty){
+              Fluttertoast.showToast(msg: 'Instagram URl is empty');
+            } else{
+              _makingInstagramApp(url);
+            }
+
           },
           child: Container(
             height: screenController.size.width * 0.018.w,
@@ -377,8 +382,13 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            var fbUrl = "${screenController.trainerDetails[0].instagram}";
-            launchFacebook(fbUrl, fbUrl);
+            var fbUrl = screenController.trainerDetails[0].facebook;
+            if(fbUrl.isEmpty){
+              Fluttertoast.showToast(msg: 'Facebook URl is empty');
+            }else{
+              launchFacebook(fbUrl, fbUrl);
+            }
+
           },
           child: Container(
             height: screenController.size.width * 0.018.w,
