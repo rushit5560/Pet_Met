@@ -30,7 +30,7 @@ class Validations {
   String? validateInstagramLink(String value) {
     if (value.isEmpty) {
       return 'Instagram link is required';
-    } else if(!value.contains('www.instagram.com/') || value.contains(' ')) {
+    } else if(!value.contains('www.instagram.com') || value.contains(' ')) {
       return 'Invalid instagram link';
     }
     return null;
@@ -39,7 +39,7 @@ class Validations {
   String? validateFacebookLink(String value) {
     if (value.isEmpty) {
       return 'Facebook link is required';
-    } else if(!value.contains('www.facebook.com/') || value.contains(' ')) {
+    } else if(!value.contains('www.facebook.com') || value.contains(' ')) {
       return 'Invalid facebook link';
     }
     return null;
@@ -93,7 +93,7 @@ class Validations {
   String? validateIfscCode(String value) {
     if (value.isEmpty) {
       return 'IFSC code is required';
-    } else if(value.length > 11) {
+    } else if(value.length != 11) {
       return 'Invalid ifsc code';
     }
     return null;

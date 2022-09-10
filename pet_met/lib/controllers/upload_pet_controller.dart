@@ -329,10 +329,10 @@ class UploadPetController extends GetxController {
 
       GetPetProfileModel getPetProfileModel =
           GetPetProfileModel.fromJson(json.decode(response.body));
-      isSuccessStatus = getPetProfileModel.success!.obs;
+      isSuccessStatus = getPetProfileModel.success.obs;
 
       if (isSuccessStatus.value) {
-        getProfile = getPetProfileModel.data![0];
+        getProfile = getPetProfileModel.date[0];
         petNameController.text = getProfile.petName!;
         petDetailsController.text = getProfile.details!;
         weightController.text = getProfile.weight!.toString();
@@ -390,25 +390,25 @@ class UploadPetController extends GetxController {
         log('year : $year');
 
         // petApiProfile
-        if (getPetProfileModel.data![0].image != "") {
-          // For split image
-          List<String> profileSplitImageList =
-              getPetProfileModel.data![0].image!.split('/');
-          for (int i = 0; i < profileSplitImageList.length; i++) {
-            log("profileSplitImageList : ${profileSplitImageList[i]}");
-          }
-          petApiProfile = profileSplitImageList[3];
-          log('petApiProfile: $petApiProfile');
-        }
+        // if (getPetProfileModel.date[0].image != "") {
+        //   // For split image
+        //   List<String> profileSplitImageList =
+        //       getPetProfileModel.date[0].image!.split('/');
+        //   for (int i = 0; i < profileSplitImageList.length; i++) {
+        //     log("profileSplitImageList : ${profileSplitImageList[i]}");
+        //   }
+        //   petApiProfile = profileSplitImageList[3];
+        //   log('petApiProfile: $petApiProfile');
+        // }
 
-        petImage = ApiUrl.apiImagePath + getProfile.image!;
+        petImage = ApiUrl.apiImagePath + "assets/uploads/petimage/" + getProfile.image!;
         log('pet name: ${petNameController.text}');
         log('pet details: ${petDetailsController.text}');
         log('genderValue: ${genderValue.value}');
         log('weightController: ${weightController.text}');
         log('petCategoryDropDownValue: ${petCategoryDropDownValue.categoryName}');
         log('petSubCategoryDropDownValue: ${petSubCategoryDropDownValue.categoryName}');
-        log('petImage: $petImage');
+        log('petImage12345: $petImage');
       } else {
         log("Pet Profile Api Else");
       }

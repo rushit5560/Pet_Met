@@ -95,7 +95,11 @@ class RegisterController extends GetxController {
         // Get.offAndToNamed(AppRouteNames.loginRoute);
         Get.back();
       } else {
-        Fluttertoast.showToast(msg: "The email has already register");
+        if(registerModel.error.toString().contains("The name has already been taken")) {
+          Fluttertoast.showToast(msg: "The name has already been taken");
+        } else {
+          Fluttertoast.showToast(msg: "The email has already register");
+        }
       }
     } catch (e) {
       log("User Registration Error ::: $e");

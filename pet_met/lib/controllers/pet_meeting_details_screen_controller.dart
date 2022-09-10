@@ -113,16 +113,16 @@ class PetMeetingDetailsScreenController extends GetxController {
   }
 
   void _handlePaymentSuccess(PaymentSuccessResponse response)async {
-    log('Success Response: ${response.orderId}');
+    // log('Success Response: ${response.orderId}');
     await petAddOrderFunction(
         orderId: response.orderId,
         paymentId: response.paymentId!,
         signature: response.signature
     );
 
-    Fluttertoast.showToast(
-        msg: "SUCCESS: " + response.paymentId!,
-        toastLength: Toast.LENGTH_SHORT);
+    // Fluttertoast.showToast(
+    //     msg: "SUCCESS: " + response.paymentId!,
+    //     toastLength: Toast.LENGTH_SHORT);
     log(response.paymentId.toString());
     log(response.orderId.toString());
     log(response.signature.toString());

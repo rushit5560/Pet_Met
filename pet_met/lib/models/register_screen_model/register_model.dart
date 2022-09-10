@@ -9,23 +9,23 @@ class RegisterModel {
   RegisterModel({
     this.success,
     this.messege,
-    // this.error,
+    this.error,
   });
 
   bool? success;
   String? messege;
-  // Error? error;
+  String? error;
 
   factory RegisterModel.fromJson(Map<String, dynamic> json) => RegisterModel(
         success: json["success"] ?? false,
         messege: json["messege"] ?? "",
-        // error: Error.fromJson(json["error"] ?? {}),
+        error: json["error"].toString(),
       );
 
   Map<String, dynamic> toJson() => {
         "success": success,
         "messege": messege,
-        // "error": error!.toJson(),
+        "error": error,
       };
 }
 
@@ -45,7 +45,7 @@ class RegisterModel {
   };
 }*/
 
-RegisterErrorModel registerErrorModelFromJson(String str) =>
+/*RegisterErrorModel registerErrorModelFromJson(String str) =>
     RegisterErrorModel.fromJson(json.decode(str));
 
 String registerErrorModelToJson(RegisterErrorModel data) =>
@@ -70,20 +70,23 @@ class RegisterErrorModel {
         "success": success,
         "error": error.toJson(),
       };
-}
+}*/
 
-class Error {
+/*class Error {
   Error({
-    required this.email,
+    this.email,
+    this.name,
   });
 
-  List<String> email;
+  List<String>? email;
+  List<String>? name;
 
   factory Error.fromJson(Map<String, dynamic> json) => Error(
-        email: List<String>.from(json["email"].map((x) => x) ?? ""),
+    email: List<String>.from(json["email"].map((x) => x ?? "") ?? []),
+    name: List<String>.from(json["name"].map((x) => x ?? "") ?? []),
       );
 
   Map<String, dynamic> toJson() => {
-        "email": List<dynamic>.from(email.map((x) => x)),
+        "email": List<dynamic>.from(email!.map((x) => x)),
       };
-}
+}*/

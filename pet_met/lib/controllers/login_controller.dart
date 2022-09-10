@@ -99,6 +99,9 @@ class LoginController extends GetxController {
         if(loginModel.messege.contains('User account is deleted')) {
           Fluttertoast.showToast(msg: loginModel.messege);
         }
+        if(loginModel.messege.contains("This user is unauthorized")) {
+          Fluttertoast.showToast(msg: "This user is unauthorized for selected category! Please try again");
+        }
 
        //
       }

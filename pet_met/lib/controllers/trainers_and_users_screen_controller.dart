@@ -355,7 +355,7 @@ class TrainersAndUsersScreenController extends GetxController {
     }
   }
 
-  /// Update Vet & NGO profile
+  /// Update Trainer profile
   updateTrainersProfileFunction() async {
     isLoading(true);
 
@@ -479,7 +479,7 @@ class TrainersAndUsersScreenController extends GetxController {
 
           if (isSuccessStatus.value) {
             Fluttertoast.showToast(msg: updateTrainersProfileModel.message);
-            await getAllRoleProfileFunction(profileChangeOption: ProfileChangeOption.back);
+            await getAllRoleProfileFunction(profileChangeOption: ProfileChangeOption.stay);
           } else {
             log('False False');
           }

@@ -60,10 +60,10 @@ class ShopUserProfileScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
 
-  String birthDate = "";
-  String month= "";
-  String day = "";
-  String year = "";
+  // String birthDate = "";
+  // String month= "";
+  // String day = "";
+  // String year = "";
 
   RxString userEmail = "".obs;
   RxString userName = "".obs;
@@ -104,7 +104,7 @@ class ShopUserProfileScreenController extends GetxController {
   Future<void> getAllRoleProfileFunction({ProfileChangeOption profileChangeOption =
       ProfileChangeOption.stay}) async {
     isLoading(true);
-    birthDate = day + "-" + month + "-" + year;
+    // birthDate = day + "-" + month + "-" + year;
     String url = ApiUrl.allRoleGetProfileApi;
     log("All Role Profile Api Url : $url");
 
@@ -274,8 +274,8 @@ class ShopUserProfileScreenController extends GetxController {
   updateShopProfileFunction() async {
     isLoading(true);
 
-    birthDate = day + "-" + month + "-" + year;
-    log('birthDate: $birthDate');
+    // birthDate = day + "-" + month + "-" + year;
+    // log('birthDate: $birthDate');
 
     String url = ApiUrl.shopUpdateProfileApi;
     log("Update Shop Profile url: $url");
@@ -372,7 +372,7 @@ class ShopUserProfileScreenController extends GetxController {
         request.fields['oldimage5'] = shopApiPicture5;
       }
 
-      request.fields['shopename'] = nameController.text.trim();
+      request.fields['name'] = nameController.text.trim();
       request.fields['address'] = addressController.text.trim();
       request.fields['phonenumber'] = contactNumber.text.trim();
       request.fields['shopopen'] = selectedOpenTime!.value;
