@@ -79,8 +79,8 @@ class UploadImageModule extends StatelessWidget {
         modelBottomSheet(context);
       },
       child: Container(
-        height: screenController.size.height * 0.2,
-        width: double.infinity,
+        //height: screenController.size.height * 0.2,
+        width: screenController.size.width * 0.50,
         decoration: BoxDecoration(
           color: AppColors.whiteColor,
           borderRadius: const BorderRadius.all(
@@ -1464,16 +1464,17 @@ class ContactNumberTextFieldModule extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Contact Number",
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.blackTextColor,
-                fontSize: 11.sp,
-                fontWeight: FontWeight.bold,
-              ),
+          children: const [
+            Text.rich(
+                TextSpan(
+                    text: 'Contact Number ',
+                    children: <InlineSpan>[
+                      TextSpan(
+                        text: '*',
+                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+                      )
+                    ]
+                )
             ),
           ],
         ),
@@ -1508,15 +1509,16 @@ class AddressTextFieldModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(
-              "Address",
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.blackTextColor,
-                fontSize: 11.sp,
-                fontWeight: FontWeight.bold,
-              ),
+            Text.rich(
+                TextSpan(
+                    text: 'Address ',
+                    children: <InlineSpan>[
+                      TextSpan(
+                        text: '*',
+                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+                      )
+                    ]
+                )
             ),
           ],
         ),
@@ -1550,16 +1552,17 @@ class DetailsTextFieldModule extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Details",
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.blackTextColor,
-                fontSize: 11.sp,
-                fontWeight: FontWeight.bold,
-              ),
+          children: const [
+            Text.rich(
+                TextSpan(
+                    text: 'Details ',
+                    children: <InlineSpan>[
+                      TextSpan(
+                        text: '*',
+                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+                      )
+                    ]
+                )
             ),
           ],
         ),
@@ -1593,16 +1596,17 @@ class InstagramTextFieldModule extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Instagram Link",
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.blackTextColor,
-                fontSize: 11.sp,
-                fontWeight: FontWeight.bold,
-              ),
+          children: const [
+            Text.rich(
+                TextSpan(
+                    text: 'Instagram Link ',
+                    children: <InlineSpan>[
+                      TextSpan(
+                        text: '*',
+                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+                      )
+                    ]
+                )
             ),
           ],
         ),
@@ -1635,16 +1639,17 @@ class FacebookLinkTextFieldModule extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Facebook Link",
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.blackTextColor,
-                fontSize: 11.sp,
-                fontWeight: FontWeight.bold,
-              ),
+          children: const [
+            Text.rich(
+                TextSpan(
+                    text: 'Facebook Link ',
+                    children: <InlineSpan>[
+                      TextSpan(
+                        text: '*',
+                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+                      )
+                    ]
+                )
             ),
           ],
         ),
@@ -1726,15 +1731,16 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Open shop time",
-                style: TextStyle(
-                  color: themeProvider.darkTheme
-                      ? AppColors.whiteColor
-                      : AppColors.blackTextColor,
-                  fontSize: 11.sp,
-                  fontWeight: FontWeight.bold,
-                ),
+              const Text.rich(
+                  TextSpan(
+                      text: 'Open shop time ',
+                      children: <InlineSpan>[
+                        TextSpan(
+                          text: '*',
+                          style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+                        )
+                      ]
+                  )
               ),
               const SizedBox(height: 8),
               /* CustomLightTextField(
@@ -1807,15 +1813,16 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Close shop time",
-                style: TextStyle(
-                  color: themeProvider.darkTheme
-                      ? AppColors.whiteColor
-                      : AppColors.blackTextColor,
-                  fontSize: 11.sp,
-                  fontWeight: FontWeight.bold,
-                ),
+              const Text.rich(
+                  TextSpan(
+                      text: 'Close shop time ',
+                      children: <InlineSpan>[
+                        TextSpan(
+                          text: '*',
+                          style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+                        )
+                      ]
+                  )
               ),
               const SizedBox(height: 8),
               // CustomLightTextField(

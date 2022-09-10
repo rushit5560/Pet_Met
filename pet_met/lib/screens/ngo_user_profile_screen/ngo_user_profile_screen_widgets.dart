@@ -77,8 +77,8 @@ class UploadImageModule extends StatelessWidget {
         modelBottomSheet(context);
       },
       child: Container(
-          height: screenController.size.height * 0.2,
-          width: double.infinity,
+         // height: screenController.size.height * 0.2,
+          width: screenController.size.width * 0.50,
           decoration: BoxDecoration(
             color: AppColors.whiteColor,
             borderRadius: const BorderRadius.all(
@@ -1119,15 +1119,17 @@ class NgoBankAccountNumberTextFieldModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(
-              "Ngo Bank Account Number",
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.darkThemeColor,
-                fontSize: 11.sp,
-                fontWeight: FontWeight.bold,
-              ),
+            Text.rich(
+                TextSpan(
+                    text: 'Ngo Bank Account Number ',
+                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+                    children: <InlineSpan>[
+                      TextSpan(
+                        text: '*',
+                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+                      )
+                    ]
+                )
             ),
           ],
         ),
@@ -1162,15 +1164,17 @@ class IfscCodeTextFieldModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(
-              "IFSC Code",
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.darkThemeColor,
-                fontSize: 11.sp,
-                fontWeight: FontWeight.bold,
-              ),
+            Text.rich(
+                TextSpan(
+                    text: 'IFSC Code ',
+                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+                    children: <InlineSpan>[
+                      TextSpan(
+                        text: '*',
+                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+                      )
+                    ]
+                )
             ),
           ],
         ),
@@ -1206,15 +1210,17 @@ class NgoAddressTextFieldModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(
-              "Ngo Address",
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.darkThemeColor,
-                fontSize: 11.sp,
-                fontWeight: FontWeight.bold,
-              ),
+            Text.rich(
+                TextSpan(
+                    text: 'Ngo Address ',
+                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+                    children: const <InlineSpan>[
+                      TextSpan(
+                        text: '*',
+                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+                      )
+                    ]
+                )
             ),
           ],
         ),
@@ -1249,15 +1255,17 @@ class NgoContactTextFieldModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(
-              "Ngo Contact",
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.darkThemeColor,
-                fontSize: 11.sp,
-                fontWeight: FontWeight.bold,
-              ),
+            Text.rich(
+                TextSpan(
+                    text: 'Ngo Contact ',
+                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+                    children: const <InlineSpan>[
+                      TextSpan(
+                        text: '*',
+                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+                      )
+                    ]
+                )
             ),
           ],
         ),
@@ -1293,15 +1301,17 @@ class NgoDetailsTextFieldModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(
-              "Ngo Details",
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.darkThemeColor,
-                fontSize: 11.sp,
-                fontWeight: FontWeight.bold,
-              ),
+            Text.rich(
+                TextSpan(
+                    text: 'Ngo Details ',
+                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+                    children: const <InlineSpan>[
+                      TextSpan(
+                        text: '*',
+                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+                      )
+                    ]
+                )
             ),
           ],
         ),
@@ -1337,14 +1347,8 @@ class InstagramTextFieldModule extends StatelessWidget {
           children: [
             Text(
               "Instagram Link",
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.darkThemeColor,
-                fontSize: 11.sp,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+              style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+            )
           ],
         ),
         const SizedBox(height: 8),
@@ -1356,7 +1360,7 @@ class InstagramTextFieldModule extends StatelessWidget {
           hintText: "Instagram Link",
           textInputAction: TextInputAction.next,
           textInputType: TextInputType.text,
-          validator: (val) => Validations().validateInstagramLink(val!),
+         // validator: (val) => Validations().validateInstagramLink(val!),
         ),
       ],
     );
@@ -1378,16 +1382,22 @@ class FacebookLinkTextFieldModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
+            // Text.rich(
+            //     TextSpan(
+            //         text: 'Facebook Link ',
+            //         style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+            //         children: const <InlineSpan>[
+            //           TextSpan(
+            //             text: '*',
+            //             style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+            //           )
+            //         ]
+            //     )
+            // ),
             Text(
               "Facebook Link",
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.darkThemeColor,
-                fontSize: 11.sp,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+              style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+            )
           ],
         ),
         const SizedBox(height: 8),
@@ -1399,7 +1409,7 @@ class FacebookLinkTextFieldModule extends StatelessWidget {
           hintText: "Facebook Link",
           textInputAction: TextInputAction.next,
           textInputType: TextInputType.text,
-          validator: (val) => Validations().validateFacebookLink(val!),
+          //validator: (val) => Validations().validateFacebookLink(val!),
         ),
       ],
     );
@@ -1420,15 +1430,17 @@ class IsActiveTextFieldModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(
-              "Active Status",
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.darkThemeColor,
-                fontSize: 11.sp,
-                fontWeight: FontWeight.bold,
-              ),
+            Text.rich(
+                TextSpan(
+                    text: 'Active Status ',
+                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+                    children: const <InlineSpan>[
+                      TextSpan(
+                        text: '*',
+                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+                      )
+                    ]
+                )
             ),
           ],
         ),
@@ -1553,15 +1565,17 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Open time",
-                style: TextStyle(
-                  color: themeProvider.darkTheme
-                      ? AppColors.whiteColor
-                      : AppColors.darkThemeColor,
-                  fontSize: 11.sp,
-                  fontWeight: FontWeight.bold,
-                ),
+              Text.rich(
+                  TextSpan(
+                      text: 'Open time ',
+                      style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+                      children: const <InlineSpan>[
+                        TextSpan(
+                          text: '*',
+                          style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+                        )
+                      ]
+                  )
               ),
               const SizedBox(height: 8),
               // Stack(
@@ -1679,15 +1693,17 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Close time",
-                style: TextStyle(
-                  color: themeProvider.darkTheme
-                      ? AppColors.whiteColor
-                      : AppColors.darkThemeColor,
-                  fontSize: 11.sp,
-                  fontWeight: FontWeight.bold,
-                ),
+              Text.rich(
+                  TextSpan(
+                      text: 'Close time ',
+                      style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+                      children: const <InlineSpan>[
+                        TextSpan(
+                          text: '*',
+                          style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+                        )
+                      ]
+                  )
               ),
               const SizedBox(height: 8),
               /*Stack(

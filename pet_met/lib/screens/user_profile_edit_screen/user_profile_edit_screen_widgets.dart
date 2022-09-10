@@ -691,7 +691,7 @@ class DetailsTextFieldModule extends StatelessWidget {
           hintText: "Details",
           textInputAction: TextInputAction.next,
           textInputType: TextInputType.text,
-          validator: (val) => Validations().validateDetails(val!),
+          //validator: (val) => Validations().validateDetails(val!),
         ),
       ],
     );
@@ -733,7 +733,7 @@ class InstagramTextFieldModule extends StatelessWidget {
           hintText: "Instagram Link",
           textInputAction: TextInputAction.next,
           textInputType: TextInputType.text,
-          validator: (val) => Validations().validateInstagramLink(val!),
+          //validator: (val) => Validations().validateInstagramLink(val!),
         ),
       ],
     );
@@ -775,7 +775,7 @@ class FacebookLinkTextFieldModule extends StatelessWidget {
           hintText: "Facebook Link",
           textInputAction: TextInputAction.next,
           textInputType: TextInputType.text,
-          validator: (val) => Validations().validateFacebookLink(val!),
+          //validator: (val) => Validations().validateFacebookLink(val!),
         ),
       ],
     );

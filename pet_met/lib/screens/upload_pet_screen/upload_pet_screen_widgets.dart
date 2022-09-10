@@ -426,7 +426,7 @@ class TypesOfPetDropDownModule extends StatelessWidget {
         ),*/
         Stack(
           children: [
-            Container(
+            /*Container(
               height: controller.size.height * 0.06,
               width: double.infinity,
               decoration: BoxDecoration(
@@ -442,6 +442,24 @@ class TypesOfPetDropDownModule extends StatelessWidget {
                       offset: const Offset(0, 5),
                     ),
                   ]),
+            ),*/
+            Container(
+              height: controller.size.height * 0.06,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor.withOpacity(0.05)
+                        : AppColors.greyTextColor.withOpacity(0.5),
+                    blurRadius: 10,
+                    spreadRadius: 0.5,
+                    offset: const Offset(0, 0),
+                  ),
+                ],
+              ),
             ),
             Obx(
               () => Container(
@@ -450,7 +468,7 @@ class TypesOfPetDropDownModule extends StatelessWidget {
                 //gives the width of the dropdown button
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
-                  //color: Colors.grey.shade200,
+                  color: Colors.white,
                 ),
                 child: Theme(
                   data: Theme.of(context).copyWith(
@@ -605,18 +623,19 @@ class PetSubCategoryDropDownModule extends StatelessWidget {
               height: controller.size.height * 0.06,
               width: double.infinity,
               decoration: BoxDecoration(
-                  color: themeProvider.darkTheme
-                      ? AppColors.darkThemeBoxColor
-                      : AppColors.whiteColor,
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.greyTextColor.withOpacity(0.3),
-                      blurRadius: 35,
-                      spreadRadius: 1,
-                      offset: const Offset(0, 5),
-                    ),
-                  ]),
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor.withOpacity(0.05)
+                        : AppColors.greyTextColor.withOpacity(0.5),
+                    blurRadius: 10,
+                    spreadRadius: 0.5,
+                    offset: const Offset(0, 0),
+                  ),
+                ],
+              ),
             ),
             Obx(
               () => Container(
@@ -625,7 +644,7 @@ class PetSubCategoryDropDownModule extends StatelessWidget {
                 //gives the width of the dropdown button
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
-                  //color: Colors.grey.shade200,
+                  color: Colors.white,
                 ),
                 child: Theme(
                   data: Theme.of(context).copyWith(
@@ -825,18 +844,19 @@ class _MeetingAvailabilityDropDownState
               height: controller.size.height * 0.06,
               width: double.infinity,
               decoration: BoxDecoration(
-                  color: themeProvider.darkTheme
-                      ? AppColors.darkThemeBoxColor
-                      : AppColors.whiteColor,
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.greyTextColor.withOpacity(0.3),
-                      blurRadius: 35,
-                      spreadRadius: 1,
-                      offset: const Offset(0, 5),
-                    ),
-                  ]),
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor.withOpacity(0.05)
+                        : AppColors.greyTextColor.withOpacity(0.5),
+                    blurRadius: 10,
+                    spreadRadius: 0.5,
+                    offset: const Offset(0, 0),
+                  ),
+                ],
+              ),
             ),
             Obx(
               () => Container(
@@ -845,7 +865,7 @@ class _MeetingAvailabilityDropDownState
                 //gives the width of the dropdown button
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
-                  //color: Colors.grey.shade200,
+                  color: Colors.white,
                 ),
                 child: Theme(
                   data: Theme.of(context).copyWith(
@@ -951,26 +971,29 @@ class _BirthDateDropDownState extends State<BirthDateDropDown> {
         Container(
           height: controller.size.height * 0.08,
           width: double.infinity,
-          padding: const EdgeInsets.only(left: 15, right: 15),
+          //padding: const EdgeInsets.only(left: 15, right: 15),
           decoration: BoxDecoration(
-            color: themeProvider.darkTheme
-                ? AppColors.darkThemeColor
-                : AppColors.whiteColor,
-            borderRadius: const BorderRadius.all(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.all(
               Radius.circular(15),
             ),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.greyTextColor.withOpacity(0.3),
-                blurRadius: 35,
-                spreadRadius: 1,
-                offset: const Offset(0, 5),
-              ),
-            ],
+
           ),
           child: DropdownDatePicker(
             boxDecoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5)), // optional
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(5),
+              boxShadow: [
+                BoxShadow(
+                  color: themeProvider.darkTheme
+                      ? AppColors.whiteColor.withOpacity(0.05)
+                      : AppColors.greyTextColor.withOpacity(0.5),
+                  blurRadius: 10,
+                  spreadRadius: 0.5,
+                  offset: const Offset(0, 0),
+                ),
+              ],
+            ), // optional
             dayFlex: 2,
             monthFlex: 3,
             yearFlex: 2,
@@ -1093,18 +1116,19 @@ class _GenderDropDownState extends State<GenderDropDown> {
               height: controller.size.height * 0.06,
               width: double.infinity,
               decoration: BoxDecoration(
-                  color: themeProvider.darkTheme
-                      ? AppColors.darkThemeBoxColor
-                      : AppColors.whiteColor,
-                  borderRadius: BorderRadius.circular(15),
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.greyTextColor.withOpacity(0.3),
-                      blurRadius: 35,
-                      spreadRadius: 1,
-                      offset: const Offset(0, 5),
-                    ),
-                  ]),
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor.withOpacity(0.05)
+                        : AppColors.greyTextColor.withOpacity(0.5),
+                    blurRadius: 10,
+                    spreadRadius: 0.5,
+                    offset: const Offset(0, 0),
+                  ),
+                ],
+              ),
             ),
             Obx(
               () => Container(
@@ -1113,7 +1137,7 @@ class _GenderDropDownState extends State<GenderDropDown> {
                 //gives the width of the dropdown button
                 decoration: const BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
-                  //color: Colors.grey.shade200,
+                  color: Colors.white,
                 ),
                 child: Theme(
                   data: Theme.of(context).copyWith(
