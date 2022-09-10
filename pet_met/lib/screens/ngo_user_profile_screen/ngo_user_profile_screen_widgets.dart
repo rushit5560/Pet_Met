@@ -80,7 +80,9 @@ class UploadImageModule extends StatelessWidget {
          // height: screenController.size.height * 0.2,
           width: screenController.size.width * 0.50,
           decoration: BoxDecoration(
-            color: AppColors.whiteColor,
+            color: themeProvider.darkTheme
+              ? AppColors.darkThemeColor
+              : AppColors.whiteColor,
             borderRadius: const BorderRadius.all(
               Radius.circular(15),
             ),
@@ -228,7 +230,7 @@ class UploadImageModule extends StatelessWidget {
           color: themeProvider.darkTheme
               ? AppColors.blackTextColor
               : AppColors.whiteColor,
-          height: screenController.size.height * 0.15,
+          height: screenController.size.height * 0.16,
           child: Column(
             children: [
               ListTile(
@@ -1638,7 +1640,9 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                   width: double.infinity,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor.withOpacity(0.05)
+                          : AppColors.greyTextColor.withOpacity(0.5),
                       boxShadow: [
                         BoxShadow(
                           color: themeProvider.darkTheme
@@ -1767,7 +1771,9 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                   decoration: BoxDecoration(
                       //color: Colors.transparent,
                       borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor.withOpacity(0.05)
+                          : AppColors.greyTextColor.withOpacity(0.5),
                       boxShadow: [
                         BoxShadow(
                           color: themeProvider.darkTheme

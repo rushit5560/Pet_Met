@@ -220,7 +220,7 @@ class PetTopListModule extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(15),
                                 border: Border.all(color: AppColors.accentTextColor)
                               ),
-                              child: Image.network(ApiUrl.apiImagePath + "assets/uploads/petimage" +
+                              child: Image.network(ApiUrl.apiImagePath + "assets/uploads/petimage/" +
                                   homeController.petTopList[i].img,
                                 errorBuilder: (context, st, ob) {
                                   return Image.asset(AppImages.petMetLogoImg);
@@ -680,98 +680,122 @@ class PetListModule extends StatelessWidget {
   PetListModule({Key? key}) : super(key: key);
 
   final controller = Get.find<HomeController>();
+  DarkThemeProvider themeProvider =
+  Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Stack(
+        Column(
           children: [
-            GestureDetector(
-              onTap: (){
-                // List<String> userWiseStoryList = [];
-                // for (int i = 0; i < controller.userStoryList[index].data.length; i++) {
-                //   userWiseStoryList.add(controller.userStoryList[index].data[i].image);
-                // }
-                // log('userWiseStoryList: $userWiseStoryList');
-                Get.to(() => OwnUserStoryViewerScreen(), arguments: controller.ownUserStoryList);
-              },
-              child: Container(
-                height: controller.size.width * 0.16,
-                width: controller.size.width * 0.16,
-                margin: const EdgeInsets.only(bottom: 5, right: 5),
-                decoration: BoxDecoration(
-                  // image: DecorationImage(
-                  //     image: AssetImage(
-                  //       controller.dogsTopList[index],
-                  //     ),
-                  //     fit: BoxFit.cover),
-                  //color: AppColors.greyTextColor,
-                  border: Border.all(color: AppColors.accentColor),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(8),
+
+            Stack(
+              children: [
+                GestureDetector(
+                  onTap: (){
+                    // List<String> userWiseStoryList = [];
+                    // for (int i = 0; i < controller.userStoryList[index].data.length; i++) {
+                    //   userWiseStoryList.add(controller.userStoryList[index].data[i].image);
+                    // }
+                    // log('userWiseStoryList: $userWiseStoryList');
+                    if(controller.ownUserStoryList.isNotEmpty){
+                      Get.to(() => OwnUserStoryViewerScreen(), arguments: controller.ownUserStoryList);
+                    }
+
+                  },
+                  child: Container(
+                    height: controller.size.width * 0.16,
+                    width: controller.size.width * 0.16,
+                    margin: const EdgeInsets.only(bottom: 5, right: 5),
+                    decoration: BoxDecoration(
+                      // image: DecorationImage(
+                      //     image: AssetImage(
+                      //       controller.dogsTopList[index],
+                      //     ),
+                      //     fit: BoxFit.cover),
+                      //color: AppColors.greyTextColor,
+                      border: Border.all(color: AppColors.accentColor),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
+                      ),
+                    ),
+                    //child: Image.asset(AppImages.petMetLogoImg, fit: BoxFit.cover),
+                    child: UserDetails.categoryId == "1" ?
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.network(
+                         controller.userprofile.value,
+                        errorBuilder: (context, st, ob){
+                          return Image.asset(AppImages.petMetLogoImg);
+                        },
+                        fit: BoxFit.fill,
+                      ),
+                    ):
+                    UserDetails.categoryId == "2" ?
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.network(
+                        controller.shopProfile.value,
+                        errorBuilder: (context, st, ob){
+                          return Image.asset(AppImages.petMetLogoImg);
+                        },
+                        fit: BoxFit.fill,
+                      ),
+                    ):
+                    UserDetails.categoryId == "3" ?
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.network(
+                        controller.ngoProfile.value,
+                        errorBuilder: (context, st, ob){
+                          return Image.asset(AppImages.petMetLogoImg);
+                        },
+                        fit: BoxFit.fill,
+                      ),
+                    ):
+                    UserDetails.categoryId == "4" ?
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.network(
+                        controller.trainerProfile.value,
+                        errorBuilder: (context, st, ob){
+                          return Image.asset(AppImages.petMetLogoImg);
+                        },
+                        fit: BoxFit.fill,
+                      ),
+                    ) : Container(),
                   ),
                 ),
-                //child: Image.asset(AppImages.petMetLogoImg, fit: BoxFit.cover),
-                child: UserDetails.categoryId == "1" ?
-                Image.network(
-                   controller.userprofile.value,
-                  errorBuilder: (context, st, ob){
-                    return Image.asset(AppImages.petMetLogoImg);
-                  },
-                  fit: BoxFit.fill,
-                ):
-                UserDetails.categoryId == "2" ?
-                Image.network(
-                  controller.shopProfile.value,
-                  errorBuilder: (context, st, ob){
-                    return Image.asset(AppImages.petMetLogoImg);
-                  },
-                  fit: BoxFit.fill,
-                ):
-                UserDetails.categoryId == "3" ?
-                Image.network(
-                  controller.ngoProfile.value,
-                  errorBuilder: (context, st, ob){
-                    return Image.asset(AppImages.petMetLogoImg);
-                  },
-                  fit: BoxFit.fill,
-                ):
-                UserDetails.categoryId == "4" ?
-                Image.network(
-                  controller.trainerProfile.value,
-                  errorBuilder: (context, st, ob){
-                    return Image.asset(AppImages.petMetLogoImg);
-                  },
-                  fit: BoxFit.fill,
-                ) : Container(),
-              ),
+                Positioned(
+                  right: 0,
+                  bottom: 0,
+                  child: GestureDetector(
+                    onTap: () {
+                      modelBottomSheet(context);
+                    },
+                    child: Container(
+                      height: 15,
+                      width: 15,
+                      decoration: const BoxDecoration(
+                          color: AppColors.accentColor, shape: BoxShape.circle),
+                      child: const Icon(
+                        Icons.add,
+                        color: AppColors.whiteColor,
+                        size: 12,
+                      ),
+                    ),
+                  ),
+                )
+              ],
             ),
-            Positioned(
-              right: 0,
-              bottom: 0,
-              child: GestureDetector(
-                onTap: () {
-                  modelBottomSheet(context);
-                },
-                child: Container(
-                  height: 15,
-                  width: 15,
-                  decoration: const BoxDecoration(
-                      color: AppColors.accentColor, shape: BoxShape.circle),
-                  child: const Icon(
-                    Icons.add,
-                    color: AppColors.whiteColor,
-                    size: 12,
-                  ),
-                ),
-              ),
-            )
+            const SizedBox(height: 16)
           ],
         ),
+        const SizedBox(width: 5),
         Expanded(
           child: SizedBox(
-            height: controller.size.width * 0.16,
+            height: controller.size.width * 0.22,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemCount: controller.userStoryList.length,
@@ -793,8 +817,8 @@ class PetListModule extends StatelessWidget {
   }
 
   modelBottomSheet(BuildContext context) {
-    DarkThemeProvider themeProvider =
-        Provider.of<DarkThemeProvider>(Get.context!);
+    // DarkThemeProvider themeProvider =
+    //     Provider.of<DarkThemeProvider>(Get.context!);
     showModalBottomSheet<void>(
       context: context,
       constraints: null,
@@ -803,7 +827,7 @@ class PetListModule extends StatelessWidget {
           color: themeProvider.darkTheme
               ? AppColors.blackTextColor
               : AppColors.whiteColor,
-          height: controller.size.height * 0.15,
+          height: controller.size.height * 0.16,
           child: Column(
             children: [
               ListTile(
@@ -860,6 +884,7 @@ class PetListModule extends StatelessWidget {
     final pickedFile = await ImagePicker().pickImage(
       source: ImageSource.gallery,
     );
+    Get.back();
 
     if (pickedFile != null) {
       //setState(() {
@@ -901,7 +926,7 @@ class PetListModule extends StatelessWidget {
     final pickedFile = await ImagePicker().pickImage(
       source: ImageSource.camera,
     );
-
+    Get.back();
     if (pickedFile != null) {
       //setState(() {
       controller.imageFile = File(pickedFile.path);
@@ -922,7 +947,7 @@ class PetListModule extends StatelessWidget {
 }
 
 class AddPetStoryWidget extends StatelessWidget {
-  const AddPetStoryWidget({
+  AddPetStoryWidget({
     Key? key,
     required this.controller,
     required this.index,
@@ -931,9 +956,12 @@ class AddPetStoryWidget extends StatelessWidget {
   final HomeController controller;
   final int index;
 
+  DarkThemeProvider themeProvider =
+  Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
-    var themeProvider = Provider.of<DarkThemeProvider>(context);
+    //DarkThemeProvider themeProvider = Provider.of<DarkThemeProvider>(context);
     return GestureDetector(
       onTap: () {
         List<String> userWiseStoryList = [];
@@ -949,14 +977,15 @@ class AddPetStoryWidget extends StatelessWidget {
               height: controller.size.width * 0.16,
               width: controller.size.width * 0.16,
               margin: const EdgeInsets.only(bottom: 5, right: 5),
-              decoration: const BoxDecoration(
+              decoration:  BoxDecoration(
                 // image: DecorationImage(
                 //     image: AssetImage(
                 //       controller.dogsTopList[index],
                 //     ),
                 //     fit: BoxFit.cover),
-                color: AppColors.greyTextColor,
-                borderRadius: BorderRadius.all(
+                border: Border.all(color: AppColors.accentColor),
+                //color: AppColors.greyTextColor,
+                borderRadius: const BorderRadius.all(
                   Radius.circular(8),
                 ),
               ),
@@ -965,7 +994,7 @@ class AddPetStoryWidget extends StatelessWidget {
                   errorBuilder: (context, st, ob){
                     return Image.asset(AppImages.petMetLogoImg);
                   },
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                 )
                  // Image.asset(AppImages.petMetLogoImg)
           ),
@@ -973,8 +1002,10 @@ class AddPetStoryWidget extends StatelessWidget {
             style: TextStyle(
               color: themeProvider.darkTheme
                   ? AppColors.whiteColor
-                  : AppColors.accentTextColor,
-            ),)
+                  : AppColors.blackTextColor,
+              fontWeight: FontWeight.bold
+            ),
+          )
         ],
       ),
     );
@@ -1085,11 +1116,11 @@ class BannerModule extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: Colors.grey,
+            //color: Colors.grey,
             image: DecorationImage(
               image: NetworkImage(
                   ApiUrl.apiImagePath + controller.bannerList[index].imagePath),
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
             ),
           ),
         ),

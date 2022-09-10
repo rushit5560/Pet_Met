@@ -82,7 +82,9 @@ class UploadImageModule extends StatelessWidget {
         //height: screenController.size.height * 0.2,
         width: screenController.size.width * 0.50,
         decoration: BoxDecoration(
-          color: AppColors.whiteColor,
+          color: themeProvider.darkTheme
+              ? AppColors.darkThemeColor
+              : AppColors.whiteColor,
           borderRadius: const BorderRadius.all(
             Radius.circular(15),
           ),
@@ -231,7 +233,7 @@ class UploadImageModule extends StatelessWidget {
           color: themeProvider.darkTheme
               ? AppColors.blackTextColor
               : AppColors.whiteColor,
-          height: screenController.size.height * 0.15,
+          height: screenController.size.height * 0.16,
           child: Column(
             children: [
               ListTile(
@@ -1464,11 +1466,12 @@ class ContactNumberTextFieldModule extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
+          children: [
             Text.rich(
                 TextSpan(
                     text: 'Contact Number ',
-                    children: <InlineSpan>[
+                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+                    children: const <InlineSpan>[
                       TextSpan(
                         text: '*',
                         style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
@@ -1512,7 +1515,8 @@ class AddressTextFieldModule extends StatelessWidget {
             Text.rich(
                 TextSpan(
                     text: 'Address ',
-                    children: <InlineSpan>[
+                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+                    children: const <InlineSpan>[
                       TextSpan(
                         text: '*',
                         style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
@@ -1552,11 +1556,12 @@ class DetailsTextFieldModule extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
+          children:  [
             Text.rich(
                 TextSpan(
                     text: 'Details ',
-                    children: <InlineSpan>[
+                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+                    children: const <InlineSpan>[
                       TextSpan(
                         text: '*',
                         style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
@@ -1596,11 +1601,12 @@ class InstagramTextFieldModule extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
+          children: [
             Text.rich(
                 TextSpan(
                     text: 'Instagram Link ',
-                    children: <InlineSpan>[
+                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+                    children: const <InlineSpan>[
                       TextSpan(
                         text: '*',
                         style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
@@ -1639,11 +1645,12 @@ class FacebookLinkTextFieldModule extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
+          children: [
             Text.rich(
                 TextSpan(
                     text: 'Facebook Link ',
-                    children: <InlineSpan>[
+                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+                    children: const <InlineSpan>[
                       TextSpan(
                         text: '*',
                         style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
@@ -1731,10 +1738,11 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text.rich(
+              Text.rich(
                   TextSpan(
                       text: 'Open shop time ',
-                      children: <InlineSpan>[
+                      style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+                      children: const <InlineSpan>[
                         TextSpan(
                           text: '*',
                           style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
@@ -1760,7 +1768,9 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                       width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: Colors.white,
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor.withOpacity(0.05)
+                            : AppColors.greyTextColor.withOpacity(0.5),
                         boxShadow: [
                           BoxShadow(
                             color: themeProvider.darkTheme
@@ -1813,10 +1823,11 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text.rich(
+              Text.rich(
                   TextSpan(
                       text: 'Close shop time ',
-                      children: <InlineSpan>[
+                      style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+                      children: const <InlineSpan>[
                         TextSpan(
                           text: '*',
                           style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
@@ -1842,7 +1853,9 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                       width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: Colors.white,
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor.withOpacity(0.05)
+                            : AppColors.greyTextColor.withOpacity(0.5),
                         boxShadow: [
                           BoxShadow(
                             color: themeProvider.darkTheme

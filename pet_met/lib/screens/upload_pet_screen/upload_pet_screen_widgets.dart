@@ -64,7 +64,7 @@ class _UploadImageModuleState extends State<UploadImageModule> {
                   color: themeProvider.darkTheme
                       ? AppColors.darkThemeColor
                       : AppColors.whiteColor,
-                  height: controller.size.height * 0.15,
+                  height: controller.size.height * 0.16,
                   child: Column(
                     children: [
                       ListTile(
@@ -105,7 +105,7 @@ class _UploadImageModuleState extends State<UploadImageModule> {
             );
           },
           child: Container(
-              //height: controller.size.height * 0.2,
+              height: controller.size.width * 0.50,
               width: controller.size.width * 0.50,
               decoration: BoxDecoration(
                 color: themeProvider.darkTheme
@@ -132,8 +132,8 @@ class _UploadImageModuleState extends State<UploadImageModule> {
                             themeProvider.darkTheme
                                 ? controller.imageFile!
                                 : controller.imageFile!,
-                            width: double.infinity,
-                            height: controller.size.height * 0.2,
+                            height: controller.size.width * 0.50,
+                            width: controller.size.width * 0.50,
                             fit: BoxFit.fill),
                       ),
                     )
@@ -145,8 +145,8 @@ class _UploadImageModuleState extends State<UploadImageModule> {
                               themeProvider.darkTheme
                                   ? controller.petImage!
                                   : controller.petImage!,
-                              width: double.infinity,
-                              height: controller.size.height * 0.2,
+                              height: controller.size.width * 0.50,
+                              width: controller.size.width * 0.50,
                               fit: BoxFit.fill,
                               errorBuilder: (context, er, st) {
                                 return Image.asset(AppImages.petMetLogoImg);
@@ -466,9 +466,11 @@ class TypesOfPetDropDownModule extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 10),
                 width: Get.width,
                 //gives the width of the dropdown button
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
-                  color: Colors.white,
+                  color: themeProvider.darkTheme
+                      ? AppColors.darkThemeBoxColor
+                      : AppColors.whiteColor,
                 ),
                 child: Theme(
                   data: Theme.of(context).copyWith(
@@ -642,9 +644,11 @@ class PetSubCategoryDropDownModule extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 10),
                 width: Get.width,
                 //gives the width of the dropdown button
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
-                  color: Colors.white,
+                  color: themeProvider.darkTheme
+                      ? AppColors.darkThemeBoxColor
+                      : AppColors.whiteColor,
                 ),
                 child: Theme(
                   data: Theme.of(context).copyWith(
@@ -863,9 +867,11 @@ class _MeetingAvailabilityDropDownState
                 padding: const EdgeInsets.only(left: 10),
                 width: Get.width,
                 //gives the width of the dropdown button
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
-                  color: Colors.white,
+                  color: themeProvider.darkTheme
+                      ? AppColors.darkThemeBoxColor
+                      : AppColors.whiteColor,
                 ),
                 child: Theme(
                   data: Theme.of(context).copyWith(
@@ -981,7 +987,8 @@ class _BirthDateDropDownState extends State<BirthDateDropDown> {
           ),
           child: DropdownDatePicker(
             boxDecoration: BoxDecoration(
-                color: Colors.white,
+                color: themeProvider.darkTheme
+                  ? AppColors.darkThemeBoxColor : AppColors.whiteColor,
                 borderRadius: BorderRadius.circular(5),
               boxShadow: [
                 BoxShadow(
@@ -1004,11 +1011,13 @@ class _BirthDateDropDownState extends State<BirthDateDropDown> {
               fontSize: 12.sp,
               fontWeight: FontWeight.w400,
             ),
-            icon: const Icon(
+            icon: Icon(
               Icons.keyboard_arrow_down_rounded,
-              color: AppColors.greyTextColor,
+              color: themeProvider.darkTheme ?
+              AppColors.whiteColor:
+              AppColors.greyTextColor,
             ),
-            isDropdownHideUnderline: true, // optional
+            isDropdownHideUnderline: false, // optional
             isFormValidator: true, // optional
 
             selectedDay: int.parse(controller.day),
@@ -1135,9 +1144,11 @@ class _GenderDropDownState extends State<GenderDropDown> {
                 padding: const EdgeInsets.only(left: 10),
                 width: Get.width,
                 //gives the width of the dropdown button
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
-                  color: Colors.white,
+                  color: themeProvider.darkTheme
+                      ? AppColors.darkThemeBoxColor
+                      : AppColors.whiteColor,
                 ),
                 child: Theme(
                   data: Theme.of(context).copyWith(

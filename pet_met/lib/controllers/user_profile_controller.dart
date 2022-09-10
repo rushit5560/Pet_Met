@@ -438,7 +438,7 @@ class UserProfileController extends GetxController {
     }
   }*/
 
-  followUserFunction()async{
+  Future followUserFunction()async{
     isLoading(true);
     String url = ApiUrl.followUserApi;
     log("Follow User Api Url : $url");
@@ -477,7 +477,7 @@ class UserProfileController extends GetxController {
     }
   }
 
-  unfollowUserFunction() async {
+  Future unfollowUserFunction() async {
     isLoading(true);
     String url = ApiUrl.unfollowUserApi;
     log("Unfollow User Api Url : $url");

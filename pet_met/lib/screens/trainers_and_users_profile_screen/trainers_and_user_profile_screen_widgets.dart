@@ -81,7 +81,9 @@ class UploadImageModule extends StatelessWidget {
           height: screenController.size.width * 0.50,
           width: screenController.size.width * 0.50,
           decoration: BoxDecoration(
-            color: AppColors.whiteColor,
+            color: themeProvider.darkTheme
+                ? AppColors.darkThemeColor
+                : AppColors.whiteColor,
             borderRadius: const BorderRadius.all(
               Radius.circular(15),
             ),
@@ -111,8 +113,8 @@ class UploadImageModule extends StatelessWidget {
                           themeProvider.darkTheme
                               ? screenController.imageFile!
                               : screenController.imageFile!,
-                          width: double.infinity,
-                          height: screenController.size.height * 0.2,
+                          width: screenController.size.width * 0.50,
+                          height: screenController.size.width * 0.50,
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -144,8 +146,8 @@ class UploadImageModule extends StatelessWidget {
                               themeProvider.darkTheme
                                   ? screenController.trainersProfile!
                                   : screenController.trainersProfile!,
-                              width: double.infinity,
-                              height: screenController.size.height * 0.2,
+                              width: screenController.size.width * 0.50,
+                              height: screenController.size.width * 0.50,
                               fit: BoxFit.fill,
                               errorBuilder: (context, er, st) {
                                 //return Image.asset(AppImages.petMetLogoImg);
@@ -227,7 +229,7 @@ class UploadImageModule extends StatelessWidget {
           color: themeProvider.darkTheme
               ? AppColors.blackTextColor
               : AppColors.whiteColor,
-          height: screenController.size.height * 0.15,
+          height: screenController.size.height * 0.16,
           child: Column(
             children: [
               ListTile(
@@ -356,7 +358,7 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         SizedBox(
-          height: screenController.size.width * 0.17,
+          height: screenController.size.width * 0.18,
           child: ListView.builder(
               shrinkWrap: true,
               itemCount: 5,
@@ -1055,16 +1057,18 @@ class TrainersContactNumberTextField extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Trainers Contact",
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.darkThemeColor,
-                fontSize: 11.sp,
-                fontWeight: FontWeight.bold,
-              ),
+          children:  [
+            Text.rich(
+                TextSpan(
+                    text: 'Trainers Contact ',
+                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+                    children: const <InlineSpan>[
+                      TextSpan(
+                        text: '*',
+                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+                      )
+                    ]
+                )
             ),
           ],
         ),
@@ -1099,15 +1103,17 @@ class TrainersAddressTextFieldModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(
-              "Trainers Address",
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.darkThemeColor,
-                fontSize: 11.sp,
-                fontWeight: FontWeight.bold,
-              ),
+            Text.rich(
+                TextSpan(
+                    text: 'Trainers Address ',
+                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+                    children: const <InlineSpan>[
+                      TextSpan(
+                        text: '*',
+                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+                      )
+                    ]
+                )
             ),
           ],
         ),
@@ -1140,15 +1146,17 @@ class TrainersDetailsModule extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          "Trainers Details",
-          style: TextStyle(
-            color: themeProvider.darkTheme
-                ? AppColors.whiteColor
-                : AppColors.darkThemeColor,
-            fontSize: 11.sp,
-            fontWeight: FontWeight.bold,
-          ),
+        Text.rich(
+            TextSpan(
+                text: 'Trainers Details ',
+                style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+                children: const <InlineSpan>[
+                  TextSpan(
+                    text: '*',
+                    style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+                  )
+                ]
+            )
         ),
         SizedBox(height: 8),
         CustomLightTextField(
@@ -1320,15 +1328,17 @@ class IsActiveTextFieldModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(
-              "Active",
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.darkThemeColor,
-                fontSize: 11.sp,
-                fontWeight: FontWeight.bold,
-              ),
+            Text.rich(
+                TextSpan(
+                    text: 'Active ',
+                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+                    children: const <InlineSpan>[
+                      TextSpan(
+                        text: '*',
+                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+                      )
+                    ]
+                )
             ),
           ],
         ),
@@ -1456,15 +1466,17 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Available From",
-                style: TextStyle(
-                  color: themeProvider.darkTheme
-                      ? AppColors.whiteColor
-                      : AppColors.darkThemeColor,
-                  fontSize: 11.sp,
-                  fontWeight: FontWeight.bold,
-                ),
+              Text.rich(
+                  TextSpan(
+                      text: 'Available From ',
+                      style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+                      children: const <InlineSpan>[
+                        TextSpan(
+                          text: '*',
+                          style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+                        )
+                      ]
+                  )
               ),
               const SizedBox(height: 8),
               // CustomLightTextField(
@@ -1484,7 +1496,9 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     //border: Border.all(color: Colors.grey),
-                    color: Colors.white,
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor.withOpacity(0.05)
+                        : AppColors.greyTextColor.withOpacity(0.5),
                     boxShadow: [
                       BoxShadow(
                         color: themeProvider.darkTheme
@@ -1539,15 +1553,17 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Available To",
-                style: TextStyle(
-                  color: themeProvider.darkTheme
-                      ? AppColors.whiteColor
-                      : AppColors.darkThemeColor,
-                  fontSize: 11.sp,
-                  fontWeight: FontWeight.bold,
-                ),
+              Text.rich(
+                  TextSpan(
+                      text: 'Available To ',
+                      style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+                      children: const <InlineSpan>[
+                        TextSpan(
+                          text: '*',
+                          style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
+                        )
+                      ]
+                  )
               ),
               const SizedBox(height: 8),
               // CustomLightTextField(
@@ -1568,7 +1584,9 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                     //color: Colors.transparent,
                     borderRadius: BorderRadius.circular(10),
                     //border: Border.all(color: Colors.grey),
-                    color: Colors.white,
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor.withOpacity(0.05)
+                        : AppColors.greyTextColor.withOpacity(0.5),
                     boxShadow: [
                       BoxShadow(
                         color: themeProvider.darkTheme

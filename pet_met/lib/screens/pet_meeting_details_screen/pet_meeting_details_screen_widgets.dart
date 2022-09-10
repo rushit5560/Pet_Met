@@ -214,7 +214,7 @@ class PetPlaceTimePaymentModule extends StatelessWidget {
             Expanded(
               child: Text(
                 screenController.mettingAvailability == "0"
-                    ? "Availabel"
+                    ? "Available"
                     : "Unavailable",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,

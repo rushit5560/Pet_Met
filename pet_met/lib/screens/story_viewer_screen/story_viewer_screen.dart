@@ -43,16 +43,16 @@ class StoryViewerScreen extends StatelessWidget {
                   },
                   onComplete: () {
                     log("Completed a cycle");
-                    //Get.back();
+                    Get.back();
                   },
                   progressPosition: ProgressPosition.top,
                   repeat: false,
                   controller: controller.storyController,
                   storyItems: [
                     StoryItem.pageImage(
-                      url:
-                          "https://petomate.com/asset/uploads/petimage/bJkRk_destination_map_marker.png",
-                      // url: imgUrl,
+                      // url:
+                      //     "https://petomate.com/asset/uploads/petimage/bJkRk_destination_map_marker.png",
+                      url: imgUrl,
                       controller: controller.storyController,
                       duration: const Duration(seconds: 8),
                     ),

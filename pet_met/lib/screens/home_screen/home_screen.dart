@@ -16,9 +16,6 @@ import '../../utils/common_widgets/background_widgets.dart';
 import '../../utils/common_widgets/custom_appbar.dart';
 import '../../utils/enums.dart';
 
-
-
-
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
 
@@ -31,6 +28,13 @@ class _HomeScreenState extends State<HomeScreen> {
   final indexController = Get.put(IndexScreenController());
 
   // final indexController = Get.find<IndexScreenController>();
+
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   controller.getUserStory();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -215,32 +219,40 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Obx(
                     () => controller.isLoading.value
                         ? const CustomAnimationLoader()
-                        : SingleChildScrollView(
-                            controller: controller.scrollController,
-                            physics: const BouncingScrollPhysics(),
-                            child: Column(
-                              children: [
-                                PetListModule()
-                                    .commonSymmetricPadding(horizontal: 20),
-                                SizedBox(
-                                    height: controller.size.height * 0.025),
-                                BannerModule(),
-                                const SizedBox(height: 10),
-                                PetShopAndGroomingText()
-                                    .commonSymmetricPadding(horizontal: 20),
+                        : RefreshIndicator(
+                            onRefresh: () {
+                              return Future.delayed(const Duration(seconds: 1),
+                                  () {
+                                controller.getUserStory();
+                              });
+                            },
+                            child: SingleChildScrollView(
+                              controller: controller.scrollController,
+                              physics: const BouncingScrollPhysics(),
+                              child: Column(
+                                children: [
+                                  PetListModule()
+                                      .commonSymmetricPadding(horizontal: 20),
+                                  SizedBox(
+                                      height: controller.size.height * 0.025),
+                                  BannerModule(),
+                                  const SizedBox(height: 10),
+                                  PetShopAndGroomingText()
+                                      .commonSymmetricPadding(horizontal: 20),
 
-                                // Expanded(child: PetTopListModule()),
-                                PetTopListModule(),
-                                // DogDisplayWidget(
-                                //   onTap: () {
-                                //     Get.toNamed(
-                                //         AppRouteNames.orderDetailsRoute);
-                                //   },
-                                // ),
-                                // AllPetsListModule()
-                                //     .commonSymmetricPadding(horizontal: 20),
-                              ],
-                            ).commonSymmetricPadding(vertical: 20),
+                                  // Expanded(child: PetTopListModule()),
+                                  PetTopListModule(),
+                                  // DogDisplayWidget(
+                                  //   onTap: () {
+                                  //     Get.toNamed(
+                                  //         AppRouteNames.orderDetailsRoute);
+                                  //   },
+                                  // ),
+                                  // AllPetsListModule()
+                                  //     .commonSymmetricPadding(horizontal: 20),
+                                ],
+                              ).commonSymmetricPadding(vertical: 20),
+                            ),
                           ),
                   ),
                 ),

@@ -225,6 +225,7 @@ class HomeController extends GetxController {
         log("Get All Pet Api Error ::: $e");
       } finally {
         loadUI();
+        await getUserStory();
       }
     }
   }
