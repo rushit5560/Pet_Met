@@ -81,7 +81,21 @@ class Styles {
       hoverColor: isDarkTheme ? AppColors.greyColor : AppColors.darkThemeColor,
       focusColor: isDarkTheme ? AppColors.greyColor : AppColors.darkThemeColor,
       disabledColor: AppColors.greyColor,
-
+      textSelectionTheme: TextSelectionThemeData(
+        cursorColor:
+            isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
+        selectionHandleColor:
+            isDarkTheme ? AppColors.darkThemeColor : AppColors.whiteColor,
+        selectionColor:
+            isDarkTheme ? AppColors.greyColor : AppColors.darkThemeColor,
+      ),
+      // textTheme: TextTheme
+      //     .copyWith(
+      //       button: _theme.textTheme.button?.copyWith(
+      //         //change it in this part
+      //       ),
+      //     )
+      //     .apply(fontFamily: GoogleFonts.roboto().fontFamily),
       // colorScheme: isDarkTheme
       //     ? const ColorScheme.dark(
       //         primary: AppColors.darkThemeColor,
@@ -95,8 +109,9 @@ class Styles {
       //       ),
       timePickerTheme: timePickerTheme,
 
-      canvasColor: AppColors.greyColor,
-      cardColor: isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
+      canvasColor:
+          isDarkTheme ? AppColors.darkThemeColor : AppColors.whiteColor,
+      cardColor: isDarkTheme ? AppColors.darkThemeColor : AppColors.whiteColor,
       // canvasColor:
       //     isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
 
