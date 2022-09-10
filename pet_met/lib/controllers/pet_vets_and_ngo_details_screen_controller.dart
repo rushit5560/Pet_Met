@@ -112,7 +112,7 @@ class PetVetsAndNgoDetailsScreenController extends GetxController {
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
-    print('Error Response: $response');
+    log('Error Response: $response');
     Fluttertoast.showToast(
         msg: "ERROR: " + response.code.toString() + " - " + response.message!,
         toastLength: Toast.LENGTH_SHORT);

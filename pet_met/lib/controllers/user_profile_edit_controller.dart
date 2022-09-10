@@ -158,9 +158,9 @@ class UserProfileEditController extends GetxController {
           userApiProfile = profileSplitImageList[0];
         }
 
-        if(profileChangeOption == ProfileChangeOption.back) {
-          Get.back();
-        }
+        // if(profileChangeOption == ProfileChangeOption.back) {
+        //   Get.back();
+        // }
 
       } else {
         log("Get All User Profile Api Else");
@@ -400,9 +400,9 @@ class UserProfileEditController extends GetxController {
         isSuccessStatus = updateUserProfileModel.success.obs;
 
         if (isSuccessStatus.value) {
-          Fluttertoast.showToast(msg: updateUserProfileModel.message);
+          Fluttertoast.showToast(msg: "User Profile Updated Successfully");
 
-          await getAllRoleProfileFunction(profileChangeOption: ProfileChangeOption.back);
+          await getAllRoleProfileFunction(profileChangeOption: ProfileChangeOption.stay);
         } else {
           log('False False');
         }

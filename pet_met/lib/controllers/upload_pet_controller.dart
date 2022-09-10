@@ -401,7 +401,7 @@ class UploadPetController extends GetxController {
         //   log('petApiProfile: $petApiProfile');
         // }
 
-        petImage = ApiUrl.apiImagePath + "assets/uploads/petimage/" + getProfile.image!;
+        petImage = ApiUrl.apiImagePath + "asset/uploads/petimage/" + getProfile.image!;
         log('pet name: ${petNameController.text}');
         log('pet details: ${petDetailsController.text}');
         log('genderValue: ${genderValue.value}');
@@ -582,18 +582,11 @@ class UploadPetController extends GetxController {
         //filename: "",
       );
 
-      // var multiFile = await http.MultipartFile.fromPath(
-      //  "image",
-      //   file!.path,
-      // );
 
       request.files.add(multiPart);
 
       log('request.fields: ${request.fields}');
       log('request.files: ${request.files}');
-      //log('request.files length : ${request.files.length}');
-      //log('request.files name : ${request.files.first.filename}');
-      //log('request.files filetype : ${request.files.first.contentType}');
       log('request.headers: ${request.headers}');
 
       var response = await request.send();
@@ -606,12 +599,7 @@ class UploadPetController extends GetxController {
         isSuccessStatus = updatePetProfileModel.success.obs;
 
         if (isSuccessStatus.value) {
-          Fluttertoast.showToast(msg: updatePetProfileModel.message);
-          // if(UserDetails.categoryId == "1") {
-          //   await userUpdateProfileController.getAllRoleProfileFunction();
-          // } else if(UserDetails.categoryId == "2") {
-          //   await shopUserProfileScreenController.getAllRoleProfileFunction();
-          // }
+          Fluttertoast.showToast(msg: "Pet Created Successfully");
           Get.back();
         } else {
           log('False False');

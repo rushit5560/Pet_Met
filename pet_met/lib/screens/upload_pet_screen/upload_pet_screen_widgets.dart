@@ -978,7 +978,7 @@ class _BirthDateDropDownState extends State<BirthDateDropDown> {
           height: controller.size.height * 0.08,
           width: double.infinity,
           //padding: const EdgeInsets.only(left: 15, right: 15),
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.transparent,
             borderRadius: BorderRadius.all(
               Radius.circular(15),
@@ -993,10 +993,10 @@ class _BirthDateDropDownState extends State<BirthDateDropDown> {
               boxShadow: [
                 BoxShadow(
                   color: themeProvider.darkTheme
-                      ? AppColors.whiteColor.withOpacity(0.05)
+                      ? AppColors.whiteColor.withOpacity(0.2)
                       : AppColors.greyTextColor.withOpacity(0.5),
-                  blurRadius: 10,
-                  spreadRadius: 0.5,
+                  blurRadius: 5,
+                  spreadRadius: 0.2,
                   offset: const Offset(0, 0),
                 ),
               ],
@@ -1017,9 +1017,8 @@ class _BirthDateDropDownState extends State<BirthDateDropDown> {
               AppColors.whiteColor:
               AppColors.greyTextColor,
             ),
-            isDropdownHideUnderline: false, // optional
-            isFormValidator: true, // optional
-
+            isDropdownHideUnderline: true,
+            isFormValidator: true,
             selectedDay: int.parse(controller.day),
             selectedMonth: int.parse(controller.month),
             selectedYear: int.parse(controller.year),

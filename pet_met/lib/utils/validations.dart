@@ -9,6 +9,8 @@ class Validations {
   String? validatePrice(String value) {
     if (value.isEmpty) {
       return 'Price is required';
+    } else if(value.contains('.')) {
+      return 'Please enter valid integer price';
     }
     return null;
   }

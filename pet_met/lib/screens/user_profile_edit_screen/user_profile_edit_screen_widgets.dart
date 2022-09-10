@@ -24,6 +24,7 @@ class BackgroundImage extends StatelessWidget {
 
   DarkThemeProvider themeProvider =
       Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -276,6 +277,7 @@ class UserPetListModule extends StatelessWidget {
 
   DarkThemeProvider themeProvider =
       Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -373,7 +375,7 @@ class UserPetListModule extends StatelessWidget {
                       const BorderRadius.all(Radius.circular(8)),
                       child: Image.asset(AppImages.petMetLogoImg,
                           fit: BoxFit.cover))*/
-                        Icon(
+                        const Icon(
                       Icons.add,
                       color: AppColors.accentTextColor,
                       size: 30,
@@ -384,7 +386,7 @@ class UserPetListModule extends StatelessWidget {
               ? Container()
               : const SizedBox(width: 5),
           Expanded(
-              child: Container(
+              child: SizedBox(
             height: 8.h,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
@@ -393,6 +395,8 @@ class UserPetListModule extends StatelessWidget {
                 return const SizedBox(width: 8);
               },
               itemBuilder: (context, index) {
+                log("Pet image url : ${ApiUrl.apiImagePath +
+                    controller.petList[index].image}");
                 return GestureDetector(
                   onTap: () {
                     log('Pet Id : ${controller.petList[index].id}');
@@ -417,12 +421,13 @@ class UserPetListModule extends StatelessWidget {
                             //     ),
                             //     fit: BoxFit.cover),
                             //color: AppColors.greyTextColor,
-                            borderRadius: BorderRadius.all(
+                            borderRadius: const BorderRadius.all(
                               Radius.circular(8),
                             ),
                             border: Border.all(color: Colors.grey)),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(8)),
                           child: Image.network(
                               ApiUrl.apiImagePath +
                                   controller.petList[index].image,
@@ -584,18 +589,18 @@ class MobileNumberTextFieldModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text.rich(
-                TextSpan(
-                    text: 'Mobile Number ',
-                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
-                    children: const <InlineSpan>[
-                      TextSpan(
-                        text: '*',
-                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
-                      )
-                    ]
-                )
-            ),
+            Text.rich(TextSpan(
+                text: 'Mobile Number ',
+                style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                children: const <InlineSpan>[
+                  TextSpan(
+                    text: '*',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red),
+                  )
+                ])),
           ],
         ),
         const SizedBox(height: 8),
@@ -662,7 +667,7 @@ class DetailsTextFieldModule extends StatelessWidget {
   final controller = Get.find<UserProfileEditController>();
 
   DarkThemeProvider themeProvider =
-  Provider.of<DarkThemeProvider>(Get.context!);
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -671,18 +676,18 @@ class DetailsTextFieldModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text.rich(
-                TextSpan(
-                    text: 'Details ',
-                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
-                    children: const <InlineSpan>[
-                      TextSpan(
-                        text: '*',
-                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
-                      )
-                    ]
-                )
-            ),
+            Text.rich(TextSpan(
+                text: 'Details ',
+                style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                children: const <InlineSpan>[
+                  TextSpan(
+                    text: '*',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red),
+                  )
+                ])),
           ],
         ),
         const SizedBox(height: 8),
@@ -707,7 +712,8 @@ class InstagramTextFieldModule extends StatelessWidget {
   final controller = Get.find<UserProfileEditController>();
 
   DarkThemeProvider themeProvider =
-  Provider.of<DarkThemeProvider>(Get.context!);
+      Provider.of<DarkThemeProvider>(Get.context!);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -748,7 +754,7 @@ class FacebookLinkTextFieldModule extends StatelessWidget {
 
   final controller = Get.find<UserProfileEditController>();
   DarkThemeProvider themeProvider =
-  Provider.of<DarkThemeProvider>(Get.context!);
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -804,18 +810,18 @@ class _GenderDropDownModuleState extends State<GenderDropDownModule> {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text.rich(
-                TextSpan(
-                    text: 'Gender ',
-                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
-                    children: const <InlineSpan>[
-                      TextSpan(
-                        text: '*',
-                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
-                      )
-                    ]
-                )
-            ),
+            Text.rich(TextSpan(
+                text: 'Gender ',
+                style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                children: const <InlineSpan>[
+                  TextSpan(
+                    text: '*',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red),
+                  )
+                ])),
           ],
         ),
         const SizedBox(height: 8),
@@ -825,8 +831,8 @@ class _GenderDropDownModuleState extends State<GenderDropDownModule> {
               height: controller.size.height * 0.06,
               width: double.infinity,
               decoration: BoxDecoration(
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(15),
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(15),
                 boxShadow: [
                   BoxShadow(
                     color: themeProvider.darkTheme
@@ -844,7 +850,7 @@ class _GenderDropDownModuleState extends State<GenderDropDownModule> {
                 padding: const EdgeInsets.only(left: 10),
                 width: Get.width,
                 //gives the width of the dropdown button
-                decoration:  BoxDecoration(
+                decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(10)),
                   color: themeProvider.darkTheme
                       ? AppColors.darkThemeBoxColor
@@ -934,18 +940,18 @@ class BirthDateModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text.rich(
-                TextSpan(
-                    text: 'Birthdate ',
-                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
-                    children: const <InlineSpan>[
-                      TextSpan(
-                        text: '*',
-                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
-                      )
-                    ]
-                )
-            ),
+            Text.rich(TextSpan(
+                text: 'Birthdate ',
+                style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                children: const <InlineSpan>[
+                  TextSpan(
+                    text: '*',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red),
+                  )
+                ])),
           ],
         ),
         const SizedBox(height: 8),
@@ -958,13 +964,13 @@ class BirthDateModule extends StatelessWidget {
             borderRadius: BorderRadius.all(
               Radius.circular(15),
             ),
-
           ),
           child: DropdownDatePicker(
             boxDecoration: BoxDecoration(
               // border: Border.,
               color: themeProvider.darkTheme
-                ? AppColors.darkThemeBoxColor : AppColors.whiteColor,
+                  ? AppColors.darkThemeBoxColor
+                  : AppColors.whiteColor,
               borderRadius: BorderRadius.circular(5),
               boxShadow: [
                 BoxShadow(
@@ -990,9 +996,9 @@ class BirthDateModule extends StatelessWidget {
             ),
             icon: Icon(
               Icons.keyboard_arrow_down_rounded,
-              color: themeProvider.darkTheme ?
-                AppColors.whiteColor:
-                AppColors.greyTextColor,
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.greyTextColor,
             ),
             isDropdownHideUnderline: false,
             // optional
