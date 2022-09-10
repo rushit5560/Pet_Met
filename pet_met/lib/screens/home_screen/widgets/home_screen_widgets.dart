@@ -33,7 +33,7 @@ class PetTopListModule extends StatelessWidget {
     return ListView.builder(
       shrinkWrap: true,
       itemCount: homeController.petTopList.length + 1,
-      controller: homeController.scrollController,
+      // controller: homeController.scrollController,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, i) {
         // PetList singlePet = homeController.petTopList[i];
