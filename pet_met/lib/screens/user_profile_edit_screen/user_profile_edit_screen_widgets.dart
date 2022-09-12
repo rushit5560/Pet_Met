@@ -349,7 +349,11 @@ class UserPetListModule extends StatelessWidget {
                     Get.to(() => UploadPetScreen(),
                             transition: Transition.native,
                             duration: const Duration(milliseconds: 500),
-                            arguments: [PetOption.addOption, ""])!
+                            arguments: [
+                          PetOption.addOption,
+                          "",
+                          controller,
+                        ])!
                         .then((value) async {
                       await controller.getAllRoleProfileFunction();
                     });
@@ -395,8 +399,7 @@ class UserPetListModule extends StatelessWidget {
                 return const SizedBox(width: 8);
               },
               itemBuilder: (context, index) {
-                log("Pet image url : ${ApiUrl.apiImagePath +
-                    controller.petList[index].image}");
+                log("Pet image url : ${ApiUrl.apiImagePath + controller.petList[index].image}");
                 return GestureDetector(
                   onTap: () {
                     log('Pet Id : ${controller.petList[index].id}');
@@ -405,7 +408,8 @@ class UserPetListModule extends StatelessWidget {
                         duration: const Duration(milliseconds: 500),
                         arguments: [
                           PetOption.updateOption,
-                          controller.petList[index].id
+                          controller.petList[index].id,
+                          controller,
                         ]);
                   },
                   child: Stack(

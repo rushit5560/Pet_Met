@@ -77,12 +77,12 @@ class UploadImageModule extends StatelessWidget {
         modelBottomSheet(context);
       },
       child: Container(
-         // height: screenController.size.height * 0.2,
+          // height: screenController.size.height * 0.2,
           width: screenController.size.width * 0.50,
           decoration: BoxDecoration(
             color: themeProvider.darkTheme
-              ? AppColors.darkThemeColor
-              : AppColors.whiteColor,
+                ? AppColors.darkThemeColor
+                : AppColors.whiteColor,
             borderRadius: const BorderRadius.all(
               Radius.circular(15),
             ),
@@ -601,16 +601,16 @@ class NameOfNgoListModule extends StatelessWidget {
                       ],
                     ),*/
                     child: GestureDetector(
-                      onTap: (){
-                        if(index == 0){
+                      onTap: () {
+                        if (index == 0) {
                           getFromGallery();
-                        } else if(index == 1){
+                        } else if (index == 1) {
                           getFromGallery2();
-                        } else if(index == 2){
+                        } else if (index == 2) {
                           getFromGallery3();
-                        } else if(index == 3){
+                        } else if (index == 3) {
                           getFromGallery4();
-                        } else if(index == 4){
+                        } else if (index == 4) {
                           getFromGallery5();
                         }
                       },
@@ -651,9 +651,9 @@ class NameOfNgoListModule extends StatelessWidget {
                                           },
                                         )
                                       : Icon(
-                                        Icons.add,
-                                        color: AppColors.accentTextColor,
-                                      )
+                                          Icons.add,
+                                          color: AppColors.accentTextColor,
+                                        )
                               : index == 1
                                   ? screenController.ngoPictureFile2 != null
                                       ? Image.file(
@@ -670,14 +670,15 @@ class NameOfNgoListModule extends StatelessWidget {
                                               errorBuilder: (context, er, st) {
                                                 return Icon(
                                                   Icons.add,
-                                                  color: AppColors.accentTextColor,
+                                                  color:
+                                                      AppColors.accentTextColor,
                                                 );
                                               },
                                             )
                                           : Icon(
-                                            Icons.add,
-                                            color: AppColors.accentTextColor,
-                                          )
+                                              Icons.add,
+                                              color: AppColors.accentTextColor,
+                                            )
                                   : index == 2
                                       ? screenController.ngoPictureFile3 != null
                                           ? Image.file(
@@ -694,15 +695,16 @@ class NameOfNgoListModule extends StatelessWidget {
                                                       (context, er, st) {
                                                     return Icon(
                                                       Icons.add,
-                                                      color: AppColors.accentTextColor,
+                                                      color: AppColors
+                                                          .accentTextColor,
                                                     );
                                                   },
                                                 )
                                               : Icon(
-                                                Icons.add,
-                                                color:
-                                                    AppColors.accentTextColor,
-                                              )
+                                                  Icons.add,
+                                                  color:
+                                                      AppColors.accentTextColor,
+                                                )
                                       : index == 3
                                           ? screenController.ngoPictureFile4 !=
                                                   null
@@ -712,9 +714,11 @@ class NameOfNgoListModule extends StatelessWidget {
                                                   height: 65,
                                                   fit: BoxFit.fill,
                                                 )
-                                              : screenController.ngoImage4 != null
+                                              : screenController.ngoImage4 !=
+                                                      null
                                                   ? Image.network(
-                                                      screenController.ngoImage4!,
+                                                      screenController
+                                                          .ngoImage4!,
                                                       height: 50,
                                                       width: 50,
                                                       fit: BoxFit.fill,
@@ -722,15 +726,16 @@ class NameOfNgoListModule extends StatelessWidget {
                                                           (context, er, st) {
                                                         return Icon(
                                                           Icons.add,
-                                                          color: AppColors.accentTextColor,
+                                                          color: AppColors
+                                                              .accentTextColor,
                                                         );
                                                       },
                                                     )
                                                   : Icon(
-                                                    Icons.add,
-                                                    color: AppColors
-                                                        .accentTextColor,
-                                                  )
+                                                      Icons.add,
+                                                      color: AppColors
+                                                          .accentTextColor,
+                                                    )
                                           : index == 4
                                               ? screenController
                                                           .ngoPictureFile5 !=
@@ -741,7 +746,8 @@ class NameOfNgoListModule extends StatelessWidget {
                                                       height: 65,
                                                       fit: BoxFit.fill,
                                                     )
-                                                  : screenController.ngoImage5 !=
+                                                  : screenController
+                                                              .ngoImage5 !=
                                                           null
                                                       ? Image.network(
                                                           screenController
@@ -750,18 +756,20 @@ class NameOfNgoListModule extends StatelessWidget {
                                                           width: 50,
                                                           fit: BoxFit.fill,
                                                           errorBuilder:
-                                                              (context, er, st) {
+                                                              (context, er,
+                                                                  st) {
                                                             return Icon(
                                                               Icons.add,
-                                                              color: AppColors.accentTextColor,
+                                                              color: AppColors
+                                                                  .accentTextColor,
                                                             );
                                                           },
                                                         )
                                                       : Icon(
-                                                        Icons.add,
-                                                        color: AppColors
-                                                            .accentTextColor,
-                                                      )
+                                                          Icons.add,
+                                                          color: AppColors
+                                                              .accentTextColor,
+                                                        )
                                               : Container()),
                     ),
                   ),
@@ -1121,18 +1129,18 @@ class NgoBankAccountNumberTextFieldModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text.rich(
-                TextSpan(
-                    text: 'Ngo Bank Account Number ',
-                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
-                    children: <InlineSpan>[
-                      TextSpan(
-                        text: '*',
-                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
-                      )
-                    ]
-                )
-            ),
+            Text.rich(TextSpan(
+                text: 'Ngo Bank Account Number ',
+                style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                children: <InlineSpan>[
+                  TextSpan(
+                    text: '*',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red),
+                  )
+                ])),
           ],
         ),
         const SizedBox(height: 8),
@@ -1166,18 +1174,18 @@ class IfscCodeTextFieldModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text.rich(
-                TextSpan(
-                    text: 'IFSC Code ',
-                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
-                    children: <InlineSpan>[
-                      TextSpan(
-                        text: '*',
-                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
-                      )
-                    ]
-                )
-            ),
+            Text.rich(TextSpan(
+                text: 'IFSC Code ',
+                style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                children: <InlineSpan>[
+                  TextSpan(
+                    text: '*',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red),
+                  )
+                ])),
           ],
         ),
         const SizedBox(height: 8),
@@ -1212,18 +1220,18 @@ class NgoAddressTextFieldModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text.rich(
-                TextSpan(
-                    text: 'Ngo Address ',
-                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
-                    children: const <InlineSpan>[
-                      TextSpan(
-                        text: '*',
-                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
-                      )
-                    ]
-                )
-            ),
+            Text.rich(TextSpan(
+                text: 'Ngo Address ',
+                style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                children: const <InlineSpan>[
+                  TextSpan(
+                    text: '*',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red),
+                  )
+                ])),
           ],
         ),
         const SizedBox(height: 8),
@@ -1257,18 +1265,18 @@ class NgoContactTextFieldModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text.rich(
-                TextSpan(
-                    text: 'Ngo Contact ',
-                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
-                    children: const <InlineSpan>[
-                      TextSpan(
-                        text: '*',
-                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
-                      )
-                    ]
-                )
-            ),
+            Text.rich(TextSpan(
+                text: 'Ngo Contact ',
+                style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                children: const <InlineSpan>[
+                  TextSpan(
+                    text: '*',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red),
+                  )
+                ])),
           ],
         ),
         const SizedBox(height: 8),
@@ -1303,18 +1311,18 @@ class NgoDetailsTextFieldModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text.rich(
-                TextSpan(
-                    text: 'Ngo Details ',
-                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
-                    children: const <InlineSpan>[
-                      TextSpan(
-                        text: '*',
-                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
-                      )
-                    ]
-                )
-            ),
+            Text.rich(TextSpan(
+                text: 'Ngo Details ',
+                style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                children: const <InlineSpan>[
+                  TextSpan(
+                    text: '*',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red),
+                  )
+                ])),
           ],
         ),
         const SizedBox(height: 8),
@@ -1349,7 +1357,7 @@ class InstagramTextFieldModule extends StatelessWidget {
           children: [
             Text(
               "Instagram Link",
-              style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
             )
           ],
         ),
@@ -1362,7 +1370,7 @@ class InstagramTextFieldModule extends StatelessWidget {
           hintText: "Instagram Link",
           textInputAction: TextInputAction.next,
           textInputType: TextInputType.text,
-         // validator: (val) => Validations().validateInstagramLink(val!),
+          // validator: (val) => Validations().validateInstagramLink(val!),
         ),
       ],
     );
@@ -1398,7 +1406,7 @@ class FacebookLinkTextFieldModule extends StatelessWidget {
             // ),
             Text(
               "Facebook Link",
-              style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
             )
           ],
         ),
@@ -1432,18 +1440,18 @@ class IsActiveTextFieldModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text.rich(
-                TextSpan(
-                    text: 'Active Status ',
-                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
-                    children: const <InlineSpan>[
-                      TextSpan(
-                        text: '*',
-                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
-                      )
-                    ]
-                )
-            ),
+            Text.rich(TextSpan(
+                text: 'Active Status ',
+                style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                children: const <InlineSpan>[
+                  TextSpan(
+                    text: '*',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red),
+                  )
+                ])),
           ],
         ),
         const SizedBox(height: 8),
@@ -1567,18 +1575,19 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text.rich(
-                  TextSpan(
-                      text: 'Open time ',
-                      style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
-                      children: const <InlineSpan>[
-                        TextSpan(
-                          text: '*',
-                          style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
-                        )
-                      ]
-                  )
-              ),
+              Text.rich(TextSpan(
+                  text: 'Open time ',
+                  style:
+                      TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                  children: const <InlineSpan>[
+                    TextSpan(
+                      text: '*',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red),
+                    )
+                  ])),
               const SizedBox(height: 8),
               // Stack(
               //   children: [
@@ -1641,8 +1650,8 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: themeProvider.darkTheme
-                          ? AppColors.whiteColor.withOpacity(0.05)
-                          : AppColors.greyTextColor.withOpacity(0.5),
+                          ? AppColors.darkThemeBoxColor
+                          : AppColors.whiteColor,
                       boxShadow: [
                         BoxShadow(
                           color: themeProvider.darkTheme
@@ -1654,7 +1663,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                         ),
                       ]),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 5),
+                    padding: const EdgeInsets.only(left: 15),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -1697,18 +1706,19 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text.rich(
-                  TextSpan(
-                      text: 'Close time ',
-                      style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
-                      children: const <InlineSpan>[
-                        TextSpan(
-                          text: '*',
-                          style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
-                        )
-                      ]
-                  )
-              ),
+              Text.rich(TextSpan(
+                  text: 'Close time ',
+                  style:
+                      TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                  children: const <InlineSpan>[
+                    TextSpan(
+                      text: '*',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red),
+                    )
+                  ])),
               const SizedBox(height: 8),
               /*Stack(
                 children: [
@@ -1772,8 +1782,8 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                       //color: Colors.transparent,
                       borderRadius: BorderRadius.circular(10),
                       color: themeProvider.darkTheme
-                          ? AppColors.whiteColor.withOpacity(0.05)
-                          : AppColors.greyTextColor.withOpacity(0.5),
+                          ? AppColors.darkThemeBoxColor
+                          : AppColors.whiteColor,
                       boxShadow: [
                         BoxShadow(
                           color: themeProvider.darkTheme
@@ -1785,7 +1795,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                         ),
                       ]),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 5),
+                    padding: const EdgeInsets.only(left: 15),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

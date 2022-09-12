@@ -24,6 +24,7 @@ import 'user_profile_edit_controller.dart';
 class UploadPetController extends GetxController {
   PetOption petOption = Get.arguments[0];
   String petId = Get.arguments[1] ?? "";
+  var prevScreenController = Get.arguments[2];
 
   // final userUpdateProfileController = Get.find<UserProfileEditController>();
   // final shopUserProfileScreenController = Get.find<ShopUserProfileScreenController>();
@@ -492,23 +493,28 @@ class UploadPetController extends GetxController {
       var response = await request.send();
       log('response: ${response.request}');
 
-      response.stream.transform(utf8.decoder).listen((value) async {
+      response.stream
+          .transform(const Utf8Decoder())
+          .transform(const LineSplitter())
+          .listen((value) async {
         UpdatePetProfileModel updatePetProfileModel =
             UpdatePetProfileModel.fromJson(json.decode(value));
         log('response1 :::::: ${updatePetProfileModel.success}');
         isSuccessStatus = updatePetProfileModel.success.obs;
 
         if (isSuccessStatus.value) {
-          ShopUserProfileScreenController shopUserProfileScreenController =
-              Get.find<ShopUserProfileScreenController>();
+          // ShopUserProfileScreenController shopUserProfileScreenController =
+          //     Get.find<ShopUserProfileScreenController>();
           Fluttertoast.showToast(msg: updatePetProfileModel.message);
           // if(UserDetails.categoryId == "1") {
           //   await userUpdateProfileController.getAllRoleProfileFunction();
           // } else if(UserDetails.categoryId == "2") {
           //   await shopUserProfileScreenController.getAllRoleProfileFunction();
           // }
+
           Get.back();
-          await shopUserProfileScreenController.getAllRoleProfileFunction();
+          await prevScreenController.getAllRoleProfileFunction();
+          // await shopUserProfileScreenController.getAllRoleProfileFunction();
         } else {
           log('False False');
         }
@@ -602,12 +608,11 @@ class UploadPetController extends GetxController {
         isSuccessStatus = updatePetProfileModel.success.obs;
 
         if (isSuccessStatus.value) {
-          ShopUserProfileScreenController shopUserProfileScreenController =
-              Get.find<ShopUserProfileScreenController>();
-
           Fluttertoast.showToast(msg: "Pet Created Successfully");
           Get.back();
-          await shopUserProfileScreenController.getAllRoleProfileFunction();
+
+          await prevScreenController.getAllRoleProfileFunction();
+          // await userProfileEditController.getAllRoleProfileFunction();
         } else {
           log('False False');
         }

@@ -150,30 +150,41 @@ class _LocateScreenState extends State<LocateScreen> {
                               } else if (snapshot.hasData) {
                                 final chatList = snapshot.data;
                                 log('chatList length: ${chatList!.length}');
-                                return Scrollbar(
-                                  child: RefreshIndicator(
-                                    triggerMode:
-                                        RefreshIndicatorTriggerMode.anywhere,
-                                    onRefresh: () async {
-                                      setState(() {});
-                                      locateScreenController
-                                          .getChatRoomListFunction();
-                                    },
-                                    child: ListView.builder(
-                                      itemCount: chatList.length,
-                                      shrinkWrap: true,
-                                      physics:
-                                          const AlwaysScrollableScrollPhysics(),
-                                      itemBuilder: (context, i) {
-                                        UserChatRoomListModel singleMsg =
-                                            chatList[i];
-                                        log('chatList.length: ${chatList.length}');
-                                        return _chatListTile(
-                                            singleMsg, context);
-                                      },
-                                    ).commonAllSidePadding(padding: 15),
-                                  ),
-                                );
+                                return chatList.isEmpty
+                                    ? Center(
+                                        child: Text(
+                                          "No chat data are available",
+                                          style: TextStyle(
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.darkThemeColor),
+                                        ),
+                                      )
+                                    : Scrollbar(
+                                        child: RefreshIndicator(
+                                          triggerMode:
+                                              RefreshIndicatorTriggerMode
+                                                  .anywhere,
+                                          onRefresh: () async {
+                                            setState(() {});
+                                            locateScreenController
+                                                .getChatRoomListFunction();
+                                          },
+                                          child: ListView.builder(
+                                            itemCount: chatList.length,
+                                            shrinkWrap: true,
+                                            physics:
+                                                const AlwaysScrollableScrollPhysics(),
+                                            itemBuilder: (context, i) {
+                                              UserChatRoomListModel singleMsg =
+                                                  chatList[i];
+                                              log('chatList.length: ${chatList.length}');
+                                              return _chatListTile(
+                                                  singleMsg, context);
+                                            },
+                                          ).commonAllSidePadding(padding: 15),
+                                        ),
+                                      );
                                 // return ListView(
                                 //   physics: const BouncingScrollPhysics(),
                                 //   children: categories!.map((val) {

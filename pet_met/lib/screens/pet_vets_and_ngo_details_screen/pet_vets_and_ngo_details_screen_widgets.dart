@@ -78,10 +78,10 @@ class NgoAchivementPictureListModule extends StatelessWidget {
                 ),
                 screenController.isVerified == true
                     ? const Icon(
-                  Icons.verified,
-                  color: AppColors.accentColor,
-                  size: 19,
-                )
+                        Icons.verified,
+                        color: AppColors.accentColor,
+                        size: 19,
+                      )
                     : Container(),
               ],
             ),
@@ -546,7 +546,7 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
 
   final screenController = Get.find<PetVetsAndNgoDetailsScreenController>();
   DarkThemeProvider themeProvider =
-  Provider.of<DarkThemeProvider>(Get.context!);
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -577,7 +577,8 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 8),
-            const Icon(Icons.favorite_rounded,
+            const Icon(
+              Icons.favorite_rounded,
               color: AppColors.whiteColor,
               size: 18,
             )
@@ -588,7 +589,6 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
   }
 
   alertDialogBox(BuildContext context) {
-
     return showDialog(
       barrierColor: themeProvider.darkTheme
           ? AppColors.darkThemeBoxColor.withOpacity(0.3)
@@ -720,7 +720,10 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
                       onPressed: () async {
                         //await screenController.userLoginFunction();
                         if (screenController.formKey.currentState!.validate()) {
-                          screenController.openCheckout(price: int.parse(screenController.priceController.text));
+                          Get.back();
+                          screenController.openCheckout(
+                              price: int.parse(
+                                  screenController.priceController.text));
                           screenController.priceController.clear();
                         }
                       },

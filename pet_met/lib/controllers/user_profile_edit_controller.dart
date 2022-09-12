@@ -32,7 +32,7 @@ class UserProfileEditController extends GetxController {
   ApiHeader apiHeader = ApiHeader();
 
   String birthDate = "";
-  String month= "${DateTime.now().month}";
+  String month = "${DateTime.now().month}";
   String day = "${DateTime.now().day}";
   String year = "${DateTime.now().year}";
 
@@ -49,7 +49,7 @@ class UserProfileEditController extends GetxController {
   RxBool isPasswordVisible = true.obs;
 
   File? imageFile;
-  String userProfile= "";
+  String userProfile = "";
 
   RxString selectedGenderValue = 'Male'.obs;
   RxString userEmail = "".obs;
@@ -69,9 +69,6 @@ class UserProfileEditController extends GetxController {
 
   String userApiProfile = "";
 
-
-
-
   UserPreference userPreference = UserPreference();
 
   /// Get User Profile
@@ -86,7 +83,7 @@ class UserProfileEditController extends GetxController {
     try {
       Map<String, dynamic> data = {
         "id": UserDetails.selfId,
-       // "uid": "${UserDetails.selfId}",
+        // "uid": "${UserDetails.selfId}",
         "categoryID": UserDetails.categoryId,
       };
 
@@ -95,18 +92,23 @@ class UserProfileEditController extends GetxController {
       Map<String, String> header = apiHeader.apiHeader();
       log("header : $header");
 
-      http.Response response = await http.post(Uri.parse(url),body: data, /*headers: header*/);
+      http.Response response = await http.post(
+        Uri.parse(url),
+        body: data, /*headers: header*/
+      );
       log("Get All User Profile Api response : ${response.body}");
 
       GetUserProfileModel getUserProfileModel =
-      GetUserProfileModel.fromJson(json.decode(response.body));
+          GetUserProfileModel.fromJson(json.decode(response.body));
       isSuccessStatus = getUserProfileModel.success.obs;
 
       if (isSuccessStatus.value) {
         petList.clear();
         petList.addAll(getUserProfileModel.data.petdata);
 
-        userProfile = ApiUrl.apiImagePath + "asset/uploads/product/" + getUserProfileModel.data.data[0].image;
+        userProfile = ApiUrl.apiImagePath +
+            "asset/uploads/product/" +
+            getUserProfileModel.data.data[0].image;
         nameController.text = getUserProfileModel.data.data[0].name;
         mobileController.text = getUserProfileModel.data.data[0].phone;
         emailController.text = getUserProfileModel.data.data[0].email;
@@ -129,9 +131,9 @@ class UserProfileEditController extends GetxController {
 
         // Set Gender From Api
         String gender = getUserProfileModel.data.data[0].gender;
-        if(gender == "male") {
+        if (gender == "male") {
           selectedGenderValue = "Male".obs;
-        } else if(gender == "female") {
+        } else if (gender == "female") {
           selectedGenderValue = "Female".obs;
         }
 
@@ -165,7 +167,7 @@ class UserProfileEditController extends GetxController {
       } else {
         log("Get All User Profile Api Else");
       }
-    } catch(e) {
+    } catch (e) {
       log("Get USer Profile Api Error ::: $e");
     } /*finally {
       //isLoading(false);
@@ -200,10 +202,14 @@ class UserProfileEditController extends GetxController {
       log('isSuccessStatus: $isSuccessStatus');
 
       if (isSuccessStatus.value) {
-        userProfileAvail = multiAccountUserModel.data.user.categoryID == "" ? false : true;
-        shopProfileAvail = multiAccountUserModel.data.shop.categoryID == "" ? false : true;
-        vetNgoProfileAvail = multiAccountUserModel.data.vetNgo.categoryID == "" ? false : true;
-        trainerProfileAvail = multiAccountUserModel.data.trainer.categoryID == "" ? false : true;
+        userProfileAvail =
+            multiAccountUserModel.data.user.categoryID == "" ? false : true;
+        shopProfileAvail =
+            multiAccountUserModel.data.shop.categoryID == "" ? false : true;
+        vetNgoProfileAvail =
+            multiAccountUserModel.data.vetNgo.categoryID == "" ? false : true;
+        trainerProfileAvail =
+            multiAccountUserModel.data.trainer.categoryID == "" ? false : true;
 
         log("data.user : ${multiAccountUserModel.data.user.categoryID}");
         log("data.shop : ${multiAccountUserModel.data.shop.categoryID}");
@@ -288,7 +294,8 @@ class UserProfileEditController extends GetxController {
     }
   }*/
 
-  Future<void> userMultipleAccountLoginFunction({required String email, required categoryId}) async {
+  Future<void> userMultipleAccountLoginFunction(
+      {required String email, required categoryId}) async {
     isLoading(true);
     String url = ApiUrl.multipleAccountLoginApi;
     log('Login Api Url : $url');
@@ -342,20 +349,18 @@ class UserProfileEditController extends GetxController {
     // Set 0 Before Day & Month Value
     String d = day;
     String m = month;
-    for(int i=1; i < 10; i++) {
-      if(i.toString() == day) {
+    for (int i = 1; i < 10; i++) {
+      if (i.toString() == day) {
         d = "0$day";
       }
     }
-    for(int i=1; i < 10; i++) {
-      if(i.toString() == month) {
+    for (int i = 1; i < 10; i++) {
+      if (i.toString() == month) {
         m = "0$month";
       }
     }
     birthDate = d + "-" + m + "-" + year;
     log('birthDate: $birthDate');
-
-
 
     String url = ApiUrl.userUpdateProfileApi;
     log("Update User Profile url: $url");
@@ -364,7 +369,6 @@ class UserProfileEditController extends GetxController {
     log("header : $header");
 
     try {
-
       var request = http.MultipartRequest('POST', Uri.parse(url));
       request.headers.addAll(header);
 
@@ -373,7 +377,8 @@ class UserProfileEditController extends GetxController {
         var stream = http.ByteStream(imageFile!.openRead());
         stream.cast();
         var length = await imageFile!.length();
-        request.files.add(await http.MultipartFile.fromPath("image", imageFile!.path));
+        request.files
+            .add(await http.MultipartFile.fromPath("image", imageFile!.path));
         var multiPart = http.MultipartFile('image', stream, length);
         request.files.add(multiPart);
       } else if (imageFile == null) {
@@ -393,28 +398,31 @@ class UserProfileEditController extends GetxController {
       var response = await request.send();
       log('response: ${response.request}');
 
-      response.stream.transform(utf8.decoder).listen((value) async {
+      response.stream
+          .transform(const Utf8Decoder())
+          .transform(const LineSplitter())
+          .listen((value) async {
         log('value: $value');
         UpdateUserProfileModel updateUserProfileModel =
-        UpdateUserProfileModel.fromJson(json.decode(value));
+            UpdateUserProfileModel.fromJson(json.decode(value));
         log('response1 :::::: ${updateUserProfileModel.success}');
         isSuccessStatus = updateUserProfileModel.success.obs;
 
         if (isSuccessStatus.value) {
           Fluttertoast.showToast(msg: "User Profile Updated Successfully");
 
-          await getAllRoleProfileFunction(profileChangeOption: ProfileChangeOption.stay);
+          await getAllRoleProfileFunction(
+              profileChangeOption: ProfileChangeOption.stay);
+          Get.back();
         } else {
           log('False False');
         }
       });
-
     } catch (e) {
       log("updateUserProfileFunction Error ::: $e");
-    }/* finally {
+    } /* finally {
       isLoading(false);
     }*/
-
   }
 
   loadUI() {
