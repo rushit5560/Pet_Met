@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/home_controller.dart';
 import 'package:pet_met/controllers/index_screen_controller.dart';
+import 'package:pet_met/controllers/user_profile_controller.dart';
 import 'package:pet_met/screens/home_screen/widgets/home_screen_widgets.dart';
 import 'package:pet_met/screens/ngo_user_profile_screen/ngo_user_profile_screen.dart';
 import 'package:pet_met/screens/shop_user_profile_screen/shop_user_profile_screen.dart';
@@ -26,6 +27,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final controller = Get.put(HomeController());
   final indexController = Get.put(IndexScreenController());
+  //final userProfileController = Get.put(UserProfileController());
 
   // final indexController = Get.find<IndexScreenController>();
 

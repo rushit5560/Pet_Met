@@ -39,7 +39,7 @@ class PetTrainerBannerImageModule extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
         child: Image.network(
           ApiUrl.apiImagePath + screenController.trainerDetails[0].image,
-          fit: BoxFit.cover,
+          fit: BoxFit.fill,
           errorBuilder: (context, er, ob) {
             return Image.asset(AppImages.petMetLogoImg);
           },
@@ -361,6 +361,9 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
         GestureDetector(
           onTap: () {
             String url = screenController.trainerDetails[0].instagram;
+            if(url.isEmpty){
+              Fluttertoast.showToast(msg: 'Instagram URL is not added. Please add URL!!!');
+            } else{
             if (url.isEmpty) {
               Fluttertoast.showToast(msg: 'Instagram URl is empty');
             } else {
@@ -382,6 +385,9 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
         GestureDetector(
           onTap: () {
             var fbUrl = screenController.trainerDetails[0].facebook;
+            if(fbUrl.isEmpty){
+              Fluttertoast.showToast(msg: 'Facebook URL is not added. Please add URL!!!');
+            }else{
             if (fbUrl.isEmpty) {
               Fluttertoast.showToast(msg: 'Facebook URl is empty');
             } else {
@@ -818,7 +824,7 @@ class PayButtonModule extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ElevatedButton(
+                    /*ElevatedButton(
                       onPressed: () async {
                         Get.back();
                         //await screenController.userLoginFunction();
@@ -856,6 +862,37 @@ class PayButtonModule extends StatelessWidget {
                     SizedBox(
                       width: screenController.size.width * 0.05,
                     ),
+                    GestureDetector(
+                      onTap: (){
+                        Get.back();
+                      },
+                      child: Container(
+                        //width: double.infinity,
+                        height: 50,
+                        decoration: const BoxDecoration(
+                          color: AppColors.accentColor,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: Center(
+                            child: Text(
+                              "Cancel",
+                              style: TextStyle(
+                                color: AppColors.whiteColor,
+                                fontSize: 15.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    /*SizedBox(
+                      width: screenController.size.width * 0.05,
+                    ),
                     ElevatedButton(
                       onPressed: () {
                         Get.back();
@@ -885,7 +922,7 @@ class PayButtonModule extends StatelessWidget {
                           ),
                         ),
                       ),
-                    ),
+                    ),*/
                   ],
                 ),
               ],

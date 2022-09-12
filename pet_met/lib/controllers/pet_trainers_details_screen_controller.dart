@@ -97,12 +97,13 @@ class PetTrainersDetailsScreenController extends GetxController {
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
-    print('Error Response: $response');
-    Fluttertoast.showToast(
-        msg: "ERROR: " + response.code.toString() + " - " + response.message!,
-        toastLength: Toast.LENGTH_SHORT);
-    log(response.message.toString());
-    log(response.code.toString());
+    // print('Error Response: $response');
+    // Fluttertoast.showToast(
+    //     msg: "ERROR: " + response.code.toString() + " - " + response.message!,
+    //     toastLength: Toast.LENGTH_SHORT);
+    // log(response.message.toString());
+    // log(response.code.toString());
+    Fluttertoast.showToast(msg: 'Payment processing cancelled by user');
   }
 
   void _handleExternalWallet(ExternalWalletResponse response) {

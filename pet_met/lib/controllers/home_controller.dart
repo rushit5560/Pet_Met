@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:get/get.dart';
+import 'package:pet_met/controllers/user_profile_controller.dart';
 import 'package:pet_met/models/get_all_pet_list_model/get_all_pet_list_model.dart';
 import 'package:pet_met/models/get_all_profile_model/get_shop_profile_model.dart';
 import 'package:pet_met/models/get_all_profile_model/get_user_profile_model.dart';
@@ -64,7 +65,10 @@ class HomeController extends GetxController {
   String trainerName = "";
   String trainerDescription = "";
 
+  //final userProfileController = Get.find<UserProfileController>().followShopUserId;
+
   var drawerController = ZoomDrawerController();
+  String petTopFollowCategoryId = "";
 
   List dogsTopList = [
     AppImages.petImg,
@@ -213,6 +217,9 @@ class HomeController extends GetxController {
           petTopList.addAll(getPetTopListModel.data);
           log("petList Length : ${petTopList.length}");
           // log('pet image1: ${ApiUrl.apiImagePath + petTopList[0].image}');
+          for(int i = 0 ; i < petTopList.length; i++){
+            petTopFollowCategoryId = petTopList[i].data.categoryId;
+          }
 
           // If get all pet then change the hasMore flag
           if (getPetTopListModel.data.length < 10) {
@@ -234,6 +241,7 @@ class HomeController extends GetxController {
   Future<void> getUserStory() async {
     isLoading(true);
     String url = ApiUrl.getUserStoryApi + UserDetails.selfId;
+    //String url = ApiUrl.getUserStoryApi + petTopFollowCategoryId == "2" ? userProfileController : "";
     log("Get User story Api Url : $url");
 
     try {

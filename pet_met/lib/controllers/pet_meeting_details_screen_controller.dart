@@ -7,10 +7,14 @@ import 'package:get/get.dart';
 import 'package:pet_met/models/add_order_screen_model/pet_add_order_model.dart';
 import 'package:pet_met/models/get_pet_profile_model/get_pet_profile_model.dart';
 import 'package:pet_met/models/get_pet_profile_model/pet_details_model.dart';
+import 'package:pet_met/services/providers/dark_theme_provider.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:http/http.dart' as http;
+import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/user_details.dart';
+import 'package:provider/provider.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:sizer/sizer.dart';
 
 class PetMeetingDetailsScreenController extends GetxController {
   String petId = Get.arguments[0];
@@ -33,7 +37,7 @@ class PetMeetingDetailsScreenController extends GetxController {
   String details = "";
   String phoneNo = "";
 
-  late Razorpay _razorpay;
+  late Razorpay razorpay;
 
   RxBool meetingStatus = false.obs;
 
@@ -106,45 +110,15 @@ class PetMeetingDetailsScreenController extends GetxController {
     };
 
     try {
-      _razorpay.open(options);
+      razorpay.open(options);
     } catch (e) {
       debugPrint('Error: e');
     }
   }
 
-  void _handlePaymentSuccess(PaymentSuccessResponse response)async {
-    // log('Success Response: ${response.orderId}');
-    await petAddOrderFunction(
-        orderId: response.orderId,
-        paymentId: response.paymentId!,
-        signature: response.signature
-    );
 
-    // Fluttertoast.showToast(
-    //     msg: "SUCCESS: " + response.paymentId!,
-    //     toastLength: Toast.LENGTH_SHORT);
-    log(response.paymentId.toString());
-    log(response.orderId.toString());
-    log(response.signature.toString());
-  }
 
-  void _handlePaymentError(PaymentFailureResponse response) {
-    print('Error Response: $response');
-    // Fluttertoast.showToast(
-    //     msg: "ERROR: " + response.code.toString() + " - " + response.message!,
-    //     toastLength: Toast.LENGTH_SHORT);
-    Fluttertoast.showToast(msg: 'Payment processing cancelled by user');
-    log(response.message.toString());
-    log(response.code.toString());
-  }
 
-  void _handleExternalWallet(ExternalWalletResponse response) {
-    print('External SDK Response: $response');
-    Fluttertoast.showToast(
-        msg: "EXTERNAL_WALLET: " + response.walletName!,
-        toastLength: Toast.LENGTH_SHORT);
-    log("response Wallet : ${response.walletName}");
-  }
 
   Future<void> petAddOrderFunction(
       { String ? orderId,required String paymentId, String ? signature}) async {
@@ -193,9 +167,6 @@ class PetMeetingDetailsScreenController extends GetxController {
   void onInit() {
     super.onInit();
     getProfileFunction();
-    _razorpay = Razorpay();
-    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
-    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
-    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+
   }
 }
