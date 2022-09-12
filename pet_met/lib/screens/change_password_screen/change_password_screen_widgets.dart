@@ -130,6 +130,7 @@ class CurrentPasswordTextField extends StatelessWidget {
               TextFormField(
                 controller: screenController.currentPasswordController,
                 validator: (val) => Validations().validatePassword(val!),
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 obscureText: screenController.isPasswordVisible.value,
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.visiblePassword,
@@ -242,6 +243,7 @@ class NewPasswordTextField extends StatelessWidget {
               TextFormField(
                 controller: screenController.newPasswordController,
                 obscureText: screenController.isNewPasswordVisible.value,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (val) => Validations().validateNewPassword(val!),
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.visiblePassword,
@@ -353,6 +355,7 @@ class ConfirmPasswordTextField extends StatelessWidget {
               TextFormField(
                 controller: screenController.confirmPasswordController,
                 obscureText: screenController.isConfirmPasswordVisible.value,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 validator: (val) => Validations().validateConfirmPassword(
                     val!, screenController.newPasswordController.text),
                 textInputAction: TextInputAction.next,
@@ -392,6 +395,7 @@ class ConfirmPasswordTextField extends StatelessWidget {
                       fontSize: 13.sp,
                       fontWeight: FontWeight.w400,
                     ),
+                    hintMaxLines: 2,
                     suffixIcon: Obx(
                       () => GestureDetector(
                         onTap: () {

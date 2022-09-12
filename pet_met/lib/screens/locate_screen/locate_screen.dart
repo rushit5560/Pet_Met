@@ -16,6 +16,7 @@ import 'package:pet_met/utils/user_details.dart';
 import 'package:provider/provider.dart';
 
 import '../../services/providers/dark_theme_provider.dart';
+import '../../utils/common_widgets/loader.dart';
 
 class LocateScreen extends StatefulWidget {
   LocateScreen({Key? key}) : super(key: key);
@@ -83,7 +84,7 @@ class _LocateScreenState extends State<LocateScreen> {
                 ),
               ],
             )*/
-           /* Stack(
+            /* Stack(
               alignment: Alignment.center,
               children: [
                 BackdropFilter(
@@ -135,54 +136,55 @@ class _LocateScreenState extends State<LocateScreen> {
                   appBarOption: AppBarOption.none,
                   title: "Chat",
                 ),
-
                 Expanded(
                   child: Obx(
-                        () => locateScreenController.isLoading.value
-                        ? const CircularProgressIndicator()
+                    () => locateScreenController.isLoading.value
+                        ? const CustomAnimationLoader()
                         : StreamBuilder<List<UserChatRoomListModel>>(
-                      stream: locateScreenController
-                          .getChatRoomListFunction(),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasError) {
-                          return Text(
-                              "Something went wrong! ${snapshot.error}");
-                        } else if (snapshot.hasData) {
-                          final chatList = snapshot.data;
-                          log('chatList length: ${chatList!.length}');
-                          return Scrollbar(
-                            child: RefreshIndicator(
-                              triggerMode:
-                              RefreshIndicatorTriggerMode.anywhere,
-                              onRefresh: () async {
-                                setState(() {});
-                                locateScreenController
-                                    .getChatRoomListFunction();
-                              },
-                              child: ListView.builder(
-                                itemCount: chatList.length,
-                                shrinkWrap: true,
-                                physics:
-                                const AlwaysScrollableScrollPhysics(),
-                                itemBuilder: (context, i) {
-                                  UserChatRoomListModel singleMsg = chatList[i];
-                                  log('chatList.length: ${chatList.length}');
-                                  return _chatListTile(singleMsg, context);
-                                },
-                              ).commonAllSidePadding(padding: 15),
-                            ),
-                          );
-                          // return ListView(
-                          //   physics: const BouncingScrollPhysics(),
-                          //   children: categories!.map((val) {
-                          //     return categoryListTile(val).commonSymmetricPadding(horizontal: 8, vertical: 6);
-                          //   }).toList(),
-                          // ).commonAllSidePadding(padding: 15);
-                        } else {
-                          return const CircularProgressIndicator();
-                        }
-                      },
-                    ),
+                            stream: locateScreenController
+                                .getChatRoomListFunction(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasError) {
+                                return Text(
+                                    "Something went wrong! ${snapshot.error}");
+                              } else if (snapshot.hasData) {
+                                final chatList = snapshot.data;
+                                log('chatList length: ${chatList!.length}');
+                                return Scrollbar(
+                                  child: RefreshIndicator(
+                                    triggerMode:
+                                        RefreshIndicatorTriggerMode.anywhere,
+                                    onRefresh: () async {
+                                      setState(() {});
+                                      locateScreenController
+                                          .getChatRoomListFunction();
+                                    },
+                                    child: ListView.builder(
+                                      itemCount: chatList.length,
+                                      shrinkWrap: true,
+                                      physics:
+                                          const AlwaysScrollableScrollPhysics(),
+                                      itemBuilder: (context, i) {
+                                        UserChatRoomListModel singleMsg =
+                                            chatList[i];
+                                        log('chatList.length: ${chatList.length}');
+                                        return _chatListTile(
+                                            singleMsg, context);
+                                      },
+                                    ).commonAllSidePadding(padding: 15),
+                                  ),
+                                );
+                                // return ListView(
+                                //   physics: const BouncingScrollPhysics(),
+                                //   children: categories!.map((val) {
+                                //     return categoryListTile(val).commonSymmetricPadding(horizontal: 8, vertical: 6);
+                                //   }).toList(),
+                                // ).commonAllSidePadding(padding: 15);
+                              } else {
+                                return const CustomAnimationLoader();
+                              }
+                            },
+                          ),
                   ),
                   /*child: ListView.builder(
                 itemCount: 10,
@@ -195,7 +197,6 @@ class _LocateScreenState extends State<LocateScreen> {
                 ),
               ],
             )
-
           ],
         ),
       ),
@@ -203,8 +204,9 @@ class _LocateScreenState extends State<LocateScreen> {
   }
 
   Widget _chatListTile(UserChatRoomListModel singleMsg, BuildContext context) {
-
-    String receiverName = UserDetails.userEmail == singleMsg.useremail1 ? singleMsg.username2 : singleMsg.username1;
+    String receiverName = UserDetails.userEmail == singleMsg.useremail1
+        ? singleMsg.username2
+        : singleMsg.username1;
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -226,7 +228,9 @@ class _LocateScreenState extends State<LocateScreen> {
               arguments: [
                 singleMsg.chatRoomId,
                 receiverName,
-                UserDetails.roleId == 1 ? singleMsg.username2 : singleMsg.username1,
+                UserDetails.roleId == 1
+                    ? singleMsg.username2
+                    : singleMsg.username1,
                 singleMsg.useremail1,
                 singleMsg.useremail2,
                 // oppositeUserUniqueId,
@@ -306,10 +310,9 @@ class _LocateScreenState extends State<LocateScreen> {
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.accentColor
-                              ),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.accentColor),
                             ),
                             // const SizedBox(height: 5),
                             // Text(

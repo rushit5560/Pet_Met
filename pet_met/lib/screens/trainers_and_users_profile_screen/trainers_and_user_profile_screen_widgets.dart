@@ -581,49 +581,44 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.only(left: 5),
                   child: GestureDetector(
-                    onTap: (){
-                      if(index == 0){
+                    onTap: () {
+                      if (index == 0) {
                         if (screenController.showStatus.value == true) {
                           // open gallery
                           getFromGallery();
-                        } else if (screenController.showStatus.value ==
-                            false) {
+                        } else if (screenController.showStatus.value == false) {
                           //screenController.openCheckout();
                           Get.to(() => PetPricingScreen());
                         }
-                      } else if(index == 1){
+                      } else if (index == 1) {
                         if (screenController.showStatus.value == true) {
                           // open gallery
                           getFromGallery2();
-                        } else if (screenController.showStatus.value ==
-                            false) {
+                        } else if (screenController.showStatus.value == false) {
                           //screenController.openCheckout();
                           Get.to(() => PetPricingScreen());
                         }
-                      } else if(index == 2){
+                      } else if (index == 2) {
                         if (screenController.showStatus.value == true) {
                           // open gallery
                           getFromGallery3();
-                        } else if (screenController.showStatus.value ==
-                            false) {
+                        } else if (screenController.showStatus.value == false) {
                           //screenController.openCheckout();
                           Get.to(() => PetPricingScreen());
                         }
-                      } else if(index == 3){
+                      } else if (index == 3) {
                         if (screenController.showStatus.value == true) {
                           // open gallery
                           getFromGallery4();
-                        } else if (screenController.showStatus.value ==
-                            false) {
+                        } else if (screenController.showStatus.value == false) {
                           //screenController.openCheckout();
                           Get.to(() => PetPricingScreen());
                         }
-                      } else if(index == 4){
+                      } else if (index == 4) {
                         if (screenController.showStatus.value == true) {
                           // open gallery
                           getFromGallery5();
-                        } else if (screenController.showStatus.value ==
-                            false) {
+                        } else if (screenController.showStatus.value == false) {
                           //screenController.openCheckout();
                           Get.to(() => PetPricingScreen());
                         }
@@ -641,133 +636,143 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                         ),
                         child: index == 0
                             ? screenController.trainerPictureFile1 != null
-                            ? Image.file(
-                          screenController.trainerPictureFile1!,
-                          height: 65,
-                          fit: BoxFit.fill,
-                        )
-                            : screenController.trainerImage1 != null
-                            ? Image.network(
-                          screenController.trainerImage1!,
-                          height: 65,
-                          fit: BoxFit.fill,
-                          errorBuilder: (context, er, st) {
-                            return Icon(
-                              Icons.add,
-                              color: AppColors.accentTextColor,
-                            );
-                          },
-                        )
-                            : Icon(
-                              Icons.add,
-                              color: AppColors.accentTextColor,
-                            )
-
+                                ? Image.file(
+                                    screenController.trainerPictureFile1!,
+                                    height: 65,
+                                    fit: BoxFit.fill,
+                                  )
+                                : screenController.trainerImage1 != null
+                                    ? Image.network(
+                                        screenController.trainerImage1!,
+                                        height: 65,
+                                        fit: BoxFit.fill,
+                                        errorBuilder: (context, er, st) {
+                                          return Icon(
+                                            Icons.add,
+                                            color: AppColors.accentTextColor,
+                                          );
+                                        },
+                                      )
+                                    : Icon(
+                                        Icons.add,
+                                        color: AppColors.accentTextColor,
+                                      )
                             : index == 1
-                            ? screenController.trainerPictureFile2 != null
-                            ? Image.file(
-                          screenController.trainerPictureFile2!,
-                          height: 65,
-                          fit: BoxFit.fill,
-                        )
-                            : screenController.trainerImage2 != null
-                            ? Image.network(
-                          screenController.trainerImage2!,
-                          height: 65,
-                          fit: BoxFit.fill,
-                          errorBuilder: (context, er, st) {
-                            return Icon(
-                              Icons.add,
-                              color: AppColors.accentTextColor,
-                            );
-                          },
-                        )
-                            : Icon(
-                              Icons.add,
-                              color: AppColors.accentTextColor,
-                            )
-
-                            : index == 2
-                            ? screenController.trainerPictureFile3 != null
-                            ? Image.file(
-                          screenController
-                              .trainerPictureFile3!,
-                          height: 65,
-                          fit: BoxFit.fill,
-                        )
-                            : screenController.trainerImage3 != null
-                            ? Image.network(
-                          screenController.trainerImage3!,
-                          height: 65,
-                          fit: BoxFit.fill,
-                          errorBuilder:
-                              (context, er, st) {
-                            return Icon(
-                              Icons.add,
-                              color: AppColors.accentTextColor,
-                            );
-                          },
-                        )
-                            : Icon(
-                              Icons.add,
-                              color: AppColors.accentTextColor,
-                            )
-
-                            : index == 3
-                            ? screenController.trainerPictureFile4 != null
-                            ? Image.file(
-                          screenController
-                              .trainerPictureFile4!,
-                          height: 65,
-                          fit: BoxFit.fill,
-                        )
-                            : screenController.trainerImage4 != null
-                            ? Image.network(
-                          screenController
-                              .trainerImage4!,
-                          height: 65,
-                          fit: BoxFit.fill,
-                          errorBuilder:
-                              (context, er, st) {
-                            return Icon(
-                              Icons.add,
-                              color: AppColors.accentTextColor,
-                            );
-                          },
-                        )
-                            : Icon(
-                              Icons.add,
-                              color: AppColors.accentTextColor,
-                            )
-
-                            : index == 4
-                            ? screenController.trainerPictureFile5 != null
-                            ? Image.file(
-                          screenController
-                              .trainerPictureFile5!,
-                          height: 65,
-                          fit: BoxFit.fill,
-                        )
-                            : screenController.trainerImage5 != null
-                            ? Image.network(
-                          screenController
-                              .trainerImage5!,
-                          height: 65,
-                          fit: BoxFit.fill,
-                          errorBuilder:
-                              (context, er, st) {
-                            return Icon(
-                              Icons.add,
-                              color: AppColors.accentTextColor,
-                            );
-                          },
-                        )
-                            : Icon(
-                              Icons.add,
-                              color: AppColors.accentTextColor,
-                            )
-
-                            : Container()),
+                                ? screenController.trainerPictureFile2 != null
+                                    ? Image.file(
+                                        screenController.trainerPictureFile2!,
+                                        height: 65,
+                                        fit: BoxFit.fill,
+                                      )
+                                    : screenController.trainerImage2 != null
+                                        ? Image.network(
+                                            screenController.trainerImage2!,
+                                            height: 65,
+                                            fit: BoxFit.fill,
+                                            errorBuilder: (context, er, st) {
+                                              return Icon(
+                                                Icons.add,
+                                                color:
+                                                    AppColors.accentTextColor,
+                                              );
+                                            },
+                                          )
+                                        : Icon(
+                                            Icons.add,
+                                            color: AppColors.accentTextColor,
+                                          )
+                                : index == 2
+                                    ? screenController.trainerPictureFile3 !=
+                                            null
+                                        ? Image.file(
+                                            screenController
+                                                .trainerPictureFile3!,
+                                            height: 65,
+                                            fit: BoxFit.fill,
+                                          )
+                                        : screenController.trainerImage3 != null
+                                            ? Image.network(
+                                                screenController.trainerImage3!,
+                                                height: 65,
+                                                fit: BoxFit.fill,
+                                                errorBuilder:
+                                                    (context, er, st) {
+                                                  return Icon(
+                                                    Icons.add,
+                                                    color: AppColors
+                                                        .accentTextColor,
+                                                  );
+                                                },
+                                              )
+                                            : Icon(
+                                                Icons.add,
+                                                color:
+                                                    AppColors.accentTextColor,
+                                              )
+                                    : index == 3
+                                        ? screenController
+                                                    .trainerPictureFile4 !=
+                                                null
+                                            ? Image.file(
+                                                screenController
+                                                    .trainerPictureFile4!,
+                                                height: 65,
+                                                fit: BoxFit.fill,
+                                              )
+                                            : screenController.trainerImage4 !=
+                                                    null
+                                                ? Image.network(
+                                                    screenController
+                                                        .trainerImage4!,
+                                                    height: 65,
+                                                    fit: BoxFit.fill,
+                                                    errorBuilder:
+                                                        (context, er, st) {
+                                                      return Icon(
+                                                        Icons.add,
+                                                        color: AppColors
+                                                            .accentTextColor,
+                                                      );
+                                                    },
+                                                  )
+                                                : Icon(
+                                                    Icons.add,
+                                                    color: AppColors
+                                                        .accentTextColor,
+                                                  )
+                                        : index == 4
+                                            ? screenController
+                                                        .trainerPictureFile5 !=
+                                                    null
+                                                ? Image.file(
+                                                    screenController
+                                                        .trainerPictureFile5!,
+                                                    height: 65,
+                                                    fit: BoxFit.fill,
+                                                  )
+                                                : screenController
+                                                            .trainerImage5 !=
+                                                        null
+                                                    ? Image.network(
+                                                        screenController
+                                                            .trainerImage5!,
+                                                        height: 65,
+                                                        fit: BoxFit.fill,
+                                                        errorBuilder:
+                                                            (context, er, st) {
+                                                          return Icon(
+                                                            Icons.add,
+                                                            color: AppColors
+                                                                .accentTextColor,
+                                                          );
+                                                        },
+                                                      )
+                                                    : Icon(
+                                                        Icons.add,
+                                                        color: AppColors
+                                                            .accentTextColor,
+                                                      )
+                                            : Container()),
                   ),
                 );
               }),
@@ -1057,19 +1062,19 @@ class TrainersContactNumberTextField extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
-          children:  [
-            Text.rich(
-                TextSpan(
-                    text: 'Trainers Contact ',
-                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
-                    children: const <InlineSpan>[
-                      TextSpan(
-                        text: '*',
-                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
-                      )
-                    ]
-                )
-            ),
+          children: [
+            Text.rich(TextSpan(
+                text: 'Trainers Contact ',
+                style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                children: const <InlineSpan>[
+                  TextSpan(
+                    text: '*',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red),
+                  )
+                ])),
           ],
         ),
         const SizedBox(height: 8),
@@ -1103,18 +1108,18 @@ class TrainersAddressTextFieldModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text.rich(
-                TextSpan(
-                    text: 'Trainers Address ',
-                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
-                    children: const <InlineSpan>[
-                      TextSpan(
-                        text: '*',
-                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
-                      )
-                    ]
-                )
-            ),
+            Text.rich(TextSpan(
+                text: 'Trainers Address ',
+                style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                children: const <InlineSpan>[
+                  TextSpan(
+                    text: '*',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red),
+                  )
+                ])),
           ],
         ),
         const SizedBox(height: 8),
@@ -1146,18 +1151,18 @@ class TrainersDetailsModule extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text.rich(
-            TextSpan(
-                text: 'Trainers Details ',
-                style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
-                children: const <InlineSpan>[
-                  TextSpan(
-                    text: '*',
-                    style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
-                  )
-                ]
-            )
-        ),
+        Text.rich(TextSpan(
+            text: 'Trainers Details ',
+            style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+            children: const <InlineSpan>[
+              TextSpan(
+                text: '*',
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red),
+              )
+            ])),
         SizedBox(height: 8),
         CustomLightTextField(
           readOnly: false,
@@ -1328,18 +1333,18 @@ class IsActiveTextFieldModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text.rich(
-                TextSpan(
-                    text: 'Active ',
-                    style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
-                    children: const <InlineSpan>[
-                      TextSpan(
-                        text: '*',
-                        style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
-                      )
-                    ]
-                )
-            ),
+            Text.rich(TextSpan(
+                text: 'Active ',
+                style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                children: const <InlineSpan>[
+                  TextSpan(
+                    text: '*',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red),
+                  )
+                ])),
           ],
         ),
         const SizedBox(height: 8),
@@ -1466,18 +1471,19 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text.rich(
-                  TextSpan(
-                      text: 'Available From ',
-                      style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
-                      children: const <InlineSpan>[
-                        TextSpan(
-                          text: '*',
-                          style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
-                        )
-                      ]
-                  )
-              ),
+              Text.rich(TextSpan(
+                  text: 'Available From ',
+                  style:
+                      TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                  children: const <InlineSpan>[
+                    TextSpan(
+                      text: '*',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red),
+                    )
+                  ])),
               const SizedBox(height: 8),
               // CustomLightTextField(
               //   readOnly: false,
@@ -1497,8 +1503,8 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     //border: Border.all(color: Colors.grey),
                     color: themeProvider.darkTheme
-                        ? AppColors.whiteColor.withOpacity(0.05)
-                        : AppColors.greyTextColor.withOpacity(0.5),
+                        ? AppColors.darkThemeBoxColor
+                        : AppColors.whiteColor,
                     boxShadow: [
                       BoxShadow(
                         color: themeProvider.darkTheme
@@ -1511,7 +1517,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                     ],
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 5),
+                    padding: const EdgeInsets.only(left: 15),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -1553,18 +1559,19 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text.rich(
-                  TextSpan(
-                      text: 'Available To ',
-                      style: TextStyle(fontSize: 11.sp,fontWeight: FontWeight.bold),
-                      children: const <InlineSpan>[
-                        TextSpan(
-                          text: '*',
-                          style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold, color: Colors.red),
-                        )
-                      ]
-                  )
-              ),
+              Text.rich(TextSpan(
+                  text: 'Available To ',
+                  style:
+                      TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                  children: const <InlineSpan>[
+                    TextSpan(
+                      text: '*',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red),
+                    )
+                  ])),
               const SizedBox(height: 8),
               // CustomLightTextField(
               //   readOnly: false,
@@ -1585,8 +1592,8 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                     //border: Border.all(color: Colors.grey),
                     color: themeProvider.darkTheme
-                        ? AppColors.whiteColor.withOpacity(0.05)
-                        : AppColors.greyTextColor.withOpacity(0.5),
+                        ? AppColors.darkThemeBoxColor
+                        : AppColors.whiteColor,
                     boxShadow: [
                       BoxShadow(
                         color: themeProvider.darkTheme
@@ -1599,7 +1606,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                     ],
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 5),
+                    padding: const EdgeInsets.only(left: 15),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

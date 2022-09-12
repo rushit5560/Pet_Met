@@ -313,7 +313,6 @@ class _BuildMenuState extends State<BuildMenu> {
                                     ),
                                   ),*/
 
-
                                   /*drawerListTile(
                               onTap: () {
                                 indexController.drawerController.close!();
@@ -361,17 +360,28 @@ class _BuildMenuState extends State<BuildMenu> {
                               ),
                             ),*/
 
-
                                   Padding(
                                     padding: const EdgeInsets.only(right: 8.0),
-                                    child: ExpandablePanel(
-                                      header: Row(
+                                    child: ExpansionTile(
+                                      tilePadding: const EdgeInsets.symmetric(
+                                        vertical: 0,
+                                        horizontal: 16,
+                                      ),
+                                      iconColor: AppColors.accentTextColor,
+                                      collapsedIconColor:
+                                          themeProvider.darkTheme
+                                              ? AppColors.whiteColor
+                                              : AppColors.greyTextColor,
+
+                                      title: Row(
                                         children: [
-                                          Icon(Icons.settings_rounded,
+                                          Icon(
+                                            Icons.settings_rounded,
                                             color: themeProvider.darkTheme
                                                 ? AppColors.whiteColor
                                                 : AppColors.greyTextColor,
-                                            size: 22,),
+                                            size: 22,
+                                          ),
                                           const SizedBox(width: 20),
                                           Expanded(
                                             child: Text(
@@ -385,234 +395,319 @@ class _BuildMenuState extends State<BuildMenu> {
                                               ),
                                             ),
                                           ),
+
+                                          // const SizedBox(width: 20),
                                         ],
-                                      ).commonSymmetricPadding(horizontal: 16, vertical: 10),
-                                      collapsed: Container(),
-                                        expanded: Column(
-                                           children: [
+                                      ),
+                                      // controller: indexController
+                                      //     .expandedSettingsController,
+                                      // builder: ((context, collapsed, expanded) {
+                                      //   return Row(
+                                      //     children: [
+                                      //       Icon(
+                                      //         Icons.settings_rounded,
+                                      //         color: themeProvider.darkTheme
+                                      //             ? AppColors.whiteColor
+                                      //             : AppColors.greyTextColor,
+                                      //         size: 22,
+                                      //       ),
+                                      //       const SizedBox(width: 20),
+                                      //       Expanded(
+                                      //         child: Text(
+                                      //           "Settings",
+                                      //           style: TextStyle(
+                                      //             color: themeProvider.darkTheme
+                                      //                 ? AppColors.whiteColor
+                                      //                 : AppColors.greyTextColor,
+                                      //             fontSize: 12.sp,
+                                      //             fontWeight: FontWeight.w500,
+                                      //           ),
+                                      //         ),
+                                      //       ),
+                                      //       Icon(
+                                      //         Icons.keyboard_arrow_down_rounded,
+                                      //         color: themeProvider.darkTheme
+                                      //             ? AppColors.whiteColor
+                                      //             : AppColors.greyTextColor,
+                                      //         size: 22,
+                                      //       ),
+                                      //       // const SizedBox(width: 20),
+                                      //     ],
+                                      //   ).commonSymmetricPadding(
+                                      //       horizontal: 16, vertical: 10);
+                                      // }),
+                                      // header: Row(
+                                      //   children: [
+                                      //     Icon(
+                                      //       Icons.settings_rounded,
+                                      //       color: themeProvider.darkTheme
+                                      //           ? AppColors.whiteColor
+                                      //           : AppColors.greyTextColor,
+                                      //       size: 22,
+                                      //     ),
+                                      //     const SizedBox(width: 20),
+                                      //     Expanded(
+                                      //       child: Text(
+                                      //         "Settings",
+                                      //         style: TextStyle(
+                                      //           color: themeProvider.darkTheme
+                                      //               ? AppColors.whiteColor
+                                      //               : AppColors.greyTextColor,
+                                      //           fontSize: 12.sp,
+                                      //           fontWeight: FontWeight.w500,
+                                      //         ),
+                                      //       ),
+                                      //     ),
+                                      //     Icon(
+                                      //       Icons.keyboard_arrow_down_rounded,
+                                      //       color: themeProvider.darkTheme
+                                      //           ? AppColors.whiteColor
+                                      //           : AppColors.greyTextColor,
+                                      //       size: 22,
+                                      //     ),
+                                      //     // const SizedBox(width: 20),
+                                      //   ],
+                                      // ).commonSymmetricPadding(
+                                      //     horizontal: 16, vertical: 10),
 
-                                             /// Support
-                                             drawerListTile(
-                                               onTap: () {
-                                                 indexController.drawerController.close!();
-                                                 Get.to(() => SupportScreen());
-                                               },
-                                               leading: Image.asset(
-                                                 AppIcons.supportImg,
-                                                 color: themeProvider.darkTheme
-                                                     ? AppColors.whiteColor
-                                                     : AppColors.greyTextColor,
-                                                 height: 22,
-                                               ),
-                                               titleWidget: Text(
-                                                 "Support",
-                                                 style: TextStyle(
-                                                   color: themeProvider.darkTheme
-                                                       ? AppColors.whiteColor
-                                                       : AppColors.greyTextColor,
-                                                   fontSize: 12.sp,
-                                                   fontWeight: FontWeight.w500,
-                                                 ),
-                                               ),
-                                             ),
-
-                                             /// About
-                                             drawerListTile(
-                                               onTap: () {
-                                                 indexController.drawerController.close!();
-                                                 Get.to(() => AboutScreen());
-                                               },
-                                               leading: Image.asset(
-                                                 AppIcons.aboutImg,
-                                                 color: themeProvider.darkTheme
-                                                     ? AppColors.whiteColor
-                                                     : AppColors.greyTextColor,
-                                                 height: 22,
-                                               ),
-                                               titleWidget: Text(
-                                                 "About",
-                                                 style: TextStyle(
-                                                   color: themeProvider.darkTheme
-                                                       ? AppColors.whiteColor
-                                                       : AppColors.greyTextColor,
-                                                   fontSize: 12.sp,
-                                                   fontWeight: FontWeight.w500,
-                                                 ),
-                                               ),
-                                             ),
-
-                                             /// Privacy policy
-                                             drawerListTile(
-                                               onTap: () {
-                                                 indexController.drawerController.close!();
-                                                 Get.to(() => PrivacyPolicyScreen());
-                                               },
-                                               leading: Image.asset(
-                                                 AppIcons.privacyPolicyImg,
-                                                 color: themeProvider.darkTheme
-                                                     ? AppColors.whiteColor
-                                                     : AppColors.greyTextColor,
-                                                 height: 22,
-                                               ),
-                                               titleWidget: Text(
-                                                 "Privacy Policy",
-                                                 style: TextStyle(
-                                                   color: themeProvider.darkTheme
-                                                       ? AppColors.whiteColor
-                                                       : AppColors.greyTextColor,
-                                                   fontSize: 12.sp,
-                                                   fontWeight: FontWeight.w500,
-                                                 ),
-                                               ),
-                                             ),
-
-                                             /// Share App
-                                             drawerListTile(
-                                               onTap: () {
-                                                 indexController.drawerController.close!();
-                                               },
-                                               leading: Image.asset(
-                                                 AppIcons.shareImg,
-                                                 color: themeProvider.darkTheme
-                                                     ? AppColors.whiteColor
-                                                     : AppColors.greyTextColor,
-                                                 height: 22,
-                                               ),
-                                               titleWidget: Text(
-                                                 "Share App",
-                                                 style: TextStyle(
-                                                   color: themeProvider.darkTheme
-                                                       ? AppColors.whiteColor
-                                                       : AppColors.greyTextColor,
-                                                   fontSize: 12.sp,
-                                                   fontWeight: FontWeight.w500,
-                                                 ),
-                                               ),
-                                             ),
-
-                                             /// Change password
-                                             drawerListTile(
-                                               onTap: () {
-                                                 indexController.drawerController.close!();
-                                                 Get.to(() => ChangePasswordScreen(),
-                                                     transition: Transition.native,
-                                                     duration: const Duration(
-                                                         milliseconds: 500));
-                                               },
-                                               leading: Icon(
-                                                 Icons.edit_note_rounded,
-                                                 color: themeProvider.darkTheme
-                                                     ? AppColors.whiteColor
-                                                     : AppColors.greyTextColor,
-                                                 size: 22,
-                                               ),
-                                               titleWidget: Text(
-                                                 "Change Password",
-                                                 style: TextStyle(
-                                                   color: themeProvider.darkTheme
-                                                       ? AppColors.whiteColor
-                                                       : AppColors.greyTextColor,
-                                                   fontSize: 12.sp,
-                                                   fontWeight: FontWeight.w500,
-                                                 ),
-                                               ),
-                                             ),
-
-                                             /// Subscription
-                                             UserDetails.categoryId == "2" ||
-                                                 UserDetails.categoryId == "4"
-                                                 ? drawerListTile(
-                                               onTap: () {
-                                                 indexController
-                                                     .drawerController.close!();
-                                                 Get.to(() => PetPricingScreen(),
-                                                     transition: Transition.native,
-                                                     duration: const Duration(
-                                                         milliseconds: 500));
-                                               },
-                                               leading: Image.asset(
-                                                 AppIcons.rateImg,
-                                                 color: themeProvider.darkTheme
-                                                     ? AppColors.whiteColor
-                                                     : AppColors.greyTextColor,
-                                                 height: 22,
-                                               ),
-                                               titleWidget: Text(
-                                                 "Subscription",
-                                                 style: TextStyle(
-                                                   color: themeProvider.darkTheme
-                                                       ? AppColors.whiteColor
-                                                       : AppColors.greyTextColor,
-                                                   fontSize: 12.sp,
-                                                   fontWeight: FontWeight.w500,
-                                                 ),
-                                               ),
-                                             )
-                                                 : Container(),
-
-                                             /// Meeting Report
-                                             UserDetails.categoryId == "1" || UserDetails.categoryId == "2"
-                                                 ? drawerListTile(
-                                               onTap: () {
-                                                 indexController
-                                                     .drawerController.close!();
-                                                 Get.to(() => MeetingOrdersScreen());
-                                               },
-                                               leading: Icon(
-                                                 Icons.edit_note_rounded,
-                                                 color: themeProvider.darkTheme
-                                                     ? AppColors.whiteColor
-                                                     : AppColors.greyTextColor,
-                                                 size: 22,
-                                               ),
-                                               titleWidget: Text(
-                                                 "Meeting Report",
-                                                 style: TextStyle(
-                                                   color: themeProvider.darkTheme
-                                                       ? AppColors.whiteColor
-                                                       : AppColors.greyTextColor,
-                                                   fontSize: 12.sp,
-                                                   fontWeight: FontWeight.w500,
-                                                 ),
-                                               ),
-                                             )
-                                                 : Container(),
-
-                                             /// Subscription report
-                                             UserDetails.categoryId == "2" ||
-                                                 UserDetails.categoryId == "4"
-                                                 ? drawerListTile(
-                                               onTap: () {
-                                                 indexController
-                                                     .drawerController.close!();
-                                                 Get.to(() =>
-                                                     SubscriptionReportScreen());
-                                               },
-                                               leading: Icon(
-                                                 Icons.edit_note_rounded,
-                                                 color: themeProvider.darkTheme
-                                                     ? AppColors.whiteColor
-                                                     : AppColors.greyTextColor,
-                                                 size: 22,
-                                               ),
-                                               titleWidget: Text(
-                                                 "Subscription Report",
-                                                 style: TextStyle(
-                                                   color: themeProvider.darkTheme
-                                                       ? AppColors.whiteColor
-                                                       : AppColors.greyTextColor,
-                                                   fontSize: 12.sp,
-                                                   fontWeight: FontWeight.w500,
-                                                 ),
-                                               ),
-                                             )
-                                                 : Container(),
-
-
-
-
-                                           ],
+                                      // collapsed: Container(),
+                                      children: [
+                                        /// Support
+                                        drawerListTile(
+                                          onTap: () {
+                                            indexController
+                                                .drawerController.close!();
+                                            Get.to(() => SupportScreen());
+                                          },
+                                          leading: Image.asset(
+                                            AppIcons.supportImg,
+                                            color: themeProvider.darkTheme
+                                                ? AppColors.whiteColor
+                                                : AppColors.greyTextColor,
+                                            height: 22,
+                                          ),
+                                          titleWidget: Text(
+                                            "Support",
+                                            style: TextStyle(
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.greyTextColor,
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
                                         ),
+
+                                        /// About
+                                        drawerListTile(
+                                          onTap: () {
+                                            indexController
+                                                .drawerController.close!();
+                                            Get.to(() => AboutScreen());
+                                          },
+                                          leading: Image.asset(
+                                            AppIcons.aboutImg,
+                                            color: themeProvider.darkTheme
+                                                ? AppColors.whiteColor
+                                                : AppColors.greyTextColor,
+                                            height: 22,
+                                          ),
+                                          titleWidget: Text(
+                                            "About",
+                                            style: TextStyle(
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.greyTextColor,
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+
+                                        /// Privacy policy
+                                        drawerListTile(
+                                          onTap: () {
+                                            indexController
+                                                .drawerController.close!();
+                                            Get.to(() => PrivacyPolicyScreen());
+                                          },
+                                          leading: Image.asset(
+                                            AppIcons.privacyPolicyImg,
+                                            color: themeProvider.darkTheme
+                                                ? AppColors.whiteColor
+                                                : AppColors.greyTextColor,
+                                            height: 22,
+                                          ),
+                                          titleWidget: Text(
+                                            "Privacy Policy",
+                                            style: TextStyle(
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.greyTextColor,
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+
+                                        /// Share App
+                                        drawerListTile(
+                                          onTap: () {
+                                            indexController
+                                                .drawerController.close!();
+                                          },
+                                          leading: Image.asset(
+                                            AppIcons.shareImg,
+                                            color: themeProvider.darkTheme
+                                                ? AppColors.whiteColor
+                                                : AppColors.greyTextColor,
+                                            height: 22,
+                                          ),
+                                          titleWidget: Text(
+                                            "Share App",
+                                            style: TextStyle(
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.greyTextColor,
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+
+                                        /// Change password
+                                        drawerListTile(
+                                          onTap: () {
+                                            indexController
+                                                .drawerController.close!();
+                                            Get.to(() => ChangePasswordScreen(),
+                                                transition: Transition.native,
+                                                duration: const Duration(
+                                                    milliseconds: 500));
+                                          },
+                                          leading: Icon(
+                                            Icons.edit_note_rounded,
+                                            color: themeProvider.darkTheme
+                                                ? AppColors.whiteColor
+                                                : AppColors.greyTextColor,
+                                            size: 22,
+                                          ),
+                                          titleWidget: Text(
+                                            "Change Password",
+                                            style: TextStyle(
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.greyTextColor,
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+
+                                        /// Subscription
+                                        UserDetails.categoryId == "2" ||
+                                                UserDetails.categoryId == "4"
+                                            ? drawerListTile(
+                                                onTap: () {
+                                                  indexController
+                                                      .drawerController
+                                                      .close!();
+                                                  Get.to(
+                                                      () => PetPricingScreen(),
+                                                      transition:
+                                                          Transition.native,
+                                                      duration: const Duration(
+                                                          milliseconds: 500));
+                                                },
+                                                leading: Image.asset(
+                                                  AppIcons.rateImg,
+                                                  color: themeProvider.darkTheme
+                                                      ? AppColors.whiteColor
+                                                      : AppColors.greyTextColor,
+                                                  height: 22,
+                                                ),
+                                                titleWidget: Text(
+                                                  "Subscription",
+                                                  style: TextStyle(
+                                                    color: themeProvider
+                                                            .darkTheme
+                                                        ? AppColors.whiteColor
+                                                        : AppColors
+                                                            .greyTextColor,
+                                                    fontSize: 12.sp,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              )
+                                            : Container(),
+
+                                        /// Meeting Report
+                                        UserDetails.categoryId == "1" ||
+                                                UserDetails.categoryId == "2"
+                                            ? drawerListTile(
+                                                onTap: () {
+                                                  indexController
+                                                      .drawerController
+                                                      .close!();
+                                                  Get.to(() =>
+                                                      MeetingOrdersScreen());
+                                                },
+                                                leading: Icon(
+                                                  Icons.edit_note_rounded,
+                                                  color: themeProvider.darkTheme
+                                                      ? AppColors.whiteColor
+                                                      : AppColors.greyTextColor,
+                                                  size: 22,
+                                                ),
+                                                titleWidget: Text(
+                                                  "Meeting Report",
+                                                  style: TextStyle(
+                                                    color: themeProvider
+                                                            .darkTheme
+                                                        ? AppColors.whiteColor
+                                                        : AppColors
+                                                            .greyTextColor,
+                                                    fontSize: 12.sp,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              )
+                                            : Container(),
+
+                                        /// Subscription report
+                                        UserDetails.categoryId == "2" ||
+                                                UserDetails.categoryId == "4"
+                                            ? drawerListTile(
+                                                onTap: () {
+                                                  indexController
+                                                      .drawerController
+                                                      .close!();
+                                                  Get.to(() =>
+                                                      SubscriptionReportScreen());
+                                                },
+                                                leading: Icon(
+                                                  Icons.edit_note_rounded,
+                                                  color: themeProvider.darkTheme
+                                                      ? AppColors.whiteColor
+                                                      : AppColors.greyTextColor,
+                                                  size: 22,
+                                                ),
+                                                titleWidget: Text(
+                                                  "Subscription Report",
+                                                  style: TextStyle(
+                                                    color: themeProvider
+                                                            .darkTheme
+                                                        ? AppColors.whiteColor
+                                                        : AppColors
+                                                            .greyTextColor,
+                                                    fontSize: 12.sp,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
+                                              )
+                                            : Container(),
+                                      ],
+                                      // ),
                                     ),
                                   ),
                                 ],
@@ -627,48 +722,45 @@ class _BuildMenuState extends State<BuildMenu> {
                           child: IntrinsicHeight(
                             child: Row(
                               children: [
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        // height: 45,
-                                        width: 65,
-                                        child: DayNightSwitcher(
-                                          isDarkModeEnabled:
-                                              themeChange.darkTheme,
-                                          onStateChanged: (val) async {
-                                            print("theme is changed  : " +
-                                                val.toString());
+                                Row(
+                                  children: [
+                                    Container(
+                                      // height: 45,
+                                      width: 65,
+                                      child: DayNightSwitcher(
+                                        isDarkModeEnabled:
+                                            themeChange.darkTheme,
+                                        onStateChanged: (val) async {
+                                          print("theme is changed  : " +
+                                              val.toString());
 
-                                            themeChange.darkTheme = val;
-                                            var themeIs =
-                                                await DarkThemePreference()
-                                                    .getTheme();
+                                          themeChange.darkTheme = val;
+                                          var themeIs =
+                                              await DarkThemePreference()
+                                                  .getTheme();
 
-                                            print("theme is " +
-                                                themeIs.toString());
-                                          },
-                                        ),
+                                          print(
+                                              "theme is " + themeIs.toString());
+                                        },
                                       ),
+                                    ),
 
-                                      // Image.asset(
-                                      //   "assets/icons/paintboard.png",
-                                      //   height: 28,
-                                      // ),
-                                      const SizedBox(width: 12),
-                                      Text(
-                                        "Theme",
-                                        style: TextStyle(
-                                          color: themeProvider.darkTheme
-                                              ? AppColors.whiteColor
-                                              : AppColors.greyTextColor,
-                                          fontSize: 12.sp,
-                                          fontWeight: FontWeight.w600,
-                                        ),
+                                    // Image.asset(
+                                    //   "assets/icons/paintboard.png",
+                                    //   height: 28,
+                                    // ),
+                                    const SizedBox(width: 12),
+                                    Text(
+                                      "Theme",
+                                      style: TextStyle(
+                                        color: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                            : AppColors.greyTextColor,
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w600,
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                                 const SizedBox(width: 10),
                                 SizedBox(

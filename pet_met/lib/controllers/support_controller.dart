@@ -44,7 +44,7 @@ class SupportController extends GetxController {
 
       if (isSuccessStatus.value) {
         supportData = supportModel.data;
-        for(int i=0 ; i< supportData.length; i++){
+        for (int i = 0; i < supportData.length; i++) {
           featuredImage = supportData[i].featuredimageparth!;
           title = supportData[i].title!;
           content = supportData[i].content!;

@@ -401,7 +401,8 @@ class UploadPetController extends GetxController {
         //   log('petApiProfile: $petApiProfile');
         // }
 
-        petImage = ApiUrl.apiImagePath + "asset/uploads/petimage/" + getProfile.image!;
+        petImage =
+            ApiUrl.apiImagePath + "asset/uploads/petimage/" + getProfile.image!;
         log('pet name: ${petNameController.text}');
         log('pet details: ${petDetailsController.text}');
         log('genderValue: ${genderValue.value}');
@@ -498,6 +499,8 @@ class UploadPetController extends GetxController {
         isSuccessStatus = updatePetProfileModel.success.obs;
 
         if (isSuccessStatus.value) {
+          ShopUserProfileScreenController shopUserProfileScreenController =
+              Get.find<ShopUserProfileScreenController>();
           Fluttertoast.showToast(msg: updatePetProfileModel.message);
           // if(UserDetails.categoryId == "1") {
           //   await userUpdateProfileController.getAllRoleProfileFunction();
@@ -505,6 +508,7 @@ class UploadPetController extends GetxController {
           //   await shopUserProfileScreenController.getAllRoleProfileFunction();
           // }
           Get.back();
+          await shopUserProfileScreenController.getAllRoleProfileFunction();
         } else {
           log('False False');
         }
@@ -582,7 +586,6 @@ class UploadPetController extends GetxController {
         //filename: "",
       );
 
-
       request.files.add(multiPart);
 
       log('request.fields: ${request.fields}');
@@ -599,8 +602,12 @@ class UploadPetController extends GetxController {
         isSuccessStatus = updatePetProfileModel.success.obs;
 
         if (isSuccessStatus.value) {
+          ShopUserProfileScreenController shopUserProfileScreenController =
+              Get.find<ShopUserProfileScreenController>();
+
           Fluttertoast.showToast(msg: "Pet Created Successfully");
           Get.back();
+          await shopUserProfileScreenController.getAllRoleProfileFunction();
         } else {
           log('False False');
         }

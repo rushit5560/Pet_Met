@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/pet_pricing_controller.dart';
@@ -34,6 +36,10 @@ class PetTrackerPriceModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DarkThemeProvider themeProvider = Provider.of<DarkThemeProvider>(context);
+
+    // controller.status.value =
+    //     controller.planData[index].isActive == 1 ? true : false;
+    log(" isactive val is : ${controller.planData[index].isActive.toString()}");
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
@@ -156,12 +162,16 @@ class PetTrackerPriceModule extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          controller.status.value == false ?  "Buy" : "Purchased",
+                          controller.planData[index].isActive
+                                  .toString()
+                                  .contains("0")
+                              ? "Buy"
+                              : "Purchased",
                           style: TextStyle(
                             color: themeProvider.darkTheme
                                 ? AppColors.accentColor
                                 : AppColors.whiteColor,
-                            fontSize: 13.sp,
+                            // fontSize: 13.sp,
                           ),
                         ),
                       ),
@@ -191,31 +201,28 @@ class PetTrackerPriceModule extends StatelessWidget {
               ),
               child: Stack(
                 children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 15),
-                      child: Text(
-                        "₹",
-                        style: TextStyle(
-                          color: AppColors.whiteColor,
-                          fontSize: 13.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
+                  // Align(
+                  //   alignment: Alignment.topLeft,
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.only(left: 15, top: 20),
+                  //     child: Text(
+                  //       "₹",
+                  //       style: TextStyle(
+                  //         color: AppColors.whiteColor,
+                  //         fontSize: 13.sp,
+                  //         fontWeight: FontWeight.bold,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   Align(
                     alignment: Alignment.center,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: Text(
-                        petPriceText.toString().toUpperCase(),
-                        style: TextStyle(
-                          color: AppColors.whiteColor,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    child: Text(
+                      "₹ " + petPriceText.toString(),
+                      style: TextStyle(
+                        color: AppColors.whiteColor,
+                        // fontSize: 14.sp,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),

@@ -24,10 +24,15 @@ class PetMeetingListModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return screenController.subCatPetList.isEmpty
-        ? const Center(
+        ? Center(
             child: Text(
               "Pet not available in this category!",
-              style: TextStyle(color: Colors.black, fontSize: 17),
+              style: TextStyle(
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.greyTextColor,
+                fontSize: 17,
+              ),
             ),
           )
         : ListView.builder(
@@ -106,7 +111,7 @@ class PetMeetingListModule extends StatelessWidget {
             child: GestureDetector(
               onTap: () {
                 Get.to(
-                      () => PetMeetingDetailsScreen(),
+                  () => PetMeetingDetailsScreen(),
                   arguments: [
                     screenController.subCatPetList[i].data.id,
                     screenController.subCatPetList[i].data.userid,
@@ -152,7 +157,8 @@ class PetMeetingListModule extends StatelessWidget {
                       // ),
                       const SizedBox(height: 12),
                       Text(
-                        screenController.subCatPetList[i].data.gender + ", 2 Years Old",
+                        screenController.subCatPetList[i].data.gender +
+                            ", 2 Years Old",
                         style: TextStyle(
                           color: themeProvider.darkTheme
                               ? AppColors.whiteColor.withOpacity(0.65)
@@ -187,7 +193,6 @@ class PetMeetingListModule extends StatelessWidget {
                       ),
                     ],
                   ).commonSymmetricPadding(horizontal: 12, vertical: 14),
-
                   Positioned(
                     top: 5,
                     right: 5,
@@ -209,17 +214,18 @@ class PetMeetingListModule extends StatelessWidget {
                         height: 23,
                         width: 23,
                         decoration: BoxDecoration(
-                          // color: AppColors.greyColor,
-                          // shape: BoxShape.circle,
+                            // color: AppColors.greyColor,
+                            // shape: BoxShape.circle,
                             borderRadius: BorderRadius.circular(15),
-                            border: Border.all(color: AppColors.accentTextColor)
-                        ),
-                        child: Image.network(ApiUrl.apiImagePath + "assets/uploads/petimage" +
-                            screenController.subCatPetList[i].img,
+                            border:
+                                Border.all(color: AppColors.accentTextColor)),
+                        child: Image.network(
+                            ApiUrl.apiImagePath +
+                                "assets/uploads/petimage" +
+                                screenController.subCatPetList[i].img,
                             errorBuilder: (context, st, ob) {
-                              return Image.asset(AppImages.petMetLogoImg);
-                            },
-                            fit: BoxFit.cover),
+                          return Image.asset(AppImages.petMetLogoImg);
+                        }, fit: BoxFit.cover),
                       ),
                     ),
                   ),

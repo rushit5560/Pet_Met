@@ -361,12 +361,11 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
         GestureDetector(
           onTap: () {
             String url = screenController.trainerDetails[0].instagram;
-            if(url.isEmpty){
+            if (url.isEmpty) {
               Fluttertoast.showToast(msg: 'Instagram URl is empty');
-            } else{
+            } else {
               _makingInstagramApp(url);
             }
-
           },
           child: Container(
             height: screenController.size.width * 0.018.w,
@@ -383,12 +382,11 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
         GestureDetector(
           onTap: () {
             var fbUrl = screenController.trainerDetails[0].facebook;
-            if(fbUrl.isEmpty){
+            if (fbUrl.isEmpty) {
               Fluttertoast.showToast(msg: 'Facebook URl is empty');
-            }else{
+            } else {
               launchFacebook(fbUrl, fbUrl);
             }
-
           },
           child: Container(
             height: screenController.size.width * 0.018.w,
@@ -655,7 +653,7 @@ class PayButtonModule extends StatelessWidget {
 
   final screenController = Get.find<PetTrainersDetailsScreenController>();
   DarkThemeProvider themeProvider =
-  Provider.of<DarkThemeProvider>(Get.context!);
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -693,7 +691,6 @@ class PayButtonModule extends StatelessWidget {
   }
 
   alertDialogBox(BuildContext context) {
-
     return showDialog(
       barrierColor: themeProvider.darkTheme
           ? AppColors.darkThemeBoxColor.withOpacity(0.3)
@@ -793,7 +790,7 @@ class PayButtonModule extends StatelessWidget {
                             : AppColors.whiteColor,
                         filled: true,
                         contentPadding:
-                        const EdgeInsets.symmetric(horizontal: 15),
+                            const EdgeInsets.symmetric(horizontal: 15),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: const BorderSide(
@@ -823,9 +820,12 @@ class PayButtonModule extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () async {
+                        Get.back();
                         //await screenController.userLoginFunction();
                         if (screenController.formKey.currentState!.validate()) {
-                          screenController.openCheckout(price: int.parse(screenController.priceController.text));
+                          screenController.openCheckout(
+                              price: int.parse(
+                                  screenController.priceController.text));
                           screenController.priceController.clear();
                         }
                       },
@@ -865,7 +865,7 @@ class PayButtonModule extends StatelessWidget {
                             ? AppColors.whiteColor
                             : AppColors.greyTextColor.withOpacity(0.3),
                         minimumSize:
-                        Size(screenController.size.width * 0.3, 30),
+                            Size(screenController.size.width * 0.3, 30),
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(

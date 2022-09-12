@@ -28,7 +28,7 @@ class Styles {
       backgroundColor:
           isDarkTheme ? AppColors.darkThemeColor : AppColors.whiteColor,
       hourMinuteShape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(8)),
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
         side: BorderSide(
             color:
                 isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
@@ -40,7 +40,7 @@ class Styles {
       // dayPeriodColor:
       //     isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(8)),
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
         side: BorderSide(
           color: isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
           width: 1,
@@ -73,13 +73,14 @@ class Styles {
           isDarkTheme ? AppColors.darkThemeColor : AppColors.whiteColor,
       indicatorColor:
           isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
-      buttonColor:
-          isDarkTheme ? const Color(0xff3B3B3B) : const Color(0xffF1F5FB),
       hintColor: isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
       highlightColor:
           isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
       hoverColor: isDarkTheme ? AppColors.greyColor : AppColors.darkThemeColor,
       focusColor: isDarkTheme ? AppColors.greyColor : AppColors.darkThemeColor,
+      splashColor: isDarkTheme
+          ? AppColors.greyColor.withOpacity(0.35)
+          : AppColors.darkThemeColor.withOpacity(0.35),
       disabledColor: AppColors.greyColor,
       textSelectionTheme: TextSelectionThemeData(
         cursorColor:

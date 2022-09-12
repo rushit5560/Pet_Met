@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/utils/app_colors.dart';
@@ -9,7 +11,7 @@ import 'package:provider/provider.dart';
 import '../../controllers/index_screen_controller.dart';
 import '../../services/providers/dark_theme_provider.dart';
 
-class CustomAppBar extends StatelessWidget {
+class CustomAppBar extends StatefulWidget {
   CustomAppBar({
     Key? key,
     this.appBarOption = AppBarOption.none,
@@ -24,6 +26,12 @@ class CustomAppBar extends StatelessWidget {
   Widget? centerWidget;
   Widget? trailingWidget;
   final AppBarOption appBarOption;
+
+  @override
+  State<CustomAppBar> createState() => _CustomAppBarState();
+}
+
+class _CustomAppBarState extends State<CustomAppBar> {
   final indexController = Get.put(IndexScreenController());
 
   DarkThemeProvider themeProvider =
@@ -42,9 +50,10 @@ class CustomAppBar extends StatelessWidget {
           // Left Side Button Module
           GestureDetector(
             onTap: () {
-              if (appBarOption == AppBarOption.singleBackButtonOption) {
+              if (widget.appBarOption == AppBarOption.singleBackButtonOption) {
                 Get.back();
-              } else if (appBarOption == AppBarOption.drawerButtonOption) {
+              } else if (widget.appBarOption ==
+                  AppBarOption.drawerButtonOption) {
                 indexController.drawerController.open!();
               } else {
                 null;
@@ -60,9 +69,9 @@ class CustomAppBar extends StatelessWidget {
           // Title Text Module
           /*Expanded(
             child:*/
-          isTitleText!
+          widget.isTitleText!
               ? Text(
-                  title,
+                  widget.title,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
@@ -71,14 +80,14 @@ class CustomAppBar extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 )
-              : centerWidget!,
+              : widget.centerWidget!,
           // ),
 
           // Right Side Button Module
           SizedBox(
             height: 25,
             width: 25,
-            child: trailingWidget,
+            child: widget.trailingWidget,
           ).commonSymmetricPadding(horizontal: 20, vertical: 8),
         ],
       ),
@@ -86,11 +95,15 @@ class CustomAppBar extends StatelessWidget {
   }
 
   leadingWidget() {
-    if (appBarOption == AppBarOption.singleBackButtonOption) {
+    final themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
+    setState(() {});
+
+    log("${themeProvider.darkTheme}");
+    if (widget.appBarOption == AppBarOption.singleBackButtonOption) {
       return Image.asset(
         AppIcons.backButtonImg,
       );
-    } else if (appBarOption == AppBarOption.drawerButtonOption) {
+    } else if (widget.appBarOption == AppBarOption.drawerButtonOption) {
       return Image.asset(
         AppIcons.drawerButtonImg,
         color: themeProvider.darkTheme
@@ -103,7 +116,7 @@ class CustomAppBar extends StatelessWidget {
   }
 
   trailingWidget1() {
-    if (appBarOption == AppBarOption.singleBackButtonOption) {
+    if (widget.appBarOption == AppBarOption.singleBackButtonOption) {
       return Image.asset(
         AppIcons.profilePetImg,
       );

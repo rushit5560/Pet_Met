@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:expandable/expandable.dart';
 import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -35,6 +36,9 @@ class IndexScreenController extends GetxController {
 
   var drawerController = ZoomDrawerController();
 
+  final expandedSettingsController =
+      ExpandableController(initialExpanded: false);
+
   ApiHeader apiHeader = ApiHeader();
 
   List screenPages = [
@@ -51,23 +55,23 @@ class IndexScreenController extends GetxController {
     log('Delete Account Api Url : $url');
 
     try {
-
       Map<String, String> header = apiHeader.apiHeader();
       log('header: $header');
       http.Response response = await http.get(Uri.parse(url), headers: header);
       log("Delete Account Api Response : ${response.body}");
 
-      DeleteAccountModel deleteAccountModel = DeleteAccountModel.fromJson(json.decode(response.body));
+      DeleteAccountModel deleteAccountModel =
+          DeleteAccountModel.fromJson(json.decode(response.body));
       isSuccessStatus = deleteAccountModel.success.obs;
 
       if (isSuccessStatus.value) {
         //addressController.clear();
         Fluttertoast.showToast(msg: deleteAccountModel.message);
-        Get.off(()=> const UserCategoriesScreen());
+        Get.off(() => const UserCategoriesScreen());
       } else {
         Fluttertoast.showToast(msg: deleteAccountModel.message);
       }
-    } catch(e) {
+    } catch (e) {
       log('Delete Account Api Error ::: $e');
     } finally {
       isLoading(false);
@@ -77,11 +81,10 @@ class IndexScreenController extends GetxController {
   Future<void> userLogOutFunction() async {
     await userPreference.removeUserDetails();
     await fb.logOut();
-    Get.offAll(()=> const UserCategoriesScreen(),
+    Get.offAll(() => const UserCategoriesScreen(),
         transition: Transition.native,
         duration: const Duration(milliseconds: 500));
   }
-
 
   @override
   void onInit() {
@@ -89,5 +92,4 @@ class IndexScreenController extends GetxController {
     isLoading(false);
     super.onInit();
   }
-
 }

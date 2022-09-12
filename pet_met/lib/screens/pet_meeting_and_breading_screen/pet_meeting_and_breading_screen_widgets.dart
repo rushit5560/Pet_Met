@@ -14,8 +14,6 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
 
-
-
 class MeetingAndBreadingSearchFieldModule extends StatelessWidget {
   MeetingAndBreadingSearchFieldModule({Key? key}) : super(key: key);
   final screenController = Get.find<PetMeetingAndBreadingScreenController>();
@@ -54,7 +52,7 @@ class MeetingAndBreadingSearchFieldModule extends StatelessWidget {
             decoration: TextDecoration.none,
           ),
           onChanged: (value) {
-            if(value.isEmpty) {
+            if (value.isEmpty) {
               // here clear search list when text field is empty
               screenController.isLoading(true);
               screenController.searchList.clear();
@@ -89,8 +87,9 @@ class MeetingAndBreadingSearchFieldModule extends StatelessWidget {
             suffixIcon: GestureDetector(
               onTap: () async {
                 screenController.isLoading(true);
-                if(screenController.searchFieldController.text.isNotEmpty) {
-                  await screenController.getSearchCategoryAndSubCategoryFunction();
+                if (screenController.searchFieldController.text.isNotEmpty) {
+                  await screenController
+                      .getSearchCategoryAndSubCategoryFunction();
                   hideKeyboard();
                 }
                 screenController.isLoading(false);
@@ -127,7 +126,6 @@ class PetCategoriesTextModule extends StatelessWidget {
   }
 }
 
-
 class PetCategoriesSearchListModule extends StatelessWidget {
   PetCategoriesSearchListModule({Key? key}) : super(key: key);
   final screenController = Get.find<PetMeetingAndBreadingScreenController>();
@@ -163,11 +161,12 @@ class PetCategoriesSearchListModule extends StatelessWidget {
             screenController.isLoading(true);
 
             // Selected value make true other values false
-            for(int i=0; i < screenController.searchList.length; i++) {
-
-              if(screenController.searchList[i].categoryId == singleItem.categoryId) {
+            for (int i = 0; i < screenController.searchList.length; i++) {
+              if (screenController.searchList[i].categoryId ==
+                  singleItem.categoryId) {
                 screenController.searchList[i].isSelected = true;
-                screenController.selectedSubCatId = screenController.searchList[i].categoryId;
+                screenController.selectedSubCatId =
+                    screenController.searchList[i].categoryId;
                 /*if(screenController.searchList[i].isSelected == true) {
                   screenController.searchList[i].isSelected = false;
                 } else if(screenController.searchList[i].isSelected == false) {
@@ -176,7 +175,6 @@ class PetCategoriesSearchListModule extends StatelessWidget {
               } else {
                 screenController.searchList[i].isSelected = false;
               }
-
             }
 
             /*for(int i=0; i< screenController.searchList.length; i++) {
@@ -203,9 +201,7 @@ class PetCategoriesSearchListModule extends StatelessWidget {
       ],
     );
   }
-
 }
-
 
 class PetCategoriesListModule extends StatelessWidget {
   PetCategoriesListModule({Key? key}) : super(key: key);
@@ -302,7 +298,7 @@ class PetCategoriesListModule extends StatelessWidget {
             );
           },
         ):*/
-        ListView.builder(
+            ListView.builder(
           itemCount: singleItem.subCategory.length,
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
@@ -311,37 +307,47 @@ class PetCategoriesListModule extends StatelessWidget {
             return Row(
               children: [
                 Checkbox(
-                  checkColor: themeProvider.darkTheme
-                      ? AppColors.whiteColor
-                      : AppColors.greyTextColor,
-                  activeColor: AppColors.greyTextColor,
-                  fillColor: MaterialStateProperty.all(AppColors.greyColor),
+                  checkColor: AppColors.whiteColor,
+                  // activeColor: AppColors.greyTextColor,
+                  fillColor: MaterialStateProperty.all(AppColors.accentColor),
                   focusColor: AppColors.greyColor,
                   value: singleItem.subCategory[i].isSelected,
                   onChanged: (value) {
-
                     screenController.isLoading(true);
                     RxBool selectedItemValue = value!.obs;
                     log("selectedItemValue : $selectedItemValue");
 
-                    for(int i=0; i < screenController.catAndSubCatList.length; i++) {
-                      for(int j=0; j < screenController.catAndSubCatList[i].subCategory.length; j++) {
-
-                        if(screenController.catAndSubCatList[i].subCategory[j].categoryId == id) {
+                    for (int i = 0;
+                        i < screenController.catAndSubCatList.length;
+                        i++) {
+                      for (int j = 0;
+                          j <
+                              screenController
+                                  .catAndSubCatList[i].subCategory.length;
+                          j++) {
+                        if (screenController.catAndSubCatList[i].subCategory[j]
+                                .categoryId ==
+                            id) {
                           log("Sub cat Id : ${screenController.catAndSubCatList[i].subCategory[j].categoryId}");
-                          if(screenController.catAndSubCatList[i].subCategory[j].isSelected == false) {
-                            screenController.catAndSubCatList[i].subCategory[j].isSelected = true;
-                            screenController.selectedSubCatId = screenController.catAndSubCatList[i].subCategory[j].categoryId.toString();
+                          if (screenController.catAndSubCatList[i]
+                                  .subCategory[j].isSelected ==
+                              false) {
+                            screenController.catAndSubCatList[i].subCategory[j]
+                                .isSelected = true;
+                            screenController.selectedSubCatId = screenController
+                                .catAndSubCatList[i].subCategory[j].categoryId
+                                .toString();
                             log("screenController.selectedSubCatId : ${screenController.selectedSubCatId}");
                           } else {
-                            screenController.catAndSubCatList[i].subCategory[j].isSelected = false;
+                            screenController.catAndSubCatList[i].subCategory[j]
+                                .isSelected = false;
                             screenController.selectedSubCatId = "";
                             log("screenController.selectedSubCatId : ${screenController.selectedSubCatId}");
                           }
                         } else {
-                          screenController.catAndSubCatList[i].subCategory[j].isSelected = false;
+                          screenController.catAndSubCatList[i].subCategory[j]
+                              .isSelected = false;
                         }
-
                       }
                     }
 
@@ -402,15 +408,14 @@ class MeetYourLovedOneButtonModule extends StatelessWidget {
     return GestureDetector(
       onTap: () async {
         log("Selected Sub cat Id : ${screenController.selectedSubCatId}");
-        if(screenController.selectedSubCatId != "") {
-
-          Get.to(()=> PetMeetingListScreen(),
-              arguments: screenController.selectedSubCatId,
-              transition: Transition.native,
-              duration: const Duration(milliseconds: 500),
+        if (screenController.selectedSubCatId != "") {
+          Get.to(
+            () => PetMeetingListScreen(),
+            arguments: screenController.selectedSubCatId,
+            transition: Transition.native,
+            duration: const Duration(milliseconds: 500),
           );
-
-       } else {
+        } else {
           Fluttertoast.showToast(msg: "Please select category first!");
         }
 
@@ -420,7 +425,6 @@ class MeetYourLovedOneButtonModule extends StatelessWidget {
                 transition: Transition.native,
                 duration: const Duration(milliseconds: 500));
           });*/
-
       },
       child: Container(
         width: double.infinity,

@@ -13,17 +13,15 @@ class SubscriptionReportScreenController extends GetxController {
 
   List<SubscriptionOrders> subscriptionOrderList = [];
 
-
   Future<void> getUserSubscriptionReportFunction() async {
     isLoading(true);
     String url = ApiUrl.subscriptionOrderApi;
-    log("Subscription Api Url : $url");
-
+    log("getUserSubscriptionReport Api Url : $url");
 
     try {
       Map<String, dynamic> bodyData = {
-        "userid" : UserDetails.selfId,
-        "categoryID" : UserDetails.categoryId
+        "userid": UserDetails.selfId,
+        "categoryID": UserDetails.categoryId
       };
 
       http.Response response = await http.post(
@@ -31,25 +29,24 @@ class SubscriptionReportScreenController extends GetxController {
         body: bodyData,
       );
 
-      log("response : ${response.body}");
+      log("getUserSubscriptionReport response : ${response.body}");
 
-      SubscriptionOrdersModel subscriptionOrdersModel = SubscriptionOrdersModel.fromJson(json.decode(response.body));
+      SubscriptionOrdersModel subscriptionOrdersModel =
+          SubscriptionOrdersModel.fromJson(json.decode(response.body));
       isSuccessStatus = subscriptionOrdersModel.success.obs;
 
-      if(isSuccessStatus.value) {
+      if (isSuccessStatus.value) {
         subscriptionOrderList.clear();
         subscriptionOrderList.addAll(subscriptionOrdersModel.date.orderdetails);
-        log("subscriptionOrderList : ${subscriptionOrderList.length}");
+        log("getUserSubscriptionReport  : ${subscriptionOrderList.length}");
       } else {
-        log("subscriptionOrderList Else");
+        log("getUserSubscriptionReport  Else");
       }
-
-    } catch(e) {
-      log("subscriptionOrderList Error ::: $e");
+    } catch (e) {
+      log("getUserSubscriptionReport  Error ::: $e");
     } finally {
       isLoading(false);
     }
-
   }
 
   @override
@@ -58,5 +55,4 @@ class SubscriptionReportScreenController extends GetxController {
     super.onInit();
     getUserSubscriptionReportFunction();
   }
-
 }

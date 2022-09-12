@@ -9,7 +9,7 @@ class Validations {
   String? validatePrice(String value) {
     if (value.isEmpty) {
       return 'Price is required';
-    } else if(value.contains('.')) {
+    } else if (value.contains('.')) {
       return 'Please enter valid integer price';
     }
     return null;
@@ -32,7 +32,7 @@ class Validations {
   String? validateInstagramLink(String value) {
     if (value.isEmpty) {
       return 'Instagram link is required';
-    } else if(!value.contains('www.instagram.com') || value.contains(' ')) {
+    } else if (!value.contains('www.instagram.com') || value.contains(' ')) {
       return 'Invalid instagram link';
     }
     return null;
@@ -41,12 +41,11 @@ class Validations {
   String? validateFacebookLink(String value) {
     if (value.isEmpty) {
       return 'Facebook link is required';
-    } else if(!value.contains('www.facebook.com') || value.contains(' ')) {
+    } else if (!value.contains('www.facebook.com') || value.contains(' ')) {
       return 'Invalid facebook link';
     }
     return null;
   }
-
 
   String? validateActive(String value) {
     if (value.isEmpty) {
@@ -86,7 +85,7 @@ class Validations {
   String? validateBankAccountNumber(String value) {
     if (value.isEmpty) {
       return 'Bank account number is required';
-    } else if(value.length < 9 || value.length > 18) {
+    } else if (value.length < 9 || value.length > 18) {
       return 'Invalid account number';
     }
     return null;
@@ -95,7 +94,7 @@ class Validations {
   String? validateIfscCode(String value) {
     if (value.isEmpty) {
       return 'IFSC code is required';
-    } else if(value.length != 11) {
+    } else if (value.length != 11) {
       return 'Invalid ifsc code';
     }
     return null;
@@ -147,20 +146,19 @@ class Validations {
 
   String? validatePassword(String value) {
     if (value.isEmpty) {
-      return "Password is required";
+      return "Current Password is required";
     } else if (value.length < 6) {
-      return "Password must be at least 6 characters";
+      return "Password must be at least 6 characters long";
     } else {
       return null;
     }
   }
 
-
   String? validateNewPassword(String value) {
     if (value.isEmpty) {
-      return "Password is required";
+      return "New Password is required";
     } else if (value.length < 6) {
-      return "Password must be at least 6 characters";
+      return "Password must be at least 6 characters long";
     } else {
       return null;
     }
@@ -168,9 +166,9 @@ class Validations {
 
   String? validateConfirmPassword(String value, String value2) {
     if (value.isEmpty) {
-      return "Password is required";
-    }else if (value != value2) {
-      return "New password and confirm password should not be match";
+      return "Confirm Password is required";
+    } else if (value != value2) {
+      return "New password and Confirm password both not match";
     } else {
       return null;
     }
