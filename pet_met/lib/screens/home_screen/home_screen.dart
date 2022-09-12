@@ -225,7 +225,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             onRefresh: () {
                               return Future.delayed(const Duration(seconds: 1),
                                   () {
-                                controller.getUserStory();
+                                    if(UserDetails.categoryId == "1"){
+                                      controller.getUserProfileFunction();
+                                    } else if(UserDetails.categoryId == "2"){
+                                      controller.getShopProfileFunction();
+                                    } else if(UserDetails.categoryId == "3"){
+                                      controller.getNgoProfileFunction();
+                                    } else if(UserDetails.categoryId == "4"){
+                                      controller.getTrainerProfileFunction();
+                                    }
                               });
                             },
                             child: SingleChildScrollView(

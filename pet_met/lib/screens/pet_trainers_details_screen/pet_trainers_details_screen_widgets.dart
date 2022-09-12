@@ -363,10 +363,7 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
             String url = screenController.trainerDetails[0].instagram;
             if(url.isEmpty){
               Fluttertoast.showToast(msg: 'Instagram URL is not added. Please add URL!!!');
-            } else{
-            if (url.isEmpty) {
-              Fluttertoast.showToast(msg: 'Instagram URl is empty');
-            } else {
+            }  else {
               _makingInstagramApp(url);
             }
           },
@@ -387,9 +384,6 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
             var fbUrl = screenController.trainerDetails[0].facebook;
             if(fbUrl.isEmpty){
               Fluttertoast.showToast(msg: 'Facebook URL is not added. Please add URL!!!');
-            }else{
-            if (fbUrl.isEmpty) {
-              Fluttertoast.showToast(msg: 'Facebook URl is empty');
             } else {
               launchFacebook(fbUrl, fbUrl);
             }
@@ -659,7 +653,7 @@ class PayButtonModule extends StatelessWidget {
 
   final screenController = Get.find<PetTrainersDetailsScreenController>();
   DarkThemeProvider themeProvider =
-      Provider.of<DarkThemeProvider>(Get.context!);
+  Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -702,234 +696,206 @@ class PayButtonModule extends StatelessWidget {
           ? AppColors.darkThemeBoxColor.withOpacity(0.3)
           : AppColors.accentColor.withOpacity(0.3),
       context: context,
-      builder: (ctx) => Dialog(
-        backgroundColor: themeProvider.darkTheme
-            ? AppColors.darkThemeBoxColor
-            : AppColors.whiteColor,
-        shape: const OutlineInputBorder(
-          borderSide: BorderSide(
-            width: 0,
-            color: Colors.transparent,
-          ),
-          borderRadius: BorderRadius.all(
-            Radius.circular(12),
-          ),
-        ),
-        child: Container(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 15,
-            vertical: 25,
-          ),
-          height: screenController.size.height * 0.35,
-          width: screenController.size.width * 0.8,
-          child: Form(
-            key: screenController.formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+      builder: (ctx) =>
+          Dialog(
+            backgroundColor: themeProvider.darkTheme
+                ? AppColors.darkThemeBoxColor
+                : AppColors.whiteColor,
+            shape: const OutlineInputBorder(
+              borderSide: BorderSide(
+                width: 0,
+                color: Colors.transparent,
+              ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(12),
+              ),
+            ),
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 15,
+                vertical: 25,
+              ),
+              height: screenController.size.height * 0.35,
+              width: screenController.size.width * 0.8,
+              child: Form(
+                key: screenController.formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      "Price",
-                      style: TextStyle(
-                        color: themeProvider.darkTheme
-                            ? AppColors.whiteColor
-                            : AppColors.blackTextColor,
-                        fontSize: 11.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-                //const SizedBox(height: 8),
-                // CustomLightTextField(
-                //   readOnly: false,
-                //   fieldController: controller.passwordController,
-                //   height: Get.height * 0.05,
-                //   width: double.infinity,
-                //   hintText: "Password",
-                //   textInputAction: TextInputAction.next,
-                //   textInputType: TextInputType.text,
-                //   validator: (val) => Validations().validateName(val!),
-                // ),
-
-                Stack(
-                  children: [
-                    Container(
-                      height: screenController.size.height * 0.05,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        boxShadow: [
-                          BoxShadow(
-                            color: themeProvider.darkTheme
-                                ? AppColors.whiteColor.withOpacity(0.05)
-                                : AppColors.greyTextColor.withOpacity(0.5),
-                            blurRadius: 10,
-                            spreadRadius: 0.1,
-                            offset: const Offset(0, 0),
-                          ),
-                        ],
-                      ),
-                    ),
-                    TextFormField(
-                      controller: screenController.priceController,
-                      validator: (val) => Validations().validatePrice(val!),
-                      textInputAction: TextInputAction.done,
-                      keyboardType: TextInputType.number,
-                      cursorColor: themeProvider.darkTheme
-                          ? AppColors.whiteColor
-                          : AppColors.accentTextColor,
-                      style: TextStyle(
-                        color: themeProvider.darkTheme
-                            ? AppColors.whiteColor
-                            : AppColors.blackTextColor,
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.w400,
-                        decoration: TextDecoration.none,
-                      ),
-                      decoration: InputDecoration(
-                        fillColor: themeProvider.darkTheme
-                            ? AppColors.darkThemeBoxColor
-                            : AppColors.whiteColor,
-                        filled: true,
-                        contentPadding:
-                            const EdgeInsets.symmetric(horizontal: 15),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(
-                              width: 0, style: BorderStyle.none),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10),
-                          borderSide: const BorderSide(
-                              width: 0, style: BorderStyle.none),
-                        ),
-                        hintText: "Price",
-                        hintStyle: TextStyle(
-                          color: themeProvider.darkTheme
-                              ? AppColors.whiteColor
-                              : AppColors.greyTextColor,
-                          fontSize: 13.sp,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-
-                // const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    /*ElevatedButton(
-                      onPressed: () async {
-                        Get.back();
-                        //await screenController.userLoginFunction();
-                        if (screenController.formKey.currentState!.validate()) {
-                          screenController.openCheckout(
-                              price: int.parse(
-                                  screenController.priceController.text));
-                          screenController.priceController.clear();
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        primary: AppColors.accentColor,
-                        minimumSize: Size(
-                          screenController.size.width * 0.3,
-                          30,
-                        ),
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(12),
-                          ),
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Ok",
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Price",
                           style: TextStyle(
-                            color: AppColors.whiteColor,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w500,
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor
+                                : AppColors.blackTextColor,
+                            fontSize: 11.sp,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
-                      ),
+                      ],
                     ),
-                    SizedBox(
-                      width: screenController.size.width * 0.05,
-                    ),
-                    GestureDetector(
-                      onTap: (){
-                        Get.back();
-                      },
-                      child: Container(
-                        //width: double.infinity,
-                        height: 50,
-                        decoration: const BoxDecoration(
-                          color: AppColors.accentColor,
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(12),
+                    //const SizedBox(height: 8),
+                    // CustomLightTextField(
+                    //   readOnly: false,
+                    //   fieldController: controller.passwordController,
+                    //   height: Get.height * 0.05,
+                    //   width: double.infinity,
+                    //   hintText: "Password",
+                    //   textInputAction: TextInputAction.next,
+                    //   textInputType: TextInputType.text,
+                    //   validator: (val) => Validations().validateName(val!),
+                    // ),
+
+                    Stack(
+                      children: [
+                        Container(
+                          height: screenController.size.height * 0.05,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            boxShadow: [
+                              BoxShadow(
+                                color: themeProvider.darkTheme
+                                    ? AppColors.whiteColor.withOpacity(0.05)
+                                    : AppColors.greyTextColor.withOpacity(0.5),
+                                blurRadius: 10,
+                                spreadRadius: 0.1,
+                                offset: const Offset(0, 0),
+                              ),
+                            ],
                           ),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          child: Center(
-                            child: Text(
-                              "Cancel",
-                              style: TextStyle(
-                                color: AppColors.whiteColor,
-                                fontSize: 15.sp,
-                                fontWeight: FontWeight.w600,
+                        TextFormField(
+                          controller: screenController.priceController,
+                          validator: (val) => Validations().validatePrice(val!),
+                          textInputAction: TextInputAction.done,
+                          keyboardType: TextInputType.number,
+                          cursorColor: themeProvider.darkTheme
+                              ? AppColors.whiteColor
+                              : AppColors.accentTextColor,
+                          style: TextStyle(
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor
+                                : AppColors.blackTextColor,
+                            fontSize: 13.sp,
+                            fontWeight: FontWeight.w400,
+                            decoration: TextDecoration.none,
+                          ),
+                          decoration: InputDecoration(
+                            fillColor: themeProvider.darkTheme
+                                ? AppColors.darkThemeBoxColor
+                                : AppColors.whiteColor,
+                            filled: true,
+                            contentPadding:
+                            const EdgeInsets.symmetric(horizontal: 15),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(
+                                  width: 0, style: BorderStyle.none),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: const BorderSide(
+                                  width: 0, style: BorderStyle.none),
+                            ),
+                            hintText: "Price",
+                            hintStyle: TextStyle(
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.greyTextColor,
+                              fontSize: 13.sp,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    // const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+
+                        GestureDetector(
+                          onTap: () {
+                            Get.back();
+                            //await screenController.userLoginFunction();
+                            if (screenController.formKey.currentState!
+                                .validate()) {
+                              screenController.openCheckout(
+                                  price: int.parse(
+                                      screenController.priceController.text));
+                              screenController.priceController.clear();
+                            }
+                          },
+                          child: Container(
+                            //width: double.infinity,
+                            height: 50,
+                            decoration: const BoxDecoration(
+                              color: AppColors.accentColor,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(12),
+                              ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12),
+                              child: Center(
+                                child: Text(
+                                  "Submit",
+                                  style: TextStyle(
+                                    color: AppColors.whiteColor,
+                                    fontSize: 15.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                    /*SizedBox(
-                      width: screenController.size.width * 0.05,
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        Get.back();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        primary: themeProvider.darkTheme
-                            ? AppColors.whiteColor
-                            : AppColors.greyTextColor.withOpacity(0.3),
-                        minimumSize:
-                            Size(screenController.size.width * 0.3, 30),
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(12),
+                        SizedBox(
+                          width: screenController.size.width * 0.05,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Container(
+                            //width: double.infinity,
+                            height: 50,
+                            decoration: const BoxDecoration(
+                              color: AppColors.accentColor,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(12),
+                              ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12),
+                              child: Center(
+                                child: Text(
+                                  "Cancel",
+                                  style: TextStyle(
+                                    color: AppColors.whiteColor,
+                                    fontSize: 15.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Close",
-                          style: TextStyle(
-                            color: themeProvider.darkTheme
-                                ? AppColors.darkThemeBoxColor
-                                : AppColors.blackTextColor,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ),*/
+                      ],
+                    ),
                   ],
                 ),
-              ],
+              ),
             ),
           ),
-        ),
-      ),
     );
   }
 }

@@ -216,7 +216,10 @@ class HomeController extends GetxController {
           // bannerList.clear();
           petTopList.addAll(getPetTopListModel.data);
           log("petList Length : ${petTopList.length}");
-          // log('pet image1: ${ApiUrl.apiImagePath + petTopList[0].image}');
+           log('pet image1: ${ApiUrl.apiImagePath + "asset/uploads/petimage/" + petTopList[0].data.image}');
+          for(int i = 0 ; i < petTopList.length; i++){
+            petTopFollowCategoryId = petTopList[i].data.categoryId;
+          }
           for(int i = 0 ; i < petTopList.length; i++){
             petTopFollowCategoryId = petTopList[i].data.categoryId;
           }

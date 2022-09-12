@@ -222,7 +222,7 @@ class PetMeetingListModule extends StatelessWidget {
                         child: Image.network(
                             ApiUrl.apiImagePath +
                                 "assets/uploads/petimage" +
-                                screenController.subCatPetList[i].img,
+                                screenController.subCatPetList[i].img.image,
                             errorBuilder: (context, st, ob) {
                           return Image.asset(AppImages.petMetLogoImg);
                         }, fit: BoxFit.cover),

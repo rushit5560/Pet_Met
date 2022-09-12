@@ -481,7 +481,10 @@ class NgoUserProfileScreenController extends GetxController {
         isSuccessStatus = vetAndNgoUpdateProfileModel.success.obs;
 
         if (isSuccessStatus.value) {
-          Fluttertoast.showToast(msg: vetAndNgoUpdateProfileModel.message);
+
+          if(vetAndNgoUpdateProfileModel.message.contains("vet & ngo profile update successfully.")){
+            Fluttertoast.showToast(msg: "Vet & Ngo profile update successfully.");
+          }
           await getAllRoleProfileFunction(profileChangeOption: ProfileChangeOption.back);
         } else {
           log('False False');

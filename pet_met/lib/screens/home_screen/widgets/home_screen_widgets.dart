@@ -73,7 +73,7 @@ class PetTopListModule extends StatelessWidget {
                       //   fit: BoxFit.cover,
                       // )
                       child: Image.network(
-                        ApiUrl.apiImagePath + "assets/uploads/petimage" +
+                        ApiUrl.apiImagePath + "asset/uploads/petimage/" +
                             homeController.petTopList[i].data.image,
                         errorBuilder: (context, st, ob) {
                           return Image.asset(AppImages.petMetLogoImg);
@@ -220,8 +220,8 @@ class PetTopListModule extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(15),
                                 border: Border.all(color: AppColors.accentTextColor)
                               ),
-                              child: Image.network(ApiUrl.apiImagePath + "assets/uploads/petimage/" +
-                                  homeController.petTopList[i].img,
+                              child: Image.network(ApiUrl.apiImagePath + "asset/uploads/petimage/" +
+                                  homeController.petTopList[i].img.image,
                                 errorBuilder: (context, st, ob) {
                                   return Image.asset(AppImages.petMetLogoImg);
                                 },

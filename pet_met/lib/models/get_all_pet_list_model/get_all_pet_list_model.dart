@@ -137,16 +137,16 @@ class PetDatum {
   });
 
   PetList data;
-  String img;
+  Img img;
 
   factory PetDatum.fromJson(Map<String, dynamic> json) => PetDatum(
     data: PetList.fromJson(json["data"] ?? {}),
-    img: json["img"] ?? "",
+    img: Img.fromJson(json["img"] ?? {})
   );
 
   Map<String, dynamic> toJson() => {
     "data": data.toJson(),
-    "img": img,
+    "img": img.toJson(),
   };
 }
 
@@ -215,5 +215,21 @@ class PetList {
     "is_active": isActive,
     "userid": userid,
     "categoryId": categoryId,
+  };
+}
+
+class Img {
+  Img({
+    required this.image,
+  });
+
+  String image;
+
+  factory Img.fromJson(Map<String, dynamic> json) => Img(
+    image: json["image"] ?? "",
+  );
+
+  Map<String, dynamic> toJson() => {
+    "image": image,
   };
 }
