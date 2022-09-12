@@ -547,7 +547,7 @@ class PetTrainerPlaceTimePaymentModule extends StatelessWidget {
               Icons.watch_later_outlined,
               color: themeProvider.darkTheme
                   ? AppColors.whiteColor
-                  : AppColors.greyTextColor,
+                  : AppColors.blackTextColor,
               size: 20,
             ),
             SizedBox(width: screenController.size.width * 0.008.w),

@@ -465,7 +465,7 @@ class TrainersAndUsersScreenController extends GetxController {
         request.fields['instagram'] = instagramController.text.trim();
         request.fields['facebook'] = facebookController.text.trim();
         request.fields['is_active'] = trainerStatus;
-        request.fields['userid'] = UserDetails.selfId;
+        request.fields['userid'] = UserDetails.userId;
         request.fields['uid'] = UserDetails.selfId;
 
         var response = await request.send();

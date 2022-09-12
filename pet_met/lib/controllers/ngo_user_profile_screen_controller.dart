@@ -467,7 +467,7 @@ class NgoUserProfileScreenController extends GetxController {
       request.fields['is_active'] = ngoStatus;
       request.fields['ifsc_code'] = ifscCodeController.text.trim();
       request.fields['account_code'] = accountNumberController.text.trim();
-      request.fields['userid'] = UserDetails.selfId;
+      request.fields['userid'] = UserDetails.userId;
       request.fields['uid'] = UserDetails.selfId;
 
 

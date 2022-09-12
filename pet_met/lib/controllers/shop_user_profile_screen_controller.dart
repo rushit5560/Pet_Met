@@ -372,12 +372,12 @@ class ShopUserProfileScreenController extends GetxController {
         request.fields['oldimage5'] = shopApiPicture5;
       }
 
-      request.fields['name'] = nameController.text.trim();
+      //request.fields['name'] = nameController.text.trim();
       request.fields['address'] = addressController.text.trim();
       request.fields['phonenumber'] = contactNumber.text.trim();
       request.fields['shopopen'] = selectedOpenTime!.value;
       request.fields['shopclose'] = selectedCloseTime!.value;
-      request.fields['userid'] = UserDetails.selfId;
+      request.fields['userid'] = UserDetails.userId;
       request.fields['uid'] = UserDetails.selfId;
       request.fields['full_text'] = detailsController.text.trim();
       request.fields['instagram'] = instagramController.text.trim();
