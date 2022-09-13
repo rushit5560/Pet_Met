@@ -57,6 +57,7 @@ class UserProfileController extends GetxController {
   String userprofile = "";
   String userName = "";
   String userMobileNumber = "";
+  String userDescription = "";
   String userId = "";
   String userEmail = "";
   String followUserUserId = "";
@@ -175,11 +176,12 @@ class UserProfileController extends GetxController {
         userName = getUserProfileModel.data.data[0].name;
         userEmail = getUserProfileModel.data.data[0].email;
         userMobileNumber = getUserProfileModel.data.data[0].phone;
+        userDescription = getUserProfileModel.data.data[0].fullText;
 
         chatUid = getUserProfileModel.data.data[0].uid;
         chatCategoryId = getUserProfileModel.data.data[0].categoryId;
 
-
+        log('userDescription: $userDescription');
 
         log("petList Length : ${petList.length}");
       } else {
@@ -244,6 +246,7 @@ class UserProfileController extends GetxController {
         chatUid = petShopProfileModel.data.data[0].uid;
         chatCategoryId = petShopProfileModel.data.data[0].categoryId;
         log("petList Length : ${petList.length}");
+        log('shopDescription: $shopDescription');
       } else {
         log("Get All Role Profile Api Else");
       }

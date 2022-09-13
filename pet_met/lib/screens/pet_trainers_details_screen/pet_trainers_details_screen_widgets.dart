@@ -723,11 +723,22 @@ class PayButtonModule extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    Text(
+                      "Trainer Charge",
+                      style: TextStyle(
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.blackTextColor,
+                        fontSize: 13.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          "Price",
+                          "Amount",
                           style: TextStyle(
                             color: themeProvider.darkTheme
                                 ? AppColors.whiteColor
@@ -802,7 +813,7 @@ class PayButtonModule extends StatelessWidget {
                               borderSide: const BorderSide(
                                   width: 0, style: BorderStyle.none),
                             ),
-                            hintText: "Price",
+                            hintText: "Amount",
                             hintStyle: TextStyle(
                               color: themeProvider.darkTheme
                                   ? AppColors.whiteColor

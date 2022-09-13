@@ -71,6 +71,7 @@ class UserData {
     required this.updatedAt,
     required this.bod,
     required this.phone,
+    required this.fullText,
     required this.gender,
     required this.isActive,
     required this.isVerified,
@@ -93,6 +94,7 @@ class UserData {
   String updatedAt;
   String bod;
   String phone;
+  String fullText;
   String gender;
   String isActive;
   String isVerified;
@@ -115,6 +117,7 @@ class UserData {
     bod: json["bod"] ?? "",
     phone: json["phone"] ?? "",
     gender: json["gender"] ?? "",
+    fullText: json["fullText"] ?? "",
     isActive: json["is_active"] ?? "",
     isVerified: json["is_verified"] ?? "",
     uid: json["uid"] ?? "",
@@ -137,6 +140,7 @@ class UserData {
     "updated_at": updatedAt,
     "bod": bod,
     "phone": phone,
+    "fullText": fullText,
     "gender": gender,
     "is_active": isActive,
     "is_verified": isVerified,

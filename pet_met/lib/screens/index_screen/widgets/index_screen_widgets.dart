@@ -75,130 +75,130 @@ class _BuildMenuState extends State<BuildMenu> {
                               // indexController.drawerController.close!();
                               // Get.to(() => UserProfileScreen());
                             },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                UserDetails.categoryId == "1"
-                                    ? ClipRRect(
-                                        borderRadius: BorderRadius.circular(30),
-                                        child: Image.network(
-                                          UserDetails.userProfileImage,
-                                          width: 50,
-                                          height: 50,
-                                          fit: BoxFit.cover,
-                                          errorBuilder: (context, st, ob) {
-                                            return Image.asset(
-                                                AppImages.petMetLogoImg,
-                                                width: 40,
-                                                height: 50,
-                                                fit: BoxFit.cover);
-                                          },
-                                          // width: controller.size.width * 0.05,
-                                        ),
-                                      )
-                                    : UserDetails.categoryId == "2"
-                                        ? ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(30),
-                                            child: Image.network(
-                                              UserDetails.shopProfile,
-                                              width: 50,
-                                              height: 50,
-                                              fit: BoxFit.cover,
-                                              errorBuilder: (context, st, ob) {
-                                                return Image.asset(
-                                                    AppImages.petMetLogoImg,
-                                                    width: 40,
-                                                    height: 50,
-                                                    fit: BoxFit.cover);
-                                              },
-                                              // width: controller.size.width * 0.05,
-                                            ),
-                                          )
-                                        : UserDetails.categoryId == "3"
-                                            ? ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(30),
-                                                child: Image.network(
-                                                  UserDetails.userProfileImage,
-                                                  width: 50,
+                            child: Obx(()=>
+                               Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  UserDetails.categoryId == "1"
+                                      ? ClipRRect(
+                                          borderRadius: BorderRadius.circular(30),
+                                          child: Image.network(
+                                            indexController.userprofile.value,
+                                            width: 50,
+                                            height: 50,
+                                            fit: BoxFit.cover,
+                                            errorBuilder: (context, st, ob) {
+                                              return Image.asset(
+                                                  AppImages.petMetLogoImg,
+                                                  width: 40,
                                                   height: 50,
-                                                  fit: BoxFit.cover,
-                                                  errorBuilder:
-                                                      (context, st, ob) {
-                                                    return Image.asset(
-                                                        AppImages.petMetLogoImg,
-                                                        width: 40,
-                                                        height: 50,
-                                                        fit: BoxFit.cover);
-                                                  },
-                                                  // width: controller.size.width * 0.05,
-                                                ),
-                                              )
-                                            : UserDetails.categoryId == "4"
-                                                ? ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            30),
-                                                    child: Image.network(
-                                                      UserDetails
-                                                          .userProfileImage,
-                                                      width: 50,
+                                                  fit: BoxFit.cover);
+                                            },
+                                            // width: controller.size.width * 0.05,
+                                          ),
+                                        )
+                                      : UserDetails.categoryId == "2"
+                                          ? ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                              child: Image.network(
+                                                indexController.shopProfile.value,
+                                                width: 50,
+                                                height: 50,
+                                                fit: BoxFit.cover,
+                                                errorBuilder: (context, st, ob) {
+                                                  return Image.asset(
+                                                      AppImages.petMetLogoImg,
+                                                      width: 40,
                                                       height: 50,
-                                                      fit: BoxFit.cover,
-                                                      errorBuilder:
-                                                          (context, st, ob) {
-                                                        return Image.asset(
-                                                            AppImages
-                                                                .petMetLogoImg,
-                                                            width: 40,
-                                                            height: 50,
-                                                            fit: BoxFit.cover);
-                                                      },
-                                                      // width: controller.size.width * 0.05,
-                                                    ),
-                                                  )
-                                                : Image.asset(
-                                                    AppImages.userProfileImg,
-                                                    width: 40,
-                                                    height: 40,
+                                                      fit: BoxFit.cover);
+                                                },
+                                                // width: controller.size.width * 0.05,
+                                              ),
+                                            )
+                                          : UserDetails.categoryId == "3"
+                                              ? ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(30),
+                                                  child: Image.network(
+                                                    indexController.ngoProfile.value,
+                                                    width: 50,
+                                                    height: 50,
+                                                    fit: BoxFit.cover,
+                                                    errorBuilder:
+                                                        (context, st, ob) {
+                                                      return Image.asset(
+                                                          AppImages.petMetLogoImg,
+                                                          width: 40,
+                                                          height: 50,
+                                                          fit: BoxFit.cover);
+                                                    },
+                                                    // width: controller.size.width * 0.05,
                                                   ),
-                                const SizedBox(width: 15),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      UserDetails.categoryId == "1"
-                                          ? UserDetails.userName
-                                          : UserDetails.categoryId == "2"
-                                              ? UserDetails.shopName
-                                              : UserDetails.categoryId == "3"
-                                                  ? UserDetails.userName
-                                                  : UserDetails.categoryId ==
-                                                          "4"
-                                                      ? UserDetails.userName
-                                                      : "",
-                                      style: TextStyle(
-                                        color: AppColors.accentTextColor,
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.bold,
+                                                )
+                                              : UserDetails.categoryId == "4"
+                                                  ? ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              30),
+                                                      child: Image.network(
+                                                        indexController.trainerProfile.value,
+                                                        width: 50,
+                                                        height: 50,
+                                                        fit: BoxFit.cover,
+                                                        errorBuilder:
+                                                            (context, st, ob) {
+                                                          return Image.asset(
+                                                              AppImages
+                                                                  .petMetLogoImg,
+                                                              width: 40,
+                                                              height: 50,
+                                                              fit: BoxFit.cover);
+                                                        },
+                                                        // width: controller.size.width * 0.05,
+                                                      ),
+                                                    )
+                                                  : Image.asset(
+                                                      AppImages.userProfileImg,
+                                                      width: 40,
+                                                      height: 40,
+                                                    ),
+                                  const SizedBox(width: 15),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        UserDetails.categoryId == "1"
+                                            ? indexController.userName
+                                            : UserDetails.categoryId == "2"
+                                                ? indexController.shopName
+                                                : UserDetails.categoryId == "3"
+                                                    ? indexController.ngoName
+                                                    : UserDetails.categoryId == "4"
+                                                        ? indexController.trainerName
+                                                        : "",
+                                        style: TextStyle(
+                                          color: AppColors.accentTextColor,
+                                          fontSize: 12.sp,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
-                                    ),
-                                    /*Text(
-                                      "Active Status",
-                                      style: TextStyle(
-                                        color: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.greyTextColor,
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),*/
-                                  ],
-                                ),
-                              ],
+                                      /*Text(
+                                        "Active Status",
+                                        style: TextStyle(
+                                          color: themeProvider.darkTheme
+                                              ? AppColors.whiteColor
+                                              : AppColors.greyTextColor,
+                                          fontSize: 12.sp,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),*/
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

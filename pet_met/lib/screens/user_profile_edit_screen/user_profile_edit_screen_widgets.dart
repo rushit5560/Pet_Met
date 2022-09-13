@@ -57,9 +57,7 @@ class UploadImageModule extends StatelessWidget {
           color: themeProvider.darkTheme
               ? AppColors.darkThemeColor
               : AppColors.whiteColor,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(15),
-          ),
+          borderRadius:  BorderRadius.circular(15),
           boxShadow: [
             BoxShadow(
               color: AppColors.greyTextColor.withOpacity(0.3),
@@ -87,7 +85,7 @@ class UploadImageModule extends StatelessWidget {
             : controller.userProfile.isNotEmpty
                 ? Center(
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(15),
                       child: Image.network(
                         themeProvider.darkTheme
                             ? controller.userProfile

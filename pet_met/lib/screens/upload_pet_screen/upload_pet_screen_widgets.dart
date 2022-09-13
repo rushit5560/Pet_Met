@@ -105,7 +105,7 @@ class _UploadImageModuleState extends State<UploadImageModule> {
             );
           },
           child: Container(
-              height: controller.size.width * 0.50,
+              //height: controller.size.width * 0.50,
               width: controller.size.width * 0.50,
               decoration: BoxDecoration(
                 color: themeProvider.darkTheme
@@ -132,8 +132,8 @@ class _UploadImageModuleState extends State<UploadImageModule> {
                             themeProvider.darkTheme
                                 ? controller.imageFile!
                                 : controller.imageFile!,
-                            height: controller.size.width * 0.50,
-                            width: controller.size.width * 0.50,
+                            height: controller.size.height * 0.2,
+                            width: double.infinity,
                             fit: BoxFit.fill),
                       ),
                     )
@@ -145,8 +145,8 @@ class _UploadImageModuleState extends State<UploadImageModule> {
                               themeProvider.darkTheme
                                   ? controller.petImage!
                                   : controller.petImage!,
-                              height: controller.size.width * 0.50,
-                              width: controller.size.width * 0.50,
+                              height: controller.size.height * 0.2,
+                              width: double.infinity,
                               fit: BoxFit.fill,
                               errorBuilder: (context, er, st) {
                                 return Image.asset(AppImages.petMetLogoImg);

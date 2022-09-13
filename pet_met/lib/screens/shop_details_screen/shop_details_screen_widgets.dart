@@ -41,7 +41,7 @@ class BannerImageModule extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
         child: Image.network(
           ApiUrl.apiImagePath + "${screenController.shopData[0].showimg}",
-          fit: BoxFit.cover,
+          fit: BoxFit.fill,
           errorBuilder: (context, er, ob) {
             return Image.asset(AppImages.petMetLogoImg);
           },
@@ -421,11 +421,22 @@ class PayButtonModule extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+               /* Text(
+                  "Shop Charge",
+                  style: TextStyle(
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.blackTextColor,
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),*/
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      "Price",
+                      "Amount",
                       style: TextStyle(
                         color: themeProvider.darkTheme
                             ? AppColors.whiteColor
@@ -500,7 +511,7 @@ class PayButtonModule extends StatelessWidget {
                           borderSide: const BorderSide(
                               width: 0, style: BorderStyle.none),
                         ),
-                        hintText: "Price",
+                        hintText: "Amount",
                         hintStyle: TextStyle(
                           color: themeProvider.darkTheme
                               ? AppColors.whiteColor
@@ -517,36 +528,38 @@ class PayButtonModule extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ElevatedButton(
-                      onPressed: () async {
+                    GestureDetector(
+                      onTap: () {
+                        Get.back();
                         //await screenController.userLoginFunction();
                         if (screenController.formKey.currentState!.validate()) {
                           screenController.openCheckout(price: int.parse(screenController.priceController.text));
                           log('price: ${screenController.priceController.text}');
-                          Fluttertoast.showToast(msg: 'Processing payment to trainer.');
+                          Fluttertoast.showToast(msg: 'Processing payment to shop.');
                           screenController.priceController.clear();
                         }
                       },
-                      style: ElevatedButton.styleFrom(
-                        primary: AppColors.accentColor,
-                        minimumSize: Size(
-                          screenController.size.width * 0.3,
-                          30,
-                        ),
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        shape: const RoundedRectangleBorder(
+                      child: Container(
+                        //width: double.infinity,
+                        height: 50,
+                        decoration: const BoxDecoration(
+                          color: AppColors.accentColor,
                           borderRadius: BorderRadius.all(
                             Radius.circular(12),
                           ),
                         ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Ok",
-                          style: TextStyle(
-                            color: AppColors.whiteColor,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w500,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12),
+                          child: Center(
+                            child: Text(
+                              "Submit",
+                              style: TextStyle(
+                                color: AppColors.whiteColor,
+                                fontSize: 15.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -554,36 +567,103 @@ class PayButtonModule extends StatelessWidget {
                     SizedBox(
                       width: screenController.size.width * 0.05,
                     ),
-                    ElevatedButton(
-                      onPressed: () {
+                    GestureDetector(
+                      onTap: () {
                         Get.back();
                       },
-                      style: ElevatedButton.styleFrom(
-                        primary: themeProvider.darkTheme
-                            ? AppColors.whiteColor
-                            : AppColors.greyTextColor.withOpacity(0.3),
-                        minimumSize:
-                        Size(screenController.size.width * 0.3, 30),
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        shape: const RoundedRectangleBorder(
+                      child: Container(
+                        //width: double.infinity,
+                        height: 50,
+                        decoration: const BoxDecoration(
+                          color: AppColors.accentColor,
                           borderRadius: BorderRadius.all(
                             Radius.circular(12),
                           ),
                         ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Close",
-                          style: TextStyle(
-                            color: themeProvider.darkTheme
-                                ? AppColors.darkThemeBoxColor
-                                : AppColors.blackTextColor,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w500,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12),
+                          child: Center(
+                            child: Text(
+                              "Cancel",
+                              style: TextStyle(
+                                color: AppColors.whiteColor,
+                                fontSize: 15.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
                           ),
                         ),
                       ),
                     ),
+
+                    // ElevatedButton(
+                    //   onPressed: () async {
+                    //     //await screenController.userLoginFunction();
+                    //     if (screenController.formKey.currentState!.validate()) {
+                    //       screenController.openCheckout(price: int.parse(screenController.priceController.text));
+                    //       log('price: ${screenController.priceController.text}');
+                    //       Fluttertoast.showToast(msg: 'Processing payment to trainer.');
+                    //       screenController.priceController.clear();
+                    //     }
+                    //   },
+                    //   style: ElevatedButton.styleFrom(
+                    //     primary: AppColors.accentColor,
+                    //     minimumSize: Size(
+                    //       screenController.size.width * 0.3,
+                    //       30,
+                    //     ),
+                    //     padding: const EdgeInsets.symmetric(horizontal: 16),
+                    //     shape: const RoundedRectangleBorder(
+                    //       borderRadius: BorderRadius.all(
+                    //         Radius.circular(12),
+                    //       ),
+                    //     ),
+                    //   ),
+                    //   child: Center(
+                    //     child: Text(
+                    //       "Ok",
+                    //       style: TextStyle(
+                    //         color: AppColors.whiteColor,
+                    //         fontSize: 12.sp,
+                    //         fontWeight: FontWeight.w500,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   width: screenController.size.width * 0.05,
+                    // ),
+                    // ElevatedButton(
+                    //   onPressed: () {
+                    //     Get.back();
+                    //   },
+                    //   style: ElevatedButton.styleFrom(
+                    //     primary: themeProvider.darkTheme
+                    //         ? AppColors.whiteColor
+                    //         : AppColors.greyTextColor.withOpacity(0.3),
+                    //     minimumSize:
+                    //     Size(screenController.size.width * 0.3, 30),
+                    //     padding: const EdgeInsets.symmetric(horizontal: 16),
+                    //     shape: const RoundedRectangleBorder(
+                    //       borderRadius: BorderRadius.all(
+                    //         Radius.circular(12),
+                    //       ),
+                    //     ),
+                    //   ),
+                    //   child: Center(
+                    //     child: Text(
+                    //       "Close",
+                    //       style: TextStyle(
+                    //         color: themeProvider.darkTheme
+                    //             ? AppColors.darkThemeBoxColor
+                    //             : AppColors.blackTextColor,
+                    //         fontSize: 12.sp,
+                    //         fontWeight: FontWeight.w500,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ],

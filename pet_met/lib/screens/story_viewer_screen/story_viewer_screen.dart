@@ -43,7 +43,7 @@ class StoryViewerScreen extends StatelessWidget {
                   },
                   onComplete: () {
                     log("Completed a cycle");
-                    Get.back();
+                    //Get.back();
                   },
                   progressPosition: ProgressPosition.top,
                   repeat: false,

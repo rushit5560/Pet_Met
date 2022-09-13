@@ -40,6 +40,7 @@ class PetVetsAndNgoDetailsScreen extends StatelessWidget {
               children: [
                 CustomAppBar(
                   appBarOption: AppBarOption.singleBackButtonOption,
+                  title: "Vet & Ngo Details",
                 ),
                 Obx(
                   () => Expanded(

@@ -1261,7 +1261,9 @@ class MeetingAvailabilityModule extends StatelessWidget {
                               PetOption.addOption,
                               "",
                               screenController,
-                            ]);
+                            ])!.then((value) async {
+                          await screenController.getAllRoleProfileFunction();
+                        });
                       } else if (screenController.showStatus.value == false) {
                         //screenController.openCheckout();
                         Get.to(() => PetPricingScreen());

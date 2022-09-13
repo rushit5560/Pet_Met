@@ -225,7 +225,7 @@ class PetTopListModule extends StatelessWidget {
                                 errorBuilder: (context, st, ob) {
                                   return Image.asset(AppImages.petMetLogoImg);
                                 },
-                                fit: BoxFit.cover),
+                                fit: BoxFit.fill),
                             ),
                           ),
                         ),
@@ -990,7 +990,7 @@ class AddPetStoryWidget extends StatelessWidget {
                 ),
               ),
               child: Image.network(
-                    ApiUrl.apiImagePath + "asset/uploads/userstory/" + controller.userStoryList[index].userimg,
+                    ApiUrl.apiImagePath + "asset/uploads/product/" + controller.userStoryList[index].userimg,
                   errorBuilder: (context, st, ob){
                     return Image.asset(AppImages.petMetLogoImg);
                   },

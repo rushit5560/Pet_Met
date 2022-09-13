@@ -50,6 +50,7 @@ class SupportScreen extends StatelessWidget {
               children: [
                 CustomAppBar(
                   appBarOption: AppBarOption.singleBackButtonOption,
+                  title: "Support",
                 ),
                 Expanded(
                   child: Obx(
