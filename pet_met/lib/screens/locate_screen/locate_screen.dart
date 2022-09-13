@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:pet_met/controllers/locate_screen_controller.dart';
 import 'package:pet_met/models/user_chat_list_screen_model/user_chat_list_screen_model.dart';
 import 'package:pet_met/screens/user_conversation_screen/user_conversation_screen.dart';
@@ -198,13 +199,13 @@ class _LocateScreenState extends State<LocateScreen> {
                           ),
                   ),
                   /*child: ListView.builder(
-                itemCount: 10,
-                shrinkWrap: true,
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, i) {
-                  return _chatListTile();
-                },
-              ).commonAllSidePadding(20),*/
+                  itemCount: 10,
+                  shrinkWrap: true,
+                  physics: const BouncingScrollPhysics(),
+                  itemBuilder: (context, i) {
+                    return _chatListTile();
+                  },
+                ).commonAllSidePadding(20),*/
                 ),
               ],
             )
@@ -252,18 +253,20 @@ class _LocateScreenState extends State<LocateScreen> {
         },
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(10),
             boxShadow: [
               BoxShadow(
-                spreadRadius: 3,
+                spreadRadius: 2,
                 blurRadius: 5,
-                color: Colors.grey.shade300,
+                color: themeProvider.darkTheme
+                    ? AppColors.greyColor.withOpacity(0.20)
+                    : AppColors.greyColor.withOpacity(0.25),
                 blurStyle: BlurStyle.outer,
               ),
             ],
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

@@ -393,34 +393,41 @@ class ContactInfoModule extends StatelessWidget {
             const SizedBox(width: 15),*/
             GestureDetector(
               onTap: () async {
-
                 if (UserDetails.userEmail == controller.userEmail) {
-                  Fluttertoast.showToast(
-                      msg: "User can't chat with itself.");
+                  Fluttertoast.showToast(msg: "User can't chat with itself.");
                 } else {
                   if (controller.status.value == false) {
+                    List<String> tempChatRoomIdList = [];
 
                     // CharRoom Id Generate
-                    String charRoomId =
+                    String chatRoomId =
                         "${UserDetails.selfId}${UserDetails.categoryId}_${controller.chatUid}${controller.chatCategoryId}";
+                    String chatRoomId2 =
+                        "${controller.chatUid}${controller.chatCategoryId}_${UserDetails.selfId}${UserDetails.categoryId}";
+
+                    // Get All Chat Room From Firebase
+                    QuerySnapshot querySnapshot = await FirebaseFirestore
+                        .instance
+                        .collection("ChatRoom")
+                        .get();
+
+                    querySnapshot.docs.map((doc) {
+                      doc.data();
 
 
-                    var temp = FirebaseFirestore.instance.collection('ChatRoom').get()
-                    .then((value) {
-                      
-                    });
+                      if (doc['chatRoomId'].toString().contains(chatRoomId)) {
+                        log("first if stat");
+                        tempChatRoomIdList.add(doc['chatRoomId']);
+                      }
+                      if (doc['chatRoomId'].toString().contains(chatRoomId2)) {
+                        log("second if stat");
+                        tempChatRoomIdList.add(doc['chatRoomId']);
+                      }
+                    }).toList();
 
-                    // var temp = FirebaseFirestore.instance
-                    //     .collection("ChatRoom").
-                    // where("chatRoomId", ).
-                    //     snapshots().map((event) {
-                    //   event.docs.map((doc) {
-                    //     log('doc: ${doc.data()}');
-                    //   });
-                    // }).toList();
+                    log("tempChatRoomId : $tempChatRoomIdList");
 
-                    log("temp : $temp");
-
+                    if (tempChatRoomIdList.isEmpty) {
                       /// Create chat room
                       Timestamp timeStamp = Timestamp.now();
                       // CharRoom Id Generate
@@ -429,43 +436,164 @@ class ContactInfoModule extends StatelessWidget {
 
                       log("controller.chatUid : ${controller.chatUid}");
                       log("controller.chatCategoryId : ${controller.chatCategoryId}");
-                      log("charRoomId123 : $charRoomId");
+                      log("charRoomId123 : $chatRoomId");
 
                       // ChatRoom Data
                       Map<String, dynamic> chatRoomData = {
-                        "chatRoomId": charRoomId,
-                        "creator": "${UserDetails.selfId}${UserDetails.categoryId}",
-                        "pearer": "${controller.chatUid}${controller.chatCategoryId}",
+                        "chatRoomId": chatRoomId,
+                        "creator":
+                            "${UserDetails.selfId}${UserDetails.categoryId}",
+                        "pearer":
+                            "${controller.chatUid}${controller.chatCategoryId}",
                         "creatorEmail": UserDetails.userEmail,
-                        "peerEmail" : controller.userEmail,
-                        "creatorName" : UserDetails.categoryId == "2" ? UserDetails.shopName : UserDetails.userName,
-                        "peerName" : controller.userName,
+                        "peerEmail": controller.userEmail,
+                        "creatorName": UserDetails.categoryId == "2"
+                            ? UserDetails.shopName
+                            : UserDetails.userName,
+                        "peerName": controller.userName,
                         "createdAt": timeStamp,
-                        "userEmails": [UserDetails.userEmail, controller.userEmail],
+                        "userEmails": [
+                          UserDetails.userEmail,
+                          controller.userEmail,
+                        ],
                       };
 
                       log("chatRoomData : $chatRoomData");
 
                       // Create ChatRoom Function
                       firebaseDatabase.createChatRoomOfTwoUsers(
-                          charRoomId, chatRoomData);
+                          chatRoomId, chatRoomData);
+                    //Go to conversation screen
+                    Get.to(
+                          () => UserConversationScreen(),
+                      transition: Transition.zoom,
+                      arguments: [
+                        chatRoomId,
+                        controller.followCategoryId == "1"
+                            ? controller.userName
+                            : controller.shopName,
+                        controller.userName,
+                        UserDetails.userEmail,
+                        controller.userEmail,
+                      ],
+                    );
+                    }
+                    else {
 
-                      // Go to conversation screen
-                      // Get.to(
-                      //       () => UserConversationScreen(),
-                      //   transition: Transition.zoom,
-                      //   arguments: [
-                      //     charRoomId,
-                      //     controller.followCategoryId == "1"
-                      //         ? controller.userName
-                      //         : controller.shopName,
-                      //     controller.userName,
-                      //     UserDetails.userEmail,
-                      //     controller.userEmail,
-                      //   ],
-                      // );
+                      if(tempChatRoomIdList[0].contains(chatRoomId)){
+                        /// Create chat room
+                        Timestamp timeStamp = Timestamp.now();
 
-                      /*if (UserDetails.categoryId.contains("1")) {
+                        log("controller.chatUid : ${controller.chatUid}");
+                        log("controller.chatCategoryId : ${controller.chatCategoryId}");
+                        log("charRoomId123 : $chatRoomId");
+
+                        // ChatRoom Data
+                        Map<String, dynamic> chatRoomData = {
+                          "chatRoomId": chatRoomId,
+                          "creator":
+                          "${UserDetails.selfId}${UserDetails.categoryId}",
+                          "pearer":
+                          "${controller.chatUid}${controller.chatCategoryId}",
+                          "creatorEmail": UserDetails.userEmail,
+                          "peerEmail": controller.userEmail,
+                          "creatorName": UserDetails.categoryId == "2"
+                              ? UserDetails.shopName
+                              : UserDetails.userName,
+                          "peerName": controller.userName,
+                          "createdAt": timeStamp,
+                          "userEmails": [
+                            UserDetails.userEmail,
+                            controller.userEmail,
+                          ],
+                        };
+
+                        log("chatRoomData : $chatRoomData");
+
+                        // Create ChatRoom Function
+                        firebaseDatabase.createChatRoomOfTwoUsers(
+                            chatRoomId, chatRoomData);
+                        //Go to conversation screen
+                        Get.to(
+                              () => UserConversationScreen(),
+                          transition: Transition.zoom,
+                          arguments: [
+                            chatRoomId,
+                            controller.followCategoryId == "1"
+                                ? controller.userName
+                                : controller.shopName,
+                            controller.userName,
+                            UserDetails.userEmail,
+                            controller.userEmail,
+                          ],
+                        );
+                      } else {
+                        /// Create chat room
+                        Timestamp timeStamp = Timestamp.now();
+
+                        log("controller.chatUid : ${controller.chatUid}");
+                        log("controller.chatCategoryId : ${controller.chatCategoryId}");
+                        log("charRoomId123 : $chatRoomId2");
+
+                        // ChatRoom Data
+                        Map<String, dynamic> chatRoomData = {
+                          "chatRoomId": chatRoomId2,
+                          "creator":
+                          "${controller.chatUid}${controller.chatCategoryId}",
+                          "pearer":
+                          "${UserDetails.selfId}${UserDetails.categoryId}",
+                          "creatorEmail": controller.userEmail,
+                          "peerEmail": UserDetails.userEmail,
+                          "creatorName": controller.userName,
+                          "peerName": UserDetails.categoryId == "2"
+                              ? UserDetails.shopName
+                              : UserDetails.userName,
+                          "createdAt": timeStamp,
+                          "userEmails": [
+                            controller.userEmail,
+                            UserDetails.userEmail,
+                          ],
+                        };
+
+                        log("chatRoomData : $chatRoomData");
+
+                        // Create ChatRoom Function
+                        firebaseDatabase.createChatRoomOfTwoUsers(
+                            chatRoomId2, chatRoomData);
+                        //Go to conversation screen
+                        Get.to(
+                              () => UserConversationScreen(),
+                          transition: Transition.zoom,
+                          arguments: [
+                            chatRoomId2,
+                            controller.followCategoryId == "1"
+                                ? controller.userName
+                                : controller.shopName,
+                            controller.userName,
+                            UserDetails.userEmail,
+                            controller.userEmail,
+                          ],
+                        );
+                      }
+
+                    //Go to conversation screen
+                    Get.to(
+                          () => UserConversationScreen(),
+                      transition: Transition.zoom,
+                      arguments: [
+                        chatRoomId.isEmpty ? chatRoomId2 : chatRoomId,
+                        controller.followCategoryId == "1"
+                            ? controller.userName
+                            : controller.shopName,
+                        controller.userName,
+                        UserDetails.userEmail,
+                        controller.userEmail,
+                      ],
+                    );
+                    }
+
+
+                    /*if (UserDetails.categoryId.contains("1")) {
                       Timestamp timeStamp = Timestamp.now();
 
                       // CharRoom Id Generate
@@ -545,17 +673,13 @@ class ContactInfoModule extends StatelessWidget {
                         ],
                       );
                     }*/
-                    }
+                  }
 
                   /// When loggedIn user as a shop
                   else if (controller.status.value == true) {
                     Fluttertoast.showToast(msg: 'First follow user');
                   }
                 }
-
-
-
-
               },
               child: const ContactContainerWidget(
                 imagePath: AppIcons.messageImg,
@@ -946,7 +1070,7 @@ class AboutModule extends StatelessWidget {
           const SizedBox(height: 15),
           Text(
             controller.followCategoryId == "1"
-                ? "Lorem Ipsum"
+                ? controller.userDescription
                 : controller.followCategoryId == "2"
                     ? controller.shopDescription
                     : controller.followCategoryId == "3"

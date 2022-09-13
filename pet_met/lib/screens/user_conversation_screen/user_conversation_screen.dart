@@ -9,6 +9,8 @@ import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
 import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 
+import '../../utils/common_widgets/loader.dart';
+
 class UserConversationScreen extends StatelessWidget {
   UserConversationScreen({Key? key}) : super(key: key);
 
@@ -20,7 +22,7 @@ class UserConversationScreen extends StatelessWidget {
     return Scaffold(
       body: Obx(
             () => userConversationScreenController.isLoading.value
-            ? const CircularProgressIndicator()
+            ? const CustomAnimationLoader()
             : SafeArea(
           child: Column(
             children: [
@@ -50,7 +52,7 @@ class UserConversationScreen extends StatelessWidget {
                         },
                       ).commonAllSidePadding(padding: 20);
                     } else {
-                      return const CircularProgressIndicator();
+                      return const CustomAnimationLoader();
                     }
                   },
                 ),

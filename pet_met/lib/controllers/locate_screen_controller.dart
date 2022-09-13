@@ -17,7 +17,7 @@ class LocateScreenController extends GetxController {
 
     return FirebaseFirestore.instance
         .collection("ChatRoom")
-        .where("users", arrayContains: userEmail)
+        .where("userEmails", arrayContains: userEmail)
         .snapshots()
         .map((snapshot) =>
         snapshot.docs.map((doc) {
