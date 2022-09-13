@@ -57,6 +57,7 @@ class UserData {
     required this.id,
     required this.name,
     required this.email,
+    required this.uid,
     required this.emailVerifiedAt,
     required this.password,
     required this.rememberToken,
@@ -78,6 +79,7 @@ class UserData {
   String id;
   String name;
   String email;
+  String uid;
   String emailVerifiedAt;
   String password;
   String rememberToken;
@@ -115,6 +117,7 @@ class UserData {
     gender: json["gender"] ?? "",
     isActive: json["is_active"] ?? "",
     isVerified: json["is_verified"] ?? "",
+    uid: json["uid"] ?? "",
   );
 
   Map<String, dynamic> toJson() => {
@@ -137,6 +140,7 @@ class UserData {
     "gender": gender,
     "is_active": isActive,
     "is_verified": isVerified,
+    "uid": uid,
   };
 }
 

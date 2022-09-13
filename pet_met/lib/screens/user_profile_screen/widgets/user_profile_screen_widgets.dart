@@ -393,16 +393,79 @@ class ContactInfoModule extends StatelessWidget {
             const SizedBox(width: 15),*/
             GestureDetector(
               onTap: () async {
-                if (controller.status.value == false) {
-                  log("username stored is : ${UserDetails.userEmail}");
-                  log("username get is : ${controller.userEmail}");
 
-                  if (UserDetails.userEmail == controller.userEmail) {
-                    Fluttertoast.showToast(
-                        msg: "Same Users can't chat with itself.");
-                  } else {
-                    // When loggedIn user have roleId 1
-                    if (UserDetails.categoryId.contains("1")) {
+                if (UserDetails.userEmail == controller.userEmail) {
+                  Fluttertoast.showToast(
+                      msg: "User can't chat with itself.");
+                } else {
+                  if (controller.status.value == false) {
+
+                    // CharRoom Id Generate
+                    String charRoomId =
+                        "${UserDetails.selfId}${UserDetails.categoryId}_${controller.chatUid}${controller.chatCategoryId}";
+
+
+                    var temp = FirebaseFirestore.instance.collection('ChatRoom').get()
+                    .then((value) {
+                      
+                    });
+
+                    // var temp = FirebaseFirestore.instance
+                    //     .collection("ChatRoom").
+                    // where("chatRoomId", ).
+                    //     snapshots().map((event) {
+                    //   event.docs.map((doc) {
+                    //     log('doc: ${doc.data()}');
+                    //   });
+                    // }).toList();
+
+                    log("temp : $temp");
+
+                      /// Create chat room
+                      Timestamp timeStamp = Timestamp.now();
+                      // CharRoom Id Generate
+                      // String charRoomId =
+                      //     "${UserDetails.selfId}${UserDetails.categoryId}_${controller.chatUid}${controller.chatCategoryId}";
+
+                      log("controller.chatUid : ${controller.chatUid}");
+                      log("controller.chatCategoryId : ${controller.chatCategoryId}");
+                      log("charRoomId123 : $charRoomId");
+
+                      // ChatRoom Data
+                      Map<String, dynamic> chatRoomData = {
+                        "chatRoomId": charRoomId,
+                        "creator": "${UserDetails.selfId}${UserDetails.categoryId}",
+                        "pearer": "${controller.chatUid}${controller.chatCategoryId}",
+                        "creatorEmail": UserDetails.userEmail,
+                        "peerEmail" : controller.userEmail,
+                        "creatorName" : UserDetails.categoryId == "2" ? UserDetails.shopName : UserDetails.userName,
+                        "peerName" : controller.userName,
+                        "createdAt": timeStamp,
+                        "userEmails": [UserDetails.userEmail, controller.userEmail],
+                      };
+
+                      log("chatRoomData : $chatRoomData");
+
+                      // Create ChatRoom Function
+                      firebaseDatabase.createChatRoomOfTwoUsers(
+                          charRoomId, chatRoomData);
+
+                      // Go to conversation screen
+                      // Get.to(
+                      //       () => UserConversationScreen(),
+                      //   transition: Transition.zoom,
+                      //   arguments: [
+                      //     charRoomId,
+                      //     controller.followCategoryId == "1"
+                      //         ? controller.userName
+                      //         : controller.shopName,
+                      //     controller.userName,
+                      //     UserDetails.userEmail,
+                      //     controller.userEmail,
+                      //   ],
+                      // );
+
+                      /*if (UserDetails.categoryId.contains("1")) {
                       Timestamp timeStamp = Timestamp.now();
 
                       // CharRoom Id Generate
@@ -441,7 +504,8 @@ class ContactInfoModule extends StatelessWidget {
                           controller.userEmail,
                         ],
                       );
-                    } else if (UserDetails.categoryId.contains("2")) {
+                    }
+                    else if (UserDetails.categoryId.contains("2")) {
                       Timestamp timeStamp = Timestamp.now();
 
                       // CharRoom Id Generate
@@ -480,14 +544,18 @@ class ContactInfoModule extends StatelessWidget {
                           controller.userEmail,
                         ],
                       );
+                    }*/
                     }
+
+                  /// When loggedIn user as a shop
+                  else if (controller.status.value == true) {
+                    Fluttertoast.showToast(msg: 'First follow user');
                   }
                 }
 
-                /// When loggedIn user as a shop
-                else if (controller.status.value == true) {
-                  Fluttertoast.showToast(msg: 'First follow user');
-                }
+
+
+
               },
               child: const ContactContainerWidget(
                 imagePath: AppIcons.messageImg,

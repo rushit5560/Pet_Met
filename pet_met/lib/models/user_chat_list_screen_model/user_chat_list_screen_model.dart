@@ -10,21 +10,23 @@ class UserChatRoomListModel {
     required this.chatRoomId,
     required this.createdAt,
     required this.creator,
-    required this.useremail1,
-    required this.useremail2,
-    required this.username1,
-    required this.username2,
-    required this.users,
+    required this.creatorEmail,
+    required this.creatorName,
+    required this.pearer,
+    required this.peerEmail,
+    required this.peerName,
+    required this.userEmails,
   });
 
   String chatRoomId;
   Timestamp createdAt;
   String creator;
-  String useremail1;
-  String useremail2;
-  String username1;
-  String username2;
-  List<String> users;
+  String creatorEmail;
+  String creatorName;
+  String pearer;
+  String peerEmail;
+  String peerName;
+  List<String> userEmails;
 
   factory UserChatRoomListModel.fromJson(
     Map<String, dynamic> json,
@@ -34,11 +36,12 @@ class UserChatRoomListModel {
         chatRoomId: json['chatRoomId'] ?? "",
         createdAt: json['createdAt'] ?? Timestamp.now(),
         creator: json['creator'] ?? "",
-        useremail1: json['useremail1'] ?? "",
-        useremail2: json['useremail2'] ?? "",
-        username1: json['username1'] ?? "",
-        username2: json['username2'] ?? "",
-        users: List<String>.from(json["users"].map((x) => x) ?? []),
+        creatorEmail: json['creatorEmail'] ?? "",
+        creatorName: json['creatorName'] ?? "",
+        pearer: json['pearer'] ?? "",
+        peerEmail: json['peerEmail'] ?? "",
+        peerName: json['peerName'] ?? "",
+        userEmails: List<String>.from(json["userEmails"].map((x) => x) ?? []),
         //img: img
       );
 
@@ -46,10 +49,11 @@ class UserChatRoomListModel {
         "chatRoomId": chatRoomId,
         "createdAt": createdAt,
         "creator": creator,
-        "useremail1": useremail1,
-        "useremail2": useremail2,
-        "username1": username1,
-        "username2": username2,
-        "users": List<dynamic>.from(users.map((x) => x)),
+        "creatorEmail": creatorEmail,
+        "creatorName": creatorName,
+        "pearer": pearer,
+        "peerEmail": peerEmail,
+        "peerName": peerName,
+        "userEmails": List<dynamic>.from(userEmails.map((x) => x)),
       };
 }

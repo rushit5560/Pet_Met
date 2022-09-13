@@ -90,6 +90,7 @@ class Datum {
     required this.isVerified,
     required this.startdate,
     required this.enddate,
+    required this.uid,
   });
 
   String id;
@@ -124,6 +125,7 @@ class Datum {
   String isVerified;
   String startdate;
   String enddate;
+  String uid;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
     id: json["id"] ?? "",
@@ -158,6 +160,7 @@ class Datum {
     isVerified: json["is_verified"] ?? "",
     startdate: json["startdate"] ?? "",
     enddate: json["enddate"] ?? "",
+    uid: json["uid"] ?? "",
   );
 
   Map<String, dynamic> toJson() => {

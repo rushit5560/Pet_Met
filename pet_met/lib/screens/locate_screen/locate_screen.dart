@@ -215,9 +215,9 @@ class _LocateScreenState extends State<LocateScreen> {
   }
 
   Widget _chatListTile(UserChatRoomListModel singleMsg, BuildContext context) {
-    String receiverName = UserDetails.userEmail == singleMsg.useremail1
-        ? singleMsg.username2
-        : singleMsg.username1;
+    String receiverName = UserDetails.userEmail == singleMsg.creatorEmail
+        ? singleMsg.peerName
+        : singleMsg.creatorName;
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -240,10 +240,10 @@ class _LocateScreenState extends State<LocateScreen> {
                 singleMsg.chatRoomId,
                 receiverName,
                 UserDetails.roleId == 1
-                    ? singleMsg.username2
-                    : singleMsg.username1,
-                singleMsg.useremail1,
-                singleMsg.useremail2,
+                    ? singleMsg.peerName
+                    : singleMsg.creatorName,
+                singleMsg.creatorEmail,
+                singleMsg.peerEmail,
                 // oppositeUserUniqueId,
                 // singleMsg.customerid,
                 // singleMsg.createdBy,

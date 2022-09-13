@@ -83,6 +83,9 @@ class UserProfileController extends GetxController {
 
   String userCategoryId = "";
 
+  String chatUid = "";
+  String chatCategoryId = "";
+
   late Razorpay _razorpay;
 
   /// Get All Role Profile
@@ -172,7 +175,11 @@ class UserProfileController extends GetxController {
         userName = getUserProfileModel.data.data[0].name;
         userEmail = getUserProfileModel.data.data[0].email;
         userMobileNumber = getUserProfileModel.data.data[0].phone;
-        //followUserUserId = getUserProfileModel.data.data[0].;
+
+        chatUid = getUserProfileModel.data.data[0].uid;
+        chatCategoryId = getUserProfileModel.data.data[0].categoryId;
+
+
 
         log("petList Length : ${petList.length}");
       } else {
@@ -223,12 +230,19 @@ class UserProfileController extends GetxController {
         shopProfile =
             ApiUrl.apiImagePath + petShopProfileModel.data.data[0].showimg;
         shopName = petShopProfileModel.data.data[0].shopename;
+
+        userEmail = petShopProfileModel.data.data[0].email;
+        userName = petShopProfileModel.data.data[0].shopename;
+
         shopDescription = petShopProfileModel.data.data[0].fullText;
         shopMobileNumber = petShopProfileModel.data.data[0].phonenumber;
         shopFacebookLink = petShopProfileModel.data.data[0].facebook;
         shopInstaLink = petShopProfileModel.data.data[0].instagram;
         shopId = petShopProfileModel.data.data[0].id;
         followShopUserId = petShopProfileModel.data.data[0].userid;
+
+        chatUid = petShopProfileModel.data.data[0].uid;
+        chatCategoryId = petShopProfileModel.data.data[0].categoryId;
         log("petList Length : ${petList.length}");
       } else {
         log("Get All Role Profile Api Else");
