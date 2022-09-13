@@ -6,8 +6,12 @@ import 'package:get/get.dart';
 import 'package:pet_met/controllers/user_conversation_screen_controller.dart';
 import 'package:pet_met/models/receive_message_model/receive_message_mdel.dart';
 import 'package:pet_met/models/receive_message_model/send_message_model.dart';
+import 'package:pet_met/screens/address_screen/address_screen_widgets.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/user_details.dart';
+import 'package:provider/provider.dart';
+
+import '../../services/providers/dark_theme_provider.dart';
 
 class SingleMessageBubble extends StatelessWidget {
   final ReceiveMessageModel singleMsg;
@@ -20,19 +24,19 @@ class SingleMessageBubble extends StatelessWidget {
     bool isSendByMe;
 
     var msgSentDay = DateTime.fromMicrosecondsSinceEpoch(
-        singleMsg.createdAt.microsecondsSinceEpoch)
+            singleMsg.createdAt.microsecondsSinceEpoch)
         .toString()
         .split(" ")[0];
     var msgSentHourTime = DateTime.fromMicrosecondsSinceEpoch(
-        singleMsg.createdAt.microsecondsSinceEpoch)
+            singleMsg.createdAt.microsecondsSinceEpoch)
         .hour;
     var msgSentMinTime = DateTime.fromMicrosecondsSinceEpoch(
-        singleMsg.createdAt.microsecondsSinceEpoch)
+            singleMsg.createdAt.microsecondsSinceEpoch)
         .minute;
 
     // String userName = UserDetails.roleId == 1 ? UserDetails.userEmail : UserDetails.shopName;
 
-    singleMsg.receiver == UserDetails.userEmail
+    singleMsg.sender == UserDetails.userEmail
         ? isSendByMe = true
         : isSendByMe = false;
     return Container(
@@ -45,9 +49,9 @@ class SingleMessageBubble extends StatelessWidget {
         children: [
           Column(
             mainAxisAlignment:
-            isSendByMe ? MainAxisAlignment.end : MainAxisAlignment.start,
+                isSendByMe ? MainAxisAlignment.end : MainAxisAlignment.start,
             crossAxisAlignment:
-            isSendByMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                isSendByMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
             children: [
               GestureDetector(
                 onTap: () {
@@ -57,9 +61,14 @@ class SingleMessageBubble extends StatelessWidget {
                   // }
                 },
                 child: Container(
-                  padding: const EdgeInsets.all(15),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                   decoration: BoxDecoration(
-                    color: AppColors.accentColor,
+                    color: isSendByMe
+                        ? AppColors.accentColor
+                        : themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.greyColor,
                     borderRadius: BorderRadius.only(
                       topRight: const Radius.circular(15),
                       topLeft: const Radius.circular(15),
@@ -74,7 +83,14 @@ class SingleMessageBubble extends StatelessWidget {
                     children: [
                       Text(
                         singleMsg.message,
-                        style: const TextStyle(fontSize: 12),
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: isSendByMe
+                              ? AppColors.whiteColor
+                              : themeProvider.darkTheme
+                                  ? AppColors.blackTextColor
+                                  : AppColors.whiteColor,
+                        ),
                       ),
                     ],
                   ),
@@ -102,18 +118,25 @@ class MessageWriteTextFieldModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final DarkThemeProvider themeProvider =
+        Provider.of<DarkThemeProvider>(context);
     return Container(
       decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(25),
-          topRight: Radius.circular(25),
-        ),
-        color: AppColors.accentTextColor,
+
+        // borderRadius: BorderRadius.only(
+        //   topLeft: Radius.circular(25),
+        //   topRight: Radius.circular(25),
+        // ),
+        color: Colors.transparent,
+
+
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
         child: TextFormField(
-          cursorColor: Colors.grey,
+          cursorColor: themeProvider.darkTheme
+              ? AppColors.whiteColor
+              : AppColors.greyColor,
           textInputAction: TextInputAction.done,
           controller: screenController.messageFieldController,
           // decoration: conversationScreenFieldDecoration(
@@ -124,34 +147,41 @@ class MessageWriteTextFieldModule extends StatelessWidget {
           //   receiverEmail: screenController.receiverEmail,
           // ),
           decoration: InputDecoration(
-            hintText: 'Type a message',
+            hintText: 'Type something...',
             hintStyle: const TextStyle(color: Colors.grey),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
-              borderSide: const BorderSide(color: AppColors.accentTextColor),
+              borderRadius: BorderRadius.circular(28),
+              borderSide: const BorderSide(color: Colors.transparent),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
-              borderSide: const BorderSide(color: AppColors.accentTextColor),
+              borderRadius: BorderRadius.circular(28),
+              borderSide: const BorderSide(color: Colors.transparent),
             ),
-            fillColor: Colors.white,
+            fillColor: themeProvider.darkTheme
+                ? AppColors.darkThemeBoxColor
+                : AppColors.greyTextColor.withOpacity(0.20),
             filled: true,
             isDense: true,
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            contentPadding:
+                const EdgeInsets.symmetric(horizontal: 18, vertical: 15),
             suffixIcon: GestureDetector(
               onTap: () async {
                 if (screenController.messageFieldController.text.isNotEmpty) {
+                  String receiverEmail =
+                      UserDetails.userEmail == screenController.userEmail
+                          ? screenController.shopEmail
+                          : UserDetails.userEmail;
 
-                  String receiverEmail =  UserDetails.userEmail == screenController.userEmail ? screenController.shopEmail : UserDetails.userEmail;
                   /// Create Message Model Wise
                   SendMessageModel sendMsg = SendMessageModel(
-                      roomId: screenController.roomId,
-                      createdAt: Timestamp.now(),
-                      message: screenController.messageFieldController.text.trim(),
-                      user1seen: false,
-                      user2seen: false,
-                      sender: UserDetails.userEmail,
-                      receiver: receiverEmail,
+                    roomId: screenController.roomId,
+                    createdAt: Timestamp.now(),
+                    message:
+                        screenController.messageFieldController.text.trim(),
+                    user1seen: false,
+                    user2seen: false,
+                    sender: UserDetails.userEmail,
+                    receiver: receiverEmail,
                   );
 
                   /// Msg Store in Firebase
@@ -164,7 +194,10 @@ class MessageWriteTextFieldModule extends StatelessWidget {
               //   scale: 0.85,
               //   color: AppColors.blackColor,
               // ),
-              child: Icon(Icons.send),
+              child: Icon(
+                Icons.send_rounded,
+                color: AppColors.accentColor,
+              ),
             ),
             /*prefixIcon: GestureDetector(
       onTap: () {},
