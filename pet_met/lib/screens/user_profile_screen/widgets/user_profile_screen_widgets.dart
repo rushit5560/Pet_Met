@@ -230,6 +230,29 @@ class ProfileDetailsModule extends StatelessWidget {
           Obx(
             () => GestureDetector(
               onTap: () async {
+                log("Usertype stored category id is : ${UserDetails.categoryId}");
+                log("User get user categoryid is : ${controller.userCategoryId}");
+
+                log("User stored selfid is : ${UserDetails.selfId}");
+                log("User get selfid is : ${controller.followUserId}");
+
+                if (UserDetails.categoryId == controller.userCategoryId) {
+                  if (UserDetails.selfId == controller.followUserId) {
+                    log("users are same");
+
+                    Fluttertoast.showToast(msg: "User can't follow itself.");
+                  } else {
+                    log("Follow Status: ${controller.status.value}");
+                    controller.status.value == true
+                        ? await controller.followUserFunction()
+                        : await controller.unfollowUserFunction();
+                  }
+                } else {
+                  log("Follow Status: ${controller.status.value}");
+                  controller.status.value == true
+                      ? await controller.followUserFunction()
+                      : await controller.unfollowUserFunction();
+                }
                 // if(controller.message.contains('this user not follow')){
                 //   /// Follow
                 //   await controller.followUserFunction();
@@ -238,10 +261,6 @@ class ProfileDetailsModule extends StatelessWidget {
                 //   await controller.unfollowUserFunction();
                 // }
                 // await controller.followStatus();
-                log("Follow Status: ${controller.status.value}");
-                controller.status.value == true
-                    ? await controller.followUserFunction()
-                    : await controller.unfollowUserFunction();
               },
               child: Container(
                 // height: 35,
@@ -375,86 +394,93 @@ class ContactInfoModule extends StatelessWidget {
             GestureDetector(
               onTap: () async {
                 if (controller.status.value == false) {
+                  log("username stored is : ${UserDetails.userEmail}");
+                  log("username get is : ${controller.userEmail}");
 
-                  /// When loggedIn user have roleId 1
-                  if (UserDetails.roleId == 1) {
-                    Timestamp timeStamp = Timestamp.now();
+                  if (UserDetails.userEmail == controller.userEmail) {
+                    Fluttertoast.showToast(
+                        msg: "Same Users can't chat with itself.");
+                  } else {
+                    // When loggedIn user have roleId 1
+                    if (UserDetails.categoryId.contains("1")) {
+                      Timestamp timeStamp = Timestamp.now();
 
-                    // CharRoom Id Generate
-                    String charRoomId =
-                        "${UserDetails.userEmail}_${controller.userEmail}";
+                      // CharRoom Id Generate
+                      String charRoomId =
+                          "${UserDetails.userEmail}_${controller.userEmail}";
 
-                    // ChatRoom Data
-                    Map<String, dynamic> chatRoomData = {
-                      "username1": UserDetails.userName,
-                      "username2": controller.userName,
-                      "useremail1": UserDetails.userEmail,
-                      "useremail2": controller.userEmail,
-                      "chatRoomId": charRoomId,
-                      "createdAt": timeStamp,
-                      "creator": UserDetails.roleId == 1 ? "User" : "Shop",
-                      "users": [UserDetails.userEmail, controller.userEmail],
-                    };
+                      // ChatRoom Data
+                      Map<String, dynamic> chatRoomData = {
+                        "username1": UserDetails.userName,
+                        "username2": controller.userName,
+                        "useremail1": UserDetails.userEmail,
+                        "useremail2": controller.userEmail,
+                        "chatRoomId": charRoomId,
+                        "createdAt": timeStamp,
+                        "creator": UserDetails.roleId == 1 ? "User" : "Shop",
+                        "users": [UserDetails.userEmail, controller.userEmail],
+                      };
 
-                    log("chatRoomData : $chatRoomData");
+                      log("chatRoomData : $chatRoomData");
 
-                    // Create ChatRoom Function
-                    firebaseDatabase.createChatRoomOfTwoUsers(
-                        charRoomId, chatRoomData);
+                      // Create ChatRoom Function
+                      firebaseDatabase.createChatRoomOfTwoUsers(
+                          charRoomId, chatRoomData);
 
-                    // Go to conversation screen
-                    Get.to(
-                      () => UserConversationScreen(),
-                      transition: Transition.zoom,
-                      arguments: [
-                        charRoomId,
-                        controller.followCategoryId == "1"
-                            ? controller.userName
-                            : controller.shopName,
-                        controller.userName,
-                        UserDetails.userEmail,
-                        controller.userEmail,
-                      ],
-                    );
-                  } else if (UserDetails.roleId == 2) {
-                    Timestamp timeStamp = Timestamp.now();
+                      // Go to conversation screen
+                      Get.to(
+                        () => UserConversationScreen(),
+                        transition: Transition.zoom,
+                        arguments: [
+                          charRoomId,
+                          controller.followCategoryId == "1"
+                              ? controller.userName
+                              : controller.shopName,
+                          controller.userName,
+                          UserDetails.userEmail,
+                          controller.userEmail,
+                        ],
+                      );
+                    } else if (UserDetails.categoryId.contains("2")) {
+                      Timestamp timeStamp = Timestamp.now();
 
-                    // CharRoom Id Generate
-                    String charRoomId =
-                        "${controller.userEmail}_${UserDetails.userEmail}";
+                      // CharRoom Id Generate
+                      String charRoomId =
+                          "${controller.userEmail}_${UserDetails.userEmail}";
 
-                    // ChatRoom Data
-                    Map<String, dynamic> chatRoomData = {
-                      "username1": controller.userName,
-                      "username2": UserDetails.userName,
-                      "useremail1": controller.userEmail,
-                      "useremail2": UserDetails.userEmail,
-                      "chatRoomId": charRoomId,
-                      "createdAt": timeStamp,
-                      "creator": UserDetails.roleId == 2 ? "Shop" : "User",
-                      "users": [controller.userEmail, UserDetails.userEmail],
-                    };
+                      // ChatRoom Data
+                      Map<String, dynamic> chatRoomData = {
+                        "username1": controller.userName,
+                        "username2": UserDetails.userName,
+                        "useremail1": controller.userEmail,
+                        "useremail2": UserDetails.userEmail,
+                        "chatRoomId": charRoomId,
+                        "createdAt": timeStamp,
+                        "creator": UserDetails.roleId == 2 ? "Shop" : "User",
+                        "users": [controller.userEmail, UserDetails.userEmail],
+                      };
 
-                    log("chatRoomData : $chatRoomData");
+                      log("chatRoomData : $chatRoomData");
 
-                    // Create ChatRoom Function
-                    firebaseDatabase.createChatRoomOfTwoUsers(
-                        charRoomId, chatRoomData);
+                      // Create ChatRoom Function
+                      firebaseDatabase.createChatRoomOfTwoUsers(
+                          charRoomId, chatRoomData);
 
-                    // Go to conversation screen
-                    Get.to(
-                      () => UserConversationScreen(),
-                      transition: Transition.zoom,
-                      arguments: [
-                        charRoomId,
-                        controller.followCategoryId == "1"
-                            ? controller.userName
-                            : controller.shopName,
-                        controller.userName,
-                        UserDetails.userEmail,
-                        controller.userEmail,
-                      ],
-                    );
+                      // Go to conversation screen
+                      Get.to(
+                        () => UserConversationScreen(),
+                        transition: Transition.zoom,
+                        arguments: [
+                          charRoomId,
+                          controller.followCategoryId == "1"
+                              ? controller.userName
+                              : controller.shopName,
+                          controller.userName,
+                          UserDetails.userEmail,
+                          controller.userEmail,
+                        ],
+                      );
+                    }
                   }
                 }
 

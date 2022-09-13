@@ -20,19 +20,14 @@ import 'package:pet_met/utils/user_details.dart';
 import 'package:http/http.dart' as http;
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
-
-
 class UserProfileController extends GetxController {
   String followUserId = Get.arguments[0];
   String followCategoryId = Get.arguments[1];
   String petId = Get.arguments[2];
 
-
   final size = Get.size;
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
-
-
 
   ApiHeader apiHeader = ApiHeader();
 
@@ -55,18 +50,18 @@ class UserProfileController extends GetxController {
   ];
 
   String message = "";
- // int followUserId = 0;
+  // int followUserId = 0;
 
   RxBool status = true.obs;
 
-  String userprofile= "";
+  String userprofile = "";
   String userName = "";
   String userMobileNumber = "";
   String userId = "";
   String userEmail = "";
   String followUserUserId = "";
 
-  String shopProfile= "";
+  String shopProfile = "";
   String shopName = "";
   String shopDescription = "";
   String shopMobileNumber = "";
@@ -75,11 +70,11 @@ class UserProfileController extends GetxController {
   String shopId = "";
   String followShopUserId = "";
 
-  String ngoProfile= "";
+  String ngoProfile = "";
   String ngoName = "";
   String ngoDescription = "";
 
-  String trainerProfile= "";
+  String trainerProfile = "";
   String trainerName = "";
   String trainerDescription = "";
 
@@ -89,7 +84,6 @@ class UserProfileController extends GetxController {
   String userCategoryId = "";
 
   late Razorpay _razorpay;
-
 
   /// Get All Role Profile
   /*Future<void> getAllRoleProfileFunction() async {
@@ -147,8 +141,8 @@ class UserProfileController extends GetxController {
 
     try {
       Map<String, dynamic> data = {
-        "userid" : UserDetails.selfId,
-        "categoryID" : UserDetails.categoryId,
+        "userid": UserDetails.selfId,
+        "categoryID": UserDetails.categoryId,
         "meettingpetuserid": followUserId,
         "meettingpetusercategory": followCategoryId,
       };
@@ -158,30 +152,33 @@ class UserProfileController extends GetxController {
       Map<String, String> header = apiHeader.apiHeader();
       log("header : $header");
 
-      http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
+      http.Response response =
+          await http.post(Uri.parse(url), body: data, headers: header);
       log("Get All Role Profile Api response : ${response.body}");
 
       PetUserProfileModel getUserProfileModel =
-      PetUserProfileModel.fromJson(json.decode(response.body));
+          PetUserProfileModel.fromJson(json.decode(response.body));
       isSuccessStatus = getUserProfileModel.success.obs;
 
       if (isSuccessStatus.value) {
         petList.clear();
         petList.addAll(getUserProfileModel.data.petdata);
+
         meetingStatus = getUserProfileModel.data.meettingstatus.obs;
         userCategoryId = getUserProfileModel.data.data[0].categoryId;
-        userprofile = ApiUrl.apiImagePath + "asset/uploads/product/" + getUserProfileModel.data.data[0].image;
+        userprofile = ApiUrl.apiImagePath +
+            "asset/uploads/product/" +
+            getUserProfileModel.data.data[0].image;
         userName = getUserProfileModel.data.data[0].name;
-        userMobileNumber = getUserProfileModel.data.data[0].phone;
-        userId = getUserProfileModel.data.data[0].id;
         userEmail = getUserProfileModel.data.data[0].email;
+        userMobileNumber = getUserProfileModel.data.data[0].phone;
         //followUserUserId = getUserProfileModel.data.data[0].;
+
         log("petList Length : ${petList.length}");
       } else {
         log("Get All Role Profile Api Else");
       }
-
-    } catch(e) {
+    } catch (e) {
       log("All Role Profile Api Error ::: $e");
     } finally {
       //isLoading(false);
@@ -197,8 +194,8 @@ class UserProfileController extends GetxController {
 
     try {
       Map<String, dynamic> data = {
-        "userid" : UserDetails.selfId,
-        "categoryID" : UserDetails.categoryId,
+        "userid": UserDetails.selfId,
+        "categoryID": UserDetails.categoryId,
         "meettingpetuserid": followUserId,
         "meettingpetusercategory": followCategoryId,
       };
@@ -208,13 +205,14 @@ class UserProfileController extends GetxController {
       Map<String, String> header = apiHeader.apiHeader();
       log("header : $header");
 
-      http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
+      http.Response response =
+          await http.post(Uri.parse(url), body: data, headers: header);
       log("Get All Role Profile Api response : ${response.body}");
 
       // PetUserProfileModel getUserProfileModel =
       // PetUserProfileModel.fromJson(json.decode(response.body));
       PetShopProfileModel petShopProfileModel =
-      PetShopProfileModel.fromJson(json.decode(response.body));
+          PetShopProfileModel.fromJson(json.decode(response.body));
       isSuccessStatus = petShopProfileModel.success.obs;
 
       if (isSuccessStatus.value) {
@@ -222,7 +220,8 @@ class UserProfileController extends GetxController {
         shopPetList.addAll(petShopProfileModel.data.petdata);
         shopMeetingStatus = petShopProfileModel.data.meettingstatus.obs;
         userCategoryId = petShopProfileModel.data.data[0].categoryId;
-        shopProfile = ApiUrl.apiImagePath  + petShopProfileModel.data.data[0].showimg;
+        shopProfile =
+            ApiUrl.apiImagePath + petShopProfileModel.data.data[0].showimg;
         shopName = petShopProfileModel.data.data[0].shopename;
         shopDescription = petShopProfileModel.data.data[0].fullText;
         shopMobileNumber = petShopProfileModel.data.data[0].phonenumber;
@@ -234,8 +233,7 @@ class UserProfileController extends GetxController {
       } else {
         log("Get All Role Profile Api Else");
       }
-
-    } catch(e) {
+    } catch (e) {
       log("All Role Profile Api Error ::: $e");
     } finally {
       //isLoading(false);
@@ -261,18 +259,20 @@ class UserProfileController extends GetxController {
       Map<String, String> header = apiHeader.apiHeader();
       log("header : $header");
 
-      http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
+      http.Response response =
+          await http.post(Uri.parse(url), body: data, headers: header);
       log("Get All Role Profile Api response : ${response.body}");
 
       AllRoleProfileModel allRoleProfileModel =
-      AllRoleProfileModel.fromJson(json.decode(response.body));
+          AllRoleProfileModel.fromJson(json.decode(response.body));
       isSuccessStatus = allRoleProfileModel.success.obs;
 
       if (isSuccessStatus.value) {
         ngoPetList.clear();
         ngoPetList.addAll(allRoleProfileModel.data.petdata);
 
-        ngoProfile = ApiUrl.apiImagePath + allRoleProfileModel.data.data[0].image;
+        ngoProfile =
+            ApiUrl.apiImagePath + allRoleProfileModel.data.data[0].image;
         ngoName = allRoleProfileModel.data.data[0].name;
         ngoDescription = allRoleProfileModel.data.data[0].fullText;
 
@@ -285,9 +285,7 @@ class UserProfileController extends GetxController {
       } else {
         log("Get All Role Profile Api Else");
       }
-
-
-    } catch(e) {
+    } catch (e) {
       log("All Role Profile Api Error ::: $e");
     } finally {
       //isLoading(false);
@@ -313,18 +311,20 @@ class UserProfileController extends GetxController {
       Map<String, String> header = apiHeader.apiHeader();
       log("header : $header");
 
-      http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
+      http.Response response =
+          await http.post(Uri.parse(url), body: data, headers: header);
       log("Get All Role Profile Api response : ${response.body}");
 
       GetTrainersProfileModel getTrainersProfileModel =
-      GetTrainersProfileModel.fromJson(json.decode(response.body));
+          GetTrainersProfileModel.fromJson(json.decode(response.body));
       isSuccessStatus = getTrainersProfileModel.success.obs;
 
       if (isSuccessStatus.value) {
         trainerPetList.clear();
         trainerPetList.addAll(getTrainersProfileModel.data.petdata);
 
-        trainerProfile = ApiUrl.apiImagePath + getTrainersProfileModel.data.data[0].image;
+        trainerProfile =
+            ApiUrl.apiImagePath + getTrainersProfileModel.data.data[0].image;
         trainerName = getTrainersProfileModel.data.data[0].name;
         trainerDescription = getTrainersProfileModel.data.data[0].fullText;
 
@@ -337,9 +337,7 @@ class UserProfileController extends GetxController {
       } else {
         log("Get All Role Profile Api Else");
       }
-
-
-    } catch(e) {
+    } catch (e) {
       log("All Role Profile Api Error ::: $e");
     } finally {
       //isLoading(false);
@@ -365,15 +363,18 @@ class UserProfileController extends GetxController {
       Map<String, String> header = apiHeader.apiHeader();
       log("header : $header");
 
-      http.Response response = await http.post(Uri.parse(url),body: data, /*headers: header*/);
+      http.Response response = await http.post(
+        Uri.parse(url),
+        body: data, /*headers: header*/
+      );
       log("Get Follow Status Api response : ${response.body}");
 
-      GetFollowStatusModel getFollowStatusModel = GetFollowStatusModel.fromJson(json.decode(response.body));
+      GetFollowStatusModel getFollowStatusModel =
+          GetFollowStatusModel.fromJson(json.decode(response.body));
       isSuccessStatus = getFollowStatusModel.success.obs;
       status = getFollowStatusModel.success.obs;
       log('status: $status');
       if (isSuccessStatus.value) {
-
         message = getFollowStatusModel.message;
         //Fluttertoast.showToast(msg: getFollowStatusModel.message);
         //await followUserFunction();
@@ -381,8 +382,7 @@ class UserProfileController extends GetxController {
         log("Get All Follow Status Api Else");
         //await unfollowUserFunction();
       }
-
-    } catch(e) {
+    } catch (e) {
       log("All Follow Status Api Error ::: $e");
     } finally {
       isLoading(false);
@@ -442,7 +442,7 @@ class UserProfileController extends GetxController {
     }
   }*/
 
-  Future followUserFunction()async{
+  Future followUserFunction() async {
     isLoading(true);
     String url = ApiUrl.followUserApi;
     log("Follow User Api Url : $url");
@@ -459,11 +459,14 @@ class UserProfileController extends GetxController {
       Map<String, String> header = apiHeader.apiHeader();
       log("header : $header");
 
-      http.Response response = await http.post(Uri.parse(url),body: data, /*headers: header*/);
+      http.Response response = await http.post(
+        Uri.parse(url),
+        body: data, /*headers: header*/
+      );
       log("Get Follow Status Api response : ${response.body}");
 
       FollowUserModel followUserModel =
-      FollowUserModel.fromJson(json.decode(response.body));
+          FollowUserModel.fromJson(json.decode(response.body));
       isSuccessStatus = followUserModel.success.obs;
 
       if (isSuccessStatus.value) {
@@ -472,8 +475,7 @@ class UserProfileController extends GetxController {
       } else {
         log("Follow User Api Else");
       }
-
-    } catch(e) {
+    } catch (e) {
       log("Follow User Api Error ::: $e");
     } finally {
       isLoading(false);
@@ -498,11 +500,14 @@ class UserProfileController extends GetxController {
       Map<String, String> header = apiHeader.apiHeader();
       log("header : $header");
 
-      http.Response response = await http.post(Uri.parse(url),body: data, /*headers: header*/);
+      http.Response response = await http.post(
+        Uri.parse(url),
+        body: data, /*headers: header*/
+      );
       log("Un Follow Api response : ${response.body}");
 
       UnFollowUserModel unFollowUserModel =
-      UnFollowUserModel.fromJson(json.decode(response.body));
+          UnFollowUserModel.fromJson(json.decode(response.body));
       isSuccessStatus = unFollowUserModel.success.obs;
 
       if (isSuccessStatus.value) {
@@ -511,8 +516,7 @@ class UserProfileController extends GetxController {
       } else {
         log("Un Follow User Api Else");
       }
-
-    } catch(e) {
+    } catch (e) {
       log("Un Follow User Api Error ::: $e");
     } finally {
       isLoading(false);
@@ -524,11 +528,34 @@ class UserProfileController extends GetxController {
     var options = {
       'key': 'rzp_test_dxCkKqtRKnvZdA',
       'amount': 200 * 100,
-      'name': followCategoryId == "1" ? userName : followCategoryId == "2" ? shopName : followCategoryId == "3" ? ngoName : followCategoryId == "4" ? trainerName: "",
-      'description': followCategoryId == "1" ? "" : followCategoryId == "2" ? shopDescription : followCategoryId == "3" ? ngoDescription : followCategoryId == "4" ? trainerDescription : "",
+      'name': followCategoryId == "1"
+          ? userName
+          : followCategoryId == "2"
+              ? shopName
+              : followCategoryId == "3"
+                  ? ngoName
+                  : followCategoryId == "4"
+                      ? trainerName
+                      : "",
+      'description': followCategoryId == "1"
+          ? ""
+          : followCategoryId == "2"
+              ? shopDescription
+              : followCategoryId == "3"
+                  ? ngoDescription
+                  : followCategoryId == "4"
+                      ? trainerDescription
+                      : "",
       'retry': {'enabled': true, 'max_count': 1},
       'send_sms_hash': true,
-      'prefill': {'contact': followCategoryId == "1" ? userMobileNumber : followCategoryId == "2" ? shopMobileNumber : "", 'email': 'test@razorpay.com'},
+      'prefill': {
+        'contact': followCategoryId == "1"
+            ? userMobileNumber
+            : followCategoryId == "2"
+                ? shopMobileNumber
+                : "",
+        'email': 'test@razorpay.com'
+      },
       'external': {
         'wallets': ['paytm']
       }
@@ -541,13 +568,12 @@ class UserProfileController extends GetxController {
     }
   }
 
-  void _handlePaymentSuccess(PaymentSuccessResponse response)async {
+  void _handlePaymentSuccess(PaymentSuccessResponse response) async {
     log('Success Response: ${response.orderId}');
     await petAddOrderFunction(
         orderId: response.orderId,
         paymentId: response.paymentId!,
-        signature: response.signature
-    );
+        signature: response.signature);
 
     Fluttertoast.showToast(
         msg: "SUCCESS: " + response.paymentId!,
@@ -575,14 +601,14 @@ class UserProfileController extends GetxController {
   }
 
   Future<void> petAddOrderFunction(
-      { String ? orderId,required String paymentId, String ? signature}) async {
+      {String? orderId, required String paymentId, String? signature}) async {
     isLoading(true);
     String url = ApiUrl.petAddOrderApi;
 
     Map<String, dynamic> data = {
       "userid": UserDetails.selfId.toString(),
-      "categoryID" : UserDetails.categoryId,
-      "meettingpetuserid" : followUserId,
+      "categoryID": UserDetails.categoryId,
+      "meettingpetuserid": followUserId,
       "meettingpetusercategory": followCategoryId,
       "userpetid": "1",
       "meettingpetid": "10",
@@ -598,10 +624,11 @@ class UserProfileController extends GetxController {
 
     try {
       Map<String, String> header = apiHeader.apiHeader();
-      http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
+      http.Response response =
+          await http.post(Uri.parse(url), body: data, headers: header);
       log("Vet Details Api Response : ${response.body}");
       PetAddOrderModel petAddOrderModel =
-      PetAddOrderModel.fromJson(json.decode(response.body));
+          PetAddOrderModel.fromJson(json.decode(response.body));
       isSuccessStatus = petAddOrderModel.success.obs;
 
       if (isSuccessStatus.value) {
@@ -621,9 +648,9 @@ class UserProfileController extends GetxController {
   void onInit() async {
     super.onInit();
     //getAllRoleProfileFunction();
-    if(followCategoryId == "1"){
+    if (followCategoryId == "1") {
       await getUserProfileFunction();
-    } else if(followCategoryId == "2"){
+    } else if (followCategoryId == "2") {
       await getShopProfileFunction();
     } /*else if(followCategoryId == "3"){
       await getNgoProfileFunction();

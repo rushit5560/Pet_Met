@@ -183,7 +183,11 @@ class PetTrackerPriceModule extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          controller.status.value == false ? "Buy" : "Purchased",
+                          controller.planDetailsData[0].isActive
+                                  .toString()
+                                  .contains("0")
+                              ? "Buy"
+                              : "Purchased",
                           style: TextStyle(
                             color: themeProvider.darkTheme
                                 ? AppColors.accentColor
@@ -218,31 +222,28 @@ class PetTrackerPriceModule extends StatelessWidget {
               ),
               child: Stack(
                 children: [
+                  // Align(
+                  //   alignment: Alignment.centerLeft,
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.only(left: 12),
+                  //     child: Text(
+                  //       "₹",
+                  //       style: TextStyle(
+                  //         color: AppColors.whiteColor,
+                  //         fontSize: 15.sp,
+                  //         fontWeight: FontWeight.bold,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                   Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 12),
-                      child: Text(
-                        "₹",
-                        style: TextStyle(
-                          color: AppColors.whiteColor,
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 28),
-                      child: Text(
-                        controller.price.toString(),
-                        style: TextStyle(
-                          color: AppColors.whiteColor,
-                          fontSize: 15.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      "₹ " + controller.price.toString(),
+                      style: TextStyle(
+                        color: AppColors.whiteColor,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),

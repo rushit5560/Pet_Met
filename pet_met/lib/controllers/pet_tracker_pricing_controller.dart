@@ -24,7 +24,7 @@ class PetTrackerPricingController extends GetxController {
 
   RxBool selectedTerms = false.obs;
   int price = 0;
-  String name= "";
+  String name = "";
   String overview = "";
 
   final formKey = GlobalKey<FormState>();
@@ -61,14 +61,15 @@ class PetTrackerPricingController extends GetxController {
 
     try {
       Map<String, dynamic> bodyData = {
-        "planid":petPlanId,
+        "planid": petPlanId,
         "id": UserDetails.selfId,
-        "categoryID" : UserDetails.categoryId,
+        "categoryID": UserDetails.categoryId,
       };
       log("bodyData : $bodyData");
 
       Map<String, String> header = apiHeader.apiHeader();
-      http.Response response = await http.post(Uri.parse(url), headers: header, body: bodyData);
+      http.Response response =
+          await http.post(Uri.parse(url), headers: header, body: bodyData);
       log("Plan Details Api Response : ${response.body}");
       SinglePlanDetailModel singlePlanDetailModel =
           SinglePlanDetailModel.fromJson(json.decode(response.body));
@@ -76,10 +77,10 @@ class PetTrackerPricingController extends GetxController {
 
       if (isSuccessStatus.value) {
         planDetailsData = singlePlanDetailModel.date.obs;
-        for(int i=0; i < planDetailsData.length; i++){
-          price= int.parse(planDetailsData[i].rs);
-          name= planDetailsData[i].name;
-          overview= planDetailsData[i].overview;
+        for (int i = 0; i < planDetailsData.length; i++) {
+          price = int.parse(planDetailsData[i].rs);
+          name = planDetailsData[i].name;
+          overview = planDetailsData[i].overview;
         }
         status = singlePlanDetailModel.status.obs;
         log("status: $status");
@@ -94,14 +95,15 @@ class PetTrackerPricingController extends GetxController {
   }
 
   Future<void> addOrderFunction(
-      { String ? orderId,required String paymentId, String ? signature}) async {
+      {String? orderId, required String paymentId, String? signature}) async {
     isLoading(true);
     String url = ApiUrl.addOrderApi;
 
     Map<String, dynamic> data = {
-      "userid": UserDetails.selfId.toString(),
-      "planid" : petPlanId,
-      "price" : price.toString(),
+      "uid": UserDetails.selfId.toString(),
+      "userid": UserDetails.userId.toString(),
+      "planid": petPlanId,
+      "price": price.toString(),
       "transition_orderid": orderId ?? "123",
       "transition_paymentId": paymentId,
       "signature": signature ?? "123",
@@ -114,10 +116,11 @@ class PetTrackerPricingController extends GetxController {
 
     try {
       Map<String, String> header = apiHeader.apiHeader();
-      http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
+      http.Response response =
+          await http.post(Uri.parse(url), body: data, headers: header);
       log("Add Order Api Response : ${response.body}");
       AddOrderModel addOrderModel =
-      AddOrderModel.fromJson(json.decode(response.body));
+          AddOrderModel.fromJson(json.decode(response.body));
       isSuccessStatus = addOrderModel.success.obs;
 
       if (isSuccessStatus.value) {
@@ -159,7 +162,7 @@ class PetTrackerPricingController extends GetxController {
       'description': overview,
       'retry': {'enabled': true, 'max_count': 1},
       'send_sms_hash': true,
-       'prefill': {'contact': '8888888888', 'email': 'test@razorpay.com'},
+      'prefill': {'contact': '8888888888', 'email': 'test@razorpay.com'},
       'external': {
         'wallets': ['paytm']
       }
@@ -173,13 +176,12 @@ class PetTrackerPricingController extends GetxController {
     }
   }
 
-  void _handlePaymentSuccess(PaymentSuccessResponse response)async {
+  void _handlePaymentSuccess(PaymentSuccessResponse response) async {
     log('Success Response: ${response.orderId}');
     await addOrderFunction(
         orderId: response.orderId,
         paymentId: response.paymentId!,
-        signature: response.signature
-    );
+        signature: response.signature);
 
     Fluttertoast.showToast(
         msg: "SUCCESS: " + response.paymentId!,
@@ -205,10 +207,7 @@ class PetTrackerPricingController extends GetxController {
         toastLength: Toast.LENGTH_SHORT);
     log("response Wallet : ${response.walletName}");
   }
-
-  }
-
-
+}
 
 class PetTrackerModel {
   final int? price;

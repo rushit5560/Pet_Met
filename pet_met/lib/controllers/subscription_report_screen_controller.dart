@@ -20,9 +20,11 @@ class SubscriptionReportScreenController extends GetxController {
 
     try {
       Map<String, dynamic> bodyData = {
-        "userid": UserDetails.selfId,
+        "userid": UserDetails.userId,
         "categoryID": UserDetails.categoryId
       };
+
+      log("body data passing : $bodyData");
 
       http.Response response = await http.post(
         Uri.parse(url),

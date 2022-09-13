@@ -50,10 +50,12 @@ class PetNameAndSocialMediaButtonModule extends StatefulWidget {
   PetNameAndSocialMediaButtonModule({Key? key}) : super(key: key);
 
   @override
-  State<PetNameAndSocialMediaButtonModule> createState() => _PetNameAndSocialMediaButtonModuleState();
+  State<PetNameAndSocialMediaButtonModule> createState() =>
+      _PetNameAndSocialMediaButtonModuleState();
 }
 
-class _PetNameAndSocialMediaButtonModuleState extends State<PetNameAndSocialMediaButtonModule> {
+class _PetNameAndSocialMediaButtonModuleState
+    extends State<PetNameAndSocialMediaButtonModule> {
   final screenController = Get.find<PetMeetingDetailsScreenController>();
 
   @override
@@ -61,18 +63,20 @@ class _PetNameAndSocialMediaButtonModuleState extends State<PetNameAndSocialMedi
     // TODO: implement initState
     super.initState();
     screenController.razorpay = Razorpay();
-    screenController.razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
-    screenController.razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
-    screenController.razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+    screenController.razorpay
+        .on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    screenController.razorpay
+        .on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    screenController.razorpay
+        .on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
   }
 
-  void _handlePaymentSuccess(PaymentSuccessResponse response)async {
+  void _handlePaymentSuccess(PaymentSuccessResponse response) async {
     // log('Success Response: ${response.orderId}');
     await screenController.petAddOrderFunction(
         orderId: response.orderId,
         paymentId: response.paymentId!,
-        signature: response.signature
-    );
+        signature: response.signature);
 
     // Fluttertoast.showToast(
     //     msg: "SUCCESS: " + response.paymentId!,
@@ -102,7 +106,7 @@ class _PetNameAndSocialMediaButtonModuleState extends State<PetNameAndSocialMedi
   }
 
   DarkThemeProvider themeProvider =
-  Provider.of<DarkThemeProvider>(Get.context!);
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -143,12 +147,12 @@ class _PetNameAndSocialMediaButtonModuleState extends State<PetNameAndSocialMedi
     ).commonSymmetricPadding(horizontal: 15);
   }
 
-  alertDialog(){
+  alertDialog() {
     return showDialog(
       barrierColor: themeProvider.darkTheme
           ? AppColors.darkThemeBoxColor.withOpacity(0.3)
           : AppColors.accentColor.withOpacity(0.3),
-      context: context!,
+      context: context,
       builder: (ctx) => Dialog(
         backgroundColor: themeProvider.darkTheme
             ? AppColors.darkThemeBoxColor
@@ -190,7 +194,8 @@ class _PetNameAndSocialMediaButtonModuleState extends State<PetNameAndSocialMedi
                 children: [
                   ElevatedButton(
                     onPressed: () async {
-                      Fluttertoast.showToast(msg: 'Payment processing cancelled by user');
+                      Fluttertoast.showToast(
+                          msg: 'Payment processing cancelled by user');
                     },
                     style: ElevatedButton.styleFrom(
                       primary: AppColors.accentColor,
