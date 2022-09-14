@@ -33,7 +33,7 @@ class Validations {
     if (value.isEmpty) {
       return 'Instagram link is required';
     } else if (!value.contains('www.instagram.com') || value.contains(' ')) {
-      return 'Invalid instagram link';
+      return 'Invalid instagram link(eg. www.instagram.com)';
     }
     return null;
   }
@@ -42,7 +42,7 @@ class Validations {
     if (value.isEmpty) {
       return 'Facebook link is required';
     } else if (!value.contains('www.facebook.com') || value.contains(' ')) {
-      return 'Invalid facebook link';
+      return 'Invalid facebook link(eg. www.facebook.com)';
     }
     return null;
   }
