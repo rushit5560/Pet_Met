@@ -103,15 +103,17 @@ class NgoAchivementPictureListModule extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               border: Border.all(color: Colors.grey)),
-                          padding: const EdgeInsets.all(5),
+                         //padding: const EdgeInsets.all(5),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8),
                             child: Image.network(
                                 ApiUrl.apiImagePath +
                                     "asset/uploads/product/"
                                         "${screenController.vetsNgoDetailsData[0].image1}",
-                                height: 40,
-                                width: 40, errorBuilder: (context, er, da) {
+                                fit: BoxFit.fill,
+                                // height: 40,
+                                // width: 40,
+                                errorBuilder: (context, er, da) {
                               return Image.asset(AppImages.petMetLogoImg);
                             }),
                           ),
@@ -624,7 +626,7 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      "Price",
+                      "Amount",
                       style: TextStyle(
                         color: themeProvider.darkTheme
                             ? AppColors.whiteColor
@@ -699,7 +701,7 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
                           borderSide: const BorderSide(
                               width: 0, style: BorderStyle.none),
                         ),
-                        hintText: "Price",
+                        hintText: "Amount",
                         hintStyle: TextStyle(
                           color: themeProvider.darkTheme
                               ? AppColors.whiteColor
@@ -713,7 +715,7 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
                 ),
 
                 // const SizedBox(height: 20),
-                Row(
+                /*Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
@@ -784,6 +786,149 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
                         ),
                       ),
                     ),
+                  ],
+                ),*/
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        //Get.back();
+                        //await screenController.userLoginFunction();
+                        if (screenController.formKey.currentState!.validate()) {
+                          Get.back();
+                          screenController.openCheckout(
+                              price: int.parse(
+                                  screenController.priceController.text));
+                          screenController.priceController.clear();
+                        }
+                      },
+                      child: Container(
+                        //width: double.infinity,
+                        height: 50,
+                        decoration: const BoxDecoration(
+                          color: AppColors.accentColor,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12),
+                          child: Center(
+                            child: Text(
+                              "Submit",
+                              style: TextStyle(
+                                color: AppColors.whiteColor,
+                                fontSize: 15.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: screenController.size.width * 0.05,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Container(
+                        //width: double.infinity,
+                        height: 50,
+                        decoration: const BoxDecoration(
+                          color: AppColors.accentColor,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12),
+                          child: Center(
+                            child: Text(
+                              "Cancel",
+                              style: TextStyle(
+                                color: AppColors.whiteColor,
+                                fontSize: 15.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    // ElevatedButton(
+                    //   onPressed: () async {
+                    //     //await screenController.userLoginFunction();
+                    //     if (screenController.formKey.currentState!.validate()) {
+                    //       screenController.openCheckout(price: int.parse(screenController.priceController.text));
+                    //       log('price: ${screenController.priceController.text}');
+                    //       Fluttertoast.showToast(msg: 'Processing payment to trainer.');
+                    //       screenController.priceController.clear();
+                    //     }
+                    //   },
+                    //   style: ElevatedButton.styleFrom(
+                    //     primary: AppColors.accentColor,
+                    //     minimumSize: Size(
+                    //       screenController.size.width * 0.3,
+                    //       30,
+                    //     ),
+                    //     padding: const EdgeInsets.symmetric(horizontal: 16),
+                    //     shape: const RoundedRectangleBorder(
+                    //       borderRadius: BorderRadius.all(
+                    //         Radius.circular(12),
+                    //       ),
+                    //     ),
+                    //   ),
+                    //   child: Center(
+                    //     child: Text(
+                    //       "Ok",
+                    //       style: TextStyle(
+                    //         color: AppColors.whiteColor,
+                    //         fontSize: 12.sp,
+                    //         fontWeight: FontWeight.w500,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                    // SizedBox(
+                    //   width: screenController.size.width * 0.05,
+                    // ),
+                    // ElevatedButton(
+                    //   onPressed: () {
+                    //     Get.back();
+                    //   },
+                    //   style: ElevatedButton.styleFrom(
+                    //     primary: themeProvider.darkTheme
+                    //         ? AppColors.whiteColor
+                    //         : AppColors.greyTextColor.withOpacity(0.3),
+                    //     minimumSize:
+                    //     Size(screenController.size.width * 0.3, 30),
+                    //     padding: const EdgeInsets.symmetric(horizontal: 16),
+                    //     shape: const RoundedRectangleBorder(
+                    //       borderRadius: BorderRadius.all(
+                    //         Radius.circular(12),
+                    //       ),
+                    //     ),
+                    //   ),
+                    //   child: Center(
+                    //     child: Text(
+                    //       "Close",
+                    //       style: TextStyle(
+                    //         color: themeProvider.darkTheme
+                    //             ? AppColors.darkThemeBoxColor
+                    //             : AppColors.blackTextColor,
+                    //         fontSize: 12.sp,
+                    //         fontWeight: FontWeight.w500,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ],
