@@ -53,7 +53,9 @@ class SearchVetAndNgoTextFieldModule extends StatelessWidget {
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.text,
             style: TextStyle(
-              color: AppColors.blackTextColor,
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.blackTextColor,
               fontSize: 13.sp,
               fontWeight: FontWeight.w400,
               decoration: TextDecoration.none,
@@ -83,9 +85,15 @@ class SearchVetAndNgoTextFieldModule extends StatelessWidget {
               suffixIcon: GestureDetector(
                 onTap: () async {
                   screenController.isLoading(true);
-                  if(screenController.searchFieldController.text.trim().isNotEmpty){
-                    screenController.searchVetAndNgoList = screenController.vetAndNgoList
-                        .where((u) => (u.name.toLowerCase().contains(screenController.searchFieldController.text.toLowerCase()))).toList();
+                  if (screenController.searchFieldController.text
+                      .trim()
+                      .isNotEmpty) {
+                    screenController.searchVetAndNgoList = screenController
+                        .vetAndNgoList
+                        .where((u) => (u.name.toLowerCase().contains(
+                            screenController.searchFieldController.text
+                                .toLowerCase())))
+                        .toList();
                     //screenController.searchFieldController.clear();
                     hideKeyboard();
                     log('screenController.searchVetAndNgoList: ${screenController.searchVetAndNgoList.length}');
@@ -104,7 +112,7 @@ class SearchVetAndNgoTextFieldModule extends StatelessWidget {
               ),
             ),
             onChanged: (value) {
-              if(value.isEmpty) {
+              if (value.isEmpty) {
                 screenController.isLoading(true);
                 screenController.searchVetAndNgoList.clear();
                 screenController.isLoading(false);
@@ -121,33 +129,34 @@ class VetsAndNgoListModule extends StatelessWidget {
   VetsAndNgoListModule({Key? key}) : super(key: key);
   final screenController = Get.find<PetVetsAndNgoScreenController>();
 
-  var themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
-
   @override
   Widget build(BuildContext context) {
-    return screenController.searchVetAndNgoList.isEmpty ?
-      ListView.builder(
-      itemCount: screenController.vetAndNgoList.length,
-      shrinkWrap: true,
-      physics: const BouncingScrollPhysics(),
-      itemBuilder: (context, i) {
-        VetAndNgoData vetAndNgoData = screenController.vetAndNgoList[i];
-        return _vetsAndNgoListTile(vetAndNgoData);
-      },
-    ).commonAllSidePadding(padding: 10):
-
-    ListView.builder(
-      itemCount: screenController.searchVetAndNgoList.length,
-      shrinkWrap: true,
-      physics: const BouncingScrollPhysics(),
-      itemBuilder: (context, i) {
-        VetAndNgoData searchVetAndNgoData = screenController.searchVetAndNgoList[i];
-        return searchVetsAndNgoListTile(searchVetAndNgoData);
-      },
-    ).commonAllSidePadding(padding: 10);
+    var themeProvider = Provider.of<DarkThemeProvider>(context);
+    return screenController.searchVetAndNgoList.isEmpty
+        ? ListView.builder(
+            itemCount: screenController.vetAndNgoList.length,
+            shrinkWrap: true,
+            physics: const BouncingScrollPhysics(),
+            itemBuilder: (context, i) {
+              VetAndNgoData vetAndNgoData = screenController.vetAndNgoList[i];
+              return _vetsAndNgoListTile(vetAndNgoData, themeProvider);
+            },
+          ).commonAllSidePadding(padding: 10)
+        : ListView.builder(
+            itemCount: screenController.searchVetAndNgoList.length,
+            shrinkWrap: true,
+            physics: const BouncingScrollPhysics(),
+            itemBuilder: (context, i) {
+              VetAndNgoData searchVetAndNgoData =
+                  screenController.searchVetAndNgoList[i];
+              return searchVetsAndNgoListTile(
+                  searchVetAndNgoData, themeProvider);
+            },
+          ).commonAllSidePadding(padding: 10);
   }
 
-  Widget _vetsAndNgoListTile(VetAndNgoData vetAndNgoData) {
+  Widget _vetsAndNgoListTile(
+      VetAndNgoData vetAndNgoData, DarkThemeProvider themeProvider) {
     String imgUrl =
         ApiUrl.apiImagePath + "asset/uploads/product/" + vetAndNgoData.image;
     return GestureDetector(
@@ -266,13 +275,15 @@ class VetsAndNgoListModule extends StatelessWidget {
     );
   }
 
-  Widget searchVetsAndNgoListTile(VetAndNgoData searchVetAndNgoData) {
-    String imgUrl =
-        ApiUrl.apiImagePath + "asset/uploads/product/" + searchVetAndNgoData.image;
+  Widget searchVetsAndNgoListTile(
+      VetAndNgoData searchVetAndNgoData, DarkThemeProvider themeProvider) {
+    String imgUrl = ApiUrl.apiImagePath +
+        "asset/uploads/product/" +
+        searchVetAndNgoData.image;
     return GestureDetector(
       onTap: () {
         Get.to(
-              () => PetVetsAndNgoDetailsScreen(),
+          () => PetVetsAndNgoDetailsScreen(),
           transition: Transition.native,
           duration: const Duration(milliseconds: 500),
           arguments: searchVetAndNgoData.id,
@@ -324,8 +335,8 @@ class VetsAndNgoListModule extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                       child: Image.network(imgUrl, fit: BoxFit.cover,
                           errorBuilder: (context, er, ob) {
-                            return Image.asset(AppImages.petMetLogoImg);
-                          })),
+                        return Image.asset(AppImages.petMetLogoImg);
+                      })),
                 ),
                 SizedBox(width: 3.w),
                 Expanded(
@@ -373,11 +384,11 @@ class VetsAndNgoListModule extends StatelessWidget {
                 size: 18,
               ),
             )*/
-            const Icon(
-              Icons.verified,
-              color: AppColors.accentColor,
-              size: 19,
-            )
+                const Icon(
+                    Icons.verified,
+                    color: AppColors.accentColor,
+                    size: 19,
+                  )
                 : Container(),
           ],
         ).commonAllSidePadding(padding: 2.w),

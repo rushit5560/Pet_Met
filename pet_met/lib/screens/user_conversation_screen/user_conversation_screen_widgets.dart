@@ -65,10 +65,10 @@ class SingleMessageBubble extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                   decoration: BoxDecoration(
                     color: isSendByMe
-                        ? AppColors.accentColor
+                        ? const Color(0xFF3AA5A3)
                         : themeProvider.darkTheme
                             ? AppColors.whiteColor
-                            : AppColors.greyColor,
+                            : AppColors.greyColor.withOpacity(0.75),
                     borderRadius: BorderRadius.only(
                       topRight: const Radius.circular(15),
                       topLeft: const Radius.circular(15),
@@ -122,14 +122,11 @@ class MessageWriteTextFieldModule extends StatelessWidget {
         Provider.of<DarkThemeProvider>(context);
     return Container(
       decoration: const BoxDecoration(
-
         // borderRadius: BorderRadius.only(
         //   topLeft: Radius.circular(25),
         //   topRight: Radius.circular(25),
         // ),
         color: Colors.transparent,
-
-
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
@@ -137,8 +134,9 @@ class MessageWriteTextFieldModule extends StatelessWidget {
           cursorColor: themeProvider.darkTheme
               ? AppColors.whiteColor
               : AppColors.greyColor,
-          textInputAction: TextInputAction.done,
+          textInputAction: TextInputAction.send,
           controller: screenController.messageFieldController,
+
           // decoration: conversationScreenFieldDecoration(
           //   hintText: 'Type a message',
           //   controller: screenController,
@@ -146,6 +144,29 @@ class MessageWriteTextFieldModule extends StatelessWidget {
           //   senderEmail: UserDetails.email,
           //   receiverEmail: screenController.receiverEmail,
           // ),
+          onFieldSubmitted: (val) async {
+            if (screenController.messageFieldController.text.isNotEmpty) {
+              String receiverEmail =
+                  UserDetails.userEmail == screenController.userEmail
+                      ? screenController.shopEmail
+                      : UserDetails.userEmail;
+
+              /// Create Message Model Wise
+              SendMessageModel sendMsg = SendMessageModel(
+                roomId: screenController.roomId,
+                createdAt: Timestamp.now(),
+                message: screenController.messageFieldController.text.trim(),
+                user1seen: false,
+                user2seen: false,
+                sender: UserDetails.userEmail,
+                receiver: receiverEmail,
+              );
+
+              /// Msg Store in Firebase
+              log('sendMsg: ${sendMsg.receiver}');
+              await screenController.sendMessageFunction(sendMsg);
+            }
+          },
           decoration: InputDecoration(
             hintText: 'Type something...',
             hintStyle: const TextStyle(color: Colors.grey),
@@ -197,6 +218,7 @@ class MessageWriteTextFieldModule extends StatelessWidget {
               child: Icon(
                 Icons.send_rounded,
                 color: AppColors.accentColor,
+                size: 24,
               ),
             ),
             /*prefixIcon: GestureDetector(

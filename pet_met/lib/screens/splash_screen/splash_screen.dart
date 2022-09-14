@@ -178,7 +178,7 @@ class SplashScreen extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 10),
+        // SizedBox(height: 10),
         Text(
           "Adopt and sell pet on a smartphone. Easily to use and\ncute interface",
           textAlign: TextAlign.center,
@@ -191,7 +191,7 @@ class SplashScreen extends StatelessWidget {
             height: 1.5,
           ),
         ),
-        SizedBox(height: 10)
+        const SizedBox(height: 10)
       ],
     );
   }
@@ -202,11 +202,10 @@ class SplashScreen extends StatelessWidget {
         Expanded(
           child: Row(
             children: [
-              Expanded(
-                child: Image.asset(
-                  "assets/images/Group-4-light.png",
-                  fit: BoxFit.fill,
-                ),
+              Image.asset(
+                "assets/images/Group-4-light.png",
+                fit: BoxFit.fill,
+                height: 75,
               ),
               Expanded(
                 child: Image.asset(
@@ -232,11 +231,10 @@ class SplashScreen extends StatelessWidget {
         Expanded(
           child: Row(
             children: [
-              Expanded(
-                child: Image.asset(
-                  "assets/images/Group-4-light.png",
-                  fit: BoxFit.fill,
-                ),
+              Image.asset(
+                "assets/images/Group-4-light.png",
+                fit: BoxFit.fill,
+                height: 75,
               ),
               Expanded(
                 child: Image.asset(
@@ -262,11 +260,10 @@ class SplashScreen extends StatelessWidget {
         Expanded(
           child: Row(
             children: [
-              Expanded(
-                child: Image.asset(
-                  "assets/images/Group-4-light.png",
-                  fit: BoxFit.fill,
-                ),
+              Image.asset(
+                "assets/images/Group-4-light.png",
+                fit: BoxFit.fill,
+                height: 75,
               ),
               Expanded(
                 child: Image.asset(
@@ -299,11 +296,10 @@ class SplashScreen extends StatelessWidget {
         Expanded(
           child: Row(
             children: [
-              Expanded(
-                child: Image.asset(
-                  AppImages.darkWave4Img,
-                  fit: BoxFit.fill,
-                ),
+              Image.asset(
+                AppImages.darkWave4Img,
+                fit: BoxFit.fill,
+                height: 75,
               ),
               Expanded(
                 child: Image.asset(
@@ -329,11 +325,10 @@ class SplashScreen extends StatelessWidget {
         Expanded(
           child: Row(
             children: [
-              Expanded(
-                child: Image.asset(
-                  AppImages.darkWave4Img,
-                  fit: BoxFit.fill,
-                ),
+              Image.asset(
+                AppImages.darkWave4Img,
+                fit: BoxFit.fill,
+                height: 75,
               ),
               Expanded(
                 child: Image.asset(
@@ -359,11 +354,10 @@ class SplashScreen extends StatelessWidget {
         Expanded(
           child: Row(
             children: [
-              Expanded(
-                child: Image.asset(
-                  AppImages.darkWave4Img,
-                  fit: BoxFit.fill,
-                ),
+              Image.asset(
+                AppImages.darkWave4Img,
+                fit: BoxFit.fill,
+                height: 75,
               ),
               Expanded(
                 child: Image.asset(

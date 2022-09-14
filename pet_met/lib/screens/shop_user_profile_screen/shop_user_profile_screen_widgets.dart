@@ -626,16 +626,20 @@ class AddShopOffersListModule extends StatelessWidget {
                     }
                   },
                   child: Container(
-                      height: screenController.size.width * 0.16,
-                      width: screenController.size.width * 0.16,
-                      margin: const EdgeInsets.only(bottom: 5, right: 5),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(5),
-                        ),
+                    height: screenController.size.width * 0.16,
+                    width: screenController.size.width * 0.16,
+                    margin: const EdgeInsets.only(bottom: 5, right: 5),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(8),
                       ),
-                      //padding: const EdgeInsets.all(5),
+                    ),
+                    //padding: const EdgeInsets.all(5),
+                    child: ClipRRect(
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(8),
+                      ),
                       child: index == 0
                           ? screenController.shopOfferFile1 != null
                               ? Image.file(
@@ -649,13 +653,13 @@ class AddShopOffersListModule extends StatelessWidget {
                                       height: 65,
                                       fit: BoxFit.fill,
                                       errorBuilder: (context, er, st) {
-                                        return Icon(
+                                        return const Icon(
                                           Icons.add,
                                           color: AppColors.accentTextColor,
                                         );
                                       },
                                     )
-                                  : Icon(
+                                  : const Icon(
                                       Icons.add,
                                       color: AppColors.accentTextColor,
                                     )
@@ -672,13 +676,13 @@ class AddShopOffersListModule extends StatelessWidget {
                                           height: 65,
                                           fit: BoxFit.fill,
                                           errorBuilder: (context, er, st) {
-                                            return Icon(
+                                            return const Icon(
                                               Icons.add,
                                               color: AppColors.accentTextColor,
                                             );
                                           },
                                         )
-                                      : Icon(
+                                      : const Icon(
                                           Icons.add,
                                           color: AppColors.accentTextColor,
                                         )
@@ -695,14 +699,14 @@ class AddShopOffersListModule extends StatelessWidget {
                                               height: 65,
                                               fit: BoxFit.fill,
                                               errorBuilder: (context, er, st) {
-                                                return Icon(
+                                                return const Icon(
                                                   Icons.add,
                                                   color:
                                                       AppColors.accentTextColor,
                                                 );
                                               },
                                             )
-                                          : Icon(
+                                          : const Icon(
                                               Icons.add,
                                               color: AppColors.accentTextColor,
                                             )
@@ -720,14 +724,14 @@ class AddShopOffersListModule extends StatelessWidget {
                                                   fit: BoxFit.fill,
                                                   errorBuilder:
                                                       (context, er, st) {
-                                                    return Icon(
+                                                    return const Icon(
                                                       Icons.add,
                                                       color: AppColors
                                                           .accentTextColor,
                                                     );
                                                   },
                                                 )
-                                              : Icon(
+                                              : const Icon(
                                                   Icons.add,
                                                   color:
                                                       AppColors.accentTextColor,
@@ -750,19 +754,21 @@ class AddShopOffersListModule extends StatelessWidget {
                                                       fit: BoxFit.fill,
                                                       errorBuilder:
                                                           (context, er, st) {
-                                                        return Icon(
+                                                        return const Icon(
                                                           Icons.add,
                                                           color: AppColors
                                                               .accentTextColor,
                                                         );
                                                       },
                                                     )
-                                                  : Icon(
+                                                  : const Icon(
                                                       Icons.add,
                                                       color: AppColors
                                                           .accentTextColor,
                                                     )
-                                          : Container()),
+                                          : Container(),
+                    ),
+                  ),
                 ),
               );
             }),
@@ -1255,13 +1261,14 @@ class MeetingAvailabilityModule extends StatelessWidget {
                     onTap: () {
                       if (screenController.showStatus.value == true) {
                         Get.to(() => UploadPetScreen(),
-                            transition: Transition.native,
-                            duration: const Duration(milliseconds: 500),
-                            arguments: [
+                                transition: Transition.native,
+                                duration: const Duration(milliseconds: 500),
+                                arguments: [
                               PetOption.addOption,
                               "",
                               screenController,
-                            ])!.then((value) async {
+                            ])!
+                            .then((value) async {
                           await screenController.getAllRoleProfileFunction();
                         });
                       } else if (screenController.showStatus.value == false) {
@@ -1290,7 +1297,7 @@ class MeetingAvailabilityModule extends StatelessWidget {
                     const BorderRadius.all(Radius.circular(8)),
                     child: Image.asset(AppImages.petMetLogoImg,
                         fit: BoxFit.cover))*/
-                          Icon(
+                          const Icon(
                         Icons.add,
                         color: AppColors.accentTextColor,
                         size: 30,
@@ -1782,7 +1789,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       Expanded(
                         child: Text(
                             screenController.selectedOpenTime != null

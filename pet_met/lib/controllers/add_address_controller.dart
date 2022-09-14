@@ -7,10 +7,7 @@ import 'package:flutter_zoom_drawer/config.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/models/add_address_screen_model/add_address_screen_model.dart';
-import 'package:pet_met/screens/home_screen/home_screen.dart';
-import 'package:pet_met/screens/shop_and_grooming_screen/shop_and_grooming_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:http/http.dart' as http;
 import 'package:pet_met/utils/user_details.dart';
 
@@ -81,10 +78,6 @@ class AddAddressController extends GetxController {
     ),
   ];
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
 }
 
 class AddressModel {

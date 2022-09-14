@@ -5,10 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/models/about_screen_models/about_us_model.dart';
-import 'package:pet_met/screens/home_screen/home_screen.dart';
-import 'package:pet_met/screens/shop_and_grooming_screen/shop_and_grooming_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 
 class AboutController extends GetxController {
   RxBool isLoading = false.obs;

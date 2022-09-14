@@ -206,22 +206,23 @@ class PetCategoriesSearchListModule extends StatelessWidget {
 class PetCategoriesListModule extends StatelessWidget {
   PetCategoriesListModule({Key? key}) : super(key: key);
   final screenController = Get.find<PetMeetingAndBreadingScreenController>();
-  var themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
+    var themeProvider = Provider.of<DarkThemeProvider>(context);
     return ListView.builder(
       itemCount: screenController.catAndSubCatList.length,
       shrinkWrap: true,
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, i) {
         CatAndSubCatData singleItem = screenController.catAndSubCatList[i];
-        return _petCategoryListTile(singleItem);
+        return _petCategoryListTile(singleItem, themeProvider);
       },
     );
   }
 
-  Widget _petCategoryListTile(CatAndSubCatData singleItem) {
+  Widget _petCategoryListTile(
+      CatAndSubCatData singleItem, DarkThemeProvider themeProvider) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),

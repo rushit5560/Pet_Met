@@ -26,10 +26,11 @@ class PetTopListModule extends StatelessWidget {
   PetTopListModule({Key? key}) : super(key: key);
   final HomeController homeController = Get.find<HomeController>();
 
-  DarkThemeProvider themeProvider =
-      Provider.of<DarkThemeProvider>(Get.context!);
+  // DarkThemeProvider themeProvider =
+  //     Provider.of<DarkThemeProvider>(Get.context!);
   @override
   Widget build(BuildContext context) {
+    DarkThemeProvider themeProvider = Provider.of<DarkThemeProvider>(context);
     return ListView.builder(
       shrinkWrap: true,
       itemCount: homeController.petTopList.length + 1,
@@ -73,7 +74,8 @@ class PetTopListModule extends StatelessWidget {
                       //   fit: BoxFit.cover,
                       // )
                       child: Image.network(
-                        ApiUrl.apiImagePath + "asset/uploads/petimage/" +
+                        ApiUrl.apiImagePath +
+                            "asset/uploads/petimage/" +
                             homeController.petTopList[i].data.image,
                         errorBuilder: (context, st, ob) {
                           return Image.asset(AppImages.petMetLogoImg);
@@ -99,7 +101,7 @@ class PetTopListModule extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {
                       Get.to(
-                            () => PetMeetingDetailsScreen(),
+                        () => PetMeetingDetailsScreen(),
                         arguments: [
                           homeController.petTopList[i].data.id,
                           homeController.petTopList[i].data.userid,
@@ -130,7 +132,8 @@ class PetTopListModule extends StatelessWidget {
                                   "body": Style(
                                     color: themeProvider.darkTheme
                                         ? AppColors.whiteColor
-                                        : AppColors.blackTextColor.withOpacity(0.6),
+                                        : AppColors.blackTextColor
+                                            .withOpacity(0.6),
                                     fontSize: const FontSize(15.0),
                                     fontWeight: FontWeight.w500,
                                     maxLines: 2,
@@ -138,7 +141,8 @@ class PetTopListModule extends StatelessWidget {
                                   "p": Style(
                                     color: themeProvider.darkTheme
                                         ? AppColors.whiteColor
-                                        : AppColors.blackTextColor.withOpacity(0.6),
+                                        : AppColors.blackTextColor
+                                            .withOpacity(0.6),
                                     fontSize: const FontSize(15.0),
                                     fontWeight: FontWeight.w500,
                                     maxLines: 2,
@@ -158,7 +162,8 @@ class PetTopListModule extends StatelessWidget {
                             // ),
                             const SizedBox(height: 12),
                             Text(
-                              homeController.petTopList[i].data.gender + ", 2 Years Old",
+                              homeController.petTopList[i].data.gender +
+                                  ", 2 Years Old",
                               style: TextStyle(
                                 color: themeProvider.darkTheme
                                     ? AppColors.whiteColor.withOpacity(0.65)
@@ -176,7 +181,8 @@ class PetTopListModule extends StatelessWidget {
                                   height: 16,
                                   color: themeProvider.darkTheme
                                       ? AppColors.whiteColor.withOpacity(0.65)
-                                      : AppColors.blackTextColor.withOpacity(0.6),
+                                      : AppColors.blackTextColor
+                                          .withOpacity(0.6),
                                 ),
                                 const SizedBox(width: 8),
                                 Text(
@@ -184,7 +190,8 @@ class PetTopListModule extends StatelessWidget {
                                   style: TextStyle(
                                     color: themeProvider.darkTheme
                                         ? AppColors.whiteColor.withOpacity(0.65)
-                                        : AppColors.blackTextColor.withOpacity(0.6),
+                                        : AppColors.blackTextColor
+                                            .withOpacity(0.6),
                                     fontSize: 10.sp,
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -193,39 +200,50 @@ class PetTopListModule extends StatelessWidget {
                             ),
                           ],
                         ).commonSymmetricPadding(horizontal: 12, vertical: 14),
-
                         Positioned(
-                          top: 5,
-                          right: 5,
+                          top: 8,
+                          right: 8,
                           child: GestureDetector(
                             onTap: () {
                               //Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
                               log('Follow Userid: ${homeController.petTopList[i].data.userid}');
                               log('Follow Categoryid: ${homeController.petTopList[i].data.categoryId}');
-                              Get.to(() => UserProfileScreen(),
-                                  transition: Transition.native,
-                                  duration: const Duration(milliseconds: 500),
-                                  arguments: [
-                                    homeController.petTopList[i].data.userid,
-                                    homeController.petTopList[i].data.categoryId,
-                                    homeController.petTopList[i].data.id,
-                                  ]);
+                              Get.to(
+                                () => UserProfileScreen(),
+                                transition: Transition.native,
+                                duration: const Duration(milliseconds: 500),
+                                arguments: [
+                                  homeController.petTopList[i].data.userid,
+                                  homeController.petTopList[i].data.categoryId,
+                                  homeController.petTopList[i].data.id,
+                                ],
+                              );
                             },
                             child: Container(
-                              height: 23,
-                              width: 23,
+                              height: 25,
+                              width: 25,
                               decoration: BoxDecoration(
                                 // color: AppColors.greyColor,
-                                // shape: BoxShape.circle,
-                                borderRadius: BorderRadius.circular(15),
-                                border: Border.all(color: AppColors.accentTextColor)
+                                shape: BoxShape.circle,
+                                // borderRadius: BorderRadius.circular(15),
+                                border: Border.all(
+                                    color: AppColors.accentTextColor),
                               ),
-                              child: Image.network(ApiUrl.apiImagePath + "asset/uploads/petimage/" +
-                                  homeController.petTopList[i].img.image,
-                                errorBuilder: (context, st, ob) {
-                                  return Image.asset(AppImages.petMetLogoImg);
-                                },
-                                fit: BoxFit.fill),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(15),
+                                child: Image.network(
+                                  ApiUrl.apiImagePath +
+                                      "asset/uploads/petimage/" +
+                                      homeController.petTopList[i].img.image,
+                                  errorBuilder: (context, st, ob) {
+                                    return Image.asset(
+                                      AppImages.petMetLogoImg,
+                                      fit: BoxFit.fitWidth,
+                                    );
+                                  },
+                                  fit: BoxFit.fitWidth,
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -681,7 +699,7 @@ class PetListModule extends StatelessWidget {
 
   final controller = Get.find<HomeController>();
   DarkThemeProvider themeProvider =
-  Provider.of<DarkThemeProvider>(Get.context!);
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -689,20 +707,19 @@ class PetListModule extends StatelessWidget {
       children: [
         Column(
           children: [
-
             Stack(
               children: [
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     // List<String> userWiseStoryList = [];
                     // for (int i = 0; i < controller.userStoryList[index].data.length; i++) {
                     //   userWiseStoryList.add(controller.userStoryList[index].data[i].image);
                     // }
                     // log('userWiseStoryList: $userWiseStoryList');
-                    if(controller.ownUserStoryList.isNotEmpty){
-                      Get.to(() => OwnUserStoryViewerScreen(), arguments: controller.ownUserStoryList);
+                    if (controller.ownUserStoryList.isNotEmpty) {
+                      Get.to(() => OwnUserStoryViewerScreen(),
+                          arguments: controller.ownUserStoryList);
                     }
-
                   },
                   child: Container(
                     height: controller.size.width * 0.16,
@@ -721,50 +738,53 @@ class PetListModule extends StatelessWidget {
                       ),
                     ),
                     //child: Image.asset(AppImages.petMetLogoImg, fit: BoxFit.cover),
-                    child: UserDetails.categoryId == "1" ?
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.network(
-                         controller.userprofile.value,
-                        errorBuilder: (context, st, ob){
-                          return Image.asset(AppImages.petMetLogoImg);
-                        },
-                        fit: BoxFit.fill,
-                      ),
-                    ):
-                    UserDetails.categoryId == "2" ?
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.network(
-                        controller.shopProfile.value,
-                        errorBuilder: (context, st, ob){
-                          return Image.asset(AppImages.petMetLogoImg);
-                        },
-                        fit: BoxFit.fill,
-                      ),
-                    ):
-                    UserDetails.categoryId == "3" ?
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.network(
-                        controller.ngoProfile.value,
-                        errorBuilder: (context, st, ob){
-                          return Image.asset(AppImages.petMetLogoImg);
-                        },
-                        fit: BoxFit.fill,
-                      ),
-                    ):
-                    UserDetails.categoryId == "4" ?
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.network(
-                        controller.trainerProfile.value,
-                        errorBuilder: (context, st, ob){
-                          return Image.asset(AppImages.petMetLogoImg);
-                        },
-                        fit: BoxFit.fill,
-                      ),
-                    ) : Container(),
+                    child: UserDetails.categoryId == "1"
+                        ? ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Image.network(
+                              controller.userprofile.value,
+                              errorBuilder: (context, st, ob) {
+                                return Image.asset(AppImages.petMetLogoImg);
+                              },
+                              fit: BoxFit.fill,
+                            ),
+                          )
+                        : UserDetails.categoryId == "2"
+                            ? ClipRRect(
+                                borderRadius: BorderRadius.circular(8),
+                                child: Image.network(
+                                  controller.shopProfile.value,
+                                  errorBuilder: (context, st, ob) {
+                                    return Image.asset(AppImages.petMetLogoImg);
+                                  },
+                                  fit: BoxFit.fill,
+                                ),
+                              )
+                            : UserDetails.categoryId == "3"
+                                ? ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: Image.network(
+                                      controller.ngoProfile.value,
+                                      errorBuilder: (context, st, ob) {
+                                        return Image.asset(
+                                            AppImages.petMetLogoImg);
+                                      },
+                                      fit: BoxFit.fill,
+                                    ),
+                                  )
+                                : UserDetails.categoryId == "4"
+                                    ? ClipRRect(
+                                        borderRadius: BorderRadius.circular(8),
+                                        child: Image.network(
+                                          controller.trainerProfile.value,
+                                          errorBuilder: (context, st, ob) {
+                                            return Image.asset(
+                                                AppImages.petMetLogoImg);
+                                          },
+                                          fit: BoxFit.fill,
+                                        ),
+                                      )
+                                    : Container(),
                   ),
                 ),
                 Positioned(
@@ -957,7 +977,7 @@ class AddPetStoryWidget extends StatelessWidget {
   final int index;
 
   DarkThemeProvider themeProvider =
-  Provider.of<DarkThemeProvider>(Get.context!);
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -977,7 +997,7 @@ class AddPetStoryWidget extends StatelessWidget {
               height: controller.size.width * 0.16,
               width: controller.size.width * 0.16,
               margin: const EdgeInsets.only(bottom: 5, right: 5),
-              decoration:  BoxDecoration(
+              decoration: BoxDecoration(
                 // image: DecorationImage(
                 //     image: AssetImage(
                 //       controller.dogsTopList[index],
@@ -990,21 +1010,23 @@ class AddPetStoryWidget extends StatelessWidget {
                 ),
               ),
               child: Image.network(
-                    ApiUrl.apiImagePath + "asset/uploads/product/" + controller.userStoryList[index].userimg,
-                  errorBuilder: (context, st, ob){
-                    return Image.asset(AppImages.petMetLogoImg);
-                  },
-                  fit: BoxFit.fill,
-                )
-                 // Image.asset(AppImages.petMetLogoImg)
-          ),
-          Text(controller.userStoryList[index].username,
+                ApiUrl.apiImagePath +
+                    "asset/uploads/product/" +
+                    controller.userStoryList[index].userimg,
+                errorBuilder: (context, st, ob) {
+                  return Image.asset(AppImages.petMetLogoImg);
+                },
+                fit: BoxFit.fill,
+              )
+              // Image.asset(AppImages.petMetLogoImg)
+              ),
+          Text(
+            controller.userStoryList[index].username,
             style: TextStyle(
-              color: themeProvider.darkTheme
-                  ? AppColors.whiteColor
-                  : AppColors.blackTextColor,
-              fontWeight: FontWeight.bold
-            ),
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.blackTextColor,
+                fontWeight: FontWeight.bold),
           )
         ],
       ),

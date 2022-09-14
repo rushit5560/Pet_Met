@@ -53,7 +53,9 @@ class SearchTrainersTextFieldModule extends StatelessWidget {
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.text,
             style: TextStyle(
-              color: AppColors.blackTextColor,
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.blackTextColor,
               fontSize: 13.sp,
               fontWeight: FontWeight.w400,
               decoration: TextDecoration.none,
@@ -83,9 +85,15 @@ class SearchTrainersTextFieldModule extends StatelessWidget {
               suffixIcon: GestureDetector(
                 onTap: () async {
                   screenController.isLoading(true);
-                  if(screenController.searchFieldController.text.trim().isNotEmpty){
-                    screenController.searchTrainersList = screenController.trainersList
-                        .where((u) => (u.name.toLowerCase().contains(screenController.searchFieldController.text.toLowerCase()))).toList();
+                  if (screenController.searchFieldController.text
+                      .trim()
+                      .isNotEmpty) {
+                    screenController.searchTrainersList = screenController
+                        .trainersList
+                        .where((u) => (u.name.toLowerCase().contains(
+                            screenController.searchFieldController.text
+                                .toLowerCase())))
+                        .toList();
                     //screenController.searchFieldController.clear();
                     hideKeyboard();
                     log('screenController.searchTrainersList: ${screenController.searchTrainersList.length}');
@@ -104,13 +112,12 @@ class SearchTrainersTextFieldModule extends StatelessWidget {
               ),
             ),
             onChanged: (value) {
-              if(value.isEmpty) {
+              if (value.isEmpty) {
                 screenController.isLoading(true);
                 screenController.searchTrainersList.clear();
                 screenController.isLoading(false);
               }
             },
-
           ),
         ],
       ).commonSymmetricPadding(horizontal: 20),
@@ -122,32 +129,34 @@ class PetTrainerListModule extends StatelessWidget {
   PetTrainerListModule({Key? key}) : super(key: key);
   final screenController = Get.find<PetTrainersScreenController>();
 
-  var themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
-
   @override
   Widget build(BuildContext context) {
-    return screenController.searchTrainersList.isEmpty ?
-      ListView.builder(
-      itemCount: screenController.trainersList.length,
-      shrinkWrap: true,
-      physics: const BouncingScrollPhysics(),
-      itemBuilder: (context, i) {
-        Trainers trainerSingleItem = screenController.trainersList[i];
-        return _petTrainerListTile(trainerSingleItem);
-      },
-    ).commonAllSidePadding(padding: 10):
-    ListView.builder(
-      itemCount: screenController.searchTrainersList.length,
-      shrinkWrap: true,
-      physics: const BouncingScrollPhysics(),
-      itemBuilder: (context, i) {
-        Trainers searchTrainerSingleItem = screenController.searchTrainersList[i];
-        return searchPetTrainerListTile(searchTrainerSingleItem);
-      },
-    ).commonAllSidePadding(padding: 10);
+    var themeProvider = Provider.of<DarkThemeProvider>(context);
+    return screenController.searchTrainersList.isEmpty
+        ? ListView.builder(
+            itemCount: screenController.trainersList.length,
+            shrinkWrap: true,
+            physics: const BouncingScrollPhysics(),
+            itemBuilder: (context, i) {
+              Trainers trainerSingleItem = screenController.trainersList[i];
+              return _petTrainerListTile(trainerSingleItem, themeProvider);
+            },
+          ).commonAllSidePadding(padding: 10)
+        : ListView.builder(
+            itemCount: screenController.searchTrainersList.length,
+            shrinkWrap: true,
+            physics: const BouncingScrollPhysics(),
+            itemBuilder: (context, i) {
+              Trainers searchTrainerSingleItem =
+                  screenController.searchTrainersList[i];
+              return searchPetTrainerListTile(
+                  searchTrainerSingleItem, themeProvider);
+            },
+          ).commonAllSidePadding(padding: 10);
   }
 
-  Widget _petTrainerListTile(Trainers trainerSingleItem) {
+  Widget _petTrainerListTile(
+      Trainers trainerSingleItem, DarkThemeProvider themeProvider) {
     String imgUrl = ApiUrl.apiImagePath + trainerSingleItem.image;
     return GestureDetector(
       onTap: () {
@@ -195,7 +204,8 @@ class PetTrainerListModule extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                       child: Image.network(imgUrl, fit: BoxFit.fill,
                           errorBuilder: (context, er, ob) {
-                        return Image.asset(AppImages.petMetLogoImg, fit: BoxFit.fill);
+                        return Image.asset(AppImages.petMetLogoImg,
+                            fit: BoxFit.fill);
                       })),
                 ),
                 SizedBox(width: 3.w),
@@ -255,7 +265,8 @@ class PetTrainerListModule extends StatelessWidget {
     );
   }
 
-  Widget searchPetTrainerListTile(Trainers searchTrainerSingleItem) {
+  Widget searchPetTrainerListTile(
+      Trainers searchTrainerSingleItem, DarkThemeProvider themeProvider) {
     String imgUrl = ApiUrl.apiImagePath + searchTrainerSingleItem.image;
     return GestureDetector(
       onTap: () {
@@ -268,7 +279,7 @@ class PetTrainerListModule extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           color:
-          themeProvider.darkTheme ? AppColors.darkThemeColor : Colors.white,
+              themeProvider.darkTheme ? AppColors.darkThemeColor : Colors.white,
           boxShadow: const [
             BoxShadow(
               color: Colors.grey,
@@ -303,8 +314,8 @@ class PetTrainerListModule extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                       child: Image.network(imgUrl, fit: BoxFit.cover,
                           errorBuilder: (context, er, ob) {
-                            return Image.asset(AppImages.petMetLogoImg);
-                          })),
+                        return Image.asset(AppImages.petMetLogoImg);
+                      })),
                 ),
                 SizedBox(width: 3.w),
                 Expanded(
@@ -351,11 +362,11 @@ class PetTrainerListModule extends StatelessWidget {
                 size: 18,
               ),
             )*/
-            Icon(
-              Icons.verified,
-              color: AppColors.accentColor,
-              size: 19,
-            )
+                Icon(
+                    Icons.verified,
+                    color: AppColors.accentColor,
+                    size: 19,
+                  )
                 : Container(),
           ],
         ).commonAllSidePadding(padding: 2.w),

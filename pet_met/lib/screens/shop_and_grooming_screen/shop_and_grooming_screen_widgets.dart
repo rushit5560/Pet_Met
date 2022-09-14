@@ -53,7 +53,9 @@ class SearchShopTextFieldModule extends StatelessWidget {
             textInputAction: TextInputAction.next,
             keyboardType: TextInputType.text,
             style: TextStyle(
-              color: AppColors.blackTextColor,
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.blackTextColor,
               fontSize: 13.sp,
               fontWeight: FontWeight.w400,
               decoration: TextDecoration.none,
@@ -83,15 +85,20 @@ class SearchShopTextFieldModule extends StatelessWidget {
               suffixIcon: GestureDetector(
                 onTap: () async {
                   screenController.isLoading(true);
-                  if(screenController.searchFieldController.text.trim().isNotEmpty){
-                    screenController.searchShopsList = screenController.shopsList
-                        .where((u) => (u.shopename.toLowerCase().contains(screenController.searchFieldController.text.toLowerCase()))).toList();
+                  if (screenController.searchFieldController.text
+                      .trim()
+                      .isNotEmpty) {
+                    screenController.searchShopsList = screenController
+                        .shopsList
+                        .where((u) => (u.shopename.toLowerCase().contains(
+                            screenController.searchFieldController.text
+                                .toLowerCase())))
+                        .toList();
                     //screenController.searchFieldController.clear();
                     hideKeyboard();
                     log('screenController.searchShopsList: ${screenController.searchShopsList.length}');
                   }
                   screenController.isLoading(false);
-
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -105,7 +112,7 @@ class SearchShopTextFieldModule extends StatelessWidget {
               ),
             ),
             onChanged: (value) {
-              if(value.isEmpty) {
+              if (value.isEmpty) {
                 screenController.isLoading(true);
                 screenController.searchShopsList.clear();
                 screenController.isLoading(false);
@@ -126,26 +133,25 @@ class ShopListModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return screenController.searchShopsList.isEmpty ?
-    ListView.builder(
-      itemCount: screenController.shopsList.length,
-      shrinkWrap: true,
-      physics: const BouncingScrollPhysics(),
-      itemBuilder: (context, i) {
-        ShopData shopSingleItem = screenController.shopsList[i];
-        return _shopListTile(shopSingleItem);
-      },
-    ).commonAllSidePadding(padding: 10):
-
-    ListView.builder(
-      itemCount: screenController.searchShopsList.length,
-      shrinkWrap: true,
-      physics: const BouncingScrollPhysics(),
-      itemBuilder: (context, i) {
-        ShopData searchShopItem = screenController.searchShopsList[i];
-        return searchShopListTile(searchShopItem);
-      },
-    ).commonAllSidePadding(padding: 10);
+    return screenController.searchShopsList.isEmpty
+        ? ListView.builder(
+            itemCount: screenController.shopsList.length,
+            shrinkWrap: true,
+            physics: const BouncingScrollPhysics(),
+            itemBuilder: (context, i) {
+              ShopData shopSingleItem = screenController.shopsList[i];
+              return _shopListTile(shopSingleItem);
+            },
+          ).commonAllSidePadding(padding: 10)
+        : ListView.builder(
+            itemCount: screenController.searchShopsList.length,
+            shrinkWrap: true,
+            physics: const BouncingScrollPhysics(),
+            itemBuilder: (context, i) {
+              ShopData searchShopItem = screenController.searchShopsList[i];
+              return searchShopListTile(searchShopItem);
+            },
+          ).commonAllSidePadding(padding: 10);
   }
 
   Widget _shopListTile(ShopData shopSingleItem) {
@@ -304,8 +310,8 @@ class ShopListModule extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                       child: Image.network(imgUrl, fit: BoxFit.cover,
                           errorBuilder: (context, er, ob) {
-                            return Image.asset(AppImages.petMetLogoImg);
-                          })),
+                        return Image.asset(AppImages.petMetLogoImg);
+                      })),
                 ),
                 SizedBox(width: 3.w),
                 Expanded(
@@ -352,11 +358,11 @@ class ShopListModule extends StatelessWidget {
                       size: 18,
                     ),
                   )*/
-            const Icon(
-              Icons.verified,
-              color: AppColors.accentColor,
-              size: 19,
-            )
+                const Icon(
+                    Icons.verified,
+                    color: AppColors.accentColor,
+                    size: 19,
+                  )
                 : Container(),
           ],
         ).commonAllSidePadding(padding: 2.w),

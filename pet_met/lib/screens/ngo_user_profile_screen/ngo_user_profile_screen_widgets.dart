@@ -349,12 +349,15 @@ class NameOfNgoListModule extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Name of NGO/Vet picture:",
-            style: TextStyle(
-              color: themeProvider.darkTheme
-                  ? AppColors.whiteColor
-                  : AppColors.darkThemeColor,
-            )),
+        Text(
+          "Name of NGO/Vet picture:",
+          style: TextStyle(
+            color: themeProvider.darkTheme
+                ? AppColors.whiteColor
+                : AppColors.darkThemeColor,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
         const SizedBox(height: 10),
         /*Container(
           height: screenController.size.width * 0.16,
@@ -615,20 +618,24 @@ class NameOfNgoListModule extends StatelessWidget {
                         }
                       },
                       child: Container(
-                          height: screenController.size.width * 0.16,
-                          width: screenController.size.width * 0.16,
-                          margin: const EdgeInsets.only(bottom: 5, right: 10),
-                          decoration: BoxDecoration(
-                            // image: DecorationImage(
-                            //     image: AssetImage(
-                            //       controller.dogsTopList[index],
-                            //     ),
-                            //     fit: BoxFit.cover),
-                            //color: AppColors.greyTextColor,
-                            border: Border.all(color: Colors.grey),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(8),
-                            ),
+                        height: screenController.size.width * 0.16,
+                        width: screenController.size.width * 0.16,
+                        margin: const EdgeInsets.only(bottom: 5, right: 10),
+                        decoration: BoxDecoration(
+                          // image: DecorationImage(
+                          //     image: AssetImage(
+                          //       controller.dogsTopList[index],
+                          //     ),
+                          //     fit: BoxFit.cover),
+                          //color: AppColors.greyTextColor,
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(8),
+                          ),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(8),
                           ),
                           child: index == 0
                               ? screenController.ngoPictureFile1 != null
@@ -644,13 +651,13 @@ class NameOfNgoListModule extends StatelessWidget {
                                           width: 50,
                                           fit: BoxFit.fill,
                                           errorBuilder: (context, er, st) {
-                                            return Icon(
+                                            return const Icon(
                                               Icons.add,
                                               color: AppColors.accentTextColor,
                                             );
                                           },
                                         )
-                                      : Icon(
+                                      : const Icon(
                                           Icons.add,
                                           color: AppColors.accentTextColor,
                                         )
@@ -668,14 +675,14 @@ class NameOfNgoListModule extends StatelessWidget {
                                               width: 50,
                                               fit: BoxFit.fill,
                                               errorBuilder: (context, er, st) {
-                                                return Icon(
+                                                return const Icon(
                                                   Icons.add,
                                                   color:
                                                       AppColors.accentTextColor,
                                                 );
                                               },
                                             )
-                                          : Icon(
+                                          : const Icon(
                                               Icons.add,
                                               color: AppColors.accentTextColor,
                                             )
@@ -693,14 +700,14 @@ class NameOfNgoListModule extends StatelessWidget {
                                                   fit: BoxFit.fill,
                                                   errorBuilder:
                                                       (context, er, st) {
-                                                    return Icon(
+                                                    return const Icon(
                                                       Icons.add,
                                                       color: AppColors
                                                           .accentTextColor,
                                                     );
                                                   },
                                                 )
-                                              : Icon(
+                                              : const Icon(
                                                   Icons.add,
                                                   color:
                                                       AppColors.accentTextColor,
@@ -724,14 +731,14 @@ class NameOfNgoListModule extends StatelessWidget {
                                                       fit: BoxFit.fill,
                                                       errorBuilder:
                                                           (context, er, st) {
-                                                        return Icon(
+                                                        return const Icon(
                                                           Icons.add,
                                                           color: AppColors
                                                               .accentTextColor,
                                                         );
                                                       },
                                                     )
-                                                  : Icon(
+                                                  : const Icon(
                                                       Icons.add,
                                                       color: AppColors
                                                           .accentTextColor,
@@ -758,19 +765,21 @@ class NameOfNgoListModule extends StatelessWidget {
                                                           errorBuilder:
                                                               (context, er,
                                                                   st) {
-                                                            return Icon(
+                                                            return const Icon(
                                                               Icons.add,
                                                               color: AppColors
                                                                   .accentTextColor,
                                                             );
                                                           },
                                                         )
-                                                      : Icon(
+                                                      : const Icon(
                                                           Icons.add,
                                                           color: AppColors
                                                               .accentTextColor,
                                                         )
-                                              : Container()),
+                                              : Container(),
+                        ),
+                      ),
                     ),
                   ),
                 );
@@ -932,8 +941,8 @@ class NgoBankNameModule extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Ngo Bank Name:", style: TextStyle(color: Colors.black)),
-        SizedBox(height: 8),
+        const Text("Ngo Bank Name:", style: TextStyle(color: Colors.black)),
+        const SizedBox(height: 8),
         Container(
           height: screenController.size.width * 0.16,
           child: ListView.separated(
@@ -1133,9 +1142,9 @@ class NgoBankAccountNumberTextFieldModule extends StatelessWidget {
                 text: 'Ngo Bank Account Number ',
                 style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
                 children: <InlineSpan>[
-                  TextSpan(
+                  const TextSpan(
                     text: '*',
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.red),
@@ -1178,9 +1187,9 @@ class IfscCodeTextFieldModule extends StatelessWidget {
                 text: 'IFSC Code ',
                 style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
                 children: <InlineSpan>[
-                  TextSpan(
+                  const TextSpan(
                     text: '*',
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.red),

@@ -108,7 +108,7 @@ class UploadImageModule extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(15),
                         child: Image.file(
                           themeProvider.darkTheme
                               ? screenController.imageFile!
@@ -141,7 +141,7 @@ class UploadImageModule extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           ClipRRect(
-                            borderRadius: BorderRadius.circular(30),
+                            borderRadius: BorderRadius.circular(15),
                             child: Image.network(
                               themeProvider.darkTheme
                                   ? screenController.trainersProfile!
@@ -625,14 +625,18 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                       }
                     },
                     child: Container(
-                        height: screenController.size.width * 0.16,
-                        width: screenController.size.width * 0.16,
-                        margin: const EdgeInsets.only(bottom: 5, right: 5),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.grey),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(8),
-                          ),
+                      height: screenController.size.width * 0.16,
+                      width: screenController.size.width * 0.16,
+                      margin: const EdgeInsets.only(bottom: 5, right: 5),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(8),
+                        ),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(8),
                         ),
                         child: index == 0
                             ? screenController.trainerPictureFile1 != null
@@ -772,7 +776,9 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                                                         color: AppColors
                                                             .accentTextColor,
                                                       )
-                                            : Container()),
+                                            : Container(),
+                      ),
+                    ),
                   ),
                 );
               }),

@@ -137,8 +137,8 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                controller.userProfileAvail == true ?
-                GestureDetector(
+                controller.userProfileAvail == true
+                    ? GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.userEmail.value, "1");
@@ -233,9 +233,8 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                         ),
                       )
                     : Container(),
-
-                controller.shopProfileAvail == true ?
-                GestureDetector(
+                controller.shopProfileAvail == true
+                    ? GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.shopEmail.value, "1");
@@ -326,9 +325,8 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                         ),
                       )
                     : Container(),
-
-                controller.vetNgoProfileAvail == true ?
-                GestureDetector(
+                controller.vetNgoProfileAvail == true
+                    ? GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.ngoEmail.value, "3");
@@ -423,9 +421,8 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                         ),
                       )
                     : Container(),
-
-                controller.trainerProfileAvail == true ?
-                GestureDetector(
+                controller.trainerProfileAvail == true
+                    ? GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.trainerEmail.value, "4");
@@ -517,24 +514,26 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                         ),
                       )
                     : Container(),
-
-                controller.userProfileAvail == false || controller.shopProfileAvail == false || controller.vetNgoProfileAvail == false || controller.trainerProfileAvail == false ?
-                  GestureDetector(
-                  onTap: (){
-                    Get.to(() => const UserCategoriesScreen());
-                  },
-                  child: Container(
-                    height: 35, width: 35,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        color: Colors.grey.shade400
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(25),
-                      child: Icon(Icons.add, size: 30),
-                    ),
-                  ),
-                )
+                controller.userProfileAvail == false ||
+                        controller.shopProfileAvail == false ||
+                        controller.vetNgoProfileAvail == false ||
+                        controller.trainerProfileAvail == false
+                    ? GestureDetector(
+                        onTap: () {
+                          Get.to(() => const UserCategoriesScreen());
+                        },
+                        child: Container(
+                          height: 35,
+                          width: 35,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25),
+                              color: Colors.grey.shade400),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(25),
+                            child: const Icon(Icons.add, size: 30),
+                          ),
+                        ),
+                      )
                     : Container(),
                 const SizedBox(height: 7)
               ],
@@ -566,10 +565,10 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
         ),
         child: Container(
           padding: const EdgeInsets.symmetric(
-            horizontal: 15,
-            vertical: 25,
+            horizontal: 18,
+            vertical: 20,
           ),
-          height: controller.size.height * 0.35,
+          height: controller.size.height * 0.24,
           width: controller.size.width * 0.8,
           child: Form(
             key: controller.loginPasswordForm,
@@ -577,7 +576,7 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-               /* Row(
+                /* Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
@@ -676,7 +675,17 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                 ),*/
 
                 // const SizedBox(height: 20),
-                Text("Are you sure want to switch the account?"),
+                Text(
+                  "Are you sure want to switch the account ?",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.blackTextColor,
+                    fontSize: 17,
+                  ),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -689,7 +698,7 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                         }
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: AppColors.accentColor,
+                        primary: const Color.fromARGB(255, 68, 185, 183),
                         minimumSize: Size(
                           controller.size.width * 0.3,
                           30,
@@ -722,7 +731,7 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         primary: themeProvider.darkTheme
                             ? AppColors.whiteColor
-                            : AppColors.greyTextColor.withOpacity(0.3),
+                            : const Color.fromARGB(255, 190, 190, 190),
                         minimumSize: Size(controller.size.width * 0.3, 30),
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         shape: const RoundedRectangleBorder(

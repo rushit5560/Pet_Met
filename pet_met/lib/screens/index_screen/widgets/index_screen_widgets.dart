@@ -75,14 +75,15 @@ class _BuildMenuState extends State<BuildMenu> {
                               // indexController.drawerController.close!();
                               // Get.to(() => UserProfileScreen());
                             },
-                            child: Obx(()=>
-                               Row(
+                            child: Obx(
+                              () => Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   UserDetails.categoryId == "1"
                                       ? ClipRRect(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           child: Image.network(
                                             indexController.userprofile.value,
                                             width: 50,
@@ -103,11 +104,13 @@ class _BuildMenuState extends State<BuildMenu> {
                                               borderRadius:
                                                   BorderRadius.circular(30),
                                               child: Image.network(
-                                                indexController.shopProfile.value,
+                                                indexController
+                                                    .shopProfile.value,
                                                 width: 50,
                                                 height: 50,
                                                 fit: BoxFit.cover,
-                                                errorBuilder: (context, st, ob) {
+                                                errorBuilder:
+                                                    (context, st, ob) {
                                                   return Image.asset(
                                                       AppImages.petMetLogoImg,
                                                       width: 40,
@@ -122,14 +125,16 @@ class _BuildMenuState extends State<BuildMenu> {
                                                   borderRadius:
                                                       BorderRadius.circular(30),
                                                   child: Image.network(
-                                                    indexController.ngoProfile.value,
+                                                    indexController
+                                                        .ngoProfile.value,
                                                     width: 50,
                                                     height: 50,
                                                     fit: BoxFit.cover,
                                                     errorBuilder:
                                                         (context, st, ob) {
                                                       return Image.asset(
-                                                          AppImages.petMetLogoImg,
+                                                          AppImages
+                                                              .petMetLogoImg,
                                                           width: 40,
                                                           height: 50,
                                                           fit: BoxFit.cover);
@@ -143,7 +148,9 @@ class _BuildMenuState extends State<BuildMenu> {
                                                           BorderRadius.circular(
                                                               30),
                                                       child: Image.network(
-                                                        indexController.trainerProfile.value,
+                                                        indexController
+                                                            .trainerProfile
+                                                            .value,
                                                         width: 50,
                                                         height: 50,
                                                         fit: BoxFit.cover,
@@ -154,7 +161,8 @@ class _BuildMenuState extends State<BuildMenu> {
                                                                   .petMetLogoImg,
                                                               width: 40,
                                                               height: 50,
-                                                              fit: BoxFit.cover);
+                                                              fit:
+                                                                  BoxFit.cover);
                                                         },
                                                         // width: controller.size.width * 0.05,
                                                       ),
@@ -167,7 +175,8 @@ class _BuildMenuState extends State<BuildMenu> {
                                   const SizedBox(width: 15),
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         UserDetails.categoryId == "1"
@@ -176,8 +185,10 @@ class _BuildMenuState extends State<BuildMenu> {
                                                 ? indexController.shopName
                                                 : UserDetails.categoryId == "3"
                                                     ? indexController.ngoName
-                                                    : UserDetails.categoryId == "4"
-                                                        ? indexController.trainerName
+                                                    : UserDetails.categoryId ==
+                                                            "4"
+                                                        ? indexController
+                                                            .trainerName
                                                         : "",
                                         style: TextStyle(
                                           color: AppColors.accentTextColor,
