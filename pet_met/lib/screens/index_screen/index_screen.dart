@@ -155,13 +155,13 @@ class IndexScreenState extends State<IndexScreen> {
                             ? AppColors.accentTextColor.withOpacity(0.2)
                             : AppColors.blackTextColor,
                         icon: Image.asset(
-                          AppIcons.bottomBar4Img,
+                          AppIcons.chatIconImg,
                           color: AppColors.whiteColor,
                           width: 28,
                           height: 28,
                         ),
                         activeIcon: Image.asset(
-                          AppIcons.bottomBar4Img,
+                          AppIcons.chatIconImg,
                           color: AppColors.whiteColor,
                           width: 28,
                           height: 28,

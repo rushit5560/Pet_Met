@@ -84,11 +84,10 @@ class OffersModule extends StatelessWidget {
                 size: 18,
               ),
             )*/
-                const Icon(
-                    Icons.verified,
-                    color: AppColors.accentColor,
-                    size: 19,
-                  )
+            Image.asset(AppIcons.verifiedSymbolImg,
+              width: 25,
+              height: 25,
+            )
                 : Container(),
           ],
         ),

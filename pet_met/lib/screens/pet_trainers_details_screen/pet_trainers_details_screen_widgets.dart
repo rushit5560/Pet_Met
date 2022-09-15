@@ -80,11 +80,10 @@ class PetTrainerPicturesModule extends StatelessWidget {
                   ),
                 ),
                 screenController.isVerified == true
-                    ? const Icon(
-                        Icons.verified,
-                        color: AppColors.accentColor,
-                        size: 19,
-                      )
+                    ? Image.asset(AppIcons.verifiedSymbolImg,
+                  width: 25,
+                  height: 25,
+                )
                     : Container(),
               ],
             ),

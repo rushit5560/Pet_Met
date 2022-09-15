@@ -1448,6 +1448,7 @@ class ShopNameTextFieldModule extends StatelessWidget {
           height: screenController.size.height * 0.05,
           width: double.infinity,
           hintText: "Shop Name",
+          maxLength: 10,
           textInputAction: TextInputAction.next,
           textInputType: TextInputType.text,
           validator: (val) => Validations().validateName(val!),

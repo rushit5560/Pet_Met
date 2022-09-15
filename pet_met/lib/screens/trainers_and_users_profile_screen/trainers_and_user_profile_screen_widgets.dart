@@ -1003,6 +1003,7 @@ class TrainersNameTextFieldModule extends StatelessWidget {
           height: screenController.size.height * 0.05,
           width: double.infinity,
           hintText: "Trainers Name",
+          maxLength: 10,
           textInputAction: TextInputAction.next,
           textInputType: TextInputType.text,
           validator: (val) => Validations().validateName(val!),

@@ -117,6 +117,10 @@ class AppIcons {
   static const whatsappImg = root + "whatsapp_icon.png";
   static const profilePetImg = root + "dog1.png";
   static const messageImg = root + "message.png";
+  static const chatIconImg = root + "chat_icon.png";
+  static const verifiedSymbolImg = root + "verified_symbol.png";
+  static const shopImg = root + "shop.png";
+
 }
 
 class AppShades {

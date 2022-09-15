@@ -253,11 +253,15 @@ class PetTrainerListModule extends StatelessWidget {
                 size: 18,
               ),
             )*/
-                Icon(
+                /*Icon(
                     Icons.verified,
                     color: AppColors.accentColor,
                     size: 19,
-                  )
+                  )*/
+            Image.asset(AppIcons.verifiedSymbolImg,
+              // width: 30,
+              // height: 30,
+            )
                 : Container(),
           ],
         ).commonAllSidePadding(padding: 2.w),
@@ -362,11 +366,10 @@ class PetTrainerListModule extends StatelessWidget {
                 size: 18,
               ),
             )*/
-                Icon(
-                    Icons.verified,
-                    color: AppColors.accentColor,
-                    size: 19,
-                  )
+            Image.asset(AppIcons.verifiedSymbolImg,
+              width: 25,
+              height: 25,
+            )
                 : Container(),
           ],
         ).commonAllSidePadding(padding: 2.w),
