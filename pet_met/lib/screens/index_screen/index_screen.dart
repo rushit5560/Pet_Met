@@ -123,7 +123,7 @@ class IndexScreenState extends State<IndexScreen> {
                           height: 28,
                         ),
                         title: const Text(
-                          "Play",
+                          "Trainer",
                           style: TextStyle(
                             color: AppColors.whiteColor,
                           ),

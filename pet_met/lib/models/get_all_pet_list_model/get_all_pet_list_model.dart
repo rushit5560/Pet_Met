@@ -134,19 +134,23 @@ class PetDatum {
   PetDatum({
     required this.data,
     required this.img,
+    required this.name,
   });
 
   PetList data;
   Img img;
+  Name name;
 
   factory PetDatum.fromJson(Map<String, dynamic> json) => PetDatum(
     data: PetList.fromJson(json["data"] ?? {}),
-    img: Img.fromJson(json["img"] ?? {})
+    img: Img.fromJson(json["img"] ?? {}),
+    name: Name.fromJson(json["name"] ?? {}),
   );
 
   Map<String, dynamic> toJson() => {
     "data": data.toJson(),
     "img": img.toJson(),
+    "name": name.toJson(),
   };
 }
 
@@ -231,5 +235,21 @@ class Img {
 
   Map<String, dynamic> toJson() => {
     "image": image,
+  };
+}
+
+class Name {
+  Name({
+    required this.name,
+  });
+
+  String name;
+
+  factory Name.fromJson(Map<String, dynamic> json) => Name(
+    name: json["name"] ?? "",
+  );
+
+  Map<String, dynamic> toJson() => {
+    "name": name,
   };
 }

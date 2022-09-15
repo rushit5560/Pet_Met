@@ -78,9 +78,7 @@ class Styles {
           isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
       hoverColor: isDarkTheme ? AppColors.greyColor : AppColors.darkThemeColor,
       focusColor: isDarkTheme ? AppColors.greyColor : AppColors.darkThemeColor,
-      splashColor: isDarkTheme
-          ? AppColors.greyColor.withOpacity(0.35)
-          : AppColors.darkThemeColor.withOpacity(0.35),
+      splashColor: AppColors.greyColor.withOpacity(0.15),
       disabledColor: AppColors.greyColor,
       textSelectionTheme: TextSelectionThemeData(
         cursorColor:

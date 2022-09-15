@@ -119,117 +119,148 @@ class PetMeetingListModule extends StatelessWidget {
                   ],
                 );
               },
-              child: Stack(
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        screenController.subCatPetList[i].data.petName,
-                        style: TextStyle(
-                          color: AppColors.accentTextColor,
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Html(
-                        data: screenController.subCatPetList[i].data.details,
-                        style: {
-                          "body": Style(
-                            color: themeProvider.darkTheme
-                                ? AppColors.whiteColor
-                                : AppColors.blackTextColor.withOpacity(0.6),
-                            fontSize: const FontSize(15.0),
-                            fontWeight: FontWeight.w500,
+              child: Container(
+                height: screenController.size.height * 0.2,
+                child: Stack(
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 2),
+                        Text(
+                          screenController.subCatPetList[i].data.petName,
+                          style: TextStyle(
+                            color: AppColors.accentTextColor,
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.bold,
                           ),
-                        },
-                      ),
-                      // Text(
-                      //   homeController.petTopList[index].details,
-                      //   style: TextStyle(
-                      //     color: themeProvider.darkTheme
-                      //         ? AppColors.whiteColor
-                      //         : AppColors.blackTextColor.withOpacity(0.6),
-                      //     fontSize: 10.sp,
-                      //     fontWeight: FontWeight.w500,
-                      //   ),
-                      // ),
-                      const SizedBox(height: 12),
-                      Text(
-                        screenController.subCatPetList[i].data.gender +
-                            ", 2 Years Old",
-                        style: TextStyle(
-                          color: themeProvider.darkTheme
-                              ? AppColors.whiteColor.withOpacity(0.65)
-                              : AppColors.greyTextColor,
-                          fontSize: 11.sp,
-                          fontWeight: FontWeight.w400,
                         ),
-                      ),
-                      const SizedBox(height: 25),
-                      Row(
-                        children: [
-                          const SizedBox(width: 3),
-                          Image.asset(
-                            AppIcons.locationImg,
-                            height: 16,
+                        Html(
+                          data: screenController.subCatPetList[i].data.details,
+                          style: {
+                            "body": Style(
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor.withOpacity(0.6),
+                              fontSize: const FontSize(15.0),
+                              fontWeight: FontWeight.w500,
+                            ),
+                            "p": Style(
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor
+                                  .withOpacity(0.6),
+                              fontSize: const FontSize(15.0),
+                              fontWeight: FontWeight.w500,
+                              maxLines: 2,
+                            ),
+                          },
+                        ),
+                        // Text(
+                        //   homeController.petTopList[index].details,
+                        //   style: TextStyle(
+                        //     color: themeProvider.darkTheme
+                        //         ? AppColors.whiteColor
+                        //         : AppColors.blackTextColor.withOpacity(0.6),
+                        //     fontSize: 10.sp,
+                        //     fontWeight: FontWeight.w500,
+                        //   ),
+                        // ),
+                        // const SizedBox(height: 12),
+                        Text(
+                          screenController.subCatPetList[i].data.gender +
+                              ", 2 Years Old",
+                          style: TextStyle(
                             color: themeProvider.darkTheme
                                 ? AppColors.whiteColor.withOpacity(0.65)
-                                : AppColors.blackTextColor.withOpacity(0.6),
+                                : AppColors.greyTextColor,
+                            fontSize: 11.sp,
+                            fontWeight: FontWeight.w400,
                           ),
-                          const SizedBox(width: 8),
-                          Text(
-                            "Distance: 3.6 km",
-                            style: TextStyle(
+                        ),
+                        // const SizedBox(height: 25),
+                        /*Row(
+                          children: [
+                            const SizedBox(width: 3),
+                            Image.asset(
+                              AppIcons.locationImg,
+                              height: 16,
                               color: themeProvider.darkTheme
                                   ? AppColors.whiteColor.withOpacity(0.65)
                                   : AppColors.blackTextColor.withOpacity(0.6),
-                              fontSize: 10.sp,
-                              fontWeight: FontWeight.w500,
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ).commonSymmetricPadding(horizontal: 12, vertical: 14),
-                  Positioned(
-                    top: 5,
-                    right: 5,
-                    child: GestureDetector(
-                      onTap: () {
-                        //Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
-                        log('Follow Userid: ${screenController.subCatPetList[i].data.userid}');
-                        log('Follow Categoryid: ${screenController.subCatPetList[i].data.categoryId}');
-                        Get.to(() => UserProfileScreen(),
-                            transition: Transition.native,
-                            duration: const Duration(milliseconds: 500),
-                            arguments: [
-                              screenController.subCatPetList[i].data.userid,
-                              screenController.subCatPetList[i].data.categoryId,
-                              screenController.subCatPetList[i].data.id,
-                            ]);
-                      },
-                      child: Container(
-                        height: 23,
-                        width: 23,
-                        decoration: BoxDecoration(
-                            // color: AppColors.greyColor,
-                            // shape: BoxShape.circle,
-                            borderRadius: BorderRadius.circular(15),
-                            border:
-                                Border.all(color: AppColors.accentTextColor)),
-                        child: Image.network(
-                            ApiUrl.apiImagePath +
-                                "assets/uploads/petimage" +
-                                screenController.subCatPetList[i].img.image,
-                            errorBuilder: (context, st, ob) {
-                          return Image.asset(AppImages.petMetLogoImg);
-                        }, fit: BoxFit.cover),
+                            const SizedBox(width: 8),
+                            Text(
+                              "Distance: 3.6 km",
+                              style: TextStyle(
+                                color: themeProvider.darkTheme
+                                    ? AppColors.whiteColor.withOpacity(0.65)
+                                    : AppColors.blackTextColor.withOpacity(0.6),
+                                fontSize: 10.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),*/
+                      ],
+                    ).commonSymmetricPadding(horizontal: 12, vertical: 14),
+                    Positioned(
+                      top: 5,
+                      right: 5,
+                      child: GestureDetector(
+                        onTap: () {
+                          //Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
+                          log('Follow Userid: ${screenController.subCatPetList[i].data.userid}');
+                          log('Follow Categoryid: ${screenController.subCatPetList[i].data.categoryId}');
+                          Get.to(() => UserProfileScreen(),
+                              transition: Transition.native,
+                              duration: const Duration(milliseconds: 500),
+                              arguments: [
+                                screenController.subCatPetList[i].data.userid,
+                                screenController.subCatPetList[i].data.categoryId,
+                                screenController.subCatPetList[i].data.id,
+                              ]);
+                        },
+                        child: Row(
+                          children: [
+                            Text(
+                              screenController.subCatPetList[i].name.name,
+                              style: TextStyle(
+                                color: themeProvider.darkTheme
+                                    ? AppColors.whiteColor
+                                    : AppColors.accentTextColor,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Container(
+                              height: 23,
+                              width: 23,
+                              decoration: BoxDecoration(
+                                  // color: AppColors.greyColor,
+                                  // shape: BoxShape.circle,
+                                  borderRadius: BorderRadius.circular(15),
+                                  border:
+                                      Border.all(color: AppColors.accentTextColor)),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(15),
+                                child: Image.network(
+                                    ApiUrl.apiImagePath +
+                                        "asset/uploads/product/" +
+                                        screenController.subCatPetList[i].img.image,
+                                    errorBuilder: (context, st, ob) {
+                                  return Image.asset(AppImages.petMetLogoImg);
+                                }, fit: BoxFit.cover),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

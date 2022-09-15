@@ -117,6 +117,7 @@ class PetTopListModule extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              const SizedBox(height: 2),
                               Text(
                                 homeController.petTopList[i].data.petName,
                                 style: TextStyle(
@@ -201,8 +202,8 @@ class PetTopListModule extends StatelessWidget {
                           ).commonSymmetricPadding(
                               horizontal: 12, vertical: 14),
                           Positioned(
-                            top: 8,
-                            right: 8,
+                            top: 5,
+                            right: 5,
                             child: GestureDetector(
                               onTap: () {
                                 //Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
@@ -220,33 +221,48 @@ class PetTopListModule extends StatelessWidget {
                                   ],
                                 );
                               },
-                              child: Container(
-                                height: 25,
-                                width: 25,
-                                decoration: BoxDecoration(
-                                  // color: AppColors.greyColor,
-                                  shape: BoxShape.circle,
-                                  // borderRadius: BorderRadius.circular(15),
-                                  border: Border.all(
-                                    color: AppColors.accentTextColor,
-                                    width: 0.5,
+                              child: Row(
+                                children: [
+                                  Text(
+                                    homeController.petTopList[i].name.name,
+                                    style: TextStyle(
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor
+                                          : AppColors.accentTextColor,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(15),
-                                  child: Image.network(
-                                    ApiUrl.apiImagePath +
-                                        "asset/uploads/product/" +
-                                        homeController.petTopList[i].img.image,
-                                    errorBuilder: (context, st, ob) {
-                                      return Image.asset(
-                                        AppImages.petMetLogoImg,
+                                  const SizedBox(width: 8),
+                                  Container(
+                                    height: 25,
+                                    width: 25,
+                                    decoration: BoxDecoration(
+                                      // color: AppColors.greyColor,
+                                      shape: BoxShape.circle,
+                                      // borderRadius: BorderRadius.circular(15),
+                                      border: Border.all(
+                                        color: AppColors.accentTextColor,
+                                        width: 0.5,
+                                      ),
+                                    ),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(15),
+                                      child: Image.network(
+                                        ApiUrl.apiImagePath +
+                                            "asset/uploads/product/" +
+                                            homeController.petTopList[i].img.image,
+                                        errorBuilder: (context, st, ob) {
+                                          return Image.asset(
+                                            AppImages.petMetLogoImg,
+                                            fit: BoxFit.fitWidth,
+                                          );
+                                        },
                                         fit: BoxFit.fitWidth,
-                                      );
-                                    },
-                                    fit: BoxFit.fitWidth,
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                ],
                               ),
                             ),
                           ),
@@ -1249,7 +1265,9 @@ class PetShopAndGroomingText extends StatelessWidget {
                 Image.asset(AppIcons.shopImg,
                   width: 15,
                   height: 15,
-                  color: AppColors.accentColor,
+                  color: themeProvider.darkTheme
+                      ? AppColors.whiteColor
+                      : AppColors.accentTextColor,
                 ),
                 const SizedBox(width: 8),
                 Text(
