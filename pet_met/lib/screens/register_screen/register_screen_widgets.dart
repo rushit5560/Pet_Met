@@ -116,6 +116,7 @@ class NameTextFieldModule extends StatelessWidget {
           validator: (val) => Validations().validateUserName(val!),
           textInputAction: TextInputAction.next,
           keyboardType: TextInputType.text,
+          maxLength: 10,
           cursorColor: themeProvider.darkTheme
               ? AppColors.whiteColor
               : AppColors.accentTextColor,
@@ -132,6 +133,7 @@ class NameTextFieldModule extends StatelessWidget {
                 ? AppColors.darkThemeBoxColor
                 : AppColors.whiteColor,
             filled: true,
+            counterText: "",
             contentPadding: const EdgeInsets.symmetric(horizontal: 15),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
