@@ -13,6 +13,7 @@ import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:pet_met/utils/user_details.dart';
+import '../../utils/app_colors.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 import '../../utils/common_widgets/custom_appbar.dart';
 import '../../utils/enums.dart';
@@ -27,6 +28,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final controller = Get.put(HomeController());
   final indexController = Get.put(IndexScreenController());
+
   //final userProfileController = Get.put(UserProfileController());
 
   // final indexController = Get.find<IndexScreenController>();
@@ -222,18 +224,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     () => controller.isLoading.value
                         ? const CustomAnimationLoader()
                         : RefreshIndicator(
+                      color: AppColors.accentColor,
                             onRefresh: () {
                               return Future.delayed(const Duration(seconds: 1),
                                   () {
-                                    if(UserDetails.categoryId == "1"){
-                                      controller.getUserProfileFunction();
-                                    } else if(UserDetails.categoryId == "2"){
-                                      controller.getShopProfileFunction();
-                                    } else if(UserDetails.categoryId == "3"){
-                                      controller.getNgoProfileFunction();
-                                    } else if(UserDetails.categoryId == "4"){
-                                      controller.getTrainerProfileFunction();
-                                    }
+                                if (UserDetails.categoryId == "1") {
+                                  controller.getUserProfileFunction();
+                                } else if (UserDetails.categoryId == "2") {
+                                  controller.getShopProfileFunction();
+                                } else if (UserDetails.categoryId == "3") {
+                                  controller.getNgoProfileFunction();
+                                } else if (UserDetails.categoryId == "4") {
+                                  controller.getTrainerProfileFunction();
+                                }
                               });
                             },
                             child: SingleChildScrollView(

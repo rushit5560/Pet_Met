@@ -95,7 +95,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
   }
 
   leadingWidget() {
-    final themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
+    final themeProvider = Provider.of<DarkThemeProvider>(context);
     setState(() {});
 
     log("${themeProvider.darkTheme}");

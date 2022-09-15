@@ -163,6 +163,8 @@ class _LocateScreenState extends State<LocateScreen> {
                                       )
                                     : Scrollbar(
                                         child: RefreshIndicator(
+                                          color: AppColors.accentColor,
+                                          // backgroundColor: themeProvider.darkTheme ? AppColors.darkThemeBoxColor : AppColors.whiteColor ,
                                           triggerMode:
                                               RefreshIndicatorTriggerMode
                                                   .anywhere,

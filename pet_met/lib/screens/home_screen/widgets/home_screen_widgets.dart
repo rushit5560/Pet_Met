@@ -109,23 +109,23 @@ class PetTopListModule extends StatelessWidget {
                         ],
                       );
                     },
-                    child: Stack(
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              homeController.petTopList[i].data.petName,
-                              style: TextStyle(
-                                color: AppColors.accentTextColor,
-                                fontSize: 18.sp,
-                                fontWeight: FontWeight.bold,
+                    child: Container(
+                      height: homeController.size.height * 0.2,
+                      child: Stack(
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                homeController.petTopList[i].data.petName,
+                                style: TextStyle(
+                                  color: AppColors.accentTextColor,
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 50,
-                              child: Html(
+                              Html(
                                 data: homeController.petTopList[i].data.details,
                                 shrinkWrap: true,
                                 style: {
@@ -149,105 +149,109 @@ class PetTopListModule extends StatelessWidget {
                                   ),
                                 },
                               ),
-                            ),
-                            // Text(
-                            //   homeController.petTopList[index].details,
-                            //   style: TextStyle(
-                            //     color: themeProvider.darkTheme
-                            //         ? AppColors.whiteColor
-                            //         : AppColors.blackTextColor.withOpacity(0.6),
-                            //     fontSize: 10.sp,
-                            //     fontWeight: FontWeight.w500,
-                            //   ),
-                            // ),
-                            const SizedBox(height: 12),
-                            Text(
-                              homeController.petTopList[i].data.gender +
-                                  ", 2 Years Old",
-                              style: TextStyle(
-                                color: themeProvider.darkTheme
-                                    ? AppColors.whiteColor.withOpacity(0.65)
-                                    : AppColors.greyTextColor,
-                                fontSize: 11.sp,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            const SizedBox(height: 25),
-                            Row(
-                              children: [
-                                const SizedBox(width: 3),
-                                Image.asset(
-                                  AppIcons.locationImg,
-                                  height: 16,
+                              // Text(
+                              //   homeController.petTopList[index].details,
+                              //   style: TextStyle(
+                              //     color: themeProvider.darkTheme
+                              //         ? AppColors.whiteColor
+                              //         : AppColors.blackTextColor.withOpacity(0.6),
+                              //     fontSize: 10.sp,
+                              //     fontWeight: FontWeight.w500,
+                              //   ),
+                              // ),
+                              // const SizedBox(height: 12),
+                              Text(
+                                homeController.petTopList[i].data.gender +
+                                    ", 2 Years Old",
+                                style: TextStyle(
                                   color: themeProvider.darkTheme
                                       ? AppColors.whiteColor.withOpacity(0.65)
-                                      : AppColors.blackTextColor
-                                          .withOpacity(0.6),
+                                      : AppColors.greyTextColor,
+                                  fontSize: 11.sp,
+                                  fontWeight: FontWeight.w400,
                                 ),
-                                const SizedBox(width: 8),
-                                Text(
-                                  "Distance: 3.6 km",
-                                  style: TextStyle(
-                                    color: themeProvider.darkTheme
-                                        ? AppColors.whiteColor.withOpacity(0.65)
-                                        : AppColors.blackTextColor
-                                            .withOpacity(0.6),
-                                    fontSize: 10.sp,
-                                    fontWeight: FontWeight.w500,
+                              ),
+                              // const SizedBox(height: 25),
+                              // Row(
+                              //   children: [
+                              //     const SizedBox(width: 3),
+                              //     Image.asset(
+                              //       AppIcons.locationImg,
+                              //       height: 16,
+                              //       color: themeProvider.darkTheme
+                              //           ? AppColors.whiteColor.withOpacity(0.65)
+                              //           : AppColors.blackTextColor
+                              //               .withOpacity(0.6),
+                              //     ),
+                              //     const SizedBox(width: 8),
+                              //     Text(
+                              //       "Distance: 3.6 km",
+                              //       style: TextStyle(
+                              //         color: themeProvider.darkTheme
+                              //             ? AppColors.whiteColor.withOpacity(0.65)
+                              //             : AppColors.blackTextColor
+                              //                 .withOpacity(0.6),
+                              //         fontSize: 10.sp,
+                              //         fontWeight: FontWeight.w500,
+                              //       ),
+                              //     ),
+                              //   ],
+                              // ),
+                            ],
+                          ).commonSymmetricPadding(
+                              horizontal: 12, vertical: 14),
+                          Positioned(
+                            top: 8,
+                            right: 8,
+                            child: GestureDetector(
+                              onTap: () {
+                                //Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
+                                log('Follow Userid: ${homeController.petTopList[i].data.userid}');
+                                log('Follow Categoryid: ${homeController.petTopList[i].data.categoryId}');
+                                Get.to(
+                                  () => UserProfileScreen(),
+                                  transition: Transition.native,
+                                  duration: const Duration(milliseconds: 500),
+                                  arguments: [
+                                    homeController.petTopList[i].data.userid,
+                                    homeController
+                                        .petTopList[i].data.categoryId,
+                                    homeController.petTopList[i].data.id,
+                                  ],
+                                );
+                              },
+                              child: Container(
+                                height: 25,
+                                width: 25,
+                                decoration: BoxDecoration(
+                                  // color: AppColors.greyColor,
+                                  shape: BoxShape.circle,
+                                  // borderRadius: BorderRadius.circular(15),
+                                  border: Border.all(
+                                    color: AppColors.accentTextColor,
+                                    width: 0.5,
                                   ),
                                 ),
-                              ],
-                            ),
-                          ],
-                        ).commonSymmetricPadding(horizontal: 12, vertical: 14),
-                        Positioned(
-                          top: 8,
-                          right: 8,
-                          child: GestureDetector(
-                            onTap: () {
-                              //Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
-                              log('Follow Userid: ${homeController.petTopList[i].data.userid}');
-                              log('Follow Categoryid: ${homeController.petTopList[i].data.categoryId}');
-                              Get.to(
-                                () => UserProfileScreen(),
-                                transition: Transition.native,
-                                duration: const Duration(milliseconds: 500),
-                                arguments: [
-                                  homeController.petTopList[i].data.userid,
-                                  homeController.petTopList[i].data.categoryId,
-                                  homeController.petTopList[i].data.id,
-                                ],
-                              );
-                            },
-                            child: Container(
-                              height: 25,
-                              width: 25,
-                              decoration: BoxDecoration(
-                                // color: AppColors.greyColor,
-                                shape: BoxShape.circle,
-                                // borderRadius: BorderRadius.circular(15),
-                                border: Border.all(
-                                    color: AppColors.accentTextColor),
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(15),
-                                child: Image.network(
-                                  ApiUrl.apiImagePath +
-                                      "asset/uploads/petimage/" +
-                                      homeController.petTopList[i].img.image,
-                                  errorBuilder: (context, st, ob) {
-                                    return Image.asset(
-                                      AppImages.petMetLogoImg,
-                                      fit: BoxFit.fitWidth,
-                                    );
-                                  },
-                                  fit: BoxFit.fitWidth,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: Image.network(
+                                    ApiUrl.apiImagePath +
+                                        "asset/uploads/product/" +
+                                        homeController.petTopList[i].img.image,
+                                    errorBuilder: (context, st, ob) {
+                                      return Image.asset(
+                                        AppImages.petMetLogoImg,
+                                        fit: BoxFit.fitWidth,
+                                      );
+                                    },
+                                    fit: BoxFit.fitWidth,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -722,8 +726,8 @@ class PetListModule extends StatelessWidget {
                     }
                   },
                   child: Container(
-                    height: controller.size.width * 0.16,
-                    width: controller.size.width * 0.16,
+                    height: controller.size.width * 0.145,
+                    width: controller.size.width * 0.145,
                     margin: const EdgeInsets.only(bottom: 5, right: 5),
                     decoration: BoxDecoration(
                       // image: DecorationImage(
@@ -732,7 +736,10 @@ class PetListModule extends StatelessWidget {
                       //     ),
                       //     fit: BoxFit.cover),
                       //color: AppColors.greyTextColor,
-                      border: Border.all(color: AppColors.accentColor),
+                      border: Border.all(
+                        color: AppColors.accentTextColor,
+                        width: 0.5,
+                      ),
                       borderRadius: BorderRadius.all(
                         Radius.circular(8),
                       ),
@@ -795,14 +802,14 @@ class PetListModule extends StatelessWidget {
                       modelBottomSheet(context);
                     },
                     child: Container(
-                      height: 15,
-                      width: 15,
+                      height: 16,
+                      width: 16,
                       decoration: const BoxDecoration(
                           color: AppColors.accentColor, shape: BoxShape.circle),
                       child: const Icon(
                         Icons.add,
                         color: AppColors.whiteColor,
-                        size: 12,
+                        size: 13,
                       ),
                     ),
                   ),
@@ -815,7 +822,7 @@ class PetListModule extends StatelessWidget {
         const SizedBox(width: 5),
         Expanded(
           child: SizedBox(
-            height: controller.size.width * 0.22,
+            height: controller.size.width * 0.21,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemCount: controller.userStoryList.length,
@@ -994,8 +1001,8 @@ class AddPetStoryWidget extends StatelessWidget {
       child: Column(
         children: [
           Container(
-              height: controller.size.width * 0.16,
-              width: controller.size.width * 0.16,
+              height: controller.size.width * 0.145,
+              width: controller.size.width * 0.145,
               margin: const EdgeInsets.only(bottom: 5, right: 5),
               decoration: BoxDecoration(
                 // image: DecorationImage(
@@ -1003,7 +1010,7 @@ class AddPetStoryWidget extends StatelessWidget {
                 //       controller.dogsTopList[index],
                 //     ),
                 //     fit: BoxFit.cover),
-                border: Border.all(color: AppColors.accentColor),
+                border: Border.all(color: AppColors.accentColor, width: 0.5),
                 //color: AppColors.greyTextColor,
                 borderRadius: const BorderRadius.all(
                   Radius.circular(8),
@@ -1227,7 +1234,7 @@ class PetShopAndGroomingText extends StatelessWidget {
           },
           child: Container(
             height: 35,
-            width: controller.size.width * 0.40,
+            // width: controller.size.width * 0.40,
             padding: const EdgeInsets.symmetric(horizontal: 12),
             decoration: BoxDecoration(
               color: themeProvider.darkTheme
@@ -1237,17 +1244,25 @@ class PetShopAndGroomingText extends StatelessWidget {
                 Radius.circular(10),
               ),
             ),
-            child: Center(
-              child: Text(
-                "Pet Shop & Grooming",
-                style: TextStyle(
-                  color: themeProvider.darkTheme
-                      ? AppColors.whiteColor
-                      : AppColors.accentTextColor,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w400,
+            child: Row(
+              children: [
+                Image.asset(AppIcons.shopImg,
+                  width: 15,
+                  height: 15,
+                  color: AppColors.accentColor,
                 ),
-              ),
+                const SizedBox(width: 8),
+                Text(
+                  "Pet Shop & Grooming",
+                  style: TextStyle(
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.accentTextColor,
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ],
             ),
           ),
         ),

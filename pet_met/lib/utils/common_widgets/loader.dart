@@ -10,7 +10,7 @@ class CustomAnimationLoader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-          height: 85,
+          height: 65,
           child: Lottie.asset(
             "assets/json/loader.json",
           )
