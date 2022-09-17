@@ -17,42 +17,67 @@ class OwnUserStoryViewerScreen extends StatelessWidget {
       body: SizedBox(
         height: Get.height,
         width: Get.width,
-        child: ListView.builder(
-          itemCount: controller.ownUserStoryImagesList.length,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, i) {
-            log('controller.storyImagesList.length: ${controller.ownUserStoryImagesList.length}');
-            String imgUrl = ApiUrl.apiImagePath +
-                "asset/uploads/userstory/" +
-                controller.ownUserStoryImagesList[i].image;
-            log("imgUrl : $imgUrl");
-
-            return SizedBox(
-              height: Get.height,
-              width: Get.width,
-              child: StoryView(
-                  onStoryShow: (s) {
-                    log("Showing a story");
-                  },
-                  onComplete: () {
-                    log("Completed a cycle");
-                    Get.back();
-                  },
-                  progressPosition: ProgressPosition.top,
-                  repeat: false,
+        child: SizedBox(
+          height: Get.height,
+          width: Get.width,
+          child: StoryView(
+            onStoryShow: (s) {
+              log("Showing a story");
+            },
+            onComplete: () {
+              log("Completed a cycle");
+              Get.back();
+            },
+            progressPosition: ProgressPosition.top,
+            repeat: false,
+            controller: controller.storyController,
+            onVerticalSwipeComplete: (direct) {
+              // direct.index;
+            },
+            storyItems: [
+              for (int i = 0; i < controller.ownUserStoryImagesList.length; i++)
+                StoryItem.inlineImage(
+                  imageFit: BoxFit.contain,
+                  duration: const Duration(seconds: 10),
+                  // caption: const Text(
+                  //   "Caption Here",
+                  //   style: TextStyle(
+                  //       color: Colors.white,
+                  //       backgroundColor: Colors.black,
+                  //       fontSize: 17),
+                  // ),
+                  url: ApiUrl.apiImagePath +
+                      "asset/uploads/userstory/" +
+                      controller.ownUserStoryImagesList[i].image,
                   controller: controller.storyController,
-                  storyItems: [
-                    StoryItem.pageImage(
-                       // url:
-                       // "https://petomate.com/asset/uploads/petimage/bJkRk_destination_map_marker.png",
-                       url: imgUrl,
-                      controller: controller.storyController,
-                      duration: const Duration(seconds: 8),
-                    ),
-                  ]),
-            );
-          },
+                ),
+            ],
+
+            //  [
+            //   StoryItem.pageImage(
+            //     // url:
+            //     // "https://petomate.com/asset/uploads/petimage/bJkRk_destination_map_marker.png",
+            //     url: imgUrl,
+            //     controller: controller.storyController,
+            //     duration: const Duration(seconds: 8),
+            //   ),
+            // ]
+          ),
         ),
+
+        // ListView.builder(
+        //   itemCount: controller.ownUserStoryImagesList.length,
+        //   scrollDirection: Axis.horizontal,
+        //   itemBuilder: (context, i) {
+        //     log('controller.storyImagesList.length: ${controller.ownUserStoryImagesList.length}');
+        //     String imgUrl = ApiUrl.apiImagePath +
+        //         "asset/uploads/userstory/" +
+        //         controller.ownUserStoryImagesList[i].image;
+        //     log("imgUrl : $imgUrl");
+
+        //     return
+        //   },
+        // ),
       ),
     );
   }

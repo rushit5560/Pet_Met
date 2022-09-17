@@ -54,9 +54,9 @@ class Validations {
     return null;
   }
 
-  String? validateWeight(String value) {
+  String? validatePetWeight(String value) {
     if (value.isEmpty) {
-      return 'Weight is required';
+      return 'Pet weight is required';
     }
     return null;
   }
@@ -109,7 +109,7 @@ class Validations {
 
   String? validateUserName(String value) {
     if (value.isEmpty) {
-      return 'User name is required';
+      return 'User Name is required';
     }
     return null;
   }
@@ -146,7 +146,7 @@ class Validations {
 
   String? validatePassword(String value) {
     if (value.isEmpty) {
-      return "Current Password is required";
+      return "Password is required";
     } else if (value.length < 6) {
       return "Password must be at least 6 characters long";
     } else {

@@ -92,205 +92,197 @@ class _UserCategoriesScreenState extends State<UserCategoriesScreen> {
                                   //   ],
                                   // ),
                                   SizedBox(height: 3.h),
-                                  SizedBox(
-                                    height: controller.size.height * 0.35,
-                                    width: double.infinity,
-                                    child: ListView.separated(
-                                      itemBuilder: (context, index) {
-                                        return GestureDetector(
-                                          onTap: () {
-                                            controller.isLoading(true);
+                                  ListView.separated(
+                                    shrinkWrap: true,
+                                    itemBuilder: (context, index) {
+                                      return GestureDetector(
+                                        onTap: () {
+                                          controller.isLoading(true);
 
-                                            if (index == 0) {
-                                              controller
-                                                  .individualPetBool(true);
-                                              controller
-                                                  .petShoopsGroomingBool(false);
-                                              controller
-                                                  .petvetsandNgoBool(false);
-                                              controller
-                                                  .petTrainerAndBreederBool(
-                                                      false);
-                                              controller.roleId = 1;
-                                              log('roleId: ${controller.roleId}');
-                                            }
-                                            else if (index == 1) {
-                                              controller
-                                                  .individualPetBool(false);
-                                              controller
-                                                  .petShoopsGroomingBool(true);
-                                              controller
-                                                  .petvetsandNgoBool(false);
-                                              controller
-                                                  .petTrainerAndBreederBool(
-                                                      false);
-                                              controller.roleId = 2;
-                                              log('roleId: ${controller.roleId}');
-                                            }
-                                            else if (index == 2) {
-                                              controller
-                                                  .individualPetBool(false);
-                                              controller
-                                                  .petShoopsGroomingBool(false);
-                                              controller
-                                                  .petvetsandNgoBool(true);
-                                              controller
-                                                  .petTrainerAndBreederBool(
-                                                      false);
-                                              controller.roleId = 3;
-                                              log('roleId: ${controller.roleId}');
-                                            }
-                                            else if (index == 3) {
-                                              controller
-                                                  .individualPetBool(false);
-                                              controller
-                                                  .petShoopsGroomingBool(false);
-                                              controller
-                                                  .petvetsandNgoBool(false);
-                                              controller
-                                                  .petTrainerAndBreederBool(
-                                                      true);
-                                              controller.roleId = 4;
-                                              log('roleId: ${controller.roleId}');
-                                            }
+                                          if (index == 0) {
+                                            controller.individualPetBool(true);
+                                            controller
+                                                .petShoopsGroomingBool(false);
+                                            controller.petvetsandNgoBool(false);
+                                            controller.petTrainerAndBreederBool(
+                                                false);
+                                            controller.roleId = 1;
+                                            log('roleId: ${controller.roleId}');
+                                          } else if (index == 1) {
+                                            controller.individualPetBool(false);
+                                            controller
+                                                .petShoopsGroomingBool(true);
+                                            controller.petvetsandNgoBool(false);
+                                            controller.petTrainerAndBreederBool(
+                                                false);
+                                            controller.roleId = 2;
+                                            log('roleId: ${controller.roleId}');
+                                          } else if (index == 2) {
+                                            controller.individualPetBool(false);
+                                            controller
+                                                .petShoopsGroomingBool(false);
+                                            controller.petvetsandNgoBool(true);
+                                            controller.petTrainerAndBreederBool(
+                                                false);
+                                            controller.roleId = 3;
+                                            log('roleId: ${controller.roleId}');
+                                          } else if (index == 3) {
+                                            controller.individualPetBool(false);
+                                            controller
+                                                .petShoopsGroomingBool(false);
+                                            controller.petvetsandNgoBool(false);
+                                            controller
+                                                .petTrainerAndBreederBool(true);
+                                            controller.roleId = 4;
+                                            log('roleId: ${controller.roleId}');
+                                          }
 
-                                            controller.isLoading(false);
-                                          },
-                                          child: Container(
-                                            height: 55,
-                                            width: double.infinity,
-                                            decoration: BoxDecoration(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.darkThemeColor
-                                                  : AppColors.whiteColor,
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  color: AppColors.whiteColor
-                                                      .withOpacity(0.15),
-                                                  blurRadius: 15,
-                                                  spreadRadius: 1,
-                                                  offset: const Offset(4, 4),
-                                                ),
-                                              ],
-                                              borderRadius:
-                                                  const BorderRadius.all(
-                                                Radius.circular(8),
-                                              ),
-                                            ),
-                                            child: Row(
-                                              children: [
-                                                Transform.scale(
-                                                  scale: 1.2,
-                                                  child: Checkbox(
-                                                    shape:
-                                                        const RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                        Radius.circular(5.0),
-                                                      ),
-                                                    ),
-                                                    value: controller
-                                                        .boolsList[index].value,
-                                                    checkColor:
-                                                        AppColors.whiteColor,
-                                                    activeColor:
-                                                        AppColors.greyTextColor,
-                                                    fillColor:
-                                                        MaterialStateProperty
-                                                            .all(AppColors
-                                                                .greyTextColor),
-                                                    focusColor:
-                                                        AppColors.greyTextColor,
-                                                    // overlayColor:
-                                                    //     MaterialStateProperty.all(
-                                                    //   AppColors.greyTextColor,
-                                                    // ),
-                                                    onChanged: (val) {
-                                                      controller.isLoading(true);
-
-                                                      if (index == 0) {
-                                                        controller
-                                                            .individualPetBool(true);
-                                                        controller
-                                                            .petShoopsGroomingBool(false);
-                                                        controller
-                                                            .petvetsandNgoBool(false);
-                                                        controller
-                                                            .petTrainerAndBreederBool(
-                                                            false);
-                                                        controller.roleId = 1;
-                                                        log('roleId: ${controller.roleId}');
-                                                      }
-                                                      else if (index == 1) {
-                                                        controller
-                                                            .individualPetBool(false);
-                                                        controller
-                                                            .petShoopsGroomingBool(true);
-                                                        controller
-                                                            .petvetsandNgoBool(false);
-                                                        controller
-                                                            .petTrainerAndBreederBool(
-                                                            false);
-                                                        controller.roleId = 2;
-                                                        log('roleId: ${controller.roleId}');
-                                                      }
-                                                      else if (index == 2) {
-                                                        controller
-                                                            .individualPetBool(false);
-                                                        controller
-                                                            .petShoopsGroomingBool(false);
-                                                        controller
-                                                            .petvetsandNgoBool(true);
-                                                        controller
-                                                            .petTrainerAndBreederBool(
-                                                            false);
-                                                        controller.roleId = 3;
-                                                        log('roleId: ${controller.roleId}');
-                                                      }
-                                                      else if (index == 3) {
-                                                        controller
-                                                            .individualPetBool(false);
-                                                        controller
-                                                            .petShoopsGroomingBool(false);
-                                                        controller
-                                                            .petvetsandNgoBool(false);
-                                                        controller
-                                                            .petTrainerAndBreederBool(
-                                                            true);
-                                                        controller.roleId = 4;
-                                                        log('roleId: ${controller.roleId}');
-                                                      }
-
-                                                      controller.isLoading(false);
-                                                    },
-                                                  ),
-                                                ),
-                                                const SizedBox(width: 10),
-                                                Text(
-                                                  controller.userTypeCategories[
-                                                      index],
-                                                  style: TextStyle(
-                                                    color: themeProvider
-                                                            .darkTheme
-                                                        ? AppColors.whiteColor
-                                                        : AppColors
-                                                            .blackTextColor,
-                                                    fontSize: 12.sp,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                              ],
+                                          controller.isLoading(false);
+                                        },
+                                        child: Container(
+                                          height: 55,
+                                          width: double.infinity,
+                                          decoration: BoxDecoration(
+                                            color: themeProvider.darkTheme
+                                                ? AppColors.darkThemeColor
+                                                : AppColors.whiteColor,
+                                            // boxShadow: [
+                                            //   BoxShadow(
+                                            //     color: AppColors.whiteColor
+                                            //         .withOpacity(0.15),
+                                            //     blurRadius: 15,
+                                            //     spreadRadius: 1,
+                                            //     offset: const Offset(4, 4),
+                                            //   ),
+                                            // ],
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                              Radius.circular(8),
                                             ),
                                           ),
-                                        );
-                                      },
-                                      separatorBuilder: (ctx, ind) {
-                                        return const SizedBox(height: 20);
-                                      },
-                                      itemCount: 4,
-                                    ),
+                                          child: Row(
+                                            children: [
+                                              Transform.scale(
+                                                scale: 1.2,
+                                                child: Checkbox(
+                                                  shape:
+                                                      const RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                      Radius.circular(5.0),
+                                                    ),
+                                                  ),
+                                                  value: controller
+                                                      .boolsList[index].value,
+                                                  checkColor: themeProvider
+                                                          .darkTheme
+                                                      ? AppColors.blackTextColor
+                                                      : AppColors.whiteColor,
+                                                  activeColor:
+                                                      AppColors.greyTextColor,
+                                                  fillColor:
+                                                      MaterialStateProperty.all(
+                                                          AppColors
+                                                              .accentColor),
+                                                  focusColor:
+                                                      AppColors.greyTextColor,
+                                                  // overlayColor:
+                                                  //     MaterialStateProperty.all(
+                                                  //   AppColors.greyTextColor,
+                                                  // ),
+                                                  onChanged: (val) {
+                                                    controller.isLoading(true);
+
+                                                    if (index == 0) {
+                                                      controller
+                                                          .individualPetBool(
+                                                              true);
+                                                      controller
+                                                          .petShoopsGroomingBool(
+                                                              false);
+                                                      controller
+                                                          .petvetsandNgoBool(
+                                                              false);
+                                                      controller
+                                                          .petTrainerAndBreederBool(
+                                                              false);
+                                                      controller.roleId = 1;
+                                                      log('roleId: ${controller.roleId}');
+                                                    } else if (index == 1) {
+                                                      controller
+                                                          .individualPetBool(
+                                                              false);
+                                                      controller
+                                                          .petShoopsGroomingBool(
+                                                              true);
+                                                      controller
+                                                          .petvetsandNgoBool(
+                                                              false);
+                                                      controller
+                                                          .petTrainerAndBreederBool(
+                                                              false);
+                                                      controller.roleId = 2;
+                                                      log('roleId: ${controller.roleId}');
+                                                    } else if (index == 2) {
+                                                      controller
+                                                          .individualPetBool(
+                                                              false);
+                                                      controller
+                                                          .petShoopsGroomingBool(
+                                                              false);
+                                                      controller
+                                                          .petvetsandNgoBool(
+                                                              true);
+                                                      controller
+                                                          .petTrainerAndBreederBool(
+                                                              false);
+                                                      controller.roleId = 3;
+                                                      log('roleId: ${controller.roleId}');
+                                                    } else if (index == 3) {
+                                                      controller
+                                                          .individualPetBool(
+                                                              false);
+                                                      controller
+                                                          .petShoopsGroomingBool(
+                                                              false);
+                                                      controller
+                                                          .petvetsandNgoBool(
+                                                              false);
+                                                      controller
+                                                          .petTrainerAndBreederBool(
+                                                              true);
+                                                      controller.roleId = 4;
+                                                      log('roleId: ${controller.roleId}');
+                                                    }
+
+                                                    controller.isLoading(false);
+                                                  },
+                                                ),
+                                              ),
+                                              const SizedBox(width: 10),
+                                              Text(
+                                                controller
+                                                    .userTypeCategories[index],
+                                                style: TextStyle(
+                                                  color: themeProvider.darkTheme
+                                                      ? AppColors.whiteColor
+                                                      : AppColors
+                                                          .blackTextColor,
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    separatorBuilder: (ctx, ind) {
+                                      return const SizedBox(height: 20);
+                                    },
+                                    itemCount: 4,
                                   ),
-                                  const SizedBox(height: 20),
+                                  const SizedBox(height: 28),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
@@ -327,7 +319,7 @@ class _UserCategoriesScreenState extends State<UserCategoriesScreen> {
                                             "Submit",
                                             style: TextStyle(
                                               color: AppColors.whiteColor,
-                                              fontSize: 12.sp,
+                                              fontSize: 13.sp,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),

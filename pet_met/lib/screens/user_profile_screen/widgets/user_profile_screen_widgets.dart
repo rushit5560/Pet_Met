@@ -414,7 +414,6 @@ class ContactInfoModule extends StatelessWidget {
                     querySnapshot.docs.map((doc) {
                       doc.data();
 
-
                       if (doc['chatRoomId'].toString().contains(chatRoomId)) {
                         log("first if stat");
                         tempChatRoomIdList.add(doc['chatRoomId']);
@@ -463,24 +462,21 @@ class ContactInfoModule extends StatelessWidget {
                       // Create ChatRoom Function
                       firebaseDatabase.createChatRoomOfTwoUsers(
                           chatRoomId, chatRoomData);
-                    //Go to conversation screen
-                    Get.to(
-                          () => UserConversationScreen(),
-                      transition: Transition.zoom,
-                      arguments: [
-                        chatRoomId,
-                        controller.followCategoryId == "1"
-                            ? controller.userName
-                            : controller.shopName,
-                        controller.userName,
-                        UserDetails.userEmail,
-                        controller.userEmail,
-                      ],
-                    );
-                    }
-                    else {
-
-                      if(tempChatRoomIdList[0].contains(chatRoomId)){
+                      //Go to conversation screen
+                      Get.to(
+                        () => UserConversationScreen(),
+                        arguments: [
+                          chatRoomId,
+                          controller.followCategoryId == "1"
+                              ? controller.userName
+                              : controller.shopName,
+                          controller.userName,
+                          UserDetails.userEmail,
+                          controller.userEmail,
+                        ],
+                      );
+                    } else {
+                      if (tempChatRoomIdList[0].contains(chatRoomId)) {
                         /// Create chat room
                         Timestamp timeStamp = Timestamp.now();
 
@@ -492,9 +488,9 @@ class ContactInfoModule extends StatelessWidget {
                         Map<String, dynamic> chatRoomData = {
                           "chatRoomId": chatRoomId,
                           "creator":
-                          "${UserDetails.selfId}${UserDetails.categoryId}",
+                              "${UserDetails.selfId}${UserDetails.categoryId}",
                           "pearer":
-                          "${controller.chatUid}${controller.chatCategoryId}",
+                              "${controller.chatUid}${controller.chatCategoryId}",
                           "creatorEmail": UserDetails.userEmail,
                           "peerEmail": controller.userEmail,
                           "creatorName": UserDetails.categoryId == "2"
@@ -515,8 +511,7 @@ class ContactInfoModule extends StatelessWidget {
                             chatRoomId, chatRoomData);
                         //Go to conversation screen
                         Get.to(
-                              () => UserConversationScreen(),
-                          transition: Transition.zoom,
+                          () => UserConversationScreen(),
                           arguments: [
                             chatRoomId,
                             controller.followCategoryId == "1"
@@ -539,9 +534,9 @@ class ContactInfoModule extends StatelessWidget {
                         Map<String, dynamic> chatRoomData = {
                           "chatRoomId": chatRoomId2,
                           "creator":
-                          "${controller.chatUid}${controller.chatCategoryId}",
+                              "${controller.chatUid}${controller.chatCategoryId}",
                           "pearer":
-                          "${UserDetails.selfId}${UserDetails.categoryId}",
+                              "${UserDetails.selfId}${UserDetails.categoryId}",
                           "creatorEmail": controller.userEmail,
                           "peerEmail": UserDetails.userEmail,
                           "creatorName": controller.userName,
@@ -562,8 +557,7 @@ class ContactInfoModule extends StatelessWidget {
                             chatRoomId2, chatRoomData);
                         //Go to conversation screen
                         Get.to(
-                              () => UserConversationScreen(),
-                          transition: Transition.zoom,
+                          () => UserConversationScreen(),
                           arguments: [
                             chatRoomId2,
                             controller.followCategoryId == "1"
@@ -576,22 +570,20 @@ class ContactInfoModule extends StatelessWidget {
                         );
                       }
 
-                    //Go to conversation screen
-                    Get.to(
-                          () => UserConversationScreen(),
-                      transition: Transition.zoom,
-                      arguments: [
-                        chatRoomId.isEmpty ? chatRoomId2 : chatRoomId,
-                        controller.followCategoryId == "1"
-                            ? controller.userName
-                            : controller.shopName,
-                        controller.userName,
-                        UserDetails.userEmail,
-                        controller.userEmail,
-                      ],
-                    );
+                      //Go to conversation screen
+                      Get.to(
+                        () => UserConversationScreen(),
+                        arguments: [
+                          chatRoomId.isEmpty ? chatRoomId2 : chatRoomId,
+                          controller.followCategoryId == "1"
+                              ? controller.userName
+                              : controller.shopName,
+                          controller.userName,
+                          UserDetails.userEmail,
+                          controller.userEmail,
+                        ],
+                      );
                     }
-
 
                     /*if (UserDetails.categoryId.contains("1")) {
                       Timestamp timeStamp = Timestamp.now();
@@ -621,7 +613,7 @@ class ContactInfoModule extends StatelessWidget {
                       // Go to conversation screen
                       Get.to(
                         () => UserConversationScreen(),
-                        transition: Transition.zoom,
+                        
                         arguments: [
                           charRoomId,
                           controller.followCategoryId == "1"
@@ -661,7 +653,7 @@ class ContactInfoModule extends StatelessWidget {
                       // Go to conversation screen
                       Get.to(
                         () => UserConversationScreen(),
-                        transition: Transition.zoom,
+                        
                         arguments: [
                           charRoomId,
                           controller.followCategoryId == "1"

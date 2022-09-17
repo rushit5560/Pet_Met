@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../services/providers/dark_theme_provider.dart';
 
 const root = "assets/images/";
+const iconsRoot = "assets/icons/";
 
 class AppImages {
   DarkThemeProvider themeProvider =
@@ -13,6 +14,7 @@ class AppImages {
   // static var tealBackgroundImg = themeProvider.darkTheme
   //     ? root + "path_top_right_dark.png"
   //     : root + "path_top_right_light.png";
+  static var multiUserSwitchIcon = iconsRoot + "multi_user.png";
 
   static var backgroundImgDark = root + "path_top_right_dark.png";
   static var backgroundImgLight = root + "path_top_right_light.png";
@@ -120,7 +122,6 @@ class AppIcons {
   static const chatIconImg = root + "chat_icon1.png";
   static const verifiedSymbolImg = root + "verified_symbol.png";
   static const shopImg = root + "shop.png";
-
 }
 
 class AppShades {

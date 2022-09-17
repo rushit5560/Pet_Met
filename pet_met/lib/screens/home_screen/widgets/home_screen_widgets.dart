@@ -225,10 +225,8 @@ class PetTopListModule extends StatelessWidget {
                                 children: [
                                   Text(
                                     homeController.petTopList[i].name.name,
-                                    style: TextStyle(
-                                      color: themeProvider.darkTheme
-                                          ? AppColors.whiteColor
-                                          : AppColors.accentTextColor,
+                                    style: const TextStyle(
+                                      color: AppColors.accentTextColor,
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600,
                                     ),
@@ -251,7 +249,8 @@ class PetTopListModule extends StatelessWidget {
                                       child: Image.network(
                                         ApiUrl.apiImagePath +
                                             "asset/uploads/product/" +
-                                            homeController.petTopList[i].img.image,
+                                            homeController
+                                                .petTopList[i].img.image,
                                         errorBuilder: (context, st, ob) {
                                           return Image.asset(
                                             AppImages.petMetLogoImg,
@@ -1244,7 +1243,6 @@ class PetShopAndGroomingText extends StatelessWidget {
             // log("indexController.selectedbottomIndex.value : ${indexController.selectedBottomIndex.value}");
             Get.to(
               () => ShopAndGroomingScreen(),
-              transition: Transition.zoom,
               duration: const Duration(milliseconds: 500),
             );
           },
@@ -1262,7 +1260,8 @@ class PetShopAndGroomingText extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Image.asset(AppIcons.shopImg,
+                Image.asset(
+                  AppIcons.shopImg,
                   width: 15,
                   height: 15,
                   color: themeProvider.darkTheme

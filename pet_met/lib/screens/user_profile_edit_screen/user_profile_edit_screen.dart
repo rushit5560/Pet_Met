@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:pet_met/controllers/user_profile_edit_controller.dart';
 import 'package:pet_met/screens/user_categories_screen/user_categories_screen.dart';
 import 'package:pet_met/screens/user_profile_edit_screen/user_profile_edit_screen_widgets.dart';
+import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -56,10 +57,6 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                             onTap: () {
                               modelBottomSheet(context);
                             },
-                            // child: Image.asset(
-                            //   AppImages.userProfileImg,
-                            //   width: controller.size.width * 0.12,
-                            // ),
                             child: const Icon(
                               Icons.person,
                               color: AppColors.accentColor,
@@ -180,8 +177,7 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                 ),*/
 
                 controller.userProfileAvail == true
-                    ?
-                GestureDetector(
+                    ? GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.userEmail.value, "1");
@@ -276,10 +272,8 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                         ),
                       )
                     : Container(),
-
                 controller.shopProfileAvail == true
-                    ?
-                GestureDetector(
+                    ? GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.shopEmail.value, "2");
@@ -370,10 +364,8 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                         ),
                       )
                     : Container(),
-
                 controller.vetNgoProfileAvail == true
-                    ?
-                GestureDetector(
+                    ? GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.ngoEmail.value, "3");
@@ -468,10 +460,8 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                         ),
                       )
                     : Container(),
-
                 controller.trainerProfileAvail == true
-                    ?
-                GestureDetector(
+                    ? GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.trainerEmail.value, "4");
@@ -562,27 +552,28 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                           ),
                         ),
                       )
-                   : Container(),
-
-                controller.userProfileAvail == false || controller.shopProfileAvail == false || controller.vetNgoProfileAvail == false || controller.trainerProfileAvail == false ?
-                    GestureDetector(
-                      onTap: (){
-                        Get.to(() => const UserCategoriesScreen());
-                      },
-                      child: Container(
-                        height: 35, width: 35,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: Colors.grey.shade400
+                    : Container(),
+                controller.userProfileAvail == false ||
+                        controller.shopProfileAvail == false ||
+                        controller.vetNgoProfileAvail == false ||
+                        controller.trainerProfileAvail == false
+                    ? GestureDetector(
+                        onTap: () {
+                          Get.to(() => const UserCategoriesScreen());
+                        },
+                        child: Container(
+                          height: 35,
+                          width: 35,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              color: Colors.grey.shade400),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(30),
+                            child: Icon(Icons.add, size: 30),
+                          ),
                         ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(30),
-                          child: Icon(Icons.add, size: 30),
-                        ),
-                      ),
-                    )
-                        : Container(),
-
+                      )
+                    : Container(),
                 SizedBox(height: 7)
               ],
             ),

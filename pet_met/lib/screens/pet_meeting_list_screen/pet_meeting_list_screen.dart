@@ -22,37 +22,44 @@ class PetMeetingListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          alignment: Alignment.topCenter,
-          children: [
-            Align(
-              alignment: Alignment.topRight,
-              child: Image.asset(themeProvider.darkTheme
-                  ? AppImages.backgroundImgDark
-                  : AppImages.backgroundImgLight),
-            ),
-            BackGroundLeftShadow(
-              height: petMeetingListScreenController.size.height * 0.3,
-              width: petMeetingListScreenController.size.height * 0.3,
-              topPad: petMeetingListScreenController.size.height * 0.28,
-              leftPad: -petMeetingListScreenController.size.width * 0.15,
-            ),
-            Column(
-              children: [
-                // AppBar
-                CustomAppBar(
-                    title: "Pets",
-                    appBarOption: AppBarOption.singleBackButtonOption),
+      body: Obx(
+        () => petMeetingListScreenController.isLoading.value
+            ? const Center(
+                child: CustomAnimationLoader(),
+              )
+            : SafeArea(
+                child: Stack(
+                  alignment: Alignment.topCenter,
+                  children: [
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Image.asset(themeProvider.darkTheme
+                          ? AppImages.backgroundImgDark
+                          : AppImages.backgroundImgLight),
+                    ),
+                    BackGroundLeftShadow(
+                      height: petMeetingListScreenController.size.height * 0.3,
+                      width: petMeetingListScreenController.size.height * 0.3,
+                      topPad: petMeetingListScreenController.size.height * 0.28,
+                      leftPad:
+                          -petMeetingListScreenController.size.width * 0.15,
+                    ),
+                    Column(
+                      children: [
+                        // AppBar
+                        CustomAppBar(
+                            title: "Pets",
+                            appBarOption: AppBarOption.singleBackButtonOption),
 
-                // Body
-                Obx(() => petMeetingListScreenController.isLoading.value
-                    ? const CustomAnimationLoader()
-                    : Expanded(child: PetMeetingListModule())),
-              ],
-            ),
-          ],
-        ),
+                        // Body
+                        Expanded(
+                          child: PetMeetingListModule(),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
       ),
     );
   }

@@ -105,7 +105,7 @@ class _UploadImageModuleState extends State<UploadImageModule> {
             );
           },
           child: Container(
-              //height: controller.size.width * 0.50,
+              height: controller.size.height * 0.2,
               width: controller.size.width * 0.50,
               decoration: BoxDecoration(
                 color: themeProvider.darkTheme
@@ -215,7 +215,7 @@ class _UploadImageModuleState extends State<UploadImageModule> {
     controller.imageFile = File(pickedFile!.path);
     setState(() {});
 
-    Navigator.pop(context);
+    Get.back();
   }
 
   /// Get from Camera
@@ -249,7 +249,7 @@ class _UploadImageModuleState extends State<UploadImageModule> {
     controller.imageFile = File(pickedFile!.path);
     setState(() {});
 
-    Navigator.pop(context);
+    Get.back();
   }
 }
 
@@ -312,14 +312,19 @@ class PetNameTextFieldModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(
-              "Pet Name",
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.blackTextColor.withOpacity(0.7),
-                fontSize: 11.sp,
-                fontWeight: FontWeight.bold,
+            Text.rich(
+              TextSpan(
+                text: 'Pet Name ',
+                style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                children: const <InlineSpan>[
+                  TextSpan(
+                    text: '*',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red),
+                  )
+                ],
               ),
             ),
           ],
@@ -733,14 +738,19 @@ class PetDetailsTextFieldModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(
-              "Pet Details",
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.blackTextColor.withOpacity(0.7),
-                fontSize: 11.sp,
-                fontWeight: FontWeight.bold,
+            Text.rich(
+              TextSpan(
+                text: 'Pet Details ',
+                style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                children: const <InlineSpan>[
+                  TextSpan(
+                    text: '*',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red),
+                  )
+                ],
               ),
             ),
           ],
@@ -983,13 +993,13 @@ class _BirthDateDropDownState extends State<BirthDateDropDown> {
             borderRadius: BorderRadius.all(
               Radius.circular(15),
             ),
-
           ),
           child: DropdownDatePicker(
             boxDecoration: BoxDecoration(
-                color: themeProvider.darkTheme
-                  ? AppColors.darkThemeBoxColor : AppColors.whiteColor,
-                borderRadius: BorderRadius.circular(5),
+              color: themeProvider.darkTheme
+                  ? AppColors.darkThemeBoxColor
+                  : AppColors.whiteColor,
+              borderRadius: BorderRadius.circular(5),
               boxShadow: [
                 BoxShadow(
                   color: themeProvider.darkTheme
@@ -1013,11 +1023,11 @@ class _BirthDateDropDownState extends State<BirthDateDropDown> {
             ),
             icon: Icon(
               Icons.keyboard_arrow_down_rounded,
-              color: themeProvider.darkTheme ?
-              AppColors.whiteColor:
-              AppColors.greyTextColor,
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.greyTextColor,
             ),
-            isDropdownHideUnderline: true,
+            isDropdownHideUnderline: false,
             isFormValidator: true,
             selectedDay: int.parse(controller.day),
             selectedMonth: int.parse(controller.month),
@@ -1234,14 +1244,19 @@ class WeightTextFieldModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(
-              "Weight",
-              style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.blackTextColor.withOpacity(0.7),
-                fontSize: 11.sp,
-                fontWeight: FontWeight.bold,
+            Text.rich(
+              TextSpan(
+                text: 'Weight ',
+                style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                children: const <InlineSpan>[
+                  TextSpan(
+                    text: '*',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red),
+                  )
+                ],
               ),
             ),
           ],
@@ -1252,10 +1267,10 @@ class WeightTextFieldModule extends StatelessWidget {
           fieldController: controller.weightController,
           height: controller.size.height * 0.065,
           width: double.infinity,
-          hintText: "Weight (Kg)",
+          hintText: "Weight (In Kg)",
           textInputAction: TextInputAction.done,
           textInputType: TextInputType.number,
-          validator: (val) => Validations().validateWeight(val!),
+          validator: (val) => Validations().validatePetWeight(val!),
         ),
       ],
     );

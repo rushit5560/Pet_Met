@@ -307,72 +307,78 @@ class PetCategoriesListModule extends StatelessWidget {
             String id = singleItem.subCategory[i].categoryId; // Sub Category Id
             return Row(
               children: [
-                Checkbox(
-                  checkColor: AppColors.whiteColor,
-                  // activeColor: AppColors.greyTextColor,
-                  fillColor: MaterialStateProperty.all(AppColors.accentColor),
-                  focusColor: AppColors.greyColor,
-                  value: singleItem.subCategory[i].isSelected,
-                  onChanged: (value) {
-                    screenController.isLoading(true);
-                    RxBool selectedItemValue = value!.obs;
-                    log("selectedItemValue : $selectedItemValue");
+                Transform.scale(
+                  scale: 1.2,
+                  child: Checkbox(
+                    checkColor: themeProvider.darkTheme
+                        ? AppColors.blackTextColor
+                        : AppColors.whiteColor,
+                    activeColor: AppColors.greyTextColor,
+                    fillColor: MaterialStateProperty.all(AppColors.accentColor),
+                    focusColor: AppColors.greyTextColor,
+                    value: singleItem.subCategory[i].isSelected,
+                    onChanged: (value) {
+                      screenController.isLoading(true);
+                      RxBool selectedItemValue = value!.obs;
+                      log("selectedItemValue : $selectedItemValue");
 
-                    for (int i = 0;
-                        i < screenController.catAndSubCatList.length;
-                        i++) {
-                      for (int j = 0;
-                          j <
-                              screenController
-                                  .catAndSubCatList[i].subCategory.length;
-                          j++) {
-                        if (screenController.catAndSubCatList[i].subCategory[j]
-                                .categoryId ==
-                            id) {
-                          log("Sub cat Id : ${screenController.catAndSubCatList[i].subCategory[j].categoryId}");
+                      for (int i = 0;
+                          i < screenController.catAndSubCatList.length;
+                          i++) {
+                        for (int j = 0;
+                            j <
+                                screenController
+                                    .catAndSubCatList[i].subCategory.length;
+                            j++) {
                           if (screenController.catAndSubCatList[i]
-                                  .subCategory[j].isSelected ==
-                              false) {
-                            screenController.catAndSubCatList[i].subCategory[j]
-                                .isSelected = true;
-                            screenController.selectedSubCatId = screenController
-                                .catAndSubCatList[i].subCategory[j].categoryId
-                                .toString();
-                            log("screenController.selectedSubCatId : ${screenController.selectedSubCatId}");
+                                  .subCategory[j].categoryId ==
+                              id) {
+                            log("Sub cat Id : ${screenController.catAndSubCatList[i].subCategory[j].categoryId}");
+                            if (screenController.catAndSubCatList[i]
+                                    .subCategory[j].isSelected ==
+                                false) {
+                              screenController.catAndSubCatList[i]
+                                  .subCategory[j].isSelected = true;
+                              screenController.selectedSubCatId =
+                                  screenController.catAndSubCatList[i]
+                                      .subCategory[j].categoryId
+                                      .toString();
+                              log("screenController.selectedSubCatId : ${screenController.selectedSubCatId}");
+                            } else {
+                              screenController.catAndSubCatList[i]
+                                  .subCategory[j].isSelected = false;
+                              screenController.selectedSubCatId = "";
+                              log("screenController.selectedSubCatId : ${screenController.selectedSubCatId}");
+                            }
                           } else {
                             screenController.catAndSubCatList[i].subCategory[j]
                                 .isSelected = false;
-                            screenController.selectedSubCatId = "";
-                            log("screenController.selectedSubCatId : ${screenController.selectedSubCatId}");
                           }
-                        } else {
-                          screenController.catAndSubCatList[i].subCategory[j]
-                              .isSelected = false;
                         }
                       }
-                    }
 
-                    /*for (int i = 0; i < screenController.catAndSubCatList.length; i++) {
-                      for (int j = 0; j < singleItem.subCategory.length; j++) {
-                        if (singleItem.subCategory[j].categoryId == id) {
-
-                          log("id : $id");
-                          log("categoryId : ${singleItem.subCategory[j].categoryId}");
-
-                          if(selectedItemValue.value == false) {
-                            singleItem.subCategory[j].isSelected = true;
-                            screenController.selectedSubCatId = singleItem.subCategory[j].categoryId.toString();
+                      /*for (int i = 0; i < screenController.catAndSubCatList.length; i++) {
+                        for (int j = 0; j < singleItem.subCategory.length; j++) {
+                          if (singleItem.subCategory[j].categoryId == id) {
+                
+                            log("id : $id");
+                            log("categoryId : ${singleItem.subCategory[j].categoryId}");
+                
+                            if(selectedItemValue.value == false) {
+                              singleItem.subCategory[j].isSelected = true;
+                              screenController.selectedSubCatId = singleItem.subCategory[j].categoryId.toString();
+                            } else {
+                              singleItem.subCategory[j].isSelected = false;
+                              screenController.selectedSubCatId = "";
+                            }
                           } else {
                             singleItem.subCategory[j].isSelected = false;
-                            screenController.selectedSubCatId = "";
                           }
-                        } else {
-                          singleItem.subCategory[j].isSelected = false;
                         }
-                      }
-                    }*/
-                    screenController.isLoading(false);
-                  },
+                      }*/
+                      screenController.isLoading(false);
+                    },
+                  ),
                 ),
                 Text(
                   singleItem.subCategory[i].categoryName,

@@ -56,8 +56,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-   
-
     return Sizer(
       builder: (context, orientation, deviceType) {
         return ChangeNotifierProvider(

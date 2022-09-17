@@ -19,16 +19,14 @@ class LocateScreenController extends GetxController {
         .collection("ChatRoom")
         .where("userEmails", arrayContains: userEmail)
         .snapshots()
-        .map((snapshot) =>
-        snapshot.docs.map((doc) {
-          log("============================");
-          log('doc: ${doc.data()}');
-          var userchatDataList = UserChatRoomListModel.fromJson(
-            doc.data(),
-            //img,
-          );
-
-          return userchatDataList;
-        }).toList());
+        .map((snapshot) => snapshot.docs.map((doc) {
+              log("============================");
+              log('doc: ${doc.data()}');
+              var userchatDataList = UserChatRoomListModel.fromJson(
+                doc.data(),
+                //img,
+              );
+              return userchatDataList;
+            }).toList());
   }
 }

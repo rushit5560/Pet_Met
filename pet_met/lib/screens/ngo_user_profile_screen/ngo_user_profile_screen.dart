@@ -46,6 +46,10 @@ class NgoUserProfileScreen extends StatelessWidget {
                       Icons.person,
                       color: AppColors.accentColor,
                     ),
+                    // Image.asset(
+                    //   AppImages.multiUserSwitchIcon,
+                    //   color: AppColors.accentColor,
+                    // ),
                   ),
                 ),
                 Expanded(
@@ -145,8 +149,8 @@ class NgoUserProfileScreen extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                controller.userProfileAvail == true ?
-                GestureDetector(
+                controller.userProfileAvail == true
+                    ? GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.userEmail.value, "1");
@@ -240,10 +244,9 @@ class NgoUserProfileScreen extends StatelessWidget {
                           ),
                         ),
                       )
-                   : Container(),
-
-                controller.shopProfileAvail == true ?
-                GestureDetector(
+                    : Container(),
+                controller.shopProfileAvail == true
+                    ? GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.shopEmail.value, "2");
@@ -333,10 +336,9 @@ class NgoUserProfileScreen extends StatelessWidget {
                           ),
                         ),
                       )
-                   : Container(),
-
-                controller.vetNgoProfileAvail == true ?
-                GestureDetector(
+                    : Container(),
+                controller.vetNgoProfileAvail == true
+                    ? GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.ngoEmail.value, "3");
@@ -430,10 +432,9 @@ class NgoUserProfileScreen extends StatelessWidget {
                           ),
                         ),
                       )
-                   : Container(),
-
-                controller.trainerProfileAvail == true ?
-                GestureDetector(
+                    : Container(),
+                controller.trainerProfileAvail == true
+                    ? GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.trainerEmail.value, "4");
@@ -524,27 +525,36 @@ class NgoUserProfileScreen extends StatelessWidget {
                           ),
                         ),
                       )
-                   : Container(),
-
-                controller.userProfileAvail == false || controller.shopProfileAvail == false || controller.vetNgoProfileAvail == false || controller.trainerProfileAvail == false ?
-                GestureDetector(
-                  onTap: (){
-                    Get.to(() => const UserCategoriesScreen());
-                  },
-                  child: Container(
-                    height: 35, width: 35,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        color: Colors.grey.shade400
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(25),
-                      child: Icon(Icons.add, size: 30),
-                    ),
-                  ),
-                )
                     : Container(),
-                SizedBox(height: 7)
+                const SizedBox(height: 5),
+                controller.userProfileAvail == false ||
+                        controller.shopProfileAvail == false ||
+                        controller.vetNgoProfileAvail == false ||
+                        controller.trainerProfileAvail == false
+                    ? GestureDetector(
+                        onTap: () {
+                          Get.to(() => const UserCategoriesScreen());
+                        },
+                        child: Container(
+                          height: 35,
+                          width: 35,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            color: themeProvider.darkTheme
+                                ? AppColors.darkThemeBoxColor
+                                : AppColors.greyColor.withOpacity(0.5),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(25),
+                            child: const Icon(
+                              Icons.add,
+                              size: 28,
+                            ),
+                          ),
+                        ),
+                      )
+                    : Container(),
+                const SizedBox(height: 12)
               ],
             ),
           ),

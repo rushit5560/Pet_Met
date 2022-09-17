@@ -237,21 +237,19 @@ class _LocateScreenState extends State<LocateScreen> {
           // log('singleMsg.peerName: ${singleMsg.peerName}');
           //log('singleMsg.peerId: ${singleMsg.peerId}');
           // log('singleMsg.roomId: ${singleMsg.roomId}');
-          Get.to(() => UserConversationScreen(),
-              transition: Transition.zoom,
-              arguments: [
-                singleMsg.chatRoomId,
-                receiverName,
-                UserDetails.roleId == 1
-                    ? singleMsg.peerName
-                    : singleMsg.creatorName,
-                singleMsg.creatorEmail,
-                singleMsg.peerEmail,
-                // oppositeUserUniqueId,
-                // singleMsg.customerid,
-                // singleMsg.createdBy,
-                // screenController.userChatList,
-              ]);
+          Get.to(() => UserConversationScreen(), arguments: [
+            singleMsg.chatRoomId,
+            receiverName,
+            UserDetails.roleId == 1
+                ? singleMsg.peerName
+                : singleMsg.creatorName,
+            singleMsg.creatorEmail,
+            singleMsg.peerEmail,
+            // oppositeUserUniqueId,
+            // singleMsg.customerid,
+            // singleMsg.createdBy,
+            // screenController.userChatList,
+          ]);
         },
         child: Container(
           decoration: BoxDecoration(
