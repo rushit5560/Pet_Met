@@ -74,6 +74,7 @@ class Styles {
       indicatorColor:
           isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
       hintColor: isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
+
       highlightColor:
           isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
       hoverColor: isDarkTheme ? AppColors.greyColor : AppColors.darkThemeColor,
@@ -83,11 +84,10 @@ class Styles {
       textSelectionTheme: TextSelectionThemeData(
         cursorColor:
             isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,
-
-        selectionHandleColor:
-            isDarkTheme ? AppColors.darkThemeColor : AppColors.whiteColor,
-        selectionColor:
-            isDarkTheme ? AppColors.greyColor.withOpacity(0.5) : AppColors.greyColor.withOpacity(0.5),
+        selectionHandleColor: AppColors.accentColor,
+        selectionColor: isDarkTheme
+            ? AppColors.greyColor.withOpacity(0.5)
+            : AppColors.greyColor.withOpacity(0.5),
       ),
       // textTheme: TextTheme
       //     .copyWith(

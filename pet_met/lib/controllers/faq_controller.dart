@@ -32,7 +32,7 @@ class FaqController extends GetxController {
       Map<String, String> header = apiHeader.apiHeader();
 
       http.Response response = await http.get(Uri.parse(url), headers: header);
-      log("Support Api Response : ${response.body}");
+      log("Faq Api Response : ${response.body}");
 
       FaqModel faqModel = FaqModel.fromJson(json.decode(response.body));
       isSuccessStatus = faqModel.success.obs;
@@ -46,6 +46,8 @@ class FaqController extends GetxController {
       }
     } catch (e) {
       log("faqList Function Api Error ::: $e");
+
+      rethrow;
     } finally {
       isLoading(false);
     }

@@ -68,31 +68,33 @@ class SupportScreen extends StatelessWidget {
                                   Image.network(
                                     ApiUrl.apiImagePath +
                                         controller.featuredImage,
-                                    width: 80.w,
+                                    height: 20.w,
                                     errorBuilder: (context, obj, st) {
                                       return Image.asset(
-                                          AppImages.petMetLogoImg,
-                                          height: 80.w);
+                                        AppImages.petMetLogoImg,
+                                        height: 20.w,
+                                        // width: 20.w,
+                                      );
                                     },
                                   ),
-                                  SizedBox(height: 5.h),
-                                  Text(
-                                    controller.title,
-                                    style: TextStyle(
-                                      color: AppColors.accentTextColor,
-                                      fontSize: 24.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
+                                  // SizedBox(height: 5.h),
+                                  // Text(
+                                  //   controller.title,
+                                  //   style: TextStyle(
+                                  //     color: AppColors.accentTextColor,
+                                  //     fontSize: 24.sp,
+                                  //     fontWeight: FontWeight.bold,
+                                  //   ),
+                                  // ),
                                   SizedBox(height: 5.h),
                                   Html(
                                     data: controller.content,
                                     style: {
-                                      "body": Style(
+                                      "p": Style(
                                         color: themeProvider.darkTheme
                                             ? AppColors.whiteColor
                                             : AppColors.blackTextColor,
-                                        fontSize: const FontSize(15.0),
+                                        fontSize: const FontSize(20.0),
                                         fontWeight: FontWeight.w500,
                                       ),
                                     },

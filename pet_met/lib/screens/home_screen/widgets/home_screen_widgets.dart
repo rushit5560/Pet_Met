@@ -21,6 +21,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../../controllers/home_controller.dart';
 import '../../../services/providers/dark_theme_provider.dart';
+import '../../shop_details_screen/shop_details_screen.dart';
 
 class PetTopListModule extends StatelessWidget {
   PetTopListModule({Key? key}) : super(key: key);
@@ -64,7 +65,7 @@ class PetTopListModule extends StatelessWidget {
                           homeController.petTopList[i].data.id,
                           homeController.petTopList[i].data.userid,
                           homeController.petTopList[i].data.categoryId,
-                        homeController.petTopList[i].name.name,
+                          homeController.petTopList[i].name.name,
                         ],
                       );
                     },
@@ -207,6 +208,8 @@ class PetTopListModule extends StatelessWidget {
                             right: 5,
                             child: GestureDetector(
                               onTap: () {
+                                // log(' usename is : ${homeController.petTopList[i].name.name}');
+
                                 //Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
                                 log('Follow Userid: ${homeController.petTopList[i].data.userid}');
                                 log('Follow Category id: ${homeController.petTopList[i].data.categoryId}');
@@ -927,7 +930,6 @@ class PetListModule extends StatelessWidget {
     final pickedFile = await ImagePicker().pickImage(
       source: ImageSource.gallery,
     );
-    Get.back();
 
     if (pickedFile != null) {
       //setState(() {
@@ -969,21 +971,21 @@ class PetListModule extends StatelessWidget {
     final pickedFile = await ImagePicker().pickImage(
       source: ImageSource.camera,
     );
-    Get.back();
+
     if (pickedFile != null) {
       //setState(() {
       controller.imageFile = File(pickedFile.path);
       controller.loadUI();
       log('Camera File Path : ${controller.imageFile}');
       log('Camera Image Path : ${controller.imageFile!.path}');
+      controller.imageFile = File(pickedFile.path);
+      controller.addUserStoryFunction();
 
       //Fluttertoast.showToast(msg: '${image.path}', toastLength: Toast.LENGTH_LONG);
       //renameImage();
       //});
     } else {}
 
-    controller.imageFile = File(pickedFile!.path);
-    controller.addUserStoryFunction();
     // setState(() {});
     // Get.back();
   }
@@ -1134,7 +1136,7 @@ class BannerModule extends StatelessWidget {
     return Column(
       children: [
         CarouselSlider.builder(
-          itemCount: controller.bannerList.length,
+          itemCount: controller.bannerList1.length,
           itemBuilder: (context, index, realIndex) {
             // final imgUrl = ApiUrl.apiImagePath +
             //     controller.bannerList[index].brandImage;
@@ -1158,39 +1160,50 @@ class BannerModule extends StatelessWidget {
   Widget _imageModule(int index) {
     return Stack(
       children: [
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            //color: Colors.grey,
-            image: DecorationImage(
-              image: NetworkImage(
-                  ApiUrl.apiImagePath + controller.bannerList[index].imagePath),
-              fit: BoxFit.fill,
+        GestureDetector(
+          onTap: () {
+            Get.to(() => ShopDetailsScreen(),
+                transition: Transition.zoom,
+                duration: const Duration(milliseconds: 500),
+                arguments: controller.bannerList1[index].id);
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              //color: Colors.grey,
+              image: DecorationImage(
+                image: NetworkImage(
+                  ApiUrl.apiImagePath +
+                      "asset/uploads/product/" +
+                      controller.bannerList1[index].img,
+                ),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),
-        Container(
-          padding: const EdgeInsets.only(left: 10),
-          alignment: Alignment.centerLeft,
-          child: Row(
-            children: [
-              Expanded(
-                flex: 1,
-                child: Text(
-                  controller.bannerList[index].title,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    color: AppColors.accentColor,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              Expanded(child: Container()),
-            ],
-          ),
-        ),
+        // Container(
+        //   padding: const EdgeInsets.only(left: 10),
+        //   alignment: Alignment.centerLeft,
+        //   child: Row(
+        //     children: [
+        //       Expanded(
+        //         flex: 1,
+        //         child: Text(
+        //           controller.bannerList[index].title,
+        //           maxLines: 2,
+        //           overflow: TextOverflow.ellipsis,
+        //           style: const TextStyle(
+        //             color: AppColors.accentColor,
+        //             fontSize: 24,
+        //             fontWeight: FontWeight.bold,
+        //           ),
+        //         ),
+        //       ),
+        //       Expanded(child: Container()),
+        //     ],
+        //   ),
+        // ),
       ],
     ).commonSymmetricPadding(horizontal: 20);
   }
@@ -1206,7 +1219,7 @@ class ImageBannerIndicator extends StatelessWidget {
       () => Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: List.generate(
-          controller.bannerList.length,
+          controller.bannerList1.length,
           (index) => Container(
             margin: const EdgeInsets.all(4),
             width: 10,

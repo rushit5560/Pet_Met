@@ -1387,6 +1387,111 @@ class InstagramTextFieldModule extends StatelessWidget {
   }
 }
 
+class GetVerifiedInfo extends StatelessWidget {
+  GetVerifiedInfo({Key? key}) : super(key: key);
+
+  final screenController = Get.find<NgoUserProfileScreenController>();
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        screenController.scaffoldKey.currentState!.showBottomSheet((context) {
+          return Container(
+            height: Get.size.height * 0.25,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: themeProvider.darkTheme
+                  ? AppColors.darkThemeColor
+                  : AppColors.whiteColor,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "To get verified submit below documents",
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.darkThemeColor,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  "1. Vet&Ngo Registration certificate",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.darkThemeColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  "2. Two pictures of your Vet&Ngo",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.darkThemeColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  "Mail it on : info@petomate.com",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.darkThemeColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
+      },
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            "Get verified now",
+            style: TextStyle(
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.darkThemeColor,
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          Icon(
+            Icons.verified_outlined,
+            size: 24,
+            color: themeProvider.darkTheme
+                ? AppColors.whiteColor
+                : AppColors.darkThemeColor,
+          )
+        ],
+      ),
+    );
+  }
+}
+
 class FacebookLinkTextFieldModule extends StatelessWidget {
   FacebookLinkTextFieldModule({Key? key}) : super(key: key);
 

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/user_profile_edit_controller.dart';
@@ -5,6 +7,7 @@ import 'package:pet_met/screens/user_categories_screen/user_categories_screen.da
 import 'package:pet_met/screens/user_profile_edit_screen/user_profile_edit_screen_widgets.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
+import 'package:pet_met/utils/user_details.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
@@ -42,6 +45,7 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
             //   height: controller.size.height * 0.3,
             //   width: controller.size.height * 0.3,
             //   topPad: controller.size.height * 0.45,
+
             //   rightPad: -controller.size.width * 0.15,
             // ),
             BackgroundImage(),
@@ -52,7 +56,7 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                       children: [
                         CustomAppBar(
                           appBarOption: AppBarOption.singleBackButtonOption,
-                          title: "Edit Profile",
+                          title: "User Profile",
                           trailingWidget: GestureDetector(
                             onTap: () {
                               modelBottomSheet(context);
@@ -179,8 +183,15 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                 controller.userProfileAvail == true
                     ? GestureDetector(
                         onTap: () async {
-                          await multipleAccountDialog(
-                              context, controller.userEmail.value, "1");
+                          if (UserDetails.userName ==
+                              controller.userName.value) {
+                            log("user storeed name is : " +
+                                UserDetails.userName);
+                            log("user name is : " + controller.userName.value);
+                          }
+
+                          // await multipleAccountDialog(
+                          //     context, controller.userEmail.value, "1");
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
@@ -607,8 +618,8 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
             horizontal: 15,
             vertical: 25,
           ),
-          height: controller.size.height * 0.35,
-          width: controller.size.width * 0.8,
+          height: controller.size.height * 0.25,
+          width: controller.size.width * 0.85,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -710,7 +721,17 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                 ),
               ),*/
 
-              const Text("Are you sure want to switch the account?"),
+              Text(
+                "Are you sure want to switch the account?",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: themeProvider.darkTheme
+                      ? AppColors.whiteColor
+                      : AppColors.darkThemeColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
               // const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

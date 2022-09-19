@@ -20,6 +20,8 @@ import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:story_view/controller/story_controller.dart';
 
+import '../models/home_screen_models/show_banner_model.dart';
+
 class HomeController extends GetxController {
   var activeIndex = 0.obs;
   RxBool isLoading = false.obs;
@@ -33,7 +35,9 @@ class HomeController extends GetxController {
   File? imageFile;
 
   RxBool isOpened = false.obs;
-  List<Datum> bannerList = [];
+  // List<Datum> bannerList = [];
+  List<SingleBannerModel> bannerList1 = [];
+
   List<PetDatum> petTopList = [];
   List<Userstory> imageList = [];
   List<GetUserStoryModelDatum> userStoryList = [];
@@ -50,18 +54,18 @@ class HomeController extends GetxController {
   int pageIndex = 1;
   // bool isLoadMore = false;
 
-  RxString userprofile= "".obs;
+  RxString userprofile = "".obs;
   String userName = "";
 
-  RxString shopProfile= "".obs;
+  RxString shopProfile = "".obs;
   String shopName = "";
   String shopDescription = "";
 
-  RxString ngoProfile= "".obs;
+  RxString ngoProfile = "".obs;
   String ngoName = "";
   String ngoDescription = "";
 
-  RxString trainerProfile= "".obs;
+  RxString trainerProfile = "".obs;
   String trainerName = "";
   String trainerDescription = "";
 
@@ -119,9 +123,30 @@ class HomeController extends GetxController {
       isSuccessStatus = bannerModel.success.obs;
 
       if (isSuccessStatus.value) {
-        bannerList.clear();
-        bannerList.addAll(bannerModel.data);
-        log("bannerList Length : ${bannerList.length}");
+        bannerList1.clear();
+        for (int i = 0; i < bannerModel.data.length; i++) {
+          if (bannerModel.data[i].image1 != "") {
+            bannerList1.add(SingleBannerModel(
+                img: bannerModel.data[i].image1, id: bannerModel.data[i].id));
+          }
+          if (bannerModel.data[i].image2 != "") {
+            bannerList1.add(SingleBannerModel(
+                img: bannerModel.data[i].image2, id: bannerModel.data[i].id));
+          }
+          if (bannerModel.data[i].image3 != "") {
+            bannerList1.add(SingleBannerModel(
+                img: bannerModel.data[i].image3, id: bannerModel.data[i].id));
+          }
+          if (bannerModel.data[i].image4 != "") {
+            bannerList1.add(SingleBannerModel(
+                img: bannerModel.data[i].image4, id: bannerModel.data[i].id));
+          }
+          if (bannerModel.data[i].image5 != "") {
+            bannerList1.add(SingleBannerModel(
+                img: bannerModel.data[i].image5, id: bannerModel.data[i].id));
+          }
+        }
+        // log("bannerList Length : ${bannerList.length}");
       } else {
         log("Banner Api Else");
       }
@@ -129,7 +154,7 @@ class HomeController extends GetxController {
       log("Banner Api Error ::: $e");
     } finally {
       // isLoading(false);
-        await getAllIncrementPetFunction();
+      await getAllIncrementPetFunction();
     }
   }
 
@@ -160,7 +185,7 @@ class HomeController extends GetxController {
   }*/
 
   /// Get All Pets
- /* Future<void> getAllPetFunction() async {
+  /* Future<void> getAllPetFunction() async {
     isLoading(true);
     String url = ApiUrl.topPetListApi + "?page=$pageIndex";
     log("All Pet Api Url : $url");
@@ -195,7 +220,7 @@ class HomeController extends GetxController {
   }*/
 
   Future<void> getAllIncrementPetFunction() async {
-    if(hasMore == true) {
+    if (hasMore == true) {
       String url = ApiUrl.topPetListApi + "?page=$pageIndex";
       log("All Pet Api Url : $url");
       log('pageIndex: $pageIndex');
@@ -204,23 +229,23 @@ class HomeController extends GetxController {
         Map<String, String> header = apiHeader.apiHeader();
         log("header : $header");
 
-        http.Response response = await http.get(
-            Uri.parse(url), headers: header);
+        http.Response response =
+            await http.get(Uri.parse(url), headers: header);
         log("Get All Pet Api response : ${response.body}");
 
         GetPetTopListModel getPetTopListModel =
-        GetPetTopListModel.fromJson(json.decode(response.body));
+            GetPetTopListModel.fromJson(json.decode(response.body));
         isSuccessStatus = getPetTopListModel.success.obs;
 
         if (isSuccessStatus.value) {
           // bannerList.clear();
           petTopList.addAll(getPetTopListModel.data);
           log("petList Length : ${petTopList.length}");
-           log('pet image1: ${ApiUrl.apiImagePath + "asset/uploads/petimage/" + petTopList[0].data.image}');
-          for(int i = 0 ; i < petTopList.length; i++){
+          log('pet image1: ${ApiUrl.apiImagePath + "asset/uploads/petimage/" + petTopList[0].data.image}');
+          for (int i = 0; i < petTopList.length; i++) {
             petTopFollowCategoryId = petTopList[i].data.categoryId;
           }
-          for(int i = 0 ; i < petTopList.length; i++){
+          for (int i = 0; i < petTopList.length; i++) {
             petTopFollowCategoryId = petTopList[i].data.categoryId;
           }
 
@@ -255,14 +280,14 @@ class HomeController extends GetxController {
       log("Get All USer Story Api response : ${response.body}");
 
       GetUserStoryModel getUserStoryModel =
-      GetUserStoryModel.fromJson(json.decode(response.body));
+          GetUserStoryModel.fromJson(json.decode(response.body));
       isSuccessStatus = getUserStoryModel.success.obs;
 
       if (isSuccessStatus.value) {
         userStoryList.clear();
 
-        for(int i = 0; i < getUserStoryModel.date.length; i++) {
-          if(getUserStoryModel.date[i].data.isNotEmpty) {
+        for (int i = 0; i < getUserStoryModel.date.length; i++) {
+          if (getUserStoryModel.date[i].data.isNotEmpty) {
             userStoryList.add(getUserStoryModel.date[i]);
           }
         }
@@ -288,8 +313,7 @@ class HomeController extends GetxController {
       } else {
         log("User Story Api Else");
       }
-
-    } catch(e) {
+    } catch (e) {
       log("Get All USer Story Api Error ::: $e");
     } finally {
       isLoading(false);
@@ -317,7 +341,8 @@ class HomeController extends GetxController {
 
         var length = await imageFile!.length();
 
-        request.files.add(await http.MultipartFile.fromPath("image", imageFile!.path));
+        request.files
+            .add(await http.MultipartFile.fromPath("image", imageFile!.path));
         //request.headers.addAll(header);
 
         request.fields['userid'] = UserDetails.selfId;
@@ -356,7 +381,7 @@ class HomeController extends GetxController {
         response.stream.transform(utf8.decoder).listen((value) async {
           log('value: $value');
           AddUserStoryModel addUserStoryModel =
-          AddUserStoryModel.fromJson(json.decode(value));
+              AddUserStoryModel.fromJson(json.decode(value));
           log('response1 :::::: ${addUserStoryModel.success}');
           isSuccessStatus = addUserStoryModel.success.obs;
 
@@ -382,7 +407,6 @@ class HomeController extends GetxController {
         request.fields['userid'] = "${UserDetails.selfId}";
         request.fields['categoryID'] = "${UserDetails.categoryId}";
 
-
         // var multiPart = http.MultipartFile(
         //   'file',
         //   stream,
@@ -401,7 +425,7 @@ class HomeController extends GetxController {
         response.stream.transform(utf8.decoder).listen((value) async {
           log('value: $value');
           AddUserStoryModel addUserStoryModel =
-          AddUserStoryModel.fromJson(json.decode(value));
+              AddUserStoryModel.fromJson(json.decode(value));
           log('response1 :::::: ${addUserStoryModel.success}');
           isSuccessStatus = addUserStoryModel.success.obs;
 
@@ -439,18 +463,21 @@ class HomeController extends GetxController {
       Map<String, String> header = apiHeader.apiHeader();
       log("header : $header");
 
-      http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
+      http.Response response =
+          await http.post(Uri.parse(url), body: data, headers: header);
       log("Get All Role Profile Api response : ${response.body}");
 
       GetUserProfileModel getUserProfileModel =
-      GetUserProfileModel.fromJson(json.decode(response.body));
+          GetUserProfileModel.fromJson(json.decode(response.body));
       isSuccessStatus = getUserProfileModel.success.obs;
 
       if (isSuccessStatus.value) {
         petList.clear();
         petList.addAll(getUserProfileModel.data.petdata);
 
-        userprofile.value = ApiUrl.apiImagePath + "asset/uploads/product/" + getUserProfileModel.data.data[0].image;
+        userprofile.value = ApiUrl.apiImagePath +
+            "asset/uploads/product/" +
+            getUserProfileModel.data.data[0].image;
         userName = getUserProfileModel.data.data[0].name;
         log('userprofile: $userprofile');
         // for(int i= 0; i < getPetListModel.data.petdata.length ; i++){
@@ -461,9 +488,7 @@ class HomeController extends GetxController {
       } else {
         log("Get All Role Profile Api Else");
       }
-
-
-    } catch(e) {
+    } catch (e) {
       log("All Role Profile Api Error ::: $e");
     } finally {
       //isLoading(false);
@@ -489,18 +514,20 @@ class HomeController extends GetxController {
       Map<String, String> header = apiHeader.apiHeader();
       log("header : $header");
 
-      http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
+      http.Response response =
+          await http.post(Uri.parse(url), body: data, headers: header);
       log("Get All Role Profile Api response : ${response.body}");
 
       GetShopProfileModel getShopProfileModel =
-      GetShopProfileModel.fromJson(json.decode(response.body));
+          GetShopProfileModel.fromJson(json.decode(response.body));
       isSuccessStatus = getShopProfileModel.success.obs;
 
       if (isSuccessStatus.value) {
         shopPetList.clear();
         shopPetList.addAll(getShopProfileModel.data.petdata);
 
-        shopProfile.value = ApiUrl.apiImagePath + getShopProfileModel.data.data[0].showimg;
+        shopProfile.value =
+            ApiUrl.apiImagePath + getShopProfileModel.data.data[0].showimg;
         shopName = getShopProfileModel.data.data[0].shopename;
         shopDescription = getShopProfileModel.data.data[0].fullText;
         log('shopProfile: $shopProfile');
@@ -514,9 +541,7 @@ class HomeController extends GetxController {
       } else {
         log("Get All Role Profile Api Else");
       }
-
-
-    } catch(e) {
+    } catch (e) {
       log("All Role Profile Api Error ::: $e");
     } finally {
       //isLoading(false);
@@ -542,18 +567,20 @@ class HomeController extends GetxController {
       Map<String, String> header = apiHeader.apiHeader();
       log("header : $header");
 
-      http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
+      http.Response response =
+          await http.post(Uri.parse(url), body: data, headers: header);
       log("Get All Role Profile Api response : ${response.body}");
 
       AllRoleProfileModel allRoleProfileModel =
-      AllRoleProfileModel.fromJson(json.decode(response.body));
+          AllRoleProfileModel.fromJson(json.decode(response.body));
       isSuccessStatus = allRoleProfileModel.success.obs;
 
       if (isSuccessStatus.value) {
         ngoPetList.clear();
         ngoPetList.addAll(allRoleProfileModel.data.petdata);
 
-        ngoProfile.value = ApiUrl.apiImagePath + allRoleProfileModel.data.data[0].image;
+        ngoProfile.value =
+            ApiUrl.apiImagePath + allRoleProfileModel.data.data[0].image;
         ngoName = allRoleProfileModel.data.data[0].name;
         ngoDescription = allRoleProfileModel.data.data[0].fullText;
 
@@ -566,9 +593,7 @@ class HomeController extends GetxController {
       } else {
         log("Get All Role Profile Api Else");
       }
-
-
-    } catch(e) {
+    } catch (e) {
       log("All Role Profile Api Error ::: $e");
     } finally {
       //isLoading(false);
@@ -594,18 +619,20 @@ class HomeController extends GetxController {
       Map<String, String> header = apiHeader.apiHeader();
       log("header : $header");
 
-      http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
+      http.Response response =
+          await http.post(Uri.parse(url), body: data, headers: header);
       log("Get All Role Profile Api response : ${response.body}");
 
       GetTrainersProfileModel getTrainersProfileModel =
-      GetTrainersProfileModel.fromJson(json.decode(response.body));
+          GetTrainersProfileModel.fromJson(json.decode(response.body));
       isSuccessStatus = getTrainersProfileModel.success.obs;
 
       if (isSuccessStatus.value) {
         trainerPetList.clear();
         trainerPetList.addAll(getTrainersProfileModel.data.petdata);
 
-        trainerProfile.value = ApiUrl.apiImagePath + getTrainersProfileModel.data.data[0].image;
+        trainerProfile.value =
+            ApiUrl.apiImagePath + getTrainersProfileModel.data.data[0].image;
         trainerName = getTrainersProfileModel.data.data[0].name;
         trainerDescription = getTrainersProfileModel.data.data[0].fullText;
 
@@ -618,9 +645,7 @@ class HomeController extends GetxController {
       } else {
         log("Get All Role Profile Api Else");
       }
-
-
-    } catch(e) {
+    } catch (e) {
       log("All Role Profile Api Error ::: $e");
     } finally {
       //isLoading(false);
@@ -637,20 +662,21 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
     //getAllBannerFunction();
-    if(UserDetails.categoryId == "1"){
+    if (UserDetails.categoryId == "1") {
       getUserProfileFunction();
-    } else if(UserDetails.categoryId == "2"){
+    } else if (UserDetails.categoryId == "2") {
       getShopProfileFunction();
-    } else if(UserDetails.categoryId == "3"){
+    } else if (UserDetails.categoryId == "3") {
       getNgoProfileFunction();
-    } else if(UserDetails.categoryId == "4"){
+    } else if (UserDetails.categoryId == "4") {
       getTrainerProfileFunction();
     }
 
     // getAllIncrementPetFunction();
 
     scrollController.addListener(() {
-      if(scrollController.position.maxScrollExtent == scrollController.offset) {
+      if (scrollController.position.maxScrollExtent ==
+          scrollController.offset) {
         //api call for more pet
         pageIndex++;
         log("pageIndex : $pageIndex");
@@ -663,7 +689,5 @@ class HomeController extends GetxController {
   void dispose() {
     storyController.dispose();
     super.dispose();
-
   }
 }
-

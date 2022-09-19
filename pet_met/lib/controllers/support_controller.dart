@@ -45,16 +45,18 @@ class SupportController extends GetxController {
       if (isSuccessStatus.value) {
         supportData = supportModel.data;
         for (int i = 0; i < supportData.length; i++) {
-          featuredImage = supportData[i].featuredimageparth!;
+          featuredImage = supportData[i].featuredimagepath!;
           title = supportData[i].title!;
           content = supportData[i].content!;
         }
-        log("supportData : $supportData");
+        log("supportData : $content");
       } else {
         log("Support Function Else");
       }
     } catch (e) {
       log("Support Function Api Error ::: $e");
+
+      rethrow;
     } finally {
       isLoading(false);
     }

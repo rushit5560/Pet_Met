@@ -1945,6 +1945,109 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
   }
 }
 
+class GetVerifiedInfo extends StatelessWidget {
+  GetVerifiedInfo({Key? key}) : super(key: key);
+
+  final screenController = Get.find<ShopUserProfileScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        screenController.scaffoldKey.currentState!.showBottomSheet((context) {
+          return Container(
+            height: Get.size.height * 0.25,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: themeProvider.darkTheme
+                  ? AppColors.darkThemeColor
+                  : AppColors.whiteColor,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "To get verified submit below documents",
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.darkThemeColor,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 20),
+                Text(
+                  "1. Shop Registration certificate",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.darkThemeColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                SizedBox(height: 8),
+                Text(
+                  "2. Two pictures of your shop",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.darkThemeColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  "Mail it on : info@petomate.com",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.darkThemeColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
+      },
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            "Get verified now",
+            style: TextStyle(
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.darkThemeColor,
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          Icon(
+            Icons.verified_outlined,
+            size: 24,
+            color: themeProvider.darkTheme
+                ? AppColors.whiteColor
+                : AppColors.darkThemeColor,
+          )
+        ],
+      ),
+    );
+  }
+}
+
 class SubmitButtonModule extends StatelessWidget {
   SubmitButtonModule({Key? key}) : super(key: key);
 
@@ -1960,63 +2063,7 @@ class SubmitButtonModule extends StatelessWidget {
           } else if (screenController.selectedCloseTime!.value.isEmpty) {
             Fluttertoast.showToast(msg: 'Please shop select close time');
           } else {
-            // await screenController.updateShopProfileFunction();
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                backgroundColor: themeProvider.darkTheme
-                    ? AppColors.darkThemeColor
-                    : AppColors.whiteColor,
-                content: Text(
-                  "To verify your account follow this steps.",
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: themeProvider.darkTheme
-                        ? AppColors.whiteColor
-                        : AppColors.darkThemeColor,
-                  ),
-                ),
-                action: SnackBarAction(
-                    label: "View",
-                    onPressed: () {
-                      screenController.scaffoldKey.currentState!
-                          .showBottomSheet((context) {
-                        return Container(
-                          height: Get.size.height * 0.2,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: themeProvider.darkTheme
-                                ? AppColors.darkThemeColor
-                                : AppColors.whiteColor,
-                          ),
-                          child: Column(
-                            children: [
-                              Text(
-                                "please verify your account with below details ",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: themeProvider.darkTheme
-                                      ? AppColors.whiteColor
-                                      : AppColors.darkThemeColor,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              Text(
-                                "send mailto : info@petomate.com",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: themeProvider.darkTheme
-                                      ? AppColors.whiteColor
-                                      : AppColors.darkThemeColor,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
-                        );
-                      });
-                    }),
-              ),
-            );
+            await screenController.updateShopProfileFunction();
           }
         }
         // controller.submitLoginForm();
@@ -2041,6 +2088,51 @@ class SubmitButtonModule extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class ShopUpiTextFieldModule extends StatelessWidget {
+  ShopUpiTextFieldModule({Key? key}) : super(key: key);
+  final screenController = Get.find<ShopUserProfileScreenController>();
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text.rich(
+              TextSpan(
+                text: 'GPay UPI ',
+                style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                // children: const <InlineSpan>[
+                //   TextSpan(
+                //     text: '*',
+                //     style: TextStyle(
+                //         fontSize: 20,
+                //         fontWeight: FontWeight.bold,
+                //         color: Colors.red),
+                //   )
+                // ]
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          readOnly: false,
+          fieldController: screenController.gPayController,
+          height: screenController.size.height * 0.05,
+          width: double.infinity,
+          hintText: "GPay UPI",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.text,
+          // validator: (val) => Validations().validateFacebookLink(val!),
+        ),
+      ],
     );
   }
 }

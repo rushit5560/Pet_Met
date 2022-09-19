@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/trainers_and_users_screen_controller.dart';
@@ -9,6 +11,7 @@ import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/enums.dart';
+import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/validations.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -37,7 +40,7 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                 // BackArrow(),
                 CustomAppBar(
                   appBarOption: AppBarOption.singleBackButtonOption,
-                  // title: "Profile Edit",
+                  title: "Trainer Profile",
                   trailingWidget: GestureDetector(
                     onTap: () {
                       modelBottomSheet(context);
@@ -102,7 +105,11 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                                     const SizedBox(height: 15),
                                     IsActiveTextFieldModule(),
                                     const SizedBox(height: 15),
+                                    TrainerUpiTextFieldModule(),
+                                    const SizedBox(height: 15),
                                     OpenAndCloseShopTimeModule(),
+                                    const SizedBox(height: 20),
+                                    GetVerifiedInfo(),
                                     const SizedBox(height: 30),
 
                                     SubmitButtonModule(),
@@ -131,6 +138,7 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
           color: themeProvider.darkTheme
               ? AppColors.blackTextColor
               : AppColors.whiteColor,
+          padding: const EdgeInsets.all(5.0),
           //height: controller.size.height * 0.15,
 
           child: SingleChildScrollView(
@@ -424,8 +432,16 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                 controller.trainerProfileAvail == true
                     ? GestureDetector(
                         onTap: () async {
-                          await multipleAccountDialog(
-                              context, controller.trainerEmail.value, "4");
+                          if (UserDetails.userName ==
+                              controller.trainerName.value) {
+                            log("trainer storeed name is : " +
+                                UserDetails.userName);
+                            log("trainer name is : " +
+                                controller.trainerName.value);
+                          }
+
+                          // await multipleAccountDialog(
+                          //     context, controller.trainerEmail.value, "4");
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -568,8 +584,8 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
             horizontal: 18,
             vertical: 20,
           ),
-          height: controller.size.height * 0.24,
-          width: controller.size.width * 0.8,
+          height: controller.size.height * 0.25,
+          width: controller.size.width * 0.85,
           child: Form(
             key: controller.loginPasswordForm,
             child: Column(
@@ -679,11 +695,11 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                   "Are you sure want to switch the account ?",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontWeight: FontWeight.w500,
                     color: themeProvider.darkTheme
                         ? AppColors.whiteColor
-                        : AppColors.blackTextColor,
-                    fontSize: 17,
+                        : AppColors.darkThemeColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 Row(
@@ -742,7 +758,7 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          "Close",
+                          "No",
                           style: TextStyle(
                             color: themeProvider.darkTheme
                                 ? AppColors.darkThemeBoxColor

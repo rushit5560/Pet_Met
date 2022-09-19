@@ -26,8 +26,8 @@ class ApiUrl {
 
   // Cms
   static const privacyPolicyApi = apiMainPath + "/cms/2";
-  static const petCareApi = apiMainPath + "/cms/5";
-  static const supportApi = apiMainPath + "/cms/4";
+  static const petCareApi = apiMainPath + "/cms/1";
+  static const supportApi = apiMainPath + "/cms/0";
   static const aboutApi = apiMainPath + "/cms/3";
 
   // Address Management

@@ -31,6 +31,7 @@ class NgoUserProfileScreenController extends GetxController {
   File? ngoPictureFile5;
   String? ngoImage5;
 
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   String ngoApiProfile = "";
   String ngoApiPicture1 = "";
@@ -38,7 +39,6 @@ class NgoUserProfileScreenController extends GetxController {
   String ngoApiPicture3 = "";
   String ngoApiPicture4 = "";
   String ngoApiPicture5 = "";
-
 
   bool userProfileAvail = false;
   bool shopProfileAvail = false;
@@ -87,8 +87,9 @@ class NgoUserProfileScreenController extends GetxController {
   RxString? selectedCloseTime = "".obs;
 
   /// Get All Role Profile
-  Future<void> getAllRoleProfileFunction({ProfileChangeOption profileChangeOption =
-      ProfileChangeOption.stay}) async {
+  Future<void> getAllRoleProfileFunction(
+      {ProfileChangeOption profileChangeOption =
+          ProfileChangeOption.stay}) async {
     isLoading(true);
     //birthDate = day + "-" + month + "-" + year;
     String url = ApiUrl.allRoleGetProfileApi;
@@ -132,11 +133,21 @@ class NgoUserProfileScreenController extends GetxController {
         addressController.text = allRoleProfileModel.data.data[0].address;
         contactController.text = allRoleProfileModel.data.data[0].phone;
         ngoProfile = allRoleProfileModel.data.data[0].image;
-        ngoImage1 = ApiUrl.apiImagePath + "asset/uploads/product/" + allRoleProfileModel.data.data[0].image1;
-        ngoImage2 = ApiUrl.apiImagePath + "asset/uploads/product/" + allRoleProfileModel.data.data[0].image2;
-        ngoImage3 = ApiUrl.apiImagePath + "asset/uploads/product/" + allRoleProfileModel.data.data[0].image3;
-        ngoImage4 = ApiUrl.apiImagePath + "asset/uploads/product/" + allRoleProfileModel.data.data[0].image4;
-        ngoImage5 = ApiUrl.apiImagePath + "asset/uploads/product/" + allRoleProfileModel.data.data[0].image5;
+        ngoImage1 = ApiUrl.apiImagePath +
+            "asset/uploads/product/" +
+            allRoleProfileModel.data.data[0].image1;
+        ngoImage2 = ApiUrl.apiImagePath +
+            "asset/uploads/product/" +
+            allRoleProfileModel.data.data[0].image2;
+        ngoImage3 = ApiUrl.apiImagePath +
+            "asset/uploads/product/" +
+            allRoleProfileModel.data.data[0].image3;
+        ngoImage4 = ApiUrl.apiImagePath +
+            "asset/uploads/product/" +
+            allRoleProfileModel.data.data[0].image4;
+        ngoImage5 = ApiUrl.apiImagePath +
+            "asset/uploads/product/" +
+            allRoleProfileModel.data.data[0].image5;
 
         ngoApiPicture1 = allRoleProfileModel.data.data[0].image1;
         ngoApiPicture2 = allRoleProfileModel.data.data[0].image2;
@@ -145,9 +156,9 @@ class NgoUserProfileScreenController extends GetxController {
         ngoApiPicture5 = allRoleProfileModel.data.data[0].image5;
 
         // ngoApiProfile
-        if(allRoleProfileModel.data.data[0].image != "") {
-          List<String> profileSplitImageList = allRoleProfileModel.data.data[0]
-              .image.split('/');
+        if (allRoleProfileModel.data.data[0].image != "") {
+          List<String> profileSplitImageList =
+              allRoleProfileModel.data.data[0].image.split('/');
           for (int i = 0; i < profileSplitImageList.length; i++) {
             log("profileSplitImageList : ${profileSplitImageList[i]}");
           }
@@ -161,20 +172,20 @@ class NgoUserProfileScreenController extends GetxController {
           ngoActiveStatusValue.value = "Inactive";
         }
 
-
         await userPreference.setUserDetails(
           selfId: UserDetails.selfId,
           userId: UserDetails.selfId,
           userName: allRoleProfileModel.data.data[0].name,
           userEmail: allRoleProfileModel.data.data[0].email,
-          userProfileImage: ApiUrl.apiImagePath + allRoleProfileModel.data.data[0].image,
+          userProfileImage:
+              ApiUrl.apiImagePath + allRoleProfileModel.data.data[0].image,
           token: "",
           roleId: UserDetails.categoryId,
           shopName: "",
           shopProfile: "",
         );
 
-        if(profileChangeOption == ProfileChangeOption.back) {
+        if (profileChangeOption == ProfileChangeOption.back) {
           Get.back();
         }
 
@@ -216,40 +227,42 @@ class NgoUserProfileScreenController extends GetxController {
       log('isSuccessStatus: $isSuccessStatus');
 
       if (isSuccessStatus.value) {
-
-        userProfileAvail = multiAccountUserModel.data.user.categoryID == "" ? false : true;
-        shopProfileAvail = multiAccountUserModel.data.shop.categoryID == "" ? false : true;
-        vetNgoProfileAvail = multiAccountUserModel.data.vetNgo.categoryID == "" ? false : true;
-        trainerProfileAvail = multiAccountUserModel.data.trainer.categoryID == "" ? false : true;
+        userProfileAvail =
+            multiAccountUserModel.data.user.categoryID == "" ? false : true;
+        shopProfileAvail =
+            multiAccountUserModel.data.shop.categoryID == "" ? false : true;
+        vetNgoProfileAvail =
+            multiAccountUserModel.data.vetNgo.categoryID == "" ? false : true;
+        trainerProfileAvail =
+            multiAccountUserModel.data.trainer.categoryID == "" ? false : true;
 
         // bool userAvail = multiAccountUserModel.data.user.isEmpty ? false : true;
         // if(userAvail == true) {
         //   userProfile = true;
-          userEmail.value = multiAccountUserModel.data.user.email;
-          userName.value = multiAccountUserModel.data.user.name;
+        userEmail.value = multiAccountUserModel.data.user.email;
+        userName.value = multiAccountUserModel.data.user.name;
         // }
         //
         // bool shopAvail = multiAccountUserModel.data.shope.isEmpty ? false : true;
         // if(shopAvail == true) {
         //   shopProfile = true;
-           shopEmail.value = "${multiAccountUserModel.data.shop.email}";
-           shopName.value = "${multiAccountUserModel.data.shop.name}";
+        shopEmail.value = "${multiAccountUserModel.data.shop.email}";
+        shopName.value = "${multiAccountUserModel.data.shop.name}";
         // }
         //
         // bool vetNgoAvail = multiAccountUserModel.data.vetNgo.isEmpty ? false : true;
         // if(vetNgoAvail == true) {
         //   vetNgoProfile = true;
-           ngoEmail.value = multiAccountUserModel.data.vetNgo.email;
-           ngoName.value = multiAccountUserModel.data.vetNgo.name;
+        ngoEmail.value = multiAccountUserModel.data.vetNgo.email;
+        ngoName.value = multiAccountUserModel.data.vetNgo.name;
         // }
         //
         // bool trainerAvail = multiAccountUserModel.data.trainer.isEmpty ? false : true;
         // if(trainerAvail == true) {
         //   trainerProfile = true;
-           trainerEmail.value = "${multiAccountUserModel.data.trainer.email}";
-           trainerName.value = "${multiAccountUserModel.data.trainer.name}";
+        trainerEmail.value = "${multiAccountUserModel.data.trainer.email}";
+        trainerName.value = "${multiAccountUserModel.data.trainer.name}";
         // }
-
 
       } else {
         log("Get Multi Account Api Else");
@@ -311,7 +324,8 @@ class NgoUserProfileScreenController extends GetxController {
     }
   }*/
 
-  Future<void> userMultipleAccountLoginFunction({required String email, required categoryId}) async {
+  Future<void> userMultipleAccountLoginFunction(
+      {required String email, required categoryId}) async {
     isLoading(true);
     String url = ApiUrl.multipleAccountLoginApi;
     log('Login Api Url : $url');
@@ -382,7 +396,8 @@ class NgoUserProfileScreenController extends GetxController {
         var stream = http.ByteStream(imageFile!.openRead());
         stream.cast();
         var length = await imageFile!.length();
-        request.files.add(await http.MultipartFile.fromPath("image", imageFile!.path));
+        request.files
+            .add(await http.MultipartFile.fromPath("image", imageFile!.path));
         var multiPart = http.MultipartFile('image', stream, length);
         request.files.add(multiPart);
       } else if (imageFile == null) {
@@ -398,7 +413,7 @@ class NgoUserProfileScreenController extends GetxController {
             await http.MultipartFile.fromPath("image1", ngoPictureFile1!.path));
         var multiPart1 = http.MultipartFile('image1', stream1, length1);
         request.files.add(multiPart1);
-      }  else if (ngoPictureFile1 == null) {
+      } else if (ngoPictureFile1 == null) {
         request.fields['oldimage1'] = ngoApiPicture1;
       }
 
@@ -450,11 +465,9 @@ class NgoUserProfileScreenController extends GetxController {
             await http.MultipartFile.fromPath("image5", ngoPictureFile5!.path));
         var multiPart5 = http.MultipartFile('image5', stream5, length5);
         request.files.add(multiPart5);
-      } else  if (ngoPictureFile5 == null) {
+      } else if (ngoPictureFile5 == null) {
         request.fields['oldimage5'] = ngoApiPicture5;
       }
-
-
 
       request.fields['name'] = nameController.text.trim();
       request.fields['address'] = addressController.text.trim();
@@ -470,22 +483,24 @@ class NgoUserProfileScreenController extends GetxController {
       request.fields['userid'] = UserDetails.userId;
       request.fields['uid'] = UserDetails.selfId;
 
-
       var response = await request.send();
       log('request.files: ${request.files}');
       log('request.fields: ${request.fields}');
 
       response.stream.transform(utf8.decoder).listen((value) async {
-        VetAndNgoUpdateProfileModel vetAndNgoUpdateProfileModel = VetAndNgoUpdateProfileModel.fromJson(json.decode(value));
+        VetAndNgoUpdateProfileModel vetAndNgoUpdateProfileModel =
+            VetAndNgoUpdateProfileModel.fromJson(json.decode(value));
         log('response1 :::::: ${vetAndNgoUpdateProfileModel.success}');
         isSuccessStatus = vetAndNgoUpdateProfileModel.success.obs;
 
         if (isSuccessStatus.value) {
-
-          if(vetAndNgoUpdateProfileModel.message.contains("vet & ngo profile update successfully.")){
-            Fluttertoast.showToast(msg: "Vet & Ngo profile update successfully.");
+          if (vetAndNgoUpdateProfileModel.message
+              .contains("vet & ngo profile update successfully.")) {
+            Fluttertoast.showToast(
+                msg: "Vet & Ngo profile update successfully.");
           }
-          await getAllRoleProfileFunction(profileChangeOption: ProfileChangeOption.back);
+          await getAllRoleProfileFunction(
+              profileChangeOption: ProfileChangeOption.back);
         } else {
           log('False False');
         }

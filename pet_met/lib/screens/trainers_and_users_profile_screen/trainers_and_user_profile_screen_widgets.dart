@@ -1462,6 +1462,154 @@ class IsActiveTextFieldModule extends StatelessWidget {
   }
 }
 
+class TrainerUpiTextFieldModule extends StatelessWidget {
+  TrainerUpiTextFieldModule({Key? key}) : super(key: key);
+  final screenController = Get.find<TrainersAndUsersScreenController>();
+  DarkThemeProvider themeProvider =
+  Provider.of<DarkThemeProvider>(Get.context!);
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text.rich(TextSpan(
+              text: 'GPay UPI ',
+              style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+              // children: const <InlineSpan>[
+              //   TextSpan(
+              //     text: '*',
+              //     style: TextStyle(
+              //         fontSize: 20,
+              //         fontWeight: FontWeight.bold,
+              //         color: Colors.red),
+              //   )
+              // ]
+            ),
+            ),
+          ],
+        ),
+ const SizedBox(height: 8),
+        CustomLightTextField(
+          readOnly: false,
+          fieldController: screenController.gPayController,
+          height: screenController.size.height * 0.05,
+          width: double.infinity,
+          hintText: "GPay UPI",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.text,
+          // validator: (val) => Validations().validateFacebookLink(val!),
+        ),
+      ],
+    );
+  }
+}
+
+class GetVerifiedInfo extends StatelessWidget {
+  GetVerifiedInfo({Key? key}) : super(key: key);
+
+  final screenController = Get.find<TrainersAndUsersScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    DarkThemeProvider themeProvider = Provider.of<DarkThemeProvider>(context);
+    return GestureDetector(
+      onTap: () {
+        screenController.scaffoldKey.currentState!.showBottomSheet((context) {
+          return Container(
+            height: Get.size.height * 0.25,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: themeProvider.darkTheme
+                  ? AppColors.darkThemeColor
+                  : AppColors.whiteColor,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "To get verified submit below documents",
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.darkThemeColor,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  "1. Trainer Registration certificate",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.darkThemeColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  "2. Two pictures of Trainer",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.darkThemeColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  "Mail it on : info@petomate.com",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.darkThemeColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
+      },
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            "Get verified now",
+            style: TextStyle(
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.darkThemeColor,
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          Icon(
+            Icons.verified_outlined,
+            size: 24,
+            color: themeProvider.darkTheme
+                ? AppColors.whiteColor
+                : AppColors.darkThemeColor,
+          )
+        ],
+      ),
+    );
+  }
+}
+
 class OpenAndCloseShopTimeModule extends StatelessWidget {
   OpenAndCloseShopTimeModule({Key? key}) : super(key: key);
 

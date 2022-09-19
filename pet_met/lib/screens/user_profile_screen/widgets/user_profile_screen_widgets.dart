@@ -227,64 +227,73 @@ class ProfileDetailsModule extends StatelessWidget {
               ),
             ],
           ),*/
-          Obx(
-            () => GestureDetector(
-              onTap: () async {
-                log("Usertype stored category id is : ${UserDetails.categoryId}");
-                log("User get user categoryid is : ${controller.userCategoryId}");
 
-                log("User stored selfid is : ${UserDetails.selfId}");
-                log("User get selfid is : ${controller.followUserId}");
+          // if (UserDetails.categoryId == controller.userCategoryId)
+          //   if (UserDetails.selfId == controller.followUserId)
+          //     Container()
+          //   else
 
-                if (UserDetails.categoryId == controller.userCategoryId) {
-                  if (UserDetails.selfId == controller.followUserId) {
-                    log("users are same");
+          if (UserDetails.selfId == controller.followUserId)
+            const SizedBox()
+          else
+            Obx(
+              () => GestureDetector(
+                onTap: () async {
+                  log("Usertype stored category id is : ${UserDetails.categoryId}");
+                  log("User get user categoryid is : ${controller.userCategoryId}");
 
-                    Fluttertoast.showToast(msg: "User can't follow itself.");
+                  log("User stored selfid is : ${UserDetails.selfId}");
+                  log("User get selfid is : ${controller.followUserId}");
+
+                  if (UserDetails.categoryId == controller.userCategoryId) {
+                    if (UserDetails.selfId == controller.followUserId) {
+                      log("users are same");
+
+                      Fluttertoast.showToast(msg: "User can't follow itself.");
+                    } else {
+                      log("Follow Status: ${controller.status.value}");
+                      controller.status.value == true
+                          ? await controller.followUserFunction()
+                          : await controller.unfollowUserFunction();
+                    }
                   } else {
                     log("Follow Status: ${controller.status.value}");
                     controller.status.value == true
                         ? await controller.followUserFunction()
                         : await controller.unfollowUserFunction();
                   }
-                } else {
-                  log("Follow Status: ${controller.status.value}");
-                  controller.status.value == true
-                      ? await controller.followUserFunction()
-                      : await controller.unfollowUserFunction();
-                }
-                // if(controller.message.contains('this user not follow')){
-                //   /// Follow
-                //   await controller.followUserFunction();
-                // }else if(controller.message.contains('user is allready follow')){
-                //   /// Unfollow
-                //   await controller.unfollowUserFunction();
-                // }
-                // await controller.followStatus();
-              },
-              child: Container(
-                // height: 35,
-                // width: 72,
-                decoration: BoxDecoration(
-                  color: AppColors.accentColor.withOpacity(0.3),
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(12),
+                  // if(controller.message.contains('this user not follow')){
+                  //   /// Follow
+                  //   await controller.followUserFunction();
+                  // }else if(controller.message.contains('user is allready follow')){
+                  //   /// Unfollow
+                  //   await controller.unfollowUserFunction();
+                  // }
+                  // await controller.followStatus();
+                },
+                child: Container(
+                  // height: 35,
+                  // width: 72,
+                  decoration: BoxDecoration(
+                    color: AppColors.accentColor.withOpacity(0.3),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(12),
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    controller.status.value == true ? "Follow" : "Unfollow",
-                    style: TextStyle(
-                      color: AppColors.accentTextColor,
-                      fontSize: 13.sp,
-                      fontWeight: FontWeight.bold,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      controller.status.value == true ? "Follow" : "Unfollow",
+                      style: TextStyle(
+                        color: AppColors.accentTextColor,
+                        fontSize: 13.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          )
         ],
       ),
     );

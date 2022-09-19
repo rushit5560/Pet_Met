@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/shop_user_profile_screen_controller.dart';
@@ -13,6 +15,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../services/providers/dark_theme_provider.dart';
+import '../../utils/user_details.dart';
 
 class ShopUserProfileScreen extends StatelessWidget {
   ShopUserProfileScreen({Key? key}) : super(key: key);
@@ -78,7 +81,12 @@ class ShopUserProfileScreen extends StatelessWidget {
                                     // const SizedBox(height: 15),
                                     // FacebookLinkTextFieldModule(),
                                     const SizedBox(height: 15),
+                                    ShopUpiTextFieldModule(),
+                                    const SizedBox(height: 15),
+                                    // const SizedBox(height: 15),
                                     OpenAndCloseShopTimeModule(),
+                                    const SizedBox(height: 20),
+                                    GetVerifiedInfo(),
                                     const SizedBox(height: 30),
                                     SubmitButtonModule(),
                                     const SizedBox(height: 15),
@@ -211,8 +219,15 @@ class ShopUserProfileScreen extends StatelessWidget {
                 controller.shopProfileAvail == true
                     ? GestureDetector(
                         onTap: () async {
-                          await multipleAccountDialog(
-                              context, controller.shopEmail.value, "2");
+                          if (UserDetails.userName ==
+                              controller.shopName.value) {
+                            log("shop storeed name is : " +
+                                UserDetails.userName);
+                            log("shop name is : " + controller.shopName.value);
+                          }
+
+                          // await multipleAccountDialog(
+                          //     context, controller.shopEmail.value, "2");
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -543,8 +558,8 @@ class ShopUserProfileScreen extends StatelessWidget {
             horizontal: 15,
             vertical: 25,
           ),
-          height: controller.size.height * 0.35,
-          width: controller.size.width * 0.8,
+          height: controller.size.height * 0.25,
+          width: controller.size.width * 0.85,
           child: Form(
             key: controller.loginFormKey,
             child: Column(
@@ -648,7 +663,17 @@ class ShopUserProfileScreen extends StatelessWidget {
                     ],
                   ),
                 ),*/
-                Text("Are you sure want to switch the account?"),
+                Text(
+                  "Are you sure want to switch the account?",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.darkThemeColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
                 // const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -675,7 +700,7 @@ class ShopUserProfileScreen extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          "Submit",
+                          "Yes",
                           style: TextStyle(
                             color: AppColors.whiteColor,
                             fontSize: 12.sp,
@@ -703,7 +728,7 @@ class ShopUserProfileScreen extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          "Cancel",
+                          "No",
                           style: TextStyle(
                             color: themeProvider.darkTheme
                                 ? AppColors.darkThemeBoxColor

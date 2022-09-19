@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/ngo_user_profile_screen_controller.dart';
@@ -14,6 +16,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../services/providers/dark_theme_provider.dart';
+import '../../utils/user_details.dart';
 
 class NgoUserProfileScreen extends StatelessWidget {
   NgoUserProfileScreen({Key? key}) : super(key: key);
@@ -29,6 +32,7 @@ class NgoUserProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: controller.scaffoldKey,
         body: Stack(
           children: [
             BackgroundImage(),
@@ -115,6 +119,8 @@ class NgoUserProfileScreen extends StatelessWidget {
                                     // const SizedBox(height: 15),
                                     // OpenAndCloseShopTimeModule(),
 
+                                    const SizedBox(height: 20),
+                                    GetVerifiedInfo(),
                                     const SizedBox(height: 30),
 
                                     SubmitButtonModule(),
@@ -340,8 +346,14 @@ class NgoUserProfileScreen extends StatelessWidget {
                 controller.vetNgoProfileAvail == true
                     ? GestureDetector(
                         onTap: () async {
-                          await multipleAccountDialog(
-                              context, controller.ngoEmail.value, "3");
+                          if (UserDetails.userName ==
+                              controller.ngoName.value) {
+                            log("ngo storeed name is : " +
+                                UserDetails.userName);
+                            log("ngo name is : " + controller.ngoName.value);
+                          }
+                          // await multipleAccountDialog(
+                          //     context, controller.ngoEmail.value, "3");
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -533,6 +545,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                         controller.trainerProfileAvail == false
                     ? GestureDetector(
                         onTap: () {
+                          Get.back();
                           Get.to(() => const UserCategoriesScreen());
                         },
                         child: Container(
@@ -588,8 +601,8 @@ class NgoUserProfileScreen extends StatelessWidget {
             horizontal: 15,
             vertical: 25,
           ),
-          height: controller.size.height * 0.35,
-          width: controller.size.width * 0.8,
+          height: controller.size.height * 0.25,
+          width: controller.size.width * 0.85,
           child: Form(
             key: controller.loginPasswordForm,
             child: Column(
@@ -693,7 +706,17 @@ class NgoUserProfileScreen extends StatelessWidget {
                   ),
                 ),*/
 
-                Text("Are you sure want to switch the account?"),
+                Text(
+                  "Are you sure want to switch the account?",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.darkThemeColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -718,7 +741,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          "Submit",
+                          "yes",
                           style: TextStyle(
                             color: AppColors.whiteColor,
                             fontSize: 12.sp,
@@ -749,7 +772,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          "Cancel",
+                          "No",
                           style: TextStyle(
                             color: themeProvider.darkTheme
                                 ? AppColors.darkThemeBoxColor

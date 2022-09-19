@@ -35,7 +35,6 @@ class LoginController extends GetxController {
 
   final fb = FacebookLogin();
 
-
   Future<void> submitLoginForm() async {
     if (formKey.currentState!.validate()) {
       try {
@@ -84,26 +83,30 @@ class LoginController extends GetxController {
         passController.clear();
         //await userPreference.setRoleId(roleId);
         // Going to Index Screen
-        Get.to(() => IndexScreen(),
-            transition: Transition.native,
-            duration: const Duration(milliseconds: 500));
+        Get.offAll(
+          () => IndexScreen(),
+          transition: Transition.native,
+          duration: const Duration(milliseconds: 500),
+        );
       } else {
         //Fluttertoast.showToast(msg: loginModel.error);
-        if(loginModel.error.contains('password don\'t match')){
+        if (loginModel.error.contains('password don\'t match')) {
           Fluttertoast.showToast(msg: "Invalid password");
         }
-        if(loginModel.error.contains('Email don\'t match')){
+        if (loginModel.error.contains('Email don\'t match')) {
           Fluttertoast.showToast(msg: "Invalid email");
         }
-        
-        if(loginModel.messege.contains('User account is deleted')) {
+
+        if (loginModel.messege.contains('User account is deleted')) {
           Fluttertoast.showToast(msg: loginModel.messege);
         }
-        if(loginModel.messege.contains("This user is unauthorized")) {
-          Fluttertoast.showToast(msg: "This user is unauthorized for selected category! Please try again");
+        if (loginModel.messege.contains("This user is unauthorized")) {
+          Fluttertoast.showToast(
+              msg:
+                  "This user is unauthorized for selected category! Please try again");
         }
 
-       //
+        //
       }
     } catch (e) {
       log('User Login Api Error ::: $e');
@@ -118,10 +121,11 @@ class LoginController extends GetxController {
     final FirebaseAuth auth = FirebaseAuth.instance;
     final GoogleSignIn googleSignIn = GoogleSignIn();
     googleSignIn.signOut();
-    final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
+    final GoogleSignInAccount? googleSignInAccount =
+        await googleSignIn.signIn();
     if (googleSignInAccount != null) {
       final GoogleSignInAuthentication googleSignInAuthentication =
-      await googleSignInAccount.authentication;
+          await googleSignInAccount.authentication;
       final AuthCredential authCredential = GoogleAuthProvider.credential(
           idToken: googleSignInAuthentication.idToken,
           accessToken: googleSignInAuthentication.accessToken);
@@ -167,9 +171,9 @@ class LoginController extends GetxController {
     // Check result status
     switch (res.status) {
       case FacebookLoginStatus.success:
-      // Logged in
+        // Logged in
 
-      // Send access token to server for validation and auth
+        // Send access token to server for validation and auth
         final FacebookAccessToken accessToken = res.accessToken!;
         log('Access token: ${accessToken.token}');
 
@@ -184,7 +188,7 @@ class LoginController extends GetxController {
         // Get email (since we request email permission)
         final email = await fb.getUserEmail();
         // But user can decline permission
-        if (email != null){
+        if (email != null) {
           log('And your email is $email');
           mailController.text = email;
           passController.text = "12345678";
@@ -192,13 +196,12 @@ class LoginController extends GetxController {
           await userLoginFunction();
         }
 
-
         break;
       case FacebookLoginStatus.cancel:
-      // User cancel log in
+        // User cancel log in
         break;
       case FacebookLoginStatus.error:
-      // Log in failed
+        // Log in failed
         print('Error while log in: ${res.error}');
         break;
     }
@@ -212,8 +215,6 @@ class LoginController extends GetxController {
     );
 
     await subPartOfFacebookLogin();*/
-
-
   }
 
   /*subPartOfFacebookLogin() async {

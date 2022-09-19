@@ -206,6 +206,7 @@ class _UploadImageModuleState extends State<UploadImageModule> {
       controller.loadUI();
       log('Camera File Path : ${controller.imageFile}');
       log('Camera Image Path : ${controller.imageFile!.path}');
+      Get.back();
 
       //Fluttertoast.showToast(msg: '${image.path}', toastLength: Toast.LENGTH_LONG);
       //renameImage();
@@ -214,8 +215,6 @@ class _UploadImageModuleState extends State<UploadImageModule> {
 
     controller.imageFile = File(pickedFile!.path);
     setState(() {});
-
-    Get.back();
   }
 
   /// Get from Camera
@@ -240,6 +239,7 @@ class _UploadImageModuleState extends State<UploadImageModule> {
       controller.loadUI();
       log('Camera File Path : ${controller.imageFile}');
       log('Camera Image Path : ${controller.imageFile!.path}');
+      Get.back();
 
       //Fluttertoast.showToast(msg: '${image.path}', toastLength: Toast.LENGTH_LONG);
       //renameImage();
@@ -248,8 +248,6 @@ class _UploadImageModuleState extends State<UploadImageModule> {
 
     controller.imageFile = File(pickedFile!.path);
     setState(() {});
-
-    Get.back();
   }
 }
 
@@ -468,7 +466,7 @@ class TypesOfPetDropDownModule extends StatelessWidget {
             ),
             Obx(
               () => Container(
-                padding: const EdgeInsets.only(left: 10),
+                // padding: const EdgeInsets.only(left: 10),
                 width: Get.width,
                 //gives the width of the dropdown button
                 decoration: BoxDecoration(
@@ -646,7 +644,7 @@ class PetSubCategoryDropDownModule extends StatelessWidget {
             ),
             Obx(
               () => Container(
-                padding: const EdgeInsets.only(left: 10),
+                // padding: const EdgeInsets.only(left: 10),
                 width: Get.width,
                 //gives the width of the dropdown button
                 decoration: BoxDecoration(
@@ -874,7 +872,7 @@ class _MeetingAvailabilityDropDownState
             ),
             Obx(
               () => Container(
-                padding: const EdgeInsets.only(left: 10),
+                // padding: const EdgeInsets.only(left: 10),
                 width: Get.width,
                 //gives the width of the dropdown button
                 decoration: BoxDecoration(
@@ -1150,7 +1148,7 @@ class _GenderDropDownState extends State<GenderDropDown> {
             ),
             Obx(
               () => Container(
-                padding: const EdgeInsets.only(left: 10),
+                // padding: const EdgeInsets.only(left: 10),
                 width: Get.width,
                 //gives the width of the dropdown button
                 decoration: BoxDecoration(

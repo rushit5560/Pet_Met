@@ -37,7 +37,7 @@ class SupportData {
     this.content,
     this.isActive,
     this.featuredimage,
-    this.featuredimageparth,
+    this.featuredimagepath,
     // required this.metaTitle,
     // required this.metaDec,
     // required this.metaKey,
@@ -45,12 +45,12 @@ class SupportData {
     // required this.updatedAt,
   });
 
-  int? id;
+  String? id;
   String? title;
   String? content;
   String? isActive;
   String? featuredimage;
-  String? featuredimageparth;
+  String? featuredimagepath;
   // dynamic metaTitle;
   // dynamic metaDec;
   // dynamic metaKey;
@@ -58,12 +58,12 @@ class SupportData {
   // DateTime updatedAt;
 
   factory SupportData.fromJson(Map<String, dynamic> json) => SupportData(
-        id: json["id"] ?? 0,
+        id: json["id"] ?? "",
         title: json["title"] ?? "",
         content: json["content"] ?? "",
         isActive: json["is_active"] ?? "",
         featuredimage: json["featuredimage"] ?? "",
-        featuredimageparth: json["featuredimageparth"] ?? "",
+        featuredimagepath: json["featuredimagepath"] ?? "",
         // metaTitle: json["meta_title"],
         // metaDec: json["meta_dec"],
         // metaKey: json["meta_key"],
@@ -77,7 +77,7 @@ class SupportData {
         "content": content,
         "is_active": isActive,
         "featuredimage": featuredimage,
-        "featuredimageparth": featuredimageparth,
+        "featuredimagepath": featuredimagepath,
         // "meta_title": metaTitle,
         // "meta_dec": metaDec,
         // "meta_key": metaKey,
