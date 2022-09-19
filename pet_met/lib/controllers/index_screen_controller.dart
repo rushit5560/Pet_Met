@@ -6,6 +6,7 @@ import 'package:expandable/expandable.dart';
 import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/models/get_all_profile_model/get_shop_profile_model.dart';
 import 'package:pet_met/models/get_all_profile_model/get_user_profile_model.dart';
@@ -109,6 +110,7 @@ class IndexScreenController extends GetxController {
         transition: Transition.native,
         duration: const Duration(milliseconds: 500));
   }
+
   /// Get User Profile
   Future<void> getUserProfileFunction() async {
     isLoading(true);
@@ -258,7 +260,6 @@ class IndexScreenController extends GetxController {
       log("All Role Profile Api Error ::: $e");
     } finally {
       isLoading(false);
-
     }
   }
 
@@ -316,8 +317,51 @@ class IndexScreenController extends GetxController {
 
   @override
   void onInit() {
+    getLocationFunction();
+    super.onInit();
+  }
+
+
+  getLocationFunction() async {
     isLoading(true);
-    isLoading(false);
+    bool isServiceEnabled;
+    LocationPermission permission;
+
+    isServiceEnabled = await Geolocator.isLocationServiceEnabled();
+
+    if(!isServiceEnabled) {
+      await Geolocator.openLocationSettings();
+      return Future.error('Location service are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if(permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if(permission == LocationPermission.denied) {
+        return Future.error('Location permission are denied');
+      }
+    }
+    if(permission == LocationPermission.deniedForever) {
+      return Future.error('Location permission are permanently denied, we cannot request permissions.');
+    }
+
+
+    /*streamSubscription = Geolocator.getPositionStream().listen((Position position) async {
+      // Current Location store in prefs
+      await userPreference.setUserLocation(
+        latitude: position.latitude.toString(),
+        longitude: position.longitude.toString(),
+      );
+    });*/
+
+    Position position = await Geolocator.getCurrentPosition();
+    // Current Location store in prefs
+    await userPreference.setUserLocation(
+      latitude: position.latitude.toString(),
+      longitude: position.longitude.toString(),
+    );
+
+    //
     if(UserDetails.categoryId == "1"){
       getUserProfileFunction();
     } else if(UserDetails.categoryId == "2"){
@@ -327,6 +371,7 @@ class IndexScreenController extends GetxController {
     } else if(UserDetails.categoryId == "4"){
       getTrainerProfileFunction();
     }
-    super.onInit();
+
   }
+
 }

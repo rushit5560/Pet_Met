@@ -5,15 +5,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:pet_met/models/get_all_profile_model/get_shop_profile_model.dart';
 import 'package:pet_met/models/login_screen_model/login_model.dart';
 import 'package:pet_met/models/multi_account_user_model/multiple_account_user_model.dart';
 import 'package:pet_met/models/trainers_update_profile_model/trainers_get_profile_model.dart';
 import 'package:pet_met/models/trainers_update_profile_model/trainers_update_profile_model.dart';
 import 'package:pet_met/screens/index_screen/index_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:http/http.dart' as http;
@@ -55,6 +52,8 @@ class TrainersAndUsersScreenController extends GetxController {
 
   RxBool isPasswordVisible = true.obs;
 
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
   var passwordController = TextEditingController();
   UserPreference userPreference = UserPreference();
 
@@ -68,6 +67,7 @@ class TrainersAndUsersScreenController extends GetxController {
   var activeController = TextEditingController();
   var instagramController = TextEditingController();
   var facebookController = TextEditingController();
+  var gPayController = TextEditingController();
   // var closeTimeController = TextEditingController();
 
   RxBool isLoading = false.obs;
@@ -475,11 +475,12 @@ class TrainersAndUsersScreenController extends GetxController {
       request.fields['open'] = selectedOpenTime!.value;
       request.fields['close'] = selectedCloseTime!.value;
       request.fields['full_text'] = detailsController.text.trim();
-      request.fields['instagram'] = "www.instagram.com";
-      request.fields['facebook'] = "www.facebook.com";
+      request.fields['instagram'] = "instagram.com";
+      request.fields['facebook'] = "facebook.com";
       request.fields['is_active'] = trainerStatus;
       request.fields['userid'] = UserDetails.userId;
       request.fields['uid'] = UserDetails.selfId;
+      // todo - add upi parameter
 
       var response = await request.send();
 
@@ -513,7 +514,6 @@ class TrainersAndUsersScreenController extends GetxController {
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     getAllRoleProfileFunction();
   }

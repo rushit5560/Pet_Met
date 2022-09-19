@@ -55,6 +55,7 @@ class ShopUserProfileScreenController extends GetxController {
   var closeTimeController = TextEditingController();
   var instagramController = TextEditingController();
   var facebookController = TextEditingController();
+  var gPayController = TextEditingController();
 
   late Razorpay _razorpay;
 
@@ -375,7 +376,6 @@ class ShopUserProfileScreenController extends GetxController {
         request.fields['oldimage5'] = shopApiPicture5;
       }
 
-      //request.fields['name'] = nameController.text.trim();
       request.fields['address'] = addressController.text.trim();
       request.fields['phonenumber'] = contactNumber.text.trim();
       request.fields['shopopen'] = selectedOpenTime!.value;
@@ -385,6 +385,7 @@ class ShopUserProfileScreenController extends GetxController {
       request.fields['full_text'] = detailsController.text.trim();
       request.fields['instagram'] = "www.instagram.com";
       request.fields['facebook'] = "www.facebook.com";
+      //todo - add upi parameter
 
       var response = await request.send();
       log('response: ${response.request}');

@@ -2,7 +2,7 @@
 //
 //     final bannerModel = bannerModelFromJson(jsonString);
 
-import 'dart:convert';
+/*import 'dart:convert';
 
 BannerModel bannerModelFromJson(String str) => BannerModel.fromJson(json.decode(str));
 
@@ -98,4 +98,74 @@ class Datum {
    // "created_by": createdBy,
     "modified_by": modifiedBy,
   };
+}*/
+
+
+// Shop Banner Model
+import 'dart:convert';
+
+BannerModel bannerModelFromJson(String str) => BannerModel.fromJson(json.decode(str));
+
+String bannerModelToJson(BannerModel data) => json.encode(data.toJson());
+
+class BannerModel {
+  BannerModel({
+    required this.success,
+    required this.data,
+    required this.message,
+  });
+
+  bool success;
+  List<Datum> data;
+  String message;
+
+  factory BannerModel.fromJson(Map<String, dynamic> json) => BannerModel(
+    success: json["success"] ?? false,
+    data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x ?? {}))),
+    message: json["message"] ?? "",
+  );
+
+  Map<String, dynamic> toJson() => {
+    "success": success,
+    "data": List<dynamic>.from(data.map((x) => x.toJson())),
+    "message": message,
+  };
+}
+
+class Datum {
+  Datum({
+    required this.image1,
+    required this.image2,
+    required this.image3,
+    required this.image4,
+    required this.image5,
+    required  this.id,
+  });
+
+  String image1;
+  String image2;
+  String image3;
+  String image4;
+  String image5;
+  String id;
+
+  factory Datum.fromJson(Map<String, dynamic> json) =>
+      Datum(
+        image1: json["image1"] ?? "",
+        image2: json["image2"] ?? "",
+        image3: json["image3"] ?? "",
+        image4: json["image4"] ?? "",
+        image5: json["image5"] ?? "",
+        id: json["id"] ?? "",
+      );
+
+  Map<String, dynamic> toJson() =>
+      {
+        "image1": image1,
+        "image2": image2,
+        "image3": image3,
+        "image4": image4,
+        "image5": image5,
+        "id": id,
+      };
 }

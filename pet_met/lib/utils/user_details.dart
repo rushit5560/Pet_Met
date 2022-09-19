@@ -11,4 +11,7 @@ class UserDetails {
   static String categoryId = "";
   static String shopName = "";
   static String shopProfile = "";
+
+  static String liveLatitude = "";
+  static String liveLongitude = "";
 }

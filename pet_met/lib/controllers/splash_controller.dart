@@ -5,22 +5,65 @@ import 'package:get/get.dart';
 import 'package:pet_met/screens/index_screen/index_screen.dart';
 import 'package:pet_met/screens/onboarding_screen/onboarding_screen.dart';
 import 'package:pet_met/screens/user_categories_screen/user_categories_screen.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 
 class SplashController extends GetxController {
   final size = Get.size;
 
   UserPreference userPreference = UserPreference();
   UserDetails userDetails = UserDetails();
+  // late StreamSubscription<Position> streamSubscription;
 
   @override
   void onInit() {
     super.onInit();
     redirectNextScreen();
+
   }
+
+
+  /*getLocationFunction() async {
+    bool isServiceEnabled;
+    LocationPermission permission;
+
+    isServiceEnabled = await Geolocator.isLocationServiceEnabled();
+
+    if(!isServiceEnabled) {
+      await Geolocator.openLocationSettings();
+      return Future.error('Location service are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if(permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if(permission == LocationPermission.denied) {
+        return Future.error('Location permission are denied');
+      }
+    }
+    if(permission == LocationPermission.deniedForever) {
+      return Future.error('Location permission are permanently denied, we cannot request permissions.');
+    }
+
+
+    *//*streamSubscription = Geolocator.getPositionStream().listen((Position position) async {
+      // Current Location store in prefs
+      await userPreference.setUserLocation(
+        latitude: position.latitude.toString(),
+        longitude: position.longitude.toString(),
+      );
+    });*//*
+
+    Position position = await Geolocator.getCurrentPosition();
+    // Current Location store in prefs
+    await userPreference.setUserLocation(
+      latitude: position.latitude.toString(),
+      longitude: position.longitude.toString(),
+    );
+
+  }*/
 
   redirectNextScreen() async {
     try {

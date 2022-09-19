@@ -20,6 +20,9 @@ class UserPreference {
   String shopNameKey = "shopNameKey";
   String shopProfileImageKey = "shopProfileImageKey";
 
+  String userLatitudeKey = "userLatitudeKey";
+  String userLongitudeKey = "userLongitudeKey";
+
   /// Set Role Id Key
   Future<void> setRoleId(int value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -108,6 +111,33 @@ class UserPreference {
   //   log("roleId : ${UserDetails.categoryId}");
   //   log("isUserLoggedIn : ${UserDetails.isUserLoggedIn}");
   // }
+
+  Future<void> setUserLocation({required String latitude, required String longitude}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString(userLatitudeKey, latitude);
+    prefs.setString(userLongitudeKey, longitude);
+
+
+    UserDetails.liveLatitude = prefs.getString(userLatitudeKey) ?? "";
+    UserDetails.liveLongitude = prefs.getString(userLongitudeKey) ?? "";
+
+    log("User Latitude : ${UserDetails.liveLatitude}");
+    log("User Longitude : ${UserDetails.liveLongitude}");
+  }
+
+  Future<void> removeUserLocation() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // Set Default Value
+    prefs.setString(userLatitudeKey, "");
+    prefs.setString(userLongitudeKey, "");
+    // Remove Value
+    prefs.remove(userLatitudeKey);
+    prefs.remove(userLongitudeKey);
+
+    // Remove Location from local variable
+    UserDetails.liveLatitude = "";
+    UserDetails.liveLongitude = "";
+  }
 
   /// Logout
   Future<void> removeUserDetails() async {
