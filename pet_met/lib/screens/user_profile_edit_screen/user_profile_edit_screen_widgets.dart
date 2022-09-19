@@ -57,7 +57,7 @@ class UploadImageModule extends StatelessWidget {
           color: themeProvider.darkTheme
               ? AppColors.darkThemeColor
               : AppColors.whiteColor,
-          borderRadius:  BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(15),
           boxShadow: [
             BoxShadow(
               color: AppColors.greyTextColor.withOpacity(0.3),
@@ -988,7 +988,7 @@ class BirthDateModule extends StatelessWidget {
             ),
             // optional
             dayFlex: 3,
-            monthFlex: 3,
+            monthFlex: 5,
             yearFlex: 3,
             textStyle: TextStyle(
               color: themeProvider.darkTheme

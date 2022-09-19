@@ -127,7 +127,7 @@ class PetData {
 class User {
   User({
     required this.id,
-    // required this.name,
+    required this.name,
     // required this.email,
     // required this.emailVerifiedAt,
     // required this.password,
@@ -150,7 +150,7 @@ class User {
   });
 
   String id;
-  // String name;
+  String name;
   // String email;
   // dynamic emailVerifiedAt;
   // String password;
@@ -173,7 +173,7 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) => User(
     id: json["id"] ?? "",
-    // name: json["name"],
+    name: json["name"],
     // email: json["email"],
     // emailVerifiedAt: json["email_verified_at"],
     // password: json["password"],
@@ -197,7 +197,7 @@ class User {
 
   Map<String, dynamic> toJson() => {
     "id": id,
-    // "name": name,
+    "name": name,
     // "email": email,
     // "email_verified_at": emailVerifiedAt,
     // "password": password,

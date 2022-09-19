@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/controllers/shop_user_profile_screen_controller.dart';
+import 'package:pet_met/screens/address_screen/address_screen_widgets.dart';
 import 'package:pet_met/screens/pet_pricing_screen/pet_pricing_screen.dart';
 import 'package:pet_met/screens/upload_pet_screen/upload_pet_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
@@ -1959,7 +1960,63 @@ class SubmitButtonModule extends StatelessWidget {
           } else if (screenController.selectedCloseTime!.value.isEmpty) {
             Fluttertoast.showToast(msg: 'Please shop select close time');
           } else {
-            await screenController.updateShopProfileFunction();
+            // await screenController.updateShopProfileFunction();
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: themeProvider.darkTheme
+                    ? AppColors.darkThemeColor
+                    : AppColors.whiteColor,
+                content: Text(
+                  "To verify your account follow this steps.",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.darkThemeColor,
+                  ),
+                ),
+                action: SnackBarAction(
+                    label: "View",
+                    onPressed: () {
+                      screenController.scaffoldKey.currentState!
+                          .showBottomSheet((context) {
+                        return Container(
+                          height: Get.size.height * 0.2,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: themeProvider.darkTheme
+                                ? AppColors.darkThemeColor
+                                : AppColors.whiteColor,
+                          ),
+                          child: Column(
+                            children: [
+                              Text(
+                                "please verify your account with below details ",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: themeProvider.darkTheme
+                                      ? AppColors.whiteColor
+                                      : AppColors.darkThemeColor,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              Text(
+                                "send mailto : info@petomate.com",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: themeProvider.darkTheme
+                                      ? AppColors.whiteColor
+                                      : AppColors.darkThemeColor,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      });
+                    }),
+              ),
+            );
           }
         }
         // controller.submitLoginForm();

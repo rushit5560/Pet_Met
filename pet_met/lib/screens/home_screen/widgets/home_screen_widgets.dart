@@ -63,7 +63,8 @@ class PetTopListModule extends StatelessWidget {
                         arguments: [
                           homeController.petTopList[i].data.id,
                           homeController.petTopList[i].data.userid,
-                          homeController.petTopList[i].data.categoryId
+                          homeController.petTopList[i].data.categoryId,
+                        homeController.petTopList[i].name.name,
                         ],
                       );
                     },
@@ -208,7 +209,7 @@ class PetTopListModule extends StatelessWidget {
                               onTap: () {
                                 //Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
                                 log('Follow Userid: ${homeController.petTopList[i].data.userid}');
-                                log('Follow Categoryid: ${homeController.petTopList[i].data.categoryId}');
+                                log('Follow Category id: ${homeController.petTopList[i].data.categoryId}');
                                 Get.to(
                                   () => UserProfileScreen(),
                                   transition: Transition.native,

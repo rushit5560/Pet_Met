@@ -20,6 +20,7 @@ class PetMeetingDetailsScreenController extends GetxController {
   String petId = Get.arguments[0];
   String petUserId = Get.arguments[1];
   String petUserCatId = Get.arguments[2];
+  String petOwnerUserName = Get.arguments[3];
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
@@ -31,6 +32,7 @@ class PetMeetingDetailsScreenController extends GetxController {
   PetData getProfile = PetData();
   String meetingPetId = "";
   String image = "";
+  String name = "";
   String petName = "";
   String mettingAvailability = "";
   String dob = "";
@@ -74,11 +76,13 @@ class PetMeetingDetailsScreenController extends GetxController {
 
          getProfile = getPetProfileModel.date[0];
          meetingPetId = getPetProfileModel.date[0].id!;
+
          image = getPetProfileModel.date[0].image!;
          petName = getProfile.petName!;
          mettingAvailability = getProfile.meetingAvailability!;
          dob= getProfile.dob!;
          details = getProfile.details!;
+         name = getPetProfileModel.user[0].name;
          phoneNo = getPetProfileModel.user[0].phone;
          log('Image: ${getProfile.image}');
 

@@ -72,95 +72,83 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   trailingWidget: Obx(
                     () => GestureDetector(
-                      onTap: () {
-                        //Get.toNamed(AppRouteNames.userProfileEditRoute);
-                        log('UserDetails.roleId: ${UserDetails.categoryId}');
-                        if (UserDetails.categoryId == "1") {
-                          Get.to(() => UserProfileEditScreen(),
-                                  transition: Transition.native,
-                                  duration: const Duration(milliseconds: 500))!
-                              .then((value) async {
-                            controller.petTopList.clear();
-                            controller.pageIndex = 1;
-                            controller.hasMore = true;
-                            await controller.getUserProfileFunction();
+                        onTap: () {
+                          //Get.toNamed(AppRouteNames.userProfileEditRoute);
+                          log('UserDetails.roleId: ${UserDetails.categoryId}');
+                          if (UserDetails.categoryId == "1") {
+                            Get.to(() => UserProfileEditScreen(),
+                                    transition: Transition.native,
+                                    duration:
+                                        const Duration(milliseconds: 500))!
+                                .then((value) async {
+                              controller.petTopList.clear();
+                              controller.pageIndex = 1;
+                              controller.hasMore = true;
+                              await controller.getUserProfileFunction();
 
-                            indexController.isLoading(true);
-                            indexController.isLoading(false);
-                          });
-                        } else if (UserDetails.categoryId == "2") {
-                          Get.to(() => ShopUserProfileScreen(),
-                                  transition: Transition.native,
-                                  duration: const Duration(milliseconds: 500))!
-                              .then((value) async {
-                            controller.petTopList.clear();
-                            controller.pageIndex = 1;
-                            controller.hasMore = true;
-                            await controller.getShopProfileFunction();
-                            indexController.isLoading(true);
-                            indexController.isLoading(false);
-                          });
-                        } else if (UserDetails.categoryId == "3") {
-                          Get.to(() => NgoUserProfileScreen(),
-                                  transition: Transition.native,
-                                  duration: const Duration(milliseconds: 500))!
-                              .then((value) async {
-                            controller.petTopList.clear();
-                            controller.pageIndex = 1;
-                            controller.hasMore = true;
-                            await controller.getNgoProfileFunction();
-                            indexController.isLoading(true);
-                            indexController.isLoading(false);
-                          });
-                        } else if (UserDetails.categoryId == "4") {
-                          Get.to(() => TrainersAndUserProfileScreenController(),
-                                  transition: Transition.native,
-                                  duration: const Duration(milliseconds: 500))!
-                              .then((value) async {
-                            controller.petTopList.clear();
-                            controller.pageIndex = 1;
-                            controller.hasMore = true;
-                            await controller.getTrainerProfileFunction();
-                            indexController.isLoading(true);
-                            indexController.isLoading(false);
-                          });
-                        }
-                      },
-                      child: UserDetails.categoryId == "1"
-                          ? Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                border:
-                                    Border.all(color: Colors.black, width: 0.0),
-                              ),
-                              child: ClipRRect(
-                                // decoration: BoxDecoration(
-                                //   border: Border.all(color: Colors.black, width: 0.0),
-                                //   borderRadius: BorderRadius.circular(30),
-                                // ),
-                                borderRadius: BorderRadius.circular(30),
-                                child: Image.network(
-                                  controller.userprofile.value,
-                                  width: 50,
-                                  height: 50,
-                                  fit: BoxFit.cover,
-                                  errorBuilder: (context, st, ob) {
-                                    return Image.asset(
-                                      AppImages.petMetLogoImg,
-                                      width: 50,
-                                      height: 50,
-                                      fit: BoxFit.cover,
-                                    );
-                                  },
-                                  // width: controller.size.width * 0.05,
-                                ),
-                              ),
-                            )
-                          : UserDetails.categoryId == "2"
+                              indexController.isLoading(true);
+                              indexController.isLoading(false);
+                            });
+                          } else if (UserDetails.categoryId == "2") {
+                            Get.to(() => ShopUserProfileScreen(),
+                                    transition: Transition.native,
+                                    duration:
+                                        const Duration(milliseconds: 500))!
+                                .then((value) async {
+                              controller.petTopList.clear();
+                              controller.pageIndex = 1;
+                              controller.hasMore = true;
+                              await controller.getShopProfileFunction();
+                              indexController.isLoading(true);
+                              indexController.isLoading(false);
+                            });
+                          } else if (UserDetails.categoryId == "3") {
+                            Get.to(() => NgoUserProfileScreen(),
+                                    transition: Transition.native,
+                                    duration:
+                                        const Duration(milliseconds: 500))!
+                                .then((value) async {
+                              controller.petTopList.clear();
+                              controller.pageIndex = 1;
+                              controller.hasMore = true;
+                              await controller.getNgoProfileFunction();
+                              indexController.isLoading(true);
+                              indexController.isLoading(false);
+                            });
+                          } else if (UserDetails.categoryId == "4") {
+                            Get.to(
+                                    () =>
+                                        TrainersAndUserProfileScreenController(),
+                                    transition: Transition.native,
+                                    duration:
+                                        const Duration(milliseconds: 500))!
+                                .then((value) async {
+                              controller.petTopList.clear();
+                              controller.pageIndex = 1;
+                              controller.hasMore = true;
+                              await controller.getTrainerProfileFunction();
+                              indexController.isLoading(true);
+                              indexController.isLoading(false);
+                            });
+                          }
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            border: Border.all(
+                              color: AppColors.accentColor,
+                              width: 0.5,
+                            ),
+                          ),
+                          child: UserDetails.categoryId == "1"
                               ? ClipRRect(
+                                  // decoration: BoxDecoration(
+                                  //   border: Border.all(color: Colors.black, width: 0.0),
+                                  //   borderRadius: BorderRadius.circular(30),
+                                  // ),
                                   borderRadius: BorderRadius.circular(30),
                                   child: Image.network(
-                                    controller.shopProfile.value,
+                                    controller.userprofile.value,
                                     width: 50,
                                     height: 50,
                                     fit: BoxFit.cover,
@@ -175,30 +163,31 @@ class _HomeScreenState extends State<HomeScreen> {
                                     // width: controller.size.width * 0.05,
                                   ),
                                 )
-                              : UserDetails.categoryId == "3"
+                              : UserDetails.categoryId == "2"
                                   ? ClipRRect(
                                       borderRadius: BorderRadius.circular(30),
                                       child: Image.network(
-                                        controller.ngoProfile.value,
+                                        controller.shopProfile.value,
                                         width: 50,
                                         height: 50,
                                         fit: BoxFit.cover,
                                         errorBuilder: (context, st, ob) {
                                           return Image.asset(
-                                              AppImages.petMetLogoImg,
-                                              width: 50,
-                                              height: 50,
-                                              fit: BoxFit.cover);
+                                            AppImages.petMetLogoImg,
+                                            width: 50,
+                                            height: 50,
+                                            fit: BoxFit.cover,
+                                          );
                                         },
                                         // width: controller.size.width * 0.05,
                                       ),
                                     )
-                                  : UserDetails.categoryId == "4"
+                                  : UserDetails.categoryId == "3"
                                       ? ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(30),
                                           child: Image.network(
-                                            controller.trainerProfile.value,
+                                            controller.ngoProfile.value,
                                             width: 50,
                                             height: 50,
                                             fit: BoxFit.cover,
@@ -212,11 +201,32 @@ class _HomeScreenState extends State<HomeScreen> {
                                             // width: controller.size.width * 0.05,
                                           ),
                                         )
-                                      : Image.asset(
-                                          AppImages.userProfileImg,
-                                          width: controller.size.width * 0.12,
-                                        ),
-                    ),
+                                      : UserDetails.categoryId == "4"
+                                          ? ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                              child: Image.network(
+                                                controller.trainerProfile.value,
+                                                width: 50,
+                                                height: 50,
+                                                fit: BoxFit.cover,
+                                                errorBuilder:
+                                                    (context, st, ob) {
+                                                  return Image.asset(
+                                                      AppImages.petMetLogoImg,
+                                                      width: 50,
+                                                      height: 50,
+                                                      fit: BoxFit.cover);
+                                                },
+                                                // width: controller.size.width * 0.05,
+                                              ),
+                                            )
+                                          : Image.asset(
+                                              AppImages.userProfileImg,
+                                              width:
+                                                  controller.size.width * 0.12,
+                                            ),
+                        )),
                   ),
                 ),
                 Expanded(
@@ -224,7 +234,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     () => controller.isLoading.value
                         ? const CustomAnimationLoader()
                         : RefreshIndicator(
-                      color: AppColors.accentColor,
+                            color: AppColors.accentColor,
                             onRefresh: () {
                               return Future.delayed(const Duration(seconds: 1),
                                   () {

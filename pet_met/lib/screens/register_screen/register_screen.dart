@@ -134,28 +134,28 @@ class RegisterScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Obx(
-                            () => Container(
+                            () => SizedBox(
                               height: 40,
                               width: 40,
                               child: Checkbox(
                                 checkColor: themeProvider.darkTheme
-                                    ? AppColors.whiteColor
-                                    : AppColors.blackTextColor,
+                                    ? AppColors.blackTextColor
+                                    : AppColors.whiteColor,
                                 activeColor: AppColors.whiteColor,
                                 fillColor:
                                     MaterialStateProperty.resolveWith<Color>(
                                   (Set<MaterialState> states) {
-                                    if (states
-                                        .contains(MaterialState.selected)) {
-                                      return AppColors.greyColor;
-                                      // the default value.
-                                    }
-                                    return AppColors.greyColor;
+                                    // if (states
+                                    //     .contains(MaterialState.selected)) {
+                                    //   return AppColors.greyColor;
+                                    //   // the default value.
+                                    // }
+                                    return AppColors.accentColor;
                                   },
                                 ),
-                                shape: RoundedRectangleBorder(
+                                shape: const RoundedRectangleBorder(
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(4))),
+                                        BorderRadius.all(Radius.circular(4),),),
                                 value: controller.selectedTerms.value,
                                 onChanged: (val) {
                                   controller.selectedTerms.value =
@@ -164,7 +164,7 @@ class RegisterScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(width: 15),
+                          const SizedBox(width: 15),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -260,7 +260,7 @@ class RegisterScreen extends StatelessWidget {
                         ],
                       ),
                       // SizedBox(height: controller.size.height * 0.1),
-                      Spacer(),
+                      const Spacer(),
 
                       // Spacer(),
                       Row(

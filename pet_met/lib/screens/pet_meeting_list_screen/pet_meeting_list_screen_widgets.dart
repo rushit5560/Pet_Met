@@ -74,6 +74,7 @@ class PetMeetingListModule extends StatelessWidget {
                     screenController.subCatPetList[i].data.id,
                     screenController.subCatPetList[i].data.userid,
                     screenController.subCatPetList[i].data.categoryId,
+                    screenController.subCatPetList[i].name.name,
                   ],
                 );
               },
@@ -149,8 +150,7 @@ class PetMeetingListModule extends StatelessWidget {
                             "p": Style(
                               color: themeProvider.darkTheme
                                   ? AppColors.whiteColor
-                                  : AppColors.blackTextColor
-                                  .withOpacity(0.6),
+                                  : AppColors.blackTextColor.withOpacity(0.6),
                               fontSize: const FontSize(15.0),
                               fontWeight: FontWeight.w500,
                               maxLines: 2,
@@ -218,7 +218,8 @@ class PetMeetingListModule extends StatelessWidget {
                               duration: const Duration(milliseconds: 500),
                               arguments: [
                                 screenController.subCatPetList[i].data.userid,
-                                screenController.subCatPetList[i].data.categoryId,
+                                screenController
+                                    .subCatPetList[i].data.categoryId,
                                 screenController.subCatPetList[i].data.id,
                               ]);
                         },
@@ -226,10 +227,8 @@ class PetMeetingListModule extends StatelessWidget {
                           children: [
                             Text(
                               screenController.subCatPetList[i].name.name,
-                              style: TextStyle(
-                                color: themeProvider.darkTheme
-                                    ? AppColors.whiteColor
-                                    : AppColors.accentTextColor,
+                              style: const TextStyle(
+                                color: AppColors.accentTextColor,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -242,14 +241,15 @@ class PetMeetingListModule extends StatelessWidget {
                                   // color: AppColors.greyColor,
                                   // shape: BoxShape.circle,
                                   borderRadius: BorderRadius.circular(15),
-                                  border:
-                                      Border.all(color: AppColors.accentTextColor)),
+                                  border: Border.all(
+                                      color: AppColors.accentTextColor)),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(15),
                                 child: Image.network(
                                     ApiUrl.apiImagePath +
                                         "asset/uploads/product/" +
-                                        screenController.subCatPetList[i].img.image,
+                                        screenController
+                                            .subCatPetList[i].img.image,
                                     errorBuilder: (context, st, ob) {
                                   return Image.asset(AppImages.petMetLogoImg);
                                 }, fit: BoxFit.cover),

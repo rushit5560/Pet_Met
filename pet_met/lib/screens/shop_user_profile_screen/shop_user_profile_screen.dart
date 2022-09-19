@@ -25,6 +25,7 @@ class ShopUserProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: controller.scaffoldKey,
         body: Stack(
           children: [
             BackgroundImage(),
@@ -50,8 +51,8 @@ class ShopUserProfileScreen extends StatelessWidget {
                         ? const CustomAnimationLoader()
                         : SingleChildScrollView(
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
                               child: Form(
                                 key: controller.formKey,
                                 child: Column(
@@ -72,10 +73,10 @@ class ShopUserProfileScreen extends StatelessWidget {
                                     AddressTextFieldModule(),
                                     const SizedBox(height: 15),
                                     DetailsTextFieldModule(),
-                                    const SizedBox(height: 15),
-                                    InstagramTextFieldModule(),
-                                    const SizedBox(height: 15),
-                                    FacebookLinkTextFieldModule(),
+                                    // const SizedBox(height: 15),
+                                    // InstagramTextFieldModule(),
+                                    // const SizedBox(height: 15),
+                                    // FacebookLinkTextFieldModule(),
                                     const SizedBox(height: 15),
                                     OpenAndCloseShopTimeModule(),
                                     const SizedBox(height: 30),
@@ -112,8 +113,7 @@ class ShopUserProfileScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 controller.userProfileAvail == true
-                    ?
-                     GestureDetector(
+                    ? GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.userEmail.value, "1");
@@ -145,8 +145,8 @@ class ShopUserProfileScreen extends StatelessWidget {
                                   ),
                                   const SizedBox(
                                       child: Divider(
-                                        color: AppColors.greyColor,
-                                      )),
+                                    color: AppColors.greyColor,
+                                  )),
                                   Row(
                                     children: [
                                       Expanded(
@@ -208,10 +208,8 @@ class ShopUserProfileScreen extends StatelessWidget {
                         ),
                       )
                     : Container(),
-
                 controller.shopProfileAvail == true
-                    ?
-                GestureDetector(
+                    ? GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.shopEmail.value, "2");
@@ -243,8 +241,8 @@ class ShopUserProfileScreen extends StatelessWidget {
                                   ),
                                   const SizedBox(
                                       child: Divider(
-                                        color: AppColors.greyColor,
-                                      )),
+                                    color: AppColors.greyColor,
+                                  )),
                                   Row(
                                     children: [
                                       Expanded(
@@ -301,11 +299,9 @@ class ShopUserProfileScreen extends StatelessWidget {
                           ),
                         ),
                       )
-                   : Container(),
-
+                    : Container(),
                 controller.vetNgoProfileAvail == true
-                    ?
-                GestureDetector(
+                    ? GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.ngoEmail.value, "3");
@@ -337,8 +333,8 @@ class ShopUserProfileScreen extends StatelessWidget {
                                   ),
                                   const SizedBox(
                                       child: Divider(
-                                        color: AppColors.greyColor,
-                                      )),
+                                    color: AppColors.greyColor,
+                                  )),
                                   Row(
                                     children: [
                                       Expanded(
@@ -399,11 +395,9 @@ class ShopUserProfileScreen extends StatelessWidget {
                           ),
                         ),
                       )
-                   : Container(),
-
+                    : Container(),
                 controller.trainerProfileAvail == true
-                    ?
-                GestureDetector(
+                    ? GestureDetector(
                         onTap: () async {
                           await multipleAccountDialog(
                               context, controller.trainerEmail.value, "4");
@@ -435,8 +429,8 @@ class ShopUserProfileScreen extends StatelessWidget {
                                   ),
                                   const SizedBox(
                                       child: Divider(
-                                        color: AppColors.greyColor,
-                                      )),
+                                    color: AppColors.greyColor,
+                                  )),
                                   Row(
                                     children: [
                                       Expanded(
@@ -495,26 +489,28 @@ class ShopUserProfileScreen extends StatelessWidget {
                         ),
                       )
                     : Container(),
-
-                controller.userProfileAvail == false || controller.shopProfileAvail == false || controller.vetNgoProfileAvail == false || controller.trainerProfileAvail == false ?
-                GestureDetector(
-                  onTap: (){
-                    Get.to(() => const UserCategoriesScreen());
-                  },
-                  child: Container(
-                    height: 35, width: 35,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        color: Colors.grey.shade400
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(25),
-                      child: const Icon(Icons.add, size: 30),
-                    ),
-                  ),
-                )
-                : Container(),
-                SizedBox(height: 7)
+                controller.userProfileAvail == false ||
+                        controller.shopProfileAvail == false ||
+                        controller.vetNgoProfileAvail == false ||
+                        controller.trainerProfileAvail == false
+                    ? GestureDetector(
+                        onTap: () {
+                          Get.to(() => const UserCategoriesScreen());
+                        },
+                        child: Container(
+                          height: 35,
+                          width: 35,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25),
+                              color: Colors.grey.shade400),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(25),
+                            child: const Icon(Icons.add, size: 30),
+                          ),
+                        ),
+                      )
+                    : Container(),
+                const SizedBox(height: 7)
               ],
             ),
           ),

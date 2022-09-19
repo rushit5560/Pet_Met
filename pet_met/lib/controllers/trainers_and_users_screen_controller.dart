@@ -475,8 +475,8 @@ class TrainersAndUsersScreenController extends GetxController {
       request.fields['open'] = selectedOpenTime!.value;
       request.fields['close'] = selectedCloseTime!.value;
       request.fields['full_text'] = detailsController.text.trim();
-      request.fields['instagram'] = instagramController.text.trim();
-      request.fields['facebook'] = facebookController.text.trim();
+      request.fields['instagram'] = "www.instagram.com";
+      request.fields['facebook'] = "www.facebook.com";
       request.fields['is_active'] = trainerStatus;
       request.fields['userid'] = UserDetails.userId;
       request.fields['uid'] = UserDetails.selfId;
@@ -484,7 +484,7 @@ class TrainersAndUsersScreenController extends GetxController {
       var response = await request.send();
 
       response.stream.transform(utf8.decoder).listen((value) async {
-        log('Update Trainers Profile responsebody : $value');
+        log('Update Trainers Profile response body : $value');
         UpdateTrainersProfileModel updateTrainersProfileModel =
             UpdateTrainersProfileModel.fromJson(json.decode(value));
         log('response1 :::::: ${updateTrainersProfileModel.success}');

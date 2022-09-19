@@ -15,6 +15,7 @@ import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../services/providers/dark_theme_provider.dart';
+import '../user_profile_screen/user_profile_screen.dart';
 
 class PetMeetingDetailsBannerImageModule extends StatelessWidget {
   PetMeetingDetailsBannerImageModule({Key? key}) : super(key: key);
@@ -123,25 +124,83 @@ class _PetNameAndSocialMediaButtonModuleState
                 fontSize: 18.sp),
           ),
         ),
+        // GestureDetector(
+        //   onTap: () {
+        //     if (screenController.meetingStatus.value == true) {
+        //       _makingPhoneCall(screenController.phoneNo);
+        //     } else if (screenController.meetingStatus.value == false) {
+        //       screenController.openCheckout();
+        //     }
+        //   },
+        //   child: Container(
+        //     height: screenController.size.width * 0.018.w,
+        //     width: screenController.size.width * 0.018.w,
+        //     decoration: BoxDecoration(
+        //       borderRadius: BorderRadius.circular(12),
+        //       color: AppColors.accentColor,
+        //     ),
+        //     child: Image.asset(
+        //       AppImages.phoneCallImg,
+        //     ).commonAllSidePadding(padding: 8),
+        //   ).commonSymmetricPadding(horizontal: 2),
+        // ),
         GestureDetector(
           onTap: () {
-            if (screenController.meetingStatus.value == true) {
-              _makingPhoneCall(screenController.phoneNo);
-            } else if (screenController.meetingStatus.value == false) {
-              screenController.openCheckout();
-            }
+            //Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
+            // log('Follow Userid: ${homeController.petTopList[i].data.userid}');
+            // log('Follow Category id: ${homeController.petTopList[i].data.categoryId}');
+            Get.to(
+              () => UserProfileScreen(),
+              transition: Transition.native,
+              duration: const Duration(milliseconds: 500),
+              arguments: [
+                screenController.petUserId,
+                screenController.petUserCatId,
+                screenController.petId,
+              ],
+            );
           },
-          child: Container(
-            height: screenController.size.width * 0.018.w,
-            width: screenController.size.width * 0.018.w,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: AppColors.accentColor,
-            ),
-            child: Image.asset(
-              AppImages.phoneCallImg,
-            ).commonAllSidePadding(padding: 8),
-          ).commonSymmetricPadding(horizontal: 2),
+          child: Row(
+            children: [
+              Text(
+                screenController.petOwnerUserName,
+                style: const TextStyle(
+                  color: AppColors.accentTextColor,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Container(
+                height: 25,
+                width: 25,
+                decoration: BoxDecoration(
+                  // color: AppColors.greyColor,
+                  shape: BoxShape.circle,
+                  // borderRadius: BorderRadius.circular(15),
+                  border: Border.all(
+                    color: AppColors.accentTextColor,
+                    width: 0.5,
+                  ),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.network(
+                    ApiUrl.apiImagePath +
+                        "asset/uploads/product/" +
+                        screenController.image,
+                    errorBuilder: (context, st, ob) {
+                      return Image.asset(
+                        AppImages.petMetLogoImg,
+                        fit: BoxFit.fitWidth,
+                      );
+                    },
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     ).commonSymmetricPadding(horizontal: 15);

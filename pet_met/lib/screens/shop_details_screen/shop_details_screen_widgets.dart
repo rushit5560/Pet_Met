@@ -6,6 +6,7 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/shop_details_screen_controller.dart';
+import 'package:pet_met/screens/address_screen/address_screen_widgets.dart';
 import 'package:pet_met/screens/pet_meeting_details_screen/pet_meeting_details_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
@@ -84,10 +85,11 @@ class OffersModule extends StatelessWidget {
                 size: 18,
               ),
             )*/
-            Image.asset(AppIcons.verifiedSymbolImg,
-              width: 25,
-              height: 25,
-            )
+                Image.asset(
+                    AppIcons.verifiedSymbolImg,
+                    width: 25,
+                    height: 25,
+                  )
                 : Container(),
           ],
         ),
@@ -351,7 +353,7 @@ class PayButtonModule extends StatelessWidget {
 
   final screenController = Get.find<ShopDetailsScreenController>();
   DarkThemeProvider themeProvider =
-  Provider.of<DarkThemeProvider>(Get.context!);
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -388,7 +390,6 @@ class PayButtonModule extends StatelessWidget {
   }
 
   alertDialogBox(BuildContext context) {
-
     return showDialog(
       barrierColor: themeProvider.darkTheme
           ? AppColors.darkThemeBoxColor.withOpacity(0.3)
@@ -420,7 +421,7 @@ class PayButtonModule extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-               /* Text(
+                /* Text(
                   "Shop Charge",
                   style: TextStyle(
                     color: themeProvider.darkTheme
@@ -499,7 +500,7 @@ class PayButtonModule extends StatelessWidget {
                             : AppColors.whiteColor,
                         filled: true,
                         contentPadding:
-                        const EdgeInsets.symmetric(horizontal: 15),
+                            const EdgeInsets.symmetric(horizontal: 15),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: const BorderSide(
@@ -532,9 +533,12 @@ class PayButtonModule extends StatelessWidget {
                         Get.back();
                         //await screenController.userLoginFunction();
                         if (screenController.formKey.currentState!.validate()) {
-                          screenController.openCheckout(price: int.parse(screenController.priceController.text));
+                          screenController.openCheckout(
+                              price: int.parse(
+                                  screenController.priceController.text));
                           log('price: ${screenController.priceController.text}');
-                          Fluttertoast.showToast(msg: 'Processing payment to shop.');
+                          Fluttertoast.showToast(
+                              msg: 'Processing payment to shop.');
                           screenController.priceController.clear();
                         }
                       },
@@ -548,8 +552,7 @@ class PayButtonModule extends StatelessWidget {
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12),
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
                           child: Center(
                             child: Text(
                               "Submit",
@@ -580,8 +583,7 @@ class PayButtonModule extends StatelessWidget {
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12),
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
                           child: Center(
                             child: Text(
                               "Cancel",
@@ -693,57 +695,57 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
                 fontSize: 18.sp),
           ),
         ),
-        GestureDetector(
-          onTap: () {
-            String url = "${screenController.shopData[0].instagram}";
-            _makingInstagramApp(url);
-          },
-          child: Container(
-            height: screenController.size.width * 0.018.w,
-            width: screenController.size.width * 0.018.w,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: AppColors.accentColor,
-            ),
-            child: Image.asset(
-              AppImages.instaImg,
-            ).commonAllSidePadding(padding: 8),
-          ).commonSymmetricPadding(horizontal: 2),
-        ),
-        GestureDetector(
-          onTap: () {
-            var fbUrl = "${screenController.shopData[0].facebook}";
-            launchFacebook(fbUrl, fbUrl);
-          },
-          child: Container(
-            height: screenController.size.width * 0.018.w,
-            width: screenController.size.width * 0.018.w,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: AppColors.accentColor,
-            ),
-            child: Image.asset(
-              AppImages.fbImg,
-            ).commonAllSidePadding(padding: 8),
-          ).commonSymmetricPadding(horizontal: 2),
-        ),
-        GestureDetector(
-          onTap: () {
-            String number = "${screenController.shopData[0].phonenumber}";
-            launchWhatsApp(context, number);
-          },
-          child: Container(
-            height: screenController.size.width * 0.018.w,
-            width: screenController.size.width * 0.018.w,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: AppColors.accentColor,
-            ),
-            child: Image.asset(
-              AppImages.whatsappImg,
-            ).commonAllSidePadding(padding: 8),
-          ).commonSymmetricPadding(horizontal: 2),
-        ),
+        // GestureDetector(
+        //   onTap: () {
+        //     String url = "${screenController.shopData[0].instagram}";
+        //     _makingInstagramApp(url);
+        //   },
+        //   child: Container(
+        //     height: screenController.size.width * 0.018.w,
+        //     width: screenController.size.width * 0.018.w,
+        //     decoration: BoxDecoration(
+        //       borderRadius: BorderRadius.circular(12),
+        //       color: AppColors.accentColor,
+        //     ),
+        //     child: Image.asset(
+        //       AppImages.instaImg,
+        //     ).commonAllSidePadding(padding: 8),
+        //   ).commonSymmetricPadding(horizontal: 2),
+        // ),
+        // GestureDetector(
+        //   onTap: () {
+        //     var fbUrl = "${screenController.shopData[0].facebook}";
+        //     launchFacebook(fbUrl, fbUrl);
+        //   },
+        //   child: Container(
+        //     height: screenController.size.width * 0.018.w,
+        //     width: screenController.size.width * 0.018.w,
+        //     decoration: BoxDecoration(
+        //       borderRadius: BorderRadius.circular(12),
+        //       color: AppColors.accentColor,
+        //     ),
+        //     child: Image.asset(
+        //       AppImages.fbImg,
+        //     ).commonAllSidePadding(padding: 8),
+        //   ).commonSymmetricPadding(horizontal: 2),
+        // ),
+        // GestureDetector(
+        //   onTap: () {
+        //     String number = "${screenController.shopData[0].phonenumber}";
+        //     launchWhatsApp(context, number);
+        //   },
+        //   child: Container(
+        //     height: screenController.size.width * 0.018.w,
+        //     width: screenController.size.width * 0.018.w,
+        //     decoration: BoxDecoration(
+        //       borderRadius: BorderRadius.circular(12),
+        //       color: AppColors.accentColor,
+        //     ),
+        //     child: Image.asset(
+        //       AppImages.whatsappImg,
+        //     ).commonAllSidePadding(padding: 8),
+        //   ).commonSymmetricPadding(horizontal: 2),
+        // ),
         GestureDetector(
           onTap: () {
             String number = "${screenController.shopData[0].phonenumber}";
@@ -758,6 +760,226 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
             ),
             child: Image.asset(
               AppImages.phoneCallImg,
+              color: themeProvider.darkTheme
+                  ? AppColors.darkThemeBoxColor
+                  : AppColors.whiteColor,
+            ).commonAllSidePadding(padding: 8),
+          ).commonSymmetricPadding(horizontal: 2),
+        ),
+        GestureDetector(
+          onTap: () {
+            // if (UserDetails.userEmail == controller.userEmail) {
+            //       Fluttertoast.showToast(msg: "User can't chat with itself.");
+            //     } else {
+            //       if (controller.status.value == false) {
+            //         List<String> tempChatRoomIdList = [];
+
+            //         // CharRoom Id Generate
+            //         String chatRoomId =
+            //             "${UserDetails.selfId}${UserDetails.categoryId}_${controller.chatUid}${controller.chatCategoryId}";
+            //         String chatRoomId2 =
+            //             "${controller.chatUid}${controller.chatCategoryId}_${UserDetails.selfId}${UserDetails.categoryId}";
+
+            //         // Get All Chat Room From Firebase
+            //         QuerySnapshot querySnapshot = await FirebaseFirestore
+            //             .instance
+            //             .collection("ChatRoom")
+            //             .get();
+
+            //         querySnapshot.docs.map((doc) {
+            //           doc.data();
+
+            //           if (doc['chatRoomId'].toString().contains(chatRoomId)) {
+            //             log("first if stat");
+            //             tempChatRoomIdList.add(doc['chatRoomId']);
+            //           }
+            //           if (doc['chatRoomId'].toString().contains(chatRoomId2)) {
+            //             log("second if stat");
+            //             tempChatRoomIdList.add(doc['chatRoomId']);
+            //           }
+            //         }).toList();
+
+            //         log("tempChatRoomId : $tempChatRoomIdList");
+
+            //         if (tempChatRoomIdList.isEmpty) {
+            //           /// Create chat room
+            //           Timestamp timeStamp = Timestamp.now();
+            //           // CharRoom Id Generate
+            //           // String charRoomId =
+            //           //     "${UserDetails.selfId}${UserDetails.categoryId}_${controller.chatUid}${controller.chatCategoryId}";
+
+            //           log("controller.chatUid : ${controller.chatUid}");
+            //           log("controller.chatCategoryId : ${controller.chatCategoryId}");
+            //           log("charRoomId123 : $chatRoomId");
+
+            //           // ChatRoom Data
+            //           Map<String, dynamic> chatRoomData = {
+            //             "chatRoomId": chatRoomId,
+            //             "creator":
+            //                 "${UserDetails.selfId}${UserDetails.categoryId}",
+            //             "pearer":
+            //                 "${controller.chatUid}${controller.chatCategoryId}",
+            //             "creatorEmail": UserDetails.userEmail,
+            //             "peerEmail": controller.userEmail,
+            //             "creatorName": UserDetails.categoryId == "2"
+            //                 ? UserDetails.shopName
+            //                 : UserDetails.userName,
+            //             "peerName": controller.userName,
+            //             "createdAt": timeStamp,
+            //             "userEmails": [
+            //               UserDetails.userEmail,
+            //               controller.userEmail,
+            //             ],
+            //           };
+
+            //           log("chatRoomData : $chatRoomData");
+
+            //           // Create ChatRoom Function
+            //           firebaseDatabase.createChatRoomOfTwoUsers(
+            //               chatRoomId, chatRoomData);
+            //           //Go to conversation screen
+            //           Get.to(
+            //             () => UserConversationScreen(),
+            //             arguments: [
+            //               chatRoomId,
+            //               controller.followCategoryId == "1"
+            //                   ? controller.userName
+            //                   : controller.shopName,
+            //               controller.userName,
+            //               UserDetails.userEmail,
+            //               controller.userEmail,
+            //             ],
+            //           );
+            //         } else {
+            //           if (tempChatRoomIdList[0].contains(chatRoomId)) {
+            //             /// Create chat room
+            //             Timestamp timeStamp = Timestamp.now();
+
+            //             log("controller.chatUid : ${controller.chatUid}");
+            //             log("controller.chatCategoryId : ${controller.chatCategoryId}");
+            //             log("charRoomId123 : $chatRoomId");
+
+            //             // ChatRoom Data
+            //             Map<String, dynamic> chatRoomData = {
+            //               "chatRoomId": chatRoomId,
+            //               "creator":
+            //                   "${UserDetails.selfId}${UserDetails.categoryId}",
+            //               "pearer":
+            //                   "${controller.chatUid}${controller.chatCategoryId}",
+            //               "creatorEmail": UserDetails.userEmail,
+            //               "peerEmail": controller.userEmail,
+            //               "creatorName": UserDetails.categoryId == "2"
+            //                   ? UserDetails.shopName
+            //                   : UserDetails.userName,
+            //               "peerName": controller.userName,
+            //               "createdAt": timeStamp,
+            //               "userEmails": [
+            //                 UserDetails.userEmail,
+            //                 controller.userEmail,
+            //               ],
+            //             };
+
+            //             log("chatRoomData : $chatRoomData");
+
+            //             // Create ChatRoom Function
+            //             firebaseDatabase.createChatRoomOfTwoUsers(
+            //                 chatRoomId, chatRoomData);
+            //             //Go to conversation screen
+            //             Get.to(
+            //               () => UserConversationScreen(),
+            //               arguments: [
+            //                 chatRoomId,
+            //                 controller.followCategoryId == "1"
+            //                     ? controller.userName
+            //                     : controller.shopName,
+            //                 controller.userName,
+            //                 UserDetails.userEmail,
+            //                 controller.userEmail,
+            //               ],
+            //             );
+            //           } else {
+            //             /// Create chat room
+            //             Timestamp timeStamp = Timestamp.now();
+
+            //             log("controller.chatUid : ${controller.chatUid}");
+            //             log("controller.chatCategoryId : ${controller.chatCategoryId}");
+            //             log("charRoomId123 : $chatRoomId2");
+
+            //             // ChatRoom Data
+            //             Map<String, dynamic> chatRoomData = {
+            //               "chatRoomId": chatRoomId2,
+            //               "creator":
+            //                   "${controller.chatUid}${controller.chatCategoryId}",
+            //               "pearer":
+            //                   "${UserDetails.selfId}${UserDetails.categoryId}",
+            //               "creatorEmail": controller.userEmail,
+            //               "peerEmail": UserDetails.userEmail,
+            //               "creatorName": controller.userName,
+            //               "peerName": UserDetails.categoryId == "2"
+            //                   ? UserDetails.shopName
+            //                   : UserDetails.userName,
+            //               "createdAt": timeStamp,
+            //               "userEmails": [
+            //                 controller.userEmail,
+            //                 UserDetails.userEmail,
+            //               ],
+            //             };
+
+            //             log("chatRoomData : $chatRoomData");
+
+            //             // Create ChatRoom Function
+            //             firebaseDatabase.createChatRoomOfTwoUsers(
+            //                 chatRoomId2, chatRoomData);
+            //             //Go to conversation screen
+            //             Get.to(
+            //               () => UserConversationScreen(),
+            //               arguments: [
+            //                 chatRoomId2,
+            //                 controller.followCategoryId == "1"
+            //                     ? controller.userName
+            //                     : controller.shopName,
+            //                 controller.userName,
+            //                 UserDetails.userEmail,
+            //                 controller.userEmail,
+            //               ],
+            //             );
+            //           }
+
+            //           //Go to conversation screen
+            //           Get.to(
+            //             () => UserConversationScreen(),
+            //             arguments: [
+            //               chatRoomId.isEmpty ? chatRoomId2 : chatRoomId,
+            //               controller.followCategoryId == "1"
+            //                   ? controller.userName
+            //                   : controller.shopName,
+            //               controller.userName,
+            //               UserDetails.userEmail,
+            //               controller.userEmail,
+            //             ],
+            //           );
+            //         }
+
+            //       }
+
+            //       /// When loggedIn user as a shop
+            //       else if (controller.status.value == true) {
+            //         Fluttertoast.showToast(msg: 'First follow user');
+            //       }
+            //     }
+          },
+          child: Container(
+            height: screenController.size.width * 0.018.w,
+            width: screenController.size.width * 0.018.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: AppColors.accentColor,
+            ),
+            child: Image.asset(
+              AppIcons.messageImg,
+              color: themeProvider.darkTheme
+                  ? AppColors.darkThemeBoxColor
+                  : AppColors.whiteColor,
             ).commonAllSidePadding(padding: 8),
           ).commonSymmetricPadding(horizontal: 2),
         ),
@@ -832,6 +1054,53 @@ class ShopPlaceTimePaymentModule extends StatelessWidget {
     return Column(
       children: [
         // Shop Address Module
+        screenController.showStatus.value == true
+            ? Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  /*Image.asset(
+              AppIcons.locationImg,
+              height: 20,
+              width: 20,
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.blackTextColor,
+            ),*/
+                  Icon(
+                    Icons.watch_later_outlined,
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.greyTextColor,
+                    size: 20,
+                  ),
+                  SizedBox(width: screenController.size.width * 0.008.w),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Text(
+                          "Open:" + "${screenController.shopData[0].shopopen}",
+                          style: TextStyle(
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor
+                                : AppColors.blackTextColor,
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Text(
+                          "Close: ${screenController.shopData[0].shopclose}",
+                          style: TextStyle(
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor
+                                : AppColors.blackTextColor,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              )
+            : Container(),
+        SizedBox(height: screenController.size.height * 0.002.h),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -856,89 +1125,43 @@ class ShopPlaceTimePaymentModule extends StatelessWidget {
             ),
           ],
         ),
-        screenController.showStatus.value == true ? SizedBox(height: screenController.size.height * 0.001.h) : Container(),
-
-        // Shop Time Module
-        screenController.showStatus.value == true ?
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            /*Image.asset(
-              AppIcons.locationImg,
-              height: 20,
-              width: 20,
-              color: themeProvider.darkTheme
-                  ? AppColors.whiteColor
-                  : AppColors.blackTextColor,
-            ),*/
-            Icon(
-              Icons.watch_later_outlined,
-              color: themeProvider.darkTheme
-                  ? AppColors.whiteColor
-                  : AppColors.greyTextColor,
-              size: 20,
-            ),
-            SizedBox(width: screenController.size.width * 0.008.w),
-            Expanded(
-              child: Row(
-                children: [
-                  Text(
-                    "Open:" + "${screenController.shopData[0].shopopen}",
-                    style: TextStyle(
-                      color: themeProvider.darkTheme
-                          ? AppColors.whiteColor
-                          : AppColors.blackTextColor,
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Text(
-                    "Close: ${screenController.shopData[0].shopclose}",
-                    style: TextStyle(
-                      color: themeProvider.darkTheme
-                          ? AppColors.whiteColor
-                          : AppColors.blackTextColor,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ) : Container(),
         SizedBox(height: screenController.size.height * 0.001.h),
 
+        // Shop Time Module
+
         // Payment Module
-        screenController.showStatus.value == true ?
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            /*Image.asset(
-              AppIcons.locationImg,
-              height: 20,
-              width: 20,
-              color: themeProvider.darkTheme
-                  ? AppColors.whiteColor
-                  : AppColors.blackTextColor,
-            ),*/
-            Icon(
-              Icons.payment,
-              color: themeProvider.darkTheme
-                  ? AppColors.whiteColor
-                  : AppColors.greyTextColor,
-              size: 20,
-            ),
-            SizedBox(width: screenController.size.width * 0.008.w),
-            Expanded(
-              child: Text(
-                "Cash, Cash on Delivery, Cheque, Debit Card, Credit Card, UPI, BHIM, Visa Card, Master Card, RuPay Card, G Pay, PhonePe, NEFT, RTGS, IMPS, Paytm.",
-                style: TextStyle(
-                  color: themeProvider.darkTheme
-                      ? AppColors.whiteColor
-                      : AppColors.blackTextColor,
-                ),
-              ),
-            ),
-          ],
-        ) : Container(),
+        // screenController.showStatus.value == true ?
+        // Row(
+        //   crossAxisAlignment: CrossAxisAlignment.start,
+        //   children: [
+        //     /*Image.asset(
+        //       AppIcons.locationImg,
+        //       height: 20,
+        //       width: 20,
+        //       color: themeProvider.darkTheme
+        //           ? AppColors.whiteColor
+        //           : AppColors.blackTextColor,
+        //     ),*/
+        //     Icon(
+        //       Icons.payment,
+        //       color: themeProvider.darkTheme
+        //           ? AppColors.whiteColor
+        //           : AppColors.greyTextColor,
+        //       size: 20,
+        //     ),
+        //     SizedBox(width: screenController.size.width * 0.008.w),
+        //     Expanded(
+        //       child: Text(
+        //         "Cash, Cash on Delivery, Cheque, Debit Card, Credit Card, UPI, BHIM, Visa Card, Master Card, RuPay Card, G Pay, PhonePe, NEFT, RTGS, IMPS, Paytm.",
+        //         style: TextStyle(
+        //           color: themeProvider.darkTheme
+        //               ? AppColors.whiteColor
+        //               : AppColors.blackTextColor,
+        //         ),
+        //       ),
+        //     ),
+        //   ],
+        // ) : Container(),
       ],
     ).commonSymmetricPadding(horizontal: 15);
   }

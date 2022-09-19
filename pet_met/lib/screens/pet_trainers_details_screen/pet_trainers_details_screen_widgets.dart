@@ -15,6 +15,7 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../services/providers/dark_theme_provider.dart';
+import '../address_screen/address_screen_widgets.dart';
 
 class PetTrainerBannerImageModule extends StatelessWidget {
   PetTrainerBannerImageModule({Key? key}) : super(key: key);
@@ -80,10 +81,11 @@ class PetTrainerPicturesModule extends StatelessWidget {
                   ),
                 ),
                 screenController.isVerified == true
-                    ? Image.asset(AppIcons.verifiedSymbolImg,
-                  width: 25,
-                  height: 25,
-                )
+                    ? Image.asset(
+                        AppIcons.verifiedSymbolImg,
+                        width: 25,
+                        height: 25,
+                      )
                     : Container(),
               ],
             ),
@@ -357,65 +359,65 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
                 fontSize: 18.sp),
           ),
         ),
-        GestureDetector(
-          onTap: () {
-            String url = screenController.trainerDetails[0].instagram;
-            if(url.isEmpty){
-              Fluttertoast.showToast(msg: 'Instagram URL is not added. Please add URL!!!');
-            }  else {
-              _makingInstagramApp(url);
-            }
-          },
-          child: Container(
-            height: screenController.size.width * 0.018.w,
-            width: screenController.size.width * 0.018.w,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: AppColors.accentColor,
-            ),
-            child: Image.asset(
-              AppImages.instaImg,
-            ).commonAllSidePadding(padding: 8),
-          ).commonSymmetricPadding(horizontal: 2),
-        ),
-        GestureDetector(
-          onTap: () {
-            var fbUrl = screenController.trainerDetails[0].facebook;
-            if(fbUrl.isEmpty){
-              Fluttertoast.showToast(msg: 'Facebook URL is not added. Please add URL!!!');
-            } else {
-              launchFacebook(fbUrl, fbUrl);
-            }
-          },
-          child: Container(
-            height: screenController.size.width * 0.018.w,
-            width: screenController.size.width * 0.018.w,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: AppColors.accentColor,
-            ),
-            child: Image.asset(
-              AppImages.fbImg,
-            ).commonAllSidePadding(padding: 8),
-          ).commonSymmetricPadding(horizontal: 2),
-        ),
-        GestureDetector(
-          onTap: () {
-            String number = "${screenController.trainerDetails[0].phone}";
-            launchWhatsApp(context, number);
-          },
-          child: Container(
-            height: screenController.size.width * 0.018.w,
-            width: screenController.size.width * 0.018.w,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: AppColors.accentColor,
-            ),
-            child: Image.asset(
-              AppImages.whatsappImg,
-            ).commonAllSidePadding(padding: 8),
-          ).commonSymmetricPadding(horizontal: 2),
-        ),
+        // GestureDetector(
+        //   onTap: () {
+        //     String url = screenController.trainerDetails[0].instagram;
+        //     if(url.isEmpty){
+        //       Fluttertoast.showToast(msg: 'Instagram URL is not added. Please add URL!!!');
+        //     }  else {
+        //       _makingInstagramApp(url);
+        //     }
+        //   },
+        //   child: Container(
+        //     height: screenController.size.width * 0.018.w,
+        //     width: screenController.size.width * 0.018.w,
+        //     decoration: BoxDecoration(
+        //       borderRadius: BorderRadius.circular(12),
+        //       color: AppColors.accentColor,
+        //     ),
+        //     child: Image.asset(
+        //       AppImages.instaImg,
+        //     ).commonAllSidePadding(padding: 8),
+        //   ).commonSymmetricPadding(horizontal: 2),
+        // ),
+        // GestureDetector(
+        //   onTap: () {
+        //     var fbUrl = screenController.trainerDetails[0].facebook;
+        //     if(fbUrl.isEmpty){
+        //       Fluttertoast.showToast(msg: 'Facebook URL is not added. Please add URL!!!');
+        //     } else {
+        //       launchFacebook(fbUrl, fbUrl);
+        //     }
+        //   },
+        //   child: Container(
+        //     height: screenController.size.width * 0.018.w,
+        //     width: screenController.size.width * 0.018.w,
+        //     decoration: BoxDecoration(
+        //       borderRadius: BorderRadius.circular(12),
+        //       color: AppColors.accentColor,
+        //     ),
+        //     child: Image.asset(
+        //       AppImages.fbImg,
+        //     ).commonAllSidePadding(padding: 8),
+        //   ).commonSymmetricPadding(horizontal: 2),
+        // ),
+        // GestureDetector(
+        //   onTap: () {
+        //     String number = "${screenController.trainerDetails[0].phone}";
+        //     launchWhatsApp(context, number);
+        //   },
+        //   child: Container(
+        //     height: screenController.size.width * 0.018.w,
+        //     width: screenController.size.width * 0.018.w,
+        //     decoration: BoxDecoration(
+        //       borderRadius: BorderRadius.circular(12),
+        //       color: AppColors.accentColor,
+        //     ),
+        //     child: Image.asset(
+        //       AppImages.whatsappImg,
+        //     ).commonAllSidePadding(padding: 8),
+        //   ).commonSymmetricPadding(horizontal: 2),
+        // ),
         GestureDetector(
           onTap: () {
             String number = "${screenController.trainerDetails[0].phone}";
@@ -430,6 +432,229 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
             ),
             child: Image.asset(
               AppImages.phoneCallImg,
+              color: themeProvider.darkTheme
+                  ? AppColors.darkThemeBoxColor
+                  : AppColors.whiteColor,
+            ).commonAllSidePadding(padding: 8),
+          ).commonSymmetricPadding(horizontal: 2),
+        ),
+        GestureDetector(
+          onTap: () {
+            // String number = "${screenController.shopData[0].phonenumber}";
+            // _makingPhoneCall(number);
+
+            // if (UserDetails.userEmail == controller.userEmail) {
+            //       Fluttertoast.showToast(msg: "User can't chat with itself.");
+            //     } else {
+            //       if (controller.status.value == false) {
+            //         List<String> tempChatRoomIdList = [];
+
+            //         // CharRoom Id Generate
+            //         String chatRoomId =
+            //             "${UserDetails.selfId}${UserDetails.categoryId}_${controller.chatUid}${controller.chatCategoryId}";
+            //         String chatRoomId2 =
+            //             "${controller.chatUid}${controller.chatCategoryId}_${UserDetails.selfId}${UserDetails.categoryId}";
+
+            //         // Get All Chat Room From Firebase
+            //         QuerySnapshot querySnapshot = await FirebaseFirestore
+            //             .instance
+            //             .collection("ChatRoom")
+            //             .get();
+
+            //         querySnapshot.docs.map((doc) {
+            //           doc.data();
+
+            //           if (doc['chatRoomId'].toString().contains(chatRoomId)) {
+            //             log("first if stat");
+            //             tempChatRoomIdList.add(doc['chatRoomId']);
+            //           }
+            //           if (doc['chatRoomId'].toString().contains(chatRoomId2)) {
+            //             log("second if stat");
+            //             tempChatRoomIdList.add(doc['chatRoomId']);
+            //           }
+            //         }).toList();
+
+            //         log("tempChatRoomId : $tempChatRoomIdList");
+
+            //         if (tempChatRoomIdList.isEmpty) {
+            //           /// Create chat room
+            //           Timestamp timeStamp = Timestamp.now();
+            //           // CharRoom Id Generate
+            //           // String charRoomId =
+            //           //     "${UserDetails.selfId}${UserDetails.categoryId}_${controller.chatUid}${controller.chatCategoryId}";
+
+            //           log("controller.chatUid : ${controller.chatUid}");
+            //           log("controller.chatCategoryId : ${controller.chatCategoryId}");
+            //           log("charRoomId123 : $chatRoomId");
+
+            //           // ChatRoom Data
+            //           Map<String, dynamic> chatRoomData = {
+            //             "chatRoomId": chatRoomId,
+            //             "creator":
+            //                 "${UserDetails.selfId}${UserDetails.categoryId}",
+            //             "pearer":
+            //                 "${controller.chatUid}${controller.chatCategoryId}",
+            //             "creatorEmail": UserDetails.userEmail,
+            //             "peerEmail": controller.userEmail,
+            //             "creatorName": UserDetails.categoryId == "2"
+            //                 ? UserDetails.shopName
+            //                 : UserDetails.userName,
+            //             "peerName": controller.userName,
+            //             "createdAt": timeStamp,
+            //             "userEmails": [
+            //               UserDetails.userEmail,
+            //               controller.userEmail,
+            //             ],
+            //           };
+
+            //           log("chatRoomData : $chatRoomData");
+
+            //           // Create ChatRoom Function
+            //           firebaseDatabase.createChatRoomOfTwoUsers(
+            //               chatRoomId, chatRoomData);
+            //           //Go to conversation screen
+            //           Get.to(
+            //             () => UserConversationScreen(),
+            //             arguments: [
+            //               chatRoomId,
+            //               controller.followCategoryId == "1"
+            //                   ? controller.userName
+            //                   : controller.shopName,
+            //               controller.userName,
+            //               UserDetails.userEmail,
+            //               controller.userEmail,
+            //             ],
+            //           );
+            //         } else {
+            //           if (tempChatRoomIdList[0].contains(chatRoomId)) {
+            //             /// Create chat room
+            //             Timestamp timeStamp = Timestamp.now();
+
+            //             log("controller.chatUid : ${controller.chatUid}");
+            //             log("controller.chatCategoryId : ${controller.chatCategoryId}");
+            //             log("charRoomId123 : $chatRoomId");
+
+            //             // ChatRoom Data
+            //             Map<String, dynamic> chatRoomData = {
+            //               "chatRoomId": chatRoomId,
+            //               "creator":
+            //                   "${UserDetails.selfId}${UserDetails.categoryId}",
+            //               "pearer":
+            //                   "${controller.chatUid}${controller.chatCategoryId}",
+            //               "creatorEmail": UserDetails.userEmail,
+            //               "peerEmail": controller.userEmail,
+            //               "creatorName": UserDetails.categoryId == "2"
+            //                   ? UserDetails.shopName
+            //                   : UserDetails.userName,
+            //               "peerName": controller.userName,
+            //               "createdAt": timeStamp,
+            //               "userEmails": [
+            //                 UserDetails.userEmail,
+            //                 controller.userEmail,
+            //               ],
+            //             };
+
+            //             log("chatRoomData : $chatRoomData");
+
+            //             // Create ChatRoom Function
+            //             firebaseDatabase.createChatRoomOfTwoUsers(
+            //                 chatRoomId, chatRoomData);
+            //             //Go to conversation screen
+            //             Get.to(
+            //               () => UserConversationScreen(),
+            //               arguments: [
+            //                 chatRoomId,
+            //                 controller.followCategoryId == "1"
+            //                     ? controller.userName
+            //                     : controller.shopName,
+            //                 controller.userName,
+            //                 UserDetails.userEmail,
+            //                 controller.userEmail,
+            //               ],
+            //             );
+            //           } else {
+            //             /// Create chat room
+            //             Timestamp timeStamp = Timestamp.now();
+
+            //             log("controller.chatUid : ${controller.chatUid}");
+            //             log("controller.chatCategoryId : ${controller.chatCategoryId}");
+            //             log("charRoomId123 : $chatRoomId2");
+
+            //             // ChatRoom Data
+            //             Map<String, dynamic> chatRoomData = {
+            //               "chatRoomId": chatRoomId2,
+            //               "creator":
+            //                   "${controller.chatUid}${controller.chatCategoryId}",
+            //               "pearer":
+            //                   "${UserDetails.selfId}${UserDetails.categoryId}",
+            //               "creatorEmail": controller.userEmail,
+            //               "peerEmail": UserDetails.userEmail,
+            //               "creatorName": controller.userName,
+            //               "peerName": UserDetails.categoryId == "2"
+            //                   ? UserDetails.shopName
+            //                   : UserDetails.userName,
+            //               "createdAt": timeStamp,
+            //               "userEmails": [
+            //                 controller.userEmail,
+            //                 UserDetails.userEmail,
+            //               ],
+            //             };
+
+            //             log("chatRoomData : $chatRoomData");
+
+            //             // Create ChatRoom Function
+            //             firebaseDatabase.createChatRoomOfTwoUsers(
+            //                 chatRoomId2, chatRoomData);
+            //             //Go to conversation screen
+            //             Get.to(
+            //               () => UserConversationScreen(),
+            //               arguments: [
+            //                 chatRoomId2,
+            //                 controller.followCategoryId == "1"
+            //                     ? controller.userName
+            //                     : controller.shopName,
+            //                 controller.userName,
+            //                 UserDetails.userEmail,
+            //                 controller.userEmail,
+            //               ],
+            //             );
+            //           }
+
+            //           //Go to conversation screen
+            //           Get.to(
+            //             () => UserConversationScreen(),
+            //             arguments: [
+            //               chatRoomId.isEmpty ? chatRoomId2 : chatRoomId,
+            //               controller.followCategoryId == "1"
+            //                   ? controller.userName
+            //                   : controller.shopName,
+            //               controller.userName,
+            //               UserDetails.userEmail,
+            //               controller.userEmail,
+            //             ],
+            //           );
+            //         }
+
+            //       }
+
+            //       /// When loggedIn user as a shop
+            //       else if (controller.status.value == true) {
+            //         Fluttertoast.showToast(msg: 'First follow user');
+            //       }
+            //     }
+          },
+          child: Container(
+            height: screenController.size.width * 0.018.w,
+            width: screenController.size.width * 0.018.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: AppColors.accentColor,
+            ),
+            child: Image.asset(
+              AppIcons.messageImg,
+              color: themeProvider.darkTheme
+                  ? AppColors.darkThemeBoxColor
+                  : AppColors.whiteColor,
             ).commonAllSidePadding(padding: 8),
           ).commonSymmetricPadding(horizontal: 2),
         ),
@@ -652,7 +877,7 @@ class PayButtonModule extends StatelessWidget {
 
   final screenController = Get.find<PetTrainersDetailsScreenController>();
   DarkThemeProvider themeProvider =
-  Provider.of<DarkThemeProvider>(Get.context!);
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -695,217 +920,212 @@ class PayButtonModule extends StatelessWidget {
           ? AppColors.darkThemeBoxColor.withOpacity(0.3)
           : AppColors.accentColor.withOpacity(0.3),
       context: context,
-      builder: (ctx) =>
-          Dialog(
-            backgroundColor: themeProvider.darkTheme
-                ? AppColors.darkThemeBoxColor
-                : AppColors.whiteColor,
-            shape: const OutlineInputBorder(
-              borderSide: BorderSide(
-                width: 0,
-                color: Colors.transparent,
-              ),
-              borderRadius: BorderRadius.all(
-                Radius.circular(12),
-              ),
-            ),
-            child: Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 15,
-                vertical: 25,
-              ),
-              height: screenController.size.height * 0.35,
-              width: screenController.size.width * 0.8,
-              child: Form(
-                key: screenController.formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
+      builder: (ctx) => Dialog(
+        backgroundColor: themeProvider.darkTheme
+            ? AppColors.darkThemeBoxColor
+            : AppColors.whiteColor,
+        shape: const OutlineInputBorder(
+          borderSide: BorderSide(
+            width: 0,
+            color: Colors.transparent,
+          ),
+          borderRadius: BorderRadius.all(
+            Radius.circular(12),
+          ),
+        ),
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 25,
+          ),
+          height: screenController.size.height * 0.35,
+          width: screenController.size.width * 0.8,
+          child: Form(
+            key: screenController.formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  "Trainer Charge",
+                  style: TextStyle(
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.blackTextColor,
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      "Trainer Charge",
+                      "Amount",
+                      style: TextStyle(
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.blackTextColor,
+                        fontSize: 11.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+                //const SizedBox(height: 8),
+                // CustomLightTextField(
+                //   readOnly: false,
+                //   fieldController: controller.passwordController,
+                //   height: Get.height * 0.05,
+                //   width: double.infinity,
+                //   hintText: "Password",
+                //   textInputAction: TextInputAction.next,
+                //   textInputType: TextInputType.text,
+                //   validator: (val) => Validations().validateName(val!),
+                // ),
+
+                Stack(
+                  children: [
+                    Container(
+                      height: screenController.size.height * 0.05,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        boxShadow: [
+                          BoxShadow(
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor.withOpacity(0.05)
+                                : AppColors.greyTextColor.withOpacity(0.5),
+                            blurRadius: 10,
+                            spreadRadius: 0.1,
+                            offset: const Offset(0, 0),
+                          ),
+                        ],
+                      ),
+                    ),
+                    TextFormField(
+                      controller: screenController.priceController,
+                      validator: (val) => Validations().validatePrice(val!),
+                      textInputAction: TextInputAction.done,
+                      keyboardType: TextInputType.number,
+                      cursorColor: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.accentTextColor,
                       style: TextStyle(
                         color: themeProvider.darkTheme
                             ? AppColors.whiteColor
                             : AppColors.blackTextColor,
                         fontSize: 13.sp,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w400,
+                        decoration: TextDecoration.none,
                       ),
-                    ),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Amount",
-                          style: TextStyle(
-                            color: themeProvider.darkTheme
-                                ? AppColors.whiteColor
-                                : AppColors.blackTextColor,
-                            fontSize: 11.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                    //const SizedBox(height: 8),
-                    // CustomLightTextField(
-                    //   readOnly: false,
-                    //   fieldController: controller.passwordController,
-                    //   height: Get.height * 0.05,
-                    //   width: double.infinity,
-                    //   hintText: "Password",
-                    //   textInputAction: TextInputAction.next,
-                    //   textInputType: TextInputType.text,
-                    //   validator: (val) => Validations().validateName(val!),
-                    // ),
-
-                    Stack(
-                      children: [
-                        Container(
-                          height: screenController.size.height * 0.05,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            boxShadow: [
-                              BoxShadow(
-                                color: themeProvider.darkTheme
-                                    ? AppColors.whiteColor.withOpacity(0.05)
-                                    : AppColors.greyTextColor.withOpacity(0.5),
-                                blurRadius: 10,
-                                spreadRadius: 0.1,
-                                offset: const Offset(0, 0),
-                              ),
-                            ],
-                          ),
-                        ),
-                        TextFormField(
-                          controller: screenController.priceController,
-                          validator: (val) => Validations().validatePrice(val!),
-                          textInputAction: TextInputAction.done,
-                          keyboardType: TextInputType.number,
-                          cursorColor: themeProvider.darkTheme
-                              ? AppColors.whiteColor
-                              : AppColors.accentTextColor,
-                          style: TextStyle(
-                            color: themeProvider.darkTheme
-                                ? AppColors.whiteColor
-                                : AppColors.blackTextColor,
-                            fontSize: 13.sp,
-                            fontWeight: FontWeight.w400,
-                            decoration: TextDecoration.none,
-                          ),
-                          decoration: InputDecoration(
-                            fillColor: themeProvider.darkTheme
-                                ? AppColors.darkThemeBoxColor
-                                : AppColors.whiteColor,
-                            filled: true,
-                            contentPadding:
+                      decoration: InputDecoration(
+                        fillColor: themeProvider.darkTheme
+                            ? AppColors.darkThemeBoxColor
+                            : AppColors.whiteColor,
+                        filled: true,
+                        contentPadding:
                             const EdgeInsets.symmetric(horizontal: 15),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(
-                                  width: 0, style: BorderStyle.none),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                              borderSide: const BorderSide(
-                                  width: 0, style: BorderStyle.none),
-                            ),
-                            hintText: "Amount",
-                            hintStyle: TextStyle(
-                              color: themeProvider.darkTheme
-                                  ? AppColors.whiteColor
-                                  : AppColors.greyTextColor,
-                              fontSize: 13.sp,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                              width: 0, style: BorderStyle.none),
                         ),
-                      ],
-                    ),
-
-                    // const SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-
-                        GestureDetector(
-                          onTap: () {
-                            Get.back();
-                            //await screenController.userLoginFunction();
-                            if (screenController.formKey.currentState!
-                                .validate()) {
-                              screenController.openCheckout(
-                                  price: int.parse(
-                                      screenController.priceController.text));
-                              screenController.priceController.clear();
-                            }
-                          },
-                          child: Container(
-                            //width: double.infinity,
-                            height: 50,
-                            decoration: const BoxDecoration(
-                              color: AppColors.accentColor,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(12),
-                              ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12),
-                              child: Center(
-                                child: Text(
-                                  "Submit",
-                                  style: TextStyle(
-                                    color: AppColors.whiteColor,
-                                    fontSize: 15.sp,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          borderSide: const BorderSide(
+                              width: 0, style: BorderStyle.none),
                         ),
-                        SizedBox(
-                          width: screenController.size.width * 0.05,
+                        hintText: "Amount",
+                        hintStyle: TextStyle(
+                          color: themeProvider.darkTheme
+                              ? AppColors.whiteColor
+                              : AppColors.greyTextColor,
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.w400,
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: Container(
-                            //width: double.infinity,
-                            height: 50,
-                            decoration: const BoxDecoration(
-                              color: AppColors.accentColor,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(12),
-                              ),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12),
-                              child: Center(
-                                child: Text(
-                                  "Cancel",
-                                  style: TextStyle(
-                                    color: AppColors.whiteColor,
-                                    fontSize: 15.sp,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ],
                 ),
-              ),
+
+                // const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Get.back();
+                        //await screenController.userLoginFunction();
+                        if (screenController.formKey.currentState!.validate()) {
+                          screenController.openCheckout(
+                              price: int.parse(
+                                  screenController.priceController.text));
+                          screenController.priceController.clear();
+                        }
+                      },
+                      child: Container(
+                        //width: double.infinity,
+                        height: 50,
+                        decoration: const BoxDecoration(
+                          color: AppColors.accentColor,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: Center(
+                            child: Text(
+                              "Submit",
+                              style: TextStyle(
+                                color: AppColors.whiteColor,
+                                fontSize: 15.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: screenController.size.width * 0.05,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Container(
+                        //width: double.infinity,
+                        height: 50,
+                        decoration: const BoxDecoration(
+                          color: AppColors.accentColor,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(12),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: Center(
+                            child: Text(
+                              "Cancel",
+                              style: TextStyle(
+                                color: AppColors.whiteColor,
+                                fontSize: 15.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
+        ),
+      ),
     );
   }
 }
