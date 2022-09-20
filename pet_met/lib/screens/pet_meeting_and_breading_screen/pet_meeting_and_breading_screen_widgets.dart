@@ -442,15 +442,23 @@ class MeetYourLovedOneButtonModule extends StatelessWidget {
             Radius.circular(12),
           ),
         ),
-        child: Center(
-          child: Text(
-            "Meet Your Loved One",
-            style: TextStyle(
-              color: AppColors.whiteColor,
-              fontSize: 15.sp,
-              fontWeight: FontWeight.w600,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Communicate",
+              style: TextStyle(
+                color: AppColors.whiteColor,
+                fontSize: 15.sp,
+                fontWeight: FontWeight.w600,
+              ),
             ),
-          ),
+            const SizedBox(width: 8),
+            const Icon(
+              Icons.favorite_rounded,
+              color: AppColors.whiteColor,
+            ),
+          ],
         ),
       ),
     );

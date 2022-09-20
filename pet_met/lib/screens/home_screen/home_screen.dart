@@ -66,10 +66,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   title: "User Categories",
                   appBarOption: AppBarOption.drawerButtonOption,
                   isTitleText: false,
-                  centerWidget: Image.asset(
+                  centerWidget: const Text(
+                    "Peto'mate\n" '"Your Personal Pet\nCommunity."',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 13,
+                      color: AppColors.accentTextColor,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  /*centerWidget: Image.asset(
                     AppImages.petMetLogoImg,
                     width: controller.size.width * 0.25,
-                  ),
+                  ),*/
                   trailingWidget: Obx(
                     () => GestureDetector(
                         onTap: () {

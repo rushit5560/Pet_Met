@@ -34,7 +34,7 @@ class ShopDetailsScreen extends StatelessWidget {
               children: [
                 CustomAppBar(
                   appBarOption: AppBarOption.singleBackButtonOption,
-                  title: "Shop Details",
+                  title: "Details",
                 ),
                 // SizedBox(height: 2.w),
 

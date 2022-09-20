@@ -39,10 +39,11 @@ class ShopAndGroomingScreen extends StatelessWidget {
           SafeArea(
             child: Column(
               children: [
-                CustomAppBar(
-                  title: "Shop & Grooming",
-                  appBarOption: AppBarOption.singleBackButtonOption,
-                ),
+                ShopAndGroomingScreenAppBar(),
+                // CustomAppBar(
+                //   title: "Pet Shops, Cafe & Grooming",
+                //   appBarOption: AppBarOption.singleBackButtonOption,
+                // ),
                 const SizedBox(height: 15),
                 Expanded(
                   child: Obx(

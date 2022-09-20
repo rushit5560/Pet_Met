@@ -800,6 +800,7 @@ class DogOwnerListModule extends StatelessWidget {
                                         controller.petList[index].id,
                                         controller.followUserId,
                                         controller.followCategoryId,
+                                        controller.userName,
                                       ],
                                     );
                                   },

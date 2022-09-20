@@ -17,6 +17,64 @@ import 'package:sizer/sizer.dart';
 
 import '../../services/providers/dark_theme_provider.dart';
 
+
+class ShopAndGroomingScreenAppBar extends StatelessWidget {
+  ShopAndGroomingScreenAppBar({Key? key}) : super(key: key);
+  final screenController = Get.find<ShopAndGroomingScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: screenController.size.height * 0.065,
+      width: Get.width,
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // Left Side Button Module
+          GestureDetector(
+            onTap: () => Get.back(),
+            child: SizedBox(
+              height: 25,
+              width: 25,
+              child: Image.asset(
+                AppIcons.backButtonImg,
+              ),
+            ).commonSymmetricPadding(horizontal: 20, vertical: 15),
+          ),
+
+          // Title Text Module
+          /*Expanded(
+            child:*/
+          const Expanded(
+            child: Text(
+              'Pet Shops, Cafe & Grooming',
+              maxLines: 1,
+              // textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 22,
+                color: AppColors.accentTextColor,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          // ),
+
+          // Right Side Button Module
+          // SizedBox(
+          //   height: 25,
+          //   width: 25,
+          //   child: widget.trailingWidget,
+          // ).commonSymmetricPadding(horizontal: 20, vertical: 8),
+        ],
+      ),
+    );
+  }
+}
+
+
+
 class SearchShopTextFieldModule extends StatelessWidget {
   SearchShopTextFieldModule({Key? key}) : super(key: key);
 

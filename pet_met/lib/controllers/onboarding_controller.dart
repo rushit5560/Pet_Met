@@ -56,26 +56,26 @@ class OnboardingController extends GetxController {
         imageAsset: themeProvider.darkTheme
             ? "assets/images/splash_peoples2_dark.png"
             : "assets/images/splash_peoples2_light.png",
-        title: 'Find the Pet you love on around you easily',
+        title: 'Meet other pet parents online easily',
         description:
-            'You can buy a pet easily with this app. This app is connected to million people',
+            'Login from your location and communicate with other pet parents locally & globally',
       ),
       OnBoardingInfo(
         logo: "assets/images/petmet_logo.png",
         imageAsset: themeProvider.darkTheme
             ? "assets/images/splash_dogs1_dark.png"
             : "assets/images/splash_dogs1_light.png",
-        title: 'Sell Your Pet on your smartphone.',
+        title: 'Find pet shops, doctors, ngos & trainers on a single tap',
         description:
-            'Sell your pet in one smartphone. Message and call with buyer with safety order',
+            'Easy to access and locate essential daily needs of pets nearby you.',
       ),
       OnBoardingInfo(
         logo: "assets/images/petmet_logo.png",
         imageAsset: themeProvider.darkTheme
             ? "assets/images/splash_peoples3_dark.png"
             : "assets/images/splash_peoples3_light.png",
-        title: 'Get Started to Find your lovely friends',
-        description: 'meet your pet and get the happy day of the day',
+        title: 'Learn pet parenting a better way!!',
+        description: 'An easy solution for new pet parents to understand their pets a better way.',
       ),
     ];
   }

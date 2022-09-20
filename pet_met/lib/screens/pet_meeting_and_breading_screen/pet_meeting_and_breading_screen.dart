@@ -40,7 +40,7 @@ class PetMeetingAndBreadingScreen extends StatelessWidget {
           ),
           Column(
             children: [
-              CustomAppBar(title: "Pet Meeting & Breading"),
+              CustomAppBar(title: "Pet Community"),
 
               // Body Part
               Expanded(

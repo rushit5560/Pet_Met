@@ -101,7 +101,7 @@ class IndexScreenState extends State<IndexScreen> {
                     height: 40,
                   ),
                   title: const Text(
-                    "Mate",
+                    "Meet",
                     style: TextStyle(color: AppColors.whiteColor),
                   ),
                 ),

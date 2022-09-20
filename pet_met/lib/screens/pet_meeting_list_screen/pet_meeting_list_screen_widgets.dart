@@ -117,10 +117,11 @@ class PetMeetingListModule extends StatelessWidget {
                     screenController.subCatPetList[i].data.id,
                     screenController.subCatPetList[i].data.userid,
                     screenController.subCatPetList[i].data.categoryId,
+                    screenController.subCatPetList[i].name.name,
                   ],
                 );
               },
-              child: Container(
+              child: SizedBox(
                 height: screenController.size.height * 0.2,
                 child: Stack(
                   children: [
@@ -268,4 +269,5 @@ class PetMeetingListModule extends StatelessWidget {
       ],
     ).commonAllSidePadding(padding: 10);
   }
+
 }
