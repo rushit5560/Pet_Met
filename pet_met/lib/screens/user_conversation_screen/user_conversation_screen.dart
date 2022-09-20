@@ -15,52 +15,53 @@ class UserConversationScreen extends StatelessWidget {
   UserConversationScreen({Key? key}) : super(key: key);
 
   final userConversationScreenController =
-  Get.put(UserConversationScreenController());
+      Get.put(UserConversationScreenController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Obx(
-            () => userConversationScreenController.isLoading.value
+        () => userConversationScreenController.isLoading.value
             ? const CustomAnimationLoader()
             : SafeArea(
-          child: Column(
-            children: [
-              CustomAppBar(
-                appBarOption: AppBarOption.singleBackButtonOption,
-                title: userConversationScreenController.headerName,
-              ),
-              Expanded(
-                child: StreamBuilder<List<ReceiveMessageModel>>(
-                  stream: userConversationScreenController
-                      .fetchChatFromFirebase(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasError) {
-                      return Text(
-                          "Something went wrong! ${snapshot.error}");
-                    } else if (snapshot.hasData) {
-                      final chatList = snapshot.data;
-                      log('chatList: ${chatList!.length}');
-                      return ListView.builder(
-                        itemCount: chatList.length,
-                        reverse: true,
-                        itemBuilder: (context, i) {
-                          ReceiveMessageModel singleMsg = chatList[i];
-                          // DocumentReference docRef= FirebaseFirestore.instance!.collection("Chats")!.get()!!;
-                          return SingleMessageBubble(
-                              singleMsg: singleMsg);
+                child: Column(
+                  children: [
+                    CustomAppBar(
+                      appBarOption: AppBarOption.singleBackButtonOption,
+                      title: userConversationScreenController.headerName,
+                    ),
+                    Expanded(
+                      child: StreamBuilder<List<ReceiveMessageModel>>(
+                        stream: userConversationScreenController
+                            .fetchChatFromFirebase(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasError) {
+                            return Text(
+                                "Something went wrong! ${snapshot.error}");
+                          } else if (snapshot.hasData) {
+                            final chatList = snapshot.data;
+                            log('chatList: ${chatList!.length}');
+                            return ListView.builder(
+                              itemCount: chatList.length,
+                              physics: const AlwaysScrollableScrollPhysics(),
+                              reverse: true,
+                              itemBuilder: (context, i) {
+                                ReceiveMessageModel singleMsg = chatList[i];
+                                // DocumentReference docRef= FirebaseFirestore.instance!.collection("Chats")!.get()!!;
+                                return SingleMessageBubble(
+                                    singleMsg: singleMsg);
+                              },
+                            ).commonAllSidePadding(padding: 20);
+                          } else {
+                            return const CustomAnimationLoader();
+                          }
                         },
-                      ).commonAllSidePadding(padding: 20);
-                    } else {
-                      return const CustomAnimationLoader();
-                    }
-                  },
+                      ),
+                    ),
+                    MessageWriteTextFieldModule(),
+                  ],
                 ),
               ),
-              MessageWriteTextFieldModule(),
-            ],
-          ),
-        ),
       ),
     );
   }

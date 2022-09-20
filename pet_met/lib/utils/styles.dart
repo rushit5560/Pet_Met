@@ -66,6 +66,7 @@ class Styles {
     );
     return ThemeData(
       //primarySwatch: primarySwatch,
+
       primaryColor: isDarkTheme ? Colors.black : Colors.white,
       scaffoldBackgroundColor:
           isDarkTheme ? AppColors.darkThemeColor : AppColors.whiteColor,
@@ -81,6 +82,9 @@ class Styles {
       focusColor: isDarkTheme ? AppColors.greyColor : AppColors.darkThemeColor,
       splashColor: AppColors.greyColor.withOpacity(0.15),
       disabledColor: AppColors.greyColor,
+      colorScheme: isDarkTheme
+          ? const ColorScheme.dark(secondary: AppColors.darkThemeColor)
+          : const ColorScheme.light(secondary: AppColors.whiteColor),
       textSelectionTheme: TextSelectionThemeData(
         cursorColor:
             isDarkTheme ? AppColors.whiteColor : AppColors.darkThemeColor,

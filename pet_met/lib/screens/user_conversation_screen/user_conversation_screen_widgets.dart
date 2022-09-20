@@ -135,6 +135,7 @@ class MessageWriteTextFieldModule extends StatelessWidget {
               ? AppColors.whiteColor
               : AppColors.greyColor,
           textInputAction: TextInputAction.send,
+          focusNode: screenController.msgFocusField,
           controller: screenController.messageFieldController,
 
           // decoration: conversationScreenFieldDecoration(
@@ -144,7 +145,8 @@ class MessageWriteTextFieldModule extends StatelessWidget {
           //   senderEmail: UserDetails.email,
           //   receiverEmail: screenController.receiverEmail,
           // ),
-          onFieldSubmitted: (val) async {
+
+          onEditingComplete: () async {
             if (screenController.messageFieldController.text.isNotEmpty) {
               String receiverEmail =
                   UserDetails.userEmail == screenController.userEmail
@@ -165,6 +167,8 @@ class MessageWriteTextFieldModule extends StatelessWidget {
               /// Msg Store in Firebase
               log('sendMsg: ${sendMsg.receiver}');
               await screenController.sendMessageFunction(sendMsg);
+              FocusScope.of(context)
+                  .requestFocus(screenController.msgFocusField);
             }
           },
           decoration: InputDecoration(
@@ -215,7 +219,7 @@ class MessageWriteTextFieldModule extends StatelessWidget {
               //   scale: 0.85,
               //   color: AppColors.blackColor,
               // ),
-              child: Icon(
+              child: const Icon(
                 Icons.send_rounded,
                 color: AppColors.accentColor,
                 size: 24,

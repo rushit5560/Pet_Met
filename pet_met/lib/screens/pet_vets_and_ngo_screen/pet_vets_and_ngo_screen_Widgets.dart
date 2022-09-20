@@ -263,10 +263,11 @@ class VetsAndNgoListModule extends StatelessWidget {
                 size: 18,
               ),
             )*/
-            Image.asset(AppIcons.verifiedSymbolImg,
-              width: 25,
-              height: 25,
-            )
+                Image.asset(
+                    AppIcons.verifiedSymbolImg,
+                    width: 25,
+                    height: 25,
+                  )
                 : Container(),
           ],
         ).commonAllSidePadding(padding: 2.w),
@@ -294,10 +295,18 @@ class VetsAndNgoListModule extends StatelessWidget {
           color: themeProvider.darkTheme
               ? AppColors.darkThemeColor
               : AppColors.whiteColor,
-          boxShadow: [
+          boxShadow: const [
+            // BoxShadow(
+            //   color: Colors.grey.shade300,
+            //   blurRadius: 5,
+            //   spreadRadius: 1,
+            //   blurStyle: BlurStyle.outer,
+            // ),
             BoxShadow(
-              color: Colors.grey.shade300,
+              color: Colors.grey,
               blurRadius: 5,
+              spreadRadius: 1,
+              offset: Offset(0, 0),
               blurStyle: BlurStyle.outer,
             ),
           ],
@@ -383,10 +392,11 @@ class VetsAndNgoListModule extends StatelessWidget {
                 size: 18,
               ),
             )*/
-            Image.asset(AppIcons.verifiedSymbolImg,
-              width: 25,
-              height: 25,
-            )
+                Image.asset(
+                    AppIcons.verifiedSymbolImg,
+                    width: 25,
+                    height: 25,
+                  )
                 : Container(),
           ],
         ).commonAllSidePadding(padding: 2.w),

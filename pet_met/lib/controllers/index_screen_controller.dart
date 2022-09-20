@@ -13,7 +13,6 @@ import 'package:pet_met/models/get_all_profile_model/get_user_profile_model.dart
 import 'package:pet_met/models/get_all_profile_model/get_vet_and_ngo_profile_model.dart';
 import 'package:pet_met/models/trainers_update_profile_model/trainers_get_profile_model.dart';
 import 'package:pet_met/screens/home_screen/home_screen.dart';
-import 'package:pet_met/screens/locate_screen/locate_screen.dart';
 import 'package:pet_met/screens/pet_meeting_and_breading_screen/pet_meeting_and_breading_screen.dart';
 import 'package:pet_met/screens/pet_trainers_screen/pet_trainers_screen.dart';
 import 'package:pet_met/screens/pet_vets_and_ngo_screen/pet_vets_and_ngo_screen.dart';
@@ -27,6 +26,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/delete_account_screen_model/delete_account_screen_model.dart';
+import '../screens/chat_screen/chat_screen.dart';
 
 class IndexScreenController extends GetxController {
   RxBool isLoading = false.obs;
@@ -70,7 +70,7 @@ class IndexScreenController extends GetxController {
     PetMeetingAndBreadingScreen(),
     PetTrainersScreen(),
     HomeScreen(),
-    LocateScreen(),
+    ChatScreen(),
     PetVetsAndNgoScreen(),
   ];
 

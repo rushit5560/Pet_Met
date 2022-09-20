@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:pet_met/controllers/locate_screen_controller.dart';
+import 'package:pet_met/controllers/chat_screen_controller.dart';
 import 'package:pet_met/models/user_chat_list_screen_model/user_chat_list_screen_model.dart';
 import 'package:pet_met/screens/user_conversation_screen/user_conversation_screen.dart';
 import 'package:pet_met/utils/app_colors.dart';
@@ -19,15 +19,15 @@ import 'package:provider/provider.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/common_widgets/loader.dart';
 
-class LocateScreen extends StatefulWidget {
-  LocateScreen({Key? key}) : super(key: key);
+class ChatScreen extends StatefulWidget {
+  ChatScreen({Key? key}) : super(key: key);
 
   @override
-  State<LocateScreen> createState() => _LocateScreenState();
+  State<ChatScreen> createState() => _ChatScreenState();
 }
 
-class _LocateScreenState extends State<LocateScreen> {
-  final locateScreenController = Get.put(LocateScreenController());
+class _ChatScreenState extends State<ChatScreen> {
+  final chatScreenController = Get.put(ChatScreenController());
 
   DarkThemeProvider themeProvider =
       Provider.of<DarkThemeProvider>(Get.context!);
@@ -47,10 +47,10 @@ class _LocateScreenState extends State<LocateScreen> {
                   : AppImages.backgroundImgLight),
             ),
             BackGroundLeftShadow(
-              height: locateScreenController.size.height * 0.3,
-              width: locateScreenController.size.height * 0.3,
-              topPad: locateScreenController.size.height * 0.28,
-              leftPad: -locateScreenController.size.width * 0.15,
+              height: chatScreenController.size.height * 0.3,
+              width: chatScreenController.size.height * 0.3,
+              topPad: chatScreenController.size.height * 0.28,
+              leftPad: -chatScreenController.size.width * 0.15,
             ),
 
             // UI Module
@@ -71,7 +71,7 @@ class _LocateScreenState extends State<LocateScreen> {
               children: [
                 Image.asset(
                   AppImages.petActivityImg,
-                  width: locateScreenController.size.width * 0.45,
+                  width: chatScreenController.size.width * 0.45,
                 ),
                 Text(
                   "Coming Soon!",
@@ -115,7 +115,7 @@ class _LocateScreenState extends State<LocateScreen> {
                   children: [
                     Image.asset(
                       AppImages.petActivityImg,
-                      width: locateScreenController.size.width * 0.60,
+                      width: chatScreenController.size.width * 0.60,
                     ),
                     const Text(
                       "Coming Soon!",
@@ -139,11 +139,11 @@ class _LocateScreenState extends State<LocateScreen> {
                 ),
                 Expanded(
                   child: Obx(
-                    () => locateScreenController.isLoading.value
+                    () => chatScreenController.isLoading.value
                         ? const CustomAnimationLoader()
                         : StreamBuilder<List<UserChatRoomListModel>>(
-                            stream: locateScreenController
-                                .getChatRoomListFunction(),
+                            stream:
+                                chatScreenController.getChatRoomListFunction(),
                             builder: (context, snapshot) {
                               if (snapshot.hasError) {
                                 return Text(
@@ -170,7 +170,7 @@ class _LocateScreenState extends State<LocateScreen> {
                                                   .anywhere,
                                           onRefresh: () async {
                                             setState(() {});
-                                            locateScreenController
+                                            chatScreenController
                                                 .getChatRoomListFunction();
                                           },
                                           child: ListView.builder(
@@ -223,7 +223,7 @@ class _LocateScreenState extends State<LocateScreen> {
         : singleMsg.creatorName;
 
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
       child: GestureDetector(
         onTap: () {
           // String oppositeUserUniqueId = "";
@@ -253,26 +253,38 @@ class _LocateScreenState extends State<LocateScreen> {
         },
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(15),
             boxShadow: [
               BoxShadow(
                 spreadRadius: 2,
-                blurRadius: 5,
+                blurRadius: 10,
                 color: themeProvider.darkTheme
-                    ? AppColors.greyColor.withOpacity(0.20)
-                    : AppColors.greyColor.withOpacity(0.25),
+                    ? AppColors.greyColor.withOpacity(0.25)
+                    : AppColors.greyColor.withOpacity(0.45),
                 blurStyle: BlurStyle.outer,
               ),
             ],
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Expanded(
                   child: Row(
                     children: [
+                      // Container(
+                      //   height: 50,
+                      //   width: 50,
+                      //   decoration: const BoxDecoration(
+                      //     shape: BoxShape.circle,
+                      //     color: Colors.transparent,
+                      //   ),
+                      //   child: ClipRRect(
+                      //     borderRadius: BorderRadius.circular(25),
+                      //     child: Image.asset(AppImages.userProfileImg),
+                      //   ),
+                      // ),
                       /*SizedBox(
                         height: 50,
                         width: 50,
@@ -340,6 +352,12 @@ class _LocateScreenState extends State<LocateScreen> {
                       ),
                     ],
                   ),
+                ),
+
+                const Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  color: AppColors.accentColor,
+                  size: 24,
                 ),
 
                 /*FutureBuilder(

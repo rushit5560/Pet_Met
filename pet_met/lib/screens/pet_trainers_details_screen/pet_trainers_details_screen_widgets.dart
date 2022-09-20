@@ -482,6 +482,8 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
             } else {
               List<String> tempChatRoomIdList = [];
 
+              screenController.trainerCatId = "4";
+
               // CharRoom Id Generate
               String chatRoomId =
                   "${UserDetails.selfId}${UserDetails.categoryId}_${screenController.trainerId}${screenController.trainerCatId}";
@@ -514,8 +516,8 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
                 // String charRoomId =
                 //     "${UserDetails.selfId}${UserDetails.categoryId}_${controller.chatUid}${controller.chatCategoryId}";
 
-                log("controller.chatUid : ${screenController.trainerId}");
-                log("screenController.chatCategoryId : ${screenController.trainerCatId}");
+                log("ooppo Userid : ${screenController.trainerId}");
+                log("oppo user CategoryId : ${screenController.trainerCatId}");
                 log("charRoomId123 : $chatRoomId");
 
                 // ChatRoom Data
@@ -526,9 +528,7 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
                       "${screenController.trainerId}${screenController.trainerCatId}",
                   "creatorEmail": UserDetails.userEmail,
                   "peerEmail": screenController.trainerEmail,
-                  "creatorName": UserDetails.categoryId == "2"
-                      ? UserDetails.shopName
-                      : UserDetails.userName,
+                  "creatorName": UserDetails.userName,
                   "peerName": screenController.trainerName,
                   "createdAt": timeStamp,
                   "userEmails": [
@@ -547,7 +547,7 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
                   () => UserConversationScreen(),
                   arguments: [
                     chatRoomId,
-                    UserDetails.userName,
+                    screenController.trainerName,
                     screenController.trainerName,
                     UserDetails.userEmail,
                     screenController.trainerEmail,
@@ -558,9 +558,9 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
                   /// Create chat room
                   Timestamp timeStamp = Timestamp.now();
 
-                  log("screenController.chatUid : ${screenController.trainerId}");
-                  log("screenController.chatCategoryId : ${screenController.trainerCatId}");
-                  log("charRoomId123 : $chatRoomId");
+                  log("chatUid : ${screenController.trainerId}");
+                  log("chatCategoryId : ${screenController.trainerCatId}");
+                  log("charRoomId1 : $chatRoomId");
 
                   // ChatRoom Data
                   Map<String, dynamic> chatRoomData = {
@@ -568,11 +568,9 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
                     "creator": "${UserDetails.selfId}${UserDetails.categoryId}",
                     "pearer":
                         "${screenController.trainerId}${screenController.trainerCatId}",
-                    "creatorEmail": screenController.trainerEmail,
-                    "peerEmail": UserDetails.userEmail,
-                    "creatorName": UserDetails.categoryId == "2"
-                        ? UserDetails.shopName
-                        : UserDetails.userName,
+                    "creatorEmail": UserDetails.userEmail,
+                    "peerEmail": screenController.trainerEmail,
+                    "creatorName": UserDetails.userName,
                     "peerName": screenController.trainerName,
                     "createdAt": timeStamp,
                     "userEmails": [
@@ -592,7 +590,7 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
                     arguments: [
                       chatRoomId,
                       screenController.trainerName,
-                      UserDetails.userName,
+                      screenController.trainerName,
                       UserDetails.userEmail,
                       screenController.trainerEmail,
                     ],
@@ -608,19 +606,17 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
                   // ChatRoom Data
                   Map<String, dynamic> chatRoomData = {
                     "chatRoomId": chatRoomId,
-                    "creator": "${UserDetails.selfId}${UserDetails.categoryId}",
-                    "pearer":
+                    "creator":
                         "${screenController.trainerId}${screenController.trainerCatId}",
+                    "pearer": " ${UserDetails.selfId}${UserDetails.categoryId}",
                     "creatorEmail": screenController.trainerEmail,
                     "peerEmail": UserDetails.userEmail,
-                    "creatorName": UserDetails.categoryId == "2"
-                        ? UserDetails.shopName
-                        : UserDetails.userName,
-                    "peerName": screenController.trainerName,
+                    "creatorName": screenController.trainerName,
+                    "peerName": UserDetails.userName,
                     "createdAt": timeStamp,
                     "userEmails": [
-                      UserDetails.userEmail,
                       screenController.trainerEmail,
+                      UserDetails.userEmail,
                     ],
                   };
 
@@ -634,7 +630,7 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
                     () => UserConversationScreen(),
                     arguments: [
                       chatRoomId2,
-                      UserDetails.userName,
+                      screenController.trainerName,
                       screenController.trainerName,
                       UserDetails.userEmail,
                       screenController.trainerEmail,
@@ -647,7 +643,7 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
                   () => UserConversationScreen(),
                   arguments: [
                     chatRoomId.isEmpty ? chatRoomId2 : chatRoomId,
-                    UserDetails.userName,
+                    screenController.trainerName,
                     screenController.trainerName,
                     UserDetails.userEmail,
                     screenController.trainerEmail,

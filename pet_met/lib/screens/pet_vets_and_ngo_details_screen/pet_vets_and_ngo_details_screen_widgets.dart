@@ -1,10 +1,12 @@
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/pet_vets_and_ngo_details_screen_controller.dart';
+import 'package:pet_met/screens/user_profile_screen/widgets/user_profile_screen_widgets.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
@@ -14,7 +16,10 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../firebase_database/firebase_database.dart';
 import '../../services/providers/dark_theme_provider.dart';
+import '../../utils/user_details.dart';
+import '../user_conversation_screen/user_conversation_screen.dart';
 
 class BannerImageModule extends StatelessWidget {
   BannerImageModule({Key? key}) : super(key: key);
@@ -362,6 +367,9 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
             ),
             child: Image.asset(
               AppImages.instaImg,
+              color: themeProvider.darkTheme
+                  ? AppColors.darkThemeColor
+                  : AppColors.whiteColor,
             ).commonAllSidePadding(padding: 8),
           ).commonSymmetricPadding(horizontal: 2),
         ),
@@ -379,26 +387,29 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
             ),
             child: Image.asset(
               AppImages.fbImg,
+              color: themeProvider.darkTheme
+                  ? AppColors.darkThemeColor
+                  : AppColors.whiteColor,
             ).commonAllSidePadding(padding: 8),
           ).commonSymmetricPadding(horizontal: 2),
         ),
-        GestureDetector(
-          onTap: () {
-            String number = "${screenController.vetsNgoDetailsData[0].phone}";
-            launchWhatsApp(context, number);
-          },
-          child: Container(
-            height: screenController.size.width * 0.018.w,
-            width: screenController.size.width * 0.018.w,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: AppColors.accentColor,
-            ),
-            child: Image.asset(
-              AppImages.whatsappImg,
-            ).commonAllSidePadding(padding: 8),
-          ).commonSymmetricPadding(horizontal: 2),
-        ),
+        // GestureDetector(
+        //   onTap: () {
+        //     String number = "${screenController.vetsNgoDetailsData[0].phone}";
+        //     launchWhatsApp(context, number);
+        //   },
+        //   child: Container(
+        //     height: screenController.size.width * 0.018.w,
+        //     width: screenController.size.width * 0.018.w,
+        //     decoration: BoxDecoration(
+        //       borderRadius: BorderRadius.circular(12),
+        //       color: AppColors.accentColor,
+        //     ),
+        //     child: Image.asset(
+        //       AppImages.whatsappImg,
+        //     ).commonAllSidePadding(padding: 8),
+        //   ).commonSymmetricPadding(horizontal: 2),
+        // ),
         GestureDetector(
           onTap: () {
             String number = "${screenController.vetsNgoDetailsData[0].phone}";
@@ -413,6 +424,203 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
             ),
             child: Image.asset(
               AppImages.phoneCallImg,
+              color: themeProvider.darkTheme
+                  ? AppColors.darkThemeColor
+                  : AppColors.whiteColor,
+            ).commonAllSidePadding(padding: 8),
+          ).commonSymmetricPadding(horizontal: 2),
+        ),
+        GestureDetector(
+          onTap: () async {
+            final FirebaseDatabase firebaseDatabase = FirebaseDatabase();
+
+            if (UserDetails.userEmail == screenController.vetAndNgoEmail) {
+              Fluttertoast.showToast(msg: "User can't chat with itself.");
+            } else {
+              List<String> tempChatRoomIdList = [];
+
+              screenController.vetAndNgoCatId = "3";
+
+              // CharRoom Id Generate
+              String chatRoomId =
+                  "${UserDetails.selfId}${UserDetails.categoryId}_${screenController.vetAndNgoId}${screenController.vetAndNgoCatId}";
+              String chatRoomId2 =
+                  "${screenController.vetAndNgoId}${screenController.vetAndNgoCatId}_${UserDetails.selfId}${UserDetails.categoryId}";
+
+              // Get All Chat Room From Firebase
+              QuerySnapshot querySnapshot =
+                  await FirebaseFirestore.instance.collection("ChatRoom").get();
+
+              querySnapshot.docs.map((doc) {
+                doc.data();
+
+                if (doc['chatRoomId'].toString().contains(chatRoomId)) {
+                  log("first if stat");
+                  tempChatRoomIdList.add(doc['chatRoomId']);
+                }
+                if (doc['chatRoomId'].toString().contains(chatRoomId2)) {
+                  log("second if stat");
+                  tempChatRoomIdList.add(doc['chatRoomId']);
+                }
+              }).toList();
+
+              log("tempChatRoomId : $tempChatRoomIdList");
+
+              if (tempChatRoomIdList.isEmpty) {
+                /// Create chat room
+                Timestamp timeStamp = Timestamp.now();
+                // CharRoom Id Generate
+                // String charRoomId =
+                //     "${UserDetails.selfId}${UserDetails.categoryId}_${controller.chatUid}${controller.chatCategoryId}";
+
+                log("ooppo Userid : ${screenController.vetAndNgoId}");
+                log("oppo user CategoryId : ${screenController.vetAndNgoCatId}");
+                log("charRoomId123 : $chatRoomId");
+
+                // ChatRoom Data
+                Map<String, dynamic> chatRoomData = {
+                  "chatRoomId": chatRoomId,
+                  "creator": "${UserDetails.selfId}${UserDetails.categoryId}",
+                  "pearer":
+                      "${screenController.vetAndNgoId}${screenController.vetAndNgoCatId}",
+                  "creatorEmail": UserDetails.userEmail,
+                  "peerEmail": screenController.vetAndNgoEmail,
+                  "creatorName": UserDetails.userName,
+                  "peerName": screenController.vetAndNgoName,
+                  "createdAt": timeStamp,
+                  "userEmails": [
+                    UserDetails.userEmail,
+                    screenController.vetAndNgoEmail,
+                  ],
+                };
+
+                log("chatRoomData : $chatRoomData");
+
+                // Create ChatRoom Function
+                firebaseDatabase.createChatRoomOfTwoUsers(
+                    chatRoomId, chatRoomData);
+                //Go to conversation screen
+                Get.to(
+                  () => UserConversationScreen(),
+                  arguments: [
+                    chatRoomId,
+                    screenController.vetAndNgoName,
+                    screenController.vetAndNgoName,
+                    UserDetails.userEmail,
+                    screenController.vetAndNgoEmail,
+                  ],
+                );
+              } else {
+                if (tempChatRoomIdList[0].contains(chatRoomId)) {
+                  /// Create chat room
+                  Timestamp timeStamp = Timestamp.now();
+
+                  log("chatUid : ${screenController.vetAndNgoId}");
+                  log("chatCategoryId : ${screenController.vetAndNgoCatId}");
+                  log("charRoomId1 : $chatRoomId");
+
+                  // ChatRoom Data
+                  Map<String, dynamic> chatRoomData = {
+                    "chatRoomId": chatRoomId,
+                    "creator": "${UserDetails.selfId}${UserDetails.categoryId}",
+                    "pearer":
+                        "${screenController.vetAndNgoId}${screenController.vetAndNgoCatId}",
+                    "creatorEmail": UserDetails.userEmail,
+                    "peerEmail": screenController.vetAndNgoEmail,
+                    "creatorName": UserDetails.userName,
+                    "peerName": screenController.vetAndNgoName,
+                    "createdAt": timeStamp,
+                    "userEmails": [
+                      UserDetails.userEmail,
+                      screenController.vetAndNgoEmail,
+                    ],
+                  };
+
+                  log("chatRoomData : $chatRoomData");
+
+                  // Create ChatRoom Function
+                  firebaseDatabase.createChatRoomOfTwoUsers(
+                      chatRoomId, chatRoomData);
+                  //Go to conversation screen
+                  Get.to(
+                    () => UserConversationScreen(),
+                    arguments: [
+                      chatRoomId,
+                      screenController.vetAndNgoName,
+                      screenController.vetAndNgoName,
+                      UserDetails.userEmail,
+                      screenController.vetAndNgoEmail,
+                    ],
+                  );
+                } else {
+                  /// Create chat room
+                  Timestamp timeStamp = Timestamp.now();
+
+                  log("screenController.chatUid : ${screenController.vetAndNgoId}");
+                  log("screenController.chatCategoryId : ${screenController.vetAndNgoCatId}");
+                  log("charRoomId123 : $chatRoomId2");
+
+                  // ChatRoom Data
+                  Map<String, dynamic> chatRoomData = {
+                    "chatRoomId": chatRoomId,
+                    "creator":
+                        "${screenController.vetAndNgoId}${screenController.vetAndNgoCatId}",
+                    "pearer": " ${UserDetails.selfId}${UserDetails.categoryId}",
+                    "creatorEmail": screenController.vetAndNgoEmail,
+                    "peerEmail": UserDetails.userEmail,
+                    "creatorName": screenController.vetAndNgoName,
+                    "peerName": UserDetails.userName,
+                    "createdAt": timeStamp,
+                    "userEmails": [
+                      screenController.vetAndNgoEmail,
+                      UserDetails.userEmail,
+                    ],
+                  };
+
+                  log("chatRoomData : $chatRoomData");
+
+                  // Create ChatRoom Function
+                  firebaseDatabase.createChatRoomOfTwoUsers(
+                      chatRoomId2, chatRoomData);
+                  //Go to conversation screen
+                  Get.to(
+                    () => UserConversationScreen(),
+                    arguments: [
+                      chatRoomId2,
+                      screenController.vetAndNgoName,
+                      screenController.vetAndNgoName,
+                      UserDetails.userEmail,
+                      screenController.vetAndNgoEmail,
+                    ],
+                  );
+                }
+
+                //Go to conversation screen
+                Get.to(
+                  () => UserConversationScreen(),
+                  arguments: [
+                    chatRoomId.isEmpty ? chatRoomId2 : chatRoomId,
+                    screenController.vetAndNgoName,
+                    screenController.vetAndNgoName,
+                    UserDetails.userEmail,
+                    screenController.vetAndNgoEmail,
+                  ],
+                );
+              }
+            }
+          },
+          child: Container(
+            height: screenController.size.width * 0.018.w,
+            width: screenController.size.width * 0.018.w,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: AppColors.accentColor,
+            ),
+            child: Image.asset(
+              AppIcons.messageImg,
+              color: themeProvider.darkTheme
+                  ? AppColors.darkThemeBoxColor
+                  : AppColors.whiteColor,
             ).commonAllSidePadding(padding: 8),
           ).commonSymmetricPadding(horizontal: 2),
         ),
@@ -584,15 +792,19 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
             Text(
               "Click to Pay/Donate",
               style: TextStyle(
-                color: AppColors.whiteColor,
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.darkThemeColor,
                 fontSize: 13.sp,
                 fontWeight: FontWeight.w600,
               ),
             ),
             const SizedBox(width: 8),
-            const Icon(
+            Icon(
               Icons.favorite_rounded,
-              color: AppColors.whiteColor,
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.darkThemeColor,
               size: 18,
             )
           ],

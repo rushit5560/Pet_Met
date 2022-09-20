@@ -11,6 +11,10 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 class ShopDetailsScreenController extends GetxController {
   String shopId = Get.arguments;
 
+  String shopName = "";
+  String shopEmail = "";
+
+  String shopCatId = "";
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
   final size = Get.size;
@@ -45,6 +49,10 @@ class ShopDetailsScreenController extends GetxController {
         showStatus = shopDetailsModel.showstatus.obs;
         log('showStatus: $showStatus');
         String isVerify = "${shopDetailsModel.data[0].isVerified}";
+        shopName = "${shopDetailsModel.data[0].shopename}";
+        shopEmail = "${shopDetailsModel.data[0].email}";
+
+        shopCatId = "${shopDetailsModel.data[0].categoryID}";
         if (isVerify == "0") {
           isVerified = true;
         } else {

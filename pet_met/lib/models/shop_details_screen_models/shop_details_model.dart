@@ -24,7 +24,8 @@ class ShopDetailsModel {
   factory ShopDetailsModel.fromJson(Map<String, dynamic> json) =>
       ShopDetailsModel(
         success: json["success"] ?? false,
-        data: List<ShopData>.from(json["data"].map((x) => ShopData.fromJson(x ?? {}))),
+        data: List<ShopData>.from(
+            json["data"].map((x) => ShopData.fromJson(x ?? {}))),
         message: json["message"] ?? "",
         showstatus: json["showstatus"],
         error: json["error"] ?? "",
@@ -59,8 +60,11 @@ class ShopData {
     this.image5,
     this.meetingimages,
     this.sortorder,
+    this.categoryID,
     this.status,
     this.isVerified,
+    this.gpayupi,
+    this.email,
     // this.createdBy,
     // this.modifiedBy,
     // this.createdDate,
@@ -78,15 +82,20 @@ class ShopData {
   String? facebook;
   String? showimg;
   List<String>? offersimages;
-  String ? image1;
-  String ? image2;
-  String ? image3;
-  String ? image4;
-  String ? image5;
+  String? image1;
+  String? image2;
+  String? image3;
+  String? image4;
+  String? image5;
   List<String>? meetingimages;
   String? sortorder;
+  String? categoryID;
   String? status;
   String? isVerified;
+
+  String? gpayupi;
+  String? email;
+
   // int createdBy;
   // dynamic modifiedBy;
   // DateTime createdDate;
@@ -111,10 +120,13 @@ class ShopData {
         image4: json["image4"] ?? "",
         image5: json["image5"] ?? "",
         meetingimages:
-        List<String>.from(json["meetingimages"].map((x) => x ?? {})),
+            List<String>.from(json["meetingimages"].map((x) => x ?? {})),
         sortorder: json["sortorder"] ?? "",
+        categoryID: json["categoryID"] ?? "",
         status: json["status"] ?? "",
         isVerified: json["is_verified"] ?? "1",
+        gpayupi: json["gpayupi"] ?? "",
+        email: json["email"] ?? "",
         // createdBy: json["created_by"],
         // modifiedBy: json["modified_by"],
         // createdDate: DateTime.parse(json["created_date"]),
@@ -140,8 +152,11 @@ class ShopData {
         "image5": image5,
         "meetingimages": List<dynamic>.from(meetingimages!.map((x) => x)),
         "sortorder": sortorder,
+        "categoryID": categoryID,
         "status": status,
         "is_verified": isVerified,
+        "gpayupi": gpayupi,
+        "email": email,
         // "created_by": createdBy,
         // "modified_by": modifiedBy,
         // "created_date": createdDate.toIso8601String(),

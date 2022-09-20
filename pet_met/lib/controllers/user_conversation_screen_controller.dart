@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:pet_met/models/receive_message_model/receive_message_mdel.dart';
 import 'package:pet_met/models/receive_message_model/send_message_model.dart';
 
-class UserConversationScreenController extends GetxController{
+class UserConversationScreenController extends GetxController {
   String roomId = Get.arguments[0];
   String headerName = Get.arguments[1];
   String receiverName = Get.arguments[2];
@@ -16,6 +16,7 @@ class UserConversationScreenController extends GetxController{
   RxBool isLoading = false.obs;
 
   final TextEditingController messageFieldController = TextEditingController();
+  final FocusNode msgFocusField = FocusNode();
 
   /// Send Message on Send Button Click
   Future<void> sendMessageFunction(SendMessageModel sendMsg) async {
@@ -48,10 +49,10 @@ class UserConversationScreenController extends GetxController{
         .orderBy("created_at", descending: true)
         .snapshots()
         .map((snapshot) => snapshot.docs.map((doc) {
-       log("doc : ${doc.id}");
-       log("Room Id: $roomId");
-      return ReceiveMessageModel.fromJson(doc.data(), doc.id);
-    }).toList());
+              log("doc : ${doc.id}");
+              log("Room Id: $roomId");
+              return ReceiveMessageModel.fromJson(doc.data(), doc.id);
+            }).toList());
   }
 
   /// Load UI

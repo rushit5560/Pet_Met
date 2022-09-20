@@ -64,12 +64,10 @@ class PetVetsAndNgoDetailsScreen extends StatelessWidget {
                                 //             .size.height *
                                 //         0.005.w),
                                 VetAndNgoPlaceTimePaymentModule(),
-                                SizedBox(
-                                    height: petVetsAndNgoDetailsScreenController
-                                            .size.height *
-                                        0.005.w),
+                                const SizedBox(height: 20),
                                 DonateForPetLoversButtonModule(),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 15),
+                                const SizedBox(height: 10),
                                 OverViewModule(),
                               ],
                             ),

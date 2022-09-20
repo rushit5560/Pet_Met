@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -17,7 +18,10 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../firebase_database/firebase_database.dart';
 import '../../services/providers/dark_theme_provider.dart';
+import '../../utils/user_details.dart';
+import '../user_conversation_screen/user_conversation_screen.dart';
 
 class BannerImageModule extends StatelessWidget {
   BannerImageModule({Key? key}) : super(key: key);
@@ -781,206 +785,183 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
           ).commonSymmetricPadding(horizontal: 2),
         ),
         GestureDetector(
-          onTap: () {
-            // if (UserDetails.userEmail == controller.userEmail) {
-            //       Fluttertoast.showToast(msg: "User can't chat with itself.");
-            //     } else {
-            //       if (controller.status.value == false) {
-            //         List<String> tempChatRoomIdList = [];
+          onTap: () async {
+            final FirebaseDatabase firebaseDatabase = FirebaseDatabase();
 
-            //         // CharRoom Id Generate
-            //         String chatRoomId =
-            //             "${UserDetails.selfId}${UserDetails.categoryId}_${controller.chatUid}${controller.chatCategoryId}";
-            //         String chatRoomId2 =
-            //             "${controller.chatUid}${controller.chatCategoryId}_${UserDetails.selfId}${UserDetails.categoryId}";
+            if (UserDetails.userEmail == screenController.shopEmail) {
+              Fluttertoast.showToast(msg: "User can't chat with itself.");
+            } else {
+              List<String> tempChatRoomIdList = [];
 
-            //         // Get All Chat Room From Firebase
-            //         QuerySnapshot querySnapshot = await FirebaseFirestore
-            //             .instance
-            //             .collection("ChatRoom")
-            //             .get();
+              screenController.shopCatId = "2";
 
-            //         querySnapshot.docs.map((doc) {
-            //           doc.data();
+              // CharRoom Id Generate
+              String chatRoomId =
+                  "${UserDetails.selfId}${UserDetails.categoryId}_${screenController.shopId}${screenController.shopCatId}";
+              String chatRoomId2 =
+                  "${screenController.shopId}${screenController.shopCatId}_${UserDetails.selfId}${UserDetails.categoryId}";
 
-            //           if (doc['chatRoomId'].toString().contains(chatRoomId)) {
-            //             log("first if stat");
-            //             tempChatRoomIdList.add(doc['chatRoomId']);
-            //           }
-            //           if (doc['chatRoomId'].toString().contains(chatRoomId2)) {
-            //             log("second if stat");
-            //             tempChatRoomIdList.add(doc['chatRoomId']);
-            //           }
-            //         }).toList();
+              // Get All Chat Room From Firebase
+              QuerySnapshot querySnapshot =
+                  await FirebaseFirestore.instance.collection("ChatRoom").get();
 
-            //         log("tempChatRoomId : $tempChatRoomIdList");
+              querySnapshot.docs.map((doc) {
+                doc.data();
 
-            //         if (tempChatRoomIdList.isEmpty) {
-            //           /// Create chat room
-            //           Timestamp timeStamp = Timestamp.now();
-            //           // CharRoom Id Generate
-            //           // String charRoomId =
-            //           //     "${UserDetails.selfId}${UserDetails.categoryId}_${controller.chatUid}${controller.chatCategoryId}";
+                if (doc['chatRoomId'].toString().contains(chatRoomId)) {
+                  log("first if stat");
+                  tempChatRoomIdList.add(doc['chatRoomId']);
+                }
+                if (doc['chatRoomId'].toString().contains(chatRoomId2)) {
+                  log("second if stat");
+                  tempChatRoomIdList.add(doc['chatRoomId']);
+                }
+              }).toList();
 
-            //           log("controller.chatUid : ${controller.chatUid}");
-            //           log("controller.chatCategoryId : ${controller.chatCategoryId}");
-            //           log("charRoomId123 : $chatRoomId");
+              log("tempChatRoomId : $tempChatRoomIdList");
 
-            //           // ChatRoom Data
-            //           Map<String, dynamic> chatRoomData = {
-            //             "chatRoomId": chatRoomId,
-            //             "creator":
-            //                 "${UserDetails.selfId}${UserDetails.categoryId}",
-            //             "pearer":
-            //                 "${controller.chatUid}${controller.chatCategoryId}",
-            //             "creatorEmail": UserDetails.userEmail,
-            //             "peerEmail": controller.userEmail,
-            //             "creatorName": UserDetails.categoryId == "2"
-            //                 ? UserDetails.shopName
-            //                 : UserDetails.userName,
-            //             "peerName": controller.userName,
-            //             "createdAt": timeStamp,
-            //             "userEmails": [
-            //               UserDetails.userEmail,
-            //               controller.userEmail,
-            //             ],
-            //           };
+              if (tempChatRoomIdList.isEmpty) {
+                /// Create chat room
+                Timestamp timeStamp = Timestamp.now();
+                // CharRoom Id Generate
+                // String charRoomId =
+                //     "${UserDetails.selfId}${UserDetails.categoryId}_${controller.chatUid}${controller.chatCategoryId}";
 
-            //           log("chatRoomData : $chatRoomData");
+                log("ooppo Userid : ${screenController.shopId}");
+                log("oppo user CategoryId : ${screenController.shopCatId}");
+                log("charRoomId123 : $chatRoomId");
 
-            //           // Create ChatRoom Function
-            //           firebaseDatabase.createChatRoomOfTwoUsers(
-            //               chatRoomId, chatRoomData);
-            //           //Go to conversation screen
-            //           Get.to(
-            //             () => UserConversationScreen(),
-            //             arguments: [
-            //               chatRoomId,
-            //               controller.followCategoryId == "1"
-            //                   ? controller.userName
-            //                   : controller.shopName,
-            //               controller.userName,
-            //               UserDetails.userEmail,
-            //               controller.userEmail,
-            //             ],
-            //           );
-            //         } else {
-            //           if (tempChatRoomIdList[0].contains(chatRoomId)) {
-            //             /// Create chat room
-            //             Timestamp timeStamp = Timestamp.now();
+                // ChatRoom Data
+                Map<String, dynamic> chatRoomData = {
+                  "chatRoomId": chatRoomId,
+                  "creator": "${UserDetails.selfId}${UserDetails.categoryId}",
+                  "pearer":
+                      "${screenController.shopId}${screenController.shopCatId}",
+                  "creatorEmail": UserDetails.userEmail,
+                  "peerEmail": screenController.shopEmail,
+                  "creatorName": UserDetails.userName,
+                  "peerName": screenController.shopName,
+                  "createdAt": timeStamp,
+                  "userEmails": [
+                    UserDetails.userEmail,
+                    screenController.shopEmail,
+                  ],
+                };
 
-            //             log("controller.chatUid : ${controller.chatUid}");
-            //             log("controller.chatCategoryId : ${controller.chatCategoryId}");
-            //             log("charRoomId123 : $chatRoomId");
+                log("chatRoomData : $chatRoomData");
 
-            //             // ChatRoom Data
-            //             Map<String, dynamic> chatRoomData = {
-            //               "chatRoomId": chatRoomId,
-            //               "creator":
-            //                   "${UserDetails.selfId}${UserDetails.categoryId}",
-            //               "pearer":
-            //                   "${controller.chatUid}${controller.chatCategoryId}",
-            //               "creatorEmail": UserDetails.userEmail,
-            //               "peerEmail": controller.userEmail,
-            //               "creatorName": UserDetails.categoryId == "2"
-            //                   ? UserDetails.shopName
-            //                   : UserDetails.userName,
-            //               "peerName": controller.userName,
-            //               "createdAt": timeStamp,
-            //               "userEmails": [
-            //                 UserDetails.userEmail,
-            //                 controller.userEmail,
-            //               ],
-            //             };
+                // Create ChatRoom Function
+                firebaseDatabase.createChatRoomOfTwoUsers(
+                    chatRoomId, chatRoomData);
+                //Go to conversation screen
+                Get.to(
+                  () => UserConversationScreen(),
+                  arguments: [
+                    chatRoomId,
+                    screenController.shopName,
+                    screenController.shopName,
+                    UserDetails.userEmail,
+                    screenController.shopEmail,
+                  ],
+                );
+              } else {
+                if (tempChatRoomIdList[0].contains(chatRoomId)) {
+                  /// Create chat room
+                  Timestamp timeStamp = Timestamp.now();
 
-            //             log("chatRoomData : $chatRoomData");
+                  log("chatUid : ${screenController.shopId}");
+                  log("chatCategoryId : ${screenController.shopCatId}");
+                  log("charRoomId1 : $chatRoomId");
 
-            //             // Create ChatRoom Function
-            //             firebaseDatabase.createChatRoomOfTwoUsers(
-            //                 chatRoomId, chatRoomData);
-            //             //Go to conversation screen
-            //             Get.to(
-            //               () => UserConversationScreen(),
-            //               arguments: [
-            //                 chatRoomId,
-            //                 controller.followCategoryId == "1"
-            //                     ? controller.userName
-            //                     : controller.shopName,
-            //                 controller.userName,
-            //                 UserDetails.userEmail,
-            //                 controller.userEmail,
-            //               ],
-            //             );
-            //           } else {
-            //             /// Create chat room
-            //             Timestamp timeStamp = Timestamp.now();
+                  // ChatRoom Data
+                  Map<String, dynamic> chatRoomData = {
+                    "chatRoomId": chatRoomId,
+                    "creator": "${UserDetails.selfId}${UserDetails.categoryId}",
+                    "pearer":
+                        "${screenController.shopId}${screenController.shopCatId}",
+                    "creatorEmail": UserDetails.userEmail,
+                    "peerEmail": screenController.shopEmail,
+                    "creatorName": UserDetails.userName,
+                    "peerName": screenController.shopName,
+                    "createdAt": timeStamp,
+                    "userEmails": [
+                      UserDetails.userEmail,
+                      screenController.shopEmail,
+                    ],
+                  };
 
-            //             log("controller.chatUid : ${controller.chatUid}");
-            //             log("controller.chatCategoryId : ${controller.chatCategoryId}");
-            //             log("charRoomId123 : $chatRoomId2");
+                  log("chatRoomData : $chatRoomData");
 
-            //             // ChatRoom Data
-            //             Map<String, dynamic> chatRoomData = {
-            //               "chatRoomId": chatRoomId2,
-            //               "creator":
-            //                   "${controller.chatUid}${controller.chatCategoryId}",
-            //               "pearer":
-            //                   "${UserDetails.selfId}${UserDetails.categoryId}",
-            //               "creatorEmail": controller.userEmail,
-            //               "peerEmail": UserDetails.userEmail,
-            //               "creatorName": controller.userName,
-            //               "peerName": UserDetails.categoryId == "2"
-            //                   ? UserDetails.shopName
-            //                   : UserDetails.userName,
-            //               "createdAt": timeStamp,
-            //               "userEmails": [
-            //                 controller.userEmail,
-            //                 UserDetails.userEmail,
-            //               ],
-            //             };
+                  // Create ChatRoom Function
+                  firebaseDatabase.createChatRoomOfTwoUsers(
+                      chatRoomId, chatRoomData);
+                  //Go to conversation screen
+                  Get.to(
+                    () => UserConversationScreen(),
+                    arguments: [
+                      chatRoomId,
+                      screenController.shopName,
+                      screenController.shopName,
+                      UserDetails.userEmail,
+                      screenController.shopEmail,
+                    ],
+                  );
+                } else {
+                  /// Create chat room
+                  Timestamp timeStamp = Timestamp.now();
 
-            //             log("chatRoomData : $chatRoomData");
+                  log("screenController.chatUid : ${screenController.shopId}");
+                  log("screenController.chatCategoryId : ${screenController.shopCatId}");
+                  log("charRoomId123 : $chatRoomId2");
 
-            //             // Create ChatRoom Function
-            //             firebaseDatabase.createChatRoomOfTwoUsers(
-            //                 chatRoomId2, chatRoomData);
-            //             //Go to conversation screen
-            //             Get.to(
-            //               () => UserConversationScreen(),
-            //               arguments: [
-            //                 chatRoomId2,
-            //                 controller.followCategoryId == "1"
-            //                     ? controller.userName
-            //                     : controller.shopName,
-            //                 controller.userName,
-            //                 UserDetails.userEmail,
-            //                 controller.userEmail,
-            //               ],
-            //             );
-            //           }
+                  // ChatRoom Data
+                  Map<String, dynamic> chatRoomData = {
+                    "chatRoomId": chatRoomId,
+                    "creator":
+                        "${screenController.shopId}${screenController.shopCatId}",
+                    "pearer": " ${UserDetails.selfId}${UserDetails.categoryId}",
+                    "creatorEmail": screenController.shopEmail,
+                    "peerEmail": UserDetails.userEmail,
+                    "creatorName": screenController.shopName,
+                    "peerName": UserDetails.userName,
+                    "createdAt": timeStamp,
+                    "userEmails": [
+                      screenController.shopEmail,
+                      UserDetails.userEmail,
+                    ],
+                  };
 
-            //           //Go to conversation screen
-            //           Get.to(
-            //             () => UserConversationScreen(),
-            //             arguments: [
-            //               chatRoomId.isEmpty ? chatRoomId2 : chatRoomId,
-            //               controller.followCategoryId == "1"
-            //                   ? controller.userName
-            //                   : controller.shopName,
-            //               controller.userName,
-            //               UserDetails.userEmail,
-            //               controller.userEmail,
-            //             ],
-            //           );
-            //         }
+                  log("chatRoomData : $chatRoomData");
 
-            //       }
+                  // Create ChatRoom Function
+                  firebaseDatabase.createChatRoomOfTwoUsers(
+                      chatRoomId2, chatRoomData);
+                  //Go to conversation screen
+                  Get.to(
+                    () => UserConversationScreen(),
+                    arguments: [
+                      chatRoomId2,
+                      screenController.shopName,
+                      screenController.shopName,
+                      UserDetails.userEmail,
+                      screenController.shopEmail,
+                    ],
+                  );
+                }
 
-            //       /// When loggedIn user as a shop
-            //       else if (controller.status.value == true) {
-            //         Fluttertoast.showToast(msg: 'First follow user');
-            //       }
-            //     }
+                //Go to conversation screen
+                Get.to(
+                  () => UserConversationScreen(),
+                  arguments: [
+                    chatRoomId.isEmpty ? chatRoomId2 : chatRoomId,
+                    screenController.shopName,
+                    screenController.shopName,
+                    UserDetails.userEmail,
+                    screenController.shopEmail,
+                  ],
+                );
+              }
+            }
           },
           child: Container(
             height: screenController.size.width * 0.018.w,

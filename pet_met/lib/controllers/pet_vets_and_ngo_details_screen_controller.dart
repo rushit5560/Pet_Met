@@ -11,6 +11,9 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class PetVetsAndNgoDetailsScreenController extends GetxController {
   String vetAndNgoId = Get.arguments;
+  String vetAndNgoCatId = "";
+  String vetAndNgoName = "";
+  String vetAndNgoEmail = "";
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
@@ -44,6 +47,9 @@ class PetVetsAndNgoDetailsScreenController extends GetxController {
         vetsNgoDetailsData = vetsNgoDetailsModel.data;
 
         String isVerify = "${vetsNgoDetailsModel.data[0].isVerified}";
+        vetAndNgoName = "${vetsNgoDetailsModel.data[0].name}";
+        vetAndNgoEmail = "${vetsNgoDetailsModel.data[0].email}";
+        vetAndNgoCatId = "${vetsNgoDetailsModel.data[0].categoryId}";
         if (isVerify == "0") {
           isVerified = true;
         } else {
