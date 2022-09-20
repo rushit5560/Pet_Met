@@ -61,7 +61,6 @@ class _PetNameAndSocialMediaButtonModuleState
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     screenController.razorpay = Razorpay();
     screenController.razorpay
@@ -191,7 +190,7 @@ class _PetNameAndSocialMediaButtonModuleState
                   child: Image.network(
                     ApiUrl.apiImagePath +
                         "asset/uploads/product/" +
-                        screenController.image,
+                        screenController.petOwnerProfileImage,
                     errorBuilder: (context, st, ob) {
                       return Image.asset(
                         AppImages.petMetLogoImg,

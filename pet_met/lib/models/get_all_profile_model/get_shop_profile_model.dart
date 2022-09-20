@@ -107,6 +107,9 @@ class DataData {
     required this.modifiedBy,
     required this.createdDate,
     required this.modifiedDate,
+    required this.longitude,
+    required this.latitude,
+    required this.gpayupi,
   });
 
   String id;
@@ -134,6 +137,9 @@ class DataData {
   String modifiedBy;
   String createdDate;
   String modifiedDate;
+  String longitude;
+  String latitude;
+  String gpayupi;
 
   factory DataData.fromJson(Map<String, dynamic> json) => DataData(
     id: json["id"] ?? "",
@@ -161,6 +167,9 @@ class DataData {
     modifiedBy: json["modified_by"] ?? "",
     createdDate:json["created_date"] ?? "",
     modifiedDate: json["modified_date"] ?? "",
+    longitude: json["longitude"] ?? "",
+    latitude: json["latitude"] ?? "",
+    gpayupi: json["gpayupi"] ?? "",
   );
 
   Map<String, dynamic> toJson() => {
@@ -189,6 +198,9 @@ class DataData {
     "modified_by": modifiedBy,
     "created_date": createdDate,
     "modified_date": modifiedDate,
+    "longitude": longitude,
+    "latitude": latitude,
+    "gpayupi": gpayupi,
   };
 }
 

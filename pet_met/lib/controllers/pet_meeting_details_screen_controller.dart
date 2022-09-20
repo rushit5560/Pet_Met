@@ -38,6 +38,7 @@ class PetMeetingDetailsScreenController extends GetxController {
   String dob = "";
   String details = "";
   String phoneNo = "";
+  String petOwnerProfileImage = "";
 
   late Razorpay razorpay;
 
@@ -84,6 +85,7 @@ class PetMeetingDetailsScreenController extends GetxController {
          details = getProfile.details!;
          name = getPetProfileModel.user[0].name;
          phoneNo = getPetProfileModel.user[0].phone;
+         petOwnerProfileImage = getPetProfileModel.user[0].showimg;
          log('Image: ${getProfile.image}');
 
          meetingStatus = getPetProfileModel.meettingstatus.obs;

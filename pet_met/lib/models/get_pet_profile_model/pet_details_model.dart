@@ -128,6 +128,7 @@ class User {
   User({
     required this.id,
     required this.name,
+    required this.showimg,
     // required this.email,
     // required this.emailVerifiedAt,
     // required this.password,
@@ -151,6 +152,7 @@ class User {
 
   String id;
   String name;
+  String showimg;
   // String email;
   // dynamic emailVerifiedAt;
   // String password;
@@ -173,7 +175,8 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) => User(
     id: json["id"] ?? "",
-    name: json["name"],
+    name: json["name"] ?? "",
+    showimg: json["showimg"] ?? "",
     // email: json["email"],
     // emailVerifiedAt: json["email_verified_at"],
     // password: json["password"],

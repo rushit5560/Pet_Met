@@ -80,6 +80,7 @@ class NgoUserProfileScreenController extends GetxController {
   var activeController = TextEditingController();
   var openTimeController = TextEditingController();
   var closeTimeController = TextEditingController();
+  var gPayController = TextEditingController();
 
   ApiHeader apiHeader = ApiHeader();
 
@@ -154,6 +155,7 @@ class NgoUserProfileScreenController extends GetxController {
         ngoApiPicture3 = allRoleProfileModel.data.data[0].image3;
         ngoApiPicture4 = allRoleProfileModel.data.data[0].image4;
         ngoApiPicture5 = allRoleProfileModel.data.data[0].image5;
+        gPayController.text = allRoleProfileModel.data.data[0].gpayupi;
 
         // ngoApiProfile
         if (allRoleProfileModel.data.data[0].image != "") {
@@ -482,6 +484,9 @@ class NgoUserProfileScreenController extends GetxController {
       request.fields['account_code'] = accountNumberController.text.trim();
       request.fields['userid'] = UserDetails.userId;
       request.fields['uid'] = UserDetails.selfId;
+      request.fields['longitude'] = UserDetails.liveLongitude;
+      request.fields['latitude'] = UserDetails.liveLatitude;
+      request.fields['gpayupi'] = gPayController.text.trim();
 
       var response = await request.send();
       log('request.files: ${request.files}');

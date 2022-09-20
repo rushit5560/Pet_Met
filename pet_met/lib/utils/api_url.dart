@@ -6,6 +6,7 @@ class ApiUrl {
 
   static const loginApi = apiMainPath + "/login";
   static const registerApi = apiMainPath + "/registeruser";
+  static const socialMediaRegisterApi = apiMainPath + "/googleregisteruser";
   static const bannerApi = apiMainPath + "/banner";
   static const getAllShopApi = apiMainPath + "/getallshop";
   static const shopDetailsApi = apiMainPath + "/shopdetails";

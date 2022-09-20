@@ -84,6 +84,9 @@ class NgoData {
     required this.modifiedDate,
     required this.rememberToken,
     required this.isVerified,
+    required this.longitude,
+    required this.latitude,
+    required this.gpayupi,
   });
 
   String id;
@@ -116,6 +119,9 @@ class NgoData {
   String modifiedDate;
   String rememberToken;
   String isVerified;
+  String longitude;
+  String latitude;
+  String gpayupi;
 
   factory NgoData.fromJson(Map<String, dynamic> json) => NgoData(
     id: json["id"] ?? "",
@@ -148,6 +154,9 @@ class NgoData {
     modifiedDate: json["modified_date"] ?? "",
     rememberToken: json["remember_token"] ?? "",
     isVerified: json["is_verified"] ?? "",
+    longitude: json["longitude"] ?? "",
+    latitude: json["latitude"] ?? "",
+    gpayupi: json["gpayupi"] ?? "",
   );
 
   Map<String, dynamic> toJson() => {
@@ -181,6 +190,9 @@ class NgoData {
     "modified_date": modifiedDate,
     "remember_token": rememberToken,
     "is_verified": isVerified,
+    "longitude": longitude,
+    "latitude": latitude,
+    "gpayupi": gpayupi,
   };
 }
 

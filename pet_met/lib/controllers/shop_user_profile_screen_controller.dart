@@ -1,26 +1,22 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/models/get_all_profile_model/get_shop_profile_model.dart';
-import 'package:pet_met/models/get_all_profile_model/get_vet_and_ngo_profile_model.dart';
 import 'package:pet_met/models/login_screen_model/login_model.dart';
 import 'package:pet_met/models/multi_account_user_model/multiple_account_user_model.dart';
 import 'package:pet_met/models/shop_update_profile_model/shop_update_profile_model.dart';
 import 'package:pet_met/screens/index_screen/index_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
-import 'package:pet_met/utils/app_colors.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
-import 'package:sizer/sizer.dart';
 import 'package:http/http.dart' as http;
+
+
 
 class ShopUserProfileScreenController extends GetxController {
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -167,6 +163,7 @@ class ShopUserProfileScreenController extends GetxController {
         shopApiPicture3 = getShopProfileModel.data.data[0].image3;
         shopApiPicture4 = getShopProfileModel.data.data[0].image4;
         shopApiPicture5 = getShopProfileModel.data.data[0].image5;
+        gPayController.text = getShopProfileModel.data.data[0].gpayupi;
 
         showStatus = getShopProfileModel.data.showstatus.obs;
         log('offerImage1: $offerImage1');
@@ -395,11 +392,11 @@ class ShopUserProfileScreenController extends GetxController {
       request.fields['userid'] = UserDetails.userId;
       request.fields['uid'] = UserDetails.selfId;
       request.fields['full_text'] = detailsController.text.trim();
-      request.fields['instagram'] = "www.instagram.com";
-      request.fields['facebook'] = "www.facebook.com";
+      request.fields['instagram'] = "instagram.com";
+      request.fields['facebook'] = "facebook.com";
       request.fields['longitude'] = UserDetails.liveLongitude;
       request.fields['latitude'] = UserDetails.liveLatitude;
-      //todo - add upi parameter
+      request.fields['gpayupi'] = gPayController.text.trim();
 
       var response = await request.send();
       log('response fields: ${request.fields}}');

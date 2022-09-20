@@ -175,9 +175,8 @@ class LoginModule extends StatelessWidget {
                 Expanded(
                   child: GestureDetector(
                     onTap: () async {
-                      //await controller.signInWithGoogleFunction();
-                      Fluttertoast.showToast(
-                          msg: 'This feature is coming soon');
+                      await controller.signInWithGoogleFunction();
+                      // Fluttertoast.showToast(msg: 'This feature is coming soon');
                     },
                     child: Container(
                       height: controller.size.height * 0.065,

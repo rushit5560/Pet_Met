@@ -86,6 +86,9 @@ class TrainerData {
     required this.modifiedDate,
     required this.rememberToken,
     required this.isVerified,
+    required this.longitude,
+    required this.latitude,
+    required this.gpayupi,
   });
 
   String id;
@@ -116,6 +119,9 @@ class TrainerData {
   String modifiedDate;
   String rememberToken;
   String isVerified;
+  String longitude;
+  String latitude;
+  String gpayupi;
 
   factory TrainerData.fromJson(Map<String, dynamic> json) => TrainerData(
     id: json["id"] ?? "",
@@ -146,6 +152,9 @@ class TrainerData {
     modifiedDate: json["modified_date"] ?? "",
     rememberToken: json["remember_token"] ?? "",
     isVerified: json["is_verified"] ?? "",
+    longitude: json["longitude"] ?? "",
+    latitude: json["latitude"] ?? "",
+    gpayupi: json["gpayupi"] ?? "",
   );
 
   Map<String, dynamic> toJson() => {
@@ -177,6 +186,9 @@ class TrainerData {
     "modified_date": modifiedDate,
     "remember_token": rememberToken,
     "is_verified": isVerified,
+    "longitude": longitude,
+    "latitude": latitude,
+    "gpayupi": gpayupi,
   };
 }
 

@@ -350,7 +350,7 @@ class NameOfNgoListModule extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Name of NGO/Vet picture:",
+          "NGO/VET picture",
           style: TextStyle(
             color: themeProvider.darkTheme
                 ? AppColors.whiteColor
@@ -1536,6 +1536,51 @@ class FacebookLinkTextFieldModule extends StatelessWidget {
           textInputAction: TextInputAction.next,
           textInputType: TextInputType.text,
           //validator: (val) => Validations().validateFacebookLink(val!),
+        ),
+      ],
+    );
+  }
+}
+
+class NgoUpiTextFieldModule extends StatelessWidget {
+  NgoUpiTextFieldModule({Key? key}) : super(key: key);
+  final screenController = Get.find<NgoUserProfileScreenController>();
+  DarkThemeProvider themeProvider =
+  Provider.of<DarkThemeProvider>(Get.context!);
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text.rich(
+              TextSpan(
+                text: 'GPay UPI ',
+                style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                // children: const <InlineSpan>[
+                //   TextSpan(
+                //     text: '*',
+                //     style: TextStyle(
+                //         fontSize: 20,
+                //         fontWeight: FontWeight.bold,
+                //         color: Colors.red),
+                //   )
+                // ]
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          readOnly: false,
+          fieldController: screenController.gPayController,
+          height: screenController.size.height * 0.05,
+          width: double.infinity,
+          hintText: "GPay UPI",
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.text,
+          // validator: (val) => Validations().validateFacebookLink(val!),
         ),
       ],
     );

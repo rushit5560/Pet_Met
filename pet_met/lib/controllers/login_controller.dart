@@ -13,7 +13,6 @@ import 'package:http/http.dart' as http;
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 import '../screens/index_screen/index_screen.dart';
-import '../utils/app_route_names.dart';
 
 class LoginController extends GetxController {
   RxBool isLoading = false.obs;
@@ -40,7 +39,7 @@ class LoginController extends GetxController {
       try {
         await userLoginFunction();
       } catch (e) {
-        throw e;
+        rethrow;
       }
     }
   }
@@ -106,7 +105,6 @@ class LoginController extends GetxController {
                   "This user is unauthorized for selected category! Please try again");
         }
 
-        //
       }
     } catch (e) {
       log('User Login Api Error ::: $e');
@@ -133,28 +131,27 @@ class LoginController extends GetxController {
       // Getting users credential
       UserCredential result = await auth.signInWithCredential(authCredential);
       // User? user = result.user;
-      log("Email: ${result.user!.email}");
-      log("Username: ${result.user!.displayName}");
-      log("User Id: ${result.user!.uid}");
+      // log("Email: ${result.user!.email}");
+      // log("Username: ${result.user!.displayName}");
+      // log("User Id: ${result.user!.uid}");
 
       //login = prefs.getString('userId');
       //print(login);
       if (result != null) {
         String userName = result.user!.displayName!;
         String email = result.user!.email!;
-        //String password = passController.text.trim();
-        mailController.text = email;
-        passController.text = "12345678";
+        String googleKeyId = result.user!.uid;
 
-        await userLoginFunction();
+        log("Username : $userName");
+        log("email : $email");
+        log("googleKeyId : $googleKeyId");
 
-        // prefs.setString('userId', result.user!.uid);
-        // prefs.setString('userName', result.user!.displayName!);
-        // prefs.setString('email', result.user!.email!);
-        // prefs.setString('photo', result.user!.photoURL!);
-        // prefs.setBool('isLoggedIn', false);
 
-        // Get.offAll(() => IndexScreen());
+        // await socialMediaRegisterFunction(
+        //   userName: userName,
+        //   userEmail: email,
+        //   userId: googleKeyId,
+        // );
 
       }
     }
@@ -189,11 +186,20 @@ class LoginController extends GetxController {
         final email = await fb.getUserEmail();
         // But user can decline permission
         if (email != null) {
-          log('And your email is $email');
-          mailController.text = email;
-          passController.text = "12345678";
 
-          await userLoginFunction();
+          String userName = "${profile.firstName}";
+          String fbKeyId = profile.userId;
+
+          log('userName : $userName');
+          log('fbKeyId : $fbKeyId');
+          log('email : $email');
+
+          // await socialMediaRegisterFunction(
+          //   userName: userName,
+          //   userEmail: email,
+          //   userId: fbKeyId,
+          // );
+
         }
 
         break;
@@ -202,7 +208,7 @@ class LoginController extends GetxController {
         break;
       case FacebookLoginStatus.error:
         // Log in failed
-        print('Error while log in: ${res.error}');
+        log('Error while log in: ${res.error}');
         break;
     }
 
@@ -215,6 +221,81 @@ class LoginController extends GetxController {
     );
 
     await subPartOfFacebookLogin();*/
+  }
+
+  Future<void> socialMediaRegisterFunction({
+    required String userName,
+    required String userEmail,
+    required String userId,
+  }) async {
+    isLoading(true);
+    String url = ApiUrl.socialMediaRegisterApi;
+    log("Social Media Register Api Url : $url");
+
+    try {
+      Map<String, dynamic> data = {
+        'name': userName,
+        'email': userEmail,
+        'password': '12345678',
+        'categoryID': UserDetails.categoryId,
+        'googlekey': userId,
+      };
+      log("data : $data");
+
+      //todo - differentiate with user category id
+      /*http.Response response = await http.post(Uri.parse(url), body: data);
+      log("Login Api Response : ${response.body}");
+
+      LoginModel loginModel = LoginModel.fromJson(json.decode(response.body));
+      isSuccessStatus = loginModel.success.obs;
+
+      if (isSuccessStatus.value) {
+        // User Data Set in Prefs
+        await userPreference.setUserDetails(
+          selfId: loginModel.data.uid, // userID
+          userId: loginModel.data.id,
+          userName: loginModel.data.name,
+          userEmail: loginModel.data.email,
+          userProfileImage: loginModel.data.image,
+          token: loginModel.data.rememberToken,
+          roleId: loginModel.data.categoryId,
+          shopName: loginModel.data.shopename,
+          shopProfile: loginModel.data.showimg,
+        );
+        log('shop Name: ${loginModel.data.shopename}');
+
+        mailController.clear();
+        passController.clear();
+        //await userPreference.setRoleId(roleId);
+        // Going to Index Screen
+        Get.offAll(
+              () => IndexScreen(),
+          transition: Transition.native,
+          duration: const Duration(milliseconds: 500),
+        );
+      } else {
+        if (loginModel.error.contains('password don\'t match')) {
+          Fluttertoast.showToast(msg: "Invalid password");
+        }
+        if (loginModel.error.contains('Email don\'t match')) {
+          Fluttertoast.showToast(msg: "Invalid email");
+        }
+
+        if (loginModel.messege.contains('User account is deleted')) {
+          Fluttertoast.showToast(msg: loginModel.messege);
+        }
+        if (loginModel.messege.contains("This user is unauthorized")) {
+          Fluttertoast.showToast(
+              msg:
+              "This user is unauthorized for selected category! Please try again");
+        }
+
+      }*/
+
+    } catch(e) {
+      log("socialMediaRegisterFunction Error :$e");
+    }
+
   }
 
   /*subPartOfFacebookLogin() async {

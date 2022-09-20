@@ -153,6 +153,7 @@ class TrainersAndUsersScreenController extends GetxController {
         trainerApiProfile3 = getTrainersProfileModel.data.data[0].image3;
         trainerApiProfile4 = getTrainersProfileModel.data.data[0].image4;
         trainerApiProfile5 = getTrainersProfileModel.data.data[0].image5;
+        gPayController.text = getTrainersProfileModel.data.data[0].gpayupi;
 
         showStatus = getTrainersProfileModel.data.showstatus.obs;
 
@@ -480,7 +481,9 @@ class TrainersAndUsersScreenController extends GetxController {
       request.fields['is_active'] = trainerStatus;
       request.fields['userid'] = UserDetails.userId;
       request.fields['uid'] = UserDetails.selfId;
-      // todo - add upi parameter
+      request.fields['longitude'] = UserDetails.liveLongitude;
+      request.fields['latitude'] = UserDetails.liveLatitude;
+      request.fields['gpayupi'] = gPayController.text.trim();
 
       var response = await request.send();
 
