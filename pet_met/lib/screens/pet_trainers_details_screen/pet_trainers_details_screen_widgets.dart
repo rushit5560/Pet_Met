@@ -1,10 +1,12 @@
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/pet_trainers_details_screen_controller.dart';
+import 'package:pet_met/firebase_database/firebase_database.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
@@ -15,7 +17,9 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../services/providers/dark_theme_provider.dart';
+import '../../utils/user_details.dart';
 import '../address_screen/address_screen_widgets.dart';
+import '../user_conversation_screen/user_conversation_screen.dart';
 
 class PetTrainerBannerImageModule extends StatelessWidget {
   PetTrainerBannerImageModule({Key? key}) : super(key: key);
@@ -80,13 +84,13 @@ class PetTrainerPicturesModule extends StatelessWidget {
                     ),
                   ),
                 ),
-                screenController.isVerified == true
-                    ? Image.asset(
-                        AppIcons.verifiedSymbolImg,
-                        width: 25,
-                        height: 25,
-                      )
-                    : Container(),
+                // screenController.isVerified == true
+                //     ? Image.asset(
+                //         AppIcons.verifiedSymbolImg,
+                //         width: 25,
+                //         height: 25,
+                //       )
+                //     : Container(),
               ],
             ),
           ),
@@ -110,7 +114,7 @@ class PetTrainerPicturesModule extends StatelessWidget {
                 )
               : Row(
                   children: [
-                    screenController.trainerDetails[0].image1 == null
+                    screenController.trainerDetails[0].image1 == ""
                         ? Container()
                         : Expanded(
                             child: GestureDetector(
@@ -124,7 +128,7 @@ class PetTrainerPicturesModule extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(color: Colors.grey)),
-                                padding: const EdgeInsets.all(5),
+                                // padding: const EdgeInsets.all(5),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
                                   child: Image.network(
@@ -134,16 +138,20 @@ class PetTrainerPicturesModule extends StatelessWidget {
                                       height: 40,
                                       width: 40,
                                       errorBuilder: (context, er, da) {
-                                    return Image.asset(AppImages.petMetLogoImg);
+                                    return Padding(
+                                      padding: const EdgeInsets.all(5),
+                                      child:
+                                          Image.asset(AppImages.petMetLogoImg),
+                                    );
                                   }),
                                 ),
                               ),
                             ),
                           )),
-                    screenController.trainerDetails[0].image1 == null
+                    screenController.trainerDetails[0].image1 == ""
                         ? Container()
                         : const SizedBox(width: 10),
-                    screenController.trainerDetails[0].image2 == null
+                    screenController.trainerDetails[0].image2 == ""
                         ? Container()
                         : Expanded(
                             child: GestureDetector(
@@ -157,7 +165,7 @@ class PetTrainerPicturesModule extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(color: Colors.grey)),
-                                padding: const EdgeInsets.all(5),
+                                // padding: const EdgeInsets.all(5),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
                                   child: Image.network(
@@ -167,16 +175,20 @@ class PetTrainerPicturesModule extends StatelessWidget {
                                       height: 40,
                                       width: 40,
                                       errorBuilder: (context, er, da) {
-                                    return Image.asset(AppImages.petMetLogoImg);
+                                    return Padding(
+                                      padding: const EdgeInsets.all(5),
+                                      child:
+                                          Image.asset(AppImages.petMetLogoImg),
+                                    );
                                   }),
                                 ),
                               ),
                             ),
                           )),
-                    screenController.trainerDetails[0].image2 == null
+                    screenController.trainerDetails[0].image2 == ""
                         ? Container()
                         : const SizedBox(width: 10),
-                    screenController.trainerDetails[0].image3 == null
+                    screenController.trainerDetails[0].image3 == ""
                         ? Container()
                         : Expanded(
                             child: GestureDetector(
@@ -190,7 +202,7 @@ class PetTrainerPicturesModule extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(color: Colors.grey)),
-                                padding: const EdgeInsets.all(5),
+                                // padding: const EdgeInsets.all(5),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
                                   child: Image.network(
@@ -201,16 +213,20 @@ class PetTrainerPicturesModule extends StatelessWidget {
                                       height: 40,
                                       width: 40,
                                       errorBuilder: (context, er, da) {
-                                    return Image.asset(AppImages.petMetLogoImg);
+                                    return Padding(
+                                      padding: const EdgeInsets.all(5),
+                                      child:
+                                          Image.asset(AppImages.petMetLogoImg),
+                                    );
                                   }),
                                 ),
                               ),
                             ),
                           )),
-                    screenController.trainerDetails[0].image3 == null
+                    screenController.trainerDetails[0].image3 == ""
                         ? Container()
                         : const SizedBox(width: 10),
-                    screenController.trainerDetails[0].image4 == null
+                    screenController.trainerDetails[0].image4 == ""
                         ? Container()
                         : Expanded(
                             child: GestureDetector(
@@ -224,7 +240,7 @@ class PetTrainerPicturesModule extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(color: Colors.grey)),
-                                padding: const EdgeInsets.all(5),
+                                // padding: const EdgeInsets.all(5),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
                                   child: Image.network(
@@ -233,16 +249,20 @@ class PetTrainerPicturesModule extends StatelessWidget {
                                               "${screenController.trainerDetails[0].image4}",
                                       fit: BoxFit.cover,
                                       errorBuilder: (context, er, da) {
-                                    return Image.asset(AppImages.petMetLogoImg);
+                                    return Padding(
+                                      padding: const EdgeInsets.all(5),
+                                      child:
+                                          Image.asset(AppImages.petMetLogoImg),
+                                    );
                                   }),
                                 ),
                               ),
                             ),
                           )),
-                    screenController.trainerDetails[0].image4 == null
+                    screenController.trainerDetails[0].image4 == ""
                         ? Container()
                         : const SizedBox(width: 10),
-                    screenController.trainerDetails[0].image5 == null
+                    screenController.trainerDetails[0].image5 == ""
                         ? Container()
                         : Expanded(
                             child: GestureDetector(
@@ -256,7 +276,7 @@ class PetTrainerPicturesModule extends StatelessWidget {
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
                                     border: Border.all(color: Colors.grey)),
-                                padding: const EdgeInsets.all(5),
+                                // padding: const EdgeInsets.all(5),
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8),
                                   child: Image.network(
@@ -265,7 +285,11 @@ class PetTrainerPicturesModule extends StatelessWidget {
                                               "${screenController.trainerDetails[0].image5}",
                                       fit: BoxFit.cover,
                                       errorBuilder: (context, er, da) {
-                                    return Image.asset(AppImages.petMetLogoImg);
+                                    return Padding(
+                                      padding: const EdgeInsets.all(5),
+                                      child:
+                                          Image.asset(AppImages.petMetLogoImg),
+                                    );
                                   }),
                                 ),
                               ),
@@ -349,14 +373,25 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: Text(
-            screenController.trainerDetails[0].name,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-                color: AppColors.accentTextColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 18.sp),
+          child: Row(
+            children: [
+              Text(
+                screenController.trainerDetails[0].name,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: AppColors.accentTextColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.sp),
+              ),
+              screenController.isVerified == true
+                  ? Image.asset(
+                      AppIcons.verifiedSymbolImg,
+                      width: 25,
+                      height: 25,
+                    )
+                  : Container(),
+            ],
           ),
         ),
         // GestureDetector(
@@ -439,209 +474,187 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
           ).commonSymmetricPadding(horizontal: 2),
         ),
         GestureDetector(
-          onTap: () {
-            // String number = "${screenController.shopData[0].phonenumber}";
-            // _makingPhoneCall(number);
+          onTap: () async {
+            final FirebaseDatabase firebaseDatabase = FirebaseDatabase();
 
-            // if (UserDetails.userEmail == controller.userEmail) {
-            //       Fluttertoast.showToast(msg: "User can't chat with itself.");
-            //     } else {
-            //       if (controller.status.value == false) {
-            //         List<String> tempChatRoomIdList = [];
+            if (UserDetails.userEmail == screenController.trainerEmail) {
+              Fluttertoast.showToast(msg: "User can't chat with itself.");
+            } else {
+              List<String> tempChatRoomIdList = [];
 
-            //         // CharRoom Id Generate
-            //         String chatRoomId =
-            //             "${UserDetails.selfId}${UserDetails.categoryId}_${controller.chatUid}${controller.chatCategoryId}";
-            //         String chatRoomId2 =
-            //             "${controller.chatUid}${controller.chatCategoryId}_${UserDetails.selfId}${UserDetails.categoryId}";
+              // CharRoom Id Generate
+              String chatRoomId =
+                  "${UserDetails.selfId}${UserDetails.categoryId}_${screenController.trainerId}${screenController.trainerCatId}";
+              String chatRoomId2 =
+                  "${screenController.trainerId}${screenController.trainerCatId}_${UserDetails.selfId}${UserDetails.categoryId}";
 
-            //         // Get All Chat Room From Firebase
-            //         QuerySnapshot querySnapshot = await FirebaseFirestore
-            //             .instance
-            //             .collection("ChatRoom")
-            //             .get();
+              // Get All Chat Room From Firebase
+              QuerySnapshot querySnapshot =
+                  await FirebaseFirestore.instance.collection("ChatRoom").get();
 
-            //         querySnapshot.docs.map((doc) {
-            //           doc.data();
+              querySnapshot.docs.map((doc) {
+                doc.data();
 
-            //           if (doc['chatRoomId'].toString().contains(chatRoomId)) {
-            //             log("first if stat");
-            //             tempChatRoomIdList.add(doc['chatRoomId']);
-            //           }
-            //           if (doc['chatRoomId'].toString().contains(chatRoomId2)) {
-            //             log("second if stat");
-            //             tempChatRoomIdList.add(doc['chatRoomId']);
-            //           }
-            //         }).toList();
+                if (doc['chatRoomId'].toString().contains(chatRoomId)) {
+                  log("first if stat");
+                  tempChatRoomIdList.add(doc['chatRoomId']);
+                }
+                if (doc['chatRoomId'].toString().contains(chatRoomId2)) {
+                  log("second if stat");
+                  tempChatRoomIdList.add(doc['chatRoomId']);
+                }
+              }).toList();
 
-            //         log("tempChatRoomId : $tempChatRoomIdList");
+              log("tempChatRoomId : $tempChatRoomIdList");
 
-            //         if (tempChatRoomIdList.isEmpty) {
-            //           /// Create chat room
-            //           Timestamp timeStamp = Timestamp.now();
-            //           // CharRoom Id Generate
-            //           // String charRoomId =
-            //           //     "${UserDetails.selfId}${UserDetails.categoryId}_${controller.chatUid}${controller.chatCategoryId}";
+              if (tempChatRoomIdList.isEmpty) {
+                /// Create chat room
+                Timestamp timeStamp = Timestamp.now();
+                // CharRoom Id Generate
+                // String charRoomId =
+                //     "${UserDetails.selfId}${UserDetails.categoryId}_${controller.chatUid}${controller.chatCategoryId}";
 
-            //           log("controller.chatUid : ${controller.chatUid}");
-            //           log("controller.chatCategoryId : ${controller.chatCategoryId}");
-            //           log("charRoomId123 : $chatRoomId");
+                log("controller.chatUid : ${screenController.trainerId}");
+                log("screenController.chatCategoryId : ${screenController.trainerCatId}");
+                log("charRoomId123 : $chatRoomId");
 
-            //           // ChatRoom Data
-            //           Map<String, dynamic> chatRoomData = {
-            //             "chatRoomId": chatRoomId,
-            //             "creator":
-            //                 "${UserDetails.selfId}${UserDetails.categoryId}",
-            //             "pearer":
-            //                 "${controller.chatUid}${controller.chatCategoryId}",
-            //             "creatorEmail": UserDetails.userEmail,
-            //             "peerEmail": controller.userEmail,
-            //             "creatorName": UserDetails.categoryId == "2"
-            //                 ? UserDetails.shopName
-            //                 : UserDetails.userName,
-            //             "peerName": controller.userName,
-            //             "createdAt": timeStamp,
-            //             "userEmails": [
-            //               UserDetails.userEmail,
-            //               controller.userEmail,
-            //             ],
-            //           };
+                // ChatRoom Data
+                Map<String, dynamic> chatRoomData = {
+                  "chatRoomId": chatRoomId,
+                  "creator": "${UserDetails.selfId}${UserDetails.categoryId}",
+                  "pearer":
+                      "${screenController.trainerId}${screenController.trainerCatId}",
+                  "creatorEmail": UserDetails.userEmail,
+                  "peerEmail": screenController.trainerEmail,
+                  "creatorName": UserDetails.categoryId == "2"
+                      ? UserDetails.shopName
+                      : UserDetails.userName,
+                  "peerName": screenController.trainerName,
+                  "createdAt": timeStamp,
+                  "userEmails": [
+                    UserDetails.userEmail,
+                    screenController.trainerEmail,
+                  ],
+                };
 
-            //           log("chatRoomData : $chatRoomData");
+                log("chatRoomData : $chatRoomData");
 
-            //           // Create ChatRoom Function
-            //           firebaseDatabase.createChatRoomOfTwoUsers(
-            //               chatRoomId, chatRoomData);
-            //           //Go to conversation screen
-            //           Get.to(
-            //             () => UserConversationScreen(),
-            //             arguments: [
-            //               chatRoomId,
-            //               controller.followCategoryId == "1"
-            //                   ? controller.userName
-            //                   : controller.shopName,
-            //               controller.userName,
-            //               UserDetails.userEmail,
-            //               controller.userEmail,
-            //             ],
-            //           );
-            //         } else {
-            //           if (tempChatRoomIdList[0].contains(chatRoomId)) {
-            //             /// Create chat room
-            //             Timestamp timeStamp = Timestamp.now();
+                // Create ChatRoom Function
+                firebaseDatabase.createChatRoomOfTwoUsers(
+                    chatRoomId, chatRoomData);
+                //Go to conversation screen
+                Get.to(
+                  () => UserConversationScreen(),
+                  arguments: [
+                    chatRoomId,
+                    UserDetails.userName,
+                    screenController.trainerName,
+                    UserDetails.userEmail,
+                    screenController.trainerEmail,
+                  ],
+                );
+              } else {
+                if (tempChatRoomIdList[0].contains(chatRoomId)) {
+                  /// Create chat room
+                  Timestamp timeStamp = Timestamp.now();
 
-            //             log("controller.chatUid : ${controller.chatUid}");
-            //             log("controller.chatCategoryId : ${controller.chatCategoryId}");
-            //             log("charRoomId123 : $chatRoomId");
+                  log("screenController.chatUid : ${screenController.trainerId}");
+                  log("screenController.chatCategoryId : ${screenController.trainerCatId}");
+                  log("charRoomId123 : $chatRoomId");
 
-            //             // ChatRoom Data
-            //             Map<String, dynamic> chatRoomData = {
-            //               "chatRoomId": chatRoomId,
-            //               "creator":
-            //                   "${UserDetails.selfId}${UserDetails.categoryId}",
-            //               "pearer":
-            //                   "${controller.chatUid}${controller.chatCategoryId}",
-            //               "creatorEmail": UserDetails.userEmail,
-            //               "peerEmail": controller.userEmail,
-            //               "creatorName": UserDetails.categoryId == "2"
-            //                   ? UserDetails.shopName
-            //                   : UserDetails.userName,
-            //               "peerName": controller.userName,
-            //               "createdAt": timeStamp,
-            //               "userEmails": [
-            //                 UserDetails.userEmail,
-            //                 controller.userEmail,
-            //               ],
-            //             };
+                  // ChatRoom Data
+                  Map<String, dynamic> chatRoomData = {
+                    "chatRoomId": chatRoomId,
+                    "creator": "${UserDetails.selfId}${UserDetails.categoryId}",
+                    "pearer":
+                        "${screenController.trainerId}${screenController.trainerCatId}",
+                    "creatorEmail": screenController.trainerEmail,
+                    "peerEmail": UserDetails.userEmail,
+                    "creatorName": UserDetails.categoryId == "2"
+                        ? UserDetails.shopName
+                        : UserDetails.userName,
+                    "peerName": screenController.trainerName,
+                    "createdAt": timeStamp,
+                    "userEmails": [
+                      UserDetails.userEmail,
+                      screenController.trainerEmail,
+                    ],
+                  };
 
-            //             log("chatRoomData : $chatRoomData");
+                  log("chatRoomData : $chatRoomData");
 
-            //             // Create ChatRoom Function
-            //             firebaseDatabase.createChatRoomOfTwoUsers(
-            //                 chatRoomId, chatRoomData);
-            //             //Go to conversation screen
-            //             Get.to(
-            //               () => UserConversationScreen(),
-            //               arguments: [
-            //                 chatRoomId,
-            //                 controller.followCategoryId == "1"
-            //                     ? controller.userName
-            //                     : controller.shopName,
-            //                 controller.userName,
-            //                 UserDetails.userEmail,
-            //                 controller.userEmail,
-            //               ],
-            //             );
-            //           } else {
-            //             /// Create chat room
-            //             Timestamp timeStamp = Timestamp.now();
+                  // Create ChatRoom Function
+                  firebaseDatabase.createChatRoomOfTwoUsers(
+                      chatRoomId, chatRoomData);
+                  //Go to conversation screen
+                  Get.to(
+                    () => UserConversationScreen(),
+                    arguments: [
+                      chatRoomId,
+                      screenController.trainerName,
+                      UserDetails.userName,
+                      UserDetails.userEmail,
+                      screenController.trainerEmail,
+                    ],
+                  );
+                } else {
+                  /// Create chat room
+                  Timestamp timeStamp = Timestamp.now();
 
-            //             log("controller.chatUid : ${controller.chatUid}");
-            //             log("controller.chatCategoryId : ${controller.chatCategoryId}");
-            //             log("charRoomId123 : $chatRoomId2");
+                  log("screenController.chatUid : ${screenController.trainerId}");
+                  log("screenController.chatCategoryId : ${screenController.trainerCatId}");
+                  log("charRoomId123 : $chatRoomId2");
 
-            //             // ChatRoom Data
-            //             Map<String, dynamic> chatRoomData = {
-            //               "chatRoomId": chatRoomId2,
-            //               "creator":
-            //                   "${controller.chatUid}${controller.chatCategoryId}",
-            //               "pearer":
-            //                   "${UserDetails.selfId}${UserDetails.categoryId}",
-            //               "creatorEmail": controller.userEmail,
-            //               "peerEmail": UserDetails.userEmail,
-            //               "creatorName": controller.userName,
-            //               "peerName": UserDetails.categoryId == "2"
-            //                   ? UserDetails.shopName
-            //                   : UserDetails.userName,
-            //               "createdAt": timeStamp,
-            //               "userEmails": [
-            //                 controller.userEmail,
-            //                 UserDetails.userEmail,
-            //               ],
-            //             };
+                  // ChatRoom Data
+                  Map<String, dynamic> chatRoomData = {
+                    "chatRoomId": chatRoomId,
+                    "creator": "${UserDetails.selfId}${UserDetails.categoryId}",
+                    "pearer":
+                        "${screenController.trainerId}${screenController.trainerCatId}",
+                    "creatorEmail": screenController.trainerEmail,
+                    "peerEmail": UserDetails.userEmail,
+                    "creatorName": UserDetails.categoryId == "2"
+                        ? UserDetails.shopName
+                        : UserDetails.userName,
+                    "peerName": screenController.trainerName,
+                    "createdAt": timeStamp,
+                    "userEmails": [
+                      UserDetails.userEmail,
+                      screenController.trainerEmail,
+                    ],
+                  };
 
-            //             log("chatRoomData : $chatRoomData");
+                  log("chatRoomData : $chatRoomData");
 
-            //             // Create ChatRoom Function
-            //             firebaseDatabase.createChatRoomOfTwoUsers(
-            //                 chatRoomId2, chatRoomData);
-            //             //Go to conversation screen
-            //             Get.to(
-            //               () => UserConversationScreen(),
-            //               arguments: [
-            //                 chatRoomId2,
-            //                 controller.followCategoryId == "1"
-            //                     ? controller.userName
-            //                     : controller.shopName,
-            //                 controller.userName,
-            //                 UserDetails.userEmail,
-            //                 controller.userEmail,
-            //               ],
-            //             );
-            //           }
+                  // Create ChatRoom Function
+                  firebaseDatabase.createChatRoomOfTwoUsers(
+                      chatRoomId2, chatRoomData);
+                  //Go to conversation screen
+                  Get.to(
+                    () => UserConversationScreen(),
+                    arguments: [
+                      chatRoomId2,
+                      UserDetails.userName,
+                      screenController.trainerName,
+                      UserDetails.userEmail,
+                      screenController.trainerEmail,
+                    ],
+                  );
+                }
 
-            //           //Go to conversation screen
-            //           Get.to(
-            //             () => UserConversationScreen(),
-            //             arguments: [
-            //               chatRoomId.isEmpty ? chatRoomId2 : chatRoomId,
-            //               controller.followCategoryId == "1"
-            //                   ? controller.userName
-            //                   : controller.shopName,
-            //               controller.userName,
-            //               UserDetails.userEmail,
-            //               controller.userEmail,
-            //             ],
-            //           );
-            //         }
-
-            //       }
-
-            //       /// When loggedIn user as a shop
-            //       else if (controller.status.value == true) {
-            //         Fluttertoast.showToast(msg: 'First follow user');
-            //       }
-            //     }
+                //Go to conversation screen
+                Get.to(
+                  () => UserConversationScreen(),
+                  arguments: [
+                    chatRoomId.isEmpty ? chatRoomId2 : chatRoomId,
+                    UserDetails.userName,
+                    screenController.trainerName,
+                    UserDetails.userEmail,
+                    screenController.trainerEmail,
+                  ],
+                );
+              }
+            }
           },
           child: Container(
             height: screenController.size.width * 0.018.w,
@@ -952,27 +965,27 @@ class PayButtonModule extends StatelessWidget {
                     color: themeProvider.darkTheme
                         ? AppColors.whiteColor
                         : AppColors.blackTextColor,
-                    fontSize: 13.sp,
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
 
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Amount",
-                      style: TextStyle(
-                        color: themeProvider.darkTheme
-                            ? AppColors.whiteColor
-                            : AppColors.blackTextColor,
-                        fontSize: 11.sp,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-                //const SizedBox(height: 8),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.start,
+                //   children: [
+                //     Text(
+                //       "Please Enter Amount",
+                //       style: TextStyle(
+                //         color: themeProvider.darkTheme
+                //             ? AppColors.whiteColor
+                //             : AppColors.blackTextColor,
+                //         fontSize: 11.sp,
+                //         fontWeight: FontWeight.bold,
+                //       ),
+                //     ),
+                //   ],
+                // ),
+                const SizedBox(height: 8),
                 // CustomLightTextField(
                 //   readOnly: false,
                 //   fieldController: controller.passwordController,
@@ -1036,7 +1049,7 @@ class PayButtonModule extends StatelessWidget {
                           borderSide: const BorderSide(
                               width: 0, style: BorderStyle.none),
                         ),
-                        hintText: "Amount",
+                        hintText: "Enter Amount",
                         hintStyle: TextStyle(
                           color: themeProvider.darkTheme
                               ? AppColors.whiteColor
@@ -1049,15 +1062,15 @@ class PayButtonModule extends StatelessWidget {
                   ],
                 ),
 
-                // const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Get.back();
                         //await screenController.userLoginFunction();
                         if (screenController.formKey.currentState!.validate()) {
+                          Get.back();
                           screenController.openCheckout(
                               price: int.parse(
                                   screenController.priceController.text));
@@ -1066,7 +1079,7 @@ class PayButtonModule extends StatelessWidget {
                       },
                       child: Container(
                         //width: double.infinity,
-                        height: 50,
+                        height: 35,
                         decoration: const BoxDecoration(
                           color: AppColors.accentColor,
                           borderRadius: BorderRadius.all(
@@ -1080,7 +1093,7 @@ class PayButtonModule extends StatelessWidget {
                               "Submit",
                               style: TextStyle(
                                 color: AppColors.whiteColor,
-                                fontSize: 15.sp,
+                                fontSize: 13.sp,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -1088,18 +1101,16 @@ class PayButtonModule extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      width: screenController.size.width * 0.05,
-                    ),
+                    SizedBox(width: screenController.size.width * 0.05),
                     GestureDetector(
                       onTap: () {
                         Get.back();
                       },
                       child: Container(
                         //width: double.infinity,
-                        height: 50,
+                        height: 35,
                         decoration: const BoxDecoration(
-                          color: AppColors.accentColor,
+                          color: AppColors.greyTextColor,
                           borderRadius: BorderRadius.all(
                             Radius.circular(12),
                           ),
@@ -1111,7 +1122,7 @@ class PayButtonModule extends StatelessWidget {
                               "Cancel",
                               style: TextStyle(
                                 color: AppColors.whiteColor,
-                                fontSize: 15.sp,
+                                fontSize: 13.sp,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),

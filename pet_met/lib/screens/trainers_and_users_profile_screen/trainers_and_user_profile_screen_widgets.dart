@@ -349,11 +349,13 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Trainers Achievement Picture:",
+          "Trainer Achievement's Pictures:",
           style: TextStyle(
             color: themeProvider.darkTheme
                 ? AppColors.whiteColor
-                : AppColors.darkThemeColor,
+                : AppColors.blackTextColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
           ),
         ),
         const SizedBox(height: 10),
@@ -1466,7 +1468,7 @@ class TrainerUpiTextFieldModule extends StatelessWidget {
   TrainerUpiTextFieldModule({Key? key}) : super(key: key);
   final screenController = Get.find<TrainersAndUsersScreenController>();
   DarkThemeProvider themeProvider =
-  Provider.of<DarkThemeProvider>(Get.context!);
+      Provider.of<DarkThemeProvider>(Get.context!);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -1474,23 +1476,24 @@ class TrainerUpiTextFieldModule extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text.rich(TextSpan(
-              text: 'GPay UPI ',
-              style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
-              // children: const <InlineSpan>[
-              //   TextSpan(
-              //     text: '*',
-              //     style: TextStyle(
-              //         fontSize: 20,
-              //         fontWeight: FontWeight.bold,
-              //         color: Colors.red),
-              //   )
-              // ]
-            ),
+            Text.rich(
+              TextSpan(
+                text: 'GPay UPI ',
+                style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                // children: const <InlineSpan>[
+                //   TextSpan(
+                //     text: '*',
+                //     style: TextStyle(
+                //         fontSize: 20,
+                //         fontWeight: FontWeight.bold,
+                //         color: Colors.red),
+                //   )
+                // ]
+              ),
             ),
           ],
         ),
- const SizedBox(height: 8),
+        const SizedBox(height: 8),
         CustomLightTextField(
           readOnly: false,
           fieldController: screenController.gPayController,

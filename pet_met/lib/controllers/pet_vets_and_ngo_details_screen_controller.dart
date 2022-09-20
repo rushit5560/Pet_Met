@@ -16,12 +16,11 @@ class PetVetsAndNgoDetailsScreenController extends GetxController {
   RxBool isSuccessStatus = false.obs;
   final size = Get.size;
 
-
   ApiHeader apiHeader = ApiHeader();
   TextEditingController priceController = TextEditingController();
   bool isVerified = false;
 
- // VetNgoData vetsNgoDetailsData = VetNgoData();
+  // VetNgoData vetsNgoDetailsData = VetNgoData();
   List<VetNgoData> vetsNgoDetailsData = [];
   late Razorpay _razorpay;
   final formKey = GlobalKey<FormState>();
@@ -45,13 +44,13 @@ class PetVetsAndNgoDetailsScreenController extends GetxController {
         vetsNgoDetailsData = vetsNgoDetailsModel.data;
 
         String isVerify = "${vetsNgoDetailsModel.data[0].isVerified}";
-        if(isVerify == "0") {
+        if (isVerify == "0") {
           isVerified = true;
         } else {
           isVerified = false;
         }
 
-       // log("vets Details image list  : ${vetsNgoDetailsData.image}");
+        // log("vets Details image list  : ${vetsNgoDetailsData.image}");
       } else {
         log("Vet Details Api Else Else");
       }
@@ -94,7 +93,7 @@ class PetVetsAndNgoDetailsScreenController extends GetxController {
     super.onInit();
   }
 
-  void _handlePaymentSuccess(PaymentSuccessResponse response)async {
+  void _handlePaymentSuccess(PaymentSuccessResponse response) async {
     log('Success Response: ${response.orderId}');
     // await addOrderFunction(
     //     orderId: response.orderId,
@@ -103,8 +102,7 @@ class PetVetsAndNgoDetailsScreenController extends GetxController {
     // );
 
     Fluttertoast.showToast(
-        msg: "SUCCESS: " + response.paymentId!,
-        toastLength: Toast.LENGTH_SHORT);
+        msg: "Payment Successful", toastLength: Toast.LENGTH_SHORT);
     Get.back();
     log(response.paymentId.toString());
     log(response.orderId.toString());
@@ -112,12 +110,13 @@ class PetVetsAndNgoDetailsScreenController extends GetxController {
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
-    log('Error Response: $response');
-    Fluttertoast.showToast(
-        msg: "ERROR: " + response.code.toString() + " - " + response.message!,
-        toastLength: Toast.LENGTH_SHORT);
-    log(response.message.toString());
-    log(response.code.toString());
+    // var body = response.message.toString();
+    // log('Error Response: $response');
+
+    // Fluttertoast.showToast(msg: body, toastLength: Toast.LENGTH_SHORT);
+    // log(response.message.toString());
+    // log(response.code.toString());
+    Fluttertoast.showToast(msg: 'Payment processing cancelled by user');
   }
 
   void _handleExternalWallet(ExternalWalletResponse response) {
@@ -166,5 +165,3 @@ class PetVetsAndNgoDetailsScreenController extends GetxController {
     }
   }*/
 }
-
-

@@ -79,6 +79,9 @@ class _PetNameAndSocialMediaButtonModuleState
         paymentId: response.paymentId!,
         signature: response.signature);
 
+    Fluttertoast.showToast(
+        msg: "Payment Successful", toastLength: Toast.LENGTH_SHORT);
+
     // Fluttertoast.showToast(
     //     msg: "SUCCESS: " + response.paymentId!,
     //     toastLength: Toast.LENGTH_SHORT);
@@ -94,8 +97,8 @@ class _PetNameAndSocialMediaButtonModuleState
     //     toastLength: Toast.LENGTH_SHORT);
     Fluttertoast.showToast(msg: 'Payment processing cancelled by user');
     //alertDialog();
-    // log(response.message.toString());
-    // log(response.code.toString());
+    log(response.message.toString());
+    log(response.code.toString());
   }
 
   void _handleExternalWallet(ExternalWalletResponse response) {

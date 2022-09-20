@@ -66,31 +66,31 @@ class OffersModule extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Row(
-          children: [
-            const Expanded(
+          children: const [
+            Expanded(
               child: Text(
-                "Offers:",
+                "Offers & Discounts:",
                 style: TextStyle(color: AppColors.accentTextColor),
               ),
             ),
-            screenController.isVerified == true
-                ? /*Container(
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.accentTextColor,
-              ),
-              child: const Icon(
-                Icons.check_rounded,
-                color: Colors.white,
-                size: 18,
-              ),
-            )*/
-                Image.asset(
-                    AppIcons.verifiedSymbolImg,
-                    width: 25,
-                    height: 25,
-                  )
-                : Container(),
+            // screenController.isVerified == true
+            //     ? /*Container(
+            //   decoration: const BoxDecoration(
+            //     shape: BoxShape.circle,
+            //     color: AppColors.accentTextColor,
+            //   ),
+            //   child: const Icon(
+            //     Icons.check_rounded,
+            //     color: Colors.white,
+            //     size: 18,
+            //   ),
+            // )*/
+            //     Image.asset(
+            //         AppIcons.verifiedSymbolImg,
+            //         width: 25,
+            //         height: 25,
+            //       )
+            //     : Container(),
           ],
         ),
         SizedBox(height: 10),
@@ -413,7 +413,7 @@ class PayButtonModule extends StatelessWidget {
             horizontal: 15,
             vertical: 25,
           ),
-          height: screenController.size.height * 0.35,
+          height: screenController.size.height * 0.3,
           width: screenController.size.width * 0.8,
           child: Form(
             key: screenController.formKey,
@@ -433,21 +433,21 @@ class PayButtonModule extends StatelessWidget {
                 ),*/
 
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Amount",
+                      "Please Enter Amount",
                       style: TextStyle(
                         color: themeProvider.darkTheme
                             ? AppColors.whiteColor
                             : AppColors.blackTextColor,
-                        fontSize: 11.sp,
+                        fontSize: 13.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],
                 ),
-                //const SizedBox(height: 8),
+                const SizedBox(height: 8),
                 // CustomLightTextField(
                 //   readOnly: false,
                 //   fieldController: controller.passwordController,
@@ -524,7 +524,7 @@ class PayButtonModule extends StatelessWidget {
                   ],
                 ),
 
-                // const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -544,7 +544,7 @@ class PayButtonModule extends StatelessWidget {
                       },
                       child: Container(
                         //width: double.infinity,
-                        height: 50,
+                        height: 35,
                         decoration: const BoxDecoration(
                           color: AppColors.accentColor,
                           borderRadius: BorderRadius.all(
@@ -558,7 +558,7 @@ class PayButtonModule extends StatelessWidget {
                               "Submit",
                               style: TextStyle(
                                 color: AppColors.whiteColor,
-                                fontSize: 15.sp,
+                                fontSize: 13.sp,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -575,9 +575,9 @@ class PayButtonModule extends StatelessWidget {
                       },
                       child: Container(
                         //width: double.infinity,
-                        height: 50,
+                        height: 35,
                         decoration: const BoxDecoration(
-                          color: AppColors.accentColor,
+                          color: AppColors.greyTextColor,
                           borderRadius: BorderRadius.all(
                             Radius.circular(12),
                           ),
@@ -589,7 +589,7 @@ class PayButtonModule extends StatelessWidget {
                               "Cancel",
                               style: TextStyle(
                                 color: AppColors.whiteColor,
-                                fontSize: 15.sp,
+                                fontSize: 13.sp,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -685,14 +685,28 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: Text(
-            "${screenController.shopData[0].shopename}",
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-                color: AppColors.accentTextColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 18.sp),
+          child: Row(
+            children: [
+              Text(
+                "${screenController.shopData[0].shopename}",
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: AppColors.accentTextColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.sp),
+              ),
+              Container(
+                alignment: Alignment.centerLeft,
+                child: screenController.isVerified == true
+                    ? Image.asset(
+                        AppIcons.verifiedSymbolImg,
+                        width: 25,
+                        height: 25,
+                      )
+                    : Container(),
+              ),
+            ],
           ),
         ),
         // GestureDetector(

@@ -9,7 +9,6 @@ import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class SplashController extends GetxController {
   final size = Get.size;
 
@@ -21,9 +20,7 @@ class SplashController extends GetxController {
   void onInit() {
     super.onInit();
     redirectNextScreen();
-
   }
-
 
   /*getLocationFunction() async {
     bool isServiceEnabled;
@@ -48,13 +45,13 @@ class SplashController extends GetxController {
     }
 
 
-    *//*streamSubscription = Geolocator.getPositionStream().listen((Position position) async {
+    */ /*streamSubscription = Geolocator.getPositionStream().listen((Position position) async {
       // Current Location store in prefs
       await userPreference.setUserLocation(
         latitude: position.latitude.toString(),
         longitude: position.longitude.toString(),
       );
-    });*//*
+    });*/ /*
 
     Position position = await Geolocator.getCurrentPosition();
     // Current Location store in prefs
@@ -95,11 +92,11 @@ class SplashController extends GetxController {
         const Duration(milliseconds: 2500),
         () {
           if (onboardingValue == false) {
-            Get.off(() => OnboardingScreen(),
+            Get.offAll(() => OnboardingScreen(),
                 transition: Transition.native,
                 duration: const Duration(milliseconds: 500));
           } else if (UserDetails.isUserLoggedIn == true) {
-            Get.off(() => IndexScreen(),
+            Get.offAll(() => IndexScreen(),
                 transition: Transition.native,
                 duration: const Duration(milliseconds: 500));
             // Get.off(() => IndexScreen(),
@@ -109,7 +106,7 @@ class SplashController extends GetxController {
 
           } else if (UserDetails.isUserLoggedIn == false) {
             //Get.offNamed(AppRouteNames.loginRoute);
-            Get.off(() => const UserCategoriesScreen(),
+            Get.offAll(() => const UserCategoriesScreen(),
                 transition: Transition.native,
                 duration: const Duration(milliseconds: 500));
             // Get.off(() => LoginScreen(),

@@ -76,12 +76,13 @@ class NgoAchivementPictureListModule extends StatelessWidget {
                     ),
                   ),
                 ),
-                screenController.isVerified == true
-                    ? Image.asset(AppIcons.verifiedSymbolImg,
-                  width: 25,
-                  height: 25,
-                )
-                    : Container(),
+                // screenController.isVerified == true
+                //     ? Image.asset(
+                //         AppIcons.verifiedSymbolImg,
+                //         width: 25,
+                //         height: 25,
+                //       )
+                //     : Container(),
               ],
             ),
           ),
@@ -102,7 +103,7 @@ class NgoAchivementPictureListModule extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               border: Border.all(color: Colors.grey)),
-                         //padding: const EdgeInsets.all(5),
+                          //padding: const EdgeInsets.all(5),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(8),
                             child: Image.network(
@@ -326,14 +327,25 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: Text(
-            screenController.vetsNgoDetailsData[0].name!,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-                color: AppColors.accentTextColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 18.sp),
+          child: Row(
+            children: [
+              Text(
+                screenController.vetsNgoDetailsData[0].name!,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    color: AppColors.accentTextColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18.sp),
+              ),
+              screenController.isVerified == true
+                  ? Image.asset(
+                      AppIcons.verifiedSymbolImg,
+                      width: 25,
+                      height: 25,
+                    )
+                  : Container(),
+            ],
           ),
         ),
         GestureDetector(
@@ -570,7 +582,7 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "Click to Donate",
+              "Click to Pay/Donate",
               style: TextStyle(
                 color: AppColors.whiteColor,
                 fontSize: 13.sp,
@@ -613,7 +625,7 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
             horizontal: 15,
             vertical: 25,
           ),
-          height: screenController.size.height * 0.35,
+          height: screenController.size.height * 0.3,
           width: screenController.size.width * 0.8,
           child: Form(
             key: screenController.formKey,
@@ -622,21 +634,21 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Amount",
+                      "Please Enter Amount",
                       style: TextStyle(
                         color: themeProvider.darkTheme
                             ? AppColors.whiteColor
                             : AppColors.blackTextColor,
-                        fontSize: 11.sp,
+                        fontSize: 13.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ],
                 ),
-                //const SizedBox(height: 8),
+                const SizedBox(height: 8),
                 // CustomLightTextField(
                 //   readOnly: false,
                 //   fieldController: controller.passwordController,
@@ -713,7 +725,7 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
                   ],
                 ),
 
-                // const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 /*Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -805,7 +817,7 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
                       },
                       child: Container(
                         //width: double.infinity,
-                        height: 50,
+                        height: 35,
                         decoration: const BoxDecoration(
                           color: AppColors.accentColor,
                           borderRadius: BorderRadius.all(
@@ -813,14 +825,13 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12),
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
                           child: Center(
                             child: Text(
                               "Submit",
                               style: TextStyle(
                                 color: AppColors.whiteColor,
-                                fontSize: 15.sp,
+                                fontSize: 13.sp,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -837,22 +848,21 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
                       },
                       child: Container(
                         //width: double.infinity,
-                        height: 50,
+                        height: 35,
                         decoration: const BoxDecoration(
-                          color: AppColors.accentColor,
+                          color: AppColors.greyTextColor,
                           borderRadius: BorderRadius.all(
                             Radius.circular(12),
                           ),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 12),
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
                           child: Center(
                             child: Text(
                               "Cancel",
                               style: TextStyle(
                                 color: AppColors.whiteColor,
-                                fontSize: 15.sp,
+                                fontSize: 13.sp,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),

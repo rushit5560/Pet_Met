@@ -41,7 +41,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                 // BackArrow(),
                 CustomAppBar(
                   appBarOption: AppBarOption.singleBackButtonOption,
-                  // title: "Profile Edit",
+                  title: "Ngo Profile",
                   trailingWidget: GestureDetector(
                     onTap: () {
                       modelBottomSheet(context);

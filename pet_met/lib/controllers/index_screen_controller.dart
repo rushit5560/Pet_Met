@@ -51,18 +51,18 @@ class IndexScreenController extends GetxController {
   List<NgoPet> ngoPetList = [];
   List<TrainerPet> trainerPetList = [];
 
-  RxString userprofile= "".obs;
+  RxString userprofile = "".obs;
   String userName = "";
 
-  RxString shopProfile= "".obs;
+  RxString shopProfile = "".obs;
   String shopName = "";
   String shopDescription = "";
 
-  RxString ngoProfile= "".obs;
+  RxString ngoProfile = "".obs;
   String ngoName = "";
   String ngoDescription = "";
 
-  RxString trainerProfile= "".obs;
+  RxString trainerProfile = "".obs;
   String trainerName = "";
   String trainerDescription = "";
 
@@ -129,18 +129,21 @@ class IndexScreenController extends GetxController {
       Map<String, String> header = apiHeader.apiHeader();
       log("header : $header");
 
-      http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
+      http.Response response =
+          await http.post(Uri.parse(url), body: data, headers: header);
       log("Get All Role Profile Api response : ${response.body}");
 
       GetUserProfileModel getUserProfileModel =
-      GetUserProfileModel.fromJson(json.decode(response.body));
+          GetUserProfileModel.fromJson(json.decode(response.body));
       isSuccessStatus = getUserProfileModel.success.obs;
 
       if (isSuccessStatus.value) {
         petList.clear();
         petList.addAll(getUserProfileModel.data.petdata);
 
-        userprofile.value = ApiUrl.apiImagePath + "asset/uploads/product/" + getUserProfileModel.data.data[0].image;
+        userprofile.value = ApiUrl.apiImagePath +
+            "asset/uploads/product/" +
+            getUserProfileModel.data.data[0].image;
         userName = getUserProfileModel.data.data[0].name;
         log('userName: $userName');
         // for(int i= 0; i < getPetListModel.data.petdata.length ; i++){
@@ -151,9 +154,7 @@ class IndexScreenController extends GetxController {
       } else {
         log("Get All Role Profile Api Else");
       }
-
-
-    } catch(e) {
+    } catch (e) {
       log("All Role Profile Api Error ::: $e");
     } finally {
       isLoading(false);
@@ -178,18 +179,20 @@ class IndexScreenController extends GetxController {
       Map<String, String> header = apiHeader.apiHeader();
       log("header : $header");
 
-      http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
+      http.Response response =
+          await http.post(Uri.parse(url), body: data, headers: header);
       log("Get All Role Profile Api response : ${response.body}");
 
       GetShopProfileModel getShopProfileModel =
-      GetShopProfileModel.fromJson(json.decode(response.body));
+          GetShopProfileModel.fromJson(json.decode(response.body));
       isSuccessStatus = getShopProfileModel.success.obs;
 
       if (isSuccessStatus.value) {
         shopPetList.clear();
         shopPetList.addAll(getShopProfileModel.data.petdata);
 
-        shopProfile.value = ApiUrl.apiImagePath + getShopProfileModel.data.data[0].showimg;
+        shopProfile.value =
+            ApiUrl.apiImagePath + getShopProfileModel.data.data[0].showimg;
         shopName = getShopProfileModel.data.data[0].shopename;
         shopDescription = getShopProfileModel.data.data[0].fullText;
         log('shopName: $shopName');
@@ -203,9 +206,7 @@ class IndexScreenController extends GetxController {
       } else {
         log("Get All Role Profile Api Else");
       }
-
-
-    } catch(e) {
+    } catch (e) {
       log("All Role Profile Api Error ::: $e");
     } finally {
       isLoading(false);
@@ -230,18 +231,20 @@ class IndexScreenController extends GetxController {
       Map<String, String> header = apiHeader.apiHeader();
       log("header : $header");
 
-      http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
+      http.Response response =
+          await http.post(Uri.parse(url), body: data, headers: header);
       log("Get All Role Profile Api response : ${response.body}");
 
       AllRoleProfileModel allRoleProfileModel =
-      AllRoleProfileModel.fromJson(json.decode(response.body));
+          AllRoleProfileModel.fromJson(json.decode(response.body));
       isSuccessStatus = allRoleProfileModel.success.obs;
 
       if (isSuccessStatus.value) {
         ngoPetList.clear();
         ngoPetList.addAll(allRoleProfileModel.data.petdata);
 
-        ngoProfile.value = ApiUrl.apiImagePath + allRoleProfileModel.data.data[0].image;
+        ngoProfile.value =
+            ApiUrl.apiImagePath + allRoleProfileModel.data.data[0].image;
         ngoName = allRoleProfileModel.data.data[0].name;
         ngoDescription = allRoleProfileModel.data.data[0].fullText;
 
@@ -254,9 +257,7 @@ class IndexScreenController extends GetxController {
       } else {
         log("Get All Role Profile Api Else");
       }
-
-
-    } catch(e) {
+    } catch (e) {
       log("All Role Profile Api Error ::: $e");
     } finally {
       isLoading(false);
@@ -281,18 +282,20 @@ class IndexScreenController extends GetxController {
       Map<String, String> header = apiHeader.apiHeader();
       log("header : $header");
 
-      http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
+      http.Response response =
+          await http.post(Uri.parse(url), body: data, headers: header);
       log("Get All Role Profile Api response : ${response.body}");
 
       GetTrainersProfileModel getTrainersProfileModel =
-      GetTrainersProfileModel.fromJson(json.decode(response.body));
+          GetTrainersProfileModel.fromJson(json.decode(response.body));
       isSuccessStatus = getTrainersProfileModel.success.obs;
 
       if (isSuccessStatus.value) {
         trainerPetList.clear();
         trainerPetList.addAll(getTrainersProfileModel.data.petdata);
 
-        trainerProfile.value = ApiUrl.apiImagePath + getTrainersProfileModel.data.data[0].image;
+        trainerProfile.value =
+            ApiUrl.apiImagePath + getTrainersProfileModel.data.data[0].image;
         trainerName = getTrainersProfileModel.data.data[0].name;
         trainerDescription = getTrainersProfileModel.data.data[0].fullText;
 
@@ -305,22 +308,18 @@ class IndexScreenController extends GetxController {
       } else {
         log("Get All Role Profile Api Else");
       }
-
-
-    } catch(e) {
+    } catch (e) {
       log("All Role Profile Api Error ::: $e");
     } finally {
       isLoading(false);
     }
   }
 
-
   @override
   void onInit() {
     getLocationFunction();
     super.onInit();
   }
-
 
   getLocationFunction() async {
     isLoading(true);
@@ -329,22 +328,22 @@ class IndexScreenController extends GetxController {
 
     isServiceEnabled = await Geolocator.isLocationServiceEnabled();
 
-    if(!isServiceEnabled) {
+    if (!isServiceEnabled) {
       await Geolocator.openLocationSettings();
       return Future.error('Location service are disabled.');
     }
 
     permission = await Geolocator.checkPermission();
-    if(permission == LocationPermission.denied) {
+    if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
-      if(permission == LocationPermission.denied) {
+      if (permission == LocationPermission.denied) {
         return Future.error('Location permission are denied');
       }
     }
-    if(permission == LocationPermission.deniedForever) {
-      return Future.error('Location permission are permanently denied, we cannot request permissions.');
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permission are permanently denied, we cannot request permissions.');
     }
-
 
     /*streamSubscription = Geolocator.getPositionStream().listen((Position position) async {
       // Current Location store in prefs
@@ -362,16 +361,14 @@ class IndexScreenController extends GetxController {
     );
 
     //
-    if(UserDetails.categoryId == "1"){
+    if (UserDetails.categoryId == "1") {
       getUserProfileFunction();
-    } else if(UserDetails.categoryId == "2"){
+    } else if (UserDetails.categoryId == "2") {
       getShopProfileFunction();
-    } else if(UserDetails.categoryId == "3"){
+    } else if (UserDetails.categoryId == "3") {
       getNgoProfileFunction();
-    } else if(UserDetails.categoryId == "4"){
+    } else if (UserDetails.categoryId == "4") {
       getTrainerProfileFunction();
     }
-
   }
-
 }

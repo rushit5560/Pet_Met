@@ -22,26 +22,23 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:sizer/sizer.dart';
 import 'package:http/http.dart' as http;
 
-
 class ShopUserProfileScreenController extends GetxController {
-
-
-  final scaffoldKey =  GlobalKey<ScaffoldState>();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   final size = Get.size;
   File? imageFile;
   String? shopImage;
 
   File? shopOfferFile1;
-  String ? offerImage1;
+  String? offerImage1;
 
   File? shopOfferFile2;
-  String ? offerImage2;
+  String? offerImage2;
   File? shopOfferFile3;
-  String ? offerImage3;
+  String? offerImage3;
   File? shopOfferFile4;
-  String ? offerImage4;
+  String? offerImage4;
   File? shopOfferFile5;
-  String ? offerImage5;
+  String? offerImage5;
 
   final formKey = GlobalKey<FormState>();
   final loginFormKey = GlobalKey<FormState>();
@@ -78,8 +75,8 @@ class ShopUserProfileScreenController extends GetxController {
   RxString trainerEmail = "".obs;
   RxString trainerName = "".obs;
   //DateTime selectedDate = DateTime.now();
-  RxString ? selectedOpenTime= "".obs;
-  RxString ? selectedCloseTime= "".obs;
+  RxString? selectedOpenTime = "".obs;
+  RxString? selectedCloseTime = "".obs;
 
   var passwordController = TextEditingController();
   UserPreference userPreference = UserPreference();
@@ -105,8 +102,9 @@ class ShopUserProfileScreenController extends GetxController {
   RxBool showStatus = false.obs;
 
   /// Get All Role Profile
-  Future<void> getAllRoleProfileFunction({ProfileChangeOption profileChangeOption =
-      ProfileChangeOption.stay}) async {
+  Future<void> getAllRoleProfileFunction(
+      {ProfileChangeOption profileChangeOption =
+          ProfileChangeOption.stay}) async {
     isLoading(true);
     // birthDate = day + "-" + month + "-" + year;
     String url = ApiUrl.allRoleGetProfileApi;
@@ -123,11 +121,12 @@ class ShopUserProfileScreenController extends GetxController {
       Map<String, String> header = apiHeader.apiHeader();
       log("header : $header");
 
-      http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
+      http.Response response =
+          await http.post(Uri.parse(url), body: data, headers: header);
       log("Get All Role Profile Api response : ${response.body}");
 
       GetShopProfileModel getShopProfileModel =
-      GetShopProfileModel.fromJson(json.decode(response.body));
+          GetShopProfileModel.fromJson(json.decode(response.body));
       isSuccessStatus = getShopProfileModel.success.obs;
 
       if (isSuccessStatus.value) {
@@ -136,7 +135,8 @@ class ShopUserProfileScreenController extends GetxController {
 
         nameController.text = getShopProfileModel.data.data[0].shopename;
         emailController.text = getShopProfileModel.data.data[0].email;
-        contactNumber.text = getShopProfileModel.data.data[0].phonenumber.toString();
+        contactNumber.text =
+            getShopProfileModel.data.data[0].phonenumber.toString();
         addressController.text = getShopProfileModel.data.data[0].address;
         detailsController.text = getShopProfileModel.data.data[0].fullText;
         selectedOpenTime!.value = getShopProfileModel.data.data[0].shopopen;
@@ -144,11 +144,21 @@ class ShopUserProfileScreenController extends GetxController {
         instagramController.text = getShopProfileModel.data.data[0].instagram;
         facebookController.text = getShopProfileModel.data.data[0].facebook;
         shopImage = getShopProfileModel.data.data[0].showimg;
-        offerImage1 = ApiUrl.apiImagePath + "asset/uploads/product/" + getShopProfileModel.data.data[0].image1;
-        offerImage2 = ApiUrl.apiImagePath + "asset/uploads/product/" + getShopProfileModel.data.data[0].image2;
-        offerImage3 = ApiUrl.apiImagePath + "asset/uploads/product/" + getShopProfileModel.data.data[0].image3;
-        offerImage4 = ApiUrl.apiImagePath + "asset/uploads/product/" + getShopProfileModel.data.data[0].image4;
-        offerImage5 = ApiUrl.apiImagePath + "asset/uploads/product/" + getShopProfileModel.data.data[0].image5;
+        offerImage1 = ApiUrl.apiImagePath +
+            "asset/uploads/product/" +
+            getShopProfileModel.data.data[0].image1;
+        offerImage2 = ApiUrl.apiImagePath +
+            "asset/uploads/product/" +
+            getShopProfileModel.data.data[0].image2;
+        offerImage3 = ApiUrl.apiImagePath +
+            "asset/uploads/product/" +
+            getShopProfileModel.data.data[0].image3;
+        offerImage4 = ApiUrl.apiImagePath +
+            "asset/uploads/product/" +
+            getShopProfileModel.data.data[0].image4;
+        offerImage5 = ApiUrl.apiImagePath +
+            "asset/uploads/product/" +
+            getShopProfileModel.data.data[0].image5;
 
         meetingImagesList = getShopProfileModel.data.data[0].meetingimages;
 
@@ -162,9 +172,9 @@ class ShopUserProfileScreenController extends GetxController {
         log('offerImage1: $offerImage1');
 
         // shopApiProfile
-        if(getShopProfileModel.data.data[0].showimg != "") {
-          List<String> profileSplitImageList = getShopProfileModel.data.data[0]
-              .showimg.split('/');
+        if (getShopProfileModel.data.data[0].showimg != "") {
+          List<String> profileSplitImageList =
+              getShopProfileModel.data.data[0].showimg.split('/');
           for (int i = 0; i < profileSplitImageList.length; i++) {
             log("profileSplitImageList : ${profileSplitImageList[i]}");
           }
@@ -176,25 +186,24 @@ class ShopUserProfileScreenController extends GetxController {
           userId: UserDetails.selfId,
           userName: getShopProfileModel.data.data[0].shopename,
           userEmail: getShopProfileModel.data.data[0].email,
-          userProfileImage: ApiUrl.apiImagePath + getShopProfileModel.data.data[0].showimg,
+          userProfileImage:
+              ApiUrl.apiImagePath + getShopProfileModel.data.data[0].showimg,
           token: "",
           roleId: UserDetails.categoryId,
           shopName: getShopProfileModel.data.data[0].shopename,
           shopProfile: getShopProfileModel.data.data[0].showimg,
         );
 
-        if(profileChangeOption == ProfileChangeOption.back) {
+        if (profileChangeOption == ProfileChangeOption.back) {
           Get.back();
         }
-
 
         //
         log('Phone: ${contactNumber.text}');
       } else {
         log("Get All Shop Profile Api Else");
       }
-
-    } catch(e) {
+    } catch (e) {
       log("All Shop Profile Api Error ::: $e");
     } finally {
       //isLoading(false);
@@ -222,45 +231,47 @@ class ShopUserProfileScreenController extends GetxController {
       log("Multiple Account Api response : ${response.body}");
 
       MultiAccountUserModel multiAccountUserModel =
-      MultiAccountUserModel.fromJson(json.decode(response.body));
+          MultiAccountUserModel.fromJson(json.decode(response.body));
       isSuccessStatus = multiAccountUserModel.success.obs;
       log('isSuccessStatus: $isSuccessStatus');
 
       if (isSuccessStatus.value) {
-
-        userProfileAvail = multiAccountUserModel.data.user.categoryID == "" ? false : true;
-        shopProfileAvail = multiAccountUserModel.data.shop.categoryID == "" ? false : true;
-        vetNgoProfileAvail = multiAccountUserModel.data.vetNgo.categoryID == "" ? false : true;
-        trainerProfileAvail = multiAccountUserModel.data.trainer.categoryID == "" ? false : true;
+        userProfileAvail =
+            multiAccountUserModel.data.user.categoryID == "" ? false : true;
+        shopProfileAvail =
+            multiAccountUserModel.data.shop.categoryID == "" ? false : true;
+        vetNgoProfileAvail =
+            multiAccountUserModel.data.vetNgo.categoryID == "" ? false : true;
+        trainerProfileAvail =
+            multiAccountUserModel.data.trainer.categoryID == "" ? false : true;
 
         // bool userAvail = multiAccountUserModel.data.user.isEmpty ? false : true;
         // if(userAvail == true) {
         //   userProfile = true;
-           userEmail.value = multiAccountUserModel.data.user.email;
-           userName.value = multiAccountUserModel.data.user.name;
+        userEmail.value = multiAccountUserModel.data.user.email;
+        userName.value = multiAccountUserModel.data.user.name;
         // }
         //
         // bool shopAvail = multiAccountUserModel.data.shope.isEmpty ? false : true;
         // if(shopAvail == true) {
         //   shopProfile = true;
-           shopEmail.value = "${multiAccountUserModel.data.shop.email}";
-           shopName.value = "${multiAccountUserModel.data.shop.name}";
+        shopEmail.value = "${multiAccountUserModel.data.shop.email}";
+        shopName.value = "${multiAccountUserModel.data.shop.name}";
         // }
         //
         // bool vetNgoAvail = multiAccountUserModel.data.vetNgo.isEmpty ? false : true;
         // if(vetNgoAvail == true) {
         //   vetNgoProfile = true;
-           ngoEmail.value = multiAccountUserModel.data.vetNgo.email;
-           ngoName.value = multiAccountUserModel.data.vetNgo.name;
+        ngoEmail.value = multiAccountUserModel.data.vetNgo.email;
+        ngoName.value = multiAccountUserModel.data.vetNgo.name;
         // }
         //
         // bool trainerAvail = multiAccountUserModel.data.trainer.isEmpty ? false : true;
         // if(trainerAvail == true) {
         //   trainerProfile = true;
-           trainerEmail.value = "${multiAccountUserModel.data.trainer.email}";
-           trainerName.value = "${multiAccountUserModel.data.trainer.name}";
+        trainerEmail.value = "${multiAccountUserModel.data.trainer.email}";
+        trainerName.value = "${multiAccountUserModel.data.trainer.name}";
         // }
-
 
       } else {
         log("Get Multi Account Api Else");
@@ -304,7 +315,8 @@ class ShopUserProfileScreenController extends GetxController {
         var stream = http.ByteStream(imageFile!.openRead());
         stream.cast();
         var length = await imageFile!.length();
-        request.files.add(await http.MultipartFile.fromPath("showimg", imageFile!.path));
+        request.files
+            .add(await http.MultipartFile.fromPath("showimg", imageFile!.path));
         var multiPart = http.MultipartFile('showimg', stream, length);
         request.files.add(multiPart);
       } else if (imageFile == null) {
@@ -320,7 +332,7 @@ class ShopUserProfileScreenController extends GetxController {
             await http.MultipartFile.fromPath("image1", shopOfferFile1!.path));
         var multiPart1 = http.MultipartFile('image1', stream1, length1);
         request.files.add(multiPart1);
-      }  else if (shopOfferFile1 == null) {
+      } else if (shopOfferFile1 == null) {
         request.fields['oldimage1'] = shopApiPicture1;
       }
 
@@ -333,7 +345,7 @@ class ShopUserProfileScreenController extends GetxController {
             await http.MultipartFile.fromPath("image2", shopOfferFile2!.path));
         var multiPart2 = http.MultipartFile('image2', stream2, length2);
         request.files.add(multiPart2);
-      }  else if (shopOfferFile2 == null) {
+      } else if (shopOfferFile2 == null) {
         request.fields['oldimage2'] = shopApiPicture2;
       }
 
@@ -346,7 +358,7 @@ class ShopUserProfileScreenController extends GetxController {
             await http.MultipartFile.fromPath("image3", shopOfferFile3!.path));
         var multiPart3 = http.MultipartFile('image3', stream3, length3);
         request.files.add(multiPart3);
-      }  else if (shopOfferFile3 == null) {
+      } else if (shopOfferFile3 == null) {
         request.fields['oldimage3'] = shopApiPicture3;
       }
 
@@ -359,7 +371,7 @@ class ShopUserProfileScreenController extends GetxController {
             await http.MultipartFile.fromPath("image4", shopOfferFile4!.path));
         var multiPart4 = http.MultipartFile('image4', stream4, length4);
         request.files.add(multiPart4);
-      }  else if (shopOfferFile4 == null) {
+      } else if (shopOfferFile4 == null) {
         request.fields['oldimage4'] = shopApiPicture4;
       }
 
@@ -372,7 +384,7 @@ class ShopUserProfileScreenController extends GetxController {
             await http.MultipartFile.fromPath("image5", shopOfferFile5!.path));
         var multiPart5 = http.MultipartFile('image5', stream5, length5);
         request.files.add(multiPart5);
-      }  else if (shopOfferFile5 == null) {
+      } else if (shopOfferFile5 == null) {
         request.fields['oldimage5'] = shopApiPicture5;
       }
 
@@ -385,22 +397,26 @@ class ShopUserProfileScreenController extends GetxController {
       request.fields['full_text'] = detailsController.text.trim();
       request.fields['instagram'] = "www.instagram.com";
       request.fields['facebook'] = "www.facebook.com";
+      request.fields['longitude'] = UserDetails.liveLongitude;
+      request.fields['latitude'] = UserDetails.liveLatitude;
       //todo - add upi parameter
 
       var response = await request.send();
+      log('response fields: ${request.fields}}');
       log('response: ${response.request}');
 
       response.stream.transform(utf8.decoder).listen((value) async {
         log('value: $value');
         ShopUpdateProfileModel shopProfileModel =
-        ShopUpdateProfileModel.fromJson(json.decode(value));
+            ShopUpdateProfileModel.fromJson(json.decode(value));
         log('response1 :::::: ${shopProfileModel.success}');
         isSuccessStatus = shopProfileModel.success.obs;
 
         if (isSuccessStatus.value) {
           Fluttertoast.showToast(msg: shopProfileModel.message);
-         
-          await getAllRoleProfileFunction(profileChangeOption: ProfileChangeOption.back);
+
+          await getAllRoleProfileFunction(
+              profileChangeOption: ProfileChangeOption.back);
         } else {
           log('False False');
         }
@@ -1706,7 +1722,8 @@ class ShopUserProfileScreenController extends GetxController {
     }
   }
 
-  Future<void> userMultipleAccountLoginFunction({required String email, required categoryId}) async {
+  Future<void> userMultipleAccountLoginFunction(
+      {required String email, required categoryId}) async {
     isLoading(true);
     String url = ApiUrl.multipleAccountLoginApi;
     log('Login Api Url : $url');
@@ -1823,17 +1840,18 @@ class ShopUserProfileScreenController extends GetxController {
     }
   }
 
-  void _handlePaymentSuccess(PaymentSuccessResponse response)async {
+  void _handlePaymentSuccess(PaymentSuccessResponse response) async {
     log('Success Response: ${response.orderId}');
     /*await petAddOrderFunction(
         orderId: response.orderId,
         paymentId: response.paymentId!,
         signature: response.signature
     );*/
-
     Fluttertoast.showToast(
-        msg: "SUCCESS: " + response.paymentId!,
-        toastLength: Toast.LENGTH_SHORT);
+        msg: "Payment Successful", toastLength: Toast.LENGTH_SHORT);
+    // Fluttertoast.showToast(
+    //     msg: "SUCCESS: " + response.paymentId!,
+    //     toastLength: Toast.LENGTH_SHORT);
     log(response.paymentId.toString());
     log(response.orderId.toString());
     log(response.signature.toString());
@@ -1841,9 +1859,8 @@ class ShopUserProfileScreenController extends GetxController {
 
   void _handlePaymentError(PaymentFailureResponse response) {
     print('Error Response: $response');
-    Fluttertoast.showToast(
-        msg: "ERROR: " + response.code.toString() + " - " + response.message!,
-        toastLength: Toast.LENGTH_SHORT);
+    Fluttertoast.showToast(msg: 'Payment processing cancelled by user');
+
     log(response.message.toString());
     log(response.code.toString());
   }
@@ -1862,7 +1879,7 @@ class ShopUserProfileScreenController extends GetxController {
   }
 
   @override
-  void onInit() async{
+  void onInit() async {
     // TODO: implement onInit
     super.onInit();
     await getAllRoleProfileFunction();

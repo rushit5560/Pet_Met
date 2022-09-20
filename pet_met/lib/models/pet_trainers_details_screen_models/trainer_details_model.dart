@@ -32,7 +32,7 @@ class TrainerDetailsModel {
         "success": success,
         "data": List<dynamic>.from(data.map((x) => x.toJson())),
         "message": message,
-    "showstatus": showstatus,
+        "showstatus": showstatus,
       };
 }
 
@@ -57,11 +57,14 @@ class TrainerData {
     // required this.meetingimages,
     required this.isActive,
     required this.userid,
+    required this.categoryId,
     required this.createdBy,
     required this.modifiedBy,
     required this.createdDate,
     required this.modifiedDate,
     required this.isVerified,
+    required this.gpayupi,
+    required this.email,
   });
 
   String id;
@@ -83,65 +86,74 @@ class TrainerData {
   // List<String> meetingimages;
   String isActive;
   String userid;
+  String categoryId;
   String createdBy;
   String modifiedBy;
   String createdDate;
   String modifiedDate;
   String isVerified;
+  String gpayupi;
+  String email;
 
   factory TrainerData.fromJson(Map<String, dynamic> json) => TrainerData(
-    id: json["id"] ?? 0,
-    name: json["name"] ?? "",
-    address: json["address"] ?? "",
-    phone: json["phone"] ?? "",
-    open: json["open"] ?? "",
-    close: json["close"] ?? "",
-    fullText: json["full_text"] ?? "",
-    instagram: json["instagram"] ?? "",
-    facebook: json["facebook"] ?? "",
-    image: json["image"] ?? "",
-    // trainerimages: List<String>.from(json["trainerimages"].map((x) => x) ?? {}),
-    image1: json["image1"] ?? "",
-    image2: json["image2"] ?? "",
-    image3: json["image3"] ?? "",
-    image4: json["image4"] ?? "",
-    image5: json["image5"] ?? "",
-    // meetingimages: List<String>.from(json["meetingimages"].map((x) => x) ?? {}),
-    isActive: json["is_active"] ?? "",
-    userid: json["userid"] ?? "",
-    createdBy: json["created_by"] ?? "",
-    modifiedBy: json["modified_by"] ?? "",
-    createdDate: json["created_date"] ?? "",
-    modifiedDate: json["modified_date"] ?? "",
-    isVerified: json["is_verified"] ?? "1",
-  );
+        id: json["id"] ?? 0,
+        name: json["name"] ?? "",
+        address: json["address"] ?? "",
+        phone: json["phone"] ?? "",
+        open: json["open"] ?? "",
+        close: json["close"] ?? "",
+        fullText: json["full_text"] ?? "",
+        instagram: json["instagram"] ?? "",
+        facebook: json["facebook"] ?? "",
+        image: json["image"] ?? "",
+        // trainerimages: List<String>.from(json["trainerimages"].map((x) => x) ?? {}),
+        image1: json["image1"] ?? "",
+        image2: json["image2"] ?? "",
+        image3: json["image3"] ?? "",
+        image4: json["image4"] ?? "",
+        image5: json["image5"] ?? "",
+        // meetingimages: List<String>.from(json["meetingimages"].map((x) => x) ?? {}),
+        isActive: json["is_active"] ?? "",
+        userid: json["userid"] ?? "",
+        categoryId: json["categoryId"] ?? "",
+        createdBy: json["created_by"] ?? "",
+        modifiedBy: json["modified_by"] ?? "",
+        createdDate: json["created_date"] ?? "",
+        modifiedDate: json["modified_date"] ?? "",
+        isVerified: json["is_verified"] ?? "1",
+        gpayupi: json["gpayupi"] ?? "",
+        email: json["email"] ?? "",
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "address": address,
-    "phone": phone,
-    "open": open,
-    "close": close,
-    "full_text": fullText,
-    "instagram": instagram,
-    "facebook": facebook,
-    "image": image,
-    // "trainerimages": List<dynamic>.from(trainerimages.map((x) => x)),
-    "image1": image1,
-    "image2": image2,
-    "image3": image3,
-    "image4": image4,
-    "image5": image5,
-    // "meetingimages": List<dynamic>.from(meetingimages.map((x) => x)),
-    "is_active": isActive,
-    "userid": userid,
-    "created_by": createdBy,
-    "modified_by": modifiedBy,
-    "created_date": createdDate,
-    "modified_date": modifiedDate,
-    "is_verified": isVerified,
-  };
+        "id": id,
+        "name": name,
+        "address": address,
+        "phone": phone,
+        "open": open,
+        "close": close,
+        "full_text": fullText,
+        "instagram": instagram,
+        "facebook": facebook,
+        "image": image,
+        // "trainerimages": List<dynamic>.from(trainerimages.map((x) => x)),
+        "image1": image1,
+        "image2": image2,
+        "image3": image3,
+        "image4": image4,
+        "image5": image5,
+        // "meetingimages": List<dynamic>.from(meetingimages.map((x) => x)),
+        "is_active": isActive,
+        "userid": userid,
+        "categoryId": categoryId,
+        "created_by": createdBy,
+        "modified_by": modifiedBy,
+        "created_date": createdDate,
+        "modified_date": modifiedDate,
+        "is_verified": isVerified,
+        "gpayupi": gpayupi,
+        "email": email,
+      };
 }
 
 

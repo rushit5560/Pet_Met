@@ -15,6 +15,11 @@ class PetTrainersDetailsScreenController extends GetxController {
   // Get Trainer Id From Trainer List Screen
   String trainerId = Get.arguments;
 
+  String trainerCatId = "";
+  String trainerName = "";
+
+  String trainerEmail = "";
+
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
   final size = Get.size;
@@ -45,9 +50,14 @@ class PetTrainersDetailsScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         trainerDetails = trainerDetailsModel.data;
+        // trainerCatId = trainerDetailsModel.data[0].ca;
 
         isShowStatus = trainerDetailsModel.showstatus.obs;
 
+        trainerCatId = trainerDetailsModel.data[0].categoryId;
+        trainerName = trainerDetailsModel.data[0].name;
+        trainerId = trainerDetailsModel.data[0].id;
+        trainerEmail = trainerDetailsModel.data[0].email;
         String isVerify = trainerDetailsModel.data[0].isVerified;
         if (isVerify == "0") {
           isVerified = true;
@@ -72,7 +82,10 @@ class PetTrainersDetailsScreenController extends GetxController {
       'description': "",
       'retry': {'enabled': true, 'max_count': 1},
       'send_sms_hash': true,
-      'prefill': {'contact': trainerDetails[0].phone, 'email': 'test@razorpay.com'},
+      'prefill': {
+        'contact': trainerDetails[0].phone,
+        'email': 'test@razorpay.com'
+      },
       'external': {
         'wallets': ['paytm']
       }
@@ -89,8 +102,7 @@ class PetTrainersDetailsScreenController extends GetxController {
     log('Success Response: ${response.orderId}');
 
     Fluttertoast.showToast(
-        msg: "SUCCESS: " + response.paymentId!,
-        toastLength: Toast.LENGTH_SHORT);
+        msg: "Payment Successful", toastLength: Toast.LENGTH_SHORT);
     log(response.paymentId.toString());
     log(response.orderId.toString());
     log(response.signature.toString());

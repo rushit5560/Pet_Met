@@ -153,7 +153,7 @@ class PetTrackerPriceModule extends StatelessWidget {
                         primary: themeProvider.darkTheme
                             ? AppColors.whiteColor
                             : AppColors.accentColor,
-                        fixedSize: const Size(100, 35),
+                        fixedSize: Size(Get.size.width * 0.32, 35),
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(
                             Radius.circular(12),
@@ -171,7 +171,7 @@ class PetTrackerPriceModule extends StatelessWidget {
                             color: themeProvider.darkTheme
                                 ? AppColors.accentColor
                                 : AppColors.whiteColor,
-                            // fontSize: 13.sp,
+                            fontSize: 12.sp,
                           ),
                         ),
                       ),

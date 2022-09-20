@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/metting_address_info_controller.dart';
 import 'package:pet_met/controllers/pet_tracker_pricing_controller.dart';
@@ -168,13 +169,17 @@ class PetTrackerPriceModule extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        controller.openCheckout();
+                        if (controller.planDetailsData[0].isActive == "1") {
+                          Fluttertoast.showToast(msg: "Already Purchased");
+                        } else {
+                          controller.openCheckout();
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         primary: themeProvider.darkTheme
                             ? AppColors.whiteColor
                             : AppColors.accentColor,
-                        fixedSize: const Size(100, 35),
+                        fixedSize: Size(Get.size.width * 0.32, 40),
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(
                             Radius.circular(12),
@@ -192,7 +197,7 @@ class PetTrackerPriceModule extends StatelessWidget {
                             color: themeProvider.darkTheme
                                 ? AppColors.accentColor
                                 : AppColors.whiteColor,
-                            fontSize: 10.sp,
+                            fontSize: 13.sp,
                           ),
                         ),
                       ),

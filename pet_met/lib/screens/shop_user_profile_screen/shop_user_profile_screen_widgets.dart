@@ -356,8 +356,9 @@ class AddShopOffersListModule extends StatelessWidget {
         style: TextStyle(
           color: themeProvider.darkTheme
               ? AppColors.whiteColor
-              : AppColors.darkThemeColor,
+              : AppColors.blackTextColor,
           fontWeight: FontWeight.bold,
+          fontSize: 16,
         ),
       ),
       const SizedBox(height: 12),
@@ -1190,13 +1191,16 @@ class MeetingAvailabilityModule extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("Add Your Pets:",
-            style: TextStyle(
-              color: themeProvider.darkTheme
-                  ? AppColors.whiteColor
-                  : AppColors.blackTextColor,
-              fontWeight: FontWeight.bold,
-            )),
+        Text(
+          "Add Your Pets:",
+          style: TextStyle(
+            color: themeProvider.darkTheme
+                ? AppColors.whiteColor
+                : AppColors.blackTextColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+        ),
         const SizedBox(height: 12),
         Row(
           children: [

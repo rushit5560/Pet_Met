@@ -45,12 +45,11 @@ class ShopDetailsScreenController extends GetxController {
         showStatus = shopDetailsModel.showstatus.obs;
         log('showStatus: $showStatus');
         String isVerify = "${shopDetailsModel.data[0].isVerified}";
-        if(isVerify == "0") {
+        if (isVerify == "0") {
           isVerified = true;
         } else {
           isVerified = false;
         }
-
       } else {
         log("Shop Details Api Else");
       }
@@ -69,7 +68,10 @@ class ShopDetailsScreenController extends GetxController {
       'description': "",
       'retry': {'enabled': true, 'max_count': 1},
       'send_sms_hash': true,
-      'prefill': {'contact': shopData[0].phonenumber, 'email': 'test@razorpay.com'},
+      'prefill': {
+        'contact': shopData[0].phonenumber,
+        'email': 'test@razorpay.com'
+      },
       'external': {
         'wallets': ['paytm']
       }
@@ -86,8 +88,7 @@ class ShopDetailsScreenController extends GetxController {
     log('Success Response: ${response.orderId}');
 
     Fluttertoast.showToast(
-        msg: "SUCCESS: " + response.paymentId!,
-        toastLength: Toast.LENGTH_SHORT);
+        msg: "Payment Successful", toastLength: Toast.LENGTH_SHORT);
     log(response.paymentId.toString());
     log(response.orderId.toString());
     log(response.signature.toString());
@@ -95,9 +96,11 @@ class ShopDetailsScreenController extends GetxController {
 
   void _handlePaymentError(PaymentFailureResponse response) {
     print('Error Response: $response');
-    Fluttertoast.showToast(
-        msg: "ERROR: " + response.code.toString() + " - " + response.message!,
-        toastLength: Toast.LENGTH_SHORT);
+
+    Fluttertoast.showToast(msg: 'Payment processing cancelled by user');
+    // Fluttertoast.showToast(
+    //     msg: "ERROR: " + response.code.toString() + " - " + response.message!,
+    //     toastLength: Toast.LENGTH_SHORT);
     log(response.message.toString());
     log(response.code.toString());
   }

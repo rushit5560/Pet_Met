@@ -591,10 +591,11 @@ class UserProfileController extends GetxController {
         orderId: response.orderId,
         paymentId: response.paymentId!,
         signature: response.signature);
-
     Fluttertoast.showToast(
-        msg: "SUCCESS: " + response.paymentId!,
-        toastLength: Toast.LENGTH_SHORT);
+        msg: "Payment Successful", toastLength: Toast.LENGTH_SHORT);
+    // Fluttertoast.showToast(
+    //     msg: "SUCCESS: " + response.paymentId!,
+    //     toastLength: Toast.LENGTH_SHORT);
     log(response.paymentId.toString());
     log(response.orderId.toString());
     log(response.signature.toString());
@@ -602,9 +603,10 @@ class UserProfileController extends GetxController {
 
   void _handlePaymentError(PaymentFailureResponse response) {
     print('Error Response: $response');
-    Fluttertoast.showToast(
-        msg: "ERROR: " + response.code.toString() + " - " + response.message!,
-        toastLength: Toast.LENGTH_SHORT);
+    Fluttertoast.showToast(msg: 'Payment processing cancelled by user');
+    // Fluttertoast.showToast(
+    //     msg: "ERROR: " + response.code.toString() + " - " + response.message!,
+    //     toastLength: Toast.LENGTH_SHORT);
     log(response.message.toString());
     log(response.code.toString());
   }

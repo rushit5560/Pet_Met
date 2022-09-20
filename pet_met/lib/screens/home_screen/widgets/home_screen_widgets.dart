@@ -937,6 +937,7 @@ class PetListModule extends StatelessWidget {
       controller.loadUI();
       controller.imageFile = File(pickedFile.path);
       log('Camera File Path : ${controller.imageFile}');
+      Get.back();
       controller.addUserStoryFunction();
       //Get.to(() => EditStoryScreen(), arguments: controller.imageFile!.path);
 
@@ -945,7 +946,9 @@ class PetListModule extends StatelessWidget {
       //Fluttertoast.showToast(msg: '${image.path}', toastLength: Toast.LENGTH_LONG);
       //renameImage();
       //});
-    } else {}
+    } else {
+      Get.back();
+    }
 
     // if(controller.imageFile != null){
     //
@@ -979,12 +982,15 @@ class PetListModule extends StatelessWidget {
       log('Camera File Path : ${controller.imageFile}');
       log('Camera Image Path : ${controller.imageFile!.path}');
       controller.imageFile = File(pickedFile.path);
+      Get.back();
       controller.addUserStoryFunction();
 
       //Fluttertoast.showToast(msg: '${image.path}', toastLength: Toast.LENGTH_LONG);
       //renameImage();
       //});
-    } else {}
+    } else {
+      Get.back();
+    }
 
     // setState(() {});
     // Get.back();

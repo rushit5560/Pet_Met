@@ -354,8 +354,9 @@ class NameOfNgoListModule extends StatelessWidget {
           style: TextStyle(
             color: themeProvider.darkTheme
                 ? AppColors.whiteColor
-                : AppColors.darkThemeColor,
-            fontWeight: FontWeight.w500,
+                : AppColors.blackTextColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
           ),
         ),
         const SizedBox(height: 10),

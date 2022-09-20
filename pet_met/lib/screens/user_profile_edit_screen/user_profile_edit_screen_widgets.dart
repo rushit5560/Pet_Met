@@ -282,11 +282,12 @@ class UserPetListModule extends StatelessWidget {
       Text(
         "Your pets:",
         style: TextStyle(
-            color: themeProvider.darkTheme
-                ? AppColors.whiteColor
-                : AppColors.blackTextColor,
-            fontWeight: FontWeight.bold,
-            fontSize: 17),
+          color: themeProvider.darkTheme
+              ? AppColors.whiteColor
+              : AppColors.blackTextColor,
+          fontWeight: FontWeight.bold,
+          fontSize: 16,
+        ),
       ),
       const SizedBox(height: 8),
       Row(
