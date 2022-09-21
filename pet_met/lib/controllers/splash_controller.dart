@@ -118,7 +118,7 @@ class SplashController extends GetxController {
         },
       );
     } catch (e) {
-      log("exception is : ${e}");
+      log("exception is : $e");
       rethrow;
     }
   }

@@ -211,11 +211,20 @@ class VetsAndNgoListModule extends StatelessWidget {
                     //color: Colors.grey,
                   ),
                   child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: Image.network(imgUrl, fit: BoxFit.cover,
-                          errorBuilder: (context, er, ob) {
-                        return Image.asset(AppImages.petMetLogoImg);
-                      })),
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image.network(
+                      imgUrl,
+                      // fit: BoxFit.cover,
+                      errorBuilder: (context, er, ob) {
+                        return Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: Image.asset(AppImages.petMetLogoImg,
+                          fit: BoxFit.fill,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
                 ),
                 SizedBox(width: 3.w),
                 Expanded(
@@ -340,11 +349,18 @@ class VetsAndNgoListModule extends StatelessWidget {
                     //color: Colors.grey,
                   ),
                   child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: Image.network(imgUrl, fit: BoxFit.cover,
-                          errorBuilder: (context, er, ob) {
-                        return Image.asset(AppImages.petMetLogoImg);
-                      })),
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image.network(
+                      imgUrl,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, er, ob) {
+                        return Padding(
+                          padding: const EdgeInsets.all(5),
+                          child: Image.asset(AppImages.petMetLogoImg),
+                        );
+                      },
+                    ),
+                  ),
                 ),
                 SizedBox(width: 3.w),
                 Expanded(

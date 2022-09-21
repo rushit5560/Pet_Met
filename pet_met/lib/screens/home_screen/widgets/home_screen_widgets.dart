@@ -107,11 +107,12 @@ class PetTopListModule extends StatelessWidget {
                         arguments: [
                           homeController.petTopList[i].data.id,
                           homeController.petTopList[i].data.userid,
-                          homeController.petTopList[i].data.categoryId
+                          homeController.petTopList[i].data.categoryId,
+                          homeController.petTopList[i].name.name,
                         ],
                       );
                     },
-                    child: Container(
+                    child: SizedBox(
                       height: homeController.size.height * 0.2,
                       child: Stack(
                         children: [
@@ -165,7 +166,7 @@ class PetTopListModule extends StatelessWidget {
                               // const SizedBox(height: 12),
                               Text(
                                 homeController.petTopList[i].data.gender +
-                                    ", 2 Years Old",
+                                    ", ${homeController.petTopList[i].data.dob}",
                                 style: TextStyle(
                                   color: themeProvider.darkTheme
                                       ? AppColors.whiteColor.withOpacity(0.65)
@@ -208,9 +209,10 @@ class PetTopListModule extends StatelessWidget {
                             right: 5,
                             child: GestureDetector(
                               onTap: () {
-                                // log(' usename is : ${homeController.petTopList[i].name.name}');
+                                // log(' useName is : ${homeController.petTopList[i].name.name}');
 
-                                //Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute, arguments: homeController.petTopList[index].id);
+                                //Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute,
+                                // arguments: homeController.petTopList[index].id);
                                 log('Follow Userid: ${homeController.petTopList[i].data.userid}');
                                 log('Follow Category id: ${homeController.petTopList[i].data.categoryId}');
                                 Get.to(
@@ -219,8 +221,7 @@ class PetTopListModule extends StatelessWidget {
                                   duration: const Duration(milliseconds: 500),
                                   arguments: [
                                     homeController.petTopList[i].data.userid,
-                                    homeController
-                                        .petTopList[i].data.categoryId,
+                                    homeController.petTopList[i].data.categoryId,
                                     homeController.petTopList[i].data.id,
                                   ],
                                 );
@@ -759,9 +760,7 @@ class PetListModule extends StatelessWidget {
                         color: AppColors.accentTextColor,
                         width: 0.5,
                       ),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(8),
-                      ),
+                      borderRadius: const BorderRadius.all(Radius.circular(8)),
                     ),
                     //child: Image.asset(AppImages.petMetLogoImg, fit: BoxFit.cover),
                     child: UserDetails.categoryId == "1"
@@ -770,7 +769,9 @@ class PetListModule extends StatelessWidget {
                             child: Image.network(
                               controller.userprofile.value,
                               errorBuilder: (context, st, ob) {
-                                return Image.asset(AppImages.petMetLogoImg);
+                                return Image.asset(
+                                  AppImages.petMetLogoImg,
+                                  fit: BoxFit.fill,);
                               },
                               fit: BoxFit.fill,
                             ),
@@ -781,7 +782,10 @@ class PetListModule extends StatelessWidget {
                                 child: Image.network(
                                   controller.shopProfile.value,
                                   errorBuilder: (context, st, ob) {
-                                    return Image.asset(AppImages.petMetLogoImg);
+                                    return Image.asset(
+                                        AppImages.petMetLogoImg,
+                                      fit: BoxFit.fill,
+                                    );
                                   },
                                   fit: BoxFit.fill,
                                 ),
@@ -793,7 +797,9 @@ class PetListModule extends StatelessWidget {
                                       controller.ngoProfile.value,
                                       errorBuilder: (context, st, ob) {
                                         return Image.asset(
-                                            AppImages.petMetLogoImg);
+                                            AppImages.petMetLogoImg,
+                                          fit: BoxFit.fill,
+                                        );
                                       },
                                       fit: BoxFit.fill,
                                     ),
@@ -805,7 +811,9 @@ class PetListModule extends StatelessWidget {
                                           controller.trainerProfile.value,
                                           errorBuilder: (context, st, ob) {
                                             return Image.asset(
-                                                AppImages.petMetLogoImg);
+                                                AppImages.petMetLogoImg,
+                                              fit: BoxFit.fill,
+                                            );
                                           },
                                           fit: BoxFit.fill,
                                         ),
@@ -821,14 +829,14 @@ class PetListModule extends StatelessWidget {
                       modelBottomSheet(context);
                     },
                     child: Container(
-                      height: 16,
-                      width: 16,
+                      height: 17,
+                      width: 17,
                       decoration: const BoxDecoration(
                           color: AppColors.accentColor, shape: BoxShape.circle),
                       child: const Icon(
                         Icons.add,
                         color: AppColors.whiteColor,
-                        size: 13,
+                        size: 14,
                       ),
                     ),
                   ),

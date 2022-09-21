@@ -2,24 +2,20 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:pet_met/controllers/shop_user_profile_screen_controller.dart';
 import 'package:pet_met/models/get_all_category_model/get_all_category_model.dart';
 import 'package:pet_met/models/get_all_sub_category_model/get_all_sub_category_model.dart';
 import 'package:pet_met/models/get_pet_profile_model/get_pet_profile_model.dart';
 import 'package:pet_met/models/update_pet_profile_model/update_pet_profile_model.dart';
 import 'package:pet_met/utils/api_url.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:sizer/sizer.dart';
 import 'package:http/http.dart' as http;
 import '../utils/app_colors.dart';
-import 'user_profile_edit_controller.dart';
+
 
 class UploadPetController extends GetxController {
   PetOption petOption = Get.arguments[0];

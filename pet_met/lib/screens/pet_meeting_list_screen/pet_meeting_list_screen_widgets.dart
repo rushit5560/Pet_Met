@@ -171,7 +171,7 @@ class PetMeetingListModule extends StatelessWidget {
                         // const SizedBox(height: 12),
                         Text(
                           screenController.subCatPetList[i].data.gender +
-                              ", 2 Years Old",
+                              ", ${screenController.subCatPetList[i].data.dob}",
                           style: TextStyle(
                             color: themeProvider.darkTheme
                                 ? AppColors.whiteColor.withOpacity(0.65)

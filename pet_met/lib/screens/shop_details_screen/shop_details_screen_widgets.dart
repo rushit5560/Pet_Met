@@ -1,6 +1,4 @@
 import 'dart:developer';
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -8,7 +6,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/shop_details_screen_controller.dart';
 import 'package:pet_met/screens/address_screen/address_screen_widgets.dart';
-import 'package:pet_met/screens/pet_meeting_details_screen/pet_meeting_details_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
@@ -17,11 +14,12 @@ import 'package:pet_met/utils/validations.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../../firebase_database/firebase_database.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/user_details.dart';
 import '../user_conversation_screen/user_conversation_screen.dart';
+
+
 
 class BannerImageModule extends StatelessWidget {
   BannerImageModule({Key? key}) : super(key: key);
@@ -133,9 +131,14 @@ class OffersModule extends StatelessWidget {
                               ApiUrl.apiImagePath +
                                   "asset/uploads/product/"
                                       "${screenController.shopData[0].image1}",
+                              fit: BoxFit.cover,
                               height: 40,
-                              width: 40, errorBuilder: (context, er, da) {
-                            return Image.asset(AppImages.petMetLogoImg);
+                              width: 40,
+                              errorBuilder: (context, er, da) {
+                            return Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: Image.asset(AppImages.petMetLogoImg),
+                            );
                           }),
                         ),
                       ),
@@ -160,9 +163,13 @@ class OffersModule extends StatelessWidget {
                               ApiUrl.apiImagePath +
                                   "asset/uploads/product/"
                                       "${screenController.shopData[0].image2}",
+                              fit: BoxFit.cover,
                               height: 40,
                               width: 40, errorBuilder: (context, er, da) {
-                            return Image.asset(AppImages.petMetLogoImg);
+                            return Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: Image.asset(AppImages.petMetLogoImg),
+                            );
                           }),
                         ),
                       ),
@@ -190,7 +197,10 @@ class OffersModule extends StatelessWidget {
                               fit: BoxFit.cover,
                               height: 40,
                               width: 40, errorBuilder: (context, er, da) {
-                            return Image.asset(AppImages.petMetLogoImg);
+                            return Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: Image.asset(AppImages.petMetLogoImg),
+                            );
                           }),
                         ),
                       ),
@@ -217,7 +227,10 @@ class OffersModule extends StatelessWidget {
                                       "${screenController.shopData[0].image4}",
                               fit: BoxFit.cover,
                               errorBuilder: (context, er, da) {
-                            return Image.asset(AppImages.petMetLogoImg);
+                            return Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: Image.asset(AppImages.petMetLogoImg),
+                            );
                           }),
                         ),
                       ),
@@ -244,7 +257,10 @@ class OffersModule extends StatelessWidget {
                                       "${screenController.shopData[0].image5}",
                               fit: BoxFit.cover,
                               errorBuilder: (context, er, da) {
-                            return Image.asset(AppImages.petMetLogoImg);
+                            return Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: Image.asset(AppImages.petMetLogoImg),
+                            );
                           }),
                         ),
                       ),
@@ -270,7 +286,7 @@ class OffersModule extends StatelessWidget {
     ).commonSymmetricPadding(horizontal: 15);
   }
 
-  Widget _offerListTile(int i, BuildContext context) {
+  /*Widget _offerListTile(int i, BuildContext context) {
     return GestureDetector(
       onTap: () {
         // imageAlertDialog(context, i);
@@ -280,29 +296,29 @@ class OffersModule extends StatelessWidget {
         width: screenController.size.width * 0.18,
         child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
-            child: /*Image.network(
+            child: *//*Image.network(
               ApiUrl.apiImagePath + screenController.shopData.offersimages![i],
               fit: BoxFit.cover, errorBuilder: (context, er, da) {
             return Image.asset(AppImages.petMetLogoImg);
-          }),*/
+          }),*//*
                 Image.asset(AppImages.petMetLogoImg)),
       ).commonSymmetricPadding(horizontal: 5),
     );
-  }
+  }*/
 
   imageAlertDialog(BuildContext context, index) {
-    Widget cancelButton = TextButton(
-      child: Text("No, cancel"),
-      onPressed: () {
-        Get.back();
-      },
-    );
-    Widget continueButton = TextButton(
-      child: Text("Yes, delete it"),
-      onPressed: () async {
-        Get.back();
-      },
-    );
+    // Widget cancelButton = TextButton(
+    //   child: Text("No, cancel"),
+    //   onPressed: () {
+    //     Get.back();
+    //   },
+    // );
+    // Widget continueButton = TextButton(
+    //   child: Text("Yes, delete it"),
+    //   onPressed: () async {
+    //     Get.back();
+    //   },
+    // );
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
@@ -1172,7 +1188,7 @@ class MeetingAvailabilityModule extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
-          "Meeting Availability",
+          "Availability",
           style: TextStyle(
               color: AppColors.accentTextColor,
               // fontWeight: FontWeight.bold,
@@ -1223,10 +1239,16 @@ class MeetingAvailabilityModule extends StatelessWidget {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
-            child: Image.network(imgUrl, fit: BoxFit.fill,
-                errorBuilder: (context, er, data) {
-              return Image.asset(AppImages.petMetLogoImg);
-            }),
+            child: Image.network(
+              imgUrl,
+              fit: BoxFit.cover,
+              errorBuilder: (context, er, data) {
+                return Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: Image.asset(AppImages.petMetLogoImg),
+                );
+              },
+            ),
           ),
         ),
       ).commonSymmetricPadding(horizontal: 5),

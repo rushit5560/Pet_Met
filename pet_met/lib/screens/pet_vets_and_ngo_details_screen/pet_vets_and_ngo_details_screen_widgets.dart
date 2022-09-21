@@ -670,12 +670,12 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
   }
 
   _makingInstagramApp(String url) async {
-    // var url = 'https://www.instagram.com/<INSTAGRAM_PROFILE>/';
 
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        universalLinksOnly: true,
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(
+        Uri.parse(url),
+        mode: LaunchMode.platformDefault,
+        // universalLinksOnly: true,
       );
     } else {
       throw 'There was a problem to open the url: $url';
@@ -792,21 +792,21 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
             Text(
               "Click to Pay/Donate",
               style: TextStyle(
-                color: themeProvider.darkTheme
+                color: AppColors.whiteColor/*themeProvider.darkTheme
                     ? AppColors.whiteColor
-                    : AppColors.darkThemeColor,
+                    : AppColors.darkThemeColor*/,
                 fontSize: 13.sp,
                 fontWeight: FontWeight.w600,
               ),
             ),
             const SizedBox(width: 8),
-            Icon(
+            const Icon(
               Icons.favorite_rounded,
-              color: themeProvider.darkTheme
+              color: AppColors.whiteColor/*themeProvider.darkTheme
                   ? AppColors.whiteColor
-                  : AppColors.darkThemeColor,
+                  : AppColors.darkThemeColor*/,
               size: 18,
-            )
+            ),
           ],
         ).commonSymmetricPadding(horizontal: 20),
       ),

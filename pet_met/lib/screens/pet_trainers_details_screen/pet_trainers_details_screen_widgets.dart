@@ -113,190 +113,215 @@ class PetTrainerPicturesModule extends StatelessWidget {
                   ),
                 )
               : Row(
-                  children: [
-                    screenController.trainerDetails[0].image1 == ""
-                        ? Container()
-                        : Expanded(
-                            child: GestureDetector(
-                            onTap: () {
-                              imageAlertDialog(context, index = 1);
-                            },
-                            child: SizedBox(
-                              height: screenController.size.width * 0.18,
-                              //width: screenController.size.width * 0.18,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(color: Colors.grey)),
-                                // padding: const EdgeInsets.all(5),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: Image.network(
-                                      ApiUrl.apiImagePath +
-                                          "asset/uploads/product/"
-                                              "${screenController.trainerDetails[0].image1}",
-                                      height: 40,
-                                      width: 40,
-                                      errorBuilder: (context, er, da) {
-                                    return Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child:
-                                          Image.asset(AppImages.petMetLogoImg),
-                                    );
-                                  }),
-                                ),
-                              ),
-                            ),
-                          )),
-                    screenController.trainerDetails[0].image1 == ""
-                        ? Container()
-                        : const SizedBox(width: 10),
-                    screenController.trainerDetails[0].image2 == ""
-                        ? Container()
-                        : Expanded(
-                            child: GestureDetector(
-                            onTap: () {
-                              imageAlertDialog(context, index = 2);
-                            },
-                            child: SizedBox(
-                              height: screenController.size.width * 0.18,
-                              //width: screenController.size.width * 0.18,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(color: Colors.grey)),
-                                // padding: const EdgeInsets.all(5),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: Image.network(
-                                      ApiUrl.apiImagePath +
-                                          "asset/uploads/product/"
-                                              "${screenController.trainerDetails[0].image2}",
-                                      height: 40,
-                                      width: 40,
-                                      errorBuilder: (context, er, da) {
-                                    return Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child:
-                                          Image.asset(AppImages.petMetLogoImg),
-                                    );
-                                  }),
-                                ),
-                              ),
-                            ),
-                          )),
-                    screenController.trainerDetails[0].image2 == ""
-                        ? Container()
-                        : const SizedBox(width: 10),
-                    screenController.trainerDetails[0].image3 == ""
-                        ? Container()
-                        : Expanded(
-                            child: GestureDetector(
-                            onTap: () {
-                              imageAlertDialog(context, index = 3);
-                            },
-                            child: SizedBox(
-                              height: screenController.size.width * 0.18,
-                              //width: screenController.size.width * 0.18,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(color: Colors.grey)),
-                                // padding: const EdgeInsets.all(5),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: Image.network(
-                                      ApiUrl.apiImagePath +
-                                          "asset/uploads/product/"
-                                              "${screenController.trainerDetails[0].image3}",
-                                      fit: BoxFit.cover,
-                                      height: 40,
-                                      width: 40,
-                                      errorBuilder: (context, er, da) {
-                                    return Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child:
-                                          Image.asset(AppImages.petMetLogoImg),
-                                    );
-                                  }),
-                                ),
-                              ),
-                            ),
-                          )),
-                    screenController.trainerDetails[0].image3 == ""
-                        ? Container()
-                        : const SizedBox(width: 10),
-                    screenController.trainerDetails[0].image4 == ""
-                        ? Container()
-                        : Expanded(
-                            child: GestureDetector(
-                            onTap: () {
-                              imageAlertDialog(context, index = 4);
-                            },
-                            child: SizedBox(
-                              height: screenController.size.width * 0.18,
-                              //width: screenController.size.width * 0.18,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(color: Colors.grey)),
-                                // padding: const EdgeInsets.all(5),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: Image.network(
-                                      ApiUrl.apiImagePath +
-                                          "asset/uploads/product/"
-                                              "${screenController.trainerDetails[0].image4}",
-                                      fit: BoxFit.cover,
-                                      errorBuilder: (context, er, da) {
-                                    return Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child:
-                                          Image.asset(AppImages.petMetLogoImg),
-                                    );
-                                  }),
-                                ),
-                              ),
-                            ),
-                          )),
-                    screenController.trainerDetails[0].image4 == ""
-                        ? Container()
-                        : const SizedBox(width: 10),
-                    screenController.trainerDetails[0].image5 == ""
-                        ? Container()
-                        : Expanded(
-                            child: GestureDetector(
-                            onTap: () {
-                              imageAlertDialog(context, index = 5);
-                            },
-                            child: SizedBox(
-                              height: screenController.size.width * 0.18,
-                              //width: screenController.size.width * 0.18,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(color: Colors.grey)),
-                                // padding: const EdgeInsets.all(5),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: Image.network(
-                                      ApiUrl.apiImagePath +
-                                          "asset/uploads/product/"
-                                              "${screenController.trainerDetails[0].image5}",
-                                      fit: BoxFit.cover,
-                                      errorBuilder: (context, er, da) {
-                                    return Padding(
-                                      padding: const EdgeInsets.all(5),
-                                      child:
-                                          Image.asset(AppImages.petMetLogoImg),
-                                    );
-                                  }),
-                                ),
-                              ),
-                            ),
-                          ))
-                  ],
-                )
+            children: [
+              screenController.trainerDetails[0].image1 == ""
+                  ? Expanded(
+                flex: 1,
+                child: Container(),
+              )
+                  : Expanded(
+                  flex: 1,
+                  child: GestureDetector(
+                    onTap: () {
+                      imageAlertDialog(context, index = 1);
+                    },
+                    child: SizedBox(
+                      height: screenController.size.width * 0.18,
+                      //width: screenController.size.width * 0.18,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: Colors.grey)),
+                        // padding: const EdgeInsets.all(5),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.network(
+                              ApiUrl.apiImagePath +
+                                  "asset/uploads/product/"
+                                      "${screenController.trainerDetails[0]
+                                      .image1}",
+                              height: 40,
+                              width: 40,
+                              errorBuilder: (context, er, da) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(5),
+                                  child:
+                                  Image.asset(AppImages.petMetLogoImg),
+                                );
+                              }),
+                        ),
+                      ),
+                    ),
+                  )),
+              screenController.trainerDetails[0].image1 == ""
+                  ? Container()
+                  : const SizedBox(width: 10),
+              screenController.trainerDetails[0].image2 == ""
+                  ? Expanded(
+                flex: 1,
+                child: Container(),
+              )
+                  : Expanded(
+                  flex: 1,
+                  child: GestureDetector(
+                    onTap: () {
+                      imageAlertDialog(context, index = 2);
+                    },
+                    child: SizedBox(
+                      height: screenController.size.width * 0.18,
+                      //width: screenController.size.width * 0.18,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: Colors.grey)),
+                        // padding: const EdgeInsets.all(5),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.network(
+                              ApiUrl.apiImagePath +
+                                  "asset/uploads/product/"
+                                      "${screenController.trainerDetails[0]
+                                      .image2}",
+                              height: 40,
+                              width: 40,
+                              errorBuilder: (context, er, da) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(5),
+                                  child:
+                                  Image.asset(AppImages.petMetLogoImg),
+                                );
+                              }),
+                        ),
+                      ),
+                    ),
+                  )),
+              screenController.trainerDetails[0].image2 == ""
+                  ? Container()
+                  : const SizedBox(width: 10),
+              screenController.trainerDetails[0].image3 == ""
+                  ? Expanded(
+                flex: 1,
+                child: Container(),
+              )
+                  : Expanded(
+                  flex: 1,
+                  child: GestureDetector(
+                    onTap: () {
+                      imageAlertDialog(context, index = 3);
+                    },
+                    child: SizedBox(
+                      height: screenController.size.width * 0.18,
+                      //width: screenController.size.width * 0.18,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: Colors.grey)),
+                        // padding: const EdgeInsets.all(5),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.network(
+                              ApiUrl.apiImagePath +
+                                  "asset/uploads/product/"
+                                      "${screenController.trainerDetails[0]
+                                      .image3}",
+                              fit: BoxFit.cover,
+                              height: 40,
+                              width: 40,
+                              errorBuilder: (context, er, da) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(5),
+                                  child:
+                                  Image.asset(AppImages.petMetLogoImg),
+                                );
+                              }),
+                        ),
+                      ),
+                    ),
+                  )),
+              screenController.trainerDetails[0].image3 == ""
+                  ? Container()
+                  : const SizedBox(width: 10),
+              screenController.trainerDetails[0].image4 == ""
+                  ? Expanded(
+                flex: 1,
+                child: Container(),
+              )
+                  : Expanded(
+                  flex: 1,
+                  child: GestureDetector(
+                    onTap: () {
+                      imageAlertDialog(context, index = 4);
+                    },
+                    child: SizedBox(
+                      height: screenController.size.width * 0.18,
+                      //width: screenController.size.width * 0.18,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: Colors.grey)),
+                        // padding: const EdgeInsets.all(5),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.network(
+                              ApiUrl.apiImagePath +
+                                  "asset/uploads/product/"
+                                      "${screenController.trainerDetails[0]
+                                      .image4}",
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, er, da) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(5),
+                                  child:
+                                  Image.asset(AppImages.petMetLogoImg),
+                                );
+                              }),
+                        ),
+                      ),
+                    ),
+                  )),
+              screenController.trainerDetails[0].image4 == ""
+                  ? Container()
+                  : const SizedBox(width: 10),
+              screenController.trainerDetails[0].image5 == ""
+                  ? Expanded(
+                flex: 1,
+                child: Container(),
+              )
+                  : Expanded(
+                  flex: 1,
+                  child: GestureDetector(
+                    onTap: () {
+                      imageAlertDialog(context, index = 5);
+                    },
+                    child: SizedBox(
+                      height: screenController.size.width * 0.18,
+                      //width: screenController.size.width * 0.18,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: Colors.grey)),
+                        // padding: const EdgeInsets.all(5),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.network(
+                              ApiUrl.apiImagePath +
+                                  "asset/uploads/product/"
+                                      "${screenController.trainerDetails[0]
+                                      .image5}",
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, er, da) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(5),
+                                  child:
+                                  Image.asset(AppImages.petMetLogoImg),
+                                );
+                              }),
+                        ),
+                      ),
+                    ),
+                  )),
+            ],
+          ),
         ],
       ),
     );

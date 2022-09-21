@@ -1,5 +1,4 @@
 import 'package:day_night_switcher/day_night_switcher.dart';
-import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/screens/about_screen/about_screen.dart';
@@ -11,9 +10,7 @@ import 'package:pet_met/screens/pet_pricing_screen/pet_pricing_screen.dart';
 import 'package:pet_met/screens/privacy_policy_screen/privacy_policy_screen.dart';
 import 'package:pet_met/screens/subscription_report_screen/subscription_report_screen.dart';
 import 'package:pet_met/screens/support_screen/support_screen.dart';
-import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_images.dart';
-import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:pet_met/utils/theme_preferences.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:provider/provider.dart';
@@ -88,13 +85,14 @@ class _BuildMenuState extends State<BuildMenu> {
                                             indexController.userprofile.value,
                                             width: 50,
                                             height: 50,
-                                            fit: BoxFit.cover,
+                                            fit: BoxFit.fill,
                                             errorBuilder: (context, st, ob) {
                                               return Image.asset(
-                                                  AppImages.petMetLogoImg,
-                                                  width: 40,
-                                                  height: 50,
-                                                  fit: BoxFit.cover);
+                                                AppImages.petMetLogoImg,
+                                                width: 40,
+                                                height: 50,
+                                                fit: BoxFit.fill,
+                                              );
                                             },
                                             // width: controller.size.width * 0.05,
                                           ),
@@ -108,14 +106,14 @@ class _BuildMenuState extends State<BuildMenu> {
                                                     .shopProfile.value,
                                                 width: 50,
                                                 height: 50,
-                                                fit: BoxFit.cover,
+                                                fit: BoxFit.fill,
                                                 errorBuilder:
                                                     (context, st, ob) {
                                                   return Image.asset(
                                                       AppImages.petMetLogoImg,
                                                       width: 40,
                                                       height: 50,
-                                                      fit: BoxFit.cover);
+                                                      fit: BoxFit.fill);
                                                 },
                                                 // width: controller.size.width * 0.05,
                                               ),
@@ -129,7 +127,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                                         .ngoProfile.value,
                                                     width: 50,
                                                     height: 50,
-                                                    fit: BoxFit.cover,
+                                                    fit: BoxFit.fill,
                                                     errorBuilder:
                                                         (context, st, ob) {
                                                       return Image.asset(
@@ -137,7 +135,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                                               .petMetLogoImg,
                                                           width: 40,
                                                           height: 50,
-                                                          fit: BoxFit.cover);
+                                                          fit: BoxFit.fill);
                                                     },
                                                     // width: controller.size.width * 0.05,
                                                   ),
@@ -153,7 +151,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                                             .value,
                                                         width: 50,
                                                         height: 50,
-                                                        fit: BoxFit.cover,
+                                                        fit: BoxFit.fill,
                                                         errorBuilder:
                                                             (context, st, ob) {
                                                           return Image.asset(
@@ -161,8 +159,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                                                   .petMetLogoImg,
                                                               width: 40,
                                                               height: 50,
-                                                              fit:
-                                                                  BoxFit.cover);
+                                                              fit: BoxFit.fill);
                                                         },
                                                         // width: controller.size.width * 0.05,
                                                       ),
@@ -171,7 +168,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                                       AppImages.userProfileImg,
                                                       width: 40,
                                                       height: 40,
-                                                    ),
+                                                      fit: BoxFit.fill),
                                   const SizedBox(width: 15),
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
@@ -192,20 +189,27 @@ class _BuildMenuState extends State<BuildMenu> {
                                                         : "",
                                         style: TextStyle(
                                           color: AppColors.accentTextColor,
-                                          fontSize: 12.sp,
+                                          fontSize: 13.sp,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
-                                      /*Text(
-                                        "Active Status",
+                                      Text(
+                                        UserDetails.categoryId == "1"
+                                            ? "Individual User"
+                                            : UserDetails.categoryId == "2"
+                                                ? "Shop"
+                                                : UserDetails.categoryId == "3"
+                                                    ? "Vet&Ngo"
+                                                    : UserDetails.categoryId ==
+                                                            "4"
+                                                        ? "Trainer"
+                                                        : "",
                                         style: TextStyle(
-                                          color: themeProvider.darkTheme
-                                              ? AppColors.whiteColor
-                                              : AppColors.greyTextColor,
-                                          fontSize: 12.sp,
+                                          color: AppColors.accentTextColor,
+                                          fontSize: 11.sp,
                                           fontWeight: FontWeight.w400,
                                         ),
-                                      ),*/
+                                      ),
                                     ],
                                   ),
                                 ],
@@ -223,506 +227,492 @@ class _BuildMenuState extends State<BuildMenu> {
                               right: controller.size.width * 0.48,
                             ),
                             physics: const ClampingScrollPhysics(),
-                            child: Container(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  /// Home
-                                  drawerListTile(
-                                    onTap: () {
-                                      indexController.drawerController.close!();
-                                    },
-                                    leading: Image.asset(
-                                      AppIcons.bottomBar3Img,
-                                      height: 22,
-                                    ),
-                                    titleWidget: Text(
-                                      "Home",
-                                      style: TextStyle(
-                                        color: AppColors.accentTextColor,
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                /// Home
+                                drawerListTile(
+                                  onTap: () {
+                                    indexController.drawerController.close!();
+                                  },
+                                  leading: Image.asset(
+                                    AppIcons.bottomBar3Img,
+                                    height: 22,
+                                  ),
+                                  titleWidget: Text(
+                                    "Home",
+                                    style: TextStyle(
+                                      color: AppColors.accentTextColor,
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w500,
                                     ),
                                   ),
+                                ),
 
-                                  /// Pet care
-                                  drawerListTile(
-                                    onTap: () {
-                                      indexController.drawerController.close!();
-                                      Get.to(() => PetCareInfoScreen());
-                                    },
-                                    leading: Image.asset(
-                                      AppIcons.adoptionImg,
-                                      color: themeProvider.darkTheme
-                                          ? AppColors.whiteColor
-                                          : themeProvider.darkTheme
+                                /// Subscription
+                                UserDetails.categoryId == "2" ||
+                                        UserDetails.categoryId == "4"
+                                    ? drawerListTile(
+                                        onTap: () {
+                                          indexController
+                                              .drawerController.close!();
+                                          Get.to(() => PetPricingScreen(),
+                                              transition: Transition.native,
+                                              duration: const Duration(
+                                                  milliseconds: 500));
+                                        },
+                                        leading: Image.asset(
+                                          AppIcons.rateImg,
+                                          color: themeProvider.darkTheme
                                               ? AppColors.whiteColor
                                               : AppColors.greyTextColor,
-                                      height: 22,
-                                    ),
-                                    titleWidget: Text(
-                                      "Pet Care",
-                                      style: TextStyle(
-                                        color: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.greyTextColor,
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),
-
-                                  /// Faq
-                                  drawerListTile(
-                                    onTap: () {
-                                      indexController.drawerController.close!();
-                                      Get.to(() => FaqScreen());
-                                    },
-                                    leading: Image.asset(
-                                      AppIcons.faqImg,
-                                      color: themeProvider.darkTheme
-                                          ? AppColors.whiteColor
-                                          : AppColors.greyTextColor,
-                                      height: 22,
-                                    ),
-                                    titleWidget: Text(
-                                      "Faq",
-                                      style: TextStyle(
-                                        color: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.greyTextColor,
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),
-
-                                  /// Delete Account
-                                  /*drawerListTile(
-                                    onTap: () async {
-                                      indexController.drawerController.close!();
-                                      await deleteAccountDialog();
-                                    },
-                                    leading: Image.asset(
-                                      AppIcons.deleteImg,
-                                      color: themeProvider.darkTheme
-                                          ? AppColors.whiteColor
-                                          : AppColors.greyTextColor,
-                                      height: 22,
-                                    ),
-                                    titleWidget: Text(
-                                      "Delete Account",
-                                      style: TextStyle(
-                                        color: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.greyTextColor,
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),*/
-
-                                  /*drawerListTile(
-                              onTap: () {
-                                indexController.drawerController.close!();
-                                Get.to(()=> RateAppScreen());
-                              },
-                              leading: Image.asset(
-                                AppIcons.rateImg,
-                                color: themeProvider.darkTheme
-                                    ? AppColors.whiteColor
-                                    : AppColors.greyTextColor,
-                                height: 22,
-                              ),
-                              titleWidget: Text(
-                                "Rate App",
-                                style: TextStyle(
-                                  color: themeProvider.darkTheme
-                                      ? AppColors.whiteColor
-                                      : AppColors.greyTextColor,
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),*/
-                                  /*drawerListTile(
-                              onTap: () {
-                                indexController.drawerController.close!();
-                                Get.to(() => PetActivityScreen());
-                              },
-                              leading: Image.asset(
-                                AppIcons.rateImg,
-                                color: themeProvider.darkTheme
-                                    ? AppColors.whiteColor
-                                    : AppColors.greyTextColor,
-                                height: 22,
-                              ),
-                              titleWidget: Text(
-                                "Pet Activity",
-                                style: TextStyle(
-                                  color: themeProvider.darkTheme
-                                      ? AppColors.whiteColor
-                                      : AppColors.greyTextColor,
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),*/
-
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 8.0),
-                                    child: ExpansionTile(
-                                      tilePadding: const EdgeInsets.symmetric(
-                                        vertical: 0,
-                                        horizontal: 16,
-                                      ),
-                                      iconColor: AppColors.accentTextColor,
-                                      collapsedIconColor:
-                                          themeProvider.darkTheme
-                                              ? AppColors.whiteColor
-                                              : AppColors.greyTextColor,
-
-                                      title: Row(
-                                        children: [
-                                          Icon(
-                                            Icons.settings_rounded,
+                                          height: 22,
+                                        ),
+                                        titleWidget: Text(
+                                          "Subscribe Now",
+                                          style: TextStyle(
                                             color: themeProvider.darkTheme
                                                 ? AppColors.whiteColor
                                                 : AppColors.greyTextColor,
-                                            size: 22,
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.w500,
                                           ),
-                                          const SizedBox(width: 20),
-                                          Expanded(
-                                            child: Text(
-                                              "Settings",
-                                              style: TextStyle(
+                                        ),
+                                      )
+                                    : Container(),
+
+                                /// Pet care
+                                drawerListTile(
+                                  onTap: () {
+                                    indexController.drawerController.close!();
+                                    Get.to(() => PetCareInfoScreen());
+                                  },
+                                  leading: Image.asset(
+                                    AppIcons.adoptionImg,
+                                    color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                            : AppColors.greyTextColor,
+                                    height: 22,
+                                  ),
+                                  titleWidget: Text(
+                                    "Pet Care",
+                                    style: TextStyle(
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor
+                                          : AppColors.greyTextColor,
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+
+                                /// Faq
+                                drawerListTile(
+                                  onTap: () {
+                                    indexController.drawerController.close!();
+                                    Get.to(() => FaqScreen());
+                                  },
+                                  leading: Image.asset(
+                                    AppIcons.faqImg,
+                                    color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.greyTextColor,
+                                    height: 22,
+                                  ),
+                                  titleWidget: Text(
+                                    "Faq",
+                                    style: TextStyle(
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor
+                                          : AppColors.greyTextColor,
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+
+                                /// Delete Account
+                                /*drawerListTile(
+                                  onTap: () async {
+                                    indexController.drawerController.close!();
+                                    await deleteAccountDialog();
+                                  },
+                                  leading: Image.asset(
+                                    AppIcons.deleteImg,
+                                    color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.greyTextColor,
+                                    height: 22,
+                                  ),
+                                  titleWidget: Text(
+                                    "Delete Account",
+                                    style: TextStyle(
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor
+                                          : AppColors.greyTextColor,
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),*/
+
+                                /*drawerListTile(
+                            onTap: () {
+                              indexController.drawerController.close!();
+                              Get.to(()=> RateAppScreen());
+                            },
+                            leading: Image.asset(
+                              AppIcons.rateImg,
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.greyTextColor,
+                              height: 22,
+                            ),
+                            titleWidget: Text(
+                              "Rate App",
+                              style: TextStyle(
+                                color: themeProvider.darkTheme
+                                    ? AppColors.whiteColor
+                                    : AppColors.greyTextColor,
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            ),*/
+                                /*drawerListTile(
+                            onTap: () {
+                              indexController.drawerController.close!();
+                              Get.to(() => PetActivityScreen());
+                            },
+                            leading: Image.asset(
+                              AppIcons.rateImg,
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.greyTextColor,
+                              height: 22,
+                            ),
+                            titleWidget: Text(
+                              "Pet Activity",
+                              style: TextStyle(
+                                color: themeProvider.darkTheme
+                                    ? AppColors.whiteColor
+                                    : AppColors.greyTextColor,
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            ),*/
+
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 8.0),
+                                  child: ExpansionTile(
+                                    tilePadding: const EdgeInsets.symmetric(
+                                      vertical: 0,
+                                      horizontal: 16,
+                                    ),
+                                    iconColor: AppColors.accentTextColor,
+                                    collapsedIconColor: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.greyTextColor,
+
+                                    title: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.settings_rounded,
+                                          color: themeProvider.darkTheme
+                                              ? AppColors.whiteColor
+                                              : AppColors.greyTextColor,
+                                          size: 22,
+                                        ),
+                                        const SizedBox(width: 20),
+                                        Expanded(
+                                          child: Text(
+                                            "Settings",
+                                            style: TextStyle(
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.greyTextColor,
+                                              fontSize: 12.sp,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+
+                                        // const SizedBox(width: 20),
+                                      ],
+                                    ),
+                                    // controller: indexController
+                                    //     .expandedSettingsController,
+                                    // builder: ((context, collapsed, expanded) {
+                                    //   return Row(
+                                    //     children: [
+                                    //       Icon(
+                                    //         Icons.settings_rounded,
+                                    //         color: themeProvider.darkTheme
+                                    //             ? AppColors.whiteColor
+                                    //             : AppColors.greyTextColor,
+                                    //         size: 22,
+                                    //       ),
+                                    //       const SizedBox(width: 20),
+                                    //       Expanded(
+                                    //         child: Text(
+                                    //           "Settings",
+                                    //           style: TextStyle(
+                                    //             color: themeProvider.darkTheme
+                                    //                 ? AppColors.whiteColor
+                                    //                 : AppColors.greyTextColor,
+                                    //             fontSize: 12.sp,
+                                    //             fontWeight: FontWeight.w500,
+                                    //           ),
+                                    //         ),
+                                    //       ),
+                                    //       Icon(
+                                    //         Icons.keyboard_arrow_down_rounded,
+                                    //         color: themeProvider.darkTheme
+                                    //             ? AppColors.whiteColor
+                                    //             : AppColors.greyTextColor,
+                                    //         size: 22,
+                                    //       ),
+                                    //       // const SizedBox(width: 20),
+                                    //     ],
+                                    //   ).commonSymmetricPadding(
+                                    //       horizontal: 16, vertical: 10);
+                                    // }),
+                                    // header: Row(
+                                    //   children: [
+                                    //     Icon(
+                                    //       Icons.settings_rounded,
+                                    //       color: themeProvider.darkTheme
+                                    //           ? AppColors.whiteColor
+                                    //           : AppColors.greyTextColor,
+                                    //       size: 22,
+                                    //     ),
+                                    //     const SizedBox(width: 20),
+                                    //     Expanded(
+                                    //       child: Text(
+                                    //         "Settings",
+                                    //         style: TextStyle(
+                                    //           color: themeProvider.darkTheme
+                                    //               ? AppColors.whiteColor
+                                    //               : AppColors.greyTextColor,
+                                    //           fontSize: 12.sp,
+                                    //           fontWeight: FontWeight.w500,
+                                    //         ),
+                                    //       ),
+                                    //     ),
+                                    //     Icon(
+                                    //       Icons.keyboard_arrow_down_rounded,
+                                    //       color: themeProvider.darkTheme
+                                    //           ? AppColors.whiteColor
+                                    //           : AppColors.greyTextColor,
+                                    //       size: 22,
+                                    //     ),
+                                    //     // const SizedBox(width: 20),
+                                    //   ],
+                                    // ).commonSymmetricPadding(
+                                    //     horizontal: 16, vertical: 10),
+
+                                    // collapsed: Container(),
+                                    children: [
+                                      /// Support
+                                      drawerListTile(
+                                        onTap: () {
+                                          indexController
+                                              .drawerController.close!();
+                                          Get.to(() => SupportScreen());
+                                        },
+                                        leading: Image.asset(
+                                          AppIcons.supportImg,
+                                          color: themeProvider.darkTheme
+                                              ? AppColors.whiteColor
+                                              : AppColors.greyTextColor,
+                                          height: 22,
+                                        ),
+                                        titleWidget: Text(
+                                          "Support",
+                                          style: TextStyle(
+                                            color: themeProvider.darkTheme
+                                                ? AppColors.whiteColor
+                                                : AppColors.greyTextColor,
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+
+                                      /// About
+                                      drawerListTile(
+                                        onTap: () {
+                                          indexController
+                                              .drawerController.close!();
+                                          Get.to(() => AboutScreen());
+                                        },
+                                        leading: Image.asset(
+                                          AppIcons.aboutImg,
+                                          color: themeProvider.darkTheme
+                                              ? AppColors.whiteColor
+                                              : AppColors.greyTextColor,
+                                          height: 22,
+                                        ),
+                                        titleWidget: Text(
+                                          "About",
+                                          style: TextStyle(
+                                            color: themeProvider.darkTheme
+                                                ? AppColors.whiteColor
+                                                : AppColors.greyTextColor,
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+
+                                      /// Privacy policy
+                                      drawerListTile(
+                                        onTap: () {
+                                          indexController
+                                              .drawerController.close!();
+                                          Get.to(() => PrivacyPolicyScreen());
+                                        },
+                                        leading: Image.asset(
+                                          AppIcons.privacyPolicyImg,
+                                          color: themeProvider.darkTheme
+                                              ? AppColors.whiteColor
+                                              : AppColors.greyTextColor,
+                                          height: 22,
+                                        ),
+                                        titleWidget: Text(
+                                          "Privacy Policy",
+                                          style: TextStyle(
+                                            color: themeProvider.darkTheme
+                                                ? AppColors.whiteColor
+                                                : AppColors.greyTextColor,
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+
+                                      /// Share App
+                                      drawerListTile(
+                                        onTap: () {
+                                          indexController
+                                              .drawerController.close!();
+                                        },
+                                        leading: Image.asset(
+                                          AppIcons.shareImg,
+                                          color: themeProvider.darkTheme
+                                              ? AppColors.whiteColor
+                                              : AppColors.greyTextColor,
+                                          height: 22,
+                                        ),
+                                        titleWidget: Text(
+                                          "Share App",
+                                          style: TextStyle(
+                                            color: themeProvider.darkTheme
+                                                ? AppColors.whiteColor
+                                                : AppColors.greyTextColor,
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+
+                                      /// Change password
+                                      drawerListTile(
+                                        onTap: () {
+                                          indexController
+                                              .drawerController.close!();
+                                          Get.to(() => ChangePasswordScreen(),
+                                              transition: Transition.native,
+                                              duration: const Duration(
+                                                  milliseconds: 500));
+                                        },
+                                        leading: Icon(
+                                          Icons.edit_note_rounded,
+                                          color: themeProvider.darkTheme
+                                              ? AppColors.whiteColor
+                                              : AppColors.greyTextColor,
+                                          size: 22,
+                                        ),
+                                        titleWidget: Text(
+                                          "Change Password",
+                                          style: TextStyle(
+                                            color: themeProvider.darkTheme
+                                                ? AppColors.whiteColor
+                                                : AppColors.greyTextColor,
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+
+                                      /// Meeting Report
+                                      UserDetails.categoryId == "1" ||
+                                              UserDetails.categoryId == "2"
+                                          ? drawerListTile(
+                                              onTap: () {
+                                                indexController
+                                                    .drawerController.close!();
+                                                Get.to(() =>
+                                                    MeetingOrdersScreen());
+                                              },
+                                              leading: Icon(
+                                                Icons.edit_note_rounded,
                                                 color: themeProvider.darkTheme
                                                     ? AppColors.whiteColor
                                                     : AppColors.greyTextColor,
-                                                fontSize: 12.sp,
-                                                fontWeight: FontWeight.w500,
+                                                size: 22,
                                               ),
-                                            ),
-                                          ),
-
-                                          // const SizedBox(width: 20),
-                                        ],
-                                      ),
-                                      // controller: indexController
-                                      //     .expandedSettingsController,
-                                      // builder: ((context, collapsed, expanded) {
-                                      //   return Row(
-                                      //     children: [
-                                      //       Icon(
-                                      //         Icons.settings_rounded,
-                                      //         color: themeProvider.darkTheme
-                                      //             ? AppColors.whiteColor
-                                      //             : AppColors.greyTextColor,
-                                      //         size: 22,
-                                      //       ),
-                                      //       const SizedBox(width: 20),
-                                      //       Expanded(
-                                      //         child: Text(
-                                      //           "Settings",
-                                      //           style: TextStyle(
-                                      //             color: themeProvider.darkTheme
-                                      //                 ? AppColors.whiteColor
-                                      //                 : AppColors.greyTextColor,
-                                      //             fontSize: 12.sp,
-                                      //             fontWeight: FontWeight.w500,
-                                      //           ),
-                                      //         ),
-                                      //       ),
-                                      //       Icon(
-                                      //         Icons.keyboard_arrow_down_rounded,
-                                      //         color: themeProvider.darkTheme
-                                      //             ? AppColors.whiteColor
-                                      //             : AppColors.greyTextColor,
-                                      //         size: 22,
-                                      //       ),
-                                      //       // const SizedBox(width: 20),
-                                      //     ],
-                                      //   ).commonSymmetricPadding(
-                                      //       horizontal: 16, vertical: 10);
-                                      // }),
-                                      // header: Row(
-                                      //   children: [
-                                      //     Icon(
-                                      //       Icons.settings_rounded,
-                                      //       color: themeProvider.darkTheme
-                                      //           ? AppColors.whiteColor
-                                      //           : AppColors.greyTextColor,
-                                      //       size: 22,
-                                      //     ),
-                                      //     const SizedBox(width: 20),
-                                      //     Expanded(
-                                      //       child: Text(
-                                      //         "Settings",
-                                      //         style: TextStyle(
-                                      //           color: themeProvider.darkTheme
-                                      //               ? AppColors.whiteColor
-                                      //               : AppColors.greyTextColor,
-                                      //           fontSize: 12.sp,
-                                      //           fontWeight: FontWeight.w500,
-                                      //         ),
-                                      //       ),
-                                      //     ),
-                                      //     Icon(
-                                      //       Icons.keyboard_arrow_down_rounded,
-                                      //       color: themeProvider.darkTheme
-                                      //           ? AppColors.whiteColor
-                                      //           : AppColors.greyTextColor,
-                                      //       size: 22,
-                                      //     ),
-                                      //     // const SizedBox(width: 20),
-                                      //   ],
-                                      // ).commonSymmetricPadding(
-                                      //     horizontal: 16, vertical: 10),
-
-                                      // collapsed: Container(),
-                                      children: [
-                                        /// Support
-                                        drawerListTile(
-                                          onTap: () {
-                                            indexController
-                                                .drawerController.close!();
-                                            Get.to(() => SupportScreen());
-                                          },
-                                          leading: Image.asset(
-                                            AppIcons.supportImg,
-                                            color: themeProvider.darkTheme
-                                                ? AppColors.whiteColor
-                                                : AppColors.greyTextColor,
-                                            height: 22,
-                                          ),
-                                          titleWidget: Text(
-                                            "Support",
-                                            style: TextStyle(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.greyTextColor,
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ),
-
-                                        /// About
-                                        drawerListTile(
-                                          onTap: () {
-                                            indexController
-                                                .drawerController.close!();
-                                            Get.to(() => AboutScreen());
-                                          },
-                                          leading: Image.asset(
-                                            AppIcons.aboutImg,
-                                            color: themeProvider.darkTheme
-                                                ? AppColors.whiteColor
-                                                : AppColors.greyTextColor,
-                                            height: 22,
-                                          ),
-                                          titleWidget: Text(
-                                            "About",
-                                            style: TextStyle(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.greyTextColor,
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ),
-
-                                        /// Privacy policy
-                                        drawerListTile(
-                                          onTap: () {
-                                            indexController
-                                                .drawerController.close!();
-                                            Get.to(() => PrivacyPolicyScreen());
-                                          },
-                                          leading: Image.asset(
-                                            AppIcons.privacyPolicyImg,
-                                            color: themeProvider.darkTheme
-                                                ? AppColors.whiteColor
-                                                : AppColors.greyTextColor,
-                                            height: 22,
-                                          ),
-                                          titleWidget: Text(
-                                            "Privacy Policy",
-                                            style: TextStyle(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.greyTextColor,
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ),
-
-                                        /// Share App
-                                        drawerListTile(
-                                          onTap: () {
-                                            indexController
-                                                .drawerController.close!();
-                                          },
-                                          leading: Image.asset(
-                                            AppIcons.shareImg,
-                                            color: themeProvider.darkTheme
-                                                ? AppColors.whiteColor
-                                                : AppColors.greyTextColor,
-                                            height: 22,
-                                          ),
-                                          titleWidget: Text(
-                                            "Share App",
-                                            style: TextStyle(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.greyTextColor,
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ),
-
-                                        /// Change password
-                                        drawerListTile(
-                                          onTap: () {
-                                            indexController
-                                                .drawerController.close!();
-                                            Get.to(() => ChangePasswordScreen(),
-                                                transition: Transition.native,
-                                                duration: const Duration(
-                                                    milliseconds: 500));
-                                          },
-                                          leading: Icon(
-                                            Icons.edit_note_rounded,
-                                            color: themeProvider.darkTheme
-                                                ? AppColors.whiteColor
-                                                : AppColors.greyTextColor,
-                                            size: 22,
-                                          ),
-                                          titleWidget: Text(
-                                            "Change Password",
-                                            style: TextStyle(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.greyTextColor,
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.w500,
-                                            ),
-                                          ),
-                                        ),
-
-                                        /// Subscription
-                                        UserDetails.categoryId == "2" ||
-                                                UserDetails.categoryId == "4"
-                                            ? drawerListTile(
-                                                onTap: () {
-                                                  indexController
-                                                      .drawerController
-                                                      .close!();
-                                                  Get.to(
-                                                      () => PetPricingScreen(),
-                                                      transition:
-                                                          Transition.native,
-                                                      duration: const Duration(
-                                                          milliseconds: 500));
-                                                },
-                                                leading: Image.asset(
-                                                  AppIcons.rateImg,
+                                              titleWidget: Text(
+                                                "Meeting Report",
+                                                style: TextStyle(
                                                   color: themeProvider.darkTheme
                                                       ? AppColors.whiteColor
                                                       : AppColors.greyTextColor,
-                                                  height: 22,
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.w500,
                                                 ),
-                                                titleWidget: Text(
-                                                  "Subscription",
-                                                  style: TextStyle(
-                                                    color: themeProvider
-                                                            .darkTheme
-                                                        ? AppColors.whiteColor
-                                                        : AppColors
-                                                            .greyTextColor,
-                                                    fontSize: 12.sp,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                              )
-                                            : Container(),
+                                              ),
+                                            )
+                                          : Container(),
 
-                                        /// Meeting Report
-                                        UserDetails.categoryId == "1" ||
-                                                UserDetails.categoryId == "2"
-                                            ? drawerListTile(
-                                                onTap: () {
-                                                  indexController
-                                                      .drawerController
-                                                      .close!();
-                                                  Get.to(() =>
-                                                      MeetingOrdersScreen());
-                                                },
-                                                leading: Icon(
-                                                  Icons.edit_note_rounded,
+                                      /// Subscription report
+                                      UserDetails.categoryId == "2" ||
+                                              UserDetails.categoryId == "4"
+                                          ? drawerListTile(
+                                              onTap: () {
+                                                indexController
+                                                    .drawerController.close!();
+                                                Get.to(() =>
+                                                    SubscriptionReportScreen());
+                                              },
+                                              leading: Icon(
+                                                Icons.edit_note_rounded,
+                                                color: themeProvider.darkTheme
+                                                    ? AppColors.whiteColor
+                                                    : AppColors.greyTextColor,
+                                                size: 22,
+                                              ),
+                                              titleWidget: Text(
+                                                "Subscription Report",
+                                                style: TextStyle(
                                                   color: themeProvider.darkTheme
                                                       ? AppColors.whiteColor
                                                       : AppColors.greyTextColor,
-                                                  size: 22,
+                                                  fontSize: 12.sp,
+                                                  fontWeight: FontWeight.w500,
                                                 ),
-                                                titleWidget: Text(
-                                                  "Meeting Report",
-                                                  style: TextStyle(
-                                                    color: themeProvider
-                                                            .darkTheme
-                                                        ? AppColors.whiteColor
-                                                        : AppColors
-                                                            .greyTextColor,
-                                                    fontSize: 12.sp,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                              )
-                                            : Container(),
-
-                                        /// Subscription report
-                                        UserDetails.categoryId == "2" ||
-                                                UserDetails.categoryId == "4"
-                                            ? drawerListTile(
-                                                onTap: () {
-                                                  indexController
-                                                      .drawerController
-                                                      .close!();
-                                                  Get.to(() =>
-                                                      SubscriptionReportScreen());
-                                                },
-                                                leading: Icon(
-                                                  Icons.edit_note_rounded,
-                                                  color: themeProvider.darkTheme
-                                                      ? AppColors.whiteColor
-                                                      : AppColors.greyTextColor,
-                                                  size: 22,
-                                                ),
-                                                titleWidget: Text(
-                                                  "Subscription Report",
-                                                  style: TextStyle(
-                                                    color: themeProvider
-                                                            .darkTheme
-                                                        ? AppColors.whiteColor
-                                                        : AppColors
-                                                            .greyTextColor,
-                                                    fontSize: 12.sp,
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
-                                                ),
-                                              )
-                                            : Container(),
-                                      ],
-                                      // ),
-                                    ),
+                                              ),
+                                            )
+                                          : Container(),
+                                    ],
+                                    // ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
