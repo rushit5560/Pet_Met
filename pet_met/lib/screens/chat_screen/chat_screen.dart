@@ -260,7 +260,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 blurRadius: 10,
                 color: themeProvider.darkTheme
                     ? AppColors.greyColor.withOpacity(0.25)
-                    : AppColors.greyColor.withOpacity(0.45),
+                    : AppColors.greyColor.withOpacity(0.35),
                 blurStyle: BlurStyle.outer,
               ),
             ],

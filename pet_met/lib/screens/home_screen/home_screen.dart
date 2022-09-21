@@ -67,14 +67,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   appBarOption: AppBarOption.drawerButtonOption,
                   isTitleText: false,
                   centerWidget: const Text(
-                    "Peto'mate\n" '"Your Personal Pet\nCommunity."',
+                    "Peto'Mate",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 13,
+                      fontSize: 20,
                       color: AppColors.accentTextColor,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
+                  // centerWidget: ,
                   /*centerWidget: Image.asset(
                     AppImages.petMetLogoImg,
                     width: controller.size.width * 0.25,

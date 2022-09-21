@@ -147,46 +147,47 @@ class PetCategoriesSearchListModule extends StatelessWidget {
   Widget _petSearchCategoryListTile(SearchDatum singleItem) {
     return Row(
       children: [
-        Checkbox(
-          checkColor: themeProvider.darkTheme
-              ? AppColors.whiteColor
-              : AppColors.greyTextColor,
-          activeColor: AppColors.greyTextColor,
-          fillColor: MaterialStateProperty.all(
-            AppColors.greyColor,
-          ),
-          focusColor: AppColors.greyColor,
-          value: singleItem.isSelected,
-          onChanged: (value) {
-            screenController.isLoading(true);
+        Transform.scale(
+          scale: 1.2,
+          child: Checkbox(
+            checkColor: themeProvider.darkTheme
+                ? AppColors.blackTextColor
+                : AppColors.whiteColor,
+            activeColor: AppColors.greyTextColor,
+            fillColor: MaterialStateProperty.all(AppColors.accentColor),
+            focusColor: AppColors.greyTextColor,
+            value: singleItem.isSelected,
+            onChanged: (value) {
+              screenController.isLoading(true);
 
-            // Selected value make true other values false
-            for (int i = 0; i < screenController.searchList.length; i++) {
-              if (screenController.searchList[i].categoryId ==
-                  singleItem.categoryId) {
-                screenController.searchList[i].isSelected = true;
-                screenController.selectedSubCatId =
-                    screenController.searchList[i].categoryId;
-                /*if(screenController.searchList[i].isSelected == true) {
-                  screenController.searchList[i].isSelected = false;
-                } else if(screenController.searchList[i].isSelected == false) {
+              // Selected value make true other values false
+              for (int i = 0; i < screenController.searchList.length; i++) {
+                if (screenController.searchList[i].categoryId ==
+                    singleItem.categoryId) {
                   screenController.searchList[i].isSelected = true;
-                }*/
-              } else {
+                  screenController.selectedSubCatId =
+                      screenController.searchList[i].categoryId;
+                  /*if(screenController.searchList[i].isSelected == true) {
+                    screenController.searchList[i].isSelected = false;
+                  } else if(screenController.searchList[i].isSelected == false) {
+                    screenController.searchList[i].isSelected = true;
+                  }*/
+                } else {
+                  screenController.searchList[i].isSelected = false;
+                }
+              }
+
+              /*for(int i=0; i< screenController.searchList.length; i++) {
                 screenController.searchList[i].isSelected = false;
               }
-            }
-
-            /*for(int i=0; i< screenController.searchList.length; i++) {
-              screenController.searchList[i].isSelected = false;
-            }
-            if(selectedItemValue == true) {
-              singleItem.isSelected = false;
-            } else if(selectedItemValue == false) {
-              singleItem.isSelected = true;
-            }*/
-            screenController.isLoading(false);
-          },
+              if(selectedItemValue == true) {
+                singleItem.isSelected = false;
+              } else if(selectedItemValue == false) {
+                singleItem.isSelected = true;
+              }*/
+              screenController.isLoading(false);
+            },
+          ),
         ),
         Text(
           singleItem.categoryName,
@@ -210,13 +211,17 @@ class PetCategoriesListModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var themeProvider = Provider.of<DarkThemeProvider>(context);
-    return ListView.builder(
+    return ListView.separated(
       itemCount: screenController.catAndSubCatList.length,
+      padding: const EdgeInsets.symmetric(vertical: 10),
       shrinkWrap: true,
       physics: const BouncingScrollPhysics(),
       itemBuilder: (context, i) {
         CatAndSubCatData singleItem = screenController.catAndSubCatList[i];
         return _petCategoryListTile(singleItem, themeProvider);
+      },
+      separatorBuilder: (context, i) {
+        return const SizedBox(height: 12);
       },
     );
   }
@@ -228,6 +233,16 @@ class PetCategoriesListModule extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         color:
             themeProvider.darkTheme ? AppColors.darkThemeColor : Colors.white,
+        boxShadow: [
+          BoxShadow(
+            spreadRadius: 2,
+            blurRadius: 10,
+            color: themeProvider.darkTheme
+                ? AppColors.greyColor.withOpacity(0.25)
+                : AppColors.greyColor.withOpacity(0.25),
+            blurStyle: BlurStyle.outer,
+          ),
+        ],
       ),
       child: ExpandablePanel(
         header: Text(
@@ -395,7 +410,7 @@ class PetCategoriesListModule extends StatelessWidget {
           },
         ),
       ).commonSymmetricPadding(vertical: 5),
-    ).commonSymmetricPadding(vertical: 5);
+    );
     /*return ExpansionTile(
       // backgroundColor: Colors.white,
       collapsedBackgroundColor: Colors.white,
@@ -421,7 +436,23 @@ class MeetYourLovedOneButtonModule extends StatelessWidget {
             arguments: screenController.selectedSubCatId,
             transition: Transition.native,
             duration: const Duration(milliseconds: 500),
-          );
+          )!
+              .then((value) {
+            screenController.isLoading(true);
+            screenController.isLoading(false);
+          });
+          // Unselected value from search list
+          for (var element in screenController.searchList) {
+            element.isSelected = false;
+          }
+          // Unselect value from cat & subCat list
+          for (var element in screenController.catAndSubCatList) {
+            for (var element in element.subCategory) {
+              element.isSelected = false;
+            }
+          }
+          // remove selected subCat value
+          screenController.selectedSubCatId = "";
         } else {
           Fluttertoast.showToast(msg: "Please select category first!");
         }
@@ -435,9 +466,9 @@ class MeetYourLovedOneButtonModule extends StatelessWidget {
       },
       child: Container(
         width: double.infinity,
-        height: 60,
+        height: 50,
         decoration: const BoxDecoration(
-          color: AppColors.accentTextColor,
+          color: AppColors.accentColor,
           borderRadius: BorderRadius.all(
             Radius.circular(12),
           ),
@@ -453,7 +484,7 @@ class MeetYourLovedOneButtonModule extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 12),
             const Icon(
               Icons.favorite_rounded,
               color: AppColors.whiteColor,

@@ -1,8 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -24,6 +26,7 @@ class LoginController extends GetxController {
   var mailController = TextEditingController();
   var passController = TextEditingController();
   var selectedPageIndex = 0.obs;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   UserPreference userPreference = UserPreference();
 
@@ -104,7 +107,6 @@ class LoginController extends GetxController {
               msg:
                   "This user is unauthorized for selected category! Please try again");
         }
-
       }
     } catch (e) {
       log('User Login Api Error ::: $e');
@@ -146,7 +148,6 @@ class LoginController extends GetxController {
         log("email : $email");
         log("googleKeyId : $googleKeyId");
 
-
         // await socialMediaRegisterFunction(
         //   userName: userName,
         //   userEmail: email,
@@ -160,10 +161,43 @@ class LoginController extends GetxController {
 
   Future signInWithFacebookFunction() async {
     //await fb.logOut();
-    final res = await fb.logIn(permissions: [
-      FacebookPermission.publicProfile,
-      FacebookPermission.email,
-    ]);
+
+    final res = await fb.logIn(
+      permissions: [
+        FacebookPermission.publicProfile,
+        FacebookPermission.email,
+      ],
+    );
+
+    // try {
+    //   final _instance = FacebookAuth.instance;
+    //   final result = await _instance.login(permissions: ['email']);
+    //   if (result.status == LoginStatus.success) {
+    //     log('login success');
+    //     log('${result.message}');
+    //     final OAuthCredential credential =
+    //         FacebookAuthProvider.credential(result.accessToken!.token);
+    //     log('${credential.secret}');
+    //     final a = await _auth.signInWithCredential(credential);
+    //     log('${a.additionalUserInfo}');
+    //     await _instance.getUserData().then((userData) async {
+    //       log('userData is : ${userData}');
+    //       await _auth.currentUser!.updateEmail(userData['email']);
+
+    //       log("usermail is ${userData['email']}");
+    //       log("username is ${a.additionalUserInfo!.username}");
+    //     });
+    //     return null;
+    //   } else if (result.status == LoginStatus.cancelled) {
+    //     return 'Login cancelled';
+    //   } else {
+    //     return 'Error';
+    //   }
+    // } catch (e) {
+    //   log("erro occured : ${e.toString()}");
+
+    //   rethrow;
+    // }
 
     // Check result status
     switch (res.status) {
@@ -184,9 +218,10 @@ class LoginController extends GetxController {
 
         // Get email (since we request email permission)
         final email = await fb.getUserEmail();
+        log('Your profile email: $email');
+
         // But user can decline permission
         if (email != null) {
-
           String userName = "${profile.firstName}";
           String fbKeyId = profile.userId;
 
@@ -292,10 +327,9 @@ class LoginController extends GetxController {
 
       }*/
 
-    } catch(e) {
+    } catch (e) {
       log("socialMediaRegisterFunction Error :$e");
     }
-
   }
 
   /*subPartOfFacebookLogin() async {

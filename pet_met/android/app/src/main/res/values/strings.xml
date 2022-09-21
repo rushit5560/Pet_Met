@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="facebook_app_id">415854477266825</string>
-    <string name="fb_login_protocol_scheme">fb415854477266825</string>
-    <string name="facebook_client_token">1a64b49da30ef0d01a7ec6717ab267ea</string>
+    <string name="app_name">Peto Mate</string>
+    <string name="facebook_app_id">401222438839524</string>
+    <string name="fb_login_protocol_scheme">fb401222438839524</string>
+    <string name="facebook_client_token">564e4d967508317c5e87e85cd9d56f8a</string>
 </resources>
