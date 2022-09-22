@@ -6,7 +6,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:get/get.dart';
-import 'package:pet_met/controllers/user_profile_controller.dart';
 import 'package:pet_met/models/get_all_pet_list_model/get_all_pet_list_model.dart';
 import 'package:pet_met/models/get_all_profile_model/get_shop_profile_model.dart';
 import 'package:pet_met/models/get_all_profile_model/get_user_profile_model.dart';
@@ -19,8 +18,9 @@ import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:story_view/controller/story_controller.dart';
-
 import '../models/home_screen_models/show_banner_model.dart';
+
+
 
 class HomeController extends GetxController {
   var activeIndex = 0.obs;
@@ -154,7 +154,7 @@ class HomeController extends GetxController {
       log("Banner Api Error ::: $e");
     } finally {
       // isLoading(false);
-      await getAllIncrementPetFunction();
+      await getUserStory();
     }
   }
 
@@ -260,7 +260,7 @@ class HomeController extends GetxController {
         log("Get All Pet Api Error ::: $e");
       } finally {
         loadUI();
-        await getUserStory();
+        // await getUserStory();
       }
     }
   }
@@ -316,8 +316,9 @@ class HomeController extends GetxController {
     } catch (e) {
       log("Get All USer Story Api Error ::: $e");
     } finally {
-      isLoading(false);
+      // isLoading(false);
       //await getUserStory();
+      await getAllIncrementPetFunction();
     }
   }
 
@@ -678,7 +679,9 @@ class HomeController extends GetxController {
       if (scrollController.position.maxScrollExtent ==
           scrollController.offset) {
         //api call for more pet
-        pageIndex++;
+        if(hasMore == true) {
+          pageIndex++;
+        }
         log("pageIndex : $pageIndex");
         getAllIncrementPetFunction();
       }
