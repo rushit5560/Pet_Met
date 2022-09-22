@@ -106,9 +106,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
     } else if (widget.appBarOption == AppBarOption.drawerButtonOption) {
       return Image.asset(
         AppIcons.drawerButtonImg,
-        color: themeProvider.darkTheme
-            ? AppColors.whiteColor
-            : AppColors.blackTextColor.withOpacity(0.8),
+        color: AppColors.accentColor,
       );
     } else {
       return Container();

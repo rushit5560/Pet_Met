@@ -198,9 +198,11 @@ class IndexScreenState extends State<IndexScreen> {
               children: [
                 Align(
                   alignment: Alignment.topRight,
-                  child: Image.asset(themeProvider.darkTheme
-                      ? AppImages.backgroundImgDark
-                      : AppImages.backgroundImgLight),
+                  child: Image.asset(
+                    themeProvider.darkTheme
+                        ? AppImages.backgroundImgDark
+                        : AppImages.backgroundImgLight,
+                  ),
                 ),
                 Align(
                   alignment: Alignment.centerLeft,

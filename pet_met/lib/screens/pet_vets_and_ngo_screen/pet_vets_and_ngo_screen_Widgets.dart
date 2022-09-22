@@ -218,8 +218,9 @@ class VetsAndNgoListModule extends StatelessWidget {
                       errorBuilder: (context, er, ob) {
                         return Padding(
                           padding: const EdgeInsets.all(5),
-                          child: Image.asset(AppImages.petMetLogoImg,
-                          fit: BoxFit.fill,
+                          child: Image.asset(
+                            AppImages.petMetLogoImg,
+                            fit: BoxFit.fill,
                           ),
                         );
                       },
@@ -313,7 +314,7 @@ class VetsAndNgoListModule extends StatelessWidget {
             // ),
             BoxShadow(
               color: Colors.grey,
-              blurRadius: 5,
+              blurRadius: 2,
               spreadRadius: 1,
               offset: Offset(0, 0),
               blurStyle: BlurStyle.outer,
