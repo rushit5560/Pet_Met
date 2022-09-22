@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:pet_met/models/pet_vets_and_ngo_screen_models.dart';
 import 'package:pet_met/utils/api_url.dart';
+import 'package:pet_met/utils/user_details.dart';
 
 class PetVetsAndNgoScreenController extends GetxController {
   RxBool isLoading = false.obs;
@@ -25,8 +26,18 @@ class PetVetsAndNgoScreenController extends GetxController {
     log("Vet And Ngo Api Url : $url");
 
     try {
+      Map<String, dynamic> bodyData = {
+        "longitude": UserDetails.liveLatitude,
+        "latitude": UserDetails.liveLongitude
+      };
+
+
       Map<String, String> header = apiHeader.apiHeader();
-      http.Response response = await http.get(Uri.parse(url), headers: header);
+      http.Response response = await http.post(
+        Uri.parse(url),
+        headers: header,
+        body: bodyData,
+      );
       log("Vet And Ngo List Response : ${response.body}");
 
       AllVetAndNgoModel allVetAndNgoModel =

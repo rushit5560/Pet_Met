@@ -1189,7 +1189,7 @@ class BannerModule extends StatelessWidget {
                 image: NetworkImage(
                   ApiUrl.apiImagePath +
                       "asset/uploads/product/" +
-                      controller.bannerList1[index].img,
+                      "${controller.bannerList1[index].img}",
                 ),
                 fit: BoxFit.cover,
               ),

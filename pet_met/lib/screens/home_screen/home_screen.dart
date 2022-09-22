@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/home_controller.dart';
 import 'package:pet_met/controllers/index_screen_controller.dart';
-import 'package:pet_met/controllers/user_profile_controller.dart';
 import 'package:pet_met/screens/home_screen/widgets/home_screen_widgets.dart';
 import 'package:pet_met/screens/ngo_user_profile_screen/ngo_user_profile_screen.dart';
 import 'package:pet_met/screens/shop_user_profile_screen/shop_user_profile_screen.dart';
 import 'package:pet_met/screens/trainers_and_users_profile_screen/trainers_and_user_profile_screen.dart';
 import 'package:pet_met/screens/user_profile_edit_screen/user_profile_edit_screen.dart';
+import 'package:pet_met/services/providers/dark_theme_provider.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:pet_met/utils/user_details.dart';
+import 'package:provider/provider.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 import '../../utils/common_widgets/custom_appbar.dart';
@@ -35,7 +36,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // @override
   // void initState() {
-  //   // TODO: implement initState
   //   super.initState();
   //   controller.getUserStory();
   // }
@@ -43,7 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     log('User profile: ${controller.userprofile}');
-    // var themeProvider = Provider.of<DarkThemeProvider>(context);
+    var themeProvider = Provider.of<DarkThemeProvider>(context);
+
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -268,7 +269,23 @@ class _HomeScreenState extends State<HomeScreen> {
                                       .commonSymmetricPadding(horizontal: 20),
                                   SizedBox(
                                       height: controller.size.height * 0.025),
-                                  BannerModule(),
+                                  controller.bannerList1.isEmpty
+                                      ? SizedBox(
+                                          height: 165,
+                                          child: Center(
+                                            child: Text(
+                                              "No Shop Banners Available",
+                                              style: TextStyle(
+                                                color: themeProvider.darkTheme
+                                                    ? AppColors.whiteColor
+                                                    : AppColors.accentTextColor,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      : BannerModule(),
                                   const SizedBox(height: 10),
                                   PetShopAndGroomingText()
                                       .commonSymmetricPadding(horizontal: 20),

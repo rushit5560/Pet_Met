@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:pet_met/models/pet_trainers_screen_models/all_trainer_model.dart';
 import 'package:pet_met/utils/api_url.dart';
+import 'package:pet_met/utils/user_details.dart';
 
 class PetTrainersScreenController extends GetxController {
   RxBool isLoading = false.obs;
@@ -24,9 +25,18 @@ class PetTrainersScreenController extends GetxController {
     log("Get All Trainers Api Url : $url");
 
     try {
+      Map<String, dynamic> bodyData = {
+        "longitude": UserDetails.liveLatitude,
+        "latitude": UserDetails.liveLongitude
+      };
+
       Map<String, String> header = apiHeader.apiHeader();
 
-      http.Response response = await http.get(Uri.parse(url), headers: header);
+      http.Response response = await http.post(
+          Uri.parse(url),
+          headers: header,
+        body: bodyData,
+      );
       log("Get All Trainer Response : ${response.body}");
 
       AllTrainerModel allTrainerModel =

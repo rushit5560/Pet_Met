@@ -112,10 +112,18 @@ class HomeController extends GetxController {
     log("Banner Api Url : $url");
 
     try {
+      Map<String, dynamic> bodyData = {
+        "latitude": UserDetails.liveLatitude,
+        "longitude": UserDetails.liveLongitude
+      };
       Map<String, String> header = apiHeader.apiHeader();
       log("header : $header");
 
-      http.Response response = await http.get(Uri.parse(url), headers: header);
+      http.Response response = await http.post(
+        Uri.parse(url),
+        headers: header,
+        body: bodyData,
+      );
       log("Banner Api Response : ${response.body}");
 
       BannerModel bannerModel =
@@ -226,11 +234,19 @@ class HomeController extends GetxController {
       log('pageIndex: $pageIndex');
 
       try {
+        Map<String, dynamic> bodyData = {
+          "latitude": UserDetails.liveLatitude,
+          "longitude": UserDetails.liveLongitude
+        };
         Map<String, String> header = apiHeader.apiHeader();
         log("header : $header");
 
         http.Response response =
-            await http.get(Uri.parse(url), headers: header);
+            await http.post(
+                Uri.parse(url),
+                headers: header,
+              body: bodyData,
+            );
         log("Get All Pet Api response : ${response.body}");
 
         GetPetTopListModel getPetTopListModel =

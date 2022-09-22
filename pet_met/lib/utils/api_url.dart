@@ -75,7 +75,7 @@ class ApiUrl {
   static const getUserStoryApi = apiMainPath + "/followwisestory/"; //get
   static const addUserStoryApi = apiMainPath + "/userstory"; // Add
 
-  static const subCategoryWisePetsApi = apiMainPath + "/subcategorywisepet/";
+  static const subCategoryWisePetsApi = apiMainPath + "/subcategorywisepet";
 
   static const meetingOrderApi = apiMainPath + "/meettingorder";
   static const subscriptionOrderApi = apiMainPath + "/allorder";

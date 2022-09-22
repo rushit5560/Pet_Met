@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:pet_met/models/shop_and_grooming_screen_model/all_shop_model.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:http/http.dart' as http;
+import 'package:pet_met/utils/user_details.dart';
 
 class ShopAndGroomingScreenController extends GetxController {
   RxBool isLoading = false.obs;
@@ -26,10 +27,20 @@ class ShopAndGroomingScreenController extends GetxController {
     log("All Shop Api Url : $url");
 
     try {
+      Map<String, dynamic> bodyData = {
+        "longitude": UserDetails.liveLatitude,
+        "latitude": UserDetails.liveLongitude
+      };
+
+
       Map<String, String> header = apiHeader.apiHeader();
       log("Header : $header");
 
-      http.Response response = await http.get(Uri.parse(url), headers: header);
+      http.Response response = await http.post(
+          Uri.parse(url),
+          headers: header,
+        body: bodyData,
+      );
       log('Get All Shop Response: ${response.body}');
       AllShopModel allShopModel =
           AllShopModel.fromJson(json.decode(response.body));

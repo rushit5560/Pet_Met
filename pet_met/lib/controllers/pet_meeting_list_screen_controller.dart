@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 import 'package:pet_met/models/get_all_pet_list_model/get_all_pet_list_model.dart';
 import 'package:pet_met/utils/api_url.dart';
+import 'package:pet_met/utils/user_details.dart';
 
 class PetMeetingListScreenController extends GetxController {
   String subcategoryId = Get.arguments ?? "0";
@@ -17,13 +18,23 @@ class PetMeetingListScreenController extends GetxController {
 
   Future<void> getCategoryWisePetList() async {
     isLoading(true);
-    String url = ApiUrl.subCategoryWisePetsApi + subcategoryId;
+    String url = ApiUrl.subCategoryWisePetsApi;
     log("url : $url");
 
     try {
-       http.Response response = await http.get(Uri.parse(url));
+      Map<String, dynamic> bodyData = {
+        "id": subcategoryId,
+        "latitude": UserDetails.liveLatitude,
+        "longitude": UserDetails.liveLongitude
+      };
 
-       GetPetTopListModel subcategoryWisePetModel = GetPetTopListModel.fromJson(json.decode(response.body));
+
+      http.Response response = await http.post(
+        Uri.parse(url),
+        body: bodyData,
+      );
+
+      GetPetTopListModel subcategoryWisePetModel = GetPetTopListModel.fromJson(json.decode(response.body));
        isSuccessStatus = subcategoryWisePetModel.success.obs;
 
       if(isSuccessStatus.value) {

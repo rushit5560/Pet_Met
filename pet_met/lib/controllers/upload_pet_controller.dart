@@ -482,6 +482,8 @@ class UploadPetController extends GetxController {
           meetingAvailabilityValue.value == "Yes"
               ? "0"
               : "1" /*meetingAvailabilityValue.value*/;
+      request.fields['latitude'] = UserDetails.liveLatitude;
+      request.fields['longitude'] = UserDetails.liveLongitude;
 
       log('request.fields: ${request.fields}');
       log('request.files: ${request.files}');
@@ -577,6 +579,8 @@ class UploadPetController extends GetxController {
       request.fields['categoryID'] = UserDetails.categoryId;
       request.fields['meeting_availability'] =
           meetingAvailabilityValue.value == "Yes" ? "0" : "1";
+      request.fields['latitude'] = UserDetails.liveLatitude;
+      request.fields['longitude'] = UserDetails.liveLongitude;
       //request.fields['petid'] = "$petId";
       //request.fields['showimg'] = "jgjadg";
 

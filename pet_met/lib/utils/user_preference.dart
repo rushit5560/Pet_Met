@@ -117,6 +117,9 @@ class UserPreference {
     prefs.setString(userLatitudeKey, latitude);
     prefs.setString(userLongitudeKey, longitude);
 
+    prefs.setString(userLatitudeKey, "21.2185");
+    prefs.setString(userLongitudeKey, "72.8368");
+
 
     UserDetails.liveLatitude = prefs.getString(userLatitudeKey) ?? "";
     UserDetails.liveLongitude = prefs.getString(userLongitudeKey) ?? "";
