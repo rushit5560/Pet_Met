@@ -274,7 +274,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           height: 165,
                                           child: Center(
                                             child: Text(
-                                              "No Shop Banners Available",
+                                              "No Offers Available Your Nearest Shops",
                                               style: TextStyle(
                                                 color: themeProvider.darkTheme
                                                     ? AppColors.whiteColor

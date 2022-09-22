@@ -339,6 +339,7 @@ class UploadPetController extends GetxController {
         //genderValue.value = getProfile.gender!;
         petApiCatId = "${getProfile.mainCategory}";
         petApiSubCatId = "${getProfile.subCategory}";
+        petApiProfile = getProfile.image!;
 
         // Set Gender From Api
         String gender = getProfile.gender!;
@@ -400,6 +401,7 @@ class UploadPetController extends GetxController {
 
         petImage =
             ApiUrl.apiImagePath + "asset/uploads/petimage/" + getProfile.image!;
+
         log('pet name: ${petNameController.text}');
         log('pet details: ${petDetailsController.text}');
         log('genderValue: ${genderValue.value}');
