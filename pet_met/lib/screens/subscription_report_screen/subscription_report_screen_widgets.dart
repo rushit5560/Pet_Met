@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/subscription_report_screen_controller.dart';
 import 'package:pet_met/utils/app_colors.dart';
@@ -17,7 +18,7 @@ class SubscriptionOrderListModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return screenController.subscriptionOrderList.isEmpty
-        ? const Center(child: Text("Orders Not Found!"))
+        ? const Center(child: Text("Subscription Not Found!"))
         : ListView.builder(
             shrinkWrap: true,
             physics: const AlwaysScrollableScrollPhysics(),
@@ -38,63 +39,95 @@ class SubscriptionOrderListModule extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Column(
+                child: Stack(
                   children: [
-                    Row(
+                    Column(
                       children: [
-                        const Expanded(
-                          flex: 25,
-                          child: Text(
-                            "Order Id",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
+                        Row(
+                          children: [
+                            const Expanded(
+                              flex: 25,
+                              child: Text(
+                                "Order Id",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 75,
+                              child: Text(
+                                  screenController.subscriptionOrderList[i].id),
+                            ),
+                          ],
                         ),
-                        Expanded(
-                          flex: 75,
-                          child: Text(
-                              screenController.subscriptionOrderList[i].id),
+                        SizedBox(height: 5),
+                        Row(
+                          children: [
+                            const Expanded(
+                              flex: 25,
+                              child: Text(
+                                "Price",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 75,
+                              child: Text(
+                                  screenController.subscriptionOrderList[i].price),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 5),
+                        Row(
+                          children: [
+                            const Expanded(
+                              flex: 25,
+                              child: Text(
+                                "Payment Id",
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 75,
+                              child: Text(
+                                screenController
+                                    .subscriptionOrderList[i].transitionPaymentId,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                    SizedBox(height: 5),
-                    Row(
-                      children: [
-                        const Expanded(
-                          flex: 25,
-                          child: Text(
-                            "Price",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
+
+                    Positioned(
+                      top: 0,
+                      right: 0,
+                      child: GestureDetector(
+                        onTap: () {
+                          Fluttertoast.showToast(msg: 'This plan is currently active.');
+                        },
+                        child: Container(
+                          child: screenController.activatedPlanId ==
+                                  screenController.subscriptionOrderList[i].planid
+                              ? /*const Text(
+                                  'Active',
+                                  style: TextStyle(
+                                    // fontSize: 22,
+                                    color: AppColors.accentTextColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                )*/
+                              Image.asset(
+                                  AppIcons.verifiedSymbolImg,
+                                  width: 30,
+                                  height: 30,
+                                )
+                              : Container(),
                         ),
-                        Expanded(
-                          flex: 75,
-                          child: Text(
-                              screenController.subscriptionOrderList[i].price),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 5),
-                    Row(
-                      children: [
-                        const Expanded(
-                          flex: 25,
-                          child: Text(
-                            "Payment Id",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        Expanded(
-                          flex: 75,
-                          child: Text(
-                            screenController
-                                .subscriptionOrderList[i].transitionPaymentId,
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ],
                 ).commonAllSidePadding(padding: 8),
-              ).commonSymmetricPadding(vertical: 7);
+              ).commonSymmetricPadding(vertical: 8);
             },
           ).commonAllSidePadding(padding: 10);
   }

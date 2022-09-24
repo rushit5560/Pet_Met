@@ -112,13 +112,15 @@ class PetVetsAndNgoDetailsScreenController extends GetxController {
     //     signature: response.signature
     // );
 
-    await petAddOrderFunction(
-        orderId: response.orderId,
-        paymentId: response.paymentId!,
-        signature: response.signature);
+    // API calling
+    await payOrDonateFunction(
+      orderId: "${response.orderId}",
+      paymentId: "${response.paymentId}",
+      signature: "${response.signature}",
+    );
 
-    Fluttertoast.showToast(
-        msg: "Payment Successful.", toastLength: Toast.LENGTH_LONG);
+    // Fluttertoast.showToast(
+    //     msg: "Payment Successful.", toastLength: Toast.LENGTH_LONG);
     // Get.back();
     log(response.paymentId.toString());
     log(response.orderId.toString());
@@ -127,12 +129,6 @@ class PetVetsAndNgoDetailsScreenController extends GetxController {
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
-    // var body = response.message.toString();
-    // log('Error Response: $response');
-
-    // Fluttertoast.showToast(msg: body, toastLength: Toast.LENGTH_SHORT);
-    // log(response.message.toString());
-    // log(response.code.toString());
     Fluttertoast.showToast(msg: 'Payment processing cancelled by user');
   }
 
@@ -144,40 +140,41 @@ class PetVetsAndNgoDetailsScreenController extends GetxController {
     log("response Wallet : ${response.walletName}");
   }
 
-  Future<void> petAddOrderFunction(
+  Future<void> payOrDonateFunction(
       {String? orderId, required String paymentId, String? signature}) async {
     isLoading(true);
-    String url = ApiUrl.petAddOrderApi;
+    String url = ApiUrl.donateAndPayApi;
 
     Map<String, dynamic> data = {
-      "userid": UserDetails.selfId.toString(),
+      "userid": UserDetails.userId.toString(),
       "categoryID": UserDetails.categoryId,
-      "meettingpetuserid": '',
-      "meettingpetusercategory": '',
-      "userpetid": "1",
-      "meettingpetid": "10",
-      "price": "200",
+      "uid": UserDetails.selfId.toString(),
+      "price": priceController.text,
       "transition_orderid": orderId ?? "123",
       "transition_paymentId": paymentId,
-      "signature": signature ?? "123"
+      "signature": signature ?? "123",
+      "name": vetAndNgoName
     };
 
-    log("Add Order Api Url : $url");
+    log("Add Order Api Url11111 : $url");
     //log("pet plan id : $petPlanId");
-    log('Add Order body: $data');
+    log('Add Order body11111: $data');
 
     try {
-      Map<String, String> header = apiHeader.apiHeader();
-      http.Response response =
-      await http.post(Uri.parse(url), body: data, headers: header);
-      log("Vet Details Api Response : ${response.body}");
+      // Map<String, String> header = apiHeader.apiHeader();
+      http.Response response = await http.post(
+        Uri.parse(url),
+        body: data,
+      );
+      log("Vet Details Api Response11111 : ${response.body}");
       PetAddOrderModel petAddOrderModel =
       PetAddOrderModel.fromJson(json.decode(response.body));
       isSuccessStatus = petAddOrderModel.success.obs;
 
       if (isSuccessStatus.value) {
-        // Fluttertoast.showToast(msg: petAddOrderModel.message);
-        // meetingStatus.value = true;
+        priceController.clear();
+        Fluttertoast.showToast(
+            msg: "Payment Successful.", toastLength: Toast.LENGTH_LONG);
       } else {
         log("Pet Add Order Api Else Else");
       }
@@ -188,41 +185,5 @@ class PetVetsAndNgoDetailsScreenController extends GetxController {
     }
   }
 
-  /*Future<void> addOrderFunction(
-      { String ? orderId,required String paymentId, String ? signature}) async {
-    isLoading(true);
-    String url = ApiUrl.addOrderApi;
 
-    Map<String, dynamic> data = {
-      "userid": UserDetails.userId.toString(),
-      "planid" : petPlanId,
-      "price" : price,
-      "transition_orderid": orderId ?? "123",
-      "transition_paymentId": paymentId,
-      "signature": signature ?? "123"
-    };
-
-    log("Add Order Api Url : $url");
-    log("pet plan id : $petPlanId");
-    log('Add Order body: $data');
-
-    try {
-      Map<String, String> header = apiHeader.apiHeader();
-      http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
-      log("Vet Details Api Response : ${response.body}");
-      AddOrderModel addOrderModel =
-      AddOrderModel.fromJson(json.decode(response.body));
-      isSuccessStatus = addOrderModel.success.obs;
-
-      if (isSuccessStatus.value) {
-        Fluttertoast.showToast(msg: addOrderModel.message);
-      } else {
-        log("Add Order Api Else Else");
-      }
-    } catch (e) {
-      log("Add Order Error ::: $e");
-    } finally {
-      isLoading(false);
-    }
-  }*/
 }

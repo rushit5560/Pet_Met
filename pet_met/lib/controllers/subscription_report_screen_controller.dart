@@ -12,6 +12,7 @@ class SubscriptionReportScreenController extends GetxController {
   final size = Get.size;
 
   List<SubscriptionOrders> subscriptionOrderList = [];
+  String activatedPlanId = "";
 
   Future<void> getUserSubscriptionReportFunction() async {
     isLoading(true);
@@ -38,6 +39,7 @@ class SubscriptionReportScreenController extends GetxController {
       isSuccessStatus = subscriptionOrdersModel.success.obs;
 
       if (isSuccessStatus.value) {
+        activatedPlanId = subscriptionOrdersModel.date.order.planid;
         subscriptionOrderList.clear();
         subscriptionOrderList.addAll(subscriptionOrdersModel.date.orderdetails);
         log("getUserSubscriptionReport  : ${subscriptionOrderList.length}");

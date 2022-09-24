@@ -557,13 +557,10 @@ class PayButtonModule extends StatelessWidget {
                         Get.back();
                         //await screenController.userLoginFunction();
                         if (screenController.formKey.currentState!.validate()) {
+                          Get.back();
                           screenController.openCheckout(
                               price: int.parse(
                                   screenController.priceController.text));
-                          log('price: ${screenController.priceController.text}');
-                          Fluttertoast.showToast(
-                              msg: 'Processing payment to shop.');
-                          screenController.priceController.clear();
                         }
                       },
                       child: Container(

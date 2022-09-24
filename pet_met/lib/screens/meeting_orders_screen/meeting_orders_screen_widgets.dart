@@ -96,7 +96,7 @@ class MeetingOrderListModule extends StatelessWidget {
                     ),
                   ],
                 ).commonAllSidePadding(padding: 8),
-              );
+              ).commonSymmetricPadding(vertical: 8);
             },
           ).commonAllSidePadding(padding: 10);
   }

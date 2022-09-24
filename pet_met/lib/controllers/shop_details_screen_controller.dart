@@ -97,28 +97,30 @@ class ShopDetailsScreenController extends GetxController {
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) async {
     log('Success Response: ${response.orderId}');
+    // await addOrderFunction(
+    //     orderId: response.orderId,
+    //     paymentId: response.paymentId!,
+    //     signature: response.signature
+    // );
 
-    await petAddOrderFunction(
-        orderId: response.orderId,
-        paymentId: response.paymentId!,
-        signature: response.signature);
+    // API calling
+    await payOrDonateFunction(
+      orderId: "${response.orderId}",
+      paymentId: "${response.paymentId}",
+      signature: "${response.signature}",
+    );
 
-    Fluttertoast.showToast(
-        msg: "Payment Successful", toastLength: Toast.LENGTH_SHORT);
+    // Fluttertoast.showToast(
+    //     msg: "Payment Successful.", toastLength: Toast.LENGTH_LONG);
+    // Get.back();
     log(response.paymentId.toString());
     log(response.orderId.toString());
     log(response.signature.toString());
+
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
-    print('Error Response: $response');
-
     Fluttertoast.showToast(msg: 'Payment processing cancelled by user');
-    // Fluttertoast.showToast(
-    //     msg: "ERROR: " + response.code.toString() + " - " + response.message!,
-    //     toastLength: Toast.LENGTH_SHORT);
-    log(response.message.toString());
-    log(response.code.toString());
   }
 
   void _handleExternalWallet(ExternalWalletResponse response) {
@@ -129,40 +131,41 @@ class ShopDetailsScreenController extends GetxController {
     log("response Wallet : ${response.walletName}");
   }
 
-  Future<void> petAddOrderFunction(
+  Future<void> payOrDonateFunction(
       {String? orderId, required String paymentId, String? signature}) async {
     isLoading(true);
-    String url = ApiUrl.petAddOrderApi;
+    String url = ApiUrl.donateAndPayApi;
 
     Map<String, dynamic> data = {
-      "userid": UserDetails.selfId.toString(),
+      "userid": UserDetails.userId.toString(),
       "categoryID": UserDetails.categoryId,
-      "meettingpetuserid": '',
-      "meettingpetusercategory": '',
-      "userpetid": "1",
-      "meettingpetid": "10",
-      "price": "200",
+      "uid": UserDetails.selfId.toString(),
+      "price": priceController.text,
       "transition_orderid": orderId ?? "123",
       "transition_paymentId": paymentId,
-      "signature": signature ?? "123"
+      "signature": signature ?? "123",
+      "name": shopName
     };
 
-    log("Add Order Api Url : $url");
+    log("Add Order Api Url11111 : $url");
     //log("pet plan id : $petPlanId");
-    log('Add Order body: $data');
+    log('Add Order body11111: $data');
 
     try {
-      Map<String, String> header = apiHeader.apiHeader();
-      http.Response response =
-      await http.post(Uri.parse(url), body: data, headers: header);
-      log("Vet Details Api Response : ${response.body}");
+      // Map<String, String> header = apiHeader.apiHeader();
+      http.Response response = await http.post(
+        Uri.parse(url),
+        body: data,
+      );
+      log("Vet Details Api Response11111 : ${response.body}");
       PetAddOrderModel petAddOrderModel =
       PetAddOrderModel.fromJson(json.decode(response.body));
       isSuccessStatus = petAddOrderModel.success.obs;
 
       if (isSuccessStatus.value) {
-        // Fluttertoast.showToast(msg: petAddOrderModel.message);
-        // meetingStatus.value = true;
+        priceController.clear();
+        Fluttertoast.showToast(
+            msg: "Payment Successful.", toastLength: Toast.LENGTH_LONG);
       } else {
         log("Pet Add Order Api Else Else");
       }

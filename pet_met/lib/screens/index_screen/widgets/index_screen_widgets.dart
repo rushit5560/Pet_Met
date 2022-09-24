@@ -5,6 +5,7 @@ import 'package:pet_met/screens/about_screen/about_screen.dart';
 import 'package:pet_met/screens/change_password_screen/change_password_screen.dart';
 import 'package:pet_met/screens/faq_screen/faq_screen.dart';
 import 'package:pet_met/screens/meeting_orders_screen/meeting_orders_screen.dart';
+import 'package:pet_met/screens/pay_and_donate_screen/pay_and_donate_screen.dart';
 import 'package:pet_met/screens/pet_care_info_screen/pet_care_info_screen.dart';
 import 'package:pet_met/screens/pet_pricing_screen/pet_pricing_screen.dart';
 import 'package:pet_met/screens/privacy_policy_screen/privacy_policy_screen.dart';
@@ -14,6 +15,7 @@ import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/theme_preferences.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:sizer/sizer.dart';
 import '../../../controllers/home_controller.dart';
 import '../../../controllers/index_screen_controller.dart';
@@ -598,8 +600,11 @@ class _BuildMenuState extends State<BuildMenu> {
                                       /// Share App
                                       drawerListTile(
                                         onTap: () {
-                                          indexController
-                                              .drawerController.close!();
+                                          // indexController.drawerController.close!();
+                                          Share.share(
+                                            "Peto'Mate",
+                                            subject: "Peto'Mate",
+                                          );
                                         },
                                         leading: Image.asset(
                                           AppIcons.shareImg,
@@ -707,6 +712,35 @@ class _BuildMenuState extends State<BuildMenu> {
                                               ),
                                             )
                                           : Container(),
+
+
+                                      drawerListTile(
+                                        onTap: () {
+                                          indexController
+                                              .drawerController.close!();
+                                          Get.to(() =>
+                                              PayAndDonateReportScreen());
+                                        },
+                                        leading: Icon(
+                                          Icons.edit_note_rounded,
+                                          color: themeProvider.darkTheme
+                                              ? AppColors.whiteColor
+                                              : AppColors.greyTextColor,
+                                          size: 22,
+                                        ),
+                                        titleWidget: Text(
+                                          "Pay/Donate Report",
+                                          style: TextStyle(
+                                            color: themeProvider.darkTheme
+                                                ? AppColors.whiteColor
+                                                : AppColors.greyTextColor,
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      )
+
+
                                     ],
                                     // ),
                                   ),

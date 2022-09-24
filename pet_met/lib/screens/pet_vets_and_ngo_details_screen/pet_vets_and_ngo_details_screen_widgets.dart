@@ -1042,7 +1042,6 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
                           screenController.openCheckout(
                               price: int.parse(
                                   screenController.priceController.text));
-                          screenController.priceController.clear();
                         }
                       },
                       child: Container(

@@ -61,6 +61,7 @@ class ApiUrl {
   /// Order
   static const addOrderApi = apiMainPath + "/orderadd";
   static const petAddOrderApi = apiMainPath + "/meettingpetadd";
+  static const donateAndPayApi = apiMainPath + "/donationadd";
 
   /// Follow && Unfollow && Status
   static const followStatusApi = apiMainPath + "/followstatus";
@@ -79,6 +80,7 @@ class ApiUrl {
 
   static const meetingOrderApi = apiMainPath + "/meettingorder";
   static const subscriptionOrderApi = apiMainPath + "/allorder";
+  static const payAndDonateOrderApi = apiMainPath + "/donationlist";
 
   static const forgotPasswordApi = apiMainPath + "/forgetpassword";
 }
