@@ -27,15 +27,16 @@ class PetVetsAndNgoScreenController extends GetxController {
 
     try {
       Map<String, dynamic> bodyData = {
-        "longitude": UserDetails.liveLatitude,
-        "latitude": UserDetails.liveLongitude
+        "latitude": UserDetails.liveLatitude,
+        "longitude": UserDetails.liveLongitude
       };
+      log('Vet & Ngo bodyData : $bodyData');
 
 
-      Map<String, String> header = apiHeader.apiHeader();
+      // Map<String, String> header = apiHeader.apiHeader();
       http.Response response = await http.post(
         Uri.parse(url),
-        headers: header,
+        // headers: header,
         body: bodyData,
       );
       log("Vet And Ngo List Response : ${response.body}");

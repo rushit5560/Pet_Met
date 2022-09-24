@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 import 'package:pet_met/models/add_order_screen_model/add_order_screen_model.dart';
 import 'package:pet_met/models/get_plan_details_model/get_plan_details_model.dart';
 import 'package:pet_met/utils/app_route_names.dart';
+import 'package:pet_met/utils/razorpay_key.dart';
 import 'package:pet_met/utils/user_details.dart';
 
 import '../utils/api_url.dart';
@@ -18,7 +19,8 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 class PetTrackerPricingController extends GetxController {
   final size = Get.size;
 
-  String petPlanId = Get.arguments;
+  String petPlanId = Get.arguments[0];
+  String planActivated = Get.arguments[1];
 
   TextEditingController feedbackController = TextEditingController();
 
@@ -52,7 +54,7 @@ class PetTrackerPricingController extends GetxController {
   List<Date> planDetailsData = [];
   RxBool status = false.obs;
 
-  Future<void> getplanDetailsFunction() async {
+  Future<void> getPlanDetailsFunction() async {
     isLoading(true);
     String url = ApiUrl.getPlanDetailsApi;
 
@@ -94,7 +96,7 @@ class PetTrackerPricingController extends GetxController {
     }
   }
 
-  Future<void> addOrderFunction(
+  Future addOrderFunction(
       {String? orderId, required String paymentId, String? signature}) async {
     isLoading(true);
     String url = ApiUrl.addOrderApi;
@@ -139,7 +141,7 @@ class PetTrackerPricingController extends GetxController {
 
   @override
   void onInit() {
-    getplanDetailsFunction();
+    getPlanDetailsFunction();
     _razorpay = Razorpay();
     _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
     _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
@@ -149,14 +151,13 @@ class PetTrackerPricingController extends GetxController {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _razorpay.clear();
   }
 
   void openCheckout() async {
     var options = {
-      'key': 'rzp_test_dxCkKqtRKnvZdA',
+      'key': RazorpayKey.razorpayKey,
       'amount': price * 100,
       'name': name,
       'description': overview,

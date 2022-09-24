@@ -11,6 +11,7 @@ import 'package:pet_met/services/providers/dark_theme_provider.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:http/http.dart' as http;
 import 'package:pet_met/utils/app_colors.dart';
+import 'package:pet_met/utils/razorpay_key.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:provider/provider.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
@@ -85,7 +86,7 @@ class PetMeetingDetailsScreenController extends GetxController {
          details = getProfile.details!;
          name = getPetProfileModel.user[0].name;
          phoneNo = getPetProfileModel.user[0].phone;
-         petOwnerProfileImage = getPetProfileModel.user[0].showimg;
+         petOwnerProfileImage = getPetProfileModel.user[0].image;
          log('Image: ${getProfile.image}');
 
          meetingStatus = getPetProfileModel.meettingstatus.obs;
@@ -103,7 +104,7 @@ class PetMeetingDetailsScreenController extends GetxController {
 
   void openCheckout() async {
     var options = {
-      'key': 'rzp_test_dxCkKqtRKnvZdA',
+      'key': RazorpayKey.razorpayKey,
       'amount': 200 * 100,
       'name':  petName,
       'description': details,

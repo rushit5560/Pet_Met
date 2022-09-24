@@ -505,7 +505,7 @@ class UploadPetController extends GetxController {
         if (isSuccessStatus.value) {
           // ShopUserProfileScreenController shopUserProfileScreenController =
           //     Get.find<ShopUserProfileScreenController>();
-          Fluttertoast.showToast(msg: updatePetProfileModel.message);
+          Fluttertoast.showToast(msg: "Pet Updated Successfully.");
           // if(UserDetails.categoryId == "1") {
           //   await userUpdateProfileController.getAllRoleProfileFunction();
           // } else if(UserDetails.categoryId == "2") {
@@ -610,7 +610,7 @@ class UploadPetController extends GetxController {
         isSuccessStatus = updatePetProfileModel.success.obs;
 
         if (isSuccessStatus.value) {
-          Fluttertoast.showToast(msg: "Pet Created Successfully");
+          Fluttertoast.showToast(msg: "Pet Created Successfully.");
           Get.back();
 
           await prevScreenController.getAllRoleProfileFunction();
@@ -688,7 +688,7 @@ class UploadPetController extends GetxController {
   }
 
   @override
-  void onInit() async {
+  void onInit() {
     super.onInit();
     getPetCategoryFunction();
     petSubCategoryDropDownValue = petSubCategoryList[0];

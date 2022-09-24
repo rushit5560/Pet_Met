@@ -12,3 +12,7 @@ enum PetOption {
 enum ProfileChangeOption {
   stay, back
 }
+
+enum StoryOption {
+  moveForward, stay
+}

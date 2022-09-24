@@ -650,8 +650,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                       ),
 
                                       /// Meeting Report
-                                      UserDetails.categoryId == "1" ||
-                                              UserDetails.categoryId == "2"
+                                      UserDetails.categoryId == "1" || UserDetails.categoryId == "2"
                                           ? drawerListTile(
                                               onTap: () {
                                                 indexController

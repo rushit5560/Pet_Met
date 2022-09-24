@@ -1048,14 +1048,17 @@ class AddPetStoryWidget extends StatelessWidget {
                   Radius.circular(8),
                 ),
               ),
-              child: Image.network(
-                ApiUrl.apiImagePath +
-                    "asset/uploads/product/" +
-                    controller.userStoryList[index].userimg,
-                errorBuilder: (context, st, ob) {
-                  return Image.asset(AppImages.petMetLogoImg);
-                },
-                fit: BoxFit.fill,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.network(
+                  ApiUrl.apiImagePath +
+                      "asset/uploads/product/" +
+                      controller.userStoryList[index].userimg,
+                  errorBuilder: (context, st, ob) {
+                    return Image.asset(AppImages.petMetLogoImg);
+                  },
+                  fit: BoxFit.fill,
+                ),
               )
               // Image.asset(AppImages.petMetLogoImg)
               ),
@@ -1298,7 +1301,7 @@ class PetShopAndGroomingText extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  "Pet Shop & Grooming",
+                  "Pet Shops, Cafe & Grooming",
                   style: TextStyle(
                     color: themeProvider.darkTheme
                         ? AppColors.whiteColor

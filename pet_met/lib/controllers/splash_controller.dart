@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/screens/index_screen/index_screen.dart';
 import 'package:pet_met/screens/onboarding_screen/onboarding_screen.dart';
@@ -14,15 +15,55 @@ class SplashController extends GetxController {
 
   UserPreference userPreference = UserPreference();
   UserDetails userDetails = UserDetails();
-  // late StreamSubscription<Position> streamSubscription;
+  late StreamSubscription<Position> streamSubscription;
 
   @override
   void onInit() {
     super.onInit();
-    redirectNextScreen();
+    getLocationFunction();
   }
 
   /*getLocationFunction() async {
+    isLoading(true);
+    bool isServiceEnabled;
+    LocationPermission permission;
+
+    isServiceEnabled = await Geolocator.isLocationServiceEnabled();
+
+    if (!isServiceEnabled) {
+      await Geolocator.openLocationSettings();
+      return Future.error('Location service are disabled.');
+    }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location permission are denied');
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permission are permanently denied, we cannot request permissions.');
+    }
+
+    *//*streamSubscription = Geolocator.getPositionStream().listen((Position position) async {
+      // Current Location store in prefs
+      await userPreference.setUserLocation(
+        latitude: position.latitude.toString(),
+        longitude: position.longitude.toString(),
+      );
+    });*//*
+
+    Position position = await Geolocator.getCurrentPosition();
+    // Current Location store in prefs
+    await userPreference.setUserLocation(
+      latitude: position.latitude.toString(),
+      longitude: position.longitude.toString(),
+    );
+  }*/
+
+  getLocationFunction() async {
     bool isServiceEnabled;
     LocationPermission permission;
 
@@ -44,14 +85,13 @@ class SplashController extends GetxController {
       return Future.error('Location permission are permanently denied, we cannot request permissions.');
     }
 
-
-    */ /*streamSubscription = Geolocator.getPositionStream().listen((Position position) async {
+     /*streamSubscription = Geolocator.getPositionStream().listen((Position position) async {
       // Current Location store in prefs
       await userPreference.setUserLocation(
         latitude: position.latitude.toString(),
         longitude: position.longitude.toString(),
       );
-    });*/ /*
+    });*/
 
     Position position = await Geolocator.getCurrentPosition();
     // Current Location store in prefs
@@ -59,8 +99,9 @@ class SplashController extends GetxController {
       latitude: position.latitude.toString(),
       longitude: position.longitude.toString(),
     );
+    await redirectNextScreen();
 
-  }*/
+  }
 
   redirectNextScreen() async {
     try {

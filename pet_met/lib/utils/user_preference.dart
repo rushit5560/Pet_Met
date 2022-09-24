@@ -124,8 +124,8 @@ class UserPreference {
     UserDetails.liveLatitude = prefs.getString(userLatitudeKey) ?? "";
     UserDetails.liveLongitude = prefs.getString(userLongitudeKey) ?? "";
 
-    log("User Latitude : ${UserDetails.liveLatitude}");
-    log("User Longitude : ${UserDetails.liveLongitude}");
+    log("User Latitude1212 : ${UserDetails.liveLatitude}");
+    log("User Longitude1212 : ${UserDetails.liveLongitude}");
   }
 
   Future<void> removeUserLocation() async {

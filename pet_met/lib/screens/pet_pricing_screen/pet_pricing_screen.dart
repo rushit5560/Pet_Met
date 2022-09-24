@@ -75,6 +75,7 @@ class PetPricingScreen extends StatelessWidget {
                                               .toString(),
                                           planType:
                                               controller.planData[index].name,
+                                          activePlan: controller.planData[index].palnactive,
                                         );
                                       },
                                       separatorBuilder: (context, ind) {

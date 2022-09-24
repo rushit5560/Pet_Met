@@ -11,6 +11,7 @@ import 'package:pet_met/models/shop_update_profile_model/shop_update_profile_mod
 import 'package:pet_met/screens/index_screen/index_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/enums.dart';
+import 'package:pet_met/utils/razorpay_key.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
@@ -1817,7 +1818,7 @@ class ShopUserProfileScreenController extends GetxController {
 
   void openCheckout() async {
     var options = {
-      'key': 'rzp_test_dxCkKqtRKnvZdA',
+      'key': RazorpayKey.razorpayKey,
       'amount': 200 * 100,
       'name': nameController.text,
       'description': detailsController.text,

@@ -133,7 +133,7 @@ class User {
     // required this.emailVerifiedAt,
     // required this.password,
     // required this.rememberToken,
-    // required this.image,
+    required this.image,
     // required this.country,
     // required this.state,
     // required this.city,
@@ -157,7 +157,7 @@ class User {
   // dynamic emailVerifiedAt;
   // String password;
   // String rememberToken;
-  // String image;
+  String image;
   // String country;
   // String state;
   // String city;
@@ -181,7 +181,7 @@ class User {
     // emailVerifiedAt: json["email_verified_at"],
     // password: json["password"],
     // rememberToken: json["remember_token"],
-    // image: json["image"],
+    image: json["image"] ?? "",
     // country: json["country"],
     // state: json["state"],
     // city: json["city"],
@@ -205,7 +205,7 @@ class User {
     // "email_verified_at": emailVerifiedAt,
     // "password": password,
     // "remember_token": rememberToken,
-    // "image": image,
+    "image": image,
     // "country": country,
     // "state": state,
     // "city": city,

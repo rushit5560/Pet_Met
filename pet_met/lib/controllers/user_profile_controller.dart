@@ -16,6 +16,7 @@ import 'package:pet_met/models/user_profile_screen_model/pet_shop_profile_model.
 import 'package:pet_met/models/user_profile_screen_model/pet_user_profile_model.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_images.dart';
+import 'package:pet_met/utils/razorpay_key.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:http/http.dart' as http;
 import 'package:razorpay_flutter/razorpay_flutter.dart';
@@ -543,7 +544,7 @@ class UserProfileController extends GetxController {
 
   void openCheckout() async {
     var options = {
-      'key': 'rzp_test_dxCkKqtRKnvZdA',
+      'key': RazorpayKey.razorpayKey,
       'amount': 200 * 100,
       'name': followCategoryId == "1"
           ? userName

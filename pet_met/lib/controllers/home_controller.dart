@@ -16,6 +16,7 @@ import 'package:pet_met/models/home_screen_models/banner_model.dart';
 import 'package:pet_met/models/trainers_update_profile_model/trainers_get_profile_model.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_images.dart';
+import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:story_view/controller/story_controller.dart';
 import '../models/home_screen_models/show_banner_model.dart';
@@ -116,12 +117,13 @@ class HomeController extends GetxController {
         "latitude": UserDetails.liveLatitude,
         "longitude": UserDetails.liveLongitude
       };
-      Map<String, String> header = apiHeader.apiHeader();
-      log("header : $header");
+      // Map<String, String> header = apiHeader.apiHeader();
+      log("Home Banner bodyData : $bodyData");
+
 
       http.Response response = await http.post(
         Uri.parse(url),
-        headers: header,
+        // headers: header,
         body: bodyData,
       );
       log("Banner Api Response : ${response.body}");
@@ -282,7 +284,8 @@ class HomeController extends GetxController {
   }
 
   /// Get User Story
-  Future<void> getUserStory() async {
+  Future<void> getUserStory(
+      {StoryOption storyOption = StoryOption.moveForward}) async {
     isLoading(true);
     String url = ApiUrl.getUserStoryApi + UserDetails.selfId;
     //String url = ApiUrl.getUserStoryApi + petTopFollowCategoryId == "2" ? userProfileController : "";
@@ -331,10 +334,17 @@ class HomeController extends GetxController {
       }
     } catch (e) {
       log("Get All USer Story Api Error ::: $e");
-    } finally {
+    } /*finally {
       // isLoading(false);
       //await getUserStory();
       await getAllIncrementPetFunction();
+    }*/
+
+    if(storyOption == StoryOption.moveForward) {
+      await getAllIncrementPetFunction();
+    }
+    else {
+      isLoading(false);
     }
   }
 
@@ -349,7 +359,7 @@ class HomeController extends GetxController {
     log("header : $header");
 
     try {
-      if (imageFile != null) {
+      // if (imageFile != null) {
         log("uploading with a photo");
         var request = http.MultipartRequest('POST', Uri.parse(url));
 
@@ -375,7 +385,6 @@ class HomeController extends GetxController {
           stream,
           length,
 
-          //filename: "",
         );
 
         // var multiFile = await http.MultipartFile.fromPath(
@@ -403,14 +412,15 @@ class HomeController extends GetxController {
           isSuccessStatus = addUserStoryModel.success.obs;
 
           if (isSuccessStatus.value) {
-            await getUserStory();
             Fluttertoast.showToast(msg: addUserStoryModel.message);
+            await getUserStory(storyOption: StoryOption.stay);
             Get.back();
           } else {
             log('False False');
           }
         });
-      } else {
+      // }
+      /*else {
         log("uploading without a photo");
         var request = http.MultipartRequest('POST', Uri.parse(url));
 
@@ -447,14 +457,14 @@ class HomeController extends GetxController {
           isSuccessStatus = addUserStoryModel.success.obs;
 
           if (isSuccessStatus.value) {
-            await getUserStory();
             Fluttertoast.showToast(msg: addUserStoryModel.message);
+            await getUserStory(storyOption: StoryOption.stay);
             Get.back();
           } else {
             log('False False');
           }
         });
-      }
+      }*/
     } catch (e) {
       log("updateUserProfileFunction Error ::: $e");
     } finally {

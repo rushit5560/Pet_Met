@@ -169,11 +169,18 @@ class PetTrackerPriceModule extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        if (controller.planDetailsData[0].isActive == "1") {
-                          Fluttertoast.showToast(msg: "Already Purchased");
+
+                        if(controller.planActivated == "true") {
+                          Fluttertoast.showToast(msg: 'Selected plan already activated.');
                         } else {
                           controller.openCheckout();
                         }
+
+                        /*if (controller.planDetailsData[0].isActive == "1") {
+                          Fluttertoast.showToast(msg: "Already Purchased");
+                        } else {
+                          controller.openCheckout();
+                        }*/
                       },
                       style: ElevatedButton.styleFrom(
                         primary: themeProvider.darkTheme
@@ -188,11 +195,9 @@ class PetTrackerPriceModule extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          controller.planDetailsData[0].isActive
-                                  .toString()
-                                  .contains("0")
-                              ? "Buy"
-                              : "Purchased",
+                          controller.planActivated == "true"
+                              ? "Activated"
+                              : "Buy",
                           style: TextStyle(
                             color: themeProvider.darkTheme
                                 ? AppColors.accentColor

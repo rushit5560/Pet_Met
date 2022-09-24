@@ -1600,13 +1600,17 @@ class GetVerifiedInfo extends StatelessWidget {
               fontWeight: FontWeight.w400,
             ),
           ),
-          Icon(
+          Image.asset(AppIcons.verifiedSymbolImg,
+            width: 30,
+            height: 30,
+          ),
+          /*Icon(
             Icons.verified_outlined,
             size: 24,
             color: themeProvider.darkTheme
                 ? AppColors.whiteColor
                 : AppColors.darkThemeColor,
-          )
+          )*/
         ],
       ),
     );

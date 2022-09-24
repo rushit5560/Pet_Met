@@ -681,7 +681,7 @@ class DetailsTextFieldModule extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text.rich(TextSpan(
-                text: 'Details ',
+                text: 'User Details ',
                 style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
                 children: const <InlineSpan>[
                   TextSpan(

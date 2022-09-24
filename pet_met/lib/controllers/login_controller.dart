@@ -1,10 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -15,6 +12,8 @@ import 'package:http/http.dart' as http;
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 import '../screens/index_screen/index_screen.dart';
+
+
 
 class LoginController extends GetxController {
   RxBool isLoading = false.obs;
@@ -148,11 +147,11 @@ class LoginController extends GetxController {
         log("email : $email");
         log("googleKeyId : $googleKeyId");
 
-        // await socialMediaRegisterFunction(
-        //   userName: userName,
-        //   userEmail: email,
-        //   userId: googleKeyId,
-        // );
+        await socialMediaRegisterFunction(
+          userName: userName,
+          userEmail: email,
+          userId: googleKeyId,
+        );
 
       }
     }
@@ -229,11 +228,11 @@ class LoginController extends GetxController {
           log('fbKeyId : $fbKeyId');
           log('email : $email');
 
-          // await socialMediaRegisterFunction(
-          //   userName: userName,
-          //   userEmail: email,
-          //   userId: fbKeyId,
-          // );
+          await socialMediaRegisterFunction(
+            userName: userName,
+            userEmail: email,
+            userId: fbKeyId,
+          );
 
         }
 
@@ -272,13 +271,13 @@ class LoginController extends GetxController {
         'name': userName,
         'email': userEmail,
         'password': '12345678',
-        'categoryID': UserDetails.categoryId,
+        'categoryID': UserDetails.roleId,
         'googlekey': userId,
       };
       log("data : $data");
 
       //todo - differentiate with user category id
-      /*http.Response response = await http.post(Uri.parse(url), body: data);
+      http.Response response = await http.post(Uri.parse(url), body: data);
       log("Login Api Response : ${response.body}");
 
       LoginModel loginModel = LoginModel.fromJson(json.decode(response.body));
@@ -325,7 +324,7 @@ class LoginController extends GetxController {
               "This user is unauthorized for selected category! Please try again");
         }
 
-      }*/
+      }
 
     } catch (e) {
       log("socialMediaRegisterFunction Error :$e");

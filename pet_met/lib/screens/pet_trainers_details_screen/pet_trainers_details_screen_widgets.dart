@@ -921,8 +921,11 @@ class PayButtonModule extends StatelessWidget {
         onTap: () async {
           // screenController.openCheckout(price: int.parse(screenController.priceController.text));
           // Fluttertoast.showToast(msg: 'Processing payment to trainer.');
-
-          alertDialogBox(context);
+          if(screenController.trainerName == UserDetails.userName) {
+          Fluttertoast.showToast(msg: "Trainer can't pay to itself.");
+          } else {
+            alertDialogBox(context);
+          }
         },
         child: Container(
           width: double.infinity,

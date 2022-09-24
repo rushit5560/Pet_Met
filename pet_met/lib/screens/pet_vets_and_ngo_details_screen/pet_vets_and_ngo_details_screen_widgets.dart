@@ -355,8 +355,12 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            String url = "${screenController.vetsNgoDetailsData[0].instagram}";
-            _makingInstagramApp(url);
+            if(screenController.vetsNgoDetailsData[0].instagram == "") {
+             Fluttertoast.showToast(msg: "Link Not Available");
+            } else {
+              String url = "${screenController.vetsNgoDetailsData[0].instagram}";
+              _makingInstagramApp(url);
+            }
           },
           child: Container(
             height: screenController.size.width * 0.018.w,
@@ -375,8 +379,13 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            var fbUrl = "${screenController.vetsNgoDetailsData[0].instagram}";
-            launchFacebook(fbUrl, fbUrl);
+
+            if(screenController.vetsNgoDetailsData[0].facebook == "") {
+              Fluttertoast.showToast(msg: "Link Not Available");
+            } else {
+              var fbUrl = "${screenController.vetsNgoDetailsData[0].facebook}";
+              launchFacebook(fbUrl, fbUrl);
+            }
           },
           child: Container(
             height: screenController.size.width * 0.018.w,
@@ -412,8 +421,12 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
         // ),
         GestureDetector(
           onTap: () {
-            String number = "${screenController.vetsNgoDetailsData[0].phone}";
-            _makingPhoneCall(number);
+            if(screenController.vetsNgoDetailsData[0].phone == "") {
+              Fluttertoast.showToast(msg: "Number Not Available");
+            } else {
+              String number = "${screenController.vetsNgoDetailsData[0].phone}";
+              _makingPhoneCall(number);
+            }
           },
           child: Container(
             height: screenController.size.width * 0.018.w,
@@ -774,7 +787,12 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
     return GestureDetector(
       onTap: () async {
         //screenController.openCheckout();
-        alertDialogBox(context);
+        if(screenController.vetAndNgoName == UserDetails.userName) {
+          Fluttertoast.showToast(msg: "Vet & Ngo can't pay/donate to itself.");
+        }
+        else {
+          alertDialogBox(context);
+        }
       },
       child: Container(
         // width: Get.width / 1.5,

@@ -767,7 +767,7 @@ class DogOwnerListModule extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      "Owner Pet",
+                      "Owner's Pets",
                       style: TextStyle(
                         color: AppColors.accentTextColor,
                         fontSize: 13.sp,
@@ -1060,13 +1060,13 @@ class AboutModule extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Image.asset(
-                AppImages.editIconImg,
-                height: 25,
-                color: themeProvider.darkTheme
-                    ? Colors.grey
-                    : AppColors.whiteColor,
-              ),
+              // Image.asset(
+              //   AppImages.editIconImg,
+              //   height: 25,
+              //   color: themeProvider.darkTheme
+              //       ? Colors.grey
+              //       : AppColors.whiteColor,
+              // ),
             ],
           ),
           const SizedBox(height: 15),

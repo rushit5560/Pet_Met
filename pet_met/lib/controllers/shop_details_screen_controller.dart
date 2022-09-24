@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
+import 'package:pet_met/models/add_order_screen_model/pet_add_order_model.dart';
 import 'package:pet_met/models/shop_details_screen_models/shop_details_model.dart';
 import 'package:pet_met/utils/api_url.dart';
+import 'package:pet_met/utils/razorpay_key.dart';
+import 'package:pet_met/utils/user_details.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class ShopDetailsScreenController extends GetxController {
@@ -70,16 +73,16 @@ class ShopDetailsScreenController extends GetxController {
 
   void openCheckout({required int price}) async {
     var options = {
-      'key': 'rzp_test_dxCkKqtRKnvZdA',
+      'key': RazorpayKey.razorpayKey,
       'amount': price * 100,
       'name': shopData[0].shopename,
-      'description': "",
+      'description': shopData[0].fullText,
       'retry': {'enabled': true, 'max_count': 1},
       'send_sms_hash': true,
-      'prefill': {
-        'contact': shopData[0].phonenumber,
-        'email': 'test@razorpay.com'
-      },
+      // 'prefill': {
+      //   'contact': shopData[0].phonenumber,
+      //   'email': 'test@razorpay.com'
+      // },
       'external': {
         'wallets': ['paytm']
       }
@@ -94,6 +97,11 @@ class ShopDetailsScreenController extends GetxController {
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) async {
     log('Success Response: ${response.orderId}');
+
+    await petAddOrderFunction(
+        orderId: response.orderId,
+        paymentId: response.paymentId!,
+        signature: response.signature);
 
     Fluttertoast.showToast(
         msg: "Payment Successful", toastLength: Toast.LENGTH_SHORT);
@@ -119,6 +127,50 @@ class ShopDetailsScreenController extends GetxController {
         msg: "EXTERNAL_WALLET: " + response.walletName!,
         toastLength: Toast.LENGTH_SHORT);
     log("response Wallet : ${response.walletName}");
+  }
+
+  Future<void> petAddOrderFunction(
+      {String? orderId, required String paymentId, String? signature}) async {
+    isLoading(true);
+    String url = ApiUrl.petAddOrderApi;
+
+    Map<String, dynamic> data = {
+      "userid": UserDetails.selfId.toString(),
+      "categoryID": UserDetails.categoryId,
+      "meettingpetuserid": '',
+      "meettingpetusercategory": '',
+      "userpetid": "1",
+      "meettingpetid": "10",
+      "price": "200",
+      "transition_orderid": orderId ?? "123",
+      "transition_paymentId": paymentId,
+      "signature": signature ?? "123"
+    };
+
+    log("Add Order Api Url : $url");
+    //log("pet plan id : $petPlanId");
+    log('Add Order body: $data');
+
+    try {
+      Map<String, String> header = apiHeader.apiHeader();
+      http.Response response =
+      await http.post(Uri.parse(url), body: data, headers: header);
+      log("Vet Details Api Response : ${response.body}");
+      PetAddOrderModel petAddOrderModel =
+      PetAddOrderModel.fromJson(json.decode(response.body));
+      isSuccessStatus = petAddOrderModel.success.obs;
+
+      if (isSuccessStatus.value) {
+        // Fluttertoast.showToast(msg: petAddOrderModel.message);
+        // meetingStatus.value = true;
+      } else {
+        log("Pet Add Order Api Else Else");
+      }
+    } catch (e) {
+      log("Pet Add Order Error ::: $e");
+    } finally {
+      isLoading(false);
+    }
   }
 
   @override

@@ -317,50 +317,8 @@ class IndexScreenController extends GetxController {
 
   @override
   void onInit() {
-    getLocationFunction();
-    super.onInit();
-  }
+    // getLocationFunction();
 
-  getLocationFunction() async {
-    isLoading(true);
-    bool isServiceEnabled;
-    LocationPermission permission;
-
-    isServiceEnabled = await Geolocator.isLocationServiceEnabled();
-
-    if (!isServiceEnabled) {
-      await Geolocator.openLocationSettings();
-      return Future.error('Location service are disabled.');
-    }
-
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return Future.error('Location permission are denied');
-      }
-    }
-    if (permission == LocationPermission.deniedForever) {
-      return Future.error(
-          'Location permission are permanently denied, we cannot request permissions.');
-    }
-
-    /*streamSubscription = Geolocator.getPositionStream().listen((Position position) async {
-      // Current Location store in prefs
-      await userPreference.setUserLocation(
-        latitude: position.latitude.toString(),
-        longitude: position.longitude.toString(),
-      );
-    });*/
-
-    Position position = await Geolocator.getCurrentPosition();
-    // Current Location store in prefs
-    await userPreference.setUserLocation(
-      latitude: position.latitude.toString(),
-      longitude: position.longitude.toString(),
-    );
-
-    //
     if (UserDetails.categoryId == "1") {
       getUserProfileFunction();
     } else if (UserDetails.categoryId == "2") {
@@ -370,5 +328,10 @@ class IndexScreenController extends GetxController {
     } else if (UserDetails.categoryId == "4") {
       getTrainerProfileFunction();
     }
+
+
+    super.onInit();
   }
+
+
 }

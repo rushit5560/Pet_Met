@@ -26,8 +26,8 @@ class PetTrainersScreenController extends GetxController {
 
     try {
       Map<String, dynamic> bodyData = {
-        "longitude": UserDetails.liveLatitude,
-        "latitude": UserDetails.liveLongitude
+        "latitude": UserDetails.liveLatitude,
+        "longitude": UserDetails.liveLongitude
       };
 
       Map<String, String> header = apiHeader.apiHeader();

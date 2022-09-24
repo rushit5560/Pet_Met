@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -1568,7 +1569,7 @@ class DetailsTextFieldModule extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text.rich(TextSpan(
-                text: 'Details ',
+                text: 'Shop Details ',
                 style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
                 children: const <InlineSpan>[
                   TextSpan(
@@ -1749,7 +1750,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text.rich(TextSpan(
-                  text: 'Open shop time ',
+                  text: 'Shop Open time ',
                   style:
                       TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
                   children: const <InlineSpan>[
@@ -1834,7 +1835,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text.rich(TextSpan(
-                  text: 'Close shop time ',
+                  text: 'Shop Close time ',
                   style:
                       TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
                   children: const <InlineSpan>[
@@ -1977,7 +1978,7 @@ class GetVerifiedInfo extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "To get verified submit below documents",
+                      "To get verify submit below documents",
                       style: TextStyle(
                         fontSize: 15,
                         color: themeProvider.darkTheme
@@ -1988,7 +1989,7 @@ class GetVerifiedInfo extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Text(
                   "1. Shop Registration certificate",
                   style: TextStyle(
@@ -1999,7 +2000,7 @@ class GetVerifiedInfo extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Text(
                   "2. Two pictures of your shop",
                   style: TextStyle(
@@ -2010,15 +2011,21 @@ class GetVerifiedInfo extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                SizedBox(height: 20),
-                Text(
-                  "Mail it on : info@petomate.com",
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: themeProvider.darkTheme
-                        ? AppColors.whiteColor
-                        : AppColors.darkThemeColor,
-                    fontWeight: FontWeight.w500,
+                const SizedBox(height: 20),
+                GestureDetector(
+                  onTap: () {
+                    Clipboard.setData(const ClipboardData(text: "info@petomate.com"));
+                    Fluttertoast.showToast(msg: "Copied");
+                  },
+                  child: Text(
+                    "Mail it on : info@petomate.com",
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.darkThemeColor,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
               ],
@@ -2039,13 +2046,17 @@ class GetVerifiedInfo extends StatelessWidget {
               fontWeight: FontWeight.w400,
             ),
           ),
-          Icon(
+          Image.asset(AppIcons.verifiedSymbolImg,
+            width: 30,
+            height: 30,
+          ),
+         /* Icon(
             Icons.verified_outlined,
             size: 24,
             color: themeProvider.darkTheme
                 ? AppColors.whiteColor
                 : AppColors.darkThemeColor,
-          )
+          )*/
         ],
       ),
     );

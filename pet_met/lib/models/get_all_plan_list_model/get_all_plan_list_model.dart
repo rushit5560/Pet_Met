@@ -112,6 +112,7 @@ class PlanData {
     required this.createdDate,
     required this.modifiedBy,
     required this.updatedDate,
+    required this.palnactive,
   });
 
   String id;
@@ -126,6 +127,7 @@ class PlanData {
   String createdDate;
   String modifiedBy;
   String updatedDate;
+  String palnactive;
 
   factory PlanData.fromJson(Map<String, dynamic> json) => PlanData(
     id: json["id"] ?? "",
@@ -140,6 +142,7 @@ class PlanData {
     createdDate: json["created_date"] ?? "",
     modifiedBy: json["modified_by"] ?? "",
     updatedDate: json["updated_date"] ?? "",
+    palnactive: json["palnactive"] ?? "",
   );
 
   Map<String, dynamic> toJson() => {
@@ -154,7 +157,8 @@ class PlanData {
     "created_by": createdBy,
     "created_date": createdDate,
     "modified_by": modifiedBy,
-    "updated_date": updatedDate
+    "updated_date": updatedDate,
+    "palnactive": palnactive,
   };
 }
 
