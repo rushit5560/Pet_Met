@@ -8,7 +8,6 @@ import 'package:pet_met/screens/shop_details_screen/shop_details_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_functions/hide_keyboard.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:pet_met/utils/validations.dart';
@@ -390,7 +389,7 @@ class ShopListModule extends StatelessWidget {
                       SizedBox(height: 1.w),
                       Text(
                         searchShopItem.address,
-                        maxLines: 4,
+                        maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           color: themeProvider.darkTheme

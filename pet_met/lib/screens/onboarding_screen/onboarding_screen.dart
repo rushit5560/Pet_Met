@@ -66,10 +66,18 @@ class OnboardingScreen extends StatelessWidget {
                             SizedBox(height: 5.h),
                             Row(
                               children: [
-                                Image.asset(
+                                Text(
+                                    controller.onBoardingPages[index].logo,
+                                  style: TextStyle(
+                                    fontSize: 20.sp,
+                                    color: AppColors.accentTextColor,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                /*Image.asset(
                                   controller.onBoardingPages[index].logo,
                                   width: 25.w,
-                                ),
+                                ),*/
                               ],
                             ),
                             SizedBox(height: 3.h),
@@ -78,12 +86,12 @@ class OnboardingScreen extends StatelessWidget {
                                 SizedBox(
                                   width: controller.size.width * 0.6,
                                   child: Text(
-                                    controller.onBoardingPages[index].title,
+                                    controller.onBoardingPages[index].title.toString().toUpperCase(),
                                     style: TextStyle(
                                       color: themeProvider.darkTheme
                                           ? AppColors.whiteColor
                                           : AppColors.blackTextColor,
-                                      fontSize: 16.sp,
+                                      fontSize: 15.sp,
                                       fontWeight: FontWeight.bold,
                                       height: 1.2,
                                     ),

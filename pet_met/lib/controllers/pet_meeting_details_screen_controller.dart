@@ -110,7 +110,10 @@ class PetMeetingDetailsScreenController extends GetxController {
       'description': details,
       'retry': {'enabled': true, 'max_count': 1},
       'send_sms_hash': true,
-      'prefill': {'contact': '8888888888', 'email': 'test@razorpay.com'},
+      'prefill': {
+        'contact': UserDetails.userName,
+        'email': UserDetails.userEmail,
+      },
       'external': {
         'wallets': ['paytm']
       }

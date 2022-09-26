@@ -73,7 +73,7 @@ class NgoAchivementPictureListModule extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    "NGO Achievement Picture",
+                    "Vet & Ngo Pet Picture",
                     style: TextStyle(
                       color: AppColors.accentTextColor,
                       fontSize: 13.sp,
@@ -646,6 +646,7 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {
+      Fluttertoast.showToast(msg: "Contact number is not available!");
       throw 'Could not launch $url';
     }
   }
@@ -677,6 +678,7 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
         log("Launched browser $launched");
       }
     } catch (e) {
+      Fluttertoast.showToast(msg: "Facebook link is not available!");
       await launch(fbWebUrl, forceSafariVC: false);
       log("Inside catch");
     }
@@ -691,6 +693,7 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
         // universalLinksOnly: true,
       );
     } else {
+      Fluttertoast.showToast(msg: "Instagram link is not available!");
       throw 'There was a problem to open the url: $url';
     }
   }
@@ -786,7 +789,6 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        //screenController.openCheckout();
         if(screenController.vetAndNgoName == UserDetails.userName) {
           Fluttertoast.showToast(msg: "Vet & Ngo can't pay/donate to itself.");
         }

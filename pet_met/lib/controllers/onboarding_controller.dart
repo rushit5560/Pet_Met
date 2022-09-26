@@ -52,25 +52,28 @@ class OnboardingController extends GetxController {
 
     onBoardingPages = [
       OnBoardingInfo(
-        logo: "assets/images/petmet_logo.png",
+        // logo: "assets/images/petmet_logo.png",
+        logo: "Peto'Mate",
         imageAsset: themeProvider.darkTheme
             ? "assets/images/splash_peoples2_dark.png"
             : "assets/images/splash_peoples2_light.png",
-        title: 'Meet other pet parents online easily',
+        title: 'Meet other pet parents online',
         description:
             'Login from your location and communicate with other pet parents locally & globally',
       ),
       OnBoardingInfo(
-        logo: "assets/images/petmet_logo.png",
+        // logo: "assets/images/petmet_logo.png",
+        logo: "Peto'Mate",
         imageAsset: themeProvider.darkTheme
             ? "assets/images/splash_dogs1_dark.png"
             : "assets/images/splash_dogs1_light.png",
         title: 'Find pet shops, doctors, ngos & trainers on a single tap',
         description:
-            'Easy to access and locate essential daily needs of pets nearby you.',
+            'Easy to access and locate essential daily needs of pets nearby!!',
       ),
       OnBoardingInfo(
-        logo: "assets/images/petmet_logo.png",
+        // logo: "assets/images/petmet_logo.png",
+        logo: "Peto'Mate",
         imageAsset: themeProvider.darkTheme
             ? "assets/images/splash_peoples3_dark.png"
             : "assets/images/splash_peoples3_light.png",

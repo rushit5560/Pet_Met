@@ -567,12 +567,8 @@ class UserProfileController extends GetxController {
       'retry': {'enabled': true, 'max_count': 1},
       'send_sms_hash': true,
       'prefill': {
-        'contact': followCategoryId == "1"
-            ? userMobileNumber
-            : followCategoryId == "2"
-                ? shopMobileNumber
-                : "",
-        'email': 'test@razorpay.com'
+        'contact': UserDetails.userName,
+        'email': UserDetails.userEmail,
       },
       'external': {
         'wallets': ['paytm']

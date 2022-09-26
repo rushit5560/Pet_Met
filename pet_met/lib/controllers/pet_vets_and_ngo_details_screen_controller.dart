@@ -16,6 +16,8 @@ class PetVetsAndNgoDetailsScreenController extends GetxController {
   String vetAndNgoCatId = "";
   String vetAndNgoName = "";
   String vetAndNgoEmail = "";
+  String vetAndNgoMobileNo = "";
+  String vetAndNgoUpi = "";
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
@@ -52,6 +54,9 @@ class PetVetsAndNgoDetailsScreenController extends GetxController {
         vetAndNgoName = "${vetsNgoDetailsModel.data[0].name}";
         vetAndNgoEmail = "${vetsNgoDetailsModel.data[0].email}";
         vetAndNgoCatId = "${vetsNgoDetailsModel.data[0].categoryId}";
+        vetAndNgoMobileNo = "${vetsNgoDetailsModel.data[0].phone}";
+        vetAndNgoUpi = vetsNgoDetailsModel.data[0].gpayupi ?? "";
+
         if (isVerify == "0") {
           isVerified = true;
         } else {
@@ -79,10 +84,15 @@ class PetVetsAndNgoDetailsScreenController extends GetxController {
       'description': vetsNgoDetailsData[0].fullText,
       'retry': {'enabled': true, 'max_count': 1},
       'send_sms_hash': true,
-      // 'prefill': {'contact': '8888888888', 'email': 'test@razorpay.com'},
-      'external': {
-        'wallets': ['paytm']
-      }
+      'prefill': {
+        'contact': UserDetails.userName,
+        'email': UserDetails.userEmail,
+        'vpa': vetAndNgoUpi,
+      },
+      /*'external': {
+        'wallets': ['paytm'],
+        'upi': 'abc@oksbi',
+      }*/
 
     };
 

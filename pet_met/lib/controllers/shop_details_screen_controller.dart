@@ -16,6 +16,7 @@ class ShopDetailsScreenController extends GetxController {
 
   String shopName = "";
   String shopEmail = "";
+  String shopUpi = "";
 
   String shopCatId = "";
   RxBool isLoading = false.obs;
@@ -54,6 +55,7 @@ class ShopDetailsScreenController extends GetxController {
         String isVerify = "${shopDetailsModel.data[0].isVerified}";
         shopName = "${shopDetailsModel.data[0].shopename}";
         shopEmail = "${shopDetailsModel.data[0].email}";
+        shopUpi = shopDetailsModel.data[0].gpayupi ?? "";
 
         shopCatId = "${shopDetailsModel.data[0].categoryID}";
         if (isVerify == "0") {
@@ -79,13 +81,14 @@ class ShopDetailsScreenController extends GetxController {
       'description': shopData[0].fullText,
       'retry': {'enabled': true, 'max_count': 1},
       'send_sms_hash': true,
-      // 'prefill': {
-      //   'contact': shopData[0].phonenumber,
-      //   'email': 'test@razorpay.com'
-      // },
-      'external': {
+      'prefill': {
+        'contact': UserDetails.userName,
+        'email': UserDetails.userEmail,
+        'vpa': shopUpi,
+      },
+      /*'external': {
         'wallets': ['paytm']
-      }
+      }*/
     };
 
     try {

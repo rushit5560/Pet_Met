@@ -1,17 +1,17 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/models/add_order_screen_model/pet_add_order_model.dart';
 import 'package:pet_met/models/pet_trainers_details_screen_models/trainer_details_model.dart';
-import 'package:pet_met/models/pet_trainers_screen_models/all_trainer_model.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:http/http.dart' as http;
 import 'package:pet_met/utils/razorpay_key.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+
+
 
 class PetTrainersDetailsScreenController extends GetxController {
   // Get Trainer Id From Trainer List Screen
@@ -21,6 +21,7 @@ class PetTrainersDetailsScreenController extends GetxController {
   String trainerName = "";
 
   String trainerEmail = "";
+  String trainerUpi = "";
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
@@ -60,6 +61,7 @@ class PetTrainersDetailsScreenController extends GetxController {
         trainerName = trainerDetailsModel.data[0].name;
         trainerId = trainerDetailsModel.data[0].id;
         trainerEmail = trainerDetailsModel.data[0].email;
+        trainerUpi = trainerDetailsModel.data[0].gpayupi;
         String isVerify = trainerDetailsModel.data[0].isVerified;
         if (isVerify == "0") {
           isVerified = true;
@@ -84,9 +86,14 @@ class PetTrainersDetailsScreenController extends GetxController {
       'description': "",
       'retry': {'enabled': true, 'max_count': 1},
       'send_sms_hash': true,
-      'external': {
+      'prefill': {
+        'contact': UserDetails.userName,
+        'email': UserDetails.userEmail,
+        'vpa': trainerUpi,
+      },
+      /*'external': {
         'wallets': ['paytm']
-      }
+      }*/
     };
 
     try {

@@ -18,7 +18,7 @@ class SubscriptionOrderListModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return screenController.subscriptionOrderList.isEmpty
-        ? const Center(child: Text("Subscription Not Found!"))
+        ? const Center(child: Text("Subscription Report Not Found!"))
         : ListView.builder(
             shrinkWrap: true,
             physics: const AlwaysScrollableScrollPhysics(),

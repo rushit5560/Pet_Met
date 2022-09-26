@@ -65,21 +65,15 @@ class PetPricingScreen extends StatelessWidget {
                                       itemBuilder: (context, index) {
                                         return PetTrackerPriceModule(
                                           index: index,
-                                          petPriceText: controller
-                                              .planData[index].rs
-                                              .toString(),
-                                          overviewText: controller
-                                              .planData[index].overview,
-                                          planDays: controller
-                                              .planData[index].days
-                                              .toString(),
-                                          planType:
-                                              controller.planData[index].name,
+                                          petPriceText: controller.planData[index].rs.toString(),
+                                          overviewText: controller.planData[index].overview,
+                                          planDays: controller.planData[index].days.toString(),
+                                          planType: controller.planData[index].name,
                                           activePlan: controller.planData[index].palnactive,
                                         );
                                       },
                                       separatorBuilder: (context, ind) {
-                                        return SizedBox(width: 12);
+                                        return const SizedBox(width: 12);
                                       },
                                     ),
 

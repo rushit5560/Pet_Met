@@ -28,6 +28,7 @@ class PetTrackerPricingController extends GetxController {
   int price = 0;
   String name = "";
   String overview = "";
+  String days = "";
 
   final formKey = GlobalKey<FormState>();
   late Razorpay _razorpay;
@@ -83,6 +84,7 @@ class PetTrackerPricingController extends GetxController {
           price = int.parse(planDetailsData[i].rs);
           name = planDetailsData[i].name;
           overview = planDetailsData[i].overview;
+          days = planDetailsData[i].days;
         }
         status = singlePlanDetailModel.status.obs;
         log("status: $status");
@@ -163,7 +165,10 @@ class PetTrackerPricingController extends GetxController {
       'description': overview,
       'retry': {'enabled': true, 'max_count': 1},
       'send_sms_hash': true,
-      'prefill': {'contact': '8888888888', 'email': 'test@razorpay.com'},
+      'prefill': {
+        'contact': UserDetails.userName,
+        'email': UserDetails.userEmail,
+      },
       'external': {
         'wallets': ['paytm']
       }

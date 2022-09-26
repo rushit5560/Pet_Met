@@ -1824,7 +1824,10 @@ class ShopUserProfileScreenController extends GetxController {
       'description': detailsController.text,
       'retry': {'enabled': true, 'max_count': 1},
       'send_sms_hash': true,
-      'prefill': {'contact': contactNumber.text, 'email': 'test@razorpay.com'},
+      'prefill': {
+        'contact': UserDetails.userName,
+        'email': UserDetails.userEmail,
+      },
       'external': {
         'wallets': ['paytm']
       }

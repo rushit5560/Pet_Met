@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/pet_pricing_controller.dart';
@@ -94,7 +95,9 @@ class PetTrackerPriceModule extends StatelessWidget {
                       Container(
                         height: 2,
                         width: 20,
-                        color: AppColors.blackColor,
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.greyTextColor,
                       )
                     ],
                   ),
@@ -106,12 +109,47 @@ class PetTrackerPriceModule extends StatelessWidget {
                       physics: const BouncingScrollPhysics(),
                       child: Column(
                         children: [
-                          PetTrackingDetailsCheckModule(
+                          Text(
+                            '($planDays days subscription)',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.greyTextColor,
+                              fontSize: 11.sp,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+
+                          Html(
+                            data: overviewText,
+                            style: {
+                              "body": Style(
+                                color: themeProvider.darkTheme
+                                    ? AppColors.whiteColor
+                                    : AppColors.blackTextColor,
+                                fontSize: FontSize(11.sp),
+                                fontWeight: FontWeight.w500,
+                                maxLines: 3,
+                              ),
+                              "p": Style(
+                                color: themeProvider.darkTheme
+                                    ? AppColors.whiteColor
+                                    : AppColors.blackTextColor,
+                                fontSize: FontSize(11.sp),
+                                fontWeight: FontWeight.w500,
+                                maxLines: 3,
+                              ),
+                            },
+                          ),
+
+                          /*PetTrackingDetailsCheckModule(
                               detailsText: overviewText),
                           PetTrackingDetailsCheckModule(
                             detailsText: "Valid for $planDays days",
                           ),
-                          PetTrackingDetailsCheckModule(),
+                          PetTrackingDetailsCheckModule(),*/
                         ],
                       ),
                     ),

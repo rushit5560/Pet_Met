@@ -140,7 +140,9 @@ class PetTrackerPriceModule extends StatelessWidget {
                     Container(
                       height: 2,
                       width: 20,
-                      color: AppColors.blackColor,
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.greyTextColor,
                     )
                   ],
                 ),
@@ -149,16 +151,48 @@ class PetTrackerPriceModule extends StatelessWidget {
                   height: controller.size.height * 0.24,
                   width: controller.size.width * 0.75,
                   child: SingleChildScrollView(
-                    physics: BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     child: Column(
                       children: [
-                        PetTrackingDetailsCheckModule(
+                        Text(
+                          '(${controller.days} days subscription)',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: themeProvider.darkTheme
+                                ? AppColors.whiteColor
+                                : AppColors.greyTextColor,
+                            fontSize: 11.sp,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+
+                        Html(
+                          data: controller.overview,
+                          style: {
+                            "body": Style(
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor,
+                              fontSize: FontSize(12.sp),
+                              fontWeight: FontWeight.w500,
+                            ),
+                            "p": Style(
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor,
+                              fontSize: FontSize(12.sp),
+                              fontWeight: FontWeight.w500,
+                            ),
+                          },
+                        ),
+                        /*PetTrackingDetailsCheckModule(
                           detailsText: controller.overview,
                         ),
                         PetTrackingDetailsCheckModule(
                           detailsText: "valid for ${controller.overview} days",
                         ),
-                        PetTrackingDetailsCheckModule(),
+                        PetTrackingDetailsCheckModule(),*/
                       ],
                     ),
                   ),

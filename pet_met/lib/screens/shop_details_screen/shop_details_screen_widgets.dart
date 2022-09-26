@@ -71,8 +71,9 @@ class OffersModule extends StatelessWidget {
           children: const [
             Expanded(
               child: Text(
-                "Offers & Discounts:",
-                style: TextStyle(color: AppColors.accentTextColor),
+                "Offers & Discounts :",
+                style: TextStyle(color: AppColors.accentTextColor,
+                  fontWeight: FontWeight.bold,),
               ),
             ),
             // screenController.isVerified == true
@@ -1189,7 +1190,7 @@ class MeetingAvailabilityModule extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
-          "Availability",
+          "Pet Availability",
           style: TextStyle(
               color: AppColors.accentTextColor,
               // fontWeight: FontWeight.bold,
