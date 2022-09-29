@@ -356,7 +356,7 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
         GestureDetector(
           onTap: () {
             if(screenController.vetsNgoDetailsData[0].instagram == "") {
-             Fluttertoast.showToast(msg: "Link Not Available");
+              Fluttertoast.showToast(msg: "Instagram link is not available!");
             } else {
               String url = "${screenController.vetsNgoDetailsData[0].instagram}";
               _makingInstagramApp(url);
@@ -381,7 +381,7 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
           onTap: () {
 
             if(screenController.vetsNgoDetailsData[0].facebook == "") {
-              Fluttertoast.showToast(msg: "Link Not Available");
+              Fluttertoast.showToast(msg: "Facebook link is not available!");
             } else {
               var fbUrl = "${screenController.vetsNgoDetailsData[0].facebook}";
               launchFacebook(fbUrl, fbUrl);
@@ -659,11 +659,11 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
     try {
       launch(whatsappUrl);
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text("Unable to open whatsapp"),
-        ),
-      );
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   const SnackBar(
+      //     content: Text("Unable to open whatsapp"),
+      //   ),
+      // );
       Fluttertoast.showToast(msg: "Unable to open whatsapp");
     }
   }

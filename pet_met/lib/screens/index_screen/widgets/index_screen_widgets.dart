@@ -197,7 +197,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                       ),
                                       Text(
                                         UserDetails.categoryId == "1"
-                                            ? "Individual User"
+                                            ? "Pet Parents"
                                             : UserDetails.categoryId == "2"
                                                 ? "Shop"
                                                 : UserDetails.categoryId == "3"
@@ -655,7 +655,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                       ),
 
                                       /// Meeting Report
-                                      UserDetails.categoryId == "1" || UserDetails.categoryId == "2"
+                                      /*UserDetails.categoryId == "1" || UserDetails.categoryId == "2"
                                           ? drawerListTile(
                                               onTap: () {
                                                 indexController
@@ -681,7 +681,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                                 ),
                                               ),
                                             )
-                                          : Container(),
+                                          : Container(),*/
 
                                       /// Subscription report
                                       UserDetails.categoryId == "2" ||

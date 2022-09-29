@@ -68,11 +68,11 @@ class PetMeetingDetailsScreen extends StatelessWidget {
                                     height: petMeetingDetailsScreenController
                                             .size.height *
                                         0.005.w),
-                                CallUsForMeetupModule(),
-                                SizedBox(
+                                // CallUsForMeetupModule(),
+                                /*SizedBox(
                                     height: petMeetingDetailsScreenController
                                             .size.height *
-                                        0.005.w),
+                                        0.005.w),*/
                                 PetMeetingOverViewModule(),
                                 SizedBox(
                                     height: petMeetingDetailsScreenController

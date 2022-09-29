@@ -347,18 +347,18 @@ class PetPlaceTimePaymentModule extends StatelessWidget {
     return Column(
       children: [
         // Pet Address Module
-        Text(
+        /*Text(
           "Besides Kantilal Jewellers, Sargam Shopping Center, U 11-12, Anmol Complex surat 395006",
           style: TextStyle(
             color: themeProvider.darkTheme
                 ? AppColors.whiteColor
                 : AppColors.blackTextColor,
           ),
-        ),
-        SizedBox(height: screenController.size.height * 0.001.h),
+        ),*/
+        // SizedBox(height: screenController.size.height * 0.001.h),
 
         // Pet Location Module
-        Row(
+        /*Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
@@ -382,7 +382,7 @@ class PetPlaceTimePaymentModule extends StatelessWidget {
               ),
             ),
           ],
-        ),
+        ),*/
 
         // Pet Age Module
         /*Row(
@@ -536,6 +536,20 @@ class PetMeetingOverViewModule extends StatelessWidget {
                   : AppColors.blackTextColor,
               // fontSize: FontSize(15.0),
               // fontWeight: FontWeight.w500,
+            ),
+            "b": Style(
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.blackTextColor,
+              fontSize: const FontSize(15.0),
+              fontWeight: FontWeight.w500,
+            ),
+            "span": Style(
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.blackTextColor,
+              fontSize: const FontSize(15.0),
+              fontWeight: FontWeight.w500,
             ),
           },
         ),

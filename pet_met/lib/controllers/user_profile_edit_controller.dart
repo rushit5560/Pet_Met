@@ -392,8 +392,8 @@ class UserProfileEditController extends GetxController {
       request.fields['userid'] = UserDetails.userId;
       request.fields['uid'] = UserDetails.selfId;
       request.fields['full_text'] = detailsController.text.trim();
-      request.fields['instagram'] = instagramController.text.trim();
-      request.fields['facebook'] = facebookController.text.trim();
+      request.fields['instagram'] = "instagram.com";
+      request.fields['facebook'] = "facebook.com";
 
       var response = await request.send();
       log('response: ${response.request}');

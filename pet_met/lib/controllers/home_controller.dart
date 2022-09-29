@@ -136,25 +136,29 @@ class HomeController extends GetxController {
         bannerList1.clear();
         for (int i = 0; i < bannerModel.data.length; i++) {
           if (bannerModel.data[i].image1 != "") {
-            bannerList1.add(SingleBannerModel(
-                img: bannerModel.data[i].image1, id: bannerModel.data[i].id));
+            bannerList1.add(
+              SingleBannerModel(
+                img: bannerModel.data[i].image1,
+                id: bannerModel.data[i].id,
+              ),
+            );
           }
-          if (bannerModel.data[i].image2 != "") {
-            bannerList1.add(SingleBannerModel(
-                img: bannerModel.data[i].image2, id: bannerModel.data[i].id));
-          }
-          if (bannerModel.data[i].image3 != "") {
-            bannerList1.add(SingleBannerModel(
-                img: bannerModel.data[i].image3, id: bannerModel.data[i].id));
-          }
-          if (bannerModel.data[i].image4 != "") {
-            bannerList1.add(SingleBannerModel(
-                img: bannerModel.data[i].image4, id: bannerModel.data[i].id));
-          }
-          if (bannerModel.data[i].image5 != "") {
-            bannerList1.add(SingleBannerModel(
-                img: bannerModel.data[i].image5, id: bannerModel.data[i].id));
-          }
+          // if (bannerModel.data[i].image2 != "") {
+          //   bannerList1.add(SingleBannerModel(
+          //       img: bannerModel.data[i].image2, id: bannerModel.data[i].id));
+          // }
+          // if (bannerModel.data[i].image3 != "") {
+          //   bannerList1.add(SingleBannerModel(
+          //       img: bannerModel.data[i].image3, id: bannerModel.data[i].id));
+          // }
+          // if (bannerModel.data[i].image4 != "") {
+          //   bannerList1.add(SingleBannerModel(
+          //       img: bannerModel.data[i].image4, id: bannerModel.data[i].id));
+          // }
+          // if (bannerModel.data[i].image5 != "") {
+          //   bannerList1.add(SingleBannerModel(
+          //       img: bannerModel.data[i].image5, id: bannerModel.data[i].id));
+          // }
         }
         // log("bannerList Length : ${bannerList.length}");
       } else {

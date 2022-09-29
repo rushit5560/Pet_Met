@@ -91,7 +91,7 @@ class OnboardingScreen extends StatelessWidget {
                                       color: themeProvider.darkTheme
                                           ? AppColors.whiteColor
                                           : AppColors.blackTextColor,
-                                      fontSize: 15.sp,
+                                      fontSize: 14.sp,
                                       fontWeight: FontWeight.bold,
                                       height: 1.2,
                                     ),

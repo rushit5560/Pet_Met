@@ -97,6 +97,20 @@ class SupportScreen extends StatelessWidget {
                                         fontSize: const FontSize(20.0),
                                         fontWeight: FontWeight.w500,
                                       ),
+                                      "b": Style(
+                                        color: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                            : AppColors.blackTextColor,
+                                        fontSize: const FontSize(15.0),
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      "span": Style(
+                                        color: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                            : AppColors.blackTextColor,
+                                        fontSize: const FontSize(15.0),
+                                        fontWeight: FontWeight.w500,
+                                      ),
                                     },
                                   ),
                                   /*contactInfoRow(

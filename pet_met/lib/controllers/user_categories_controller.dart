@@ -31,8 +31,8 @@ class UserCategoriesController extends GetxController {
   var boolsList = [];
 
   List userTypeCategories = [
-    "Individual pet categories",
-    "Pet Shops & Grooming",
+    "Pet Parents",
+    "Pet Shops, Cafe & Grooming",
     "Pet Vets & Ngo",
     "Pet Trainers & Breeders",
   ];

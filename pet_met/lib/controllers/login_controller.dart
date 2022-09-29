@@ -271,7 +271,7 @@ class LoginController extends GetxController {
         'name': userName,
         'email': userEmail,
         'password': '12345678',
-        'categoryID': UserDetails.roleId,
+        'categoryID': "${UserDetails.roleId}",
         'googlekey': userId,
       };
       log("data : $data");

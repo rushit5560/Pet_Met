@@ -98,7 +98,7 @@ class SubscriptionOrderListModule extends StatelessWidget {
                       ],
                     ),
 
-                    Positioned(
+                   /* Positioned(
                       top: 0,
                       right: 0,
                       child: GestureDetector(
@@ -108,14 +108,15 @@ class SubscriptionOrderListModule extends StatelessWidget {
                         child: Container(
                           child: screenController.activatedPlanId ==
                                   screenController.subscriptionOrderList[i].planid
-                              ? /*const Text(
+                              ? */
+                    /*const Text(
                                   'Active',
                                   style: TextStyle(
                                     // fontSize: 22,
                                     color: AppColors.accentTextColor,
                                     fontWeight: FontWeight.bold,
                                   ),
-                                )*/
+                                )*//*
                               Image.asset(
                                   AppIcons.verifiedSymbolImg,
                                   width: 30,
@@ -124,7 +125,7 @@ class SubscriptionOrderListModule extends StatelessWidget {
                               : Container(),
                         ),
                       ),
-                    ),
+                    ),*/
                   ],
                 ).commonAllSidePadding(padding: 8),
               ).commonSymmetricPadding(vertical: 8);

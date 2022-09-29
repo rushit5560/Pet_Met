@@ -124,7 +124,7 @@ class SplashScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  "``Your Personal pet Companion.,,",
+                  "``Your Personal pet Community.,,".toUpperCase(),
                   style: TextStyle(
                     fontSize: 11.sp,
                     color: themeProvider.darkTheme

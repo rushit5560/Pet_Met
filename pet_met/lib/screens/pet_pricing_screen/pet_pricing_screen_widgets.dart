@@ -141,6 +141,20 @@ class PetTrackerPriceModule extends StatelessWidget {
                                 fontWeight: FontWeight.w500,
                                 maxLines: 3,
                               ),
+                              "b": Style(
+                                color: themeProvider.darkTheme
+                                    ? AppColors.whiteColor
+                                    : AppColors.blackTextColor,
+                                fontSize: const FontSize(15.0),
+                                fontWeight: FontWeight.w500,
+                              ),
+                              "span": Style(
+                                color: themeProvider.darkTheme
+                                    ? AppColors.whiteColor
+                                    : AppColors.blackTextColor,
+                                fontSize: const FontSize(15.0),
+                                fontWeight: FontWeight.w500,
+                              ),
                             },
                           ),
 

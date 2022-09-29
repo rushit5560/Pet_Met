@@ -1,5 +1,6 @@
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/faq_controller.dart';
 import 'package:pet_met/utils/app_colors.dart';
@@ -81,8 +82,37 @@ class FaqListModule extends StatelessWidget {
           ),
           collapsed: Container(),
           expanded: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            child: Text(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              child: Html(
+                data: controller.faqList[index].answer,
+                style: {
+                  "body": Style(
+                    fontSize: const FontSize(15),
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.greyTextColor,
+                  ),
+                  "p": Style(
+                    fontSize: const FontSize(15),
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.greyTextColor,
+                  ),
+                  "b": Style(
+                    fontSize: const FontSize(15),
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.greyTextColor,
+                  ),
+                  "span": Style(
+                    fontSize: const FontSize(15),
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.greyTextColor,
+                  ),
+                },
+              )
+              /*child: Text(
               controller.faqList[index].answer,
               style: TextStyle(
                 fontSize: 14,
@@ -90,8 +120,8 @@ class FaqListModule extends StatelessWidget {
                     ? AppColors.whiteColor
                     : AppColors.greyTextColor,
               ),
-            ),
-          ),
+            ),*/
+              ),
         ).commonSymmetricPadding(vertical: 5),
       ).commonSymmetricPadding(vertical: 5),
     );

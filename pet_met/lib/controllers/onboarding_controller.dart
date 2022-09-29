@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/screens/user_categories_screen/user_categories_screen.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:provider/provider.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -65,8 +64,8 @@ class OnboardingController extends GetxController {
         // logo: "assets/images/petmet_logo.png",
         logo: "Peto'Mate",
         imageAsset: themeProvider.darkTheme
-            ? "assets/images/splash_dogs1_dark.png"
-            : "assets/images/splash_dogs1_light.png",
+            ? "assets/images/splash_dogs1_dark1.png"
+            : "assets/images/splash_dogs1_dark1.png",
         title: 'Find pet shops, doctors, ngos & trainers on a single tap',
         description:
             'Easy to access and locate essential daily needs of pets nearby!!',

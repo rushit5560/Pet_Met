@@ -384,7 +384,7 @@ class PayButtonModule extends StatelessWidget {
         onTap: () async {
           // screenController.openCheckout();
           // Fluttertoast.showToast(msg: 'Processing payment to trainer.');
-          if(screenController.shopName == UserDetails.shopName) {
+          if(screenController.shopName == UserDetails.userName) {
             Fluttertoast.showToast(msg: "Shop can't pay to itself.");
           } else {
             alertDialogBox(context);
@@ -555,7 +555,6 @@ class PayButtonModule extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        Get.back();
                         //await screenController.userLoginFunction();
                         if (screenController.formKey.currentState!.validate()) {
                           Get.back();

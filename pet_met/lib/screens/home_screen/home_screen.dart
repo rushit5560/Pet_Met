@@ -160,14 +160,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                   borderRadius: BorderRadius.circular(30),
                                   child: Image.network(
                                     controller.userprofile.value,
-                                    width: 50,
-                                    height: 50,
+                                    width: 55,
+                                    height: 55,
                                     fit: BoxFit.cover,
                                     errorBuilder: (context, st, ob) {
                                       return Image.asset(
                                         AppImages.petMetLogoImg,
-                                        width: 50,
-                                        height: 50,
+                                        width: 55,
+                                        height: 55,
                                         fit: BoxFit.cover,
                                       );
                                     },
@@ -249,6 +249,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             onRefresh: () {
                               return Future.delayed(const Duration(seconds: 1),
                                   () {
+                                controller.pageIndex = 1;
                                 if (UserDetails.categoryId == "1") {
                                   controller.getUserProfileFunction();
                                 } else if (UserDetails.categoryId == "2") {

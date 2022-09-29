@@ -123,6 +123,8 @@ class PetTopListModule extends StatelessWidget {
                               const SizedBox(height: 2),
                               Text(
                                 homeController.petTopList[i].data.petName,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
                                   color: AppColors.accentTextColor,
                                   fontSize: 18.sp,
@@ -130,7 +132,7 @@ class PetTopListModule extends StatelessWidget {
                                 ),
                               ),
                               Html(
-                                data: homeController.petTopList[i].data.details,
+                                data: homeController.petTopList[i].data.details.trim(),
                                 shrinkWrap: true,
                                 style: {
                                   "body": Style(
@@ -147,6 +149,22 @@ class PetTopListModule extends StatelessWidget {
                                         ? AppColors.whiteColor
                                         : AppColors.blackTextColor
                                             .withOpacity(0.6),
+                                    fontSize: const FontSize(15.0),
+                                    fontWeight: FontWeight.w500,
+                                    maxLines: 2,
+                                  ),
+                                  "b": Style(
+                                    color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.blackTextColor,
+                                    fontSize: const FontSize(15.0),
+                                    fontWeight: FontWeight.w500,
+                                    maxLines: 2,
+                                  ),
+                                  "span": Style(
+                                    color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.blackTextColor,
                                     fontSize: const FontSize(15.0),
                                     fontWeight: FontWeight.w500,
                                     maxLines: 2,
@@ -232,14 +250,14 @@ class PetTopListModule extends StatelessWidget {
                                     homeController.petTopList[i].name.name,
                                     style: const TextStyle(
                                       color: AppColors.accentTextColor,
-                                      fontSize: 12,
+                                      fontSize: 14,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                   const SizedBox(width: 8),
                                   Container(
-                                    height: 25,
-                                    width: 25,
+                                    height: 30,
+                                    width: 30,
                                     decoration: BoxDecoration(
                                       // color: AppColors.greyColor,
                                       shape: BoxShape.circle,
@@ -771,9 +789,9 @@ class PetListModule extends StatelessWidget {
                               errorBuilder: (context, st, ob) {
                                 return Image.asset(
                                   AppImages.petMetLogoImg,
-                                  fit: BoxFit.fill,);
+                                  fit: BoxFit.contain);
                               },
-                              fit: BoxFit.fill,
+                              fit: BoxFit.contain,
                             ),
                           )
                         : UserDetails.categoryId == "2"
@@ -784,10 +802,10 @@ class PetListModule extends StatelessWidget {
                                   errorBuilder: (context, st, ob) {
                                     return Image.asset(
                                         AppImages.petMetLogoImg,
-                                      fit: BoxFit.fill,
+                                      fit: BoxFit.contain,
                                     );
                                   },
-                                  fit: BoxFit.fill,
+                                  fit: BoxFit.contain,
                                 ),
                               )
                             : UserDetails.categoryId == "3"
@@ -798,10 +816,10 @@ class PetListModule extends StatelessWidget {
                                       errorBuilder: (context, st, ob) {
                                         return Image.asset(
                                             AppImages.petMetLogoImg,
-                                          fit: BoxFit.fill,
+                                          fit: BoxFit.contain,
                                         );
                                       },
-                                      fit: BoxFit.fill,
+                                      fit: BoxFit.contain,
                                     ),
                                   )
                                 : UserDetails.categoryId == "4"
@@ -812,10 +830,10 @@ class PetListModule extends StatelessWidget {
                                           errorBuilder: (context, st, ob) {
                                             return Image.asset(
                                                 AppImages.petMetLogoImg,
-                                              fit: BoxFit.fill,
+                                              fit: BoxFit.contain,
                                             );
                                           },
-                                          fit: BoxFit.fill,
+                                          fit: BoxFit.contain,
                                         ),
                                       )
                                     : Container(),
@@ -1057,7 +1075,7 @@ class AddPetStoryWidget extends StatelessWidget {
                   errorBuilder: (context, st, ob) {
                     return Image.asset(AppImages.petMetLogoImg);
                   },
-                  fit: BoxFit.fill,
+                  fit: BoxFit.contain,
                 ),
               )
               // Image.asset(AppImages.petMetLogoImg)

@@ -9,9 +9,9 @@ import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:provider/provider.dart';
-import 'package:sizer/sizer.dart';
-
 import '../../services/providers/dark_theme_provider.dart';
+
+
 
 class PrivacyPolicyScreen extends StatelessWidget {
   PrivacyPolicyScreen({Key? key}) : super(key: key);
@@ -71,34 +71,49 @@ class PrivacyPolicyScreen extends StatelessWidget {
                                     data: privacyPolicyScreenController
                                         .description,
                                     style: {
-                                      "h3": Style(
+                                      "p": Style(
+                                        color: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                            : AppColors.blackTextColor,
+                                        fontSize: const FontSize(15.0),
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      "body": Style(
+                                        color: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                            : AppColors.blackTextColor,
+                                        fontSize: const FontSize(15.0),
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      "b": Style(
+                                        color: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                            : AppColors.blackTextColor,
+                                        fontSize: const FontSize(15.0),
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      "span": Style(
+                                        color: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                            : AppColors.blackTextColor,
+                                        fontSize: const FontSize(15.0),
+                                        fontWeight: FontWeight.w500,
+                                      ),
+
+                                      /*"h3": Style(
                                         color: themeProvider.darkTheme
                                             ? AppColors.whiteColor
                                             : AppColors.blackTextColor,
                                         fontSize: const FontSize(24.0),
                                         fontWeight: FontWeight.w500,
-                                      ),
-                                      "h4": Style(
+                                      ),*/
+                                      /*"h4": Style(
                                         color: themeProvider.darkTheme
                                             ? AppColors.whiteColor
                                             : AppColors.blackTextColor,
                                         fontSize: const FontSize(20.0),
                                         fontWeight: FontWeight.w500,
-                                      ),
-                                      "body": Style(
-                                        color: themeProvider.darkTheme
-                                            ? const Color(0xFFB3B3B3)
-                                            : AppColors.blackTextColor,
-                                        fontSize: const FontSize(15.0),
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                      "p": Style(
-                                        color: themeProvider.darkTheme
-                                            ? const Color(0xFFB3B3B3)
-                                            : AppColors.blackTextColor,
-                                        fontSize: const FontSize(15.0),
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                                      ),*/
                                     },
                                   ),
                                   /*Text(

@@ -746,7 +746,7 @@ class InstagramTextFieldModule extends StatelessWidget {
           hintText: "Instagram Link",
           textInputAction: TextInputAction.next,
           textInputType: TextInputType.text,
-          //validator: (val) => Validations().validateInstagramLink(val!),
+          // validator: (val) => Validations().validateInstagramLink(val!),
         ),
       ],
     );
