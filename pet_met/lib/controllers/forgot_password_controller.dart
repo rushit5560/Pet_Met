@@ -41,10 +41,10 @@ class ForgotPasswordController extends GetxController {
       log("Forgot password Response : ${response.body}");
 
 
-      if(isSuccessStatus.value) {
+      if(response.statusCode == 200) {
         Fluttertoast.showToast(msg: "Please check your mail!");
       } else {
-        Fluttertoast.showToast(msg: "msg");
+        Fluttertoast.showToast(msg: "Please try again!");
       }
 
     } catch(e) {
