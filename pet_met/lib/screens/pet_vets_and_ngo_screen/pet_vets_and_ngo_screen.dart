@@ -16,11 +16,11 @@ class PetVetsAndNgoScreen extends StatelessWidget {
   final petVetsAndNgoScreenController =
       Get.put(PetVetsAndNgoScreenController());
 
-  DarkThemeProvider themeProvider =
-      Provider.of<DarkThemeProvider>(Get.context!);
+
 
   @override
   Widget build(BuildContext context) {
+    DarkThemeProvider themeProvider = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -28,7 +28,8 @@ class PetVetsAndNgoScreen extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.topRight,
-              child: Image.asset(themeProvider.darkTheme
+              child: Image.asset(
+                  themeProvider.darkTheme
                   ? AppImages.backgroundImgDark
                   : AppImages.backgroundImgLight),
             ),
@@ -42,7 +43,7 @@ class PetVetsAndNgoScreen extends StatelessWidget {
               children: [
                 CustomAppBar(
                   title: "Pet Vets & NGO",
-                  appBarOption: AppBarOption.drawerButtonOption,
+                  appBarOption: AppBarOption.none,
                 ),
                 const SizedBox(height: 15),
                 Expanded(

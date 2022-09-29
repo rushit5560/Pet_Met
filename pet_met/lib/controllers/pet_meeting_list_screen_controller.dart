@@ -28,11 +28,15 @@ class PetMeetingListScreenController extends GetxController {
         "longitude": UserDetails.liveLongitude
       };
 
+      log('bodyData : $bodyData');
+
 
       http.Response response = await http.post(
         Uri.parse(url),
         body: bodyData,
       );
+
+      log('pet meeting list response : ${response.body}');
 
       GetPetTopListModel subcategoryWisePetModel = GetPetTopListModel.fromJson(json.decode(response.body));
        isSuccessStatus = subcategoryWisePetModel.success.obs;

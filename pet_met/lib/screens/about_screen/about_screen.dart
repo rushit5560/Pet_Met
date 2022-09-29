@@ -43,7 +43,7 @@ class AboutScreen extends StatelessWidget {
               children: [
                 CustomAppBar(
                   appBarOption: AppBarOption.singleBackButtonOption,
-                  title: "Pet'o Care",
+                  title: "About Us",
                 ),
                 Expanded(
                   child: Obx(

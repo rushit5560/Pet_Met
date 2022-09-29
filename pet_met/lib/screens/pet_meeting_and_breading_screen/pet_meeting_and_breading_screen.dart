@@ -23,61 +23,63 @@ class PetMeetingAndBreadingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Stack(
-        alignment: Alignment.topCenter,
-        children: [
-          Align(
-            alignment: Alignment.topRight,
-            child: Image.asset(themeProvider.darkTheme
-                ? AppImages.backgroundImgDark
-                : AppImages.backgroundImgLight),
-          ),
-          BackGroundLeftShadow(
-            height: petMeetingAndBreadingScreenController.size.height * 0.3,
-            width: petMeetingAndBreadingScreenController.size.height * 0.3,
-            topPad: petMeetingAndBreadingScreenController.size.height * 0.28,
-            leftPad: -petMeetingAndBreadingScreenController.size.width * 0.15,
-          ),
-          Column(
-            children: [
-              CustomAppBar(title: "Pet Community"),
+      body: SafeArea(
+        child: Stack(
+          alignment: Alignment.topCenter,
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: Image.asset(themeProvider.darkTheme
+                  ? AppImages.backgroundImgDark
+                  : AppImages.backgroundImgLight),
+            ),
+            BackGroundLeftShadow(
+              height: petMeetingAndBreadingScreenController.size.height * 0.3,
+              width: petMeetingAndBreadingScreenController.size.height * 0.3,
+              topPad: petMeetingAndBreadingScreenController.size.height * 0.28,
+              leftPad: -petMeetingAndBreadingScreenController.size.width * 0.15,
+            ),
+            Column(
+              children: [
+                CustomAppBar(title: "Pet Community"),
 
-              // Body Part
-              Expanded(
-                child: Obx(
-                  () => petMeetingAndBreadingScreenController.isLoading.value
-                      ? const CustomAnimationLoader()
-                      : Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            MeetingAndBreadingSearchFieldModule(),
-                            SizedBox(
-                                height: petMeetingAndBreadingScreenController
-                                        .size.height *
-                                    0.002.h),
-                            const PetCategoriesTextModule(),
-                            SizedBox(
-                                height: petMeetingAndBreadingScreenController
-                                        .size.height *
-                                    0.002.h),
-                            Expanded(
-                              child: petMeetingAndBreadingScreenController
-                                      .searchList.isNotEmpty
-                                  ? PetCategoriesSearchListModule()
-                                  : PetCategoriesListModule(),
-                            ),
-                            SizedBox(
-                                height: petMeetingAndBreadingScreenController
-                                        .size.height *
-                                    0.002.h),
-                            MeetYourLovedOneButtonModule(),
-                          ],
-                        ).commonAllSidePadding(padding: 20),
+                // Body Part
+                Expanded(
+                  child: Obx(
+                    () => petMeetingAndBreadingScreenController.isLoading.value
+                        ? const CustomAnimationLoader()
+                        : Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              MeetingAndBreadingSearchFieldModule(),
+                              SizedBox(
+                                  height: petMeetingAndBreadingScreenController
+                                          .size.height *
+                                      0.002.h),
+                              const PetCategoriesTextModule(),
+                              SizedBox(
+                                  height: petMeetingAndBreadingScreenController
+                                          .size.height *
+                                      0.002.h),
+                              Expanded(
+                                child: petMeetingAndBreadingScreenController
+                                        .searchList.isNotEmpty
+                                    ? PetCategoriesSearchListModule()
+                                    : PetCategoriesListModule(),
+                              ),
+                              SizedBox(
+                                  height: petMeetingAndBreadingScreenController
+                                          .size.height *
+                                      0.002.h),
+                              MeetYourLovedOneButtonModule(),
+                            ],
+                          ).commonAllSidePadding(padding: 20),
+                  ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

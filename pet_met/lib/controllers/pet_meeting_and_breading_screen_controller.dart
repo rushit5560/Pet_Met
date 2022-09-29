@@ -41,6 +41,7 @@ class PetMeetingAndBreadingScreenController extends GetxController {
       CategoryAndSubCategoryModel categoryAndSubCategoryModel =
           CategoryAndSubCategoryModel.fromJson(json.decode(response.body));
       isSuccessStatus = categoryAndSubCategoryModel.success.obs;
+      log('categoryAndSubCategoryModel : ${categoryAndSubCategoryModel.data}');
 
       if (isSuccessStatus.value) {
         catAndSubCatList.clear();

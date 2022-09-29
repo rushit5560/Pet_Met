@@ -131,45 +131,52 @@ class PetTopListModule extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              Html(
-                                data: homeController.petTopList[i].data.details.trim(),
-                                shrinkWrap: true,
-                                style: {
-                                  "body": Style(
-                                    color: themeProvider.darkTheme
-                                        ? AppColors.whiteColor
-                                        : AppColors.blackTextColor
-                                            .withOpacity(0.6),
-                                    fontSize: const FontSize(15.0),
-                                    fontWeight: FontWeight.w500,
-                                    maxLines: 2,
-                                  ),
-                                  "p": Style(
-                                    color: themeProvider.darkTheme
-                                        ? AppColors.whiteColor
-                                        : AppColors.blackTextColor
-                                            .withOpacity(0.6),
-                                    fontSize: const FontSize(15.0),
-                                    fontWeight: FontWeight.w500,
-                                    maxLines: 2,
-                                  ),
-                                  "b": Style(
-                                    color: themeProvider.darkTheme
-                                        ? AppColors.whiteColor
-                                        : AppColors.blackTextColor,
-                                    fontSize: const FontSize(15.0),
-                                    fontWeight: FontWeight.w500,
-                                    maxLines: 2,
-                                  ),
-                                  "span": Style(
-                                    color: themeProvider.darkTheme
-                                        ? AppColors.whiteColor
-                                        : AppColors.blackTextColor,
-                                    fontSize: const FontSize(15.0),
-                                    fontWeight: FontWeight.w500,
-                                    maxLines: 2,
-                                  ),
-                                },
+                              SizedBox(
+                                height: Get.height * 0.08,
+                                child: Html(
+                                  data: homeController.petTopList[i].data.details.trim(),
+                                  shrinkWrap: true,
+                                  style: {
+                                    "body": Style(
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor
+                                          : AppColors.blackTextColor
+                                              .withOpacity(0.6),
+                                      fontSize: const FontSize(15.0),
+                                      fontWeight: FontWeight.w500,
+                                      maxLines: 2,
+                                      textOverflow: TextOverflow.ellipsis,
+                                    ),
+                                    "p": Style(
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor
+                                          : AppColors.blackTextColor
+                                              .withOpacity(0.6),
+                                      fontSize: const FontSize(15.0),
+                                      fontWeight: FontWeight.w500,
+                                      maxLines: 2,
+                                      textOverflow: TextOverflow.ellipsis,
+                                    ),
+                                    "b": Style(
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor
+                                          : AppColors.blackTextColor,
+                                      fontSize: const FontSize(15.0),
+                                      fontWeight: FontWeight.w500,
+                                      maxLines: 2,
+                                      textOverflow: TextOverflow.ellipsis,
+                                    ),
+                                    "span": Style(
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor
+                                          : AppColors.blackTextColor,
+                                      fontSize: const FontSize(15.0),
+                                      fontWeight: FontWeight.w500,
+                                      maxLines: 2,
+                                      textOverflow: TextOverflow.ellipsis,
+                                    ),
+                                  },
+                                ),
                               ),
                               // Text(
                               //   homeController.petTopList[index].details,

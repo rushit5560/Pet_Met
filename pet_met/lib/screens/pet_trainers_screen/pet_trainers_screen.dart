@@ -43,7 +43,7 @@ class PetTrainersScreen extends StatelessWidget {
               children: [
                 CustomAppBar(
                     title: "Pet Trainers",
-                    appBarOption: AppBarOption.drawerButtonOption),
+                    appBarOption: AppBarOption.none),
                 const SizedBox(height: 15),
                 Expanded(
                   child: Obx(()=>

@@ -560,7 +560,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                           height: 22,
                                         ),
                                         titleWidget: Text(
-                                          "About",
+                                          "About Us",
                                           style: TextStyle(
                                             color: themeProvider.darkTheme
                                                 ? AppColors.whiteColor
