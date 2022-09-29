@@ -137,10 +137,10 @@ class SubmitButtonModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        // if(controller.formKey.currentState!.validate()) {
-        //   await controller.forgotPasswordFunction();
-        // }
-        Fluttertoast.showToast(msg: "Coming soon!");
+        if(controller.formKey.currentState!.validate()) {
+          await controller.forgotPasswordFunction();
+        }
+        // Fluttertoast.showToast(msg: "Coming soon!");
       },
       child: Container(
         width: double.infinity,
