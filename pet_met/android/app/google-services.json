@@ -64,6 +64,42 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:427960837590:android:f57ccebb4e6f718079f077",
+        "android_client_info": {
+          "package_name": "com.petomate.community"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "427960837590-e53g7o5isrdp0huv2a87qgija182ho34.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJVizipIE2uf49qic3_mo55B-cmKBNCXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "427960837590-e53g7o5isrdp0huv2a87qgija182ho34.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "427960837590-ptcql2g16mm13pjk1v2d7fdc8rpjvhfn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.petmet"
+              }
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"
