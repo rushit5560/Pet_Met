@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/add_new_payment_screen_controller.dart';
@@ -7,6 +6,7 @@ import 'package:pet_met/screens/new_payment_screen/new_payment_screen_widgets.da
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
 import 'package:pet_met/utils/enums.dart';
 import 'package:sizer/sizer.dart';
+
 
 class NewPaymentScreen extends StatelessWidget {
   NewPaymentScreen({Key? key}) : super(key: key);

@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/pet_trainers_screen_controller.dart';
@@ -8,14 +7,14 @@ import 'package:pet_met/screens/pet_trainers_details_screen/pet_trainers_details
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_functions/hide_keyboard.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:pet_met/utils/validations.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../services/providers/dark_theme_provider.dart';
+
+
 
 class SearchTrainersTextFieldModule extends StatelessWidget {
   SearchTrainersTextFieldModule({Key? key}) : super(key: key);

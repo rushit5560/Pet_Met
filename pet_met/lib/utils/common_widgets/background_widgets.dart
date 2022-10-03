@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-
 import '../../services/providers/dark_theme_provider.dart';
 import '../app_colors.dart';
+
+
 
 class BackGroundLeftShadow extends StatelessWidget {
   const BackGroundLeftShadow({

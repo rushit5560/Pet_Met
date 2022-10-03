@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -15,11 +14,12 @@ import 'package:pet_met/utils/validations.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../../firebase_database/firebase_database.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/user_details.dart';
 import '../user_conversation_screen/user_conversation_screen.dart';
+
+
 
 class BannerImageModule extends StatelessWidget {
   BannerImageModule({Key? key}) : super(key: key);

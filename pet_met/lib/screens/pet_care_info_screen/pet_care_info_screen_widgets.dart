@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import 'package:pet_met/controllers/pet_care_info_controller.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:provider/provider.dart';
-import 'package:sizer/sizer.dart';
-
 import '../../services/providers/dark_theme_provider.dart';
+
+
 
 class PetCareListModule extends StatelessWidget {
   PetCareListModule({Key? key}) : super(key: key);

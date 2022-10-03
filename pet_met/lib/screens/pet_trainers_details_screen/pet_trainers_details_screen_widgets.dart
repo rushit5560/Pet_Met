@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -10,7 +9,6 @@ import 'package:pet_met/firebase_database/firebase_database.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:pet_met/utils/validations.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +18,8 @@ import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/user_details.dart';
 import '../address_screen/address_screen_widgets.dart';
 import '../user_conversation_screen/user_conversation_screen.dart';
+
+
 
 class PetTrainerBannerImageModule extends StatelessWidget {
   PetTrainerBannerImageModule({Key? key}) : super(key: key);

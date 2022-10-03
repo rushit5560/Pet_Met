@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/metting_address_info_controller.dart';
-import 'package:pet_met/controllers/pet_tracker_pricing_controller.dart';
-
-import 'package:pet_met/utils/app_images.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
 import 'package:pet_met/utils/enums.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../utils/app_colors.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 import '../metting_address_info_screen/metting_address_info_screen_widgets.dart';
+
+
 
 class MettingAddressInfoScreen extends StatelessWidget {
   MettingAddressInfoScreen({Key? key}) : super(key: key);

@@ -9,6 +9,8 @@ import 'package:pet_met/utils/validations.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
+
+
 var themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
 
 class BackgroundCurve extends StatelessWidget {

@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 import 'package:pet_met/controllers/shop_and_grooming_screen_controller.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/background_widgets.dart';
-import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
-import 'package:pet_met/utils/enums.dart';
 import 'package:provider/provider.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import 'shop_and_grooming_screen_widgets.dart';
+
+
 
 class ShopAndGroomingScreen extends StatelessWidget {
   ShopAndGroomingScreen({Key? key}) : super(key: key);

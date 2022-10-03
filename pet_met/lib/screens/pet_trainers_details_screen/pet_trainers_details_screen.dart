@@ -8,9 +8,10 @@ import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../services/providers/dark_theme_provider.dart';
 import 'pet_trainers_details_screen_widgets.dart';
+
+
 
 class PetTrainersDetailsScreen extends StatelessWidget {
   PetTrainersDetailsScreen({Key? key}) : super(key: key);

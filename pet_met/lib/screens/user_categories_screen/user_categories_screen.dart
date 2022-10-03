@@ -1,19 +1,17 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/user_categories_controller.dart';
 import 'package:pet_met/utils/app_images.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 import '../../utils/common_widgets/custom_appbar.dart';
-import '../../utils/enums.dart';
+
+
 
 class UserCategoriesScreen extends StatefulWidget {
   const UserCategoriesScreen({Key? key}) : super(key: key);

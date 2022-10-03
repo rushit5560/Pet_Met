@@ -1,9 +1,8 @@
 import 'dart:async';
-
 import 'package:get/get.dart';
 import 'package:pet_met/screens/login_screen/login_screen.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/user_preference.dart';
+
 
 class UserCategoriesController extends GetxController {
   final size = Get.size;

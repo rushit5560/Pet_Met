@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pet_met/controllers/change_password_screen_controller.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
-import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
 import 'package:pet_met/utils/validations.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../services/providers/dark_theme_provider.dart';
+
+
 
 class BackgroundImage extends StatelessWidget {
   BackgroundImage({Key? key}) : super(key: key);

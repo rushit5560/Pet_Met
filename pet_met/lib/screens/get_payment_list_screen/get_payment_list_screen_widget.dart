@@ -5,9 +5,9 @@ import 'package:pet_met/screens/new_payment_screen/new_payment_screen.dart';
 import 'package:pet_met/services/providers/dark_theme_provider.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
+
 
 var themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
 

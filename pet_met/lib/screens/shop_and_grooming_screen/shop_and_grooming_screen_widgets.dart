@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/shop_and_grooming_screen_controller.dart';
@@ -13,8 +12,9 @@ import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:pet_met/utils/validations.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../services/providers/dark_theme_provider.dart';
+
+
 
 
 class ShopAndGroomingScreenAppBar extends StatelessWidget {

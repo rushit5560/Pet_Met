@@ -1,20 +1,12 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/forgot_password_controller.dart';
-import 'package:pet_met/controllers/register_controller.dart';
 import 'package:provider/provider.dart';
-
-import 'package:sizer/sizer.dart';
-
-import '../../../utils/app_colors.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/common_widgets/background_widgets.dart';
-import '../../utils/common_widgets/custom_light_passfield.dart';
-import '../../utils/common_widgets/custom_light_textfield.dart';
-import '../../utils/validations.dart';
 import 'forgot_password_screen_widgets.dart';
+
+
 
 class ForgotPasswordScreen extends StatelessWidget {
   ForgotPasswordScreen({Key? key}) : super(key: key);

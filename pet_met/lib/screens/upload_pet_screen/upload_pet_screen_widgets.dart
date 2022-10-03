@@ -1,13 +1,11 @@
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:datepicker_dropdown/datepicker_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/controllers/upload_pet_controller.dart';
-import 'package:pet_met/controllers/user_profile_edit_controller.dart';
 import 'package:pet_met/models/get_all_category_model/get_all_category_model.dart';
 import 'package:pet_met/models/get_all_sub_category_model/get_all_sub_category_model.dart';
 import 'package:pet_met/utils/app_colors.dart';
@@ -17,8 +15,9 @@ import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/validations.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../services/providers/dark_theme_provider.dart';
+
+
 
 class BackgroundImage extends StatelessWidget {
   BackgroundImage({Key? key}) : super(key: key);

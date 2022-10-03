@@ -1,20 +1,18 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-
 import 'package:http/http.dart' as http;
 import 'package:pet_met/models/add_order_screen_model/add_order_screen_model.dart';
 import 'package:pet_met/models/get_plan_details_model/get_plan_details_model.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/razorpay_key.dart';
 import 'package:pet_met/utils/user_details.dart';
-
 import '../utils/api_url.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+
+
 
 class PetTrackerPricingController extends GetxController {
   final size = Get.size;

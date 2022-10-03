@@ -4,12 +4,12 @@ import 'package:pet_met/controllers/add_address_controller.dart';
 import 'package:pet_met/controllers/address_controller.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
-import 'package:pet_met/utils/validations.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/app_images.dart';
+
+
 
 class BackgroundCurve extends StatelessWidget {
   BackgroundCurve({Key? key}) : super(key: key);

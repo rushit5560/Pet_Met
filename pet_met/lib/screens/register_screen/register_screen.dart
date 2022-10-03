@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -7,19 +5,14 @@ import 'package:pet_met/controllers/register_controller.dart';
 import 'package:pet_met/screens/privacy_policy_screen/privacy_policy_screen.dart';
 import 'package:pet_met/screens/register_screen/register_screen_widgets.dart';
 import 'package:pet_met/utils/app_images.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_functions/hide_keyboard.dart';
 import 'package:provider/provider.dart';
-
 import 'package:sizer/sizer.dart';
-
 import '../../../utils/app_colors.dart';
-import '../../controllers/onboarding_controller.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/common_widgets/background_widgets.dart';
-import '../../utils/common_widgets/custom_light_passfield.dart';
-import '../../utils/common_widgets/custom_light_textfield.dart';
-import '../../utils/validations.dart';
+
+
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({Key? key}) : super(key: key);

@@ -6,7 +6,6 @@ import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
 import 'package:pet_met/utils/enums.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/common_widgets/loader.dart';
 import 'pet_vets_and_ngo_details_screen_widgets.dart';

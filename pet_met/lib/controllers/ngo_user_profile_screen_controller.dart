@@ -15,6 +15,8 @@ import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 
+
+
 class NgoUserProfileScreenController extends GetxController {
   final size = Get.size;
   File? imageFile;

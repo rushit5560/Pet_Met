@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
@@ -14,6 +12,8 @@ import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 import '../../utils/common_widgets/custom_appbar.dart';
 import '../../utils/enums.dart';
+
+
 
 class SupportScreen extends StatelessWidget {
   SupportScreen({Key? key}) : super(key: key);

@@ -10,6 +10,8 @@ import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import 'shop_details_screen_widgets.dart';
 
+
+
 class ShopDetailsScreen extends StatelessWidget {
   ShopDetailsScreen({Key? key}) : super(key: key);
   final shopDetailsScreenController = Get.put(ShopDetailsScreenController());

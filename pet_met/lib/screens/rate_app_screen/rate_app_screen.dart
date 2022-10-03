@@ -3,16 +3,13 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/rate_app_controller.dart';
 import 'package:pet_met/utils/app_images.dart';
-import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 import '../../utils/common_widgets/custom_appbar.dart';
 import '../../utils/enums.dart';
-import '../../utils/validations.dart';
 
 class RateAppScreen extends StatelessWidget {
   RateAppScreen({Key? key}) : super(key: key);

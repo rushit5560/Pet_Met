@@ -1,11 +1,9 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/user_profile_edit_controller.dart';
 import 'package:pet_met/screens/user_categories_screen/user_categories_screen.dart';
 import 'package:pet_met/screens/user_profile_edit_screen/user_profile_edit_screen_widgets.dart';
-import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +12,8 @@ import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/common_widgets/custom_appbar.dart';
 import '../../utils/enums.dart';
-import '../../utils/validations.dart';
+
+
 
 class UserProfileEditScreen extends StatefulWidget {
   UserProfileEditScreen({Key? key}) : super(key: key);

@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/user_profile_controller.dart';
-import 'package:pet_met/screens/change_password_screen/change_password_screen.dart';
 import 'package:pet_met/screens/user_profile_screen/widgets/user_profile_screen_widgets.dart';
-import 'package:pet_met/utils/app_images.dart';
-
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
-import 'package:sizer/sizer.dart';
-
-import '../../utils/app_colors.dart';
-import '../../utils/common_widgets/background_widgets.dart';
 import '../../utils/common_widgets/custom_appbar.dart';
 import '../../utils/enums.dart';
+
+
 
 class UserProfileScreen extends StatelessWidget {
   UserProfileScreen({Key? key}) : super(key: key);

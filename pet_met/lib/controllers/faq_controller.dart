@@ -1,12 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:pet_met/models/faq_screen_models/faq_model.dart';
 import 'package:pet_met/utils/api_url.dart';
+
+
 
 class FaqController extends GetxController {
   RxBool isLoading = false.obs;

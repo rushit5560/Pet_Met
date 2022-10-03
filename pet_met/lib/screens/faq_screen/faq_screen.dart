@@ -1,26 +1,15 @@
-import 'dart:developer';
-
-import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/faq_controller.dart';
-import 'package:pet_met/controllers/register_controller.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
-import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:provider/provider.dart';
-
-import 'package:sizer/sizer.dart';
-
-import '../../../utils/app_colors.dart';
-import '../../controllers/onboarding_controller.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 import '../../utils/common_widgets/custom_appbar.dart';
-import '../../utils/common_widgets/custom_light_passfield.dart';
-import '../../utils/common_widgets/custom_light_textfield.dart';
 import '../../utils/enums.dart';
-import '../../utils/validations.dart';
 import 'faq_screen_widgets.dart';
+
+
 
 class FaqScreen extends StatelessWidget {
   FaqScreen({Key? key}) : super(key: key);

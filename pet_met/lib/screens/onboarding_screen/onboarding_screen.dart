@@ -3,11 +3,12 @@ import 'package:get/get.dart';
 import 'package:pet_met/services/providers/dark_theme_provider.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
-import 'package:pet_met/utils/theme_preferences.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../../utils/app_colors.dart';
 import '../../controllers/onboarding_controller.dart';
+
+
 
 class OnboardingScreen extends StatelessWidget {
   OnboardingScreen({Key? key}) : super(key: key);

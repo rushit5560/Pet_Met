@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:pet_met/models/privacy_policy_screen_models/privacy_policy_model.dart';
 import 'package:pet_met/utils/api_url.dart';
 
+
 class PrivacyPolicyScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;

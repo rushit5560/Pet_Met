@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -15,6 +14,8 @@ import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:http/http.dart' as http;
 import 'package:pet_met/utils/user_preference.dart';
+
+
 
 class TrainersAndUsersScreenController extends GetxController {
   final size = Get.size;

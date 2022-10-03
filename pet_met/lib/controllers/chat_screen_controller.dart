@@ -1,9 +1,10 @@
 import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/models/user_chat_list_screen_model/user_chat_list_screen_model.dart';
 import 'package:pet_met/utils/user_details.dart';
+
+
 
 class ChatScreenController extends GetxController {
   RxBool isLoading = false.obs;

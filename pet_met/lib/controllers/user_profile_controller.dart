@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -9,7 +8,6 @@ import 'package:pet_met/models/add_order_screen_model/pet_add_order_model.dart';
 import 'package:pet_met/models/follow_user_model/follow_user_model.dart';
 import 'package:pet_met/models/follow_user_model/get_follow_status_model.dart';
 import 'package:pet_met/models/follow_user_model/unfollow_user_model.dart';
-import 'package:pet_met/models/get_all_profile_model/get_shop_profile_model.dart';
 import 'package:pet_met/models/get_all_profile_model/get_vet_and_ngo_profile_model.dart';
 import 'package:pet_met/models/trainers_update_profile_model/trainers_get_profile_model.dart';
 import 'package:pet_met/models/user_profile_screen_model/pet_shop_profile_model.dart';
@@ -20,6 +18,8 @@ import 'package:pet_met/utils/razorpay_key.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:http/http.dart' as http;
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+
+
 
 class UserProfileController extends GetxController {
   String followUserId = Get.arguments[0];

@@ -7,9 +7,10 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/models/register_screen_model/register_model.dart';
 import 'package:pet_met/utils/api_url.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
+
+
 
 class RegisterController extends GetxController {
   RxBool isLoading = false.obs;

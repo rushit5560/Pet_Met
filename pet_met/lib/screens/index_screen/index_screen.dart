@@ -7,10 +7,11 @@ import 'package:pet_met/controllers/home_controller.dart';
 import 'package:pet_met/controllers/index_screen_controller.dart';
 import 'package:pet_met/screens/index_screen/widgets/index_screen_widgets.dart';
 import 'package:pet_met/utils/app_images.dart';
-import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:provider/provider.dart';
 import '../../../utils/app_colors.dart';
 import '../../services/providers/dark_theme_provider.dart';
+
+
 
 class IndexScreen extends StatefulWidget {
   IndexScreen({Key? key}) : super(key: key);

@@ -1,22 +1,19 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/trainers_and_users_screen_controller.dart';
 import 'package:pet_met/screens/trainers_and_users_profile_screen/trainers_and_user_profile_screen_widgets.dart';
 import 'package:pet_met/screens/user_categories_screen/user_categories_screen.dart';
 import 'package:pet_met/utils/app_colors.dart';
-import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
-import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/user_details.dart';
-import 'package:pet_met/utils/validations.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../services/providers/dark_theme_provider.dart';
+
+
 
 class TrainersAndUserProfileScreenController extends StatelessWidget {
   TrainersAndUserProfileScreenController({Key? key}) : super(key: key);

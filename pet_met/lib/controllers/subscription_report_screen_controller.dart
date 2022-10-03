@@ -6,6 +6,7 @@ import 'package:pet_met/models/subscription_report_screen_model/subscription_ord
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/user_details.dart';
 
+
 class SubscriptionReportScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;

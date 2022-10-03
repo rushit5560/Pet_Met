@@ -1,12 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:expandable/expandable.dart';
 import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/models/get_all_profile_model/get_shop_profile_model.dart';
 import 'package:pet_met/models/get_all_profile_model/get_user_profile_model.dart';
@@ -16,17 +14,15 @@ import 'package:pet_met/screens/home_screen/home_screen.dart';
 import 'package:pet_met/screens/pet_meeting_and_breading_screen/pet_meeting_and_breading_screen.dart';
 import 'package:pet_met/screens/pet_trainers_screen/pet_trainers_screen.dart';
 import 'package:pet_met/screens/pet_vets_and_ngo_screen/pet_vets_and_ngo_screen.dart';
-import 'package:pet_met/screens/shop_and_grooming_screen/shop_and_grooming_screen.dart';
 import 'package:pet_met/screens/user_categories_screen/user_categories_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../models/delete_account_screen_model/delete_account_screen_model.dart';
 import '../screens/chat_screen/chat_screen.dart';
+
+
 
 class IndexScreenController extends GetxController {
   RxBool isLoading = false.obs;

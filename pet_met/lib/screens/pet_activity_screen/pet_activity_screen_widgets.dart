@@ -6,6 +6,8 @@ import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:sizer/sizer.dart';
 
+
+
 class PetTrainerBannerImageModule extends StatelessWidget {
   PetTrainerBannerImageModule({Key? key}) : super(key: key);
   final screenController = Get.find<PetTrainersDetailsScreenController>();

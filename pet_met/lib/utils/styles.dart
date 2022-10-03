@@ -1,7 +1,6 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:pet_met/utils/app_colors.dart';
+
 
 class Styles {
   static const accentPrimaryValue = 0xFF41E0DD;

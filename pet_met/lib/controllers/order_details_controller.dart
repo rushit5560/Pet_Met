@@ -1,10 +1,8 @@
-//import 'package:cc_avenue/cc_avenue.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:pet_met/utils/app_route_names.dart';
+
+
 
 class OrderDetailsController extends GetxController {
   final size = Get.size;

@@ -1,16 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:get/get.dart';
-import 'package:pet_met/screens/home_screen/home_screen.dart';
-import 'package:pet_met/screens/shop_and_grooming_screen/shop_and_grooming_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:http/http.dart' as http;
-
 import '../models/pet_care_info_screen_models/pet_care_model.dart';
+
+
 
 class PetCareInfoController extends GetxController {
   RxBool isLoading = false.obs;

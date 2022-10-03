@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/screens/user_categories_screen/user_categories_screen.dart';
 import 'package:provider/provider.dart';
-
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../screens/login_screen/login_screen.dart';
 import '../services/providers/dark_theme_provider.dart';
+
+
 
 class OnboardingController extends GetxController {
   final size = Get.size;

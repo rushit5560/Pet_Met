@@ -1,21 +1,18 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/models/add_order_screen_model/pet_add_order_model.dart';
-import 'package:pet_met/models/get_pet_profile_model/get_pet_profile_model.dart';
 import 'package:pet_met/models/get_pet_profile_model/pet_details_model.dart';
-import 'package:pet_met/services/providers/dark_theme_provider.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:http/http.dart' as http;
-import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/razorpay_key.dart';
 import 'package:pet_met/utils/user_details.dart';
-import 'package:provider/provider.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
-import 'package:sizer/sizer.dart';
+
+
+
 
 class PetMeetingDetailsScreenController extends GetxController {
   String petId = Get.arguments[0];

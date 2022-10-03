@@ -1,9 +1,6 @@
 import 'dart:developer';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 import 'package:pet_met/controllers/chat_screen_controller.dart';
 import 'package:pet_met/models/user_chat_list_screen_model/user_chat_list_screen_model.dart';
 import 'package:pet_met/screens/user_conversation_screen/user_conversation_screen.dart';
@@ -15,9 +12,10 @@ import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:provider/provider.dart';
-
 import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/common_widgets/loader.dart';
+
+
 
 class ChatScreen extends StatefulWidget {
   ChatScreen({Key? key}) : super(key: key);

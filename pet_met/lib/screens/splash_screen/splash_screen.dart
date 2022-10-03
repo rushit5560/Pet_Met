@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../controllers/splash_controller.dart';
 import '../../services/providers/dark_theme_provider.dart';
+
+
 
 class SplashScreen extends StatelessWidget {
   SplashScreen({Key? key}) : super(key: key);

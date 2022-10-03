@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pet_met/controllers/login_controller.dart';
@@ -7,14 +6,12 @@ import 'package:pet_met/screens/forgot_password_screen/forgot_password_screen.da
 import 'package:pet_met/screens/register_screen/register_screen.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
-import 'package:pet_met/utils/app_route_names.dart';
-import 'package:pet_met/utils/common_widgets/custom_light_passfield.dart';
-import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
 import 'package:pet_met/utils/validations.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../services/providers/dark_theme_provider.dart';
+
+
 
 class BackgroundImage extends StatelessWidget {
   BackgroundImage({Key? key}) : super(key: key);

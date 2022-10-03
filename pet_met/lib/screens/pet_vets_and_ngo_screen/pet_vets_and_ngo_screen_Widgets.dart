@@ -1,7 +1,5 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/pet_vets_and_ngo_screen_controller.dart';
 import 'package:pet_met/models/pet_vets_and_ngo_screen_models.dart';
@@ -14,8 +12,9 @@ import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:pet_met/utils/validations.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../services/providers/dark_theme_provider.dart';
+
+
 
 class SearchVetAndNgoTextFieldModule extends StatelessWidget {
   SearchVetAndNgoTextFieldModule({Key? key}) : super(key: key);

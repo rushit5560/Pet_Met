@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:developer';
-
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/screens/index_screen/index_screen.dart';
@@ -9,6 +8,8 @@ import 'package:pet_met/screens/user_categories_screen/user_categories_screen.da
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+
 
 class SplashController extends GetxController {
   final size = Get.size;

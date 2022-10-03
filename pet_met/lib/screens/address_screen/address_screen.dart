@@ -2,16 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/address_controller.dart';
 import 'package:pet_met/screens/address_screen/address_screen_widgets.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:provider/provider.dart';
-import 'package:sizer/sizer.dart';
-
 import '../../services/providers/dark_theme_provider.dart';
-import '../../utils/app_colors.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 import '../../utils/common_widgets/custom_appbar.dart';
 import '../../utils/enums.dart';
+
+
 
 class AddressScreen extends StatelessWidget {
   final controller = Get.put(AddressController());

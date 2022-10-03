@@ -2,25 +2,21 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/models/get_all_profile_model/get_user_profile_model.dart';
-import 'package:pet_met/models/get_all_profile_model/get_vet_and_ngo_profile_model.dart';
 import 'package:pet_met/models/login_screen_model/login_model.dart';
 import 'package:pet_met/models/multi_account_user_model/multiple_account_user_model.dart';
 import 'package:pet_met/models/user_update_profile_model/user_update_profile_model.dart';
 import 'package:pet_met/screens/index_screen/index_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
-import 'package:pet_met/utils/app_colors.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
-import 'package:sizer/sizer.dart';
 import 'package:http/http.dart' as http;
+
+
 
 class UserProfileEditController extends GetxController {
   final size = Get.size;

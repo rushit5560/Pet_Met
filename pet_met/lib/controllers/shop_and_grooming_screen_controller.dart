@@ -1,12 +1,13 @@
 import 'dart:convert';
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/models/shop_and_grooming_screen_model/all_shop_model.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:http/http.dart' as http;
 import 'package:pet_met/utils/user_details.dart';
+
+
 
 class ShopAndGroomingScreenController extends GetxController {
   RxBool isLoading = false.obs;

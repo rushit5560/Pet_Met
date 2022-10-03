@@ -2,16 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/address_controller.dart';
 import 'package:pet_met/controllers/order_details_controller.dart';
-import 'package:pet_met/utils/app_route_names.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
-
 import '../../services/providers/dark_theme_provider.dart';
-import '../../utils/app_colors.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 import '../../utils/enums.dart';
 import 'order_details_screen_widgets.dart';
+
+
 
 class OrderDetailsScreen extends StatelessWidget {
   OrderDetailsScreen({Key? key}) : super(key: key);

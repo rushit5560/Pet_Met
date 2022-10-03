@@ -1,22 +1,14 @@
-import 'dart:io';
-
-import 'package:datepicker_dropdown/datepicker_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/controllers/upload_pet_controller.dart';
 import 'package:pet_met/screens/upload_pet_screen/upload_pet_screen_widgets.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:provider/provider.dart';
-import 'package:sizer/sizer.dart';
-
 import '../../services/providers/dark_theme_provider.dart';
-import '../../utils/app_colors.dart';
-import '../../utils/app_route_names.dart';
 import '../../utils/common_widgets/custom_appbar.dart';
-import '../../utils/common_widgets/custom_light_textfield.dart';
 import '../../utils/enums.dart';
-import '../../utils/validations.dart';
+
+
 
 class UploadPetScreen extends StatefulWidget {
   UploadPetScreen({Key? key}) : super(key: key);
