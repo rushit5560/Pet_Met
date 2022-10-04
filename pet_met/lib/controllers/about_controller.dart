@@ -15,7 +15,7 @@ class AboutController extends GetxController {
   RxBool isOpened = false.obs;
 
   RxInt selectedbottomIndex = 2.obs;
-  RxBool slectedAddress = true.obs;
+  // RxBool slectedAddress = true.obs;
 
   String title = "";
   String description = "";
@@ -52,18 +52,18 @@ class AboutController extends GetxController {
     }
   }
 
-  List<AddressModel> addressList = [
-    AddressModel(
-      title: "Honduras",
-      address: "1691 Vetug Boulevard",
-      isChecked: true,
-    ),
-    AddressModel(
-      title: "Mavlohige",
-      address: "272 Wecdo Heights",
-      isChecked: false,
-    ),
-  ];
+  // List<AddressModel> addressList = [
+  //   AddressModel(
+  //     title: "Honduras",
+  //     address: "1691 Vetug Boulevard",
+  //     isChecked: true,
+  //   ),
+  //   AddressModel(
+  //     title: "Mavlohige",
+  //     address: "272 Wecdo Heights",
+  //     isChecked: false,
+  //   ),
+  // ];
 
   @override
   void onInit() {
