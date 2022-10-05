@@ -22,8 +22,6 @@ import '../../../services/providers/dark_theme_provider.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/common_widgets/background_widgets.dart';
 
-
-
 class BuildMenu extends StatefulWidget {
   BuildMenu({
     Key? key,
@@ -714,13 +712,12 @@ class _BuildMenuState extends State<BuildMenu> {
                                             )
                                           : Container(),
 
-
                                       drawerListTile(
                                         onTap: () {
                                           indexController
                                               .drawerController.close!();
-                                          Get.to(() =>
-                                              PayAndDonateReportScreen());
+                                          Get.to(
+                                              () => PayAndDonateReportScreen());
                                         },
                                         leading: Icon(
                                           Icons.edit_note_rounded,
@@ -740,8 +737,6 @@ class _BuildMenuState extends State<BuildMenu> {
                                           ),
                                         ),
                                       )
-
-
                                     ],
                                     // ),
                                   ),

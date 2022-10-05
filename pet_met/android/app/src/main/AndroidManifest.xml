@@ -1,6 +1,4 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.petomate.community">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -9,11 +7,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    <queries>
-        <provider
-            android:authorities="com.facebook.katana.provider.PlatformProvider"
-            android:exported="false" />
-    </queries>
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
@@ -62,7 +55,7 @@
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:exported="true"
+
             android:label="@string/app_name" />
 
         <activity
@@ -71,10 +64,8 @@
 
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>

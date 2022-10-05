@@ -13,8 +13,6 @@ import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 import '../screens/index_screen/index_screen.dart';
 
-
-
 class LoginController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
@@ -152,7 +150,6 @@ class LoginController extends GetxController {
           userEmail: email,
           userId: googleKeyId,
         );
-
       }
     }
     isLoading(false);
@@ -233,7 +230,6 @@ class LoginController extends GetxController {
             userEmail: email,
             userId: fbKeyId,
           );
-
         }
 
         break;
@@ -303,7 +299,7 @@ class LoginController extends GetxController {
         //await userPreference.setRoleId(roleId);
         // Going to Index Screen
         Get.offAll(
-              () => IndexScreen(),
+          () => IndexScreen(),
           transition: Transition.native,
           duration: const Duration(milliseconds: 500),
         );
@@ -321,11 +317,9 @@ class LoginController extends GetxController {
         if (loginModel.messege.contains("This user is unauthorized")) {
           Fluttertoast.showToast(
               msg:
-              "This user is unauthorized for selected category! Please try again");
+                  "This user is unauthorized for selected category! Please try again");
         }
-
       }
-
     } catch (e) {
       log("socialMediaRegisterFunction Error :$e");
     }
