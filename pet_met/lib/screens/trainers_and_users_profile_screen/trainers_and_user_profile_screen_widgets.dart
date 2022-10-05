@@ -1,6 +1,8 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/controllers/trainers_and_users_screen_controller.dart';
@@ -12,6 +14,7 @@ import 'package:pet_met/utils/validations.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
+import '../address_screen/address_screen_widgets.dart';
 
 
 
@@ -1092,6 +1095,7 @@ class TrainersContactNumberTextField extends StatelessWidget {
           hintText: "Trainers Contact",
           textInputAction: TextInputAction.next,
           textInputType: TextInputType.number,
+          maxLength: 10,
           validator: (val) => Validations().validateMobile(val!),
         ),
       ],
@@ -1506,7 +1510,121 @@ class TrainerUpiTextFieldModule extends StatelessWidget {
   }
 }
 
+
 class GetVerifiedInfo extends StatelessWidget {
+  GetVerifiedInfo({Key? key}) : super(key: key);
+
+  final screenController = Get.find<TrainersAndUsersScreenController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        screenController.scaffoldKey.currentState!.showBottomSheet((context) {
+          return Container(
+            height: Get.size.height * 0.25,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: themeProvider.darkTheme
+                  ? AppColors.darkThemeColor
+                  : AppColors.whiteColor,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "To get verify submit below documents",
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.darkThemeColor,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  "1. Shop Registration certificate",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.darkThemeColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  "2. Two pictures of your shop",
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.darkThemeColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                GestureDetector(
+                  onTap: () {
+                    Clipboard.setData(const ClipboardData(text: "info@petomate.com"));
+                    Fluttertoast.showToast(msg: "Copied");
+                  },
+                  child: Text(
+                    "Mail it on : info@petomate.com",
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.darkThemeColor,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
+      },
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            "Get verified now",
+            style: TextStyle(
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.darkThemeColor,
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          Image.asset(AppIcons.verifiedSymbolImg,
+            width: 30,
+            height: 30,
+          ),
+          /* Icon(
+            Icons.verified_outlined,
+            size: 24,
+            color: themeProvider.darkTheme
+                ? AppColors.whiteColor
+                : AppColors.darkThemeColor,
+          )*/
+        ],
+      ),
+    );
+  }
+}
+
+/*class GetVerifiedInfo extends StatelessWidget {
   GetVerifiedInfo({Key? key}) : super(key: key);
 
   final screenController = Get.find<TrainersAndUsersScreenController>();
@@ -1601,18 +1719,18 @@ class GetVerifiedInfo extends StatelessWidget {
             width: 30,
             height: 30,
           ),
-          /*Icon(
+          *//*Icon(
             Icons.verified_outlined,
             size: 24,
             color: themeProvider.darkTheme
                 ? AppColors.whiteColor
                 : AppColors.darkThemeColor,
-          )*/
+          )*//*
         ],
       ),
     );
   }
-}
+}*/
 
 class OpenAndCloseShopTimeModule extends StatelessWidget {
   OpenAndCloseShopTimeModule({Key? key}) : super(key: key);

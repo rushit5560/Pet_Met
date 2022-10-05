@@ -613,6 +613,7 @@ class MobileNumberTextFieldModule extends StatelessWidget {
           height: controller.size.height * 0.05,
           width: double.infinity,
           hintText: "**** ** ***",
+          maxLength: 10,
           textInputAction: TextInputAction.next,
           textInputType: TextInputType.number,
           validator: (val) => Validations().validateMobile(val!),

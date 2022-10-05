@@ -55,9 +55,9 @@ class Order {
     required this.categoryId,
     required this.planid,
     required this.price,
-    required this.startdate,
-    required this.endadate,
-    required this.createdDate,
+    // required this.startdate,
+    // required this.endadate,
+    // required this.createdDate,
   });
 
   String id;
@@ -65,9 +65,9 @@ class Order {
   String categoryId;
   String planid;
   String price;
-  DateTime startdate;
-  DateTime endadate;
-  DateTime createdDate;
+  // DateTime startdate;
+  // DateTime endadate;
+  // DateTime createdDate;
 
   factory Order.fromJson(Map<String, dynamic> json) => Order(
     id: json["id"] ?? "",
@@ -75,9 +75,9 @@ class Order {
     categoryId: json["categoryID"] ?? "",
     planid: json["planid"] ?? "",
     price: json["price"] ?? "",
-    startdate: DateTime.parse(json["startdate"] ?? DateTime.now()),
-    endadate: DateTime.parse(json["endadate"] ?? DateTime.now()),
-    createdDate: DateTime.parse(json["created_date"] ?? DateTime.now()),
+    // startdate: DateTime.parse(json["startdate"] ?? DateTime.now()),
+    // endadate: DateTime.parse(json["endadate"] ?? DateTime.now()),
+    // createdDate: DateTime.parse(json["created_date"] ?? DateTime.now()),
   );
 
   Map<String, dynamic> toJson() => {
@@ -86,9 +86,9 @@ class Order {
     "categoryID": categoryId,
     "planid": planid,
     "price": price,
-    "startdate": "${startdate.year.toString().padLeft(4, '0')}-${startdate.month.toString().padLeft(2, '0')}-${startdate.day.toString().padLeft(2, '0')}",
-    "endadate": "${endadate.year.toString().padLeft(4, '0')}-${endadate.month.toString().padLeft(2, '0')}-${endadate.day.toString().padLeft(2, '0')}",
-    "created_date": createdDate.toIso8601String(),
+    // "startdate": "${startdate.year.toString().padLeft(4, '0')}-${startdate.month.toString().padLeft(2, '0')}-${startdate.day.toString().padLeft(2, '0')}",
+    // "endadate": "${endadate.year.toString().padLeft(4, '0')}-${endadate.month.toString().padLeft(2, '0')}-${endadate.day.toString().padLeft(2, '0')}",
+    // "created_date": createdDate.toIso8601String(),
   };
 }
 

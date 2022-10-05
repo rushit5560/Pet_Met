@@ -1500,6 +1500,7 @@ class ContactNumberTextFieldModule extends StatelessWidget {
           hintText: "**** ** ***",
           textInputAction: TextInputAction.next,
           textInputType: TextInputType.number,
+          maxLength: 10,
           validator: (val) => Validations().validateMobile(val!),
         ),
       ],
