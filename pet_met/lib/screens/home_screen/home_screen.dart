@@ -292,6 +292,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       .commonSymmetricPadding(horizontal: 20),
 
                                   // Expanded(child: PetTopListModule()),
+                                  const SizedBox(height: 10),
                                   PetTopListModule(),
                                   // DogDisplayWidget(
                                   //   onTap: () {

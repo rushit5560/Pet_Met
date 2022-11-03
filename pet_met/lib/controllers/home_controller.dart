@@ -261,19 +261,25 @@ class HomeController extends GetxController {
 
         if (isSuccessStatus.value) {
           // bannerList.clear();
-          petTopList.addAll(getPetTopListModel.data);
-          log("petList Length : ${petTopList.length}");
-          log('pet image1: ${ApiUrl.apiImagePath + "asset/uploads/petimage/" + petTopList[0].data.image}');
-          for (int i = 0; i < petTopList.length; i++) {
-            petTopFollowCategoryId = petTopList[i].data.categoryId;
-          }
-          for (int i = 0; i < petTopList.length; i++) {
-            petTopFollowCategoryId = petTopList[i].data.categoryId;
-          }
 
-          // If get all pet then change the hasMore flag
-          if (getPetTopListModel.data.length < 10) {
+          if(getPetTopListModel.data.isEmpty) {
             hasMore = false;
+          } else {
+            petTopList.addAll(getPetTopListModel.data);
+            log("petList Length : ${petTopList.length}");
+            log('pet image1: ${ApiUrl.apiImagePath + "asset/uploads/petimage/" +
+                petTopList[0].data.image}');
+            for (int i = 0; i < petTopList.length; i++) {
+              petTopFollowCategoryId = petTopList[i].data.categoryId;
+            }
+            // for (int i = 0; i < petTopList.length; i++) {
+            //   petTopFollowCategoryId = petTopList[i].data.categoryId;
+            // }
+
+            // If get all pet then change the hasMore flag
+            if (getPetTopListModel.data.length < 10) {
+              hasMore = false;
+            }
           }
         } else {
           log("Pet Api Else");
