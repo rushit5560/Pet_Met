@@ -1,3 +1,3 @@
 class RazorpayKey {
-  static String razorpayKey = "rzp_test_dxCkKqtRKnvZdA";
+  static String razorpayKey = "rzp_test_OseyVrbkwbgTAj";
 }
