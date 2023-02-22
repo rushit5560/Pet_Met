@@ -11,9 +11,7 @@ import 'package:sizer/sizer.dart';
 import '../../../utils/app_colors.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/common_widgets/background_widgets.dart';
-
-
-
+import 'dart:io' show Platform;
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({Key? key}) : super(key: key);
 
@@ -147,8 +145,10 @@ class RegisterScreen extends StatelessWidget {
                                   },
                                 ),
                                 shape: const RoundedRectangleBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(4),),),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(4),
+                                  ),
+                                ),
                                 value: controller.selectedTerms.value,
                                 onChanged: (val) {
                                   controller.selectedTerms.value =
@@ -255,6 +255,109 @@ class RegisterScreen extends StatelessWidget {
                       // SizedBox(height: controller.size.height * 0.1),
                       const Spacer(),
 
+Platform.isAndroid?
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () async {
+                                await controller.signInWithGoogleFunction();
+                                // Fluttertoast.showToast(msg: 'This feature is coming soon');
+                              },
+                              child: Container(
+                                height: controller.size.height * 0.065,
+                                decoration: BoxDecoration(
+                                  color: themeProvider.darkTheme
+                                      ? AppColors.darkThemeColor
+                                      : AppColors.whiteColor,
+                                  borderRadius: BorderRadius.circular(12),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.blackColor
+                                              .withOpacity(0.25)
+                                          : AppColors.greyTextColor
+                                              .withOpacity(0.25),
+                                      spreadRadius: 1,
+                                      blurRadius: 15,
+                                      offset: const Offset(4, 4),
+                                    ),
+                                  ],
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      AppImages.googleImg,
+                                      height: 25,
+                                    ),
+                                    const SizedBox(width: 15),
+                                    Text(
+                                      "Gmail",
+                                      style: TextStyle(
+                                        color: AppColors.accentTextColor,
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 15),
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () async {
+                                await controller.signInWithFacebookFunction();
+                                // Fluttertoast.showToast(
+                                //     msg: 'This feature is coming soon');
+                              },
+                              child: Container(
+                                height: controller.size.height * 0.065,
+                                decoration: BoxDecoration(
+                                  color: themeProvider.darkTheme
+                                      ? AppColors.darkThemeColor
+                                      : AppColors.whiteColor,
+                                  borderRadius: BorderRadius.circular(12),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.blackColor
+                                              .withOpacity(0.25)
+                                          : AppColors.greyTextColor
+                                              .withOpacity(0.25),
+                                      spreadRadius: 1,
+                                      blurRadius: 15,
+                                      offset: const Offset(0, 5),
+                                    ),
+                                  ],
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      AppImages.facebookImg,
+                                      height: 25,
+                                    ),
+                                    const SizedBox(width: 15),
+                                    Text(
+                                      "Facebook",
+                                      style: TextStyle(
+                                        color: AppColors.accentTextColor,
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ):Container(),
+                      const SizedBox(height: 15),
                       // Spacer(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
