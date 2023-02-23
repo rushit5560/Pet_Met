@@ -40,7 +40,7 @@ class PetTrainersScreenController extends GetxController {
           headers: header,
         body: bodyData,
       );
-      log("Get All Trainer Response : ${response.body}");
+      // log("Get All Trainer Response : ${response.body}");
 
       AllTrainerModel allTrainerModel =
           AllTrainerModel.fromJson(json.decode(response.body));

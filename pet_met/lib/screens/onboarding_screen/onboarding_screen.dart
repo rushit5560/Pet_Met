@@ -56,7 +56,17 @@ class OnboardingScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            SizedBox(height: 3.5.h),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Image.asset(
+                                  AppImages.petMetLogoImg,
+                                  height: 5.0.h,
+                                  width: 20.w,
+                                ),
+                              ],
+                            ),
+                            // SizedBox(height: 1.5.h),
                             // Spacer(),
                             Image.asset(
                               controller.onBoardingPages[index].imageAsset,
@@ -87,13 +97,13 @@ class OnboardingScreen extends StatelessWidget {
                                 SizedBox(
                                   width: controller.size.width * 0.6,
                                   child: Text(
-                                    controller.onBoardingPages[index].title.toString().toUpperCase(),
+                                    controller.onBoardingPages[index].title.toString(),
                                     style: TextStyle(
                                       color: themeProvider.darkTheme
                                           ? AppColors.whiteColor
                                           : AppColors.blackTextColor,
                                       fontSize: 14.sp,
-                                      fontWeight: FontWeight.bold,
+                                      // fontWeight: FontWeight.bold,
                                       height: 1.2,
                                     ),
                                   ),

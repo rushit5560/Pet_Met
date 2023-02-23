@@ -120,21 +120,23 @@ class PetTopListModule extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const SizedBox(height: 2),
+                              const SizedBox(height: 8),
                               Text(
                                 homeController.petTopList[i].data.petName,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: AppColors.accentTextColor,
-                                  fontSize: 18.sp,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
                               SizedBox(
                                 height: Get.height * 0.08,
                                 child: Html(
-                                  data: homeController.petTopList[i].data.details.trim(),
+                                  data: homeController
+                                      .petTopList[i].data.details
+                                      .trim(),
                                   shrinkWrap: true,
                                   style: {
                                     "body": Style(
@@ -234,22 +236,32 @@ class PetTopListModule extends StatelessWidget {
                             right: 5,
                             child: GestureDetector(
                               onTap: () {
-                                // log(' useName is : ${homeController.petTopList[i].name.name}');
-
-                                //Get.toNamed(AppRouteNames.petMeetingDetailsScreenRoute,
-                                // arguments: homeController.petTopList[index].id);
                                 log('Follow Userid: ${homeController.petTopList[i].data.userid}');
                                 log('Follow Category id: ${homeController.petTopList[i].data.categoryId}');
-                                Get.to(
-                                  () => UserProfileScreen(),
-                                  transition: Transition.native,
-                                  duration: const Duration(milliseconds: 500),
-                                  arguments: [
-                                    homeController.petTopList[i].data.userid,
-                                    homeController.petTopList[i].data.categoryId,
-                                    homeController.petTopList[i].data.id,
-                                  ],
-                                );
+
+                                // ignore: unrelated_type_equality_checks
+
+                                homeController.petTopList[i].data.categoryId ==
+                                        2.toString()
+                                    ? Get.to(
+                                        () => ShopDetailsScreen(),
+                                        arguments: homeController
+                                            .petTopList[i].data.id
+                                            .toString(),
+                                      )
+                                    : Get.to(
+                                        () => UserProfileScreen(),
+                                        transition: Transition.native,
+                                        duration:
+                                            const Duration(milliseconds: 500),
+                                        arguments: [
+                                          homeController
+                                              .petTopList[i].data.userid,
+                                          homeController
+                                              .petTopList[i].data.categoryId,
+                                          homeController.petTopList[i].data.id,
+                                        ],
+                                      );
                               },
                               child: Row(
                                 children: [
@@ -283,7 +295,10 @@ class PetTopListModule extends StatelessWidget {
                                                 .petTopList[i].img.image,
                                         errorBuilder: (context, st, ob) {
                                           return Image.asset(
-                                            AppImages.petMetLogoImg,
+                                            themeProvider.darkTheme
+                                                ? AppImages.cameraImg
+                                                : AppImages
+                                                    .cameraPlaceHolderImglight,
                                             fit: BoxFit.fitWidth,
                                           );
                                         },
@@ -743,6 +758,7 @@ class _PetTopListModuleState extends State<PetTopListModule> {
   }
 }*/
 
+// ignore: must_be_immutable
 class PetListModule extends StatelessWidget {
   PetListModule({Key? key}) : super(key: key);
 
@@ -795,8 +811,10 @@ class PetListModule extends StatelessWidget {
                               controller.userprofile.value,
                               errorBuilder: (context, st, ob) {
                                 return Image.asset(
-                                  AppImages.petMetLogoImg,
-                                  fit: BoxFit.contain);
+                                    themeProvider.darkTheme
+                                        ? AppImages.cameraImg
+                                        : AppImages.cameraPlaceHolderImglight,
+                                    fit: BoxFit.contain);
                               },
                               fit: BoxFit.contain,
                             ),
@@ -808,7 +826,9 @@ class PetListModule extends StatelessWidget {
                                   controller.shopProfile.value,
                                   errorBuilder: (context, st, ob) {
                                     return Image.asset(
-                                        AppImages.petMetLogoImg,
+                                      themeProvider.darkTheme
+                                          ? AppImages.cameraImg
+                                          : AppImages.cameraPlaceHolderImglight,
                                       fit: BoxFit.contain,
                                     );
                                   },
@@ -822,7 +842,10 @@ class PetListModule extends StatelessWidget {
                                       controller.ngoProfile.value,
                                       errorBuilder: (context, st, ob) {
                                         return Image.asset(
-                                            AppImages.petMetLogoImg,
+                                          themeProvider.darkTheme
+                                              ? AppImages.cameraImg
+                                              : AppImages
+                                                  .cameraPlaceHolderImglight,
                                           fit: BoxFit.contain,
                                         );
                                       },
@@ -836,7 +859,10 @@ class PetListModule extends StatelessWidget {
                                           controller.trainerProfile.value,
                                           errorBuilder: (context, st, ob) {
                                             return Image.asset(
-                                                AppImages.petMetLogoImg,
+                                              themeProvider.darkTheme
+                                                  ? AppImages.cameraImg
+                                                  : AppImages
+                                                      .cameraPlaceHolderImglight,
                                               fit: BoxFit.contain,
                                             );
                                           },
@@ -1087,13 +1113,18 @@ class AddPetStoryWidget extends StatelessWidget {
               )
               // Image.asset(AppImages.petMetLogoImg)
               ),
-          Text(
-            controller.userStoryList[index].username,
-            style: TextStyle(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.blackTextColor,
-                fontWeight: FontWeight.bold),
+          SizedBox(
+            width: controller.size.width * 0.145,
+            child: Text(
+              controller.userStoryList[index].username,
+              maxLines: 1,
+              style: TextStyle(
+                  color: themeProvider.darkTheme
+                      ? AppColors.whiteColor
+                      : AppColors.blackTextColor,
+                  // fontWeight: FontWeight.bold,
+                  fontSize: 10),
+            ),
           )
         ],
       ),

@@ -21,8 +21,6 @@ import 'package:pet_met/utils/user_details.dart';
 import 'package:story_view/controller/story_controller.dart';
 import '../models/home_screen_models/show_banner_model.dart';
 
-
-
 class HomeController extends GetxController {
   var activeIndex = 0.obs;
   RxBool isLoading = false.obs;
@@ -50,6 +48,7 @@ class HomeController extends GetxController {
   List<NgoPet> ngoPetList = [];
   List<TrainerPet> trainerPetList = [];
 
+  List<PetList> petList1 = [];
   final storyController = StoryController();
 
   int pageIndex = 1;
@@ -119,7 +118,6 @@ class HomeController extends GetxController {
       };
       // Map<String, String> header = apiHeader.apiHeader();
       log("Home Banner bodyData : $bodyData");
-
 
       http.Response response = await http.post(
         Uri.parse(url),
@@ -237,7 +235,7 @@ class HomeController extends GetxController {
     if (hasMore == true) {
       String url = ApiUrl.topPetListApi + "?page=$pageIndex";
       log("All Pet Api Url : $url");
-      log('pageIndex: $pageIndex');
+      log('pageIndex Api: $pageIndex');
 
       try {
         Map<String, dynamic> bodyData = {
@@ -246,29 +244,29 @@ class HomeController extends GetxController {
         };
         Map<String, String> header = apiHeader.apiHeader();
         log("header : $header");
+        log("bodyData : $bodyData");
 
-        http.Response response =
-            await http.post(
-                Uri.parse(url),
-                headers: header,
-              body: bodyData,
-            );
+        http.Response response = await http.post(
+          Uri.parse(url),
+          // headers: header,
+          body: bodyData,
+        );
         log("Get All Pet Api response : ${response.body}");
 
         GetPetTopListModel getPetTopListModel =
             GetPetTopListModel.fromJson(json.decode(response.body));
+            
         isSuccessStatus = getPetTopListModel.success.obs;
 
         if (isSuccessStatus.value) {
           // bannerList.clear();
 
-          if(getPetTopListModel.data.isEmpty) {
+          if (getPetTopListModel.data.isEmpty) {
             hasMore = false;
           } else {
             petTopList.addAll(getPetTopListModel.data);
             log("petList Length : ${petTopList.length}");
-            log('pet image1: ${ApiUrl.apiImagePath + "asset/uploads/petimage/" +
-                petTopList[0].data.image}');
+            log('pet image1: ${ApiUrl.apiImagePath + "asset/uploads/petimage/" + petTopList[0].data.image}');
             for (int i = 0; i < petTopList.length; i++) {
               petTopFollowCategoryId = petTopList[i].data.categoryId;
             }
@@ -290,6 +288,8 @@ class HomeController extends GetxController {
         loadUI();
         // await getUserStory();
       }
+    } else {
+      isLoading(false);
     }
   }
 
@@ -350,10 +350,12 @@ class HomeController extends GetxController {
       await getAllIncrementPetFunction();
     }*/
 
-    if(storyOption == StoryOption.moveForward) {
+    log('storyOption1212 : $storyOption');
+    if (storyOption == StoryOption.moveForward) {
+      hasMore = true;
+      pageIndex = 1;
       await getAllIncrementPetFunction();
-    }
-    else {
+    } else {
       isLoading(false);
     }
   }
@@ -370,65 +372,64 @@ class HomeController extends GetxController {
 
     try {
       // if (imageFile != null) {
-        log("uploading with a photo");
-        var request = http.MultipartRequest('POST', Uri.parse(url));
+      log("uploading with a photo");
+      var request = http.MultipartRequest('POST', Uri.parse(url));
 
-        var stream = http.ByteStream(imageFile!.openRead());
-        stream.cast();
+      var stream = http.ByteStream(imageFile!.openRead());
+      stream.cast();
 
-        var length = await imageFile!.length();
+      var length = await imageFile!.length();
 
-        request.files
-            .add(await http.MultipartFile.fromPath("image", imageFile!.path));
-        //request.headers.addAll(header);
+      request.files
+          .add(await http.MultipartFile.fromPath("image", imageFile!.path));
+      //request.headers.addAll(header);
 
-        request.fields['userid'] = UserDetails.selfId;
-        request.fields['categoryID'] = UserDetails.categoryId;
+      request.fields['userid'] = UserDetails.selfId;
+      request.fields['categoryID'] = UserDetails.categoryId;
 
-        // request.fields['name'] = "demo1";
-        // request.fields['bod'] = "10-9-2014";
-        // request.fields['phone'] = "1234567890";
-        // request.fields['gender'] = "female";
+      // request.fields['name'] = "demo1";
+      // request.fields['bod'] = "10-9-2014";
+      // request.fields['phone'] = "1234567890";
+      // request.fields['gender'] = "female";
 
-        var multiPart = http.MultipartFile(
-          'image',
-          stream,
-          length,
+      var multiPart = http.MultipartFile(
+        'image',
+        stream,
+        length,
+      );
 
-        );
+      // var multiFile = await http.MultipartFile.fromPath(
+      //  "image",
+      //   file!.path,
+      // );
 
-        // var multiFile = await http.MultipartFile.fromPath(
-        //  "image",
-        //   file!.path,
-        // );
+      request.files.add(multiPart);
 
-        request.files.add(multiPart);
+      log('request.fields: ${request.fields}');
+      log('request.files: ${request.files}');
+      //log('request.files length : ${request.files.length}');
+      //log('request.files name : ${request.files.first.filename}');
+      //log('request.files filetype : ${request.files.first.contentType}');
+      log('request.headers: ${request.headers}');
 
-        log('request.fields: ${request.fields}');
-        log('request.files: ${request.files}');
-        //log('request.files length : ${request.files.length}');
-        //log('request.files name : ${request.files.first.filename}');
-        //log('request.files filetype : ${request.files.first.contentType}');
-        log('request.headers: ${request.headers}');
+      var response = await request.send();
+      log('response: ${response.request}');
 
-        var response = await request.send();
-        log('response: ${response.request}');
+      response.stream.transform(utf8.decoder).listen((value) async {
+        log('value: $value');
+        AddUserStoryModel addUserStoryModel =
+            AddUserStoryModel.fromJson(json.decode(value));
+        log('response1 :::::: ${addUserStoryModel.success}');
+        isSuccessStatus = addUserStoryModel.success.obs;
 
-        response.stream.transform(utf8.decoder).listen((value) async {
-          log('value: $value');
-          AddUserStoryModel addUserStoryModel =
-              AddUserStoryModel.fromJson(json.decode(value));
-          log('response1 :::::: ${addUserStoryModel.success}');
-          isSuccessStatus = addUserStoryModel.success.obs;
-
-          if (isSuccessStatus.value) {
-            Fluttertoast.showToast(msg: addUserStoryModel.message);
-            await getUserStory(storyOption: StoryOption.stay);
-            Get.back();
-          } else {
-            log('False False');
-          }
-        });
+        if (isSuccessStatus.value) {
+          Fluttertoast.showToast(msg: addUserStoryModel.message);
+          await getUserStory(storyOption: StoryOption.stay);
+          Get.back();
+        } else {
+          log('False False');
+        }
+      });
       // }
       /*else {
         log("uploading without a photo");
@@ -699,29 +700,32 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
     //getAllBannerFunction();
-    if (UserDetails.categoryId == "1") {
-      getUserProfileFunction();
-    } else if (UserDetails.categoryId == "2") {
-      getShopProfileFunction();
-    } else if (UserDetails.categoryId == "3") {
-      getNgoProfileFunction();
-    } else if (UserDetails.categoryId == "4") {
-      getTrainerProfileFunction();
-    }
-
+    initMethod();
     // getAllIncrementPetFunction();
 
     scrollController.addListener(() {
       if (scrollController.position.maxScrollExtent ==
           scrollController.offset) {
         //api call for more pet
-        if(hasMore == true) {
+        if (hasMore == true) {
           pageIndex++;
         }
         log("pageIndex : $pageIndex");
         getAllIncrementPetFunction();
       }
     });
+  }
+
+  initMethod() async {
+    if (UserDetails.categoryId == "1") {
+      await getUserProfileFunction();
+    } else if (UserDetails.categoryId == "2") {
+      await getShopProfileFunction();
+    } else if (UserDetails.categoryId == "3") {
+      await getNgoProfileFunction();
+    } else if (UserDetails.categoryId == "4") {
+      await getTrainerProfileFunction();
+    }
   }
 
   @override

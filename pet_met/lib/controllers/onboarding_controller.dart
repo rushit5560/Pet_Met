@@ -52,7 +52,7 @@ class OnboardingController extends GetxController {
     onBoardingPages = [
       OnBoardingInfo(
         // logo: "assets/images/petmet_logo.png",
-        logo: "Peto'Mate",
+        logo: "PETO'MATE",
         imageAsset: themeProvider.darkTheme
             ? "assets/images/splash_peoples2_dark.png"
             : "assets/images/splash_peoples2_light.png",
@@ -62,7 +62,7 @@ class OnboardingController extends GetxController {
       ),
       OnBoardingInfo(
         // logo: "assets/images/petmet_logo.png",
-        logo: "Peto'Mate",
+        logo: "PETO'MATE",
         imageAsset: themeProvider.darkTheme
             ? "assets/images/splash_dogs1_dark1.png"
             : "assets/images/splash_dogs1_dark1.png",
@@ -72,7 +72,7 @@ class OnboardingController extends GetxController {
       ),
       OnBoardingInfo(
         // logo: "assets/images/petmet_logo.png",
-        logo: "Peto'Mate",
+        logo: "PETO'MATE",
         imageAsset: themeProvider.darkTheme
             ? "assets/images/splash_peoples3_dark.png"
             : "assets/images/splash_peoples3_light.png",

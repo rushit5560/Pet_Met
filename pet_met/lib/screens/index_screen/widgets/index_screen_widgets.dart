@@ -73,8 +73,8 @@ class _BuildMenuState extends State<BuildMenu> {
                               // indexController.drawerController.close!();
                               // Get.to(() => UserProfileScreen());
                             },
-                            child: Obx(
-                              () => Row(
+                            child: /*Obx(
+                              () => */Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
@@ -215,7 +215,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                   ),
                                 ],
                               ),
-                            ),
+                            // ),
                           ),
                         ),
                         const SizedBox(height: 10),
@@ -325,6 +325,36 @@ class _BuildMenuState extends State<BuildMenu> {
                                   ),
                                   titleWidget: Text(
                                     "Faq",
+                                    style: TextStyle(
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor
+                                          : AppColors.greyTextColor,
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ),
+
+                                /// Share App
+                                drawerListTile(
+                                  onTap: () {
+                                    // indexController.drawerController.close!();
+                                    Share.share(
+                                      "PETO'MATE"
+                                          "\nConnecting Pet Lovers!! 💕"
+                                          "\nhttps://play.google.com/store/apps/details?id=com.petomate.community",
+                                      // subject: "Peto'Mate",
+                                    );
+                                  },
+                                  leading: Image.asset(
+                                    AppIcons.shareImg,
+                                    color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor
+                                        : AppColors.greyTextColor,
+                                    height: 22,
+                                  ),
+                                  titleWidget: Text(
+                                    "Share App",
                                     style: TextStyle(
                                       color: themeProvider.darkTheme
                                           ? AppColors.whiteColor
@@ -596,33 +626,6 @@ class _BuildMenuState extends State<BuildMenu> {
                                         ),
                                       ),
 
-                                      /// Share App
-                                      drawerListTile(
-                                        onTap: () {
-                                          // indexController.drawerController.close!();
-                                          Share.share(
-                                            "Peto'Mate",
-                                            subject: "Peto'Mate",
-                                          );
-                                        },
-                                        leading: Image.asset(
-                                          AppIcons.shareImg,
-                                          color: themeProvider.darkTheme
-                                              ? AppColors.whiteColor
-                                              : AppColors.greyTextColor,
-                                          height: 22,
-                                        ),
-                                        titleWidget: Text(
-                                          "Share App",
-                                          style: TextStyle(
-                                            color: themeProvider.darkTheme
-                                                ? AppColors.whiteColor
-                                                : AppColors.greyTextColor,
-                                            fontSize: 12.sp,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ),
 
                                       /// Change password
                                       drawerListTile(

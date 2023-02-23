@@ -1,13 +1,13 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
+import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../controllers/splash_controller.dart';
 import '../../services/providers/dark_theme_provider.dart';
-
-
 
 class SplashScreen extends StatelessWidget {
   SplashScreen({Key? key}) : super(key: key);
@@ -102,29 +102,79 @@ class SplashScreen extends StatelessWidget {
             Column(
               children: [
                 const SizedBox(height: 25),
-                Image.asset(
-                  themeProvider.darkTheme
-                      ? AppImages.splashLogoImgDark
-                      : AppImages.splashLogoImgLight,
-                  fit: BoxFit.cover,
-                  // width: Get.width/1.5,
-                  height: Get.height / 3.5,
-                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Image.asset(
+                      AppImages.petMetLogoImg,
+                      fit: BoxFit.cover,
+                      width: 30.w,
+                    ),
+                  ],
+                ).commonSymmetricPadding(horizontal: 15),
                 SizedBox(height: 8.h),
+                SizedBox(
+                  height: Get.size.width * 0.80,
+                  child: Obx(
+                    () => AnimatedContainer(
+                      width: controller.width1.value,
+                      height: controller.height1.value,
+                      duration: const Duration(seconds: 2),
+                      curve: Curves.fastOutSlowIn,
+                      child: Image.asset(
+                        themeProvider.darkTheme
+                            ? AppImages.splashLogoImgDark
+                            : AppImages.splashLogoImgLight,
+                        // fit: BoxFit.contain,
+                        // width: Get.width/1.5,
+                        height: controller.imageHeight.value,
+                      ),
+                    ),
+                  ),
+                ),
+                /*SizedBox(height: 8.h),
                 Image.asset(
                   AppImages.petMetLogoImg,
                   fit: BoxFit.cover,
                   width: 30.w,
-                ),
+                ),*/
                 const SizedBox(height: 15),
-                Image.asset(
+                Text(
+                  "PETO'MATE",
+                  style: TextStyle(
+                    color: themeProvider.darkTheme
+                        ? AppColors.accentTextColor
+                        : AppColors.accentTextColor,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "TTWellingtons-Bold",
+                    height: 1.2,
+                  ),
+                ),
+                /*Image.asset(
                   AppImages.petMateTextImg,
                   fit: BoxFit.cover,
                   width: 25.w,
-                ),
+                ),*/
                 const SizedBox(height: 20),
-                Text(
-                  "``Your Personal pet Community.,,".toUpperCase(),
+                AnimatedTextKit(
+                  animatedTexts: [
+                    TyperAnimatedText(
+                      "Connecting Pet Lovers!! 💕",
+                      speed: const Duration(milliseconds: 200),
+                      textStyle: TextStyle(
+                        fontSize: 11.sp,
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.greyTextColor,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                ),
+                /*RichText(
+                text: TextSpan(
+                  text: "Connecting Pet Lovers!! ",
                   style: TextStyle(
                     fontSize: 11.sp,
                     color: themeProvider.darkTheme
@@ -132,7 +182,30 @@ class SplashScreen extends StatelessWidget {
                         : AppColors.greyTextColor,
                     fontWeight: FontWeight.w600,
                   ),
+                  children: [
+                    TextSpan(
+                      text: "💕",
+                      style: TextStyle(
+                        fontSize: 11.sp,
+                        color: themeProvider.darkTheme
+                            ? AppColors.redColor
+                            : AppColors.redColor,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    )
+                  ],
                 ),
+                ),*/
+                /*Text(
+                  "Connecting Pet Lovers!! 💕",
+                  style: TextStyle(
+                    fontSize: 11.sp,
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.greyTextColor,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),*/
                 const SizedBox(height: 20),
               ],
             ),
@@ -180,7 +253,7 @@ class SplashScreen extends StatelessWidget {
         ),
         // SizedBox(height: 10),
         Text(
-          "Adopt and sell pet on a smartphone. Easily to use and\ncute interface",
+          "Your personal pet community, Easy to use and cute interface",
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: 10.sp,

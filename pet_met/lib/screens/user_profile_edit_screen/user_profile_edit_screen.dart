@@ -50,7 +50,7 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
             BackgroundImage(),
             Obx(
               () => controller.isLoading.value
-                  ? CustomAnimationLoader()
+                  ? const CustomAnimationLoader()
                   : Column(
                       children: [
                         CustomAppBar(

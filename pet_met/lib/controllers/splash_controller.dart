@@ -9,19 +9,25 @@ import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
-
 class SplashController extends GetxController {
   final size = Get.size;
 
+  RxDouble width1 = Get.size.width.obs;
+  RxDouble height1 = Get.size.width.obs;
   UserPreference userPreference = UserPreference();
   UserDetails userDetails = UserDetails();
   late StreamSubscription<Position> streamSubscription;
 
-  @override
-  void onInit() {
-    super.onInit();
-    getLocationFunction();
+  RxDouble imageHeight = (Get.height / 3.5).obs;
+
+  void animateImage() {
+    Future.delayed(const Duration(seconds: 1), () {
+      Timer.periodic(const Duration(seconds: 2), (timer) {
+        imageHeight = (Get.height / 3.5).obs;
+        // log('imageHeight : $imageHeight');
+        animateImage();
+      });
+    });
   }
 
   /*getLocationFunction() async {
@@ -48,13 +54,13 @@ class SplashController extends GetxController {
           'Location permission are permanently denied, we cannot request permissions.');
     }
 
-    *//*streamSubscription = Geolocator.getPositionStream().listen((Position position) async {
+    */ /*streamSubscription = Geolocator.getPositionStream().listen((Position position) async {
       // Current Location store in prefs
       await userPreference.setUserLocation(
         latitude: position.latitude.toString(),
         longitude: position.longitude.toString(),
       );
-    });*//*
+    });*/ /*
 
     Position position = await Geolocator.getCurrentPosition();
     // Current Location store in prefs
@@ -70,23 +76,24 @@ class SplashController extends GetxController {
 
     isServiceEnabled = await Geolocator.isLocationServiceEnabled();
 
-    if(!isServiceEnabled) {
+    if (!isServiceEnabled) {
       await Geolocator.openLocationSettings();
       return Future.error('Location service are disabled.');
     }
 
     permission = await Geolocator.checkPermission();
-    if(permission == LocationPermission.denied) {
+    if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
-      if(permission == LocationPermission.denied) {
+      if (permission == LocationPermission.denied) {
         return Future.error('Location permission are denied');
       }
     }
-    if(permission == LocationPermission.deniedForever) {
-      return Future.error('Location permission are permanently denied, we cannot request permissions.');
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error(
+          'Location permission are permanently denied, we cannot request permissions.');
     }
 
-     /*streamSubscription = Geolocator.getPositionStream().listen((Position position) async {
+    /*streamSubscription = Geolocator.getPositionStream().listen((Position position) async {
       // Current Location store in prefs
       await userPreference.setUserLocation(
         latitude: position.latitude.toString(),
@@ -101,7 +108,6 @@ class SplashController extends GetxController {
       longitude: position.longitude.toString(),
     );
     await redirectNextScreen();
-
   }
 
   redirectNextScreen() async {
@@ -163,5 +169,25 @@ class SplashController extends GetxController {
       log("exception is : $e");
       rethrow;
     }
+  }
+
+  @override
+  void onInit() {
+    super.onInit();
+    // animateImage();
+    // getLocationFunction();
+    width1.value = Get.size.width * 0.20;
+    height1.value = Get.size.width * 0.20;
+
+    log('width1 : ${width1.value}');
+    log('height1 : ${height1.value}');
+
+    Timer(const Duration(milliseconds: 500), () {
+      width1.value = Get.size.width * 0.80;
+      height1.value = Get.size.width * 0.80;
+      log('width1 : ${width1.value}');
+      log('height1 : ${height1.value}');
+      getLocationFunction();
+    });
   }
 }

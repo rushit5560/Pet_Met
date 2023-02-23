@@ -65,7 +65,7 @@ class Styles {
     );
     return ThemeData(
       //primarySwatch: primarySwatch,
-
+      fontFamily: "TTWellingtons",
       primaryColor: isDarkTheme ? Colors.black : Colors.white,
       scaffoldBackgroundColor:
           isDarkTheme ? AppColors.darkThemeColor : AppColors.whiteColor,

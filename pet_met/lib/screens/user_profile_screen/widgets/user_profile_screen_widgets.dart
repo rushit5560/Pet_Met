@@ -858,6 +858,7 @@ class DogOwnerListModule extends StatelessWidget {
                                               controller
                                                   .shopPetList[index].userid,
                                               controller.userCategoryId,
+                                              controller.userName,
                                             ]);
                                       },
                                       child: Stack(

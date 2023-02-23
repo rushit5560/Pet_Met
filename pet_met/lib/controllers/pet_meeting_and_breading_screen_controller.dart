@@ -37,7 +37,7 @@ class PetMeetingAndBreadingScreenController extends GetxController {
     try {
       Map<String, String> header = apiHeader.apiHeader();
       http.Response response = await http.post(Uri.parse(url), headers: header);
-      log("get all pet category Api Response : ${response.body}");
+      // log("get all pet category Api Response : ${response.body}");
 
       CategoryAndSubCategoryModel categoryAndSubCategoryModel =
           CategoryAndSubCategoryModel.fromJson(json.decode(response.body));
