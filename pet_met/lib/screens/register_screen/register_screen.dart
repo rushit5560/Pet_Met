@@ -310,7 +310,7 @@ Platform.isAndroid?
                           Expanded(
                             child: GestureDetector(
                               onTap: () async {
-                                await controller.signInWithFacebookFunction();
+                                // await controller.signInWithFacebookFunction();
                                 // Fluttertoast.showToast(
                                 //     msg: 'This feature is coming soon');
                               },
