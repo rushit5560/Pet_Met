@@ -18,7 +18,7 @@ class PayAndDonateOrderListModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return screenController.payAndDonateList.isEmpty
-        ? const Center(child: Text("Pay/Donate Record Not Found!"))
+        ? const Center(child: Text("Pay Record Not Found!"))
         : ListView.builder(
       itemCount: screenController.payAndDonateList.length,
       itemBuilder: (context, i) {

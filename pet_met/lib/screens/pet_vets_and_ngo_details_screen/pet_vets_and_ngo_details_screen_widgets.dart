@@ -19,8 +19,6 @@ import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/user_details.dart';
 import '../user_conversation_screen/user_conversation_screen.dart';
 
-
-
 class BannerImageModule extends StatelessWidget {
   BannerImageModule({Key? key}) : super(key: key);
   final screenController = Get.find<PetVetsAndNgoDetailsScreenController>();
@@ -355,10 +353,11 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-            if(screenController.vetsNgoDetailsData[0].instagram == "") {
+            if (screenController.vetsNgoDetailsData[0].instagram == "") {
               Fluttertoast.showToast(msg: "Instagram link is not available!");
             } else {
-              String url = "${screenController.vetsNgoDetailsData[0].instagram}";
+              String url =
+                  "${screenController.vetsNgoDetailsData[0].instagram}";
               _makingInstagramApp(url);
             }
           },
@@ -379,8 +378,7 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
         ),
         GestureDetector(
           onTap: () {
-
-            if(screenController.vetsNgoDetailsData[0].facebook == "") {
+            if (screenController.vetsNgoDetailsData[0].facebook == "") {
               Fluttertoast.showToast(msg: "Facebook link is not available!");
             } else {
               var fbUrl = "${screenController.vetsNgoDetailsData[0].facebook}";
@@ -421,7 +419,7 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
         // ),
         GestureDetector(
           onTap: () {
-            if(screenController.vetsNgoDetailsData[0].phone == "") {
+            if (screenController.vetsNgoDetailsData[0].phone == "") {
               Fluttertoast.showToast(msg: "Number Not Available");
             } else {
               String number = "${screenController.vetsNgoDetailsData[0].phone}";
@@ -685,7 +683,6 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
   }
 
   _makingInstagramApp(String url) async {
-
     if (await canLaunchUrl(Uri.parse(url))) {
       await launchUrl(
         Uri.parse(url),
@@ -778,6 +775,7 @@ class VetAndNgoPlaceTimePaymentModule extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class DonateForPetLoversButtonModule extends StatelessWidget {
   DonateForPetLoversButtonModule({Key? key}) : super(key: key);
 
@@ -789,10 +787,9 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
-        if(screenController.vetAndNgoName == UserDetails.userName) {
-          Fluttertoast.showToast(msg: "Vet & Ngo can't pay/donate to itself.");
-        }
-        else {
+        if (screenController.vetAndNgoName == UserDetails.userName) {
+          Fluttertoast.showToast(msg: "Vet & Ngo can't pay to itself.");
+        } else {
           alertDialogBox(context);
         }
       },
@@ -810,11 +807,13 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "Click to Pay/Donate",
+              "Click to Pay",
               style: TextStyle(
-                color: AppColors.whiteColor/*themeProvider.darkTheme
+                color: AppColors
+                    .whiteColor /*themeProvider.darkTheme
                     ? AppColors.whiteColor
-                    : AppColors.darkThemeColor*/,
+                    : AppColors.darkThemeColor*/
+                ,
                 fontSize: 13.sp,
                 fontWeight: FontWeight.w600,
               ),
@@ -822,9 +821,11 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
             const SizedBox(width: 8),
             const Icon(
               Icons.favorite_rounded,
-              color: AppColors.whiteColor/*themeProvider.darkTheme
+              color: AppColors
+                  .whiteColor /*themeProvider.darkTheme
                   ? AppColors.whiteColor
-                  : AppColors.darkThemeColor*/,
+                  : AppColors.darkThemeColor*/
+              ,
               size: 18,
             ),
           ],

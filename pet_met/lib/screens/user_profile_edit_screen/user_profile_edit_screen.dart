@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/user_profile_edit_controller.dart';
 import 'package:pet_met/screens/user_categories_screen/user_categories_screen.dart';
@@ -13,10 +14,8 @@ import '../../utils/app_colors.dart';
 import '../../utils/common_widgets/custom_appbar.dart';
 import '../../utils/enums.dart';
 
-
-
 class UserProfileEditScreen extends StatefulWidget {
-  UserProfileEditScreen({Key? key}) : super(key: key);
+  const UserProfileEditScreen({Key? key}) : super(key: key);
 
   @override
   State<UserProfileEditScreen> createState() => _UserProfileEditScreenState();
@@ -97,6 +96,20 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                         child: Column(
                                           children: [
                                             // const SizedBox(height: 15),
+                                            Row(
+                                              children: [
+                                                IconButton(
+                                                  onPressed: () {
+                                                    Fluttertoast.showToast(
+                                                        msg: "Account delete");
+                                                  },
+                                                  icon: const Icon(
+                                                    Icons.delete,
+                                                    color: Colors.red,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                             UploadImageModule(),
                                             const SizedBox(height: 20),
                                             // TextFieldSection(
@@ -579,12 +592,12 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                               color: Colors.grey.shade400),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(30),
-                            child: Icon(Icons.add, size: 30),
+                            child: const Icon(Icons.add, size: 30),
                           ),
                         ),
                       )
                     : Container(),
-                SizedBox(height: 7)
+                const SizedBox(height: 7)
               ],
             ),
           ),

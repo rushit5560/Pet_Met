@@ -8,9 +8,7 @@ import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:http/http.dart' as http;
 
-
-
-class GetPaymentListScreenController extends GetxController{
+class GetPaymentListScreenController extends GetxController {
   final size = Get.size;
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
@@ -21,11 +19,10 @@ class GetPaymentListScreenController extends GetxController{
 
   List<Datum> paymentList = [];
 
-
   /// Get Payment List
   Future<void> getPaymentListFunction() async {
     isLoading(true);
-    String url = ApiUrl.getPaymentListApi + "${UserDetails.userId}";
+    String url = ApiUrl.getPaymentListApi + UserDetails.userId;
     log("Get Payment List Api Url : $url");
 
     try {
@@ -36,7 +33,7 @@ class GetPaymentListScreenController extends GetxController{
       log("Payment List Api Response : ${response.body}");
 
       GetPaymentListModel getPaymentListModel =
-      GetPaymentListModel.fromJson(json.decode(response.body));
+          GetPaymentListModel.fromJson(json.decode(response.body));
       isSuccessStatus = getPaymentListModel.success.obs;
 
       if (isSuccessStatus.value) {
@@ -57,7 +54,7 @@ class GetPaymentListScreenController extends GetxController{
   Future<void> paymentIsActiveFunction(int index) async {
     isLoading(true);
     String url = ApiUrl.setPaymentIsActiveApi +
-        "${UserDetails.userId}" +
+        UserDetails.userId +
         "/${paymentList[index].id}";
     log('Set active Payment Api Url : $url');
 
@@ -68,7 +65,7 @@ class GetPaymentListScreenController extends GetxController{
       log("set Payment Active Api Response : ${response.body}");
 
       ActivePaymentModel activePaymentModel =
-      ActivePaymentModel.fromJson(json.decode(response.body));
+          ActivePaymentModel.fromJson(json.decode(response.body));
       isSuccessStatus = activePaymentModel.success.obs;
 
       if (isSuccessStatus.value) {
@@ -85,7 +82,6 @@ class GetPaymentListScreenController extends GetxController{
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     getPaymentListFunction();
   }

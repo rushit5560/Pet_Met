@@ -41,7 +41,7 @@ class PayAndDonateReportScreen extends StatelessWidget {
             child: Column(
               children: [
                 CustomAppBar(
-                  title: "Pay/Donate Report",
+                  title: "Pay Report",
                   appBarOption: AppBarOption.singleBackButtonOption,
                 ),
                 const SizedBox(height: 15),

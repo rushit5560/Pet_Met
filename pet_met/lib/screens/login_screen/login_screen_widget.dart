@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pet_met/controllers/login_controller.dart';
@@ -12,6 +13,7 @@ import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import 'dart:io' show Platform;
 
+// ignore: must_be_immutable
 class BackgroundImage extends StatelessWidget {
   BackgroundImage({Key? key}) : super(key: key);
 
@@ -219,10 +221,9 @@ class LoginModule extends StatelessWidget {
                       const SizedBox(width: 15),
                       Expanded(
                         child: GestureDetector(
-                          onTap: () async {
-                            await controller.signInWithFacebookFunction();
-                            // Fluttertoast.showToast(
-                            //     msg: 'This feature is coming soon');
+                          onTap: () {
+                            // await controller.signInWithFacebookFunction();
+                            Fluttertoast.showToast(msg: 'Coming soon');
                           },
                           child: Container(
                             height: controller.size.height * 0.065,

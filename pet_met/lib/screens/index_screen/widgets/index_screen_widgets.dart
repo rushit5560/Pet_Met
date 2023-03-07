@@ -730,7 +730,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                           size: 22,
                                         ),
                                         titleWidget: Text(
-                                          "Pay/Donate Report",
+                                          "Pay Report",
                                           style: TextStyle(
                                             color: themeProvider.darkTheme
                                                 ? AppColors.whiteColor
