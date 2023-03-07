@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_login_facebook/flutter_login_facebook.dart';
+// import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
@@ -30,7 +30,7 @@ class RegisterController extends GetxController {
   UserPreference userPreference = UserPreference();
 
   final formKey = GlobalKey<FormState>();
-  final fb = FacebookLogin();
+  // final fb = FacebookLogin();
 
   /// Form Submit Validator
   submitRegisterForm() async {
@@ -159,103 +159,103 @@ class RegisterController extends GetxController {
     isLoading(false);
   }
 
-  Future signInWithFacebookFunction() async {
-    //await fb.logOut();
-
-    final res = await fb.logIn(
-      permissions: [
-        FacebookPermission.publicProfile,
-        FacebookPermission.email,
-      ],
-    );
-
-    // try {
-    //   final _instance = FacebookAuth.instance;
-    //   final result = await _instance.login(permissions: ['email']);
-    //   if (result.status == LoginStatus.success) {
-    //     log('login success');
-    //     log('${result.message}');
-    //     final OAuthCredential credential =
-    //         FacebookAuthProvider.credential(result.accessToken!.token);
-    //     log('${credential.secret}');
-    //     final a = await _auth.signInWithCredential(credential);
-    //     log('${a.additionalUserInfo}');
-    //     await _instance.getUserData().then((userData) async {
-    //       log('userData is : ${userData}');
-    //       await _auth.currentUser!.updateEmail(userData['email']);
-
-    //       log("usermail is ${userData['email']}");
-    //       log("username is ${a.additionalUserInfo!.username}");
-    //     });
-    //     return null;
-    //   } else if (result.status == LoginStatus.cancelled) {
-    //     return 'Login cancelled';
-    //   } else {
-    //     return 'Error';
-    //   }
-    // } catch (e) {
-    //   log("erro occured : ${e.toString()}");
-
-    //   rethrow;
-    // }
-
-    // Check result status
-    switch (res.status) {
-      case FacebookLoginStatus.success:
-        // Logged in
-
-        // Send access token to server for validation and auth
-        final FacebookAccessToken accessToken = res.accessToken!;
-        log('Access token: ${accessToken.token}');
-
-        // Get profile data
-        final profile = await fb.getUserProfile();
-        log('Hello, ${profile!.name}! You ID: ${profile.userId}');
-
-        // Get user profile image url
-        final imageUrl = await fb.getProfileImageUrl(width: 100);
-        log('Your profile image: $imageUrl');
-
-        // Get email (since we request email permission)
-        final email = await fb.getUserEmail();
-        log('Your profile email: $email');
-
-        // But user can decline permission
-        if (email != null) {
-          String userName = "${profile.firstName}";
-          String fbKeyId = profile.userId;
-
-          log('userName : $userName');
-          log('fbKeyId : $fbKeyId');
-          log('email : $email');
-
-          await socialMediaRegisterFunction(
-            userName: userName,
-            userEmail: email,
-            userId: fbKeyId,
-          );
-        }
-
-        break;
-      case FacebookLoginStatus.cancel:
-        // User cancel log in
-        break;
-      case FacebookLoginStatus.error:
-        // Log in failed
-        log('Error while log in: ${res.error}');
-        break;
-    }
-
-    //await plugin.logOut();
-    /*await plugin.logIn(
-      permissions: [
-        FacebookPermission.publicProfile,
-        FacebookPermission.email,
-      ],
-    );
-
-    await subPartOfFacebookLogin();*/
-  }
+  // Future signInWithFacebookFunction() async {
+  //   //await fb.logOut();
+  //
+  //   final res = await fb.logIn(
+  //     permissions: [
+  //       FacebookPermission.publicProfile,
+  //       FacebookPermission.email,
+  //     ],
+  //   );
+  //
+  //   // try {
+  //   //   final _instance = FacebookAuth.instance;
+  //   //   final result = await _instance.login(permissions: ['email']);
+  //   //   if (result.status == LoginStatus.success) {
+  //   //     log('login success');
+  //   //     log('${result.message}');
+  //   //     final OAuthCredential credential =
+  //   //         FacebookAuthProvider.credential(result.accessToken!.token);
+  //   //     log('${credential.secret}');
+  //   //     final a = await _auth.signInWithCredential(credential);
+  //   //     log('${a.additionalUserInfo}');
+  //   //     await _instance.getUserData().then((userData) async {
+  //   //       log('userData is : ${userData}');
+  //   //       await _auth.currentUser!.updateEmail(userData['email']);
+  //
+  //   //       log("usermail is ${userData['email']}");
+  //   //       log("username is ${a.additionalUserInfo!.username}");
+  //   //     });
+  //   //     return null;
+  //   //   } else if (result.status == LoginStatus.cancelled) {
+  //   //     return 'Login cancelled';
+  //   //   } else {
+  //   //     return 'Error';
+  //   //   }
+  //   // } catch (e) {
+  //   //   log("erro occured : ${e.toString()}");
+  //
+  //   //   rethrow;
+  //   // }
+  //
+  //   // Check result status
+  //   switch (res.status) {
+  //     case FacebookLoginStatus.success:
+  //       // Logged in
+  //
+  //       // Send access token to server for validation and auth
+  //       final FacebookAccessToken accessToken = res.accessToken!;
+  //       log('Access token: ${accessToken.token}');
+  //
+  //       // Get profile data
+  //       final profile = await fb.getUserProfile();
+  //       log('Hello, ${profile!.name}! You ID: ${profile.userId}');
+  //
+  //       // Get user profile image url
+  //       final imageUrl = await fb.getProfileImageUrl(width: 100);
+  //       log('Your profile image: $imageUrl');
+  //
+  //       // Get email (since we request email permission)
+  //       final email = await fb.getUserEmail();
+  //       log('Your profile email: $email');
+  //
+  //       // But user can decline permission
+  //       if (email != null) {
+  //         String userName = "${profile.firstName}";
+  //         String fbKeyId = profile.userId;
+  //
+  //         log('userName : $userName');
+  //         log('fbKeyId : $fbKeyId');
+  //         log('email : $email');
+  //
+  //         await socialMediaRegisterFunction(
+  //           userName: userName,
+  //           userEmail: email,
+  //           userId: fbKeyId,
+  //         );
+  //       }
+  //
+  //       break;
+  //     case FacebookLoginStatus.cancel:
+  //       // User cancel log in
+  //       break;
+  //     case FacebookLoginStatus.error:
+  //       // Log in failed
+  //       log('Error while log in: ${res.error}');
+  //       break;
+  //   }
+  //
+  //   //await plugin.logOut();
+  //   /*await plugin.logIn(
+  //     permissions: [
+  //       FacebookPermission.publicProfile,
+  //       FacebookPermission.email,
+  //     ],
+  //   );
+  //
+  //   await subPartOfFacebookLogin();*/
+  // }
 
   Future<void> socialMediaRegisterFunction({
     required String userName,

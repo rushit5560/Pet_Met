@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'package:expandable/expandable.dart';
-import 'package:flutter_login_facebook/flutter_login_facebook.dart';
+// import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -33,7 +33,7 @@ class IndexScreenController extends GetxController {
   UserPreference userPreference = UserPreference();
 
   RxInt selectedBottomIndex = 2.obs;
-  final fb = FacebookLogin();
+  // final fb = FacebookLogin();
 
   var drawerController = ZoomDrawerController();
 
@@ -101,7 +101,7 @@ class IndexScreenController extends GetxController {
 
   Future<void> userLogOutFunction() async {
     await userPreference.removeUserDetails();
-    await fb.logOut();
+    // await fb.logOut();
     Get.offAll(() => const UserCategoriesScreen(),
         transition: Transition.native,
         duration: const Duration(milliseconds: 500));

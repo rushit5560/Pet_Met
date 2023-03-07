@@ -288,6 +288,7 @@ class RegisterScreen extends StatelessWidget {
                                           ),
                                         ],
                                       ),
+
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
@@ -306,10 +307,60 @@ class RegisterScreen extends StatelessWidget {
                                             ),
                                           )
                                         ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
+
+                                    )
+                                  
+                                
+                              ),
+                            ),
+                          ),
+//                           const SizedBox(width: 15),
+//                           Expanded(
+//                             child: GestureDetector(
+//                               onTap: () async {
+//                                 // await controller.signInWithFacebookFunction();
+//                                 // Fluttertoast.showToast(
+//                                 //     msg: 'This feature is coming soon');
+//                               },
+//                               child: Container(
+//                                 height: controller.size.height * 0.065,
+//                                 decoration: BoxDecoration(
+//                                   color: themeProvider.darkTheme
+//                                       ? AppColors.darkThemeColor
+//                                       : AppColors.whiteColor,
+//                                   borderRadius: BorderRadius.circular(12),
+//                                   boxShadow: [
+//                                     BoxShadow(
+//                                       color: themeProvider.darkTheme
+//                                           ? AppColors.blackColor
+//                                               .withOpacity(0.25)
+//                                           : AppColors.greyTextColor
+//                                               .withOpacity(0.25),
+//                                       spreadRadius: 1,
+//                                       blurRadius: 15,
+//                                       offset: const Offset(0, 5),
+//                                     ),
+//                                   ],
+//                                 ),
+//                                 child: Row(
+//                                   mainAxisAlignment: MainAxisAlignment.center,
+//                                   children: [
+//                                     Image.asset(
+//                                       AppImages.facebookImg,
+//                                       height: 25,
+//                                     ),
+//                                     const SizedBox(width: 15),
+//                                     Text(
+//                                       "Facebook",
+//                                       style: TextStyle(
+//                                         color: AppColors.accentTextColor,
+//                                         fontSize: 12.sp,
+//                                         fontWeight: FontWeight.bold,
+// >>>>>>> 9fe45831077aab9ab90073542e56c6e65c57fcf0
+//                                       ),
+//                                     ),
+//                                   ),
+//                                 ),
                                 const SizedBox(width: 15),
                                 Expanded(
                                   child: GestureDetector(
