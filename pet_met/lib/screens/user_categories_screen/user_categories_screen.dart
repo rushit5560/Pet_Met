@@ -305,7 +305,7 @@ class _UserCategoriesScreenState extends State<UserCategoriesScreen> {
                                         },
                                         style: ElevatedButton.styleFrom(
                                           primary: AppColors.accentColor,
-                                          fixedSize: const Size(100, 45),
+                                          // fixedSize: const Size(100, 45),
                                           shape: const RoundedRectangleBorder(
                                             borderRadius: BorderRadius.all(
                                               Radius.circular(12),

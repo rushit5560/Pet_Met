@@ -1015,7 +1015,7 @@ class _BirthDateDropDownState extends State<BirthDateDropDown> {
               color: themeProvider.darkTheme
                   ? AppColors.whiteColor
                   : AppColors.blackTextColor,
-              fontSize: 12.sp,
+              // fontSize: 12.sp,
               fontWeight: FontWeight.w400,
             ),
             icon: Icon(

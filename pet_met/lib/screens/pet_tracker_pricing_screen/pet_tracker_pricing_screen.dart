@@ -355,7 +355,7 @@ class PetTrackingDetailsCheckModule extends StatelessWidget {
                 width: size.width * 0.58,
                 child: Text(
                   detailsText == null
-                      ? "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                      ? ""
                       : detailsText!,
                   style: TextStyle(
                     color: themeProvider.darkTheme
@@ -367,7 +367,7 @@ class PetTrackingDetailsCheckModule extends StatelessWidget {
                 ),
                 // child: Html(
                 //   data:  detailsText == null
-                //         ? "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                //         ? ""
                 //         : detailsText!,
                 // ),
               ),

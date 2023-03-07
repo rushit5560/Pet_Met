@@ -280,10 +280,10 @@ class PetTrackingDetailsCheckModule extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
+              SizedBox(
                 width: size.width * 0.58,
                 child: Text(
-                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                  "",
                   style: TextStyle(
                     color: AppColors.greyTextColor,
                     fontSize: 8.5.sp,

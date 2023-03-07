@@ -20,16 +20,31 @@
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb401222438839524</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>FacebookAppID</key>
+	<string>401222438839524</string>
+	<key>FacebookClientToken</key>
+	<string>564e4d967508317c5e87e85cd9d56f8a</string>
+	<key>FacebookDisplayName</key>
+	<string>PetoMate</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>This app requires access to the camera.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This app needs access to location when in the background.</string>
+	<string>This will help you to have, PET related information of the areas near you, like veterinaries, NGO's and pet shops near to your locality.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app needs access to location when open.</string>
+	<string>This will help you to have, PET related information of the areas near you, like veterinaries, NGO's and pet shops near to your locality.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This app does not require access to the microphone.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
@@ -38,21 +53,6 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
-	<key>CFBundleURLTypes</key>
-    <array>
-      <dict>
-      <key>CFBundleURLSchemes</key>
-      <array>
-        <string>fb401222438839524</string>
-      </array>
-      </dict>
-    </array>
-    <key>FacebookAppID</key>
-    <string>401222438839524</string>
-    <key>FacebookClientToken</key>
-    <string>564e4d967508317c5e87e85cd9d56f8a</string>
-    <key>FacebookDisplayName</key>
-    <string>PetoMate</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

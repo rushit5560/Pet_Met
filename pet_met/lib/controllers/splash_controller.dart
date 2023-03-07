@@ -142,11 +142,13 @@ class SplashController extends GetxController {
           if (onboardingValue == false) {
             Get.offAll(() => OnboardingScreen(),
                 transition: Transition.native,
-                duration: const Duration(milliseconds: 500));
+                // duration: const Duration(milliseconds: 500),
+            );
           } else if (UserDetails.isUserLoggedIn == true) {
             Get.offAll(() => IndexScreen(),
                 transition: Transition.native,
-                duration: const Duration(milliseconds: 500));
+                // duration: const Duration(milliseconds: 500),
+            );
             // Get.off(() => IndexScreen(),
             //   transition: Transition.native,
             //   duration: const Duration(milliseconds: 500),
@@ -156,7 +158,8 @@ class SplashController extends GetxController {
             //Get.offNamed(AppRouteNames.loginRoute);
             Get.offAll(() => const UserCategoriesScreen(),
                 transition: Transition.native,
-                duration: const Duration(milliseconds: 500));
+                // duration: const Duration(milliseconds: 500),
+            );
             // Get.off(() => LoginScreen(),
             //   transition: Transition.native,
             //   duration: const Duration(milliseconds: 500),

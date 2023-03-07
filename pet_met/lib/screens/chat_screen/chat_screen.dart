@@ -340,7 +340,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             ),
                             // const SizedBox(height: 5),
                             // Text(
-                            //   'Lorem Ipsum dummy Text for printing',
+                            //   '',
                             //   maxLines: 1,
                             //   overflow: TextOverflow.ellipsis,
                             //   style: TextStyle(fontSize: 11),
