@@ -5,18 +5,18 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:pet_met/models/delete_account_screen_model/delete_account_screen_model.dart';
 import 'package:pet_met/models/get_all_profile_model/get_user_profile_model.dart';
 import 'package:pet_met/models/login_screen_model/login_model.dart';
 import 'package:pet_met/models/multi_account_user_model/multiple_account_user_model.dart';
 import 'package:pet_met/models/user_update_profile_model/user_update_profile_model.dart';
 import 'package:pet_met/screens/index_screen/index_screen.dart';
+import 'package:pet_met/screens/user_categories_screen/user_categories_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 import 'package:http/http.dart' as http;
-
-
 
 class UserProfileEditController extends GetxController {
   final size = Get.size;
@@ -419,6 +419,37 @@ class UserProfileEditController extends GetxController {
     } /* finally {
       isLoading(false);
     }*/
+  }
+
+  Future<void> deleteAccountFunction() async {
+    isLoading(true);
+    String url =
+        "${ApiUrl.deleteAccountApi}${UserDetails.userId}/${UserDetails.categoryId}";
+    log('Delete Account Api Url : $url');
+
+    try {
+      Map<String, String> header = apiHeader.apiHeader();
+      log('header: $header');
+      http.Response response = await http.get(Uri.parse(url), headers: header);
+      log("Delete Account Api Response : ${response.body}");
+
+      DeleteAccountModel deleteAccountModel =
+          DeleteAccountModel.fromJson(json.decode(response.body));
+      isSuccessStatus = deleteAccountModel.success.obs;
+
+      if (isSuccessStatus.value) {
+        //addressController.clear();
+        Fluttertoast.showToast(msg: deleteAccountModel.message);
+        Get.off(() => const UserCategoriesScreen());
+      } else {
+        Get.back();
+        Fluttertoast.showToast(msg: deleteAccountModel.message);
+      }
+    } catch (e) {
+      log('Delete Account Api Error ::: $e');
+    } finally {
+      isLoading(false);
+    }
   }
 
   loadUI() {

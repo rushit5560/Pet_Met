@@ -70,6 +70,7 @@ class LoginController extends GetxController {
         await userPreference.setUserDetails(
           selfId: loginModel.data.uid, // userID
           userId: loginModel.data.id,
+          // uId: loginModel.data.uid,
           userName: loginModel.data.name,
           userEmail: loginModel.data.email,
           userProfileImage: loginModel.data.image,

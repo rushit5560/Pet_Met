@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:pet_met/controllers/user_profile_edit_controller.dart';
 import 'package:pet_met/screens/user_categories_screen/user_categories_screen.dart';
 import 'package:pet_met/screens/user_profile_edit_screen/user_profile_edit_screen_widgets.dart';
+import 'package:pet_met/utils/common_widgets/alert_dialog_module.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +27,8 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
   //final loginScreenController = Get.put(LoginController());
 
   var themeProvider = Provider.of<DarkThemeProvider>(Get.context!);
+
+  AlertDialogModule alertDialogModule = AlertDialogModule();
 
   @override
   Widget build(BuildContext context) {
@@ -99,9 +102,17 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                             Row(
                                               children: [
                                                 IconButton(
-                                                  onPressed: () {
-                                                    Fluttertoast.showToast(
-                                                        msg: "Account delete");
+                                                  onPressed: () async {
+
+                                                    alertDialogModule.alertDialogBox(
+                                                      yesClick: () async {
+                                                        await controller
+                                                            .deleteAccountFunction();
+                                                      }
+                                                    );
+
+                                                    // Fluttertoast.showToast(
+                                                    //     msg: "Account delete");
                                                   },
                                                   icon: const Icon(
                                                     Icons.delete,

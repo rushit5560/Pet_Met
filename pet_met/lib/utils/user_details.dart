@@ -4,6 +4,7 @@ class UserDetails {
   static bool isUserLoggedIn = false;
   static String userToken = "";
   static String userId = "";
+  static String uId = "";
   static String selfId = "";
   static String userName = "";
   static String userEmail = "";

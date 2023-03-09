@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>$(FLUTTER_BUILD_NAME)</string>
+	<string>1.1.2</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -30,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<string>1.1.2</string>
 	<key>FacebookAppID</key>
 	<string>401222438839524</string>
 	<key>FacebookClientToken</key>
@@ -40,15 +40,15 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>This app requires access to the camera.</string>
+	<string>Access to the camera allows user to take photos for their personal profile and pet profile picture.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Access to the gallary allows user to take photos for their shop profile and their shop offer picture.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>This will help you to have, PET related information of the areas near you, like veterinaries, NGO's and pet shops near to your locality.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This will help you to have, PET related information of the areas near you, like veterinaries, NGO's and pet shops near to your locality.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This app does not require access to the microphone.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app requires access to the photo library.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

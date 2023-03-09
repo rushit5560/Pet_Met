@@ -5,6 +5,7 @@ import 'package:pet_met/controllers/trainers_and_users_screen_controller.dart';
 import 'package:pet_met/screens/trainers_and_users_profile_screen/trainers_and_user_profile_screen_widgets.dart';
 import 'package:pet_met/screens/user_categories_screen/user_categories_screen.dart';
 import 'package:pet_met/utils/app_colors.dart';
+import 'package:pet_met/utils/common_widgets/alert_dialog_module.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/enums.dart';
@@ -24,6 +25,8 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
       Provider.of<DarkThemeProvider>(Get.context!);
   String? fieldName;
   String? fieldHinttext;
+
+  AlertDialogModule alertDialogModule = AlertDialogModule();
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +63,22 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                                 key: controller.formKey,
                                 child: Column(
                                   children: [
-                                    const SizedBox(height: 25),
+                                    // const SizedBox(height: 25),
+                                    Row(
+                                      children: [
+                                        IconButton(
+                                          onPressed: () async {
+                                            alertDialogModule.alertDialogBox(
+                                                yesClick: () async {
+                                                  await controller
+                                                      .deleteAccountFunction();
+                                                }
+                                            );
+                                          },
+                                          icon: const Icon(Icons.delete, color: Colors.red,),
+                                        ),
+                                      ],
+                                    ),
                                     UploadImageModule(),
                                     const SizedBox(height: 30),
 

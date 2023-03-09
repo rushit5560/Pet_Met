@@ -5,6 +5,7 @@ import 'package:pet_met/controllers/shop_user_profile_screen_controller.dart';
 import 'package:pet_met/screens/shop_user_profile_screen/shop_user_profile_screen_widgets.dart';
 import 'package:pet_met/screens/user_categories_screen/user_categories_screen.dart';
 import 'package:pet_met/utils/app_colors.dart';
+import 'package:pet_met/utils/common_widgets/alert_dialog_module.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/enums.dart';
@@ -13,14 +14,14 @@ import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/user_details.dart';
 
-
-
 class ShopUserProfileScreen extends StatelessWidget {
   ShopUserProfileScreen({Key? key}) : super(key: key);
   final controller = Get.put(ShopUserProfileScreenController());
 
   DarkThemeProvider themeProvider =
       Provider.of<DarkThemeProvider>(Get.context!);
+
+  AlertDialogModule alertDialogModule = AlertDialogModule();
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +60,24 @@ class ShopUserProfileScreen extends StatelessWidget {
                                 child: Column(
                                   children: [
                                     const SizedBox(height: 15),
+                                    Row(
+                                      children: [
+                                        IconButton(
+                                          onPressed: () async {
+                                            alertDialogModule.alertDialogBox(
+                                                yesClick: () async {
+                                                  await controller
+                                                      .deleteAccountFunction();
+                                                }
+                                            );
+                                          },
+                                          icon: const Icon(
+                                            Icons.delete,
+                                            color: Colors.red,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                     UploadImageModule(),
                                     const SizedBox(height: 30),
                                     AddShopOffersListModule(),

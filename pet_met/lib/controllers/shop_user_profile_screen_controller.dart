@@ -4,11 +4,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:pet_met/models/delete_account_screen_model/delete_account_screen_model.dart';
 import 'package:pet_met/models/get_all_profile_model/get_shop_profile_model.dart';
 import 'package:pet_met/models/login_screen_model/login_model.dart';
 import 'package:pet_met/models/multi_account_user_model/multiple_account_user_model.dart';
 import 'package:pet_met/models/shop_update_profile_model/shop_update_profile_model.dart';
 import 'package:pet_met/screens/index_screen/index_screen.dart';
+import 'package:pet_met/screens/user_categories_screen/user_categories_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/razorpay_key.dart';
@@ -16,8 +18,6 @@ import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:http/http.dart' as http;
-
-
 
 class ShopUserProfileScreenController extends GetxController {
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -181,7 +181,7 @@ class ShopUserProfileScreenController extends GetxController {
 
         await userPreference.setUserDetails(
           selfId: UserDetails.selfId,
-          userId: UserDetails.selfId,
+          userId: UserDetails.userId,
           userName: getShopProfileModel.data.data[0].shopename,
           userEmail: getShopProfileModel.data.data[0].email,
           userProfileImage:
@@ -1872,6 +1872,42 @@ class ShopUserProfileScreenController extends GetxController {
         msg: "EXTERNAL_WALLET: " + response.walletName!,
         toastLength: Toast.LENGTH_SHORT);
     log("response Wallet : ${response.walletName}");
+  }
+
+  Future<void> deleteAccountFunction() async {
+    // isLoading(true);
+
+    String selfId = await userPreference.getSelfId();
+    String userId = await userPreference.getUserId();
+    log('selfId : $selfId');
+    log('userId : $userId');
+
+
+    String url = "${ApiUrl.deleteAccountApi}$userId/${UserDetails.categoryId}";
+    log('Delete Account Api Url 121212121212: $url');
+
+    try {
+      Map<String, String> header = apiHeader.apiHeader();
+      log('header: $header');
+      http.Response response = await http.get(Uri.parse(url), headers: header);
+      log("Delete Account Api Response : ${response.body}");
+
+      DeleteAccountModel deleteAccountModel =
+          DeleteAccountModel.fromJson(json.decode(response.body));
+      isSuccessStatus = deleteAccountModel.success.obs;
+
+      if (isSuccessStatus.value) {
+        //addressController.clear();
+        Fluttertoast.showToast(msg: deleteAccountModel.message);
+        Get.off(() => const UserCategoriesScreen());
+      } else {
+        Fluttertoast.showToast(msg: deleteAccountModel.message);
+      }
+    } catch (e) {
+      log('Delete Account Api Error ::: $e');
+    } finally {
+      isLoading(false);
+    }
   }
 
   loadUI() {

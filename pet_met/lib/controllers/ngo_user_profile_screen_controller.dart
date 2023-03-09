@@ -4,11 +4,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:pet_met/models/delete_account_screen_model/delete_account_screen_model.dart';
 import 'package:pet_met/models/get_all_profile_model/get_vet_and_ngo_profile_model.dart';
 import 'package:pet_met/models/login_screen_model/login_model.dart';
 import 'package:pet_met/models/multi_account_user_model/multiple_account_user_model.dart';
 import 'package:pet_met/models/vet_and_ngo_update_profile_model/vet_and_ngo_update_profile_model.dart';
 import 'package:pet_met/screens/index_screen/index_screen.dart';
+import 'package:pet_met/screens/user_categories_screen/user_categories_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:http/http.dart' as http;
 import 'package:pet_met/utils/enums.dart';
@@ -178,7 +180,7 @@ class NgoUserProfileScreenController extends GetxController {
 
         await userPreference.setUserDetails(
           selfId: UserDetails.selfId,
-          userId: UserDetails.selfId,
+          userId: UserDetails.userId,
           userName: allRoleProfileModel.data.data[0].name,
           userEmail: allRoleProfileModel.data.data[0].email,
           userProfileImage:
@@ -1869,6 +1871,40 @@ class NgoUserProfileScreenController extends GetxController {
       }*/
     } catch (e) {
       log("updateVetAndNgoProfileFunction Error ::: $e");
+    } finally {
+      isLoading(false);
+    }
+  }
+
+
+  Future<void> deleteAccountFunction() async {
+    // isLoading(true);
+
+    String userId = await userPreference.getUserId();
+    log('userId : $userId');
+
+    String url = "${ApiUrl.deleteAccountApi}$userId/${UserDetails.categoryId}";
+    log('Delete Account Api Url 121212121212: $url');
+
+    try {
+      Map<String, String> header = apiHeader.apiHeader();
+      log('header: $header');
+      http.Response response = await http.get(Uri.parse(url), headers: header);
+      log("Delete Account Api Response : ${response.body}");
+
+      DeleteAccountModel deleteAccountModel =
+          DeleteAccountModel.fromJson(json.decode(response.body));
+      isSuccessStatus = deleteAccountModel.success.obs;
+
+      if (isSuccessStatus.value) {
+        //addressController.clear();
+        Fluttertoast.showToast(msg: deleteAccountModel.message);
+        Get.off(() => const UserCategoriesScreen());
+      } else {
+        Fluttertoast.showToast(msg: deleteAccountModel.message);
+      }
+    } catch (e) {
+      log('Delete Account Api Error ::: $e');
     } finally {
       isLoading(false);
     }

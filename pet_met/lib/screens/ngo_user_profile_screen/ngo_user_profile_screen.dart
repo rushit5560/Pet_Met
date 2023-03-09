@@ -5,6 +5,7 @@ import 'package:pet_met/controllers/ngo_user_profile_screen_controller.dart';
 import 'package:pet_met/screens/ngo_user_profile_screen/ngo_user_profile_screen_widgets.dart';
 import 'package:pet_met/screens/user_categories_screen/user_categories_screen.dart';
 import 'package:pet_met/utils/app_colors.dart';
+import 'package:pet_met/utils/common_widgets/alert_dialog_module.dart';
 import 'package:pet_met/utils/common_widgets/custom_appbar.dart';
 import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/enums.dart';
@@ -12,7 +13,6 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/user_details.dart';
-
 
 class NgoUserProfileScreen extends StatelessWidget {
   NgoUserProfileScreen({Key? key}) : super(key: key);
@@ -23,6 +23,8 @@ class NgoUserProfileScreen extends StatelessWidget {
       Provider.of<DarkThemeProvider>(Get.context!);
   String? fieldName;
   String? fieldHinttext;
+
+  AlertDialogModule alertDialogModule = AlertDialogModule();
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +66,26 @@ class NgoUserProfileScreen extends StatelessWidget {
                                 key: controller.formKey,
                                 child: Column(
                                   children: [
-                                    const SizedBox(height: 25),
+                                    // const SizedBox(height: 25),
+                                    Row(
+                                      children: [
+                                        IconButton(
+                                            onPressed: () async {
+                                              alertDialogModule.alertDialogBox(
+                                                  yesClick: () async {
+                                                    await controller
+                                                        .deleteAccountFunction();
+                                                  }
+                                              );
+                                              // await controller
+                                              //     .deleteAccountFunction();
+                                            },
+                                            icon: const Icon(
+                                              Icons.delete,
+                                              color: Colors.red,
+                                            ))
+                                      ],
+                                    ),
                                     UploadImageModule(),
                                     const SizedBox(height: 30),
 
