@@ -24,6 +24,8 @@ class UserPreference {
   String userLatitudeKey = "userLatitudeKey";
   String userLongitudeKey = "userLongitudeKey";
 
+  String fcmTokenKey = "fcmTokenKey";
+
   /// Set Role Id Key
   Future<void> setRoleId(int value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -188,5 +190,19 @@ class UserPreference {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     log('Prefs uId : ${prefs.getString(uIdKey)}');
     return prefs.getString(uIdKey) ?? "";
+  }
+
+  Future<void> setFcmInPrefs(String fcmToken) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString(fcmTokenKey, fcmToken);
+    log('fcmToken : ${prefs.getString(fcmTokenKey)}');
+  }
+
+  Future<String> getFcmFromPrefs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString(fcmTokenKey) ?? "";
+
+    log("getFcmFromPrefs : $token");
+    return token;
   }
 }

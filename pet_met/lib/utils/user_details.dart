@@ -15,4 +15,6 @@ class UserDetails {
 
   static String liveLatitude = "";
   static String liveLongitude = "";
+  static String fcmToken = "";
+
 }

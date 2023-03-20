@@ -5,13 +5,12 @@ import 'package:get/get.dart';
 import 'package:pet_met/controllers/user_conversation_screen_controller.dart';
 import 'package:pet_met/models/receive_message_model/receive_message_mdel.dart';
 import 'package:pet_met/models/receive_message_model/send_message_model.dart';
+import 'package:pet_met/notificationservice/local_notification_service.dart';
 import 'package:pet_met/screens/address_screen/address_screen_widgets.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:provider/provider.dart';
 import '../../services/providers/dark_theme_provider.dart';
-
-
 
 class SingleMessageBubble extends StatelessWidget {
   final ReceiveMessageModel singleMsg;
@@ -212,6 +211,8 @@ class MessageWriteTextFieldModule extends StatelessWidget {
                   /// Msg Store in Firebase
                   log('sendMsg: ${sendMsg.receiver}');
                   await screenController.sendMessageFunction(sendMsg);
+
+                  // LocalNotificationService.sendPushNotification(sendMsg);
                 }
               },
               // child: Image.asset(

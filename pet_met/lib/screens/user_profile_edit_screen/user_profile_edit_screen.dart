@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/controllers/user_profile_edit_controller.dart';
 import 'package:pet_met/screens/user_categories_screen/user_categories_screen.dart';

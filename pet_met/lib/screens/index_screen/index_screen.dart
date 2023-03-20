@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
@@ -11,10 +14,8 @@ import 'package:provider/provider.dart';
 import '../../../utils/app_colors.dart';
 import '../../services/providers/dark_theme_provider.dart';
 
-
-
 class IndexScreen extends StatefulWidget {
-  IndexScreen({Key? key}) : super(key: key);
+  const IndexScreen({Key? key}) : super(key: key);
 
   @override
   State<IndexScreen> createState() => IndexScreenState();
@@ -23,9 +24,18 @@ class IndexScreen extends StatefulWidget {
 class IndexScreenState extends State<IndexScreen> {
   final controller = Get.put(IndexScreenController());
   final homeController = Get.put(HomeController());
+  String deviceTokenToSendPushNotification = "";
+  @override
+  void initState() {
+    super.initState();
+
+     }
+
+
 
   @override
   Widget build(BuildContext context) {
+    // getDeviceTokenToSendNotification();
     var themeProvider = Provider.of<DarkThemeProvider>(context);
 
     return ZoomDrawer(
@@ -79,8 +89,7 @@ class IndexScreenState extends State<IndexScreen> {
             hasInk: true, //new, gives a cute ink effect
             inkColor: themeProvider.darkTheme
                 ? AppColors.accentColor.withOpacity(0.12)
-                : Colors
-                    .black12, //optional, uses theme color if not specified
+                : Colors.black12, //optional, uses theme color if not specified
             tilesPadding: const EdgeInsets.symmetric(vertical: 8),
 
             items: <BubbleBottomBarItem>[

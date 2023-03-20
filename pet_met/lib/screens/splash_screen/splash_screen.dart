@@ -18,6 +18,7 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     DarkThemeProvider themeProvider = Provider.of<DarkThemeProvider>(context);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       // backgroundColor: const Color(0xFFFFFFFF),
       /* body: SafeArea(
         child: Stack(
