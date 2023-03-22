@@ -221,9 +221,9 @@ class LoginModule extends StatelessWidget {
                       const SizedBox(width: 15),
                       Expanded(
                         child: GestureDetector(
-                          onTap: () {
-                            // await controller.signInWithFacebookFunction();
-                            Fluttertoast.showToast(msg: 'Coming soon');
+                          onTap: ()async  {
+                             await controller.facebookLogin();
+                            // Fluttertoast.showToast(msg: 'Coming soon');
                           },
                           child: Container(
                             height: controller.size.height * 0.065,

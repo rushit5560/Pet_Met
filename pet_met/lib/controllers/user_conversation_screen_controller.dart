@@ -1,10 +1,12 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/models/receive_message_model/receive_message_mdel.dart';
 import 'package:pet_met/models/receive_message_model/send_message_model.dart';
-
+import 'package:pet_met/utils/user_details.dart';
+import 'package:http/http.dart' as http;
 
 class UserConversationScreenController extends GetxController {
   String roomId = Get.arguments[0];
@@ -27,18 +29,56 @@ class UserConversationScreenController extends GetxController {
     /// Set Data in Firebase
     documentReference.set(sendMsg.toJson());
 
+    DocumentSnapshot snap = await FirebaseFirestore.instance.collection("Users").doc(receiverName).get();
+    String opponentToken = snap["fcmToken"];
+    // String opponentToken = snap["fcmToken"];
+    log('opponentToken : $opponentToken');
+
     /// Send Chat Notification
-    // sendGeneralNotification(
-    //   fcmToken: oppositeUserFcmToken, // Getting From API
-    //   title: UserDetails.userName,
-    //   body: messageFieldController.text.trim(),
-    //   type: 0,
-    // );
+    await sendGeneralNotification(
+      opponentToken: opponentToken,
+      title: UserDetails.userName,
+      body: messageFieldController.text.trim(),
+      // type: 0,
+    );
 
     /// Hide Keyboard
     // hideKeyboard();
     messageFieldController.clear();
     loadUI();
+  }
+
+  Future<void> sendGeneralNotification({
+    required String opponentToken,
+    required String title,
+    required String body,
+  }) async {
+    try {
+      await http.post(Uri.parse("https://fcm.googleapis.com/fcm/send"),
+      headers: <String, String> {
+        'Content-Type': 'application/json',
+        'Authorization': 'key=AAAA8bBUIwY:APA91bG12B9sECzxamPgdtkucbTWTAaRbxbOhCwwvdJwMQNDUeR0iiQi1YUGrf4FO1gruIcaoE3kxTvSEtMrhz_Py5Uo-t1lNzd1g1HGTjmAbOtcZeeyz7xDHEaTzrQHZId9NL1cV_Ey'
+      },
+      body: jsonEncode({
+        'priority': 'high',
+        'data': {
+          'click_action': 'FLUTTER_NOTIFICATION_CLICK',
+          'status': 'done',
+          'body': body,
+          'title': title
+        },
+        'notification': {
+          'title': title,
+          'body': body,
+          'android_channel_id': 'petomate'
+        },
+        "to": opponentToken,
+
+      }));
+    } catch(e) {
+      log('sendGeneralNotification Error :$e');
+      rethrow;
+    }
   }
 
   /// Get All Messages From Firebase -> Return Chat List

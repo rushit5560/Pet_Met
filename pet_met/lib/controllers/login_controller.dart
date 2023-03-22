@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:flutter_login_facebook/flutter_login_facebook.dart';
+// import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 // import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -34,7 +36,7 @@ class LoginController extends GetxController {
   // FacebookUserProfile? profile;
   // final FacebookLogin  plugin = FacebookLogin(debug: true);
 
-  final fb = FacebookLogin();
+  // final fb = FacebookLogin();
 
   Future<void> submitLoginForm() async {
     if (formKey.currentState!.validate()) {
@@ -85,6 +87,7 @@ class LoginController extends GetxController {
         passController.clear();
         //await userPreference.setRoleId(roleId);
         // Going to Index Screen
+     await   setUserDataInFirebaseFunction();
         Get.offAll(
           () => IndexScreen(),
           transition: Transition.native,
@@ -396,5 +399,88 @@ class LoginController extends GetxController {
 
     }
   }*/
+
+
+
+  setUserDataInFirebaseFunction() async {
+    List<String> tempNotificationList = [];
+    String userName = UserDetails.userName;
+
+    QuerySnapshot querySnapshot =
+    await FirebaseFirestore.instance.collection("Users").get();
+    querySnapshot.docs.map((doc) {
+      if (doc["username"].toString().contains(userName)) {
+        tempNotificationList.add(doc["username"]);
+      }
+    });
+
+    if (tempNotificationList.isEmpty) {
+      log("tempNotificationList :$tempNotificationList");
+
+      log("setUserDataInFirebaseFunction 111");
+      String userFcmToken = await userPreference.getFcmFromPrefs();
+      log("userFcmToken 1111: $userFcmToken");
+
+      Map<String, dynamic> fcmTokenData = {
+        "email": UserDetails.userEmail,
+        "username": UserDetails.userName,
+        "userId": UserDetails.userId,
+        "fcmToken": userFcmToken
+      };
+      log("fcmTokenData : $fcmTokenData");
+
+      var db = FirebaseFirestore.instance;
+
+      /// Create ChatRoom of 2 Users
+      db
+          .collection("Users")
+          .doc(UserDetails.userName)
+          .set(fcmTokenData)
+          .catchError((e) {
+        log('setUserDataInFirebaseFunction Error ::: $e');
+      });
+    } else if (tempNotificationList[0].contains(userName)) {
+      log("tempNotificationList else if :$tempNotificationList");
+
+      log("else if setUserDataInFirebaseFunction 111");
+      String userFcmToken = await userPreference.getFcmFromPrefs();
+      log("userFcmToken 1111: $userFcmToken");
+
+      Map<String, dynamic> fcmTokenData = {
+        "email": UserDetails.userEmail,
+        "username": UserDetails.userName,
+        "userId": UserDetails.userId,
+        "fcmToken": userFcmToken
+      };
+      log("else if fcmTokenData : $fcmTokenData");
+
+      var db = FirebaseFirestore.instance;
+
+      /// Create ChatRoom of 2 Users
+      db
+          .collection("Users")
+          .doc(UserDetails.userName)
+          .set(fcmTokenData)
+          .catchError((e) {
+        log('else if setUserDataInFirebaseFunction Error ::: $e');
+      });
+    }
+  }
+  @override
+  void onInit() {
+    getDeviceTokenToSendNotification();
+    super.onInit();
+  }
+
+  String deviceTokenToSendPushNotification = "";
+
+  Future<void> getDeviceTokenToSendNotification() async {
+    final FirebaseMessaging _fcm = FirebaseMessaging.instance;
+    final token = await _fcm.getToken();
+    deviceTokenToSendPushNotification = token.toString();
+    log("Token Value 111: $deviceTokenToSendPushNotification");
+    await userPreference.setFcmInPrefs(deviceTokenToSendPushNotification);
+  }
+
 
 }

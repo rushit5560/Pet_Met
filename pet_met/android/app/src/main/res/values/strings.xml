@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">petomate</string>
-    <string name="facebook_app_id">604216611524594</string>
-    <string name="fb_login_protocol_scheme">fb604216611524594</string>
-    <string name="facebook_client_token">12dd69772074c946f5376e9a4f02e57c</string>
+    <string name="facebook_app_id">1225333238106755</string>
+    <string name="fb_login_protocol_scheme">fb1225333238106755</string>
+    <string name="facebook_client_token">e1164869e9e0e6c040038050566bc9c0</string>
 </resources>

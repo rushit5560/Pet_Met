@@ -212,6 +212,7 @@ class MessageWriteTextFieldModule extends StatelessWidget {
                   /// Msg Store in Firebase
                   log('sendMsg: ${sendMsg.receiver}');
                   await screenController.sendMessageFunction(sendMsg);
+
                 }
               },
               // child: Image.asset(

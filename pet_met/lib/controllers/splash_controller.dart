@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/screens/index_screen/index_screen.dart';
@@ -8,6 +9,8 @@ import 'package:pet_met/screens/user_categories_screen/user_categories_screen.da
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../services/notification_services.dart';
 
 class SplashController extends GetxController {
   final size = Get.size;
@@ -19,6 +22,8 @@ class SplashController extends GetxController {
   late StreamSubscription<Position> streamSubscription;
 
   RxDouble imageHeight = (Get.height / 3.5).obs;
+
+  NotificationServices notificationServices = NotificationServices();
 
   void animateImage() {
     Future.delayed(const Duration(seconds: 1), () {
@@ -142,29 +147,15 @@ class SplashController extends GetxController {
           if (onboardingValue == false) {
             Get.offAll(() => OnboardingScreen(),
                 transition: Transition.native,
-                // duration: const Duration(milliseconds: 500),
             );
           } else if (UserDetails.isUserLoggedIn == true) {
             Get.offAll(() => IndexScreen(),
                 transition: Transition.native,
-                // duration: const Duration(milliseconds: 500),
             );
-            // Get.off(() => IndexScreen(),
-            //   transition: Transition.native,
-            //   duration: const Duration(milliseconds: 500),
-            // );
-
           } else if (UserDetails.isUserLoggedIn == false) {
-            //Get.offNamed(AppRouteNames.loginRoute);
             Get.offAll(() => const UserCategoriesScreen(),
                 transition: Transition.native,
-                // duration: const Duration(milliseconds: 500),
             );
-            // Get.off(() => LoginScreen(),
-            //   transition: Transition.native,
-            //   duration: const Duration(milliseconds: 500),
-            // );
-
           }
         },
       );
@@ -179,8 +170,8 @@ class SplashController extends GetxController {
     super.onInit();
     // animateImage();
     // getLocationFunction();
-    width1.value = Get.size.width * 0.20;
-    height1.value = Get.size.width * 0.20;
+    width1.value = Get.size.width * 0.80;
+    height1.value = Get.size.width * 0.80;
 
     log('width1 : ${width1.value}');
     log('height1 : ${height1.value}');
@@ -192,5 +183,32 @@ class SplashController extends GetxController {
       log('height1 : ${height1.value}');
       getLocationFunction();
     });
+
+    requestPermission();
+    notificationServices.firebaseNotificationGetInActiveState();
   }
+
+  void requestPermission() async {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+    NotificationSettings settings = await messaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: false,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+
+    if(settings.authorizationStatus == AuthorizationStatus.authorized) {
+      log('User Granted Permission');
+    } else if(settings.authorizationStatus == AuthorizationStatus.provisional) {
+      log('User Granted Provisional Permission');
+    } else {
+      log('User declined or has not accepted permission');
+    }
+
+  }
+
 }
