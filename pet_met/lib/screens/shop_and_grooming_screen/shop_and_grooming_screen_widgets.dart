@@ -257,7 +257,7 @@ class ShopListModule extends StatelessWidget {
                   ),
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
-                      child: Image.network(imgUrl, fit: BoxFit.cover,
+                      child: Image.network(imgUrl,
                           errorBuilder: (context, er, ob) {
                         return Image.asset(AppImages.petMetLogoImg);
                       })),
@@ -364,7 +364,7 @@ class ShopListModule extends StatelessWidget {
                   ),
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
-                      child: Image.network(imgUrl, fit: BoxFit.cover,
+                      child: Image.network(imgUrl,
                           errorBuilder: (context, er, ob) {
                         return Image.asset(AppImages.petMetLogoImg);
                       })),

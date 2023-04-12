@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 import 'package:expandable/expandable.dart';
 // import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:flutter_zoom_drawer/config.dart';
@@ -69,6 +70,18 @@ class IndexScreenController extends GetxController {
     ChatScreen(),
     PetVetsAndNgoScreen(),
   ];
+
+  Future<bool> willPopScopeFunction() async {
+    if(selectedBottomIndex.value != 2) {
+      selectedBottomIndex.value = 2;
+      return false;
+    } else if(selectedBottomIndex.value == 2) {
+      return true;
+    } else {
+      return true;
+    }
+    // return false;
+  }
 
   Future<void> deleteAccountFunction() async {
     isLoading(true);

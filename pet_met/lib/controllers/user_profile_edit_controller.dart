@@ -46,6 +46,7 @@ class UserProfileEditController extends GetxController {
 
   File? imageFile;
   String userProfile = "";
+  String imageName = "";
 
   RxString selectedGenderValue = 'Male'.obs;
   RxString userEmail = "".obs;
@@ -101,10 +102,13 @@ class UserProfileEditController extends GetxController {
       if (isSuccessStatus.value) {
         petList.clear();
         petList.addAll(getUserProfileModel.data.petdata);
+        imageName = getUserProfileModel.data.data[0].image;
+        if(getUserProfileModel.data.data[0].image.toString().toLowerCase() != "petmet_logo.png".toLowerCase()) {
+          userProfile = ApiUrl.apiImagePath +
+              "asset/uploads/product/" +
+              getUserProfileModel.data.data[0].image;
+        }
 
-        userProfile = ApiUrl.apiImagePath +
-            "asset/uploads/product/" +
-            getUserProfileModel.data.data[0].image;
         nameController.text = getUserProfileModel.data.data[0].name;
         mobileController.text = getUserProfileModel.data.data[0].phone;
         emailController.text = getUserProfileModel.data.data[0].email;
@@ -329,7 +333,7 @@ class UserProfileEditController extends GetxController {
             transition: Transition.native,
             duration: const Duration(milliseconds: 500));
       } else {
-        Fluttertoast.showToast(msg: loginModel.error);
+        Fluttertoast.showToast(msg: loginModel.messege);
       }
     } catch (e) {
       log('User Login Api Error ::: $e');

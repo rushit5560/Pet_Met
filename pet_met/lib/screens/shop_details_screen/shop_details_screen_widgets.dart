@@ -44,7 +44,7 @@ class BannerImageModule extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
         child: Image.network(
           ApiUrl.apiImagePath + "${screenController.shopData[0].showimg}",
-          fit: BoxFit.fill,
+          // fit: BoxFit.fill,
           errorBuilder: (context, er, ob) {
             return Image.asset(AppImages.petMetLogoImg);
           },

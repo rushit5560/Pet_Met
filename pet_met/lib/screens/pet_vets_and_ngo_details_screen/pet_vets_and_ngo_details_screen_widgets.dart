@@ -42,7 +42,7 @@ class BannerImageModule extends StatelessWidget {
         errorBuilder: (context, st, ob) {
           return Image.asset(AppImages.petMetLogoImg);
         },
-        fit: BoxFit.cover,
+        // fit: BoxFit.cover,
       ),
       // child: Image.asset(AppImages.shopDetailsImg,
       // fit: BoxFit.cover,),

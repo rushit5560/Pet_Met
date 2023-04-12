@@ -127,7 +127,7 @@ class PetTopListModule extends StatelessWidget {
                                 overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
                                   color: AppColors.accentTextColor,
-                                  fontSize: 16,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -144,7 +144,7 @@ class PetTopListModule extends StatelessWidget {
                                           ? AppColors.whiteColor
                                           : AppColors.blackTextColor
                                               .withOpacity(0.6),
-                                      fontSize: const FontSize(15.0),
+                                      fontSize: const FontSize(14.0),
                                       fontWeight: FontWeight.w500,
                                       maxLines: 2,
                                       textOverflow: TextOverflow.ellipsis,
@@ -154,7 +154,7 @@ class PetTopListModule extends StatelessWidget {
                                           ? AppColors.whiteColor
                                           : AppColors.blackTextColor
                                               .withOpacity(0.6),
-                                      fontSize: const FontSize(15.0),
+                                      fontSize: const FontSize(14.0),
                                       fontWeight: FontWeight.w500,
                                       maxLines: 2,
                                       textOverflow: TextOverflow.ellipsis,
@@ -163,7 +163,7 @@ class PetTopListModule extends StatelessWidget {
                                       color: themeProvider.darkTheme
                                           ? AppColors.whiteColor
                                           : AppColors.blackTextColor,
-                                      fontSize: const FontSize(15.0),
+                                      fontSize: const FontSize(14.0),
                                       fontWeight: FontWeight.w500,
                                       maxLines: 2,
                                       textOverflow: TextOverflow.ellipsis,
@@ -172,7 +172,7 @@ class PetTopListModule extends StatelessWidget {
                                       color: themeProvider.darkTheme
                                           ? AppColors.whiteColor
                                           : AppColors.blackTextColor,
-                                      fontSize: const FontSize(15.0),
+                                      fontSize: const FontSize(14.0),
                                       fontWeight: FontWeight.w500,
                                       maxLines: 2,
                                       textOverflow: TextOverflow.ellipsis,
@@ -230,7 +230,7 @@ class PetTopListModule extends StatelessWidget {
                               // ),
                             ],
                           ).commonSymmetricPadding(
-                              horizontal: 12, vertical: 14),
+                              horizontal: 12, vertical: 16),
                           Positioned(
                             top: 5,
                             right: 5,
@@ -269,14 +269,14 @@ class PetTopListModule extends StatelessWidget {
                                     homeController.petTopList[i].name.name,
                                     style: const TextStyle(
                                       color: AppColors.accentTextColor,
-                                      fontSize: 14,
+                                      fontSize: 12,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                   const SizedBox(width: 8),
                                   Container(
-                                    height: 30,
-                                    width: 30,
+                                    height: 26,
+                                    width: 26,
                                     decoration: BoxDecoration(
                                       // color: AppColors.greyColor,
                                       shape: BoxShape.circle,

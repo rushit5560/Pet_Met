@@ -130,7 +130,7 @@ class UploadImageModule extends StatelessWidget {
                     ],
                   ),
                 )
-              : screenController.ngoProfile != null
+              : screenController.ngoProfile != ""
                   ? Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -141,12 +141,12 @@ class UploadImageModule extends StatelessWidget {
                             child: Image.network(
                               themeProvider.darkTheme
                                   ? ApiUrl.apiImagePath +
-                                      screenController.ngoProfile!
+                                      screenController.ngoProfile
                                   : ApiUrl.apiImagePath +
-                                      screenController.ngoProfile!,
+                                      screenController.ngoProfile,
                               width: double.infinity,
                               height: screenController.size.height * 0.2,
-                              fit: BoxFit.fill,
+                              // fit: BoxFit.fill,
                               errorBuilder: (context, er, st) {
                                 //return Image.asset(AppImages.petMetLogoImg);
                                 return Column(

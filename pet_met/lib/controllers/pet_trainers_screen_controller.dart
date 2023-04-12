@@ -7,6 +7,8 @@ import 'package:pet_met/models/pet_trainers_screen_models/all_trainer_model.dart
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/user_details.dart';
 
+import 'index_screen_controller.dart';
+
 
 
 
@@ -20,6 +22,16 @@ class PetTrainersScreenController extends GetxController {
 
   List<Trainers> trainersList = [];
   List<Trainers> searchTrainersList = [];
+
+
+  // final indexScreenController = Get.find<IndexScreenController>();
+  //
+  // Future<bool> willPopScopeFunction() async {
+  //   if(indexScreenController.selectedBottomIndex.value != 2) {
+  //     indexScreenController.selectedBottomIndex.value = 2;
+  //   }
+  //   return false;
+  // }
 
   // Get All Trainers
   Future<void> getAllTrainerFunction() async {

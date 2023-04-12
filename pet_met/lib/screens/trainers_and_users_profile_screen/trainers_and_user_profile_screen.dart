@@ -64,7 +64,8 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                                 child: Column(
                                   children: [
                                     // const SizedBox(height: 25),
-                                    Row(
+                                    /// Delete Account Button Hide
+                                    /*Row(
                                       children: [
                                         IconButton(
                                           onPressed: () async {
@@ -78,7 +79,7 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                                           icon: const Icon(Icons.delete, color: Colors.red,),
                                         ),
                                       ],
-                                    ),
+                                    ),*/
                                     UploadImageModule(),
                                     const SizedBox(height: 30),
 

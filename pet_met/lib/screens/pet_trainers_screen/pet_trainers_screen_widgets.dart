@@ -146,10 +146,8 @@ class PetTrainerListModule extends StatelessWidget {
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, i) {
-              Trainers searchTrainerSingleItem =
-                  screenController.searchTrainersList[i];
-              return searchPetTrainerListTile(
-                  searchTrainerSingleItem, themeProvider);
+              Trainers searchTrainerSingleItem = screenController.searchTrainersList[i];
+              return searchPetTrainerListTile(searchTrainerSingleItem, themeProvider);
             },
           ).commonAllSidePadding(padding: 10);
   }
@@ -201,10 +199,11 @@ class PetTrainerListModule extends StatelessWidget {
                   ),
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
-                      child: Image.network(imgUrl, fit: BoxFit.fill,
+                      child: Image.network(imgUrl,
                           errorBuilder: (context, er, ob) {
                         return Image.asset(AppImages.petMetLogoImg,
-                            fit: BoxFit.fill);
+                            // fit: BoxFit.fill
+                        );
                       })),
                 ),
                 SizedBox(width: 3.w),
@@ -316,7 +315,7 @@ class PetTrainerListModule extends StatelessWidget {
                   ),
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
-                      child: Image.network(imgUrl, fit: BoxFit.cover,
+                      child: Image.network(imgUrl,
                           errorBuilder: (context, er, ob) {
                         return Image.asset(AppImages.petMetLogoImg);
                       })),

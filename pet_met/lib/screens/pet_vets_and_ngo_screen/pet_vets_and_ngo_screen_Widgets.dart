@@ -219,7 +219,7 @@ class VetsAndNgoListModule extends StatelessWidget {
                           padding: const EdgeInsets.all(5),
                           child: Image.asset(
                             AppImages.petMetLogoImg,
-                            fit: BoxFit.fill,
+                            // fit: BoxFit.fill,
                           ),
                         );
                       },
@@ -352,7 +352,7 @@ class VetsAndNgoListModule extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15),
                     child: Image.network(
                       imgUrl,
-                      fit: BoxFit.cover,
+                      // fit: BoxFit.cover,
                       errorBuilder: (context, er, ob) {
                         return Padding(
                           padding: const EdgeInsets.all(5),

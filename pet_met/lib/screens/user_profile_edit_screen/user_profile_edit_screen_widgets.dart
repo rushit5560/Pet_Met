@@ -11,6 +11,7 @@ import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
 import 'package:pet_met/utils/enums.dart';
+import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:pet_met/utils/validations.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -77,11 +78,11 @@ class UploadImageModule extends StatelessWidget {
                         : controller.imageFile!,
                     width: double.infinity,
                     height: controller.size.height * 0.2,
-                    fit: BoxFit.fill,
+                    fit: BoxFit.contain,
                   ),
                 ),
               )
-            : controller.userProfile.isNotEmpty
+            : controller.userProfile != ""
                 ? Center(
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
@@ -91,7 +92,7 @@ class UploadImageModule extends StatelessWidget {
                             : controller.userProfile,
                         width: double.infinity,
                         height: controller.size.height * 0.2,
-                        fit: BoxFit.fill,
+                        // fit: BoxFit.fill,
                         errorBuilder: (context, er, bt) {
                           //return Image.asset(AppImages.petMetLogoImg, height: 65);
                           return Column(
@@ -117,7 +118,7 @@ class UploadImageModule extends StatelessWidget {
                                 ),
                               ),
                             ],
-                          );
+                          ).commonAllSidePadding(padding: 5);
                         },
                       ),
                     ),

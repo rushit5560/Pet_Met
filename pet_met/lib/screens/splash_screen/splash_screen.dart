@@ -107,8 +107,8 @@ class SplashScreen extends StatelessWidget {
                   children: [
                     Image.asset(
                       AppImages.petMetLogoImg,
-                      fit: BoxFit.cover,
-                      width: 30.w,
+                      height: 5.0.h,
+                      width: 20.w,
                     ),
                   ],
                 ).commonSymmetricPadding(horizontal: 15),
@@ -158,9 +158,10 @@ class SplashScreen extends StatelessWidget {
                 ),*/
                 const SizedBox(height: 20),
                 AnimatedTextKit(
+                  totalRepeatCount: 1,
                   animatedTexts: [
                     TyperAnimatedText(
-                      "Connecting Pet Lovers!! 💕",
+                      "Connecting Pet Lovers 💕",
                       speed: const Duration(milliseconds: 100),
                       textStyle: TextStyle(
                         fontSize: 11.sp,

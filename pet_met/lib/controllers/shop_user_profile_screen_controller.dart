@@ -23,7 +23,7 @@ class ShopUserProfileScreenController extends GetxController {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final size = Get.size;
   File? imageFile;
-  String? shopImage;
+  String shopImage = "";
 
   File? shopOfferFile1;
   String? offerImage1;
@@ -140,7 +140,10 @@ class ShopUserProfileScreenController extends GetxController {
         selectedCloseTime!.value = getShopProfileModel.data.data[0].shopclose;
         instagramController.text = getShopProfileModel.data.data[0].instagram;
         facebookController.text = getShopProfileModel.data.data[0].facebook;
-        shopImage = getShopProfileModel.data.data[0].showimg;
+        if (getShopProfileModel.data.data[0].showimg != "asset/uploads/product/petmet_logo.png") {
+          shopImage = getShopProfileModel.data.data[0].showimg;
+        }
+
         offerImage1 = ApiUrl.apiImagePath +
             "asset/uploads/product/" +
             getShopProfileModel.data.data[0].image1;

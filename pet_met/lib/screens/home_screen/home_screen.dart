@@ -156,13 +156,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 controller.userprofile.value,
                                 width: 55,
                                 height: 55,
-                                fit: BoxFit.cover,
+                                // fit: BoxFit.cover,
                                 errorBuilder: (context, st, ob) {
                                   return Image.asset(
                                     AppImages.petMetLogoImg,
                                     width: 55,
                                     height: 55,
-                                    fit: BoxFit.cover,
+                                    // fit: BoxFit.cover,
                                   );
                                 },
                                 // width: controller.size.width * 0.05,
@@ -175,13 +175,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     controller.shopProfile.value,
                                     width: 50,
                                     height: 50,
-                                    fit: BoxFit.cover,
+                                    // fit: BoxFit.cover,
                                     errorBuilder: (context, st, ob) {
                                       return Image.asset(
                                         AppImages.petMetLogoImg,
                                         width: 50,
                                         height: 50,
-                                        fit: BoxFit.cover,
+                                        // fit: BoxFit.cover,
                                       );
                                     },
                                     // width: controller.size.width * 0.05,
@@ -194,13 +194,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         controller.ngoProfile.value,
                                         width: 50,
                                         height: 50,
-                                        fit: BoxFit.cover,
+                                        // fit: BoxFit.cover,
                                         errorBuilder: (context, st, ob) {
                                           return Image.asset(
                                               AppImages.petMetLogoImg,
                                               width: 50,
                                               height: 50,
-                                              fit: BoxFit.cover);
+                                              // fit: BoxFit.cover,
+                                          );
                                         },
                                         // width: controller.size.width * 0.05,
                                       ),
@@ -213,13 +214,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                             controller.trainerProfile.value,
                                             width: 50,
                                             height: 50,
-                                            fit: BoxFit.cover,
+                                            // fit: BoxFit.cover,
                                             errorBuilder: (context, st, ob) {
                                               return Image.asset(
                                                   AppImages.petMetLogoImg,
                                                   width: 50,
                                                   height: 50,
-                                                  fit: BoxFit.cover);
+                                                  // fit: BoxFit.cover,
+                                              );
                                             },
                                             // width: controller.size.width * 0.05,
                                           ),

@@ -517,7 +517,7 @@ class HomeController extends GetxController {
             "asset/uploads/product/" +
             getUserProfileModel.data.data[0].image;
         userName = getUserProfileModel.data.data[0].name;
-        log('userprofile: $userprofile');
+        log('userprofile12: $userprofile');
         // for(int i= 0; i < getPetListModel.data.petdata.length ; i++){
         //   followUserId = getPetListModel.data.petdata[i].id;
         //   log('followUserId: $followUserId');

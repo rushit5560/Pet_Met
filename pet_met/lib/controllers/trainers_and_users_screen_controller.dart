@@ -22,7 +22,7 @@ import 'package:pet_met/utils/user_preference.dart';
 class TrainersAndUsersScreenController extends GetxController {
   final size = Get.size;
   File? imageFile;
-  String? trainersProfile;
+  String trainersProfile = "";
 
   File? trainerPictureFile1;
   String? trainerImage1;
@@ -125,8 +125,10 @@ class TrainersAndUsersScreenController extends GetxController {
         contactNumber.text = getTrainersProfileModel.data.data[0].phone;
         addressController.text = getTrainersProfileModel.data.data[0].address;
         detailsController.text = getTrainersProfileModel.data.data[0].fullText;
-        trainersProfile =
-            ApiUrl.apiImagePath + getTrainersProfileModel.data.data[0].image;
+        if(getTrainersProfileModel.data.data[0].image != "asset/uploads/product/petmet_logo.png") {
+          trainersProfile =
+              ApiUrl.apiImagePath + getTrainersProfileModel.data.data[0].image;
+        }
         log("trainersProfile : $trainersProfile");
         // activeController.text = getTrainersProfileModel.data.data[0].isActive;
         selectedOpenTime!.value = getTrainersProfileModel.data.data[0].open;

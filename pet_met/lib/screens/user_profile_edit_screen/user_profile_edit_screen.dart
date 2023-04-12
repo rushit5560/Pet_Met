@@ -98,8 +98,8 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                         key: controller.formKey,
                                         child: Column(
                                           children: [
-                                            // const SizedBox(height: 15),
-                                            Row(
+                                            /// Delete Account Button Hide
+                                            /*Row(
                                               children: [
                                                 IconButton(
                                                   onPressed: () async {
@@ -120,7 +120,7 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                                   ),
                                                 ),
                                               ],
-                                            ),
+                                            ),*/
                                             UploadImageModule(),
                                             const SizedBox(height: 20),
                                             // TextFieldSection(

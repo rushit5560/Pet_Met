@@ -67,7 +67,8 @@ class NgoUserProfileScreen extends StatelessWidget {
                                 child: Column(
                                   children: [
                                     // const SizedBox(height: 25),
-                                    Row(
+                                    /// Delete Account Button Hide
+                                    /*Row(
                                       children: [
                                         IconButton(
                                             onPressed: () async {
@@ -85,7 +86,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                                               color: Colors.red,
                                             ))
                                       ],
-                                    ),
+                                    ),*/
                                     UploadImageModule(),
                                     const SizedBox(height: 30),
 

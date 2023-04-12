@@ -22,7 +22,7 @@ import 'package:pet_met/utils/user_preference.dart';
 class NgoUserProfileScreenController extends GetxController {
   final size = Get.size;
   File? imageFile;
-  String? ngoProfile;
+  String ngoProfile = "";
 
   File? ngoPictureFile1;
   String? ngoImage1;
@@ -137,7 +137,9 @@ class NgoUserProfileScreenController extends GetxController {
         ifscCodeController.text = allRoleProfileModel.data.data[0].ifscCode;
         addressController.text = allRoleProfileModel.data.data[0].address;
         contactController.text = allRoleProfileModel.data.data[0].phone;
-        ngoProfile = allRoleProfileModel.data.data[0].image;
+        if(allRoleProfileModel.data.data[0].image.toLowerCase() != "asset/uploads/product/petmet_logo.png") {
+          ngoProfile = allRoleProfileModel.data.data[0].image;
+        }
         ngoImage1 = ApiUrl.apiImagePath +
             "asset/uploads/product/" +
             allRoleProfileModel.data.data[0].image1;

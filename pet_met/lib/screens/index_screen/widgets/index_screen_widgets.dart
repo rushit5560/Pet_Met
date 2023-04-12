@@ -86,13 +86,13 @@ class _BuildMenuState extends State<BuildMenu> {
                                             indexController.userprofile.value,
                                             width: 50,
                                             height: 50,
-                                            fit: BoxFit.fill,
+                                            // fit: BoxFit.fill,
                                             errorBuilder: (context, st, ob) {
                                               return Image.asset(
                                                 AppImages.petMetLogoImg,
                                                 width: 40,
                                                 height: 50,
-                                                fit: BoxFit.fill,
+                                                // fit: BoxFit.fill,
                                               );
                                             },
                                             // width: controller.size.width * 0.05,
@@ -107,14 +107,15 @@ class _BuildMenuState extends State<BuildMenu> {
                                                     .shopProfile.value,
                                                 width: 50,
                                                 height: 50,
-                                                fit: BoxFit.fill,
+                                                // fit: BoxFit.fill,
                                                 errorBuilder:
                                                     (context, st, ob) {
                                                   return Image.asset(
                                                       AppImages.petMetLogoImg,
                                                       width: 40,
                                                       height: 50,
-                                                      fit: BoxFit.fill);
+                                                      // fit: BoxFit.fill,
+                                                  );
                                                 },
                                                 // width: controller.size.width * 0.05,
                                               ),
@@ -128,7 +129,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                                         .ngoProfile.value,
                                                     width: 50,
                                                     height: 50,
-                                                    fit: BoxFit.fill,
+                                                    // fit: BoxFit.fill,
                                                     errorBuilder:
                                                         (context, st, ob) {
                                                       return Image.asset(
@@ -136,7 +137,8 @@ class _BuildMenuState extends State<BuildMenu> {
                                                               .petMetLogoImg,
                                                           width: 40,
                                                           height: 50,
-                                                          fit: BoxFit.fill);
+                                                          // fit: BoxFit.fill,
+                                                      );
                                                     },
                                                     // width: controller.size.width * 0.05,
                                                   ),
@@ -152,7 +154,7 @@ class _BuildMenuState extends State<BuildMenu> {
                                                             .value,
                                                         width: 50,
                                                         height: 50,
-                                                        fit: BoxFit.fill,
+                                                        // fit: BoxFit.fill,
                                                         errorBuilder:
                                                             (context, st, ob) {
                                                           return Image.asset(
@@ -160,7 +162,8 @@ class _BuildMenuState extends State<BuildMenu> {
                                                                   .petMetLogoImg,
                                                               width: 40,
                                                               height: 50,
-                                                              fit: BoxFit.fill);
+                                                              // fit: BoxFit.fill,
+                                                          );
                                                         },
                                                         // width: controller.size.width * 0.05,
                                                       ),
@@ -169,7 +172,8 @@ class _BuildMenuState extends State<BuildMenu> {
                                                       AppImages.userProfileImg,
                                                       width: 40,
                                                       height: 40,
-                                                      fit: BoxFit.fill),
+                                                      // fit: BoxFit.fill,
+                                  ),
                                   const SizedBox(width: 15),
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
