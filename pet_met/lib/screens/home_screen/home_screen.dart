@@ -137,99 +137,101 @@ class _HomeScreenState extends State<HomeScreen> {
                         });
                       }
                     },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        border: Border.all(
-                          color: AppColors.accentColor,
-                          width: 0.5,
+                    child: Obx(
+                      ()=> Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          border: Border.all(
+                            color: AppColors.accentColor,
+                            width: 0.5,
+                          ),
                         ),
-                      ),
-                      child: UserDetails.categoryId == "1"
-                          ? ClipRRect(
-                              // decoration: BoxDecoration(
-                              //   border: Border.all(color: Colors.black, width: 0.0),
-                              //   borderRadius: BorderRadius.circular(30),
-                              // ),
-                              borderRadius: BorderRadius.circular(30),
-                              child: Image.network(
-                                controller.userprofile.value,
-                                width: 55,
-                                height: 55,
-                                // fit: BoxFit.cover,
-                                errorBuilder: (context, st, ob) {
-                                  return Image.asset(
-                                    AppImages.petMetLogoImg,
-                                    width: 55,
-                                    height: 55,
-                                    // fit: BoxFit.cover,
-                                  );
-                                },
-                                // width: controller.size.width * 0.05,
-                              ),
-                            )
-                          : UserDetails.categoryId == "2"
-                              ? ClipRRect(
-                                  borderRadius: BorderRadius.circular(30),
-                                  child: Image.network(
-                                    controller.shopProfile.value,
-                                    width: 50,
-                                    height: 50,
-                                    // fit: BoxFit.cover,
-                                    errorBuilder: (context, st, ob) {
-                                      return Image.asset(
-                                        AppImages.petMetLogoImg,
-                                        width: 50,
-                                        height: 50,
-                                        // fit: BoxFit.cover,
-                                      );
-                                    },
-                                    // width: controller.size.width * 0.05,
-                                  ),
-                                )
-                              : UserDetails.categoryId == "3"
-                                  ? ClipRRect(
-                                      borderRadius: BorderRadius.circular(30),
-                                      child: Image.network(
-                                        controller.ngoProfile.value,
-                                        width: 50,
-                                        height: 50,
-                                        // fit: BoxFit.cover,
-                                        errorBuilder: (context, st, ob) {
-                                          return Image.asset(
-                                              AppImages.petMetLogoImg,
+                        child: UserDetails.categoryId == "1"
+                            ? ClipRRect(
+                                // decoration: BoxDecoration(
+                                //   border: Border.all(color: Colors.black, width: 0.0),
+                                //   borderRadius: BorderRadius.circular(30),
+                                // ),
+                                borderRadius: BorderRadius.circular(30),
+                                child: Image.network(
+                                  controller.userprofile.value,
+                                  width: 55,
+                                  height: 55,
+                                  // fit: BoxFit.cover,
+                                  errorBuilder: (context, st, ob) {
+                                    return Image.asset(
+                                      AppImages.petMetLogoImg,
+                                      width: 55,
+                                      height: 55,
+                                      // fit: BoxFit.cover,
+                                    );
+                                  },
+                                  // width: controller.size.width * 0.05,
+                                ),
+                              )
+                            : UserDetails.categoryId == "2"
+                                ? ClipRRect(
+                                    borderRadius: BorderRadius.circular(30),
+                                    child: Image.network(
+                                      controller.shopProfile.value,
+                                      width: 50,
+                                      height: 50,
+                                      // fit: BoxFit.cover,
+                                      errorBuilder: (context, st, ob) {
+                                        return Image.asset(
+                                          AppImages.petMetLogoImg,
+                                          width: 50,
+                                          height: 50,
+                                          // fit: BoxFit.cover,
+                                        );
+                                      },
+                                      // width: controller.size.width * 0.05,
+                                    ),
+                                  )
+                                : UserDetails.categoryId == "3"
+                                    ? ClipRRect(
+                                        borderRadius: BorderRadius.circular(30),
+                                        child: Image.network(
+                                          controller.ngoProfile.value,
+                                          width: 50,
+                                          height: 50,
+                                          // fit: BoxFit.cover,
+                                          errorBuilder: (context, st, ob) {
+                                            return Image.asset(
+                                                AppImages.petMetLogoImg,
+                                                width: 50,
+                                                height: 50,
+                                                // fit: BoxFit.cover,
+                                            );
+                                          },
+                                          // width: controller.size.width * 0.05,
+                                        ),
+                                      )
+                                    : UserDetails.categoryId == "4"
+                                        ? ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            child: Image.network(
+                                              controller.trainerProfile.value,
                                               width: 50,
                                               height: 50,
                                               // fit: BoxFit.cover,
-                                          );
-                                        },
-                                        // width: controller.size.width * 0.05,
-                                      ),
-                                    )
-                                  : UserDetails.categoryId == "4"
-                                      ? ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(30),
-                                          child: Image.network(
-                                            controller.trainerProfile.value,
-                                            width: 50,
-                                            height: 50,
-                                            // fit: BoxFit.cover,
-                                            errorBuilder: (context, st, ob) {
-                                              return Image.asset(
-                                                  AppImages.petMetLogoImg,
-                                                  width: 50,
-                                                  height: 50,
-                                                  // fit: BoxFit.cover,
-                                              );
-                                            },
-                                            // width: controller.size.width * 0.05,
+                                              errorBuilder: (context, st, ob) {
+                                                return Image.asset(
+                                                    AppImages.petMetLogoImg,
+                                                    width: 50,
+                                                    height: 50,
+                                                    // fit: BoxFit.cover,
+                                                );
+                                              },
+                                              // width: controller.size.width * 0.05,
+                                            ),
+                                          )
+                                        : Image.asset(
+                                            AppImages.userProfileImg,
+                                            width: controller.size.width * 0.12,
                                           ),
-                                        )
-                                      : Image.asset(
-                                          AppImages.userProfileImg,
-                                          width: controller.size.width * 0.12,
-                                        ),
+                      ),
                     ),
                   ),
                   // ),

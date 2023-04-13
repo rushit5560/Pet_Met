@@ -633,10 +633,8 @@ class HomeController extends GetxController {
       }
     } catch (e) {
       log("All Role Profile Api Error ::: $e");
-    } finally {
-      //isLoading(false);
-      await getAllBannerFunction();
     }
+    await getAllBannerFunction();
   }
 
   /// Get Trainer Profile

@@ -10,6 +10,7 @@ import 'package:pet_met/screens/pet_pricing_screen/pet_pricing_screen.dart';
 import 'package:pet_met/screens/privacy_policy_screen/privacy_policy_screen.dart';
 import 'package:pet_met/screens/subscription_report_screen/subscription_report_screen.dart';
 import 'package:pet_met/screens/support_screen/support_screen.dart';
+import 'package:pet_met/screens/term_and_condition_screen/term_and_condition_screen.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/theme_preferences.dart';
 import 'package:pet_met/utils/user_details.dart';
@@ -630,6 +631,31 @@ class _BuildMenuState extends State<BuildMenu> {
                                         ),
                                       ),
 
+                                      /// Term & Condition
+                                      drawerListTile(
+                                        onTap: () {
+                                          indexController
+                                              .drawerController.close!();
+                                          Get.to(() => TermAndConditionScreen());
+                                        },
+                                        leading: Image.asset(
+                                          AppIcons.privacyPolicyImg,
+                                          color: themeProvider.darkTheme
+                                              ? AppColors.whiteColor
+                                              : AppColors.greyTextColor,
+                                          height: 22,
+                                        ),
+                                        titleWidget: Text(
+                                          "Term & Condition",
+                                          style: TextStyle(
+                                            color: themeProvider.darkTheme
+                                                ? AppColors.whiteColor
+                                                : AppColors.greyTextColor,
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
 
                                       /// Change password
                                       drawerListTile(

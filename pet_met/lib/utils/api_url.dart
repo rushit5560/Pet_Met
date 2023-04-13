@@ -30,6 +30,7 @@ class ApiUrl {
   static const petCareApi = apiMainPath + "/cms/1";
   static const supportApi = apiMainPath + "/cms/0";
   static const aboutApi = apiMainPath + "/cms/3";
+  static const termAndConditionApi = apiMainPath + "/cms/10";
 
   // Address Management
   static const getAllAddressApi = apiMainPath + "/address/";
