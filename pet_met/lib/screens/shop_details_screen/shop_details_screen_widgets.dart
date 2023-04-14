@@ -19,8 +19,6 @@ import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/user_details.dart';
 import '../user_conversation_screen/user_conversation_screen.dart';
 
-
-
 class BannerImageModule extends StatelessWidget {
   BannerImageModule({Key? key}) : super(key: key);
   final screenController = Get.find<ShopDetailsScreenController>();
@@ -72,8 +70,10 @@ class OffersModule extends StatelessWidget {
             Expanded(
               child: Text(
                 "Offers & Discounts :",
-                style: TextStyle(color: AppColors.accentTextColor,
-                  fontWeight: FontWeight.bold,),
+                style: TextStyle(
+                  color: AppColors.accentTextColor,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             // screenController.isVerified == true
@@ -96,15 +96,11 @@ class OffersModule extends StatelessWidget {
             //     : Container(),
           ],
         ),
-        SizedBox(height: 10),
-        const SizedBox(height: 10),
-        screenController.shopData[0].image1 == "" &&
-                screenController.shopData[0].image2 == "" &&
-                screenController.shopData[0].image3 == "" &&
-                screenController.shopData[0].image4 == "" &&
-                screenController.shopData[0].image5 == ""
+        // SizedBox(height: 10),
+        const SizedBox(height: 20),
+        /*screenController.productList.isEmpty
             ? Text(
-                "No offers available!",
+                "No Product available!",
                 textAlign: TextAlign.start,
                 style: TextStyle(
                   color: themeProvider.darkTheme
@@ -112,12 +108,51 @@ class OffersModule extends StatelessWidget {
                       : AppColors.blackTextColor,
                 ),
               )
-            : Row(
+            : */GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 5,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                ),
+                itemCount: 8,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, i) {
+                  return GestureDetector(
+                    onTap: () {
+                      // imageAlertDialog(context, index = 1);
+                      bottomSheetModule();
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: Colors.grey)),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(6),
+                        child: Image.network(
+                            ApiUrl.apiImagePath +
+                                "asset/uploads/product/"
+                                    "${screenController.shopData[0].image1}",
+                            fit: BoxFit.cover,
+                            height: 40,
+                            width: 40, errorBuilder: (context, er, da) {
+                          return Padding(
+                            padding: const EdgeInsets.all(5),
+                            child: Image.asset(AppImages.petMetLogoImg),
+                          );
+                        }),
+                      ),
+                    ),
+                  );
+                },
+              ),
+        /*Row(
                 children: [
                   Expanded(
                       child: GestureDetector(
                     onTap: () {
-                      imageAlertDialog(context, index = 1);
+                      // imageAlertDialog(context, index = 1);
+                      bottomSheetModule();
                     },
                     child: SizedBox(
                       height: screenController.size.width * 0.18,
@@ -145,7 +180,7 @@ class OffersModule extends StatelessWidget {
                       ),
                     ),
                   )),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                       child: GestureDetector(
                     onTap: () {
@@ -176,7 +211,7 @@ class OffersModule extends StatelessWidget {
                       ),
                     ),
                   )),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                       child: GestureDetector(
                     onTap: () {
@@ -207,7 +242,7 @@ class OffersModule extends StatelessWidget {
                       ),
                     ),
                   )),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                       child: GestureDetector(
                     onTap: () {
@@ -237,7 +272,7 @@ class OffersModule extends StatelessWidget {
                       ),
                     ),
                   )),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                       child: GestureDetector(
                     onTap: () {
@@ -268,21 +303,7 @@ class OffersModule extends StatelessWidget {
                     ),
                   ))
                 ],
-              )
-        /*SizedBox(
-          height: screenController.size.width * 0.18,
-          child: screenController.shopData.offersimages!.isEmpty ?
-              const Center(child: Text("Empty Offers")):
-          ListView.builder(
-            itemCount: screenController.shopData.offersimages!.length,
-            shrinkWrap: true,
-            physics: const BouncingScrollPhysics(),
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, i) {
-              return _offerListTile(i, context);
-            },
-          ),
-        ),*/
+              ),*/
       ],
     ).commonSymmetricPadding(horizontal: 15);
   }
@@ -297,15 +318,146 @@ class OffersModule extends StatelessWidget {
         width: screenController.size.width * 0.18,
         child: ClipRRect(
             borderRadius: BorderRadius.circular(8),
-            child: *//*Image.network(
+            child: */ /*Image.network(
               ApiUrl.apiImagePath + screenController.shopData.offersimages![i],
               fit: BoxFit.cover, errorBuilder: (context, er, da) {
             return Image.asset(AppImages.petMetLogoImg);
-          }),*//*
+          }),*/ /*
                 Image.asset(AppImages.petMetLogoImg)),
       ).commonSymmetricPadding(horizontal: 5),
     );
   }*/
+
+  //todo
+  // Open Bottom Sheet
+  bottomSheetModule() {
+    showModalBottomSheet(
+      context: Get.context!,
+      backgroundColor: Colors.transparent,
+      useRootNavigator: true,
+      isScrollControlled: true,
+      isDismissible: true,
+      // enableDrag: true,
+      builder: (context) {
+        return SafeArea(
+          child: Padding(
+            padding:
+                const EdgeInsets.only(top: 20, bottom: 10, right: 10, left: 10),
+            child: Container(
+              // height: Get.height * 0.70,
+              decoration: BoxDecoration(
+                color: themeProvider.darkTheme
+                    ? AppColors.blackTextColor
+                    : AppColors.whiteColor,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network(
+                        ApiUrl.apiImagePath +
+                            "asset/uploads/product/" +
+                            screenController.shopData[0].image1!,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, er, da) {
+                          return Image.asset(AppImages.petMetLogoImg);
+                        },
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      'Product Name',
+                      textAlign: TextAlign.start,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor.withOpacity(0.4)
+                            : AppColors.blackTextColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14.sp,
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      'Product Description Product Description Product Description Product Description Product Description'
+                      'Product Description Product Description Product Description Product Description Product Description'
+                      'Product Description Product Description Product Description Product Description Product Description',
+                      textAlign: TextAlign.start,
+                      maxLines: 10,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor.withOpacity(0.4)
+                            : AppColors.blackTextColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12.sp,
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    RichText(
+                      text: TextSpan(
+                        text: "Price : ",
+                        style: TextStyle(
+                          color: themeProvider.darkTheme
+                              ? AppColors.whiteColor.withOpacity(0.4)
+                              : AppColors.blackTextColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12.sp,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: "₹ 699/-",
+                            style: TextStyle(
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12.sp,
+                            ),
+                          ),
+                          const TextSpan(text: "  "),
+                          TextSpan(
+                            text: "MRP",
+                            style: TextStyle(
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor.withOpacity(0.4)
+                                  : AppColors.blackTextColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12.sp,
+                              decoration: TextDecoration.lineThrough,
+                            ),
+                          ),
+                          const TextSpan(text: " : "),
+                          TextSpan(
+                            text: "₹ 999/-",
+                            style: TextStyle(
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor.withOpacity(0.4)
+                                  : AppColors.blackTextColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12.sp,
+                              decoration: TextDecoration.lineThrough,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    PayButtonModule(),
+                    const SizedBox(height: 5),
+                  ],
+                ).commonAllSidePadding(padding: 5),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
 
   imageAlertDialog(BuildContext context, index) {
     // Widget cancelButton = TextButton(
@@ -384,15 +536,15 @@ class PayButtonModule extends StatelessWidget {
         onTap: () async {
           // screenController.openCheckout();
           // Fluttertoast.showToast(msg: 'Processing payment to trainer.');
-          if(screenController.shopName == UserDetails.userName) {
+          if (screenController.shopName == UserDetails.userName) {
             Fluttertoast.showToast(msg: "Shop can't pay to itself.");
           } else {
-            alertDialogBox(context);
+            // alertDialogBox(context);
           }
         },
         child: Container(
           width: double.infinity,
-          height: 50,
+          height: 40,
           decoration: const BoxDecoration(
             color: AppColors.accentColor,
             borderRadius: BorderRadius.all(
@@ -401,7 +553,7 @@ class PayButtonModule extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              "Pay",
+              "Add To Cart",
               style: TextStyle(
                 color: AppColors.whiteColor,
                 fontSize: 15.sp,
@@ -541,7 +693,7 @@ class PayButtonModule extends StatelessWidget {
                           color: themeProvider.darkTheme
                               ? AppColors.whiteColor
                               : AppColors.greyTextColor,
-                          fontSize: 13.sp,
+                          fontSize: 15.sp,
                           fontWeight: FontWeight.w400,
                         ),
                       ),

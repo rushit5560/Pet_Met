@@ -34,6 +34,8 @@ class ShopDetailsScreenController extends GetxController {
   bool isVerified = false;
   RxBool showStatus = false.obs;
 
+  List productList = [];
+
   late Razorpay _razorpay;
 
   /// Get Shop Details
@@ -60,6 +62,9 @@ class ShopDetailsScreenController extends GetxController {
         shopUpi = shopDetailsModel.data[0].gpayupi ?? "";
 
         shopCatId = "${shopDetailsModel.data[0].categoryID}";
+
+        productList.add(1);
+
         if (isVerify == "0") {
           isVerified = true;
         } else {

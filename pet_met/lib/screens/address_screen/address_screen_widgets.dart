@@ -34,20 +34,16 @@ class AddressListModule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      //height: 12.h * controller.getAllAddressList.length,
-      //width: double.infinity,
-      child: ListView.builder(
-        shrinkWrap: true,
-        physics: const AlwaysScrollableScrollPhysics(),
-        itemCount: controller.getAllAddressList.length,
-        itemBuilder: (context, index) {
-          return AddressTileWidget(
-            controller: controller,
-            index: index,
-          );
-        },
-      ),
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const AlwaysScrollableScrollPhysics(),
+      itemCount: controller.getAllAddressList.length,
+      itemBuilder: (context, index) {
+        return AddressTileWidget(
+          controller: controller,
+          index: index,
+        );
+      },
     );
   }
 
@@ -71,16 +67,14 @@ class AddressTileWidget extends StatelessWidget {
         // Get.toNamed(add)
       },
       child: Container(
-        margin: EdgeInsets.only(bottom: 20),
+        margin: const EdgeInsets.only(bottom: 20),
         width: double.infinity,
-        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
         decoration: BoxDecoration(
           color: themeProvider.darkTheme
               ? AppColors.darkThemeColor
               : AppColors.whiteColor,
-          borderRadius: BorderRadius.all(
-            Radius.circular(12),
-          ),
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
           boxShadow: [
             BoxShadow(
               color: AppColors.greyTextColor.withOpacity(0.25),
