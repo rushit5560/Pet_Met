@@ -71,7 +71,9 @@ class AppImages {
   static const userProfileImg = root + "user_ellipse.png";
   static const galleryImg = root + "folder_yellow.png";
   static const cameraImg = root + "camera_green.png";
-  static const googleImg = root + "gmailicon.png";
+  static const  googleImg = root + "gmailicon.png";
+  static const  appleImg = root + "apple.png";
+
   static const facebookImg = root + "fbicon.png";
   static const visaImg = root + "visa_image.png";
   static const gallery2Img = root + "image_placeholder2.png";

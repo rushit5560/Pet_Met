@@ -45,7 +45,7 @@ class UserPreference {
       required String userProfileImage,
       required String token,
       required String roleId,
-      required String shopName,
+      required String   shopName,
       String? shopProfile}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString(selfIdKey, selfId);

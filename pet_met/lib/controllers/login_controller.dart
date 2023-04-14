@@ -15,6 +15,8 @@ import 'package:pet_met/utils/api_url.dart';
 import 'package:http/http.dart' as http;
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import '../screens/index_screen/index_screen.dart';
 
 class LoginController extends GetxController {
@@ -32,6 +34,9 @@ class LoginController extends GetxController {
   UserPreference userPreference = UserPreference();
 
   final formKey = GlobalKey<FormState>();
+  FirebaseAuth auth = FirebaseAuth.instance;
+  var googleSignIn = GoogleSignIn();
+  var googleAccount = Rx<GoogleSignInAccount?>(null);
 
   // FacebookUserProfile? profile;
   // final FacebookLogin  plugin = FacebookLogin(debug: true);
@@ -87,7 +92,7 @@ class LoginController extends GetxController {
         passController.clear();
         //await userPreference.setRoleId(roleId);
         // Going to Index Screen
-     await   setUserDataInFirebaseFunction();
+        await setUserDataInFirebaseFunction();
         Get.offAll(
           () => IndexScreen(),
           transition: Transition.native,
@@ -120,10 +125,32 @@ class LoginController extends GetxController {
 
   Future signInWithGoogleFunction() async {
     isLoading(true);
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // try {
+    //   googleAccount.value = await googleSignIn.signIn();
+    //   var userName = googleAccount.value!.displayName;
+    //   var userEmail = googleAccount.value!.email;
+
+    //   log("signInWithGoogleFunction userName : $userName");
+    //   log("signInWithGoogleFunction userEmail : $userEmail");
+    //   // if (googleAccount.value!.displayName!.isNotEmpty &&
+    //   //     googleAccount.value!.email.isNotEmpty) {
+    //     await socialMediaRegisterFunction(
+    //       userName: googleAccount.value!.displayName.toString(),
+    //       userEmail: googleAccount.value!.email,
+    //       userId: googleAccount.value!.id,
+    //     );
+    //   // }
+    // } catch (e) {
+    //   log("signInWithGoogleFunction error :");
+    //   rethrow;
+    // } finally {
+    //   isLoading(false);
+    // }
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     final FirebaseAuth auth = FirebaseAuth.instance;
     final GoogleSignIn googleSignIn = GoogleSignIn();
     googleSignIn.signOut();
+
     final GoogleSignInAccount? googleSignInAccount =
         await googleSignIn.signIn();
     if (googleSignInAccount != null) {
@@ -158,7 +185,50 @@ class LoginController extends GetxController {
         );
       }
     }
-    isLoading(false);
+  }
+
+  Future signInWithAppleFunction() async {
+    isLoading(true);
+    try {
+      log("apple login 11");
+      final credential = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+      );
+      log("apple login 22");
+
+      log("apple login email are :: ${credential.email}");
+      log("apple login givenName are :: ${credential.givenName}");
+
+      if (credential.email!.isNotEmpty && credential.givenName!.isNotEmpty) {
+        await socialMediaRegisterFunction(
+          userName: credential.givenName! + credential.familyName!,
+          userEmail: credential.email!,
+          userId: credential.authorizationCode,
+        );
+      } else {
+        log("signInWithAppleFunction error");
+        // CommonWidgets.yesOrNoDialog(
+        //   context: context,
+        //   body:
+        //       "Unfortunately apple sign in not working. try another login method.",
+        //   title: "Apple sign in failed",
+        //   onNoPressed: () {
+        //     Get.back();
+        //   },
+        //   onYesPressed: () {
+        //     Get.back();
+        //   },
+        // );
+      }
+    } catch (e) {
+      log("error occured while apple signin :: $e");
+      rethrow;
+    } finally {
+      isLoading(false);
+    }
   }
   // old
   // Future signInWithFacebookFunction() async {
@@ -171,32 +241,32 @@ class LoginController extends GetxController {
   //     ],
   //   );
   //
-  //   // try {
-  //   //   final _instance = FacebookAuth.instance;
-  //   //   final result = await _instance.login(permissions: ['email']);
-  //   //   if (result.status == LoginStatus.success) {
-  //   //     log('login success');
-  //   //     log('${result.message}');
-  //   //     final OAuthCredential credential =
-  //   //         FacebookAuthProvider.credential(result.accessToken!.token);
-  //   //     log('${credential.secret}');
-  //   //     final a = await _auth.signInWithCredential(credential);
-  //   //     log('${a.additionalUserInfo}');
-  //   //     await _instance.getUserData().then((userData) async {
-  //   //       log('userData is : ${userData}');
-  //   //       await _auth.currentUser!.updateEmail(userData['email']);
-  //
-  //   //       log("usermail is ${userData['email']}");
-  //   //       log("username is ${a.additionalUserInfo!.username}");
-  //   //     });
-  //   //     return null;
-  //   //   } else if (result.status == LoginStatus.cancelled) {
-  //   //     return 'Login cancelled';
-  //   //   } else {
-  //   //     return 'Error';
-  //   //   }
-  //   // } catch (e) {
-  //   //   log("erro occured : ${e.toString()}");
+  // try {
+  //   final _instance = FacebookAuth.instance;
+  //   final result = await _instance.login(permissions: ['email']);
+  //   if (result.status == LoginStatus.success) {
+  //     log('login success');
+  //     log('${result.message}');
+  //     final OAuthCredential credential =
+  //         FacebookAuthProvider.credential(result.accessToken!.token);
+  //     log('${credential.secret}');
+  //     final a = await _auth.signInWithCredential(credential);
+  //     log('${a.additionalUserInfo}');
+  //     await _instance.getUserData().then((userData) async {
+  //       log('userData is : ${userData}');
+  //       await _auth.currentUser!.updateEmail(userData['email']);
+
+  //       log("usermail is ${userData['email']}");
+  //       log("username is ${a.additionalUserInfo!.username}");
+  //     });
+  //     return null;
+  //   } else if (result.status == LoginStatus.cancelled) {
+  //     return 'Login cancelled';
+  //   } else {
+  //     return 'Error';
+  //   }
+  // } catch (e) {
+  //   log("erro occured : ${e.toString()}");
   //
   //   //   rethrow;
   //   // }
@@ -262,8 +332,7 @@ class LoginController extends GetxController {
   // new
   facebookLogin() async {
     try {
-      final result =
-      await FacebookAuth.i.login(permissions: ['email']);
+      final result = await FacebookAuth.i.login(permissions: ['email']);
       if (result.status == LoginStatus.success) {
         final userData = await FacebookAuth.i.getUserData();
         log("$userData");
@@ -400,14 +469,12 @@ class LoginController extends GetxController {
     }
   }*/
 
-
-
   setUserDataInFirebaseFunction() async {
     List<String> tempNotificationList = [];
     String userName = UserDetails.userName;
 
     QuerySnapshot querySnapshot =
-    await FirebaseFirestore.instance.collection("Users").get();
+        await FirebaseFirestore.instance.collection("Users").get();
     querySnapshot.docs.map((doc) {
       if (doc["username"].toString().contains(userName)) {
         tempNotificationList.add(doc["username"]);
@@ -466,6 +533,7 @@ class LoginController extends GetxController {
       });
     }
   }
+
   @override
   void onInit() {
     getDeviceTokenToSendNotification();
@@ -481,6 +549,4 @@ class LoginController extends GetxController {
     log("Token Value 111: $deviceTokenToSendPushNotification");
     await userPreference.setFcmInPrefs(deviceTokenToSendPushNotification);
   }
-
-
 }
