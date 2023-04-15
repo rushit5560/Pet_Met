@@ -75,7 +75,7 @@ class Trainers {
   String isVerified;
 
   factory Trainers.fromJson(Map<String, dynamic> json) => Trainers(
-    id: json["id"] ?? "",
+    id: (json["id"] ?? 0).toString(),
     name: json["name"] ?? "",
     address: json["address"] ?? "",
     phone: json["phone"] ?? "",

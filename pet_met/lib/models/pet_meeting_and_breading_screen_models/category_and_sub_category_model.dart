@@ -86,7 +86,7 @@ class MainCategoryId {
   // dynamic modifiedBy;
 
   factory MainCategoryId.fromJson(Map<String, dynamic> json) => MainCategoryId(
-        categoryId: json["categoryID"] ?? "",
+        categoryId: (json["categoryID"] ?? 0).toString(),
         categoryName: json["categoryName"] ?? "",
         // categoryMetaTitle: json["categoryMetaTitle"],
         // categoryMetaDescrtiption: json["categoryMetaDescrtiption"],
@@ -94,7 +94,7 @@ class MainCategoryId {
         categoryImage: json["categoryImage"] ?? "",
         // parent: json["parent"],
         sortOrder: json["sort_order"] ?? "",
-        isActive: json["is_active"] ?? "",
+        isActive: (json["is_active"] ?? 0).toString(),
         // createdDate: DateTime.parse(json["created_date"]),
         // updatedDate: json["updated_date"],
         // createdBy: json["created_by"],
@@ -154,8 +154,8 @@ class SubCategoryId {
   // dynamic modifiedBy;
 
   factory SubCategoryId.fromJson(Map<String, dynamic> json) => SubCategoryId(
-      categoryId: json["categoryID"] ?? "",
-      mainCategoryId: json["main_categoryID"] ?? "",
+      categoryId: (json["categoryID"] ?? 0).toString(),
+      mainCategoryId: (json["main_categoryID"] ?? 0).toString(),
       categoryName: json["categoryName"] ?? "",
       // categoryMetaTitle: json["categoryMetaTitle"],
       // categoryMetaDescrtiption: json["categoryMetaDescrtiption"],
@@ -163,7 +163,7 @@ class SubCategoryId {
       categoryImage: json["categoryImage"] ?? "",
       // parent: json["parent"],
       sortOrder: json["sort_order"] ?? "",
-      isActive: json["is_active"] ?? "",
+      isActive: (json["is_active"] ?? 0).toString(),
       isSelected: false
       // createdDate: DateTime.parse(json["created_date"]),
       // updatedDate: json["updated_date"],

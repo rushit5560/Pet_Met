@@ -255,7 +255,7 @@ class HomeController extends GetxController {
 
         GetPetTopListModel getPetTopListModel =
             GetPetTopListModel.fromJson(json.decode(response.body));
-            
+
         isSuccessStatus = getPetTopListModel.success.obs;
 
         if (isSuccessStatus.value) {
@@ -268,7 +268,7 @@ class HomeController extends GetxController {
             log("petList Length : ${petTopList.length}");
             log('pet image1: ${ApiUrl.apiImagePath + "asset/uploads/petimage/" + petTopList[0].data.image}');
             for (int i = 0; i < petTopList.length; i++) {
-              petTopFollowCategoryId = petTopList[i].data.categoryId;
+              petTopFollowCategoryId = petTopList[i].data.categoryId.toString();
             }
             // for (int i = 0; i < petTopList.length; i++) {
             //   petTopFollowCategoryId = petTopList[i].data.categoryId;
@@ -283,7 +283,7 @@ class HomeController extends GetxController {
           log("Pet Api Else");
         }
       } catch (e) {
-        log("Get All Pet Api Error ::: $e");
+        log("Get All Pet Api Error ::: ${e.toString()}");
       } finally {
         loadUI();
         // await getUserStory();

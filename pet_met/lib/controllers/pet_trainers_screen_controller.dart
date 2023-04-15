@@ -9,9 +9,6 @@ import 'package:pet_met/utils/user_details.dart';
 
 import 'index_screen_controller.dart';
 
-
-
-
 class PetTrainersScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
@@ -22,7 +19,6 @@ class PetTrainersScreenController extends GetxController {
 
   List<Trainers> trainersList = [];
   List<Trainers> searchTrainersList = [];
-
 
   // final indexScreenController = Get.find<IndexScreenController>();
   //
@@ -48,11 +44,11 @@ class PetTrainersScreenController extends GetxController {
       Map<String, String> header = apiHeader.apiHeader();
 
       http.Response response = await http.post(
-          Uri.parse(url),
-          headers: header,
+        Uri.parse(url),
+        headers: header,
         body: bodyData,
       );
-      // log("Get All Trainer Response : ${response.body}");
+      log("Get All Trainer Response : ${response.body}");
 
       AllTrainerModel allTrainerModel =
           AllTrainerModel.fromJson(json.decode(response.body));

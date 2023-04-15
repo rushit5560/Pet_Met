@@ -7,8 +7,6 @@ import 'package:pet_met/models/pet_meeting_and_breading_screen_models/category_a
 import 'package:pet_met/models/search_sub_category_model/search_sub_category_model.dart';
 import '../utils/api_url.dart';
 
-
-
 class PetMeetingAndBreadingScreenController extends GetxController {
   final size = Get.size;
 
@@ -37,12 +35,11 @@ class PetMeetingAndBreadingScreenController extends GetxController {
     try {
       Map<String, String> header = apiHeader.apiHeader();
       http.Response response = await http.post(Uri.parse(url), headers: header);
-      // log("get all pet category Api Response : ${response.body}");
+      log("get all pet category Api Response : ${response.body}");
 
       CategoryAndSubCategoryModel categoryAndSubCategoryModel =
           CategoryAndSubCategoryModel.fromJson(json.decode(response.body));
       isSuccessStatus = categoryAndSubCategoryModel.success.obs;
-      log('categoryAndSubCategoryModel : ${categoryAndSubCategoryModel.data}');
 
       if (isSuccessStatus.value) {
         catAndSubCatList.clear();
@@ -71,11 +68,13 @@ class PetMeetingAndBreadingScreenController extends GetxController {
       log("data : $data");
 
       Map<String, String> header = apiHeader.apiHeader();
-      http.Response response = await http.post(Uri.parse(url), body: data, headers: header);
+      http.Response response =
+          await http.post(Uri.parse(url), body: data, headers: header);
       log("get all search pet category Api Response : ${response.body}");
 
       SearchCategoryAndSubCategoryModel searchCategoryAndSubCategoryModel =
-      SearchCategoryAndSubCategoryModel.fromJson(json.decode(response.body));
+          SearchCategoryAndSubCategoryModel.fromJson(
+              json.decode(response.body));
       isSuccessStatus = searchCategoryAndSubCategoryModel.success.obs;
       log('isSuccessStatus: $isSuccessStatus');
 

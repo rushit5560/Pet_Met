@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-GetUserProfileModel getUserProfileModelFromJson(String str) => GetUserProfileModel.fromJson(json.decode(str));
+GetUserProfileModel getUserProfileModelFromJson(String str) =>
+    GetUserProfileModel.fromJson(json.decode(str));
 
-String getUserProfileModelToJson(GetUserProfileModel data) => json.encode(data.toJson());
+String getUserProfileModelToJson(GetUserProfileModel data) =>
+    json.encode(data.toJson());
 
 class GetUserProfileModel {
   GetUserProfileModel({
@@ -19,17 +21,18 @@ class GetUserProfileModel {
   Data data;
   String message;
 
-  factory GetUserProfileModel.fromJson(Map<String, dynamic> json) => GetUserProfileModel(
-    success: json["success"] ?? false,
-    data: Data.fromJson(json["data"] ?? {}),
-    message: json["message"] ?? "",
-  );
+  factory GetUserProfileModel.fromJson(Map<String, dynamic> json) =>
+      GetUserProfileModel(
+        success: json["success"] ?? false,
+        data: Data.fromJson(json["data"] ?? {}),
+        message: json["message"] ?? "",
+      );
 
   Map<String, dynamic> toJson() => {
-    "success": success,
-    "data": data.toJson(),
-    "message": message,
-  };
+        "success": success,
+        "data": data.toJson(),
+        "message": message,
+      };
 }
 
 class Data {
@@ -42,14 +45,16 @@ class Data {
   List<Petdatum> petdata;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    data: List<UserData>.from(json["data"].map((x) => UserData.fromJson(x)) ?? {}),
-    petdata: List<Petdatum>.from(json["petdata"].map((x) => Petdatum.fromJson(x)) ?? {}),
-  );
+        data: List<UserData>.from(
+            json["data"].map((x) => UserData.fromJson(x)) ?? {}),
+        petdata: List<Petdatum>.from(
+            json["petdata"].map((x) => Petdatum.fromJson(x)) ?? {}),
+      );
 
   Map<String, dynamic> toJson() => {
-    "data": List<dynamic>.from(data.map((x) => x.toJson())),
-    "petdata": List<dynamic>.from(petdata.map((x) => x.toJson())),
-  };
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+        "petdata": List<dynamic>.from(petdata.map((x) => x.toJson())),
+      };
 }
 
 class UserData {
@@ -102,54 +107,54 @@ class UserData {
   String isVerified;
 
   factory UserData.fromJson(Map<String, dynamic> json) => UserData(
-    id: json["id"] ?? "",
-    name: json["name"] ?? "",
-    email: json["email"] ?? "",
-    emailVerifiedAt: json["email_verified_at"] ?? "",
-    password: json["password"] ?? "",
-    rememberToken: json["remember_token"] ?? "",
-    image: json["image"] ?? "",
-    country: json["country"] ?? "",
-    state: json["state"] ?? "",
-    city: json["city"] ?? "",
-    categoryId: json["categoryID"] ?? "",
-    forgotpasswordToken: json["forgotpassword_token"] ?? "",
-    createdAt: json["created_at"] ?? "",
-    updatedAt: json["updated_at"] ?? "",
-    bod: json["bod"] ?? "",
-    phone: json["phone"] ?? "",
-    gender: json["gender"] ?? "",
-    fullText: json["full_text"] ?? "",
-    instagram: json["instagram"] ?? "",
-    facebook: json["facebook"] ?? "",
-    isActive: json["is_active"] ?? "",
-    isVerified: json["is_verified"] ?? "",
-  );
+        id: (json["id"] ?? 0).toString(),
+        name: json["name"] ?? "",
+        email: json["email"] ?? "",
+        emailVerifiedAt: json["email_verified_at"] ?? "",
+        password: json["password"] ?? "",
+        rememberToken: json["remember_token"] ?? "",
+        image: json["image"] ?? "",
+        country: (json["country"] ?? 0).toString(),
+        state: (json["state"] ?? 0).toString(),
+        city: (json["city"] ?? 0).toString(),
+        categoryId: (json["categoryID"] ?? 0).toString(),
+        forgotpasswordToken: json["forgotpassword_token"] ?? "",
+        createdAt: json["created_at"] ?? "",
+        updatedAt: json["updated_at"] ?? "",
+        bod: json["bod"] ?? "",
+        phone: json["phone"] ?? "",
+        gender: json["gender"] ?? "",
+        fullText: json["full_text"] ?? "",
+        instagram: json["instagram"] ?? "",
+        facebook: json["facebook"] ?? "",
+        isActive: json["is_active"] ?? "",
+        isVerified: json["is_verified"] ?? "",
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "email": email,
-    "email_verified_at": emailVerifiedAt,
-    "password": password,
-    "remember_token": rememberToken,
-    "image": image,
-    "country": country,
-    "state": state,
-    "city": city,
-    "categoryID": categoryId,
-    "forgotpassword_token": forgotpasswordToken,
-    "created_at": createdAt,
-    "updated_at": updatedAt,
-    "bod": bod,
-    "phone": phone,
-    "gender": gender,
-    "full_text": fullText,
-    "instagram": instagram,
-    "facebook": facebook,
-    "is_active": isActive,
-    "is_verified": isVerified,
-  };
+        "id": id,
+        "name": name,
+        "email": email,
+        "email_verified_at": emailVerifiedAt,
+        "password": password,
+        "remember_token": rememberToken,
+        "image": image,
+        "country": country,
+        "state": state,
+        "city": city,
+        "categoryID": categoryId,
+        "forgotpassword_token": forgotpasswordToken,
+        "created_at": createdAt,
+        "updated_at": updatedAt,
+        "bod": bod,
+        "phone": phone,
+        "gender": gender,
+        "full_text": fullText,
+        "instagram": instagram,
+        "facebook": facebook,
+        "is_active": isActive,
+        "is_verified": isVerified,
+      };
 }
 
 class Petdatum {
@@ -192,42 +197,42 @@ class Petdatum {
   String modifiedBy;
 
   factory Petdatum.fromJson(Map<String, dynamic> json) => Petdatum(
-    id: json["id"] ?? "",
-    image: json["image"] ?? "",
-    petName: json["pet_name"] ?? "",
-    mainCategory: json["main_category"] ?? "",
-    subCategory: json["sub_category"] ?? "",
-    dob: json["dob"] ?? "",
-    weight: json["weight"] ?? "",
-    details: json["details"] ?? "",
-    imageList: json["image_list"] ?? "",
-    meetingAvailability: json["meeting_availability"] ?? "",
-    gender: json["gender"] ?? "",
-    isActive: json["is_active"] ?? "",
-    userid: json["userid"] ?? "",
-    createdBy: json["created_by"] ?? "",
-    createdDate: json["created_date"] ?? "",
-    updatedDate: json["updated_date"] ?? "",
-    modifiedBy: json["modified_by"] ?? "",
-  );
+        id: json["id"] ?? "",
+        image: json["image"] ?? "",
+        petName: json["pet_name"] ?? "",
+        mainCategory: json["main_category"] ?? "",
+        subCategory: json["sub_category"] ?? "",
+        dob: json["dob"] ?? "",
+        weight: json["weight"] ?? "",
+        details: json["details"] ?? "",
+        imageList: json["image_list"] ?? "",
+        meetingAvailability: json["meeting_availability"] ?? "",
+        gender: json["gender"] ?? "",
+        isActive: json["is_active"] ?? "",
+        userid: json["userid"] ?? "",
+        createdBy: json["created_by"] ?? "",
+        createdDate: json["created_date"] ?? "",
+        updatedDate: json["updated_date"] ?? "",
+        modifiedBy: json["modified_by"] ?? "",
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "image": image,
-    "pet_name": petName,
-    "main_category": mainCategory,
-    "sub_category": subCategory,
-    "dob": dob,
-    "weight": weight,
-    "details": details,
-    "image_list": imageList,
-    "meeting_availability": meetingAvailability,
-    "gender": gender,
-    "is_active": isActive,
-    "userid": userid,
-    "created_by": createdBy,
-    "created_date": createdDate,
-    "updated_date": updatedDate,
-    "modified_by": modifiedBy,
-  };
+        "id": id,
+        "image": image,
+        "pet_name": petName,
+        "main_category": mainCategory,
+        "sub_category": subCategory,
+        "dob": dob,
+        "weight": weight,
+        "details": details,
+        "image_list": imageList,
+        "meeting_availability": meetingAvailability,
+        "gender": gender,
+        "is_active": isActive,
+        "userid": userid,
+        "created_by": createdBy,
+        "created_date": createdDate,
+        "updated_date": updatedDate,
+        "modified_by": modifiedBy,
+      };
 }
