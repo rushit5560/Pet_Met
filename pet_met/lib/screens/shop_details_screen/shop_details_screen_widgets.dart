@@ -17,6 +17,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../firebase_database/firebase_database.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/user_details.dart';
+import '../cart_screen/cart_screen.dart';
 import '../user_conversation_screen/user_conversation_screen.dart';
 
 class BannerImageModule extends StatelessWidget {
@@ -540,6 +541,7 @@ class PayButtonModule extends StatelessWidget {
             Fluttertoast.showToast(msg: "Shop can't pay to itself.");
           } else {
             // alertDialogBox(context);
+            Get.to(()=> CartScreen());
           }
         },
         child: Container(
