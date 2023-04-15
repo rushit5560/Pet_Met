@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pet_met/controllers/register_controller.dart';
@@ -13,6 +12,7 @@ import '../../../utils/app_colors.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 import 'dart:io' show Platform;
+
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({Key? key}) : super(key: key);
@@ -60,7 +60,7 @@ class RegisterScreen extends StatelessWidget {
                   key: controller.formKey,
                   child: Column(
                     children: [
-                      SizedBox(height: controller.size.height * 0.2),
+                      SizedBox(height: controller.size.height * 0.16),
                       Row(
                         children: [
                           Text(
@@ -224,44 +224,43 @@ class RegisterScreen extends StatelessWidget {
                             ],
                           ),
                           /*Container(
-                            width: controller.size.width * 0.65,
-                            child: RichText(
-                              text: TextSpan(
-                                style: TextStyle(
-                                  color: themeProvider.darkTheme
-                                      ? AppColors.whiteColor.withOpacity(0.75)
-                                      : AppColors.greyTextColor,
-                                  fontSize: 11.sp,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                                text: "By Signing up i Agree to the ",
-                                children: [
-                                  TextSpan(
-                                    text: "term and Condition & privacy Policy",
-                                    style: TextStyle(
-                                      color: themeProvider.darkTheme
-                                          ? AppColors.whiteColor
-                                          : AppColors.blackTextColor
-                                              .withOpacity(0.8),
-                                      fontSize: 11.sp,
-                                      height: 1.5,
-                                      fontWeight: FontWeight.w600,
-                                    ),
+                              width: controller.size.width * 0.65,
+                              child: RichText(
+                                text: TextSpan(
+                                  style: TextStyle(
+                                    color: themeProvider.darkTheme
+                                        ? AppColors.whiteColor.withOpacity(0.75)
+                                        : AppColors.greyTextColor,
+                                    fontSize: 11.sp,
+                                    fontWeight: FontWeight.w400,
                                   ),
-                                ],
+                                  text: "By Signing up i Agree to the ",
+                                  children: [
+                                    TextSpan(
+                                      text: "term and Condition & privacy Policy",
+                                      style: TextStyle(
+                                        color: themeProvider.darkTheme
+                                            ? AppColors.whiteColor
+                                            : AppColors.blackTextColor
+                                                .withOpacity(0.8),
+                                        fontSize: 11.sp,
+                                        height: 1.5,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ),*/
+                            ),*/
                         ],
                       ),
                       // SizedBox(height: controller.size.height * 0.1),
                       const Spacer(),
-
-                      Platform.isAndroid
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Expanded(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Platform.isAndroid
+                              ? Expanded(
                                   child: GestureDetector(
                                     onTap: () async {
                                       await controller
@@ -288,7 +287,6 @@ class RegisterScreen extends StatelessWidget {
                                           ),
                                         ],
                                       ),
-
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
@@ -307,67 +305,17 @@ class RegisterScreen extends StatelessWidget {
                                             ),
                                           )
                                         ],
-
-                                    )
-                                  
-                                
-                              ),
-                            ),
-                          ),
-//                           const SizedBox(width: 15),
-//                           Expanded(
-//                             child: GestureDetector(
-//                               onTap: () async {
-//                                 // await controller.signInWithFacebookFunction();
-//                                 // Fluttertoast.showToast(
-//                                 //     msg: 'This feature is coming soon');
-//                               },
-//                               child: Container(
-//                                 height: controller.size.height * 0.065,
-//                                 decoration: BoxDecoration(
-//                                   color: themeProvider.darkTheme
-//                                       ? AppColors.darkThemeColor
-//                                       : AppColors.whiteColor,
-//                                   borderRadius: BorderRadius.circular(12),
-//                                   boxShadow: [
-//                                     BoxShadow(
-//                                       color: themeProvider.darkTheme
-//                                           ? AppColors.blackColor
-//                                               .withOpacity(0.25)
-//                                           : AppColors.greyTextColor
-//                                               .withOpacity(0.25),
-//                                       spreadRadius: 1,
-//                                       blurRadius: 15,
-//                                       offset: const Offset(0, 5),
-//                                     ),
-//                                   ],
-//                                 ),
-//                                 child: Row(
-//                                   mainAxisAlignment: MainAxisAlignment.center,
-//                                   children: [
-//                                     Image.asset(
-//                                       AppImages.facebookImg,
-//                                       height: 25,
-//                                     ),
-//                                     const SizedBox(width: 15),
-//                                     Text(
-//                                       "Facebook",
-//                                       style: TextStyle(
-//                                         color: AppColors.accentTextColor,
-//                                         fontSize: 12.sp,
-//                                         fontWeight: FontWeight.bold,
-// >>>>>>> 9fe45831077aab9ab90073542e56c6e65c57fcf0
-//                                       ),
-//                                     ),
-//                                   ),
-//                                 ),
-                                const SizedBox(width: 15),
-                                Expanded(
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : Expanded(
                                   child: GestureDetector(
-                                    onTap: () {
-                                      // await controller.signInWithFacebookFunction();
-                                      Fluttertoast.showToast(
-                                          msg: 'Coming soon');
+                                    onTap: () async {
+                                      await controller
+                                          .signInWithAppleFunction();
+
+                                      // Fluttertoast.showToast(msg: 'This feature is coming soon');
                                     },
                                     child: Container(
                                       height: controller.size.height * 0.065,
@@ -385,7 +333,7 @@ class RegisterScreen extends StatelessWidget {
                                                     .withOpacity(0.25),
                                             spreadRadius: 1,
                                             blurRadius: 15,
-                                            offset: const Offset(0, 5),
+                                            offset: const Offset(4, 4),
                                           ),
                                         ],
                                       ),
@@ -394,12 +342,15 @@ class RegisterScreen extends StatelessWidget {
                                             MainAxisAlignment.center,
                                         children: [
                                           Image.asset(
-                                            AppImages.facebookImg,
-                                            height: 25,
+                                            AppImages.appleImg,
+                                            height: 35,
+                                            color: themeProvider.darkTheme
+                                                ? Colors.white
+                                                : Colors.black,
                                           ),
                                           const SizedBox(width: 15),
                                           Text(
-                                            "Facebook",
+                                            "Apple",
                                             style: TextStyle(
                                               color: AppColors.accentTextColor,
                                               fontSize: 12.sp,
@@ -411,9 +362,90 @@ class RegisterScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                              ],
-                            )
-                          : Container(),
+                          const SizedBox(width: 15),
+                          // Expanded(
+                          //   child: GestureDetector(
+                          //     onTap: () async {
+                          //       await controller.facebookLogin();
+                          //       // Fluttertoast.showToast(msg: 'Coming soon');
+                          //     },
+                          //     child: Container(
+                          //       height: controller.size.height * 0.065,
+                          //       decoration: BoxDecoration(
+                          //         color: themeProvider.darkTheme
+                          //             ? AppColors.darkThemeColor
+                          //             : AppColors.whiteColor,
+                          //         borderRadius: BorderRadius.circular(12),
+                          //         boxShadow: [
+                          //           BoxShadow(
+                          //             color: themeProvider.darkTheme
+                          //                 ? AppColors.blackColor.withOpacity(0.25)
+                          //                 : AppColors.greyTextColor.withOpacity(0.25),
+                          //             spreadRadius: 1,
+                          //             blurRadius: 15,
+                          //             offset: const Offset(0, 5),
+                          //           ),
+                          //         ],
+                          //       ),
+                          //       child: Row(
+                          //         mainAxisAlignment: MainAxisAlignment.center,
+                          //         children: [
+                          //           Image.asset(
+                          //             AppImages.facebookImg,
+                          //             height: 25,
+                          //           ),
+                          //           const SizedBox(width: 15),
+                          //           Text(
+                          //             "Facebook",
+                          //             style: TextStyle(
+                          //               color: AppColors.accentTextColor,
+                          //               fontSize: 12.sp,
+                          //               fontWeight: FontWeight.bold,
+                          //             ),
+                          //           )
+                          //         ],
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
+                        ],
+                      ),
+                      // SizedBox(height: controller.size.height * 0.12),
+                      const Spacer(),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.center,
+                      //   children: [
+                      //     Text(
+                      //       "Don't Have An Account yet? ",
+                      //       style: TextStyle(
+                      //         color: themeProvider.darkTheme
+                      //             ? AppColors.whiteColor.withOpacity(0.75)
+                      //             : AppColors.greyTextColor,
+                      //         fontSize: 11.sp,
+                      //         fontWeight: FontWeight.w400,
+                      //       ),
+                      //     ),
+                      //     const SizedBox(width: 5),
+                      //     GestureDetector(
+                      //       onTap: () {
+                      //         Get.to(() => RegisterScreen(),
+                      //             transition: Transition.native,
+                      //             duration:
+                      //                 const Duration(milliseconds: 500));
+                      //         controller.mailController.clear();
+                      //         controller.passController.clear();
+                      //       },
+                      //       child: Text(
+                      //         "Register",
+                      //         style: TextStyle(
+                      //           color: AppColors.accentTextColor,
+                      //           fontSize: 12.sp,
+                      //           fontWeight: FontWeight.w400,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
                       const SizedBox(height: 15),
                       // Spacer(),
                       Row(

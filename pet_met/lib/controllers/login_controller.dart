@@ -125,27 +125,7 @@ class LoginController extends GetxController {
 
   Future signInWithGoogleFunction() async {
     isLoading(true);
-    // try {
-    //   googleAccount.value = await googleSignIn.signIn();
-    //   var userName = googleAccount.value!.displayName;
-    //   var userEmail = googleAccount.value!.email;
-
-    //   log("signInWithGoogleFunction userName : $userName");
-    //   log("signInWithGoogleFunction userEmail : $userEmail");
-    //   // if (googleAccount.value!.displayName!.isNotEmpty &&
-    //   //     googleAccount.value!.email.isNotEmpty) {
-    //     await socialMediaRegisterFunction(
-    //       userName: googleAccount.value!.displayName.toString(),
-    //       userEmail: googleAccount.value!.email,
-    //       userId: googleAccount.value!.id,
-    //     );
-    //   // }
-    // } catch (e) {
-    //   log("signInWithGoogleFunction error :");
-    //   rethrow;
-    // } finally {
-    //   isLoading(false);
-    // }
+  
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final FirebaseAuth auth = FirebaseAuth.instance;
     final GoogleSignIn googleSignIn = GoogleSignIn();
@@ -160,15 +140,9 @@ class LoginController extends GetxController {
           idToken: googleSignInAuthentication.idToken,
           accessToken: googleSignInAuthentication.accessToken);
 
-      // Getting users credential
+      // Getting users credentia
       UserCredential result = await auth.signInWithCredential(authCredential);
-      // User? user = result.user;
-      // log("Email: ${result.user!.email}");
-      // log("Username: ${result.user!.displayName}");
-      // log("User Id: ${result.user!.uid}");
-
-      //login = prefs.getString('userId');
-      //print(login);
+     
       if (result != null) {
         String userName = result.user!.displayName!;
         String email = result.user!.email!;
@@ -198,7 +172,6 @@ class LoginController extends GetxController {
         ],
       );
       log("apple login 22");
-
       log("apple login email are :: ${credential.email}");
       log("apple login givenName are :: ${credential.givenName}");
 
@@ -210,18 +183,6 @@ class LoginController extends GetxController {
         );
       } else {
         log("signInWithAppleFunction error");
-        // CommonWidgets.yesOrNoDialog(
-        //   context: context,
-        //   body:
-        //       "Unfortunately apple sign in not working. try another login method.",
-        //   title: "Apple sign in failed",
-        //   onNoPressed: () {
-        //     Get.back();
-        //   },
-        //   onYesPressed: () {
-        //     Get.back();
-        //   },
-        // );
       }
     } catch (e) {
       log("error occured while apple signin :: $e");
@@ -230,6 +191,7 @@ class LoginController extends GetxController {
       isLoading(false);
     }
   }
+
   // old
   // Future signInWithFacebookFunction() async {
   //   await fb.logOut();
@@ -353,7 +315,7 @@ class LoginController extends GetxController {
     }
   }
 
-  Future<void> socialMediaRegisterFunction({
+  Future<void>  socialMediaRegisterFunction({
     required String userName,
     required String userEmail,
     required String userId,

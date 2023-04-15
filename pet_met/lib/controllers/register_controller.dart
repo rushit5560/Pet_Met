@@ -14,6 +14,8 @@ import 'package:pet_met/screens/index_screen/index_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class RegisterController extends GetxController {
   RxBool isLoading = false.obs;
@@ -116,12 +118,62 @@ class RegisterController extends GetxController {
     }
   }
 
-  Future signInWithGoogleFunction() async {
+  // Future signInWithGoogleFunction() async {
+  //   isLoading(true);
+  //   // SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   final FirebaseAuth auth = FirebaseAuth.instance;
+  //   final GoogleSignIn googleSignIn = GoogleSignIn();
+  //   googleSignIn.signOut();
+  //   final GoogleSignInAccount? googleSignInAccount =
+  //       await googleSignIn.signIn();
+  //   if (googleSignInAccount != null) {
+  //     final GoogleSignInAuthentication googleSignInAuthentication =
+  //         await googleSignInAccount.authentication;
+  //     final AuthCredential authCredential = GoogleAuthProvider.credential(
+  //         idToken: googleSignInAuthentication.idToken,
+  //         accessToken: googleSignInAuthentication.accessToken);
+
+  //     // Getting users credential
+  //     UserCredential result = await auth.signInWithCredential(authCredential);
+  //     // User? user = result.user;
+  //     // log("Email: ${result.user!.email}");
+  //     // log("Username: ${result.user!.displayName}");
+  //     // log("User Id: ${result.user!.uid}");
+
+  //     //login = prefs.getString('userId');
+  //     //print(login);
+  //     if (result != null) {
+  //       String userName = result.user!.displayName!;
+  //       String email = result.user!.email!;
+  //       String googleKeyId = result.user!.uid;
+
+  //       log("Username : $userName");
+  //       log("email : $email");
+  //       log("googleKeyId : $googleKeyId");
+
+  //       await socialMediaRegisterFunction(
+  //         userName: userName,
+  //         userEmail: email,
+  //         userId: googleKeyId,
+  //       );
+  //     }
+  //   }
+  //   isLoading(false);
+  // }
+
+
+
+
+Future signInWithGoogleFunction() async {
     isLoading(true);
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
+  
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    
+
     final FirebaseAuth auth = FirebaseAuth.instance;
     final GoogleSignIn googleSignIn = GoogleSignIn();
     googleSignIn.signOut();
+
     final GoogleSignInAccount? googleSignInAccount =
         await googleSignIn.signIn();
     if (googleSignInAccount != null) {
@@ -131,15 +183,9 @@ class RegisterController extends GetxController {
           idToken: googleSignInAuthentication.idToken,
           accessToken: googleSignInAuthentication.accessToken);
 
-      // Getting users credential
+      // Getting users credentia
       UserCredential result = await auth.signInWithCredential(authCredential);
-      // User? user = result.user;
-      // log("Email: ${result.user!.email}");
-      // log("Username: ${result.user!.displayName}");
-      // log("User Id: ${result.user!.uid}");
-
-      //login = prefs.getString('userId');
-      //print(login);
+     
       if (result != null) {
         String userName = result.user!.displayName!;
         String email = result.user!.email!;
@@ -156,9 +202,38 @@ class RegisterController extends GetxController {
         );
       }
     }
-    isLoading(false);
   }
 
+Future signInWithAppleFunction() async {
+    isLoading(true);
+    try {
+      log("apple login 11");
+      final credential = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+      );
+      log("apple login 22");
+      log("apple login email are :: ${credential.email}");
+      log("apple login givenName are :: ${credential.givenName}");
+
+      if (credential.email!.isNotEmpty && credential.givenName!.isNotEmpty) {
+        await socialMediaRegisterFunction(
+          userName: credential.givenName! + credential.familyName!,
+          userEmail: credential.email!,
+          userId: credential.authorizationCode,
+        );
+      } else {
+        log("signInWithAppleFunction error");
+      }
+    } catch (e) {
+      log("error occured while apple signin :: $e");
+      rethrow;
+    } finally {
+      isLoading(false);
+    }
+  }
   // Future signInWithFacebookFunction() async {
   //   //await fb.logOut();
   //
