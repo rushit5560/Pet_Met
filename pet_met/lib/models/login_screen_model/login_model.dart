@@ -62,6 +62,7 @@ class Data {
   String email;
   String shopename;
   String showimg;
+
   // dynamic emailVerifiedAt;
   String password;
   String rememberToken;
@@ -70,6 +71,7 @@ class Data {
   String state;
   String city;
   String categoryId;
+
   // dynamic forgotpasswordToken;
   // DateTime createdAt;
   // DateTime updatedAt;
@@ -78,8 +80,8 @@ class Data {
   String gender;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        uid: json["uid"] ?? "",
-        id: json["id"] ?? "",
+        uid: (json["uid"] ?? 0).toString(),
+        id: (json["id"] ?? 0).toString() ,
         name: json["name"] ?? "",
         email: json["email"] ?? "",
         shopename: json["shopename"] ?? "",
@@ -88,10 +90,10 @@ class Data {
         password: json["password"] ?? "",
         rememberToken: json["remember_token"] ?? "",
         image: json["image"] ?? "",
-        country: json["country"] ?? "",
-        state: json["state"] ?? "",
-        city: json["city"] ?? "",
-        categoryId: json["categoryID"] ?? "",
+        country: (json["country"] ?? 0).toString(),
+        state: (json["state"] ?? 0).toString(),
+        city: (json["city"] ?? 0).toString(),
+        categoryId: (json["categoryID"] ?? 0).toString(),
         // forgotpasswordToken: json["forgotpassword_token"],
         // createdAt: DateTime.parse(json["created_at"]),
         // updatedAt: DateTime.parse(json["updated_at"]),
@@ -101,11 +103,11 @@ class Data {
       );
 
   Map<String, dynamic> toJson() => {
-    "uid": uid,
+        "uid": uid,
         "id": id,
         "name": name,
         "email": email,
-        "shopename" : shopename,
+        "shopename": shopename,
         // "email_verified_at": emailVerifiedAt,
         "password": password,
         "remember_token": rememberToken,
