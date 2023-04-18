@@ -254,7 +254,7 @@ class HomeController extends GetxController {
         log("Get All Pet Api response : ${response.body}");
 
         GetPetTopListModel getPetTopListModel =
-            GetPetTopListModel.fromJson(json.decode(response.body));
+        GetPetTopListModel.fromJson(json.decode(response.body));
 
         isSuccessStatus = getPetTopListModel.success.obs;
 

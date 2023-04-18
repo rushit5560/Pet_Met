@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:pet_met/controllers/register_controller.dart';
@@ -259,8 +260,7 @@ class RegisterScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Platform.isAndroid
-                              ? Expanded(
+                          Expanded(
                                   child: GestureDetector(
                                     onTap: () async {
                                       await controller
@@ -308,106 +308,53 @@ class RegisterScreen extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                )
-                              : Expanded(
-                                  child: GestureDetector(
-                                    onTap: () async {
-                                      await controller
-                                          .signInWithAppleFunction();
-
-                                      // Fluttertoast.showToast(msg: 'This feature is coming soon');
-                                    },
-                                    child: Container(
-                                      height: controller.size.height * 0.065,
-                                      decoration: BoxDecoration(
-                                        color: themeProvider.darkTheme
-                                            ? AppColors.darkThemeColor
-                                            : AppColors.whiteColor,
-                                        borderRadius: BorderRadius.circular(12),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: themeProvider.darkTheme
-                                                ? AppColors.blackColor
-                                                    .withOpacity(0.25)
-                                                : AppColors.greyTextColor
-                                                    .withOpacity(0.25),
-                                            spreadRadius: 1,
-                                            blurRadius: 15,
-                                            offset: const Offset(4, 4),
-                                          ),
-                                        ],
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Image.asset(
-                                            AppImages.appleImg,
-                                            height: 35,
-                                            color: themeProvider.darkTheme
-                                                ? Colors.white
-                                                : Colors.black,
-                                          ),
-                                          const SizedBox(width: 15),
-                                          Text(
-                                            "Apple",
-                                            style: TextStyle(
-                                              color: AppColors.accentTextColor,
-                                              fontSize: 12.sp,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
                                 ),
                           const SizedBox(width: 15),
-                          // Expanded(
-                          //   child: GestureDetector(
-                          //     onTap: () async {
-                          //       await controller.facebookLogin();
-                          //       // Fluttertoast.showToast(msg: 'Coming soon');
-                          //     },
-                          //     child: Container(
-                          //       height: controller.size.height * 0.065,
-                          //       decoration: BoxDecoration(
-                          //         color: themeProvider.darkTheme
-                          //             ? AppColors.darkThemeColor
-                          //             : AppColors.whiteColor,
-                          //         borderRadius: BorderRadius.circular(12),
-                          //         boxShadow: [
-                          //           BoxShadow(
-                          //             color: themeProvider.darkTheme
-                          //                 ? AppColors.blackColor.withOpacity(0.25)
-                          //                 : AppColors.greyTextColor.withOpacity(0.25),
-                          //             spreadRadius: 1,
-                          //             blurRadius: 15,
-                          //             offset: const Offset(0, 5),
-                          //           ),
-                          //         ],
-                          //       ),
-                          //       child: Row(
-                          //         mainAxisAlignment: MainAxisAlignment.center,
-                          //         children: [
-                          //           Image.asset(
-                          //             AppImages.facebookImg,
-                          //             height: 25,
-                          //           ),
-                          //           const SizedBox(width: 15),
-                          //           Text(
-                          //             "Facebook",
-                          //             style: TextStyle(
-                          //               color: AppColors.accentTextColor,
-                          //               fontSize: 12.sp,
-                          //               fontWeight: FontWeight.bold,
-                          //             ),
-                          //           )
-                          //         ],
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () async {
+                                // await controller.facebookLogin();
+                                Fluttertoast.showToast(msg: 'Coming soon');
+                              },
+                              child: Container(
+                                height: controller.size.height * 0.065,
+                                decoration: BoxDecoration(
+                                  color: themeProvider.darkTheme
+                                      ? AppColors.darkThemeColor
+                                      : AppColors.whiteColor,
+                                  borderRadius: BorderRadius.circular(12),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.blackColor.withOpacity(0.25)
+                                          : AppColors.greyTextColor.withOpacity(0.25),
+                                      spreadRadius: 1,
+                                      blurRadius: 15,
+                                      offset: const Offset(0, 5),
+                                    ),
+                                  ],
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      AppImages.facebookImg,
+                                      height: 25,
+                                    ),
+                                    const SizedBox(width: 15),
+                                    Text(
+                                      "Facebook",
+                                      style: TextStyle(
+                                        color: AppColors.accentTextColor,
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                       // SizedBox(height: controller.size.height * 0.12),

@@ -17,7 +17,6 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../firebase_database/firebase_database.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/user_details.dart';
-import '../cart_screen/cart_screen.dart';
 import '../user_conversation_screen/user_conversation_screen.dart';
 
 class BannerImageModule extends StatelessWidget {
@@ -99,61 +98,13 @@ class OffersModule extends StatelessWidget {
         ),
         // SizedBox(height: 10),
         const SizedBox(height: 20),
-        /*screenController.productList.isEmpty
-            ? Text(
-                "No Product available!",
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                  color: themeProvider.darkTheme
-                      ? AppColors.whiteColor.withOpacity(0.4)
-                      : AppColors.blackTextColor,
-                ),
-              )
-            : */GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 5,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                ),
-                itemCount: 8,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, i) {
-                  return GestureDetector(
-                    onTap: () {
-                      // imageAlertDialog(context, index = 1);
-                      bottomSheetModule();
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.grey)),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(6),
-                        child: Image.network(
-                            ApiUrl.apiImagePath +
-                                "asset/uploads/product/"
-                                    "${screenController.shopData[0].image1}",
-                            fit: BoxFit.cover,
-                            height: 40,
-                            width: 40, errorBuilder: (context, er, da) {
-                          return Padding(
-                            padding: const EdgeInsets.all(5),
-                            child: Image.asset(AppImages.petMetLogoImg),
-                          );
-                        }),
-                      ),
-                    ),
-                  );
-                },
-              ),
-        /*Row(
+        Row(
                 children: [
                   Expanded(
                       child: GestureDetector(
                     onTap: () {
-                      // imageAlertDialog(context, index = 1);
-                      bottomSheetModule();
+                      imageAlertDialog(context, index = 1);
+                      // bottomSheetModule();
                     },
                     child: SizedBox(
                       height: screenController.size.width * 0.18,
@@ -304,7 +255,7 @@ class OffersModule extends StatelessWidget {
                     ),
                   ))
                 ],
-              ),*/
+              ),
       ],
     ).commonSymmetricPadding(horizontal: 15);
   }
@@ -328,137 +279,6 @@ class OffersModule extends StatelessWidget {
       ).commonSymmetricPadding(horizontal: 5),
     );
   }*/
-
-  //todo
-  // Open Bottom Sheet
-  bottomSheetModule() {
-    showModalBottomSheet(
-      context: Get.context!,
-      backgroundColor: Colors.transparent,
-      useRootNavigator: true,
-      isScrollControlled: true,
-      isDismissible: true,
-      // enableDrag: true,
-      builder: (context) {
-        return SafeArea(
-          child: Padding(
-            padding:
-                const EdgeInsets.only(top: 20, bottom: 10, right: 10, left: 10),
-            child: Container(
-              // height: Get.height * 0.70,
-              decoration: BoxDecoration(
-                color: themeProvider.darkTheme
-                    ? AppColors.blackTextColor
-                    : AppColors.whiteColor,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.network(
-                        ApiUrl.apiImagePath +
-                            "asset/uploads/product/" +
-                            screenController.shopData[0].image1!,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, er, da) {
-                          return Image.asset(AppImages.petMetLogoImg);
-                        },
-                      ),
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      'Product Name',
-                      textAlign: TextAlign.start,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        color: themeProvider.darkTheme
-                            ? AppColors.whiteColor.withOpacity(0.4)
-                            : AppColors.blackTextColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14.sp,
-                      ),
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      'Product Description Product Description Product Description Product Description Product Description'
-                      'Product Description Product Description Product Description Product Description Product Description'
-                      'Product Description Product Description Product Description Product Description Product Description',
-                      textAlign: TextAlign.start,
-                      maxLines: 10,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        color: themeProvider.darkTheme
-                            ? AppColors.whiteColor.withOpacity(0.4)
-                            : AppColors.blackTextColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12.sp,
-                      ),
-                    ),
-                    const SizedBox(height: 5),
-                    RichText(
-                      text: TextSpan(
-                        text: "Price : ",
-                        style: TextStyle(
-                          color: themeProvider.darkTheme
-                              ? AppColors.whiteColor.withOpacity(0.4)
-                              : AppColors.blackTextColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12.sp,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: "₹ 699/-",
-                            style: TextStyle(
-                              color: themeProvider.darkTheme
-                                  ? AppColors.whiteColor
-                                  : AppColors.blackTextColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12.sp,
-                            ),
-                          ),
-                          const TextSpan(text: "  "),
-                          TextSpan(
-                            text: "MRP",
-                            style: TextStyle(
-                              color: themeProvider.darkTheme
-                                  ? AppColors.whiteColor.withOpacity(0.4)
-                                  : AppColors.blackTextColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12.sp,
-                              decoration: TextDecoration.lineThrough,
-                            ),
-                          ),
-                          const TextSpan(text: " : "),
-                          TextSpan(
-                            text: "₹ 999/-",
-                            style: TextStyle(
-                              color: themeProvider.darkTheme
-                                  ? AppColors.whiteColor.withOpacity(0.4)
-                                  : AppColors.blackTextColor,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12.sp,
-                              decoration: TextDecoration.lineThrough,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 5),
-                    PayButtonModule(),
-                    const SizedBox(height: 5),
-                  ],
-                ).commonAllSidePadding(padding: 5),
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
 
   imageAlertDialog(BuildContext context, index) {
     // Widget cancelButton = TextButton(
@@ -540,8 +360,7 @@ class PayButtonModule extends StatelessWidget {
           if (screenController.shopName == UserDetails.userName) {
             Fluttertoast.showToast(msg: "Shop can't pay to itself.");
           } else {
-            // alertDialogBox(context);
-            Get.to(()=> CartScreen());
+            alertDialogBox(context);
           }
         },
         child: Container(

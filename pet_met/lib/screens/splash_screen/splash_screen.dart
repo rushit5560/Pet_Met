@@ -161,7 +161,8 @@ class SplashScreen extends StatelessWidget {
                   totalRepeatCount: 1,
                   animatedTexts: [
                     TyperAnimatedText(
-                      "Connecting Pet Lovers 💕",
+                      // "Connecting Pet Lovers 💕",
+                      "Connecting Pet Lovers 🤍",
                       speed: const Duration(milliseconds: 100),
                       textStyle: TextStyle(
                         fontSize: 11.sp,

@@ -74,36 +74,36 @@ class PetList {
     required this.categoryId,
   });
 
-  int id;
+  String id;
   String image;
   String petName;
-  int mainCategory;
-  int subCategory;
+  String mainCategory;
+  String subCategory;
   String dob;
-  int weight;
+  String weight;
   String details;
   String imageList;
   String meetingAvailability;
   String gender;
   String isActive;
   String userid;
-  int categoryId;
+  String categoryId;
 
   factory PetList.fromJson(Map<String, dynamic> json) => PetList(
-        id: json["id"] ?? 0,
+        id: (json["id"] ?? 0).toString(),
         image: json["image"] ?? "",
         petName: json["pet_name"] ?? "",
-        mainCategory: json["main_category"] ?? 0,
-        subCategory: json["sub_category"] ?? 0,
+        mainCategory: (json["main_category"] ?? 0).toString(),
+        subCategory: (json["sub_category"] ?? 0).toString(),
         dob: json["dob"] ?? "",
-        weight: json["weight"] ?? 0,
+        weight: (json["weight"] ?? 0).toString(),
         details: json["details"] ?? "",
         imageList: json["image_list"] ?? "",
         meetingAvailability: json["meeting_availability"] ?? "",
         gender: json["gender"] ?? "",
         isActive: json["is_active"] ?? "",
         userid: json["userid"] ?? "",
-        categoryId: json["categoryID"] ?? 0,
+        categoryId: (json["categoryID"] ?? 0).toString(),
       );
 
   Map<String, dynamic> toJson() => {
@@ -158,7 +158,7 @@ class Name {
 
 /// -------------------------------------------------------------------
 
-GetPetListModel getPetListModelFromJson(String str) =>
+/*GetPetListModel getPetListModelFromJson(String str) =>
     GetPetListModel.fromJson(json.decode(str));
 
 String getPetListModelToJson(GetPetListModel data) =>
@@ -172,14 +172,14 @@ class GetPetListModel {
   });
 
   bool success;
-  List<Datum> data;
+  List<PetDatum> data;
   String message;
 
   factory GetPetListModel.fromJson(Map<String, dynamic> json) =>
       GetPetListModel(
         success: json["success"] ?? false,
-        data: List<Datum>.from(
-            (json["data"] ?? []).map((x) => Datum.fromJson(x ?? {}))),
+        data: List<PetDatum>.from(
+            (json["data"] ?? []).map((x) => PetDatum.fromJson(x ?? {}))),
         message: json["message"] ?? "",
       );
 
@@ -190,21 +190,21 @@ class GetPetListModel {
       };
 }
 
-class Datum {
-  Datum({
+class PetDatum {
+  PetDatum({
     required this.data,
     required this.img,
     required this.name,
   });
 
-  Data data;
-  Img img;
-  Name name;
+  PetList data;
+  Img1 img;
+  Name1 name;
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        data: Data.fromJson(json["data"] ?? {}),
-        img: Img.fromJson(json["img"] ?? {}),
-        name: Name.fromJson(json["name"] ?? {}),
+  factory PetDatum.fromJson(Map<String, dynamic> json) => PetDatum(
+        data: PetList.fromJson(json["data"] ?? {}),
+        img: Img1.fromJson(json["img"] ?? {}),
+        name: Name1.fromJson(json["name"] ?? {}),
       );
 
   Map<String, dynamic> toJson() => {
@@ -214,29 +214,29 @@ class Datum {
       };
 }
 
-class Data {
-  Data({
-    this.id,
-    this.image,
-    this.petName,
-    this.mainCategory,
-    this.subCategory,
-    this.dob,
-    this.weight,
-    this.details,
-    this.imageList,
-    this.meetingAvailability,
-    this.gender,
-    this.isActive,
-    this.isVerified,
-    this.categoryId,
-    this.userid,
-    this.createdBy,
-    this.createdDate,
-    this.updatedDate,
-    this.modifiedBy,
-    this.latitude,
-    this.longitude,
+class PetList {
+  PetList({
+    required this.id,
+    required this.image,
+    required this.petName,
+    required this.mainCategory,
+    required this.subCategory,
+    required this.dob,
+    required this.weight,
+    required this.details,
+    required this.imageList,
+    required this.meetingAvailability,
+    required this.gender,
+    required this.isActive,
+    required this.isVerified,
+    required this.categoryId,
+    required this.userid,
+    required this.createdBy,
+    required this.createdDate,
+    // required this.updatedDate,
+    // required this.modifiedBy,
+    required this.latitude,
+    required this.longitude,
   });
 
   int id;
@@ -256,33 +256,33 @@ class Data {
   int userid;
   int createdBy;
   DateTime createdDate;
-  dynamic updatedDate;
-  dynamic modifiedBy;
+  // dynamic updatedDate;
+  // dynamic modifiedBy;
   String latitude;
   String longitude;
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-        id: json["id"],
-        image: json["image"],
-        petName: json["pet_name"],
-        mainCategory: json["main_category"],
-        subCategory: json["sub_category"],
-        dob: json["dob"],
-        weight: json["weight"],
-        details: json["details"],
+  factory PetList.fromJson(Map<String, dynamic> json) => PetList(
+        id: json["id"] ?? 0,
+        image: json["image"] ?? "",
+        petName: json["pet_name"] ?? "",
+        mainCategory: json["main_category"] ?? 0,
+        subCategory: json["sub_category"] ?? 0,
+        dob: json["dob"] ?? "",
+        weight: json["weight"] ?? 0,
+        details: json["details"] ?? "",
         imageList: json["image_list"],
-        meetingAvailability: json["meeting_availability"],
-        gender: json["gender"],
-        isActive: json["is_active"],
-        isVerified: json["is_verified"],
-        categoryId: json["categoryID"],
-        userid: json["userid"],
-        createdBy: json["created_by"],
-        createdDate: DateTime.parse(json["created_date"]),
-        updatedDate: json["updated_date"],
-        modifiedBy: json["modified_by"],
-        latitude: json["latitude"],
-        longitude: json["longitude"],
+        meetingAvailability: json["meeting_availability"] ?? "",
+        gender: json["gender"] ?? "",
+        isActive: json["is_active"] ?? "",
+        isVerified: json["is_verified"] ?? "",
+        categoryId: json["categoryID"] ?? 0,
+        userid: json["userid"] ?? 0,
+        createdBy: json["created_by"] ?? 0,
+        createdDate: DateTime.parse(json["created_date"] ?? DateTime.now()),
+        // updatedDate: json["updated_date"],
+        // modifiedBy: json["modified_by"],
+        latitude: json["latitude"] ?? "",
+        longitude: json["longitude"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
@@ -303,22 +303,22 @@ class Data {
         "userid": userid,
         "created_by": createdBy,
         "created_date": createdDate.toIso8601String(),
-        "updated_date": updatedDate,
-        "modified_by": modifiedBy,
+        // "updated_date": updatedDate,
+        // "modified_by": modifiedBy,
         "latitude": latitude,
         "longitude": longitude,
       };
 }
 
-class Img {
-  Img({
-    this.image,
+class Img1 {
+  Img1({
+    required this.image,
   });
 
   String image;
 
-  factory Img.fromJson(Map<String, dynamic> json) => Img(
-        image: json["image"],
+  factory Img1.fromJson(Map<String, dynamic> json) => Img1(
+        image: json["image"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
@@ -326,18 +326,18 @@ class Img {
       };
 }
 
-class Name {
-  Name({
-    this.name,
+class Name1 {
+  Name1({
+    required this.name,
   });
 
   String name;
 
-  factory Name.fromJson(Map<String, dynamic> json) => Name(
-        name: json["name"],
+  factory Name1.fromJson(Map<String, dynamic> json) => Name1(
+        name: json["name"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
         "name": name,
       };
-}
+}*/

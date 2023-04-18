@@ -82,7 +82,7 @@ class ShopDetailsScreen extends StatelessWidget {
         ),
       ),
 
-      // bottomNavigationBar: PayButtonModule(),
+      bottomNavigationBar: PayButtonModule(),
     );
   }
 }

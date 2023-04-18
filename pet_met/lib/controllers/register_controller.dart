@@ -15,7 +15,6 @@ import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class RegisterController extends GetxController {
   RxBool isLoading = false.obs;
@@ -204,36 +203,7 @@ Future signInWithGoogleFunction() async {
     }
   }
 
-Future signInWithAppleFunction() async {
-    isLoading(true);
-    try {
-      log("apple login 11");
-      final credential = await SignInWithApple.getAppleIDCredential(
-        scopes: [
-          AppleIDAuthorizationScopes.email,
-          AppleIDAuthorizationScopes.fullName,
-        ],
-      );
-      log("apple login 22");
-      log("apple login email are :: ${credential.email}");
-      log("apple login givenName are :: ${credential.givenName}");
 
-      if (credential.email!.isNotEmpty && credential.givenName!.isNotEmpty) {
-        await socialMediaRegisterFunction(
-          userName: credential.givenName! + credential.familyName!,
-          userEmail: credential.email!,
-          userId: credential.authorizationCode,
-        );
-      } else {
-        log("signInWithAppleFunction error");
-      }
-    } catch (e) {
-      log("error occured while apple signin :: $e");
-      rethrow;
-    } finally {
-      isLoading(false);
-    }
-  }
   // Future signInWithFacebookFunction() async {
   //   //await fb.logOut();
   //
