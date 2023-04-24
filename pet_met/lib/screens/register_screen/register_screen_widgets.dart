@@ -242,7 +242,7 @@ class PasswordTextFieldModule extends StatelessWidget {
                         size: 20,
                         color: Colors.grey),
                   ),
-                )),
+                ),),
           ),
         ],
       ),

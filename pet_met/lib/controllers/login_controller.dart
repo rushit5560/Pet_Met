@@ -16,6 +16,7 @@ import 'package:http/http.dart' as http;
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import '../screens/index_screen/index_screen.dart';
 
 class LoginController extends GetxController {
@@ -124,7 +125,7 @@ class LoginController extends GetxController {
 
   Future signInWithGoogleFunction() async {
     isLoading(true);
-  
+
     SharedPreferences prefs = await SharedPreferences.getInstance();
     final FirebaseAuth auth = FirebaseAuth.instance;
     final GoogleSignIn googleSignIn = GoogleSignIn();
@@ -141,7 +142,7 @@ class LoginController extends GetxController {
 
       // Getting users credentia
       UserCredential result = await auth.signInWithCredential(authCredential);
-     
+
       if (result != null) {
         String userName = result.user!.displayName!;
         String email = result.user!.email!;
@@ -160,6 +161,37 @@ class LoginController extends GetxController {
     }
   }
 
+
+  Future signInWithAppleFunction() async {
+    isLoading(true);
+    try {
+      log("apple login 11");
+      final credential = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+      );
+      log("apple login 22");
+      log("apple login email are :: ${credential.email}");
+      log("apple login givenName are :: ${credential.givenName}");
+
+      if (credential.email!.isNotEmpty && credential.givenName!.isNotEmpty) {
+        await socialMediaRegisterFunction(
+          userName: credential.givenName! + credential.familyName!,
+          userEmail: credential.email!,
+          userId: credential.authorizationCode,
+        );
+      } else {
+        log("signInWithAppleFunction error");
+      }
+    } catch (e) {
+      log("error occured while apple signin :: $e");
+      rethrow;
+    } finally {
+      isLoading(false);
+    }
+  }
   // old
   // Future signInWithFacebookFunction() async {
   //   await fb.logOut();

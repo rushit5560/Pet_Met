@@ -66,6 +66,8 @@ dependencies:
   share_plus: ^4.0.3
   animated_text_kit: ^4.1.0
   uuid: ^3.0.7
+  sign_in_with_apple: ^4.3.0
+
 
 
 
