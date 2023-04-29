@@ -59,9 +59,10 @@ class ShopUserProfileScreen extends StatelessWidget {
                                 key: controller.formKey,
                                 child: Column(
                                   children: [
-                                    const SizedBox(height: 15),
+                                    // const SizedBox(height: 15),
                                     /// Delete Account Button Hide
-                                    /*Row(
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         IconButton(
                                           onPressed: () async {
@@ -78,7 +79,7 @@ class ShopUserProfileScreen extends StatelessWidget {
                                           ),
                                         ),
                                       ],
-                                    ),*/
+                                    ),
                                     UploadImageModule(),
                                     const SizedBox(height: 30),
                                     AddShopOffersListModule(),

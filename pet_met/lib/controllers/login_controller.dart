@@ -133,12 +133,14 @@ class LoginController extends GetxController {
 
     final GoogleSignInAccount? googleSignInAccount =
         await googleSignIn.signIn();
+    log('googleSignInAccount :${googleSignInAccount!.email}');
     if (googleSignInAccount != null) {
       final GoogleSignInAuthentication googleSignInAuthentication =
           await googleSignInAccount.authentication;
       final AuthCredential authCredential = GoogleAuthProvider.credential(
           idToken: googleSignInAuthentication.idToken,
-          accessToken: googleSignInAuthentication.accessToken);
+          accessToken: googleSignInAuthentication.accessToken,
+      );
 
       // Getting users credentia
       UserCredential result = await auth.signInWithCredential(authCredential);

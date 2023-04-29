@@ -99,7 +99,8 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                         child: Column(
                                           children: [
                                             /// Delete Account Button Hide
-                                            /*Row(
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.end,
                                               children: [
                                                 IconButton(
                                                   onPressed: () async {
@@ -120,7 +121,7 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                                   ),
                                                 ),
                                               ],
-                                            ),*/
+                                            ),
                                             UploadImageModule(),
                                             const SizedBox(height: 20),
                                             // TextFieldSection(

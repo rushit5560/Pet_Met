@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:pet_met/screens/index_screen/index_screen.dart';
 import 'package:pet_met/screens/onboarding_screen/onboarding_screen.dart';
 import 'package:pet_met/screens/user_categories_screen/user_categories_screen.dart';
@@ -88,14 +89,21 @@ class SplashController extends GetxController {
 
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
+      log('LocationPermission.denied');
       permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return Future.error('Location permission are denied');
-      }
+      // if (permission == LocationPermission.denied) {
+      //   getLocationFunction();
+      // }
     }
     if (permission == LocationPermission.deniedForever) {
-      return Future.error(
-          'Location permission are permanently denied, we cannot request permissions.');
+      log('LocationPermission.deniedForever');
+      permission = await Geolocator.checkPermission();
+      log('permission :$permission');
+      if (permission == LocationPermission.deniedForever) {
+        permission = await Geolocator.requestPermission();
+      }
+
+      // getLocationFunction();
     }
 
     /*streamSubscription = Geolocator.getPositionStream().listen((Position position) async {
@@ -106,13 +114,16 @@ class SplashController extends GetxController {
       );
     });*/
 
-    Position position = await Geolocator.getCurrentPosition();
-    // Current Location store in prefs
-    await userPreference.setUserLocation(
-      latitude: position.latitude.toString(),
-      longitude: position.longitude.toString(),
-    );
-    await redirectNextScreen();
+    if (permission == LocationPermission.always ||
+        permission == LocationPermission.whileInUse) {
+      Position position = await Geolocator.getCurrentPosition();
+      // Current Location store in prefs
+      await userPreference.setUserLocation(
+        latitude: position.latitude.toString(),
+        longitude: position.longitude.toString(),
+      );
+      await redirectNextScreen();
+    }
   }
 
   redirectNextScreen() async {
@@ -142,19 +153,22 @@ class SplashController extends GetxController {
       log('UserDetails.shopName: ${UserDetails.shopName}');
 
       return Timer(
-        const Duration(milliseconds: 2500),
+        const Duration(milliseconds: 1500),
         () {
           if (onboardingValue == false) {
-            Get.offAll(() => OnboardingScreen(),
-                transition: Transition.native,
+            Get.offAll(
+              () => OnboardingScreen(),
+              transition: Transition.native,
             );
           } else if (UserDetails.isUserLoggedIn == true) {
-            Get.offAll(() => IndexScreen(),
-                transition: Transition.native,
+            Get.offAll(
+              () => IndexScreen(),
+              transition: Transition.native,
             );
           } else if (UserDetails.isUserLoggedIn == false) {
-            Get.offAll(() => const UserCategoriesScreen(),
-                transition: Transition.native,
+            Get.offAll(
+              () => const UserCategoriesScreen(),
+              transition: Transition.native,
             );
           }
         },
@@ -173,20 +187,69 @@ class SplashController extends GetxController {
     width1.value = Get.size.width * 0.80;
     height1.value = Get.size.width * 0.80;
 
-    log('width1 : ${width1.value}');
-    log('height1 : ${height1.value}');
+    redirectNextScreen();
+    // getLocationFunction();
+    // permissionServices();
 
-    Timer(const Duration(milliseconds: 500), () {
-      width1.value = Get.size.width * 0.80;
-      height1.value = Get.size.width * 0.80;
-      log('width1 : ${width1.value}');
-      log('height1 : ${height1.value}');
-      getLocationFunction();
-    });
-
-    requestPermission();
-    notificationServices.firebaseNotificationGetInActiveState();
+    // requestPermission();
+    // notificationServices.firebaseNotificationGetInActiveState();
   }
+
+  /*Permission services*/
+  Future<PermissionStatus> permissionServices() async {
+    LocationPermission permission;
+
+    bool deniedOnce = false;
+
+    var status = await Permission.location.status;
+    log('statuses : $status');
+
+    permission = await Geolocator.requestPermission();
+    log('permission : $permission');
+
+    if(permission == LocationPermission.denied || permission == LocationPermission.deniedForever) {
+      if(deniedOnce == false) {
+        deniedOnce = true;
+        // permissionServices();
+        // await Geolocator.requestPermission();
+      }
+
+    }
+
+    // if (statuses[Permission.location].isPermanentlyDenied) {
+    //   await openAppSettings().then(
+    //         (value) async {
+    //       if (value) {
+    //         if (await Permission.location.status.isPermanentlyDenied == true &&
+    //             await Permission.location.status.isGranted == false) {
+    //           // openAppSettings();
+    //           permissionServiceCall(); / opens app settings until permission is granted /
+    //       }
+    //       }
+    //     },
+    //   );
+    // }
+    // else {
+    //   if (statuses[Permission.location].isDenied) {
+    //     permissionServiceCall();
+    //   }
+    // }
+
+    return status;
+  }
+
+  // permissionServiceCall() async {
+  //   await permissionServices().then(
+  //     (value) {
+  //       if (value[Permission.location]!.isGranted) {
+  //         // Navigator.pushReplacement(
+  //         // context,
+  //         // MaterialPageRoute(builder: (context) => SplashScreen()),
+  //         // );
+  //       }
+  //     },
+  //   );
+  // }
 
   void requestPermission() async {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
@@ -201,14 +264,13 @@ class SplashController extends GetxController {
       sound: true,
     );
 
-    if(settings.authorizationStatus == AuthorizationStatus.authorized) {
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
       log('User Granted Permission');
-    } else if(settings.authorizationStatus == AuthorizationStatus.provisional) {
+    } else if (settings.authorizationStatus ==
+        AuthorizationStatus.provisional) {
       log('User Granted Provisional Permission');
     } else {
       log('User declined or has not accepted permission');
     }
-
   }
-
 }
