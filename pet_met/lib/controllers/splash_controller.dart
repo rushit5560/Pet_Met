@@ -60,13 +60,15 @@ class SplashController extends GetxController {
           'Location permission are permanently denied, we cannot request permissions.');
     }
 
-    */ /*streamSubscription = Geolocator.getPositionStream().listen((Position position) async {
+    */
+  /*streamSubscription = Geolocator.getPositionStream().listen((Position position) async {
       // Current Location store in prefs
       await userPreference.setUserLocation(
         latitude: position.latitude.toString(),
         longitude: position.longitude.toString(),
       );
-    });*/ /*
+    });*/
+  /*
 
     Position position = await Geolocator.getCurrentPosition();
     // Current Location store in prefs

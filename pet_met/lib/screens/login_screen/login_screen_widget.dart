@@ -277,7 +277,7 @@ class LoginModule extends StatelessWidget {
                           // Fluttertoast.showToast(msg: 'This feature is coming soon');
                         },
                         child: Container(
-                          height: 30,
+                          height: 40,
                           decoration: BoxDecoration(
                             color: themeProvider.darkTheme
                                 ? AppColors.darkThemeColor
@@ -308,17 +308,16 @@ class LoginModule extends StatelessWidget {
                           // Fluttertoast.showToast(msg: 'This feature is coming soon');
                         },
                         child: Container(
-                          height: 40,
+                          height: 50,
                           decoration: BoxDecoration(
-                            color: themeProvider.darkTheme
-                                ? AppColors.darkThemeColor
-                                : AppColors.whiteColor,
+                            color: Colors.white,
+                            // color: themeProvider.darkTheme
+                            //     ? AppColors.darkThemeColor
+                            //     : AppColors.whiteColor,
                             borderRadius: BorderRadius.circular(12),
                             boxShadow: [
                               BoxShadow(
-                                color: themeProvider.darkTheme
-                                    ? AppColors.blackColor.withOpacity(0.25)
-                                    : AppColors.greyTextColor.withOpacity(0.25),
+                                color: AppColors.greyTextColor.withOpacity(0.25),
                                 spreadRadius: 1,
                                 blurRadius: 15,
                                 offset: const Offset(4, 4),
@@ -327,9 +326,7 @@ class LoginModule extends StatelessWidget {
                           ),
                           child: Image.asset(AppImages.appleImg,
                               height: 25,
-                              color: themeProvider.darkTheme
-                                  ? AppColors.whiteColor
-                                  : AppColors.darkThemeColor),
+                              color: AppColors.darkThemeColor),
                         ),
                       ),
                       const SizedBox(width: 15),
@@ -340,7 +337,7 @@ class LoginModule extends StatelessWidget {
                           // Fluttertoast.showToast(msg: 'This feature is coming soon');
                         },
                         child: Container(
-                          height: 30,
+                          height: 40,
                           decoration: BoxDecoration(
                             color: themeProvider.darkTheme
                                 ? AppColors.darkThemeColor
