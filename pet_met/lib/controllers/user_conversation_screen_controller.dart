@@ -26,14 +26,21 @@ class UserConversationScreenController extends GetxController {
         .collection("Chats")
         .doc(DateTime.now().millisecondsSinceEpoch.toString());
 
-    /// Set Data in Firebase
-    documentReference.set(sendMsg.toJson());
+    documentReference
+        .set(sendMsg.toJson())
+        .then((value) async => await chatListPositionupdate(sendMsg.roomId));
+    log("receiverName $receiverName");
+    DocumentSnapshot snap = await FirebaseFirestore.instance
+        .collection("Users")
+        .doc(receiverName)
+        .get();
 
-    DocumentSnapshot snap = await FirebaseFirestore.instance.collection("Users").doc(receiverName).get();
     String opponentToken = snap["fcmToken"];
-    // String opponentToken = snap["fcmToken"];
-    log('opponentToken : $opponentToken');
 
+    // String opponentToken = snap["fcmToken"];
+    log("sendMessageFunction snap : $snap");
+    log('opponentToken : $opponentToken');
+// await chatListPositionupdate()
     /// Send Chat Notification
     await sendGeneralNotification(
       opponentToken: opponentToken,
@@ -48,6 +55,15 @@ class UserConversationScreenController extends GetxController {
     loadUI();
   }
 
+  Future<void> chatListPositionupdate(String chatRoomId) async {
+    log("chatListPositionupdate 111");
+    await FirebaseFirestore.instance
+        .collection("ChatRoom")
+        .doc(chatRoomId)
+        .update({"createdAt": Timestamp.now()});
+    log("chatListPositionupdate 222");
+  }
+
   Future<void> sendGeneralNotification({
     required String opponentToken,
     required String title,
@@ -55,27 +71,27 @@ class UserConversationScreenController extends GetxController {
   }) async {
     try {
       await http.post(Uri.parse("https://fcm.googleapis.com/fcm/send"),
-      headers: <String, String> {
-        'Content-Type': 'application/json',
-        'Authorization': 'key=AAAA8bBUIwY:APA91bG12B9sECzxamPgdtkucbTWTAaRbxbOhCwwvdJwMQNDUeR0iiQi1YUGrf4FO1gruIcaoE3kxTvSEtMrhz_Py5Uo-t1lNzd1g1HGTjmAbOtcZeeyz7xDHEaTzrQHZId9NL1cV_Ey'
-      },
-      body: jsonEncode({
-        'priority': 'high',
-        'data': {
-          'click_action': 'FLUTTER_NOTIFICATION_CLICK',
-          'status': 'done',
-          'body': body,
-          'title': title
-        },
-        'notification': {
-          'title': title,
-          'body': body,
-          'android_channel_id': 'petomate'
-        },
-        "to": opponentToken,
-
-      }));
-    } catch(e) {
+          headers: <String, String>{
+            'Content-Type': 'application/json',
+            'Authorization':
+                'key=AAAA8bBUIwY:APA91bG12B9sECzxamPgdtkucbTWTAaRbxbOhCwwvdJwMQNDUeR0iiQi1YUGrf4FO1gruIcaoE3kxTvSEtMrhz_Py5Uo-t1lNzd1g1HGTjmAbOtcZeeyz7xDHEaTzrQHZId9NL1cV_Ey'
+          },
+          body: jsonEncode({
+            'priority': 'high',
+            'data': {
+              'click_action': 'FLUTTER_NOTIFICATION_CLICK',
+              'status': 'done',
+              'body': body,
+              'title': title
+            },
+            'notification': {
+              'title': title,
+              'body': body,
+              'android_channel_id': 'petomate'
+            },
+            "to": opponentToken,
+          }));
+    } catch (e) {
       log('sendGeneralNotification Error :$e');
       rethrow;
     }

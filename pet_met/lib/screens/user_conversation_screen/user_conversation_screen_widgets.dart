@@ -9,9 +9,8 @@ import 'package:pet_met/screens/address_screen/address_screen_widgets.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:provider/provider.dart';
+import '../../models/user_chat_list_screen_model/user_chat_list_screen_model.dart';
 import '../../services/providers/dark_theme_provider.dart';
-
-
 
 class SingleMessageBubble extends StatelessWidget {
   final ReceiveMessageModel singleMsg;
@@ -164,9 +163,22 @@ class MessageWriteTextFieldModule extends StatelessWidget {
                 receiver: receiverEmail,
               );
 
+              // UserChatRoomListModel data = UserChatRoomListModel(
+              //     chatRoomId: '',
+              //     createdAt: Timestamp.now(),
+              //     creator: '',
+              //     creatorEmail: '',
+              //     creatorName: '',
+              //     pearer: '',
+              //     peerEmail: '',
+              //     peerName: '',
+              //     userEmails: []);
+
               /// Msg Store in Firebase
               log('sendMsg: ${sendMsg.receiver}');
-              await screenController.sendMessageFunction(sendMsg);
+              await screenController.sendMessageFunction(sendMsg)
+                  // .then((value) => screenController.chatListPositionupdate(data))
+                  ;
               FocusScope.of(context)
                   .requestFocus(screenController.msgFocusField);
             }
@@ -212,7 +224,6 @@ class MessageWriteTextFieldModule extends StatelessWidget {
                   /// Msg Store in Firebase
                   log('sendMsg: ${sendMsg.receiver}');
                   await screenController.sendMessageFunction(sendMsg);
-
                 }
               },
               // child: Image.asset(

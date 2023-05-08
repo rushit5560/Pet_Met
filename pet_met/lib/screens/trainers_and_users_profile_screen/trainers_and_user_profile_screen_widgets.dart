@@ -16,8 +16,6 @@ import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import '../address_screen/address_screen_widgets.dart';
 
-
-
 class BackgroundImage extends StatelessWidget {
   BackgroundImage({Key? key}) : super(key: key);
 
@@ -78,7 +76,7 @@ class UploadImageModule extends StatelessWidget {
         modelBottomSheet(context);
       },
       child: Container(
-          height: screenController.size.width * 0.50,
+          height: screenController.size.height * 0.2,
           width: screenController.size.width * 0.50,
           decoration: BoxDecoration(
             color: themeProvider.darkTheme
@@ -209,7 +207,9 @@ class UploadImageModule extends StatelessWidget {
                           Text(
                             "Upload Image",
                             style: TextStyle(
-                              color: AppColors.blackTextColor,
+                            color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor,
                               fontSize: 15.sp,
                               fontWeight: FontWeight.w500,
                             ),
@@ -1063,7 +1063,7 @@ class DisplayNameTextFieldModule extends StatelessWidget {
   final controller = Get.find<TrainersAndUsersScreenController>();
 
   DarkThemeProvider themeProvider =
-  Provider.of<DarkThemeProvider>(Get.context!);
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -1084,8 +1084,6 @@ class DisplayNameTextFieldModule extends StatelessWidget {
                         color: Colors.red),
                   )
                 ])),
-
-
           ],
         ),
         const SizedBox(height: 8),
@@ -1558,7 +1556,6 @@ class TrainerUpiTextFieldModule extends StatelessWidget {
   }
 }
 
-
 class GetVerifiedInfo extends StatelessWidget {
   GetVerifiedInfo({Key? key}) : super(key: key);
 
@@ -1623,7 +1620,8 @@ class GetVerifiedInfo extends StatelessWidget {
                 const SizedBox(height: 20),
                 GestureDetector(
                   onTap: () {
-                    Clipboard.setData(const ClipboardData(text: "info@petomate.com"));
+                    Clipboard.setData(
+                        const ClipboardData(text: "info@petomate.com"));
                     Fluttertoast.showToast(msg: "Copied");
                   },
                   child: Text(
@@ -1655,7 +1653,8 @@ class GetVerifiedInfo extends StatelessWidget {
               fontWeight: FontWeight.w400,
             ),
           ),
-          Image.asset(AppIcons.verifiedSymbolImg,
+          Image.asset(
+            AppIcons.verifiedSymbolImg,
             width: 30,
             height: 30,
           ),
@@ -1767,13 +1766,13 @@ class GetVerifiedInfo extends StatelessWidget {
             width: 30,
             height: 30,
           ),
-          *//*Icon(
+          */ /*Icon(
             Icons.verified_outlined,
             size: 24,
             color: themeProvider.darkTheme
                 ? AppColors.whiteColor
                 : AppColors.darkThemeColor,
-          )*//*
+          )*/ /*
         ],
       ),
     );

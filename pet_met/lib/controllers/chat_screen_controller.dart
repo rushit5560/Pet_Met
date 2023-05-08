@@ -15,6 +15,7 @@ class ChatScreenController extends GetxController {
   Stream<List<UserChatRoomListModel>> getChatRoomListFunction() {
     // isLoading(true);
     String userEmail = UserDetails.userEmail;
+    
 
     return FirebaseFirestore.instance
         .collection("ChatRoom")
@@ -29,5 +30,9 @@ class ChatScreenController extends GetxController {
               );
               return userchatDataList;
             }).toList());
+
+
+
+            
   }
 }

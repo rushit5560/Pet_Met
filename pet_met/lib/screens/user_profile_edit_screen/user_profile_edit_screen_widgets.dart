@@ -17,8 +17,6 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
 
-
-
 class BackgroundImage extends StatelessWidget {
   BackgroundImage({Key? key}) : super(key: key);
 
@@ -51,7 +49,7 @@ class UploadImageModule extends StatelessWidget {
         modelBottomSheet(context);
       },
       child: Container(
-        //height: controller.size.width * 0.50,
+        height: controller.size.height * 0.2,
         width: controller.size.width * 0.50,
         decoration: BoxDecoration(
           color: themeProvider.darkTheme
@@ -606,8 +604,6 @@ class DisplayNameTextFieldModule extends StatelessWidget {
                         color: Colors.red),
                   )
                 ])),
-
-
           ],
         ),
         const SizedBox(height: 8),

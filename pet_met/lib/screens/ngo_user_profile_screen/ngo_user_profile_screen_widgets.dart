@@ -13,7 +13,6 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
 
-
 class BackgroundImage extends StatelessWidget {
   BackgroundImage({Key? key}) : super(key: key);
 
@@ -74,7 +73,7 @@ class UploadImageModule extends StatelessWidget {
         modelBottomSheet(context);
       },
       child: Container(
-          // height: screenController.size.height * 0.2,
+          height: screenController.size.height * 0.2,
           width: screenController.size.width * 0.50,
           decoration: BoxDecoration(
             color: themeProvider.darkTheme
@@ -164,8 +163,8 @@ class UploadImageModule extends StatelessWidget {
                                       "Upload Image",
                                       style: TextStyle(
                                         color: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.blackTextColor,
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor,
                                         fontSize: 15.sp,
                                         fontWeight: FontWeight.w500,
                                       ),
@@ -207,7 +206,9 @@ class UploadImageModule extends StatelessWidget {
                           Text(
                             "Upload Image",
                             style: TextStyle(
-                              color: AppColors.blackTextColor,
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor,
                               fontSize: 15.sp,
                               fontWeight: FontWeight.w500,
                             ),
@@ -1078,54 +1079,6 @@ class EmailTextFieldModule extends StatelessWidget {
   }
 }
 
-class DisplayNameTextFieldModule extends StatelessWidget {
-  DisplayNameTextFieldModule({Key? key}) : super(key: key);
-
-  final controller = Get.find<NgoUserProfileScreenController>();
-
-  DarkThemeProvider themeProvider =
-  Provider.of<DarkThemeProvider>(Get.context!);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text.rich(TextSpan(
-                text: 'Display Name ',
-                style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
-                children: const <InlineSpan>[
-                  TextSpan(
-                    text: '*',
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.red),
-                  )
-                ])),
-
-
-          ],
-        ),
-        const SizedBox(height: 8),
-        CustomLightTextField(
-          readOnly: false,
-          fieldController: controller.displayNameController,
-          height: controller.size.height * 0.05,
-          width: double.infinity,
-          hintText: "Display Name",
-          maxLength: 10,
-          textInputAction: TextInputAction.next,
-          textInputType: TextInputType.text,
-          validator: (val) => Validations().validateDisplayName(val!),
-        ),
-      ],
-    );
-  }
-}
-
 class NameTextFieldModule extends StatelessWidget {
   NameTextFieldModule({Key? key}) : super(key: key);
 
@@ -1525,7 +1478,8 @@ class GetVerifiedInfo extends StatelessWidget {
               fontWeight: FontWeight.w400,
             ),
           ),
-          Image.asset(AppIcons.verifiedSymbolImg,
+          Image.asset(
+            AppIcons.verifiedSymbolImg,
             width: 30,
             height: 30,
           ),
@@ -1595,7 +1549,7 @@ class NgoUpiTextFieldModule extends StatelessWidget {
   NgoUpiTextFieldModule({Key? key}) : super(key: key);
   final screenController = Get.find<NgoUserProfileScreenController>();
   DarkThemeProvider themeProvider =
-  Provider.of<DarkThemeProvider>(Get.context!);
+      Provider.of<DarkThemeProvider>(Get.context!);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -1764,6 +1718,52 @@ class IsActiveTextFieldModule extends StatelessWidget {
           textInputType: TextInputType.number,
           validator: (val) => Validations().validateActive(val!),
         ),*/
+      ],
+    );
+  }
+}
+
+class DisplayNameTextFieldModule extends StatelessWidget {
+  DisplayNameTextFieldModule({Key? key}) : super(key: key);
+
+  final controller = Get.find<NgoUserProfileScreenController>();
+
+  DarkThemeProvider themeProvider =
+      Provider.of<DarkThemeProvider>(Get.context!);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text.rich(TextSpan(
+                text: 'Display Name ',
+                style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                children: const <InlineSpan>[
+                  TextSpan(
+                    text: '*',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red),
+                  )
+                ])),
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          readOnly: false,
+          fieldController: controller.displayNameController,
+          height: controller.size.height * 0.05,
+          width: double.infinity,
+          hintText: "Display Name",
+          maxLength: 10,
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.text,
+          validator: (val) => Validations().validateDisplayName(val!),
+        ),
       ],
     );
   }

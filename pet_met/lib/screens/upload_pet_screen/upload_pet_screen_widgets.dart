@@ -17,8 +17,6 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
 
-
-
 class BackgroundImage extends StatelessWidget {
   BackgroundImage({Key? key}) : super(key: key);
 
@@ -128,12 +126,13 @@ class _UploadImageModuleState extends State<UploadImageModule> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(15),
                         child: Image.file(
-                            themeProvider.darkTheme
-                                ? controller.imageFile!
-                                : controller.imageFile!,
-                            height: controller.size.height * 0.2,
-                            width: double.infinity,
-                            fit: BoxFit.fill),
+                          themeProvider.darkTheme
+                              ? controller.imageFile!
+                              : controller.imageFile!,
+                          height: controller.size.height * 0.2,
+                          width: double.infinity,
+                          fit: BoxFit.fill,
+                        ),
                       ),
                     )
                   : controller.petImage != null
