@@ -89,6 +89,7 @@ class TrainerData {
     required this.longitude,
     required this.latitude,
     required this.gpayupi,
+    required this.displayName,
   });
 
   String id;
@@ -122,6 +123,7 @@ class TrainerData {
   String longitude;
   String latitude;
   String gpayupi;
+  String displayName;
 
   factory TrainerData.fromJson(Map<String, dynamic> json) => TrainerData(
     id: json["id"] ?? "",
@@ -155,6 +157,7 @@ class TrainerData {
     longitude: json["longitude"] ?? "",
     latitude: json["latitude"] ?? "",
     gpayupi: json["gpayupi"] ?? "",
+      displayName: json["display_name"] ?? ""
   );
 
   Map<String, dynamic> toJson() => {

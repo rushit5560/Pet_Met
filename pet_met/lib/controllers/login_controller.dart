@@ -126,7 +126,23 @@ class LoginController extends GetxController {
   Future signInWithGoogleFunction() async {
     isLoading(true);
 
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    try {
+      googleAccount.value = await googleSignIn.signIn();
+      String userName = googleAccount.value!.displayName!;
+      String email = googleAccount.value!.email;
+      String googleKeyId = googleAccount.value!.id;
+      await socialMediaRegisterFunction(
+        userName: userName,
+        userEmail: email,
+        userId: googleKeyId,
+      );
+      // isSignIn.value = true;
+    } catch (e) {
+      log("error : $e");
+    }
+    isLoading(false);
+
+    /*SharedPreferences prefs = await SharedPreferences.getInstance();
     final FirebaseAuth auth = FirebaseAuth.instance;
     final GoogleSignIn googleSignIn = GoogleSignIn();
     googleSignIn.signOut();
@@ -160,7 +176,7 @@ class LoginController extends GetxController {
           userId: googleKeyId,
         );
       }
-    }
+    }*/
   }
 
 
@@ -173,8 +189,10 @@ class LoginController extends GetxController {
           AppleIDAuthorizationScopes.email,
           AppleIDAuthorizationScopes.fullName,
         ],
+
       );
       log("apple login 22");
+      log('credential : $credential');
       log("apple login email are :: ${credential.email}");
       log("apple login givenName are :: ${credential.givenName}");
 
@@ -190,9 +208,10 @@ class LoginController extends GetxController {
     } catch (e) {
       log("error occured while apple signin :: $e");
       rethrow;
-    } finally {
+    } /*finally {
       isLoading(false);
-    }
+    }*/
+    isLoading(false);
   }
   // old
   // Future signInWithFacebookFunction() async {

@@ -41,6 +41,7 @@ class ShopUserProfileScreenController extends GetxController {
   final loginFormKey = GlobalKey<FormState>();
 
   var nameController = TextEditingController();
+  var displayNameController = TextEditingController();
   var emailController = TextEditingController();
   var contactNumber = TextEditingController();
   var addressController = TextEditingController();
@@ -131,6 +132,7 @@ class ShopUserProfileScreenController extends GetxController {
         petList.addAll(getShopProfileModel.data.petdata);
 
         nameController.text = getShopProfileModel.data.data[0].shopename;
+        displayNameController.text = getShopProfileModel.data.data[0].displayName;
         emailController.text = getShopProfileModel.data.data[0].email;
         contactNumber.text =
             getShopProfileModel.data.data[0].phonenumber.toString();
@@ -401,6 +403,7 @@ class ShopUserProfileScreenController extends GetxController {
       request.fields['longitude'] = UserDetails.liveLongitude;
       request.fields['latitude'] = UserDetails.liveLatitude;
       request.fields['gpayupi'] = gPayController.text.trim();
+      request.fields['display_name'] = displayNameController.text.trim();
 
       var response = await request.send();
       log('response fields: ${request.fields}}');

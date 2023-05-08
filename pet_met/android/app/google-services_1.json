@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1038045422342",
+    "project_id": "petomate-c3a84",
+    "storage_bucket": "petomate-c3a84.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1038045422342:android:3d95afe4d71c2e8583f487",
+        "android_client_info": {
+          "package_name": "com.petomate.community"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1038045422342-923p0un4o5kv8puqp1f6vru1379tgref.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3McvF4e-L6bzDOLOs2GhKcWNqaY1f6f4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1038045422342-923p0un4o5kv8puqp1f6vru1379tgref.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

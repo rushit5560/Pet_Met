@@ -81,6 +81,7 @@ class UserData {
     required this.facebook,
     required this.isActive,
     required this.isVerified,
+    required this.displayName,
   });
 
   String id;
@@ -105,6 +106,7 @@ class UserData {
   String facebook;
   String isActive;
   String isVerified;
+  String displayName;
 
   factory UserData.fromJson(Map<String, dynamic> json) => UserData(
         id: (json["id"] ?? 0).toString(),
@@ -129,6 +131,7 @@ class UserData {
         facebook: json["facebook"] ?? "",
         isActive: json["is_active"] ?? "",
         isVerified: json["is_verified"] ?? "",
+        displayName: json["display_name"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {

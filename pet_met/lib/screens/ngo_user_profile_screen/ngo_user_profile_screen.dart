@@ -99,6 +99,8 @@ class NgoUserProfileScreen extends StatelessWidget {
                                     //     fieldName: 'Ngo Bank Account Number'),
                                     EmailTextFieldModule(),
                                     const SizedBox(height: 15),
+                                    DisplayNameTextFieldModule(),
+                                    const SizedBox(height: 15),
                                     NameTextFieldModule(),
                                     const SizedBox(height: 15),
                                     NgoBankAccountNumberTextFieldModule(),

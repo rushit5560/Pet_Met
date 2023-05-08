@@ -62,6 +62,7 @@ class TrainersAndUsersScreenController extends GetxController {
 
   var emailController = TextEditingController();
   var nameController = TextEditingController();
+  var displayNameController = TextEditingController();
   var contactNumber = TextEditingController();
   var addressController = TextEditingController();
   var detailsController = TextEditingController();
@@ -122,6 +123,7 @@ class TrainersAndUsersScreenController extends GetxController {
       if (isSuccessStatus.value) {
         emailController.text = getTrainersProfileModel.data.data[0].email;
         nameController.text = getTrainersProfileModel.data.data[0].name;
+        displayNameController.text = getTrainersProfileModel.data.data[0].displayName;
         contactNumber.text = getTrainersProfileModel.data.data[0].phone;
         addressController.text = getTrainersProfileModel.data.data[0].address;
         detailsController.text = getTrainersProfileModel.data.data[0].fullText;
@@ -489,6 +491,7 @@ class TrainersAndUsersScreenController extends GetxController {
       request.fields['longitude'] = UserDetails.liveLongitude;
       request.fields['latitude'] = UserDetails.liveLatitude;
       request.fields['gpayupi'] = gPayController.text.trim();
+      request.fields['display_name'] = displayNameController.text.trim();
 
       var response = await request.send();
 

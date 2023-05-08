@@ -303,7 +303,7 @@ class LoginModule extends StatelessWidget {
                       const SizedBox(width: 15),
                       GestureDetector(
                         onTap: () async {
-                          await controller.signInWithAppleFunction();
+                            await controller.signInWithAppleFunction();
 
                           // Fluttertoast.showToast(msg: 'This feature is coming soon');
                         },

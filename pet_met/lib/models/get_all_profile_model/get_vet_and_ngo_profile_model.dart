@@ -87,6 +87,7 @@ class NgoData {
     required this.longitude,
     required this.latitude,
     required this.gpayupi,
+    required this.displayName,
   });
 
   String id;
@@ -122,6 +123,7 @@ class NgoData {
   String longitude;
   String latitude;
   String gpayupi;
+  String displayName;
 
   factory NgoData.fromJson(Map<String, dynamic> json) => NgoData(
     id: json["id"] ?? "",
@@ -157,6 +159,7 @@ class NgoData {
     longitude: json["longitude"] ?? "",
     latitude: json["latitude"] ?? "",
     gpayupi: json["gpayupi"] ?? "",
+    displayName: json["display_name"] ?? "",
   );
 
   Map<String, dynamic> toJson() => {

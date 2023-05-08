@@ -88,6 +88,8 @@ class ShopUserProfileScreen extends StatelessWidget {
                                     const SizedBox(height: 30),
                                     EmailTextFieldModule(),
                                     const SizedBox(height: 15),
+                                    DisplayNameTextFieldModule(),
+                                    const SizedBox(height: 15),
                                     ShopNameTextFieldModule(),
                                     const SizedBox(height: 15),
                                     ContactNumberTextFieldModule(),

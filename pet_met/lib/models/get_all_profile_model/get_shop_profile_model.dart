@@ -110,6 +110,7 @@ class DataData {
     required this.longitude,
     required this.latitude,
     required this.gpayupi,
+    required this.displayName,
   });
 
   String id;
@@ -140,6 +141,7 @@ class DataData {
   String longitude;
   String latitude;
   String gpayupi;
+  String displayName;
 
   factory DataData.fromJson(Map<String, dynamic> json) => DataData(
     id: json["id"] ?? "",
@@ -170,6 +172,7 @@ class DataData {
     longitude: json["longitude"] ?? "",
     latitude: json["latitude"] ?? "",
     gpayupi: json["gpayupi"] ?? "",
+      displayName: json["display_name"] ?? ""
   );
 
   Map<String, dynamic> toJson() => {

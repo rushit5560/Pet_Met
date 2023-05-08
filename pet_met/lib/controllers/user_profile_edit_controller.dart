@@ -35,6 +35,7 @@ class UserProfileEditController extends GetxController {
   var nameController = TextEditingController();
   var emailController = TextEditingController();
   var mobileController = TextEditingController();
+  var displayNameController = TextEditingController();
   var locationController = TextEditingController();
   var detailsController = TextEditingController();
   var instagramController = TextEditingController();
@@ -70,8 +71,7 @@ class UserProfileEditController extends GetxController {
 
   /// Get User Profile
   Future<void> getAllRoleProfileFunction(
-      {ProfileChangeOption profileChangeOption =
-          ProfileChangeOption.stay}) async {
+      {ProfileChangeOption profileChangeOption = ProfileChangeOption.stay}) async {
     isLoading(true);
     birthDate = day + "-" + month + "-" + year;
     String url = ApiUrl.allRoleGetProfileApi;
@@ -116,6 +116,7 @@ class UserProfileEditController extends GetxController {
         detailsController.text = getUserProfileModel.data.data[0].fullText;
         facebookController.text = getUserProfileModel.data.data[0].facebook;
         instagramController.text = getUserProfileModel.data.data[0].instagram;
+        displayNameController.text = getUserProfileModel.data.data[0].displayName;
 
         await userPreference.setUserDetails(
           selfId: UserDetails.selfId,
@@ -177,6 +178,7 @@ class UserProfileEditController extends GetxController {
     await multiAccountFunction();
   }
 
+  /// Get User Multiple account
   multiAccountFunction() async {
     isLoading(true);
     String url = ApiUrl.multiAccountApi;
@@ -294,6 +296,7 @@ class UserProfileEditController extends GetxController {
     }
   }*/
 
+  /// Login multiple account
   Future<void> userMultipleAccountLoginFunction(
       {required String email, required categoryId}) async {
     isLoading(true);
@@ -394,6 +397,7 @@ class UserProfileEditController extends GetxController {
       request.fields['full_text'] = detailsController.text.trim();
       request.fields['instagram'] = "instagram.com";
       request.fields['facebook'] = "facebook.com";
+      request.fields['display_name'] = displayNameController.text.trim();
 
       var response = await request.send();
       log('response: ${response.request}');
@@ -425,6 +429,7 @@ class UserProfileEditController extends GetxController {
     }*/
   }
 
+  /// Delete user account
   Future<void> deleteAccountFunction() async {
     isLoading(true);
     String url =

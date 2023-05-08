@@ -1057,6 +1057,54 @@ class EmailTextFieldModule extends StatelessWidget {
   }
 }
 
+class DisplayNameTextFieldModule extends StatelessWidget {
+  DisplayNameTextFieldModule({Key? key}) : super(key: key);
+
+  final controller = Get.find<TrainersAndUsersScreenController>();
+
+  DarkThemeProvider themeProvider =
+  Provider.of<DarkThemeProvider>(Get.context!);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text.rich(TextSpan(
+                text: 'Display Name ',
+                style: TextStyle(fontSize: 11.sp, fontWeight: FontWeight.bold),
+                children: const <InlineSpan>[
+                  TextSpan(
+                    text: '*',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red),
+                  )
+                ])),
+
+
+          ],
+        ),
+        const SizedBox(height: 8),
+        CustomLightTextField(
+          readOnly: false,
+          fieldController: controller.displayNameController,
+          height: controller.size.height * 0.05,
+          width: double.infinity,
+          hintText: "Display Name",
+          maxLength: 10,
+          textInputAction: TextInputAction.next,
+          textInputType: TextInputType.text,
+          validator: (val) => Validations().validateDisplayName(val!),
+        ),
+      ],
+    );
+  }
+}
+
 class TrainersContactNumberTextField extends StatelessWidget {
   TrainersContactNumberTextField({Key? key}) : super(key: key);
 

@@ -74,6 +74,7 @@ class NgoUserProfileScreenController extends GetxController {
 
   var emailController = TextEditingController();
   var nameController = TextEditingController();
+  var displayNameController = TextEditingController();
   var accountNumberController = TextEditingController();
   var ifscCodeController = TextEditingController();
   var addressController = TextEditingController();
@@ -124,6 +125,7 @@ class NgoUserProfileScreenController extends GetxController {
       if (isSuccessStatus.value) {
         emailController.text = allRoleProfileModel.data.data[0].email;
         nameController.text = allRoleProfileModel.data.data[0].name;
+        displayNameController.text = allRoleProfileModel.data.data[0].displayName;
         detailsController.text = allRoleProfileModel.data.data[0].fullText;
         instagramController.text = allRoleProfileModel.data.data[0].instagram;
         facebookController.text = allRoleProfileModel.data.data[0].facebook;
@@ -493,6 +495,7 @@ class NgoUserProfileScreenController extends GetxController {
       request.fields['longitude'] = UserDetails.liveLongitude;
       request.fields['latitude'] = UserDetails.liveLatitude;
       request.fields['gpayupi'] = gPayController.text.trim();
+      request.fields['display_name'] = displayNameController.text.trim();
 
       var response = await request.send();
       log('request.files: ${request.files}');

@@ -109,6 +109,13 @@ class Validations {
     return null;
   }
 
+  String? validateDisplayName(String value) {
+    if (value.isEmpty) {
+      return 'Display name is required';
+    }
+    return null;
+  }
+
   String? validateUserName(String value) {
     if (value.isEmpty) {
       return 'User Name is required';

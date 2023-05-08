@@ -135,10 +135,8 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                             const SizedBox(height: 15),
                                             EmailTextFieldModule(),
                                             const SizedBox(height: 15),
-                                            // TextFieldSection(
-                                            //   fieldName: "Mobile Number",
-                                            //   fieldHinttext: "**** ** ***",
-                                            // ),
+                                            DisplayNameTextFieldModule(),
+                                            const SizedBox(height: 15),
                                             MobileNumberTextFieldModule(),
                                             const SizedBox(height: 15),
 
