@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/models/receive_message_model/receive_message_mdel.dart';
 import 'package:pet_met/models/receive_message_model/send_message_model.dart';
@@ -18,8 +17,7 @@ class UserConversationScreenController extends GetxController {
   String shopEmail = Get.arguments[4];
 
   RxBool isLoading = false.obs;
-  final FlutterLocalNotificationsPlugin notificationPulgin =
-      FlutterLocalNotificationsPlugin();
+  
 
   final TextEditingController messageFieldController = TextEditingController();
   final FocusNode msgFocusField = FocusNode();

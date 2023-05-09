@@ -68,13 +68,9 @@ dependencies:
   uuid: ^3.0.7
   sign_in_with_apple: ^4.3.0
   permission_handler: ^9.2.0
-
-
-
-
   firebase_messaging: ^11.2.13
   # overlay_support: ^1.2.1
-  # flutter_notification_channel: ^2.0.0
+  flutter_notification_channel: ^2.0.0
   firebase_storage: ^10.2.16
   # flutter_local_notifications: ^6.0.0
 
