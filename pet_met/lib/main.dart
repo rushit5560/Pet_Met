@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -34,6 +35,7 @@ Future<void> main() async {
       DeviceOrientation.portraitDown,
     ],
   );
+  requestPermission();
 
   runApp(const MyApp());
 }
@@ -129,5 +131,27 @@ class _MyAppState extends State<MyApp> {
         );
       },
     );
+  }
+}
+
+void requestPermission() async {
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+  NotificationSettings settings = await messaging.requestPermission(
+    alert: true,
+    announcement: false,
+    badge: true,
+    carPlay: false,
+    criticalAlert: false,
+    provisional: false,
+    sound: true,
+  );
+
+  if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+    log('User Granted Permission');
+  } else if (settings.authorizationStatus == AuthorizationStatus.provisional) {
+    log('User Granted Provisional Permission');
+  } else {
+    log('User declined or has not accepted permission');
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,6 @@ class UserConversationScreenController extends GetxController {
   String shopEmail = Get.arguments[4];
 
   RxBool isLoading = false.obs;
-  
 
   final TextEditingController messageFieldController = TextEditingController();
   final FocusNode msgFocusField = FocusNode();
@@ -46,12 +46,23 @@ class UserConversationScreenController extends GetxController {
     /// Send Chat Notification
     ///
 
-    await sendGeneralNotification(
-      opponentToken: opponentToken,
-      title: UserDetails.userName,
-      body: messageFieldController.text.trim(),
-      // type: 0,
-    );
+    Platform.isAndroid
+        ? await sendGeneralNotification(
+            opponentToken: opponentToken,
+            title: UserDetails.userName,
+            body: messageFieldController.text.trim(),
+            // type: 0,
+          )
+        : const FirebaseOptions(
+    apiKey:
+        'key=AAAA8bBUIwY:APA91bG12B9sECzxamPgdtkucbTWTAaRbxbOhCwwvdJwMQNDUeR0iiQi1YUGrf4FO1gruIcaoE3kxTvSEtMrhz_Py5Uo-t1lNzd1g1HGTjmAbOtcZeeyz7xDHEaTzrQHZId9NL1cV_Ey',
+    appId: '1:1038045422342:ios:02579013f7bc208583f487',
+    messagingSenderId: '1038045422342',
+    projectId: 'petomate-c3a84',
+    iosBundleId: 'com.petomate.community',
+    iosClientId:
+        '1038045422342-2veomn1s7o1av3mshvidp1iodjdtltld.apps.googleusercontent.com',
+  );
 
     /// Hide Keyboard
     // hideKeyboard();
@@ -72,7 +83,7 @@ class UserConversationScreenController extends GetxController {
     apiKey:
         'key=AAAA8bBUIwY:APA91bG12B9sECzxamPgdtkucbTWTAaRbxbOhCwwvdJwMQNDUeR0iiQi1YUGrf4FO1gruIcaoE3kxTvSEtMrhz_Py5Uo-t1lNzd1g1HGTjmAbOtcZeeyz7xDHEaTzrQHZId9NL1cV_Ey',
     appId: '1:1038045422342:ios:02579013f7bc208583f487',
-    messagingSenderId: '',
+    messagingSenderId: '1038045422342',
     projectId: 'petomate-c3a84',
     iosBundleId: 'com.petomate.community',
     iosClientId:

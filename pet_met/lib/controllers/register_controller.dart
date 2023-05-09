@@ -272,10 +272,9 @@ class RegisterController extends GetxController {
       if (auth.currentUser != null) {
         log("auth.currentUser!");
         await socialMediaRegisterFunction(
-          userName: auth.currentUser!.displayName.toString(),
-          userEmail: auth.currentUser!.email.toString(),
-          userId: auth.currentUser!.uid,
-        );
+            userName: auth.currentUser!.providerData[0].displayName.toString(),
+            userEmail: auth.currentUser!.providerData[0].email.toString(),
+            userId: auth.currentUser!.providerData[0].uid.toString());
       } else if (result != null) {
         log("result");
         await socialMediaRegisterFunction(
@@ -460,5 +459,7 @@ class RegisterController extends GetxController {
     } catch (e) {
       log("socialMediaRegisterFunction Error :$e");
     }
+
+    isLoading(false);
   }
 }

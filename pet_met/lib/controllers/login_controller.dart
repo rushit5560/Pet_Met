@@ -250,20 +250,19 @@ class LoginController extends GetxController {
       );
       UserCredential result = await auth.signInWithCredential(authCredential);
       log("apple login 22");
-      log("authCredential $authCredential");
-      log("apple login email are :: ${credential.email}");
-      log("apple login givenName are :: ${credential.givenName}");
+      // log("authCredential $authCredential");
+      // log("apple login email are :: ${credential.email}");
+      // log("apple login givenName are :: ${credential.givenName}");
       log("result $result");
 
       // await auth.currentUser;
       if (auth.currentUser != null) {
         log("auth.currentUser!");
         await socialMediaRegisterFunction(
-          userName: auth.currentUser!.displayName.toString(),
-          userEmail: auth.currentUser!.email.toString(),
-          userId: auth.currentUser!.uid,
-        );
-        // log("auth.currentUser!.displayName ${auth.currentUser!.displayName}");
+            userName: auth.currentUser!.providerData[0].displayName.toString(),
+            userEmail: auth.currentUser!.providerData[0].email.toString(),
+            userId: auth.currentUser!.providerData[0].uid.toString());
+        log("auth.currentUser!.providerData[0].displayName ${auth.currentUser!.providerData[0].displayName}");
         log("auth.currentUser ${auth.currentUser}");
       } else if (result != null) {
         log("result");
@@ -475,6 +474,7 @@ class LoginController extends GetxController {
     } catch (e) {
       log("socialMediaRegisterFunction Error :$e");
     }
+    isLoading(false);
   }
 
   /*subPartOfFacebookLogin() async {
