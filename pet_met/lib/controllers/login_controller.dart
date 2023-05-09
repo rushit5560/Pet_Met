@@ -119,84 +119,44 @@ class LoginController extends GetxController {
       }
     } catch (e) {
       log('User Login Api Error ::: $e');
-    } finally {
-      isLoading(false);
     }
-  }
 
-  Future signInWithGoogleFunction() async {
-    log("signInWithGoogleFunction");
-    isLoading(true);
-
-    try {
-      googleAccount.value = await googleSignIn.signIn();
-      String userName = googleAccount.value!.displayName!;
-      String email = googleAccount.value!.email;
-      String googleKeyId = googleAccount.value!.id;
-      await socialMediaRegisterFunction(
-        userName: userName,
-        userEmail: email,
-        userId: googleKeyId,
-      );
-      // isSignIn.value = true;
-    } catch (e) {
-      log("error : $e");
-    }
+    // finally {
+    // isLoading(false);
+    // }
     isLoading(false);
   }
 
-  Future signInWithGoogleinAppleFunction() async {
-    log("signInWithGoogleFunction 11");
-    isLoading(true);
+  Future signInWithGoogleFunction() async {
+    // isLoading(true);
 
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
 
     final FirebaseAuth auth = FirebaseAuth.instance;
-    // log("signInWithGoogleFunction 22");
     final GoogleSignIn googleSignIn = GoogleSignIn();
     googleSignIn.signOut();
-    // log("signInWithGoogleFunction 33");
 
     final GoogleSignInAccount? googleSignInAccount =
         await googleSignIn.signIn();
-    // log("signInWithGoogleFunction 44");
-
-    log("googleSignInAccount $googleSignInAccount");
     if (googleSignInAccount != null) {
-      // log("signInWithGoogleFunction 55");
-
-      log("googleSignInAccount $googleSignInAccount");
       final GoogleSignInAuthentication googleSignInAuthentication =
           await googleSignInAccount.authentication;
       final AuthCredential authCredential = GoogleAuthProvider.credential(
           idToken: googleSignInAuthentication.idToken,
           accessToken: googleSignInAuthentication.accessToken);
-      log("googleauthCredential $authCredential");
+
       // Getting users credentia
       UserCredential result = await auth.signInWithCredential(authCredential);
 
-      // if (auth.currentUser != null) {
-      //   log("result");
-      //   String userName = result.user!.displayName!;
-      //   String email = result.user!.email!;
-      //   String googleKeyId = result.user!.uid;
-
-      //   log("Username : $userName");
-      //   log("email : $email");
-      //   log("googleKeyId : $googleKeyId");
-
-      //   await socialMediaRegisterFunction(
-      //     userName: auth.currentUser!.displayName.toString(),
-      //     userEmail: auth.currentUser!.email.toString(),
-      //     userId: auth.currentUser!.uid,
-      //   );
-      // }
-      //else
       if (result != null) {
-        log("auth.currentUser");
         String userName = result.user!.displayName!;
         String email = result.user!.email!;
         String googleKeyId = result.user!.uid;
+
+        log("Username : $userName");
+        log("email : $email");
+        log("googleKeyId : $googleKeyId");
+
         await socialMediaRegisterFunction(
           userName: userName,
           userEmail: email,
@@ -264,7 +224,7 @@ class LoginController extends GetxController {
 
   Future signInWithAppleFunction() async {
     log("signInWithAppleFunction 11");
-    isLoading(true);
+    // isLoading(true);
     try {
       log("apple login 11");
       final credential = await SignInWithApple.getAppleIDCredential(
@@ -319,7 +279,7 @@ class LoginController extends GetxController {
     } /*finally {
       isLoading(false);
     }*/
-    isLoading(false);
+    // isLoading(false);
   }
 
   // old

@@ -163,7 +163,7 @@ class RegisterController extends GetxController {
   // }
 
   Future signInWithGoogleFunction() async {
-    isLoading(true);
+    // isLoading(true);
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -235,7 +235,7 @@ class RegisterController extends GetxController {
 
   Future signInWithAppleFunction() async {
     log("signInWithAppleFunction 11");
-    isLoading(true);
+    // isLoading(true);
     try {
       log("apple login 11");
 
@@ -290,7 +290,7 @@ class RegisterController extends GetxController {
     } /*finally {
       isLoading(false);
     }*/
-    isLoading(false);
+    // isLoading(false);
   }
   // Future signInWithFacebookFunction() async {
   //   //await fb.logOut();

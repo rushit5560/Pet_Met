@@ -272,7 +272,7 @@ class LoginModule extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () async {
-                          await controller.signInWithGoogleinAppleFunction();
+                          await controller.signInWithGoogleFunction();
                           // Fluttertoast.showToast(msg: 'This feature is coming soon');
                         },
                         child: Container(
@@ -302,7 +302,7 @@ class LoginModule extends StatelessWidget {
                       const SizedBox(width: 15),
                       GestureDetector(
                         onTap: () async {
-                              await controller.signInWithAppleFunction();
+                          await controller.signInWithAppleFunction();
 
                           // Fluttertoast.showToast(msg: 'This feature is coming soon');
                         },
@@ -316,7 +316,8 @@ class LoginModule extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12),
                             boxShadow: [
                               BoxShadow(
-                                color: AppColors.greyTextColor.withOpacity(0.25),
+                                color:
+                                    AppColors.greyTextColor.withOpacity(0.25),
                                 spreadRadius: 1,
                                 blurRadius: 15,
                                 offset: const Offset(4, 4),
@@ -324,8 +325,7 @@ class LoginModule extends StatelessWidget {
                             ],
                           ),
                           child: Image.asset(AppImages.appleImg,
-                              height: 25,
-                              color: AppColors.darkThemeColor),
+                              height: 25, color: AppColors.darkThemeColor),
                         ),
                       ),
                       const SizedBox(width: 15),
