@@ -76,7 +76,7 @@ dependencies:
   # overlay_support: ^1.2.1
   # flutter_notification_channel: ^2.0.0
   firebase_storage: ^10.2.16
-  flutter_local_notifications: ^6.0.0
+  # flutter_local_notifications: ^6.0.0
 
 dev_dependencies:
   flutter_test:
