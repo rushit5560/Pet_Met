@@ -14,8 +14,6 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
 
-
-
 class TrainersAndUserProfileScreenController extends StatelessWidget {
   TrainersAndUserProfileScreenController({Key? key}) : super(key: key);
 
@@ -72,12 +70,14 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                                           onPressed: () async {
                                             alertDialogModule.alertDialogBox(
                                                 yesClick: () async {
-                                                  await controller
-                                                      .deleteAccountFunction();
-                                                }
-                                            );
+                                              await controller
+                                                  .deleteAccountFunction();
+                                            });
                                           },
-                                          icon: const Icon(Icons.delete, color: Colors.red,),
+                                          icon: const Icon(
+                                            Icons.delete,
+                                            color: Colors.red,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -94,6 +94,8 @@ class TrainersAndUserProfileScreenController extends StatelessWidget {
                                     const SizedBox(height: 15),
 
                                     TrainersNameTextFieldModule(),
+                                    const SizedBox(height: 15),
+                                    DisplayNameTextFieldModule(),
                                     const SizedBox(height: 15),
 
                                     // CommonTextFieldModule(
