@@ -11,8 +11,6 @@ import 'package:pet_met/utils/razorpay_key.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
-
-
 class ShopDetailsScreenController extends GetxController {
   String shopId = Get.arguments;
 
@@ -31,6 +29,8 @@ class ShopDetailsScreenController extends GetxController {
 
   //ShopData shopData = ShopData();
   List<ShopData> shopData = [];
+  List<String> petShopImageData = [];
+
   bool isVerified = false;
   RxBool showStatus = false.obs;
 
@@ -54,6 +54,7 @@ class ShopDetailsScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         shopData = shopDetailsModel.data;
+        petShopImageData = shopDetailsModel.petImage;
         showStatus = shopDetailsModel.showstatus.obs;
         log('showStatus: $showStatus');
         String isVerify = "${shopDetailsModel.data[0].isVerified}";
@@ -126,7 +127,6 @@ class ShopDetailsScreenController extends GetxController {
     log(response.paymentId.toString());
     log(response.orderId.toString());
     log(response.signature.toString());
-
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
@@ -169,7 +169,7 @@ class ShopDetailsScreenController extends GetxController {
       );
       log("Vet Details Api Response11111 : ${response.body}");
       PetAddOrderModel petAddOrderModel =
-      PetAddOrderModel.fromJson(json.decode(response.body));
+          PetAddOrderModel.fromJson(json.decode(response.body));
       isSuccessStatus = petAddOrderModel.success.obs;
 
       if (isSuccessStatus.value) {

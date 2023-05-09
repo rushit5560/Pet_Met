@@ -33,6 +33,7 @@ class RegisterController extends GetxController {
 
   final formKey = GlobalKey<FormState>();
   // final fb = FacebookLogin();
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   /// Form Submit Validator
   submitRegisterForm() async {
@@ -161,14 +162,10 @@ class RegisterController extends GetxController {
   //   isLoading(false);
   // }
 
-
-
-
-Future signInWithGoogleFunction() async {
+  Future signInWithGoogleFunction() async {
     isLoading(true);
-  
+
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    
 
     final FirebaseAuth auth = FirebaseAuth.instance;
     final GoogleSignIn googleSignIn = GoogleSignIn();
@@ -185,7 +182,7 @@ Future signInWithGoogleFunction() async {
 
       // Getting users credentia
       UserCredential result = await auth.signInWithCredential(authCredential);
-     
+
       if (result != null) {
         String userName = result.user!.displayName!;
         String email = result.user!.email!;
@@ -204,37 +201,97 @@ Future signInWithGoogleFunction() async {
     }
   }
 
+  // Future signInWithAppleFunction() async {
+  //   log("signInWithAppleFunction");
+  //   isLoading(true);
+  //   try {
+  //     log("apple login 11");
+  //     final credential = await SignInWithApple.getAppleIDCredential(
+  //       scopes: [
+  //         AppleIDAuthorizationScopes.email,
+  //         AppleIDAuthorizationScopes.fullName,
+  //       ],
+  //     );
+  //     log("apple login 22");
+  //     log("apple login email are :: ${credential.email}");
+  //     log("apple login givenName are :: ${credential.givenName}");
+
+  //     // if (credential.email!.isNotEmpty && credential.givenName!.isNotEmpty) {
+  //     await socialMediaRegisterFunction(
+  //       userName: credential.givenName! + credential.familyName!,
+  //       userEmail: credential.email!,
+  //       userId: credential.authorizationCode,
+  //     );
+  //     // } else {
+  //     //   log("signInWithAppleFunction error");
+  //     // }
+  //   } catch (e) {
+  //     log("error occured while apple signin :: $e");
+  //     rethrow;
+  //   } finally {
+  //     isLoading(false);
+  //   }
+  // }
+
   Future signInWithAppleFunction() async {
+    log("signInWithAppleFunction 11");
     isLoading(true);
     try {
       log("apple login 11");
+
       final credential = await SignInWithApple.getAppleIDCredential(
         scopes: [
           AppleIDAuthorizationScopes.email,
           AppleIDAuthorizationScopes.fullName,
         ],
       );
-      log("apple login 22");
+      log('credential : $credential');
+
+      final oAuthProvider = OAuthProvider('apple.com');
+      oAuthProvider.addScope(credential.email.toString());
+      oAuthProvider.addScope(credential.familyName.toString());
+      log("oAuthProvider$oAuthProvider");
+      auth.signInWithEmailAndPassword(
+          email: credential.email.toString(),
+          password: credential.familyName.toString());
       log("apple login email are :: ${credential.email}");
       log("apple login givenName are :: ${credential.givenName}");
+      final AuthCredential authCredential = oAuthProvider.credential(
+        idToken: credential.identityToken,
+        accessToken: credential.authorizationCode,
+      );
 
-      if (credential.email!.isNotEmpty && credential.givenName!.isNotEmpty) {
+      UserCredential result = await auth.signInWithCredential(authCredential);
+      log("apple login 22");
+      log("authCredential $authCredential");
+      log("apple login email are :: ${credential.email}");
+      log("apple login givenName are :: ${credential.givenName}");
+      log("result $result");
+
+      // await auth.currentUser;
+      if (auth.currentUser != null) {
+        log("auth.currentUser!");
+        await socialMediaRegisterFunction(
+          userName: auth.currentUser!.displayName.toString(),
+          userEmail: auth.currentUser!.email.toString(),
+          userId: auth.currentUser!.uid,
+        );
+      } else if (result != null) {
+        log("result");
         await socialMediaRegisterFunction(
           userName: credential.givenName! + credential.familyName!,
           userEmail: credential.email!,
           userId: credential.authorizationCode,
         );
-      } else {
-        log("signInWithAppleFunction error");
       }
     } catch (e) {
       log("error occured while apple signin :: $e");
       rethrow;
-    } finally {
+    } /*finally {
       isLoading(false);
-    }
+    }*/
+    isLoading(false);
   }
-
   // Future signInWithFacebookFunction() async {
   //   //await fb.logOut();
   //
@@ -350,7 +407,7 @@ Future signInWithGoogleFunction() async {
         'categoryID': "${UserDetails.roleId}",
         'googlekey': userId,
       };
-      log("data : $data");
+      log("socialMediaRegisterFunction data : $data");
 
       //todo - differentiate with user category id
       http.Response response = await http.post(Uri.parse(url), body: data);

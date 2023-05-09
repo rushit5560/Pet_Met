@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/models/receive_message_model/receive_message_mdel.dart';
 import 'package:pet_met/models/receive_message_model/send_message_model.dart';
@@ -16,6 +18,8 @@ class UserConversationScreenController extends GetxController {
   String shopEmail = Get.arguments[4];
 
   RxBool isLoading = false.obs;
+  final FlutterLocalNotificationsPlugin notificationPulgin =
+      FlutterLocalNotificationsPlugin();
 
   final TextEditingController messageFieldController = TextEditingController();
   final FocusNode msgFocusField = FocusNode();
@@ -42,6 +46,8 @@ class UserConversationScreenController extends GetxController {
     log('opponentToken : $opponentToken');
 // await chatListPositionupdate()
     /// Send Chat Notification
+    ///
+
     await sendGeneralNotification(
       opponentToken: opponentToken,
       title: UserDetails.userName,
@@ -63,6 +69,17 @@ class UserConversationScreenController extends GetxController {
         .update({"createdAt": Timestamp.now()});
     log("chatListPositionupdate 222");
   }
+
+  FirebaseOptions ios = const FirebaseOptions(
+    apiKey:
+        'key=AAAA8bBUIwY:APA91bG12B9sECzxamPgdtkucbTWTAaRbxbOhCwwvdJwMQNDUeR0iiQi1YUGrf4FO1gruIcaoE3kxTvSEtMrhz_Py5Uo-t1lNzd1g1HGTjmAbOtcZeeyz7xDHEaTzrQHZId9NL1cV_Ey',
+    appId: '1:1038045422342:ios:02579013f7bc208583f487',
+    messagingSenderId: '',
+    projectId: 'petomate-c3a84',
+    iosBundleId: 'com.petomate.community',
+    iosClientId:
+        '1038045422342-2veomn1s7o1av3mshvidp1iodjdtltld.apps.googleusercontent.com',
+  );
 
   Future<void> sendGeneralNotification({
     required String opponentToken,

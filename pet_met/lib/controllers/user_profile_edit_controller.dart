@@ -71,7 +71,8 @@ class UserProfileEditController extends GetxController {
 
   /// Get User Profile
   Future<void> getAllRoleProfileFunction(
-      {ProfileChangeOption profileChangeOption = ProfileChangeOption.stay}) async {
+      {ProfileChangeOption profileChangeOption =
+          ProfileChangeOption.stay}) async {
     isLoading(true);
     birthDate = day + "-" + month + "-" + year;
     String url = ApiUrl.allRoleGetProfileApi;
@@ -103,7 +104,8 @@ class UserProfileEditController extends GetxController {
         petList.clear();
         petList.addAll(getUserProfileModel.data.petdata);
         imageName = getUserProfileModel.data.data[0].image;
-        if(getUserProfileModel.data.data[0].image.toString().toLowerCase() != "petmet_logo.png".toLowerCase()) {
+        if (getUserProfileModel.data.data[0].image.toString().toLowerCase() !=
+            "petmet_logo.png".toLowerCase()) {
           userProfile = ApiUrl.apiImagePath +
               "asset/uploads/product/" +
               getUserProfileModel.data.data[0].image;
@@ -116,8 +118,9 @@ class UserProfileEditController extends GetxController {
         detailsController.text = getUserProfileModel.data.data[0].fullText;
         facebookController.text = getUserProfileModel.data.data[0].facebook;
         instagramController.text = getUserProfileModel.data.data[0].instagram;
-        displayNameController.text = getUserProfileModel.data.data[0].displayName;
-
+        displayNameController.text =
+            getUserProfileModel.data.data[0].displayName;
+        log("displayNameController.text ${getUserProfileModel.data.data[0].displayName}");
         await userPreference.setUserDetails(
           selfId: UserDetails.selfId,
           userId: UserDetails.selfId,
@@ -400,7 +403,7 @@ class UserProfileEditController extends GetxController {
       request.fields['display_name'] = displayNameController.text.trim();
 
       var response = await request.send();
-      log('response: ${response.request}');
+      log('updateUserProfileFunction: ${request.fields}');
 
       response.stream
           .transform(const Utf8Decoder())

@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Peto&apos;Mate</string>
+	<string>Peto'Mate</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -23,9 +23,11 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb401222438839524</string>
+				<string>com.googleusercontent.apps.1038045422342-2veomn1s7o1av3mshvidp1iodjdtltld</string>
 			</array>
 		</dict>
 	</array>
@@ -41,14 +43,19 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Access to the camera allows user to take photos for their personal profile and pet profile picture.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Access to the gallary allows user to take photos for their shop profile and their shop offer picture.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This will help you to have, PET related information of the areas near you, like veterinaries, NGO&apos;s and pet shops near to your locality.</string>
+	<string>This will help you to have, PET related information of the areas near you, like veterinaries, NGO's and pet shops near to your locality.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This will help you to have, PET related information of the areas near you, like veterinaries, NGO&apos;s and pet shops near to your locality.</string>
+	<string>This will help you to have, PET related information of the areas near you, like veterinaries, NGO's and pet shops near to your locality.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>This app does not require access to the microphone.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Access to the gallary allows user to take photos for their shop profile and their shop offer picture.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -59,8 +66,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -68,18 +73,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>CFBundleURLTypes</key>
-    <array>
-    	<dict>
-    		<key>CFBundleTypeRole</key>
-    		<string>Editor</string>
-    		<key>CFBundleURLSchemes</key>
-    		<array>
-    			<!-- TODO Replace this value: -->
-    			<!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
-    			<string>com.googleusercontent.apps.1038045422342-2veomn1s7o1av3mshvidp1iodjdtltld</string>
-    		</array>
-    	</dict>
-    </array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

@@ -19,8 +19,6 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
 
-
-
 class BackgroundImage extends StatelessWidget {
   BackgroundImage({Key? key}) : super(key: key);
 
@@ -66,6 +64,7 @@ class BackArrow extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class UploadImageModule extends StatelessWidget {
   UploadImageModule({Key? key}) : super(key: key);
 
@@ -80,7 +79,7 @@ class UploadImageModule extends StatelessWidget {
         modelBottomSheet(context);
       },
       child: Container(
-        //height: screenController.size.height * 0.2,
+        height: screenController.size.height * 0.2,
         width: screenController.size.width * 0.50,
         decoration: BoxDecoration(
           color: themeProvider.darkTheme
@@ -1425,7 +1424,7 @@ class DisplayNameTextFieldModule extends StatelessWidget {
   final controller = Get.find<ShopUserProfileScreenController>();
 
   DarkThemeProvider themeProvider =
-  Provider.of<DarkThemeProvider>(Get.context!);
+      Provider.of<DarkThemeProvider>(Get.context!);
 
   @override
   Widget build(BuildContext context) {
@@ -1446,8 +1445,6 @@ class DisplayNameTextFieldModule extends StatelessWidget {
                         color: Colors.red),
                   )
                 ])),
-
-
           ],
         ),
         const SizedBox(height: 8),
@@ -2062,7 +2059,8 @@ class GetVerifiedInfo extends StatelessWidget {
                 const SizedBox(height: 20),
                 GestureDetector(
                   onTap: () {
-                    Clipboard.setData(const ClipboardData(text: "info@petomate.com"));
+                    Clipboard.setData(
+                        const ClipboardData(text: "info@petomate.com"));
                     Fluttertoast.showToast(msg: "Copied");
                   },
                   child: Text(
@@ -2094,11 +2092,12 @@ class GetVerifiedInfo extends StatelessWidget {
               fontWeight: FontWeight.w400,
             ),
           ),
-          Image.asset(AppIcons.verifiedSymbolImg,
+          Image.asset(
+            AppIcons.verifiedSymbolImg,
             width: 30,
             height: 30,
           ),
-         /* Icon(
+          /* Icon(
             Icons.verified_outlined,
             size: 24,
             color: themeProvider.darkTheme

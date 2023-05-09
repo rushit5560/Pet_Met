@@ -1168,18 +1168,18 @@ class MeetingAvailabilityModule extends StatelessWidget {
         SizedBox(height: screenController.size.height * 0.001.h),
         SizedBox(
           height: screenController.size.width * 0.15,
-          child: screenController.shopData[0].meetingimages!.isEmpty
+          child: screenController.petShopImageData.isEmpty
               ? const Text("Empty Meeting")
               : ListView.builder(
-                  itemCount: screenController.shopData[0].meetingimages!.length,
+                  itemCount: screenController.petShopImageData.length,
                   shrinkWrap: true,
                   physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, i) {
-                    log('Meeting image: ${screenController.shopData[0].meetingimages!.length}');
+                    log('Meeting image: ${screenController.petShopImageData.length}');
                     String imgUrl = ApiUrl.apiImagePath +
-                        screenController.shopData[0].meetingimages![i];
-                    log("imgUrl ${ApiUrl.apiImagePath + screenController.shopData[0].meetingimages![i]}");
+                        screenController.petShopImageData[0];
+                    // log("imgUrl ${ApiUrl.apiImagePath + screenController.shopData[0].meetingimages![i]}");
                     return _meetingAvailabilityListTile(imgUrl);
                   },
                 ),

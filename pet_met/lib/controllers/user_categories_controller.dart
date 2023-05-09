@@ -186,7 +186,7 @@ class UserCategoriesController extends GetxController {
     NotificationSettings settings = await messaging.requestPermission(
       alert: true,
       announcement: false,
-      badge: false,
+      badge: true,
       carPlay: false,
       criticalAlert: false,
       provisional: false,

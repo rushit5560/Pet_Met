@@ -12,6 +12,7 @@ class ShopDetailsModel {
     required this.data,
     required this.message,
     required this.showstatus,
+    required this.petImage,
     this.error,
   });
 
@@ -19,6 +20,7 @@ class ShopDetailsModel {
   List<ShopData> data;
   String message;
   bool showstatus;
+  List<String> petImage;
   String? error;
 
   factory ShopDetailsModel.fromJson(Map<String, dynamic> json) =>
@@ -26,6 +28,7 @@ class ShopDetailsModel {
         success: json["success"] ?? false,
         data: List<ShopData>.from(
             json["data"].map((x) => ShopData.fromJson(x ?? {}))),
+            petImage: List<String>.from(json["pet_image"].map((x) => x)),
         message: json["message"] ?? "",
         showstatus: json["showstatus"],
         error: json["error"] ?? "",
@@ -34,6 +37,7 @@ class ShopDetailsModel {
   Map<String, dynamic> toJson() => {
         "success": success,
         "data": List<dynamic>.from(data.map((x) => x.toJson())),
+        "pet_image": List<dynamic>.from(petImage.map((x) => x)),
         "message": message,
         "showstatus": showstatus,
         "error": error,

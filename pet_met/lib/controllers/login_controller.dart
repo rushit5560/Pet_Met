@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -124,6 +125,7 @@ class LoginController extends GetxController {
   }
 
   Future signInWithGoogleFunction() async {
+    log("signInWithGoogleFunction");
     isLoading(true);
 
     try {
@@ -141,46 +143,127 @@ class LoginController extends GetxController {
       log("error : $e");
     }
     isLoading(false);
+  }
 
-    /*SharedPreferences prefs = await SharedPreferences.getInstance();
+  Future signInWithGoogleinAppleFunction() async {
+    log("signInWithGoogleFunction 11");
+    isLoading(true);
+
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+
     final FirebaseAuth auth = FirebaseAuth.instance;
+    // log("signInWithGoogleFunction 22");
     final GoogleSignIn googleSignIn = GoogleSignIn();
     googleSignIn.signOut();
+    // log("signInWithGoogleFunction 33");
 
     final GoogleSignInAccount? googleSignInAccount =
         await googleSignIn.signIn();
-    log('googleSignInAccount :${googleSignInAccount!.email}');
+    // log("signInWithGoogleFunction 44");
+
+    log("googleSignInAccount $googleSignInAccount");
     if (googleSignInAccount != null) {
+      // log("signInWithGoogleFunction 55");
+
+      log("googleSignInAccount $googleSignInAccount");
       final GoogleSignInAuthentication googleSignInAuthentication =
           await googleSignInAccount.authentication;
       final AuthCredential authCredential = GoogleAuthProvider.credential(
           idToken: googleSignInAuthentication.idToken,
-          accessToken: googleSignInAuthentication.accessToken,
-      );
-
+          accessToken: googleSignInAuthentication.accessToken);
+      log("googleauthCredential $authCredential");
       // Getting users credentia
       UserCredential result = await auth.signInWithCredential(authCredential);
 
+      // if (auth.currentUser != null) {
+      //   log("result");
+      //   String userName = result.user!.displayName!;
+      //   String email = result.user!.email!;
+      //   String googleKeyId = result.user!.uid;
+
+      //   log("Username : $userName");
+      //   log("email : $email");
+      //   log("googleKeyId : $googleKeyId");
+
+      //   await socialMediaRegisterFunction(
+      //     userName: auth.currentUser!.displayName.toString(),
+      //     userEmail: auth.currentUser!.email.toString(),
+      //     userId: auth.currentUser!.uid,
+      //   );
+      // }
+      //else
       if (result != null) {
+        log("auth.currentUser");
         String userName = result.user!.displayName!;
         String email = result.user!.email!;
         String googleKeyId = result.user!.uid;
-
-        log("Username : $userName");
-        log("email : $email");
-        log("googleKeyId : $googleKeyId");
-
         await socialMediaRegisterFunction(
           userName: userName,
           userEmail: email,
           userId: googleKeyId,
         );
       }
-    }*/
+    }
   }
 
+  // Future signInWithGoogleFunction() async {
+  //   isLoading(true);
+
+  //   try {
+  //     googleAccount.value = await googleSignIn.signIn();
+  //     String userName = googleAccount.value!.displayName!;
+  //     String email = googleAccount.value!.email;
+  //     String googleKeyId = googleAccount.value!.id;
+  //     await socialMediaRegisterFunction(
+  //       userName: userName,
+  //       userEmail: email,
+  //       userId: googleKeyId,
+  //     );
+  //     // isSignIn.value = true;
+  //   } catch (e) {
+  //     log("error : $e");
+  //   }
+  //   isLoading(false);
+
+  //   /*SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   final FirebaseAuth auth = FirebaseAuth.instance;
+  //   final GoogleSignIn googleSignIn = GoogleSignIn();
+  //   googleSignIn.signOut();
+
+  //   final GoogleSignInAccount? googleSignInAccount =
+  //       await googleSignIn.signIn();
+  //   log('googleSignInAccount :${googleSignInAccount!.email}');
+  //   if (googleSignInAccount != null) {
+  //     final GoogleSignInAuthentication googleSignInAuthentication =
+  //         await googleSignInAccount.authentication;
+  //     final AuthCredential authCredential = GoogleAuthProvider.credential(
+  //         idToken: googleSignInAuthentication.idToken,
+  //         accessToken: googleSignInAuthentication.accessToken,
+  //     );
+
+  //     // Getting users credentia
+  //     UserCredential result = await auth.signInWithCredential(authCredential);
+
+  //     if (result != null) {
+  //       String userName = result.user!.displayName!;
+  //       String email = result.user!.email!;
+  //       String googleKeyId = result.user!.uid;
+
+  //       log("Username : $userName");
+  //       log("email : $email");
+  //       log("googleKeyId : $googleKeyId");
+
+  //       await socialMediaRegisterFunction(
+  //         userName: userName,
+  //         userEmail: email,
+  //         userId: googleKeyId,
+  //       );
+  //     }
+  //   }*/
+  // }
 
   Future signInWithAppleFunction() async {
+    log("signInWithAppleFunction 11");
     isLoading(true);
     try {
       log("apple login 11");
@@ -189,21 +272,46 @@ class LoginController extends GetxController {
           AppleIDAuthorizationScopes.email,
           AppleIDAuthorizationScopes.fullName,
         ],
-
       );
+      // log('credential : $credential');
+
+      final oAuthProvider = OAuthProvider('apple.com');
+      // oAuthProvider.addScope(credential.email.toString());
+      // oAuthProvider.addScope(credential.familyName.toString());
+      // log("oAuthProvider$oAuthProvider");
+      // auth.signInWithEmailAndPassword(
+      //     email: credential.email.toString(),
+      //     password: credential.familyName.toString());
+      // log("apple login email are :: ${credential.email}");
+      // log("apple login givenName are :: ${credential.givenName}");
+      final AuthCredential authCredential = oAuthProvider.credential(
+        idToken: credential.identityToken,
+        accessToken: credential.authorizationCode,
+      );
+      UserCredential result = await auth.signInWithCredential(authCredential);
       log("apple login 22");
-      log('credential : $credential');
+      log("authCredential $authCredential");
       log("apple login email are :: ${credential.email}");
       log("apple login givenName are :: ${credential.givenName}");
+      log("result $result");
 
-      if (credential.email!.isNotEmpty && credential.givenName!.isNotEmpty) {
+      // await auth.currentUser;
+      if (auth.currentUser != null) {
+        log("auth.currentUser!");
+        await socialMediaRegisterFunction(
+          userName: auth.currentUser!.displayName.toString(),
+          userEmail: auth.currentUser!.email.toString(),
+          userId: auth.currentUser!.uid,
+        );
+        // log("auth.currentUser!.displayName ${auth.currentUser!.displayName}");
+        log("auth.currentUser ${auth.currentUser}");
+      } else if (result != null) {
+        log("result");
         await socialMediaRegisterFunction(
           userName: credential.givenName! + credential.familyName!,
           userEmail: credential.email!,
           userId: credential.authorizationCode,
         );
-      } else {
-        log("signInWithAppleFunction error");
       }
     } catch (e) {
       log("error occured while apple signin :: $e");
@@ -213,6 +321,7 @@ class LoginController extends GetxController {
     }*/
     isLoading(false);
   }
+
   // old
   // Future signInWithFacebookFunction() async {
   //   await fb.logOut();
@@ -336,7 +445,7 @@ class LoginController extends GetxController {
     }
   }
 
-  Future<void>  socialMediaRegisterFunction({
+  Future<void> socialMediaRegisterFunction({
     required String userName,
     required String userEmail,
     required String userId,
@@ -353,7 +462,7 @@ class LoginController extends GetxController {
         'categoryID': "${UserDetails.roleId}",
         'googlekey': userId,
       };
-      log("data : $data");
+      log("socialMediaRegisterFunction data : $data");
 
       //todo - differentiate with user category id
       http.Response response = await http.post(Uri.parse(url), body: data);
@@ -428,7 +537,7 @@ class LoginController extends GetxController {
       if(profile != null) {
         if(profile!.userId.isNotEmpty) {
 
-          //String userName = profile!.name!;
+          //String userProfileImage = profile!.name!;
          // String userName = profile!.name!;
           mailController.text = email!;
           //passwordFieldController.text = "${userNameFieldController.text}@123";

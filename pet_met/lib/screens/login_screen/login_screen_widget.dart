@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -273,7 +272,7 @@ class LoginModule extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () async {
-                          await controller.signInWithGoogleFunction();
+                          await controller.signInWithGoogleinAppleFunction();
                           // Fluttertoast.showToast(msg: 'This feature is coming soon');
                         },
                         child: Container(
@@ -303,12 +302,12 @@ class LoginModule extends StatelessWidget {
                       const SizedBox(width: 15),
                       GestureDetector(
                         onTap: () async {
-                            await controller.signInWithAppleFunction();
+                              await controller.signInWithAppleFunction();
 
                           // Fluttertoast.showToast(msg: 'This feature is coming soon');
                         },
                         child: Container(
-                          height: 50,
+                          height: 40,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             // color: themeProvider.darkTheme

@@ -132,7 +132,8 @@ class ShopUserProfileScreenController extends GetxController {
         petList.addAll(getShopProfileModel.data.petdata);
 
         nameController.text = getShopProfileModel.data.data[0].shopename;
-        displayNameController.text = getShopProfileModel.data.data[0].displayName;
+        displayNameController.text =
+            getShopProfileModel.data.data[0].displayName;
         emailController.text = getShopProfileModel.data.data[0].email;
         contactNumber.text =
             getShopProfileModel.data.data[0].phonenumber.toString();
@@ -142,7 +143,8 @@ class ShopUserProfileScreenController extends GetxController {
         selectedCloseTime!.value = getShopProfileModel.data.data[0].shopclose;
         instagramController.text = getShopProfileModel.data.data[0].instagram;
         facebookController.text = getShopProfileModel.data.data[0].facebook;
-        if (getShopProfileModel.data.data[0].showimg != "asset/uploads/product/petmet_logo.png") {
+        if (getShopProfileModel.data.data[0].showimg !=
+            "asset/uploads/product/petmet_logo.png") {
           shopImage = getShopProfileModel.data.data[0].showimg;
         }
 
@@ -404,7 +406,7 @@ class ShopUserProfileScreenController extends GetxController {
       request.fields['latitude'] = UserDetails.liveLatitude;
       request.fields['gpayupi'] = gPayController.text.trim();
       request.fields['display_name'] = displayNameController.text.trim();
-
+      log("UserDetails.liveLongitude ${UserDetails.liveLongitude}");
       var response = await request.send();
       log('response fields: ${request.fields}}');
       log('response: ${response.request}');
@@ -1887,7 +1889,6 @@ class ShopUserProfileScreenController extends GetxController {
     String userId = await userPreference.getUserId();
     log('selfId : $selfId');
     log('userId : $userId');
-
 
     String url = "${ApiUrl.deleteAccountApi}$userId/${UserDetails.categoryId}";
     log('Delete Account Api Url 121212121212: $url');
