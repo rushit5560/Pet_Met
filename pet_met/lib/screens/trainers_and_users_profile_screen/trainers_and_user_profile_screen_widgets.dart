@@ -1597,7 +1597,7 @@ class GetVerifiedInfo extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  "1. Shop Registration certificate",
+                  "1. Trainer certificate",
                   style: TextStyle(
                     fontSize: 15,
                     color: themeProvider.darkTheme
@@ -1608,7 +1608,7 @@ class GetVerifiedInfo extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  "2. Two pictures of your shop",
+                  "2. Two pictures of your",
                   style: TextStyle(
                     fontSize: 15,
                     color: themeProvider.darkTheme

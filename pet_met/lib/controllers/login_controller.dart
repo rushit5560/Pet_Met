@@ -449,6 +449,7 @@ class LoginController extends GetxController {
         passController.clear();
         //await userPreference.setRoleId(roleId);
         // Going to Index Screen
+        await setUserDataInFirebaseFunction();
         Get.offAll(
           () => IndexScreen(),
           transition: Transition.native,
@@ -462,7 +463,7 @@ class LoginController extends GetxController {
           Fluttertoast.showToast(msg: "Invalid email");
         }
 
-        if (loginModel.messege.contains('User account is deleted')) {
+        if (loginModel.messege.contains('Account is deleted')) {
           Fluttertoast.showToast(msg: loginModel.messege);
         }
         if (loginModel.messege.contains("This user is unauthorized")) {
