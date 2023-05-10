@@ -7,6 +7,8 @@ class UserDetails {
   static String uId = "";
   static String selfId = "";
   static String userName = "";
+  static String displayName = "";
+
   static String userEmail = "";
   static String userProfileImage = "";
   static String categoryId = "";

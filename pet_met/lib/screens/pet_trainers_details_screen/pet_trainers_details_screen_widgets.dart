@@ -394,7 +394,7 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                screenController.trainerDetails[0].name,
+                screenController.trainerDetails[0].displayName,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(

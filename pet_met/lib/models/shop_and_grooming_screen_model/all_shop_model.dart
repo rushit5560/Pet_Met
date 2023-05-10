@@ -119,7 +119,7 @@ import 'dart:convert';
 AllShopModel allShopModelFromJson(String str) =>
     AllShopModel.fromJson(json.decode(str));
 
-String allShopModelToJson(AllShopModel data) => json.encode(data.toJson());
+// String allShopModelToJson(AllShopModel data) => json.encode(data.toJson());
 
 class AllShopModel {
   AllShopModel({
@@ -139,17 +139,18 @@ class AllShopModel {
         message: json["message"] ?? "",
       );
 
-  Map<String, dynamic> toJson() => {
-        "success": success,
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
-        "message": message,
-      };
+  // Map<String, dynamic> toJson() => {
+  //       "success": success,
+  //       "data": List<dynamic>.from(data.map((x) => x.toJson())),
+  //       "message": message,
+  //     };
 }
 
 class ShopData {
   ShopData({
     required this.id,
     required this.shopename,
+    required  this.displayName,
     required this.address,
     required this.phonenumber,
     required this.shopopen,
@@ -171,6 +172,7 @@ class ShopData {
 
   String id;
   String shopename;
+  String displayName;
   String address;
   String phonenumber;
   String shopopen;
@@ -193,6 +195,7 @@ class ShopData {
   factory ShopData.fromJson(Map<String, dynamic> json) => ShopData(
         id: json["id"] ?? 0,
         shopename: json["name"] ?? "",
+        displayName: json["display_name"] ?? "",
         address: json["address"] ?? "",
         phonenumber: json["phonenumber"] ?? "",
         shopopen: json["shopopen"] ?? "",
@@ -214,25 +217,25 @@ class ShopData {
         // modifiedDate: json["modified_date"],
       );
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": shopename,
-        "address": address,
-        "phonenumber": phonenumber,
-        "shopopen": shopopen,
-        "shopclose": shopclose,
-        "full_text": fullText,
-        "instagram": instagram,
-        "facebook": facebook,
-        "showimg": showimg,
-        "offersimages": List<dynamic>.from(offersimages.map((x) => x)),
-        "meetingimages": List<dynamic>.from(meetingimages.map((x) => x)),
-        "sortorder": sortorder,
-        "status": status,
-        "is_verified": isVerified,
-        // "created_by": createdBy,
-        // "modified_by": modifiedBy,
-        // "created_date": createdDate.toIso8601String(),
-        // "modified_date": modifiedDate,
-      };
+  // Map<String, dynamic> toJson() => {
+  //       "id": id,
+  //       "name": shopename,
+  //       "address": address,
+  //       "phonenumber": phonenumber,
+  //       "shopopen": shopopen,
+  //       "shopclose": shopclose,
+  //       "full_text": fullText,
+  //       "instagram": instagram,
+  //       "facebook": facebook,
+  //       "showimg": showimg,
+  //       "offersimages": List<dynamic>.from(offersimages.map((x) => x)),
+  //       "meetingimages": List<dynamic>.from(meetingimages.map((x) => x)),
+  //       "sortorder": sortorder,
+  //       "status": status,
+  //       "is_verified": isVerified,
+  //       // "created_by": createdBy,
+  //       // "modified_by": modifiedBy,
+  //       // "created_date": createdDate.toIso8601String(),
+  //       // "modified_date": modifiedDate,
+  //     };
 }

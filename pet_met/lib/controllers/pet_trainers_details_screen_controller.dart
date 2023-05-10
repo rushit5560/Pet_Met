@@ -45,7 +45,7 @@ class PetTrainersDetailsScreenController extends GetxController {
     try {
       Map<String, String> header = apiHeader.apiHeader();
       http.Response response = await http.get(Uri.parse(url), headers: header);
-      log('Response: ${response.body}');
+      log('Trainer Details Response: ${response.body}');
 
       TrainerDetailsModel trainerDetailsModel =
           TrainerDetailsModel.fromJson(json.decode(response.body));

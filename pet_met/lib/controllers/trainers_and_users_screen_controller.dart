@@ -184,6 +184,7 @@ class TrainersAndUsersScreenController extends GetxController {
           selfId: UserDetails.selfId,
           userId: UserDetails.userId,
           userName: getTrainersProfileModel.data.data[0].name,
+          displayname: getTrainersProfileModel.data.data[0].displayName,
           userEmail: getTrainersProfileModel.data.data[0].email,
           userProfileImage:
               ApiUrl.apiImagePath + getTrainersProfileModel.data.data[0].image,
@@ -354,6 +355,7 @@ class TrainersAndUsersScreenController extends GetxController {
           selfId: loginModel.data.uid,
           userId: loginModel.data.id,
           userName: loginModel.data.name,
+          displayname:loginModel.data.displayName ,
           userEmail: loginModel.data.email,
           userProfileImage: loginModel.data.image,
           token: loginModel.data.rememberToken,

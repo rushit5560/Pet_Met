@@ -19,6 +19,7 @@ class PetMeetingDetailsScreenController extends GetxController {
   String petUserId = Get.arguments[1];
   String petUserCatId = Get.arguments[2];
   String petOwnerUserName = Get.arguments[3];
+  
 
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;

@@ -40,7 +40,7 @@ class PetVetsAndNgoScreenController extends GetxController {
         // headers: header,
         body: bodyData,
       );
-      // log("Vet And Ngo List Response : ${response.body}");
+      log("Vet And Ngo List Response : ${response.body}");
 
       AllVetAndNgoModel allVetAndNgoModel =
           AllVetAndNgoModel.fromJson(json.decode(response.body));

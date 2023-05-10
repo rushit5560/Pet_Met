@@ -65,7 +65,8 @@ class PetTopListModule extends StatelessWidget {
                           homeController.petTopList[i].data.id,
                           homeController.petTopList[i].data.userid,
                           homeController.petTopList[i].data.categoryId,
-                          homeController.petTopList[i].name.name,
+                          homeController.petTopList[i].name.displayName,
+                          // homeController.petTopList[i].name.displayName,
                         ],
                       );
                     },
@@ -108,7 +109,8 @@ class PetTopListModule extends StatelessWidget {
                           homeController.petTopList[i].data.id,
                           homeController.petTopList[i].data.userid,
                           homeController.petTopList[i].data.categoryId,
-                          homeController.petTopList[i].name.name,
+                          homeController.petTopList[i].name.displayName,
+                          // homeController.petTopList[i].name.displayName
                         ],
                       );
                     },
@@ -266,7 +268,8 @@ class PetTopListModule extends StatelessWidget {
                               child: Row(
                                 children: [
                                   Text(
-                                    homeController.petTopList[i].name.name,
+                                    homeController
+                                        .petTopList[i].name.displayName,
                                     style: const TextStyle(
                                       color: AppColors.accentTextColor,
                                       fontSize: 12,

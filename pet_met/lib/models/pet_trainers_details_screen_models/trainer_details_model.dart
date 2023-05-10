@@ -40,6 +40,7 @@ class TrainerData {
   TrainerData({
     required this.id,
     required this.name,
+    required this.displayName,
     required this.address,
     required this.phone,
     required this.open,
@@ -69,6 +70,7 @@ class TrainerData {
 
   String id;
   String name;
+  String displayName;
   String address;
   String phone;
   String open;
@@ -98,6 +100,7 @@ class TrainerData {
   factory TrainerData.fromJson(Map<String, dynamic> json) => TrainerData(
         id: json["id"] ?? 0,
         name: json["name"] ?? "",
+        displayName: json["display_name"] ?? "",
         address: json["address"] ?? "",
         phone: json["phone"] ?? "",
         open: json["open"] ?? "",

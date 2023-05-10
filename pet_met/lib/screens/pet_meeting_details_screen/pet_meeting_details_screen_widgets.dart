@@ -15,8 +15,6 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import '../user_profile_screen/user_profile_screen.dart';
 
-
-
 class PetMeetingDetailsBannerImageModule extends StatelessWidget {
   PetMeetingDetailsBannerImageModule({Key? key}) : super(key: key);
   final screenController = Get.find<PetMeetingDetailsScreenController>();

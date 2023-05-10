@@ -142,7 +142,7 @@ class SearchShopTextFieldModule extends StatelessWidget {
                       .isNotEmpty) {
                     screenController.searchShopsList = screenController
                         .shopsList
-                        .where((u) => (u.shopename.toLowerCase().contains(
+                        .where((u) => (u.displayName.toLowerCase().contains(
                             screenController.searchFieldController.text
                                 .toLowerCase())))
                         .toList();
@@ -263,7 +263,7 @@ class ShopListModule extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        shopSingleItem.shopename,
+                        shopSingleItem.displayName,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -292,11 +292,11 @@ class ShopListModule extends StatelessWidget {
             ),
             shopSingleItem.isVerified.toString() == "1"
                 ? Image.asset(
-              AppIcons.verifiedSymbolImg,
-              width: 25,
-              height: 25,
-            )
-                :  Container(),
+                    AppIcons.verifiedSymbolImg,
+                    width: 25,
+                    height: 25,
+                  )
+                : Container(),
           ],
         ).commonAllSidePadding(padding: 2.w),
       ).commonAllSidePadding(padding: 10),
@@ -360,7 +360,7 @@ class ShopListModule extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        searchShopItem.shopename,
+                        searchShopItem.displayName,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -388,8 +388,7 @@ class ShopListModule extends StatelessWidget {
               ],
             ),
             searchShopItem.isVerified == "1"
-                ?
-                Image.asset(
+                ? Image.asset(
                     AppIcons.verifiedSymbolImg,
                     width: 25,
                     height: 25,

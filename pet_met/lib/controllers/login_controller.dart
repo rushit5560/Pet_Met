@@ -80,6 +80,7 @@ class LoginController extends GetxController {
           userId: loginModel.data.id,
           // uId: loginModel.data.uid,
           userName: loginModel.data.name,
+          displayname: loginModel.data.displayName,
           userEmail: loginModel.data.email,
           userProfileImage: loginModel.data.image,
           token: loginModel.data.rememberToken,
@@ -161,6 +162,7 @@ class LoginController extends GetxController {
           userName: userName,
           userEmail: email,
           userId: googleKeyId,
+          displayName: userName,
         );
       }
     }
@@ -261,7 +263,9 @@ class LoginController extends GetxController {
         await socialMediaRegisterFunction(
             userName: auth.currentUser!.providerData[0].displayName.toString(),
             userEmail: auth.currentUser!.providerData[0].email.toString(),
-            userId: auth.currentUser!.providerData[0].uid.toString());
+            userId: auth.currentUser!.providerData[0].uid.toString(),
+            displayName:
+                auth.currentUser!.providerData[0].displayName.toString());
         log("auth.currentUser!.providerData[0].displayName ${auth.currentUser!.providerData[0].displayName}");
         log("auth.currentUser ${auth.currentUser}");
       } else if (result != null) {
@@ -270,6 +274,7 @@ class LoginController extends GetxController {
           userName: credential.givenName! + credential.familyName!,
           userEmail: credential.email!,
           userId: credential.authorizationCode,
+          displayName: credential.givenName! + credential.familyName!,
         );
       }
     } catch (e) {
@@ -406,16 +411,19 @@ class LoginController extends GetxController {
 
   Future<void> socialMediaRegisterFunction({
     required String userName,
+    required String displayName,
     required String userEmail,
     required String userId,
   }) async {
     isLoading(true);
     String url = ApiUrl.socialMediaRegisterApi;
     log("Social Media Register Api Url : $url");
+    log("userName 1111 apple $userName");
 
     try {
       Map<String, dynamic> data = {
         'name': userName,
+        "display_name": displayName,
         'email': userEmail,
         'password': '12345678',
         'categoryID': "${UserDetails.roleId}",
@@ -436,6 +444,7 @@ class LoginController extends GetxController {
           selfId: loginModel.data.uid, // userID
           userId: loginModel.data.id,
           userName: loginModel.data.name,
+          displayname: loginModel.data.displayName,
           userEmail: loginModel.data.email,
           userProfileImage: loginModel.data.image,
           token: loginModel.data.rememberToken,
@@ -443,7 +452,6 @@ class LoginController extends GetxController {
           shopName: loginModel.data.shopename,
           shopProfile: loginModel.data.showimg,
         );
-        log('shop Name: ${loginModel.data.shopename}');
 
         mailController.clear();
         passController.clear();
@@ -569,6 +577,7 @@ class LoginController extends GetxController {
       Map<String, dynamic> fcmTokenData = {
         "email": UserDetails.userEmail,
         "username": UserDetails.userName,
+        "display_name": UserDetails.displayName,
         "userId": UserDetails.userId,
         "fcmToken": userFcmToken
       };

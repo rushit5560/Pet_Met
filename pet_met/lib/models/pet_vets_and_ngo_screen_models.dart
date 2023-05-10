@@ -3,8 +3,8 @@ import 'dart:convert';
 AllVetAndNgoModel allVetAndNgoModelFromJson(String str) =>
     AllVetAndNgoModel.fromJson(json.decode(str));
 
-String allVetAndNgoModelToJson(AllVetAndNgoModel data) =>
-    json.encode(data.toJson());
+// String allVetAndNgoModelToJson(AllVetAndNgoModel data) =>
+//     json.encode(data.toJson());
 
 class AllVetAndNgoModel {
   AllVetAndNgoModel({
@@ -25,17 +25,18 @@ class AllVetAndNgoModel {
         message: json["message"] ?? "",
       );
 
-  Map<String, dynamic> toJson() => {
-        "success": success,
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
-        "message": message,
-      };
+  // Map<String, dynamic> toJson() => {
+  //       "success": success,
+  //       "data": List<dynamic>.from(data.map((x) => x.toJson())),
+  //       "message": message,
+  //     };
 }
 
 class VetAndNgoData {
   VetAndNgoData({
     required this.id,
     required this.name,
+    required this.displayName,
     required this.address,
     required this.phone,
     required this.open,
@@ -59,6 +60,7 @@ class VetAndNgoData {
 
   String id;
   String name;
+  String displayName;
   String address;
   String phone;
   String open;
@@ -80,51 +82,52 @@ class VetAndNgoData {
   String isVerified;
 
   factory VetAndNgoData.fromJson(Map<String, dynamic> json) => VetAndNgoData(
-    id: json["id"] ?? "",
-    name: json["name"] ?? "",
-    address: json["address"] ?? "",
-    phone: json["phone"] ?? "",
-    open: json["open"] ?? "",
-    close: json["close"] ?? "",
-    fullText: json["full_text"] ?? "",
-    instagram: json["instagram"] ?? "",
-    facebook: json["facebook"] ?? "",
-    image: json["image"] ?? "",
-    vetNgoimages: json["vet_ngoimages"] ?? "",
-    meetingimages: json["meetingimages"] ?? "",
-    isActive: json["is_active"] ?? "",
-    ifscCode: json["ifsc_code"] ?? "",
-    accountCode: json["account_code"] ?? "",
-    userid: json["userid"] ?? "",
-    createdBy: json["created_by"] ?? "",
-    modifiedBy: json["modified_by"] ?? "",
-    createdDate: json["created_date"] ?? "",
-    modifiedDate: json["modified_date"] ?? "",
-    isVerified: json["is_verified"] ?? "0",
-  );
+        id: json["id"] ?? "",
+        name: json["name"] ?? "",
+        displayName: json["display_name"] ?? "",
+        address: json["address"] ?? "",
+        phone: json["phone"] ?? "",
+        open: json["open"] ?? "",
+        close: json["close"] ?? "",
+        fullText: json["full_text"] ?? "",
+        instagram: json["instagram"] ?? "",
+        facebook: json["facebook"] ?? "",
+        image: json["image"] ?? "",
+        vetNgoimages: json["vet_ngoimages"] ?? "",
+        meetingimages: json["meetingimages"] ?? "",
+        isActive: json["is_active"] ?? "",
+        ifscCode: json["ifsc_code"] ?? "",
+        accountCode: json["account_code"] ?? "",
+        userid: json["userid"] ?? "",
+        createdBy: json["created_by"] ?? "",
+        modifiedBy: json["modified_by"] ?? "",
+        createdDate: json["created_date"] ?? "",
+        modifiedDate: json["modified_date"] ?? "",
+        isVerified: json["is_verified"] ?? "0",
+      );
 
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "address": address,
-    "phone": phone,
-    "open": open,
-    "close": close,
-    "full_text": fullText,
-    "instagram": instagram,
-    "facebook": facebook,
-    "image": image,
-    "vet_ngoimages": vetNgoimages,
-    "meetingimages": meetingimages,
-    "is_active": isActive,
-    "ifsc_code": ifscCode,
-    "account_code": accountCode,
-    "userid": userid,
-    "created_by": createdBy,
-    "modified_by": modifiedBy,
-    "created_date": createdDate,
-    "modified_date": modifiedDate,
-    "is_verified": isVerified,
-  };
+  // Map<String, dynamic> toJson() => {
+  //       "id": id,
+  //       "name": name,
+  //       "display_name":displayName,
+  //       "address": address,
+  //       "phone": phone,
+  //       "open": open,
+  //       "close": close,
+  //       "full_text": fullText,
+  //       "instagram": instagram,
+  //       "facebook": facebook,
+  //       "image": image,
+  //       "vet_ngoimages": vetNgoimages,
+  //       "meetingimages": meetingimages,
+  //       "is_active": isActive,
+  //       "ifsc_code": ifscCode,
+  //       "account_code": accountCode,
+  //       "userid": userid,
+  //       "created_by": createdBy,
+  //       "modified_by": modifiedBy,
+  //       "created_date": createdDate,
+  //       "modified_date": modifiedDate,
+  //       "is_verified": isVerified,
+  //     };
 }
-

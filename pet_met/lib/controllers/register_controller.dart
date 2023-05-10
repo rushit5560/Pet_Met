@@ -15,7 +15,7 @@ import 'package:pet_met/screens/index_screen/index_screen.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class RegisterController extends GetxController {
@@ -70,7 +70,8 @@ class RegisterController extends GetxController {
         "password": passController.text.trim(),
         "c_password": passController.text.trim(),
         "categoryID": "${UserDetails.roleId}",
-        "name": nameController.text.trim()
+        "name": nameController.text.trim(),
+        "display_name": nameController.text.trim(),
       };
       log("Body Data : $data");
 
@@ -166,7 +167,7 @@ class RegisterController extends GetxController {
   Future signInWithGoogleFunction() async {
     // isLoading(true);
 
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
 
     final FirebaseAuth auth = FirebaseAuth.instance;
     final GoogleSignIn googleSignIn = GoogleSignIn();
@@ -188,6 +189,7 @@ class RegisterController extends GetxController {
         String userName = result.user!.displayName!;
         String email = result.user!.email!;
         String googleKeyId = result.user!.uid;
+        String displayName = result.user!.displayName!;
 
         log("Username : $userName");
         log("email : $email");
@@ -197,6 +199,7 @@ class RegisterController extends GetxController {
           userName: userName,
           userEmail: email,
           userId: googleKeyId,
+          displayName: displayName,
         );
       }
     }
@@ -275,13 +278,16 @@ class RegisterController extends GetxController {
         await socialMediaRegisterFunction(
             userName: auth.currentUser!.providerData[0].displayName.toString(),
             userEmail: auth.currentUser!.providerData[0].email.toString(),
-            userId: auth.currentUser!.providerData[0].uid.toString());
+            userId: auth.currentUser!.providerData[0].uid.toString(),
+            displayName:
+                auth.currentUser!.providerData[0].displayName.toString());
       } else if (result != null) {
         log("result");
         await socialMediaRegisterFunction(
           userName: credential.givenName! + credential.familyName!,
           userEmail: credential.email!,
           userId: credential.authorizationCode,
+          displayName: credential.givenName! + credential.familyName!,
         );
       }
     } catch (e) {
@@ -392,6 +398,7 @@ class RegisterController extends GetxController {
 
   Future<void> socialMediaRegisterFunction({
     required String userName,
+    required String displayName,
     required String userEmail,
     required String userId,
   }) async {
@@ -403,6 +410,7 @@ class RegisterController extends GetxController {
       Map<String, dynamic> data = {
         'name': userName,
         'email': userEmail,
+        "display_name": displayName,
         'password': '12345678',
         'categoryID': "${UserDetails.roleId}",
         'googlekey': userId,
@@ -422,6 +430,7 @@ class RegisterController extends GetxController {
           selfId: loginModel.data.uid, // userID
           userId: loginModel.data.id,
           userName: loginModel.data.name,
+          displayname: loginModel.data.displayName,
           userEmail: loginModel.data.email,
           userProfileImage: loginModel.data.image,
           token: loginModel.data.rememberToken,
@@ -465,14 +474,12 @@ class RegisterController extends GetxController {
     isLoading(false);
   }
 
-
-
   setUserDataInFirebaseFunction() async {
     List<String> tempNotificationList = [];
     String userName = UserDetails.userName;
 
     QuerySnapshot querySnapshot =
-    await FirebaseFirestore.instance.collection("Users").get();
+        await FirebaseFirestore.instance.collection("Users").get();
     querySnapshot.docs.map((doc) {
       if (doc["username"].toString().contains(userName)) {
         tempNotificationList.add(doc["username"]);
@@ -531,6 +538,4 @@ class RegisterController extends GetxController {
       });
     }
   }
-
-
 }

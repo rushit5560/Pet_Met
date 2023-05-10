@@ -190,6 +190,7 @@ class ShopUserProfileScreenController extends GetxController {
           selfId: UserDetails.selfId,
           userId: UserDetails.userId,
           userName: getShopProfileModel.data.data[0].shopename,
+          displayname: getShopProfileModel.data.data[0].displayName,
           userEmail: getShopProfileModel.data.data[0].email,
           userProfileImage:
               ApiUrl.apiImagePath + getShopProfileModel.data.data[0].showimg,
@@ -1753,6 +1754,7 @@ class ShopUserProfileScreenController extends GetxController {
           selfId: loginModel.data.uid,
           userId: loginModel.data.id,
           userName: loginModel.data.name,
+          displayname: loginModel.data.displayName,
           userEmail: loginModel.data.email,
           userProfileImage: loginModel.data.image,
           token: loginModel.data.rememberToken,

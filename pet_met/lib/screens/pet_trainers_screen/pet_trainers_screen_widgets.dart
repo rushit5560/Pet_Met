@@ -14,8 +14,6 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
 
-
-
 class SearchTrainersTextFieldModule extends StatelessWidget {
   SearchTrainersTextFieldModule({Key? key}) : super(key: key);
 
@@ -89,7 +87,7 @@ class SearchTrainersTextFieldModule extends StatelessWidget {
                       .isNotEmpty) {
                     screenController.searchTrainersList = screenController
                         .trainersList
-                        .where((u) => (u.name.toLowerCase().contains(
+                        .where((u) => (u.displayName.toLowerCase().contains(
                             screenController.searchFieldController.text
                                 .toLowerCase())))
                         .toList();
@@ -146,8 +144,10 @@ class PetTrainerListModule extends StatelessWidget {
             shrinkWrap: true,
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, i) {
-              Trainers searchTrainerSingleItem = screenController.searchTrainersList[i];
-              return searchPetTrainerListTile(searchTrainerSingleItem, themeProvider);
+              Trainers searchTrainerSingleItem =
+                  screenController.searchTrainersList[i];
+              return searchPetTrainerListTile(
+                  searchTrainerSingleItem, themeProvider);
             },
           ).commonAllSidePadding(padding: 10);
   }
@@ -201,8 +201,9 @@ class PetTrainerListModule extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                       child: Image.network(imgUrl,
                           errorBuilder: (context, er, ob) {
-                        return Image.asset(AppImages.petMetLogoImg,
-                            // fit: BoxFit.fill
+                        return Image.asset(
+                          AppImages.petMetLogoImg,
+                          // fit: BoxFit.fill
                         );
                       })),
                 ),
@@ -212,7 +213,7 @@ class PetTrainerListModule extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        trainerSingleItem.name,
+                        trainerSingleItem.displayName,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -240,8 +241,7 @@ class PetTrainerListModule extends StatelessWidget {
               ],
             ),
             trainerSingleItem.isVerified == "1"
-                ?
-                Image.asset(
+                ? Image.asset(
                     AppIcons.verifiedSymbolImg,
                     width: 30,
                     height: 30,
@@ -311,7 +311,7 @@ class PetTrainerListModule extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        searchTrainerSingleItem.name,
+                        searchTrainerSingleItem.displayName,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(

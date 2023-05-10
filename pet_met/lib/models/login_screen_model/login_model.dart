@@ -3,7 +3,7 @@ import 'dart:convert';
 LoginModel loginModelFromJson(String str) =>
     LoginModel.fromJson(json.decode(str));
 
-String loginModelToJson(LoginModel data) => json.encode(data.toJson());
+// String loginModelToJson(LoginModel data) => json.encode(data.toJson());
 
 class LoginModel {
   LoginModel({
@@ -25,19 +25,21 @@ class LoginModel {
         data: Data.fromJson(json["data"] ?? {}),
       );
 
-  Map<String, dynamic> toJson() => {
-        "success": success,
-        "messege": messege,
-        "data": data.toJson(),
-      };
+  // Map<String, dynamic> toJson() => {
+  //       "success": success,
+  //       "messege": messege,
+  //       "data": data.toJson(),
+  //     };
 }
 
 class Data {
+
+
   Data({
     required this.uid,
     required this.id,
     required this.name,
-    
+    required this.displayName,
     required this.email,
     required this.shopename,
     required this.showimg,
@@ -63,6 +65,8 @@ class Data {
   String email;
   String shopename;
   String showimg;
+  String displayName;
+
 
   // dynamic emailVerifiedAt;
   String password;
@@ -84,6 +88,7 @@ class Data {
         uid: (json["uid"] ?? 0).toString(),
         id: (json["id"] ?? 0).toString() ,
         name: json["name"] ?? "",
+        displayName: json["display_name"]??"",
         email: json["email"] ?? "",
         shopename: json["shopename"] ?? "",
         showimg: json["showimg"] ?? "",
@@ -103,25 +108,25 @@ class Data {
         gender: json["gender"] ?? "",
       );
 
-  Map<String, dynamic> toJson() => {
-        "uid": uid,
-        "id": id,
-        "name": name,
-        "email": email,
-        "shopename": shopename,
-        // "email_verified_at": emailVerifiedAt,
-        "password": password,
-        "remember_token": rememberToken,
-        "image": image,
-        "country": country,
-        "state": state,
-        "city": city,
-        "categoryID": categoryId,
-        // "forgotpassword_token": forgotpasswordToken,
-        // "created_at": createdAt.toIso8601String(),
-        // "updated_at": updatedAt.toIso8601String(),
-        "bod": bod,
-        "phone": phone,
-        "gender": gender,
-      };
+  // Map<String, dynamic> toJson() => {
+  //       "uid": uid,
+  //       "id": id,
+  //       "name": name,
+  //       "email": email,
+  //       "shopename": shopename,
+  //       // "email_verified_at": emailVerifiedAt,
+  //       "password": password,
+  //       "remember_token": rememberToken,
+  //       "image": image,
+  //       "country": country,
+  //       "state": state,
+  //       "city": city,
+  //       "categoryID": categoryId,
+  //       // "forgotpassword_token": forgotpasswordToken,
+  //       // "created_at": createdAt.toIso8601String(),
+  //       // "updated_at": updatedAt.toIso8601String(),
+  //       "bod": bod,
+  //       "phone": phone,
+  //       "gender": gender,
+  //     };
 }

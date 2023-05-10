@@ -10,14 +10,10 @@ import 'package:provider/provider.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import 'pet_vets_and_ngo_screen_Widgets.dart';
 
-
-
 class PetVetsAndNgoScreen extends StatelessWidget {
   PetVetsAndNgoScreen({Key? key}) : super(key: key);
   final petVetsAndNgoScreenController =
       Get.put(PetVetsAndNgoScreenController());
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +25,7 @@ class PetVetsAndNgoScreen extends StatelessWidget {
           children: [
             Align(
               alignment: Alignment.topRight,
-              child: Image.asset(
-                  themeProvider.darkTheme
+              child: Image.asset(themeProvider.darkTheme
                   ? AppImages.backgroundImgDark
                   : AppImages.backgroundImgLight),
             ),
@@ -48,8 +43,8 @@ class PetVetsAndNgoScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 15),
                 Expanded(
-                  child: Obx(()=>
-                     petVetsAndNgoScreenController.isLoading.value
+                  child: Obx(
+                    () => petVetsAndNgoScreenController.isLoading.value
                         ? const CustomAnimationLoader()
                         : Column(
                             children: [

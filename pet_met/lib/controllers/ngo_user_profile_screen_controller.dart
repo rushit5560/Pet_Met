@@ -186,6 +186,7 @@ class NgoUserProfileScreenController extends GetxController {
           selfId: UserDetails.selfId,
           userId: UserDetails.userId,
           userName: allRoleProfileModel.data.data[0].name,
+          displayname: allRoleProfileModel.data.data[0].displayName,
           userEmail: allRoleProfileModel.data.data[0].email,
           userProfileImage:
               ApiUrl.apiImagePath + allRoleProfileModel.data.data[0].image,
@@ -359,6 +360,7 @@ class NgoUserProfileScreenController extends GetxController {
           selfId: loginModel.data.uid,
           userId: loginModel.data.id,
           userName: loginModel.data.name,
+          displayname: loginModel.data.displayName,
           userEmail: loginModel.data.email,
           userProfileImage: loginModel.data.image,
           token: loginModel.data.rememberToken,

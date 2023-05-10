@@ -14,8 +14,6 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
 
-
-
 class SearchVetAndNgoTextFieldModule extends StatelessWidget {
   SearchVetAndNgoTextFieldModule({Key? key}) : super(key: key);
 
@@ -89,7 +87,7 @@ class SearchVetAndNgoTextFieldModule extends StatelessWidget {
                       .isNotEmpty) {
                     screenController.searchVetAndNgoList = screenController
                         .vetAndNgoList
-                        .where((u) => (u.name.toLowerCase().contains(
+                        .where((u) => (u.displayName.toLowerCase().contains(
                             screenController.searchFieldController.text
                                 .toLowerCase())))
                         .toList();
@@ -232,7 +230,7 @@ class VetsAndNgoListModule extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        vetAndNgoData.name,
+                        vetAndNgoData.displayName,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -261,8 +259,7 @@ class VetsAndNgoListModule extends StatelessWidget {
               ],
             ),
             vetAndNgoData.isVerified == "1"
-                ?
-                Image.asset(
+                ? Image.asset(
                     AppIcons.verifiedSymbolImg,
                     width: 25,
                     height: 25,
@@ -358,7 +355,7 @@ class VetsAndNgoListModule extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        searchVetAndNgoData.name,
+                        searchVetAndNgoData.displayName,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
@@ -387,8 +384,7 @@ class VetsAndNgoListModule extends StatelessWidget {
               ],
             ),
             searchVetAndNgoData.isVerified == "1"
-                ?
-                Image.asset(
+                ? Image.asset(
                     AppIcons.verifiedSymbolImg,
                     width: 25,
                     height: 25,

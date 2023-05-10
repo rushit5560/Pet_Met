@@ -61,6 +61,7 @@ class PetList {
     required this.id,
     required this.image,
     required this.petName,
+    required this.displayName,
     required this.mainCategory,
     required this.subCategory,
     required this.dob,
@@ -77,6 +78,7 @@ class PetList {
   String id;
   String image;
   String petName;
+  String displayName;
   String mainCategory;
   String subCategory;
   String dob;
@@ -93,6 +95,7 @@ class PetList {
         id: (json["id"] ?? 0).toString(),
         image: json["image"] ?? "",
         petName: json["pet_name"] ?? "",
+        displayName: json["display_name"] ?? "",
         mainCategory: (json["main_category"] ?? 0).toString(),
         subCategory: (json["sub_category"] ?? 0).toString(),
         dob: json["dob"] ?? "",
@@ -143,16 +146,20 @@ class Img {
 class Name {
   Name({
     required this.name,
+    required this.displayName,
   });
 
   String name;
+  String displayName;
 
   factory Name.fromJson(Map<String, dynamic> json) => Name(
         name: json["name"] ?? "",
+        displayName: json["display_name"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
         "name": name,
+        "display_name": displayName,
       };
 }
 
