@@ -35,7 +35,7 @@ Future<void> main() async {
       DeviceOrientation.portraitDown,
     ],
   );
-  requestPermission();
+  // requestPermission();
 
   runApp(const MyApp());
 }
