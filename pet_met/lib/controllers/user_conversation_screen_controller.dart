@@ -46,25 +46,25 @@ class UserConversationScreenController extends GetxController {
     /// Send Chat Notification
     ///
 
-    Platform.isAndroid
-        ? 
-        
-        await sendGeneralNotification(
-            opponentToken: opponentToken,
-            title: UserDetails.userName,
-            body: messageFieldController.text.trim(),
-            // type: 0,
-          )
-        : const FirebaseOptions(
-    apiKey:
-        'key=AAAA8bBUIwY:APA91bG12B9sECzxamPgdtkucbTWTAaRbxbOhCwwvdJwMQNDUeR0iiQi1YUGrf4FO1gruIcaoE3kxTvSEtMrhz_Py5Uo-t1lNzd1g1HGTjmAbOtcZeeyz7xDHEaTzrQHZId9NL1cV_Ey',
-    appId: '1:1038045422342:ios:02579013f7bc208583f487',
-    messagingSenderId: '1038045422342',
-    projectId: 'petomate-c3a84',
-    iosBundleId: 'com.petomate.community',
-    iosClientId:
-        '1038045422342-2veomn1s7o1av3mshvidp1iodjdtltld.apps.googleusercontent.com',
-  );
+    // Platform.isAndroid
+    //     ?
+
+    await sendGeneralNotification(
+      opponentToken: opponentToken,
+      title: UserDetails.userName,
+      body: messageFieldController.text.trim(),
+      // type: 0,
+    );
+    //       : const FirebaseOptions(
+    //   apiKey:
+    //       'key=AAAA8bBUIwY:APA91bG12B9sECzxamPgdtkucbTWTAaRbxbOhCwwvdJwMQNDUeR0iiQi1YUGrf4FO1gruIcaoE3kxTvSEtMrhz_Py5Uo-t1lNzd1g1HGTjmAbOtcZeeyz7xDHEaTzrQHZId9NL1cV_Ey',
+    //   appId: '1:1038045422342:ios:02579013f7bc208583f487',
+    //   messagingSenderId: '1038045422342',
+    //   projectId: 'petomate-c3a84',
+    //   iosBundleId: 'com.petomate.community',
+    //   iosClientId:
+    //       '1038045422342-2veomn1s7o1av3mshvidp1iodjdtltld.apps.googleusercontent.com',
+    // );
 
     /// Hide Keyboard
     // hideKeyboard();
