@@ -188,15 +188,15 @@ class SplashController extends GetxController {
     // getLocationFunction();
     width1.value = Get.size.width * 0.80;
     height1.value = Get.size.width * 0.80;
-    Future<void> enableIOSNotifications() async {
-      log("notification ios");
-      await FirebaseMessaging.instance
-          .setForegroundNotificationPresentationOptions(
-        alert: true, // Required to display a heads up notification
-        badge: true,
-        sound: true,
-      );
-    }
+    // Future<void> enableIOSNotifications() async {
+    //   log("notification ios");
+    //   await FirebaseMessaging.instance
+    //       .setForegroundNotificationPresentationOptions(
+    //     alert: true, // Required to display a heads up notification
+    //     badge: true,
+    //     sound: true,
+    //   );
+    // }
     
 
     redirectNextScreen();
@@ -224,7 +224,7 @@ class SplashController extends GetxController {
       if (deniedOnce == false) {
         deniedOnce = true;
         // permissionServices();
-        // await Geolocator.requestPermission();
+        await Geolocator.requestPermission();
       }
     }
 
