@@ -260,18 +260,8 @@ class VetsAndNgoListModule extends StatelessWidget {
                 ),
               ],
             ),
-            vetAndNgoData.isVerified == "0"
-                ? /*Container(
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.accentTextColor,
-              ),
-              child: const Icon(
-                Icons.check_rounded,
-                color: Colors.white,
-                size: 18,
-              ),
-            )*/
+            vetAndNgoData.isVerified == "1"
+                ?
                 Image.asset(
                     AppIcons.verifiedSymbolImg,
                     width: 25,
@@ -396,18 +386,8 @@ class VetsAndNgoListModule extends StatelessWidget {
                 ),
               ],
             ),
-            searchVetAndNgoData.isVerified == "0"
-                ? /*Container(
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.accentTextColor,
-              ),
-              child: const Icon(
-                Icons.check_rounded,
-                color: Colors.white,
-                size: 18,
-              ),
-            )*/
+            searchVetAndNgoData.isVerified == "1"
+                ?
                 Image.asset(
                     AppIcons.verifiedSymbolImg,
                     width: 25,

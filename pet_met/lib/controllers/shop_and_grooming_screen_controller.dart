@@ -55,14 +55,19 @@ class ShopAndGroomingScreenController extends GetxController {
         searchShopsList.addAll(allShopModel.data);
         log("shopList Length : ${shopsList.length}");
         log('searchShopsList length: ${searchShopsList.length}');
+        for(var element in searchShopsList) {
+          log('isVerified : ${element.isVerified}');
+        }
       } else {
         log("Get All Shop Api Else");
       }
     } catch (e) {
       log("Get All Shop Api Error ::: $e");
-    } finally {
+    } /*finally {
       isLoading(false);
-    }
+    }*/
+
+    isLoading(false);
   }
 
   @override

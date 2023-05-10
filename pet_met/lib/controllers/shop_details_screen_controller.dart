@@ -66,7 +66,7 @@ class ShopDetailsScreenController extends GetxController {
 
         productList.add(1);
 
-        if (isVerify == "0") {
+        if (isVerify == "1") {
           isVerified = true;
         } else {
           isVerified = false;

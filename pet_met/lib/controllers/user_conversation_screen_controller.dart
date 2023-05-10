@@ -47,7 +47,9 @@ class UserConversationScreenController extends GetxController {
     ///
 
     Platform.isAndroid
-        ? await sendGeneralNotification(
+        ? 
+        
+        await sendGeneralNotification(
             opponentToken: opponentToken,
             title: UserDetails.userName,
             body: messageFieldController.text.trim(),

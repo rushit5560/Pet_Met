@@ -63,7 +63,7 @@ class PetTrainersDetailsScreenController extends GetxController {
         trainerEmail = trainerDetailsModel.data[0].email;
         trainerUpi = trainerDetailsModel.data[0].gpayupi;
         String isVerify = trainerDetailsModel.data[0].isVerified;
-        if (isVerify == "0") {
+        if (isVerify == "1") {
           isVerified = true;
         } else {
           isVerified = false;

@@ -207,7 +207,7 @@ class ShopData {
             List<String>.from(json["meetingimages"].map((x) => x ?? "")),
         sortorder: json["sortorder"] ?? "",
         status: json["status"] ?? "",
-        isVerified: json["is_verified"] ?? "1",
+        isVerified: json["is_verified"] ?? "0",
         // createdBy: json["created_by"],
         // modifiedBy: json["modified_by"],
         // createdDate: DateTime.parse(json["created_date"]),

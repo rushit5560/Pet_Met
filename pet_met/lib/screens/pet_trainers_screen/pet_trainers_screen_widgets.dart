@@ -239,23 +239,8 @@ class PetTrainerListModule extends StatelessWidget {
                 ),
               ],
             ),
-            trainerSingleItem.isVerified == "0"
-                ? /*Container(
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.accentTextColor,
-              ),
-              child: const Icon(
-                Icons.verified,
-                color: Colors.white,
-                size: 18,
-              ),
-            )*/
-                /*Icon(
-                    Icons.verified,
-                    color: AppColors.accentColor,
-                    size: 19,
-                  )*/
+            trainerSingleItem.isVerified == "1"
+                ?
                 Image.asset(
                     AppIcons.verifiedSymbolImg,
                     width: 30,
@@ -353,19 +338,8 @@ class PetTrainerListModule extends StatelessWidget {
                 ),
               ],
             ),
-            searchTrainerSingleItem.isVerified == "0"
-                ? /*Container(
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: AppColors.accentTextColor,
-              ),
-              child: const Icon(
-                Icons.verified,
-                color: Colors.white,
-                size: 18,
-              ),
-            )*/
-                Image.asset(
+            searchTrainerSingleItem.isVerified == "1"
+                ? Image.asset(
                     AppIcons.verifiedSymbolImg,
                     width: 25,
                     height: 25,

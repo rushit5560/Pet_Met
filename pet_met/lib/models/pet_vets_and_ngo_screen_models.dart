@@ -100,7 +100,7 @@ class VetAndNgoData {
     modifiedBy: json["modified_by"] ?? "",
     createdDate: json["created_date"] ?? "",
     modifiedDate: json["modified_date"] ?? "",
-    isVerified: json["is_verified"] ?? "1",
+    isVerified: json["is_verified"] ?? "0",
   );
 
   Map<String, dynamic> toJson() => {

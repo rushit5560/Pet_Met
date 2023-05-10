@@ -58,7 +58,7 @@ class PetVetsAndNgoDetailsScreenController extends GetxController {
         vetAndNgoMobileNo = "${vetsNgoDetailsModel.data[0].phone}";
         vetAndNgoUpi = vetsNgoDetailsModel.data[0].gpayupi ?? "";
 
-        if (isVerify == "0") {
+        if (isVerify == "1") {
           isVerified = true;
         } else {
           isVerified = false;

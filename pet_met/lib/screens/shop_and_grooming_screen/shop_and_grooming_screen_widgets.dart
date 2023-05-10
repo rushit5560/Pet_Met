@@ -14,9 +14,6 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
 
-
-
-
 class ShopAndGroomingScreenAppBar extends StatelessWidget {
   ShopAndGroomingScreenAppBar({Key? key}) : super(key: key);
   final screenController = Get.find<ShopAndGroomingScreenController>();
@@ -71,8 +68,6 @@ class ShopAndGroomingScreenAppBar extends StatelessWidget {
     );
   }
 }
-
-
 
 class SearchShopTextFieldModule extends StatelessWidget {
   SearchShopTextFieldModule({Key? key}) : super(key: key);
@@ -295,23 +290,13 @@ class ShopListModule extends StatelessWidget {
                 ),
               ],
             ),
-            shopSingleItem.isVerified == "0"
-                ? /*Container(
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.accentTextColor,
-                    ),
-                    child: const Icon(
-                      Icons.check_rounded,
-                      color: Colors.white,
-                      size: 18,
-                    ),
-                  )*/
-            Image.asset(AppIcons.verifiedSymbolImg,
+            shopSingleItem.isVerified.toString() == "1"
+                ? Image.asset(
+              AppIcons.verifiedSymbolImg,
               width: 25,
               height: 25,
             )
-                : Container(),
+                :  Container(),
           ],
         ).commonAllSidePadding(padding: 2.w),
       ).commonAllSidePadding(padding: 10),
@@ -402,22 +387,13 @@ class ShopListModule extends StatelessWidget {
                 ),
               ],
             ),
-            searchShopItem.isVerified == "0"
-                ? /*Container(
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.accentTextColor,
-                    ),
-                    child: const Icon(
-                      Icons.check_rounded,
-                      color: Colors.white,
-                      size: 18,
-                    ),
-                  )*/
-            Image.asset(AppIcons.verifiedSymbolImg,
-              width: 25,
-              height: 25,
-            )
+            searchShopItem.isVerified == "1"
+                ?
+                Image.asset(
+                    AppIcons.verifiedSymbolImg,
+                    width: 25,
+                    height: 25,
+                  )
                 : Container(),
           ],
         ).commonAllSidePadding(padding: 2.w),

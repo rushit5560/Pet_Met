@@ -37,6 +37,7 @@ class Data {
     required this.uid,
     required this.id,
     required this.name,
+    
     required this.email,
     required this.shopename,
     required this.showimg,
