@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -35,6 +36,10 @@ class SplashController extends GetxController {
       });
     });
   }
+
+  final notifications = FlutterLocalNotificationsPlugin();
+  late AndroidNotificationChannel channel;
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
 
   /*getLocationFunction() async {
     isLoading(true);
@@ -197,92 +202,207 @@ class SplashController extends GetxController {
     //     sound: true,
     //   );
     // }
-    
 
-    redirectNextScreen();
+
     // getLocationFunction();
     // permissionServices();
 
     // requestPermission();
     // notificationServices.firebaseNotificationGetInActiveState();
-  }
 
-  /*Permission services*/
-  Future<PermissionStatus> permissionServices() async {
-    LocationPermission permission;
+    final IOSInitializationSettings initializationSettingsIOS =
+        IOSInitializationSettings(
+      requestSoundPermission: true,
+      requestBadgePermission: true,
+      requestAlertPermission: true,
+      defaultPresentAlert: true,
+      defaultPresentBadge: true,
+      defaultPresentSound: true,
+    );
+    const AndroidInitializationSettings initializationSettingsAndroid =
+        AndroidInitializationSettings('ic_launcher');
+    var initializationSettings = InitializationSettings(
+        iOS: initializationSettingsIOS, android: initializationSettingsAndroid);
+    notifications.initialize(initializationSettings,
+        onSelectNotification: onSelectNotification);
+    FirebaseMessaging.onMessage.listen(
+      (RemoteMessage message) async {
+        RemoteNotification? notification = message.notification;
+        print(notification?.body);
+        AppleNotification? ios = message.notification?.apple;
+        if (notification != null && ios != null) {
+          NotificationSettings settings = await messaging.requestPermission(
+              alert: true, badge: true, provisional: true, sound: true);
 
-    bool deniedOnce = false;
+          print('NOTIFICATION INIT IOS');
+          print(message.data);
+        }
+        AndroidNotification? android = message.notification?.android;
+        if (notification != null && android != null) {
+          print(notification.body);
+          print("fjiefbjk");
+          notifications.show(
+            notification.hashCode,
+            notification.title,
+            notification.body,
+            NotificationDetails(
+              android: AndroidNotificationDetails(
+                  '1', 'User Activity', "petomate",
+                  importance: Importance.max,
+                  priority: Priority.high,
+                  ticker: 'ticker',
+                  icon: 'ic_launcher'),
+              // iOS: IOSNotificationDetails(
+              //     presentAlert: true, presentBadge: true, presentSound: true),
+            ),
+            payload: notification.android!.smallIcon,
+          );
+          print("NOTIFICATION DATA");
+          print(message.data);
+          print('NOTIFICATION INIT ANDROID');
+        }
 
-    var status = await Permission.location.status;
-    log('statuses : $status');
+        // notification_type = message.data['notification_type'];
+        // if (notification_type == 3) {
+        //   Get.offAll(() => BottomBarView());
+        // } else if (notification_type == 1) {
+        //   Get.offAll(
+        //         () => BottomBarView(),
+        //     arguments: {
+        //       'index': 4,
+        //       'user_id': 39,
+        //     },
+        //   );
+        // }
+      },
+    );
+    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 
-    permission = await Geolocator.requestPermission();
-    log('permission : $permission');
-
-    if (permission == LocationPermission.denied ||
-        permission == LocationPermission.deniedForever) {
-      if (deniedOnce == false) {
-        deniedOnce = true;
-        // permissionServices();
-        await Geolocator.requestPermission();
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
+      print(message.data);
+      print('onMessageOpenedApp event was published!');
+    });
+    print(FirebaseMessaging.onMessageOpenedApp);
+    FirebaseMessaging.instance
+        .getInitialMessage()
+        .then((RemoteMessage? message) async {
+      if (message != null) {
+        print(message.data);
+        print('getInitialMessage event was published!');
       }
-    }
+    });
 
-    // if (statuses[Permission.location].isPermanentlyDenied) {
-    //   await openAppSettings().then(
-    //         (value) async {
-    //       if (value) {
-    //         if (await Permission.location.status.isPermanentlyDenied == true &&
-    //             await Permission.location.status.isGranted == false) {
-    //           // openAppSettings();
-    //           permissionServiceCall(); / opens app settings until permission is granted /
-    //       }
-    //       }
-    //     },
-    //   );
-    // }
-    // else {
-    //   if (statuses[Permission.location].isDenied) {
-    //     permissionServiceCall();
-    //   }
-    // }
+    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 
-    return status;
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
+      print(message.data);
+      print('onMessageOpenedApp event was published!');
+    });
+    print(FirebaseMessaging.onMessageOpenedApp);
+    FirebaseMessaging.instance
+        .getInitialMessage()
+        .then((RemoteMessage? message) async {
+      if (message != null) {
+        print(message.data);
+        print('getInitialMessage event was published!');
+      }
+    });
+
+    redirectNextScreen();
   }
 
-  // permissionServiceCall() async {
-  //   await permissionServices().then(
-  //     (value) {
-  //       if (value[Permission.location]!.isGranted) {
-  //         // Navigator.pushReplacement(
-  //         // context,
-  //         // MaterialPageRoute(builder: (context) => SplashScreen()),
-  //         // );
+  Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+    print("Handling a background message");
+  }
+}
+
+Future<dynamic> onSelectNotification(payload) async {
+  print('hhhhhhhhhhhhhhhh');
+}
+
+void onDidReceiveLocalNotification(
+    int? id, String? title, String? body, String? payload) async {
+  print(id);
+  print(title);
+  print(body);
+  print(payload);
+  return;
+}
+
+/*Permission services*/
+Future<PermissionStatus> permissionServices() async {
+  LocationPermission permission;
+
+  bool deniedOnce = false;
+
+  var status = await Permission.location.status;
+  log('statuses : $status');
+
+  permission = await Geolocator.requestPermission();
+  log('permission : $permission');
+
+  if (permission == LocationPermission.denied ||
+      permission == LocationPermission.deniedForever) {
+    if (deniedOnce == false) {
+      deniedOnce = true;
+      // permissionServices();
+      await Geolocator.requestPermission();
+    }
+  }
+
+  // if (statuses[Permission.location].isPermanentlyDenied) {
+  //   await openAppSettings().then(
+  //         (value) async {
+  //       if (value) {
+  //         if (await Permission.location.status.isPermanentlyDenied == true &&
+  //             await Permission.location.status.isGranted == false) {
+  //           // openAppSettings();
+  //           permissionServiceCall(); / opens app settings until permission is granted /
+  //       }
   //       }
   //     },
   //   );
   // }
+  // else {
+  //   if (statuses[Permission.location].isDenied) {
+  //     permissionServiceCall();
+  //   }
+  // }
 
-  void requestPermission() async {
-    FirebaseMessaging messaging = FirebaseMessaging.instance;
+  return status;
+}
 
-    NotificationSettings settings = await messaging.requestPermission(
-      alert: true,
-      announcement: false,
-      badge: true,
-      carPlay: false,
-      criticalAlert: false,
-      provisional: false,
-      sound: true,
-    );
+// permissionServiceCall() async {
+//   await permissionServices().then(
+//     (value) {
+//       if (value[Permission.location]!.isGranted) {
+//         // Navigator.pushReplacement(
+//         // context,
+//         // MaterialPageRoute(builder: (context) => SplashScreen()),
+//         // );
+//       }
+//     },
+//   );
+// }
 
-    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
-      log('User Granted Permission');
-    } else if (settings.authorizationStatus ==
-        AuthorizationStatus.provisional) {
-      log('User Granted Provisional Permission');
-    } else {
-      log('User declined or has not accepted permission');
-    }
+void requestPermission() async {
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+  NotificationSettings settings = await messaging.requestPermission(
+    alert: true,
+    announcement: false,
+    badge: true,
+    carPlay: false,
+    criticalAlert: false,
+    provisional: false,
+    sound: true,
+  );
+
+  if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+    log('User Granted Permission');
+  } else if (settings.authorizationStatus == AuthorizationStatus.provisional) {
+    log('User Granted Provisional Permission');
+  } else {
+    log('User declined or has not accepted permission');
   }
 }

@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -13,6 +12,8 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import 'dart:io' show Platform;
+
+
 
 // ignore: must_be_immutable
 class BackgroundImage extends StatelessWidget {
@@ -421,12 +422,12 @@ class LoginModule extends StatelessWidget {
                             Radius.circular(12),
                           ),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             "Login",
                             style: TextStyle(
                               color: AppColors.whiteColor,
-                              fontSize: 15.sp,
+                              fontSize: 22,
                               fontWeight: FontWeight.w600,
                             ),
                           ),

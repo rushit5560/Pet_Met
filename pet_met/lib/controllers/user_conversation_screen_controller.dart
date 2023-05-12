@@ -3,11 +3,14 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/models/receive_message_model/receive_message_mdel.dart';
 import 'package:pet_met/models/receive_message_model/send_message_model.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:http/http.dart' as http;
+
+import '../models/notification_models/notification_send_model.dart';
 
 class UserConversationScreenController extends GetxController {
   String roomId = Get.arguments[0];
@@ -97,7 +100,7 @@ class UserConversationScreenController extends GetxController {
     required String body,
   }) async {
     try {
-      await http.post(Uri.parse("https://fcm.googleapis.com/fcm/send"),
+      http.Response response = await http.post(Uri.parse("https://fcm.googleapis.com/fcm/send"),
           headers: <String, String>{
             'Content-Type': 'application/json',
             'Authorization':
@@ -118,6 +121,10 @@ class UserConversationScreenController extends GetxController {
             },
             "to": opponentToken,
           }));
+
+      log('PushNotification Response : $response');
+      // NotificationModel notificationModel = NotificationModel.fromJson(json.decode(response.body));
+      // Fluttertoast.showToast(msg: "Notification : ${notificationModel.success.toString()}");
     } catch (e) {
       log('sendGeneralNotification Error :$e');
       rethrow;

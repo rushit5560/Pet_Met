@@ -69,6 +69,7 @@ class ShopData {
     this.isVerified,
     this.gpayupi,
     this.email,
+    this.displayName,
     // this.createdBy,
     // this.modifiedBy,
     // this.createdDate,
@@ -99,6 +100,7 @@ class ShopData {
 
   String? gpayupi;
   String? email;
+  String? displayName;
 
   // int createdBy;
   // dynamic modifiedBy;
@@ -131,6 +133,7 @@ class ShopData {
         isVerified: json["is_verified"] ?? "1",
         gpayupi: json["gpayupi"] ?? "",
         email: json["email"] ?? "",
+        displayName: json["display_name"] ?? "",
         // createdBy: json["created_by"],
         // modifiedBy: json["modified_by"],
         // createdDate: DateTime.parse(json["created_date"]),

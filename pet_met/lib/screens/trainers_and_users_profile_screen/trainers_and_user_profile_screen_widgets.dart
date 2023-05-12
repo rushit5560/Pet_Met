@@ -111,8 +111,8 @@ class UploadImageModule extends StatelessWidget {
                           themeProvider.darkTheme
                               ? screenController.imageFile!
                               : screenController.imageFile!,
+                          height: screenController.size.height * 0.2,
                           width: screenController.size.width * 0.50,
-                          height: screenController.size.width * 0.50,
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -144,9 +144,9 @@ class UploadImageModule extends StatelessWidget {
                               themeProvider.darkTheme
                                   ? screenController.trainersProfile
                                   : screenController.trainersProfile,
+                              height: screenController.size.height * 0.2,
                               width: screenController.size.width * 0.50,
-                              height: screenController.size.width * 0.50,
-                              // fit: BoxFit.fill,
+                              fit: BoxFit.fill,
                               errorBuilder: (context, er, st) {
                                 //return Image.asset(AppImages.petMetLogoImg);
                                 return Column(
@@ -158,7 +158,8 @@ class UploadImageModule extends StatelessWidget {
                                           ? AppImages.cameraPlaceHolderImgDark
                                           : AppImages.cameraPlaceHolderImglight,
                                       fit: BoxFit.fill,
-                                      height: 65,
+                                      height: screenController.size.height * 0.2,
+                                      width: screenController.size.width * 0.50,
                                     ),
                                     const SizedBox(height: 20),
                                     Text(

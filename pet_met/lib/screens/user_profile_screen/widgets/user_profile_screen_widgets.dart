@@ -1074,12 +1074,12 @@ class AboutModule extends StatelessWidget {
             controller.followCategoryId == "1"
                 ? controller.userDescription
                 : controller.followCategoryId == "2"
-                    ? controller.shopDescription
-                    : controller.followCategoryId == "3"
-                        ? controller.ngoDescription
-                        : controller.followCategoryId == "4"
-                            ? controller.trainerDescription
-                            : "",
+                ? controller.shopDescription
+                : controller.followCategoryId == "3"
+                ? controller.ngoDescription
+                : controller.followCategoryId == "4"
+                ? controller.trainerDescription
+                : "",
             style: TextStyle(
                 fontSize: 12.sp,
                 color: themeProvider.darkTheme

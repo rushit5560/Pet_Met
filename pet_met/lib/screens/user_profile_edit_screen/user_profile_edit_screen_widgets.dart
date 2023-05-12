@@ -76,7 +76,7 @@ class UploadImageModule extends StatelessWidget {
                         : controller.imageFile!,
                     width: double.infinity,
                     height: controller.size.height * 0.2,
-                    fit: BoxFit.contain,
+                    fit: BoxFit.fill,
                   ),
                 ),
               )
@@ -90,7 +90,7 @@ class UploadImageModule extends StatelessWidget {
                             : controller.userProfile,
                         width: double.infinity,
                         height: controller.size.height * 0.2,
-                        // fit: BoxFit.fill,
+                        fit: BoxFit.fill,
                         errorBuilder: (context, er, bt) {
                           //return Image.asset(AppImages.petMetLogoImg, height: 65);
                           return Column(

@@ -1,0 +1,106 @@
+
+App Thinning Size Report for All Variants of Runner
+
+Variant: Peto'mate-158AAFF5-EA61-441C-A004-8321A6F4023C.ipa
+Supported variant descriptors: [device: iPhone8,2, os-version: 15.0]
+App + On Demand Resources size: 47.2 MB compressed, 91.9 MB uncompressed
+App size: 47.2 MB compressed, 91.9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Peto'mate-353CBF2C-1C3F-4665-8D5A-2EDE1795D549.ipa
+Supported variant descriptors: [device: iPhone8,1, os-version: 15.0], [device: iPod9,1, os-version: 15.0], and [device: iPhone8,4, os-version: 15.0]
+App + On Demand Resources size: 47.2 MB compressed, 91.9 MB uncompressed
+App size: 47.2 MB compressed, 91.9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Peto'mate-376912D6-62BF-4D97-A4A0-4BB86A5BC4D5.ipa
+Supported variant descriptors: [device: iPhone12,3, os-version: 16.0], [device: iPhone9,4, os-version: 15.0], [device: iPhone11,2, os-version: 15.0], [device: iPhone13,4, os-version: 15.0], [device: iPhone11,6, os-version: 15.0], [device: iPhone13,1, os-version: 15.0], [device: iPhone13,2, os-version: 15.0], [device: iPhone13,3, os-version: 16.0], [device: iPhone13,2, os-version: 16.0], [device: iPhone11,4, os-version: 16.0], [device: iPhone10,6, os-version: 15.0], [device: iPhone9,2, os-version: 15.0], [device: iPhone14,7, os-version: 16.0], [device: iPhone11,2, os-version: 16.0], [device: iPhone14,8, os-version: 16.0], [device: iPhone13,4, os-version: 16.0], [device: iPhone14,4, os-version: 15.0], [device: iPhone10,3, os-version: 16.0], [device: iPhone10,2, os-version: 15.0], [device: iPhone14,3, os-version: 16.0], [device: iPhone10,5, os-version: 15.0], [device: iPhone15,3, os-version: 16.0], [device: iPhone12,5, os-version: 16.0], [device: iPhone14,2, os-version: 16.0], [device: iPhone12,5, os-version: 15.0], [device: iPhone15,2, os-version: 16.0], [device: iPhone13,3, os-version: 15.0], [device: iPhone11,4, os-version: 15.0], [device: iPhone12,3, os-version: 15.0], [device: iPhone13,1, os-version: 16.0], [device: iPhone10,6, os-version: 16.0], [device: iPhone14,5, os-version: 16.0], [device: iPhone11,6, os-version: 16.0], [device: iPhone14,3, os-version: 15.0], [device: iPhone10,5, os-version: 16.0], [device: iPhone10,3, os-version: 15.0], [device: iPhone10,2, os-version: 16.0], [device: iPhone14,5, os-version: 15.0], [device: iPhone14,4, os-version: 16.0], and [device: iPhone14,2, os-version: 15.0]
+App + On Demand Resources size: 47.2 MB compressed, 91.9 MB uncompressed
+App size: 47.2 MB compressed, 91.9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Peto'mate-383B9154-3FAA-418C-842A-737B1C5DF994.ipa
+Supported variant descriptors: [device: iPhone12,1, os-version: 13.0], [device: iPhone11,8, os-version: 13.0], [device: iPhone12,1, os-version: 14.0], and [device: iPhone11,8, os-version: 14.0]
+App + On Demand Resources size: 47.3 MB compressed, 92.3 MB uncompressed
+App size: 47.3 MB compressed, 92.3 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Peto'mate-575B1A1D-DABB-4F8F-905E-E3B98D9416BA.ipa
+Supported variant descriptors: [device: iPad13,2, os-version: 15.0], [device: iPad14,1, os-version: 15.0], [device: iPad13,11, os-version: 15.0], [device: iPad13,9, os-version: 15.0], [device: iPad14,4-B, os-version: 16.0], [device: iPad13,16, os-version: 15.0], [device: iPad8,4, os-version: 15.0], [device: iPad7,3, os-version: 15.0], [device: iPad8,2, os-version: 15.0], [device: MacFamily20,1, os-version: 15.0], [device: iPad13,10, os-version: 16.0], [device: iPad8,8, os-version: 16.0], [device: iPad13,7, os-version: 16.0], [device: iPad14,5-B, os-version: 16.0], [device: iPad13,8, os-version: 16.0], [device: iPad11,4, os-version: 16.0], [device: iPad8,10, os-version: 16.0], [device: iPad13,1, os-version: 16.0], [device: iPad8,4, os-version: 16.0], [device: MacFamily20,1, os-version: 16.0], [device: iPad8,11, os-version: 15.0], [device: iPad13,17, os-version: 16.0], [device: iPad7,3, os-version: 16.0], [device: iPad8,9, os-version: 16.0], [device: iPad13,4, os-version: 15.0], [device: iPad8,3, os-version: 16.0], [device: iPad7,1, os-version: 16.0], [device: iPad6,4, os-version: 15.0], [device: iPad8,1, os-version: 16.0], [device: iPad13,11, os-version: 16.0], [device: iPad8,7, os-version: 16.0], [device: iPad13,1, os-version: 15.0], [device: iPad8,12, os-version: 15.0], [device: iPad8,6, os-version: 16.0], [device: iPad13,5, os-version: 16.0], [device: iPad8,5, os-version: 15.0], [device: iPad8,6, os-version: 15.0], [device: iPad8,5, os-version: 16.0], [device: iPad14,5-A, os-version: 16.0], [device: iPad8,8, os-version: 15.0], [device: iPad14,3-B, os-version: 16.0], [device: iPad8,10, os-version: 15.0], [device: iPad11,3, os-version: 15.0], [device: iPad13,6, os-version: 15.0], [device: iPad14,2, os-version: 16.0], [device: iPad13,16, os-version: 16.0], [device: iPad14,6-B, os-version: 16.0], [device: iPad14,6-A, os-version: 16.0], [device: iPad8,7, os-version: 15.0], [device: iPad7,4, os-version: 16.0], [device: iPad8,12, os-version: 16.0], [device: iPad7,2, os-version: 15.0], [device: iPad8,9, os-version: 15.0], [device: iPad8,2, os-version: 16.0], [device: iPad13,6, os-version: 16.0], [device: iPad13,7, os-version: 15.0], [device: iPad11,1, os-version: 16.0], [device: iPad6,4, os-version: 16.0], [device: iPad6,3, os-version: 15.0], [device: iPad14,1, os-version: 16.0], [device: iPad13,10, os-version: 15.0], [device: iPad14,3-A, os-version: 16.0], [device: iPad13,4, os-version: 16.0], [device: iPad11,2, os-version: 15.0], [device: iPad14,2, os-version: 15.0], [device: iPad7,2, os-version: 16.0], [device: iPad8,3, os-version: 15.0], [device: iPad11,2, os-version: 16.0], [device: iPad13,9, os-version: 16.0], [device: iPad13,5, os-version: 15.0], [device: iPad13,2, os-version: 16.0], [device: iPad13,17, os-version: 15.0], [device: iPad7,4, os-version: 15.0], [device: iPad14,4-A, os-version: 16.0], [device: iPad13,8, os-version: 15.0], [device: iPad11,1, os-version: 15.0], [device: iPad8,11, os-version: 16.0], [device: iPad11,3, os-version: 16.0], [device: iPad11,4, os-version: 15.0], [device: iPad6,3, os-version: 16.0], [device: iPad8,1, os-version: 15.0], and [device: iPad7,1, os-version: 15.0]
+App + On Demand Resources size: 47.2 MB compressed, 91.9 MB uncompressed
+App size: 47.2 MB compressed, 91.9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Peto'mate-5799591F-865F-4B64-925F-E4E8EA644799.ipa
+Supported variant descriptors: [device: iPhone8,2, os-version: 13.0] and [device: iPhone8,2, os-version: 14.0]
+App + On Demand Resources size: 47.3 MB compressed, 92.4 MB uncompressed
+App size: 47.3 MB compressed, 92.4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Peto'mate-587684EE-27E1-4855-AA94-FD4C7A374607.ipa
+Supported variant descriptors: [device: iPhone12,1, os-version: 15.0], [device: iPhone11,8, os-version: 15.0], [device: iPhone12,1, os-version: 16.0], and [device: iPhone11,8, os-version: 16.0]
+App + On Demand Resources size: 47.2 MB compressed, 91.9 MB uncompressed
+App size: 47.2 MB compressed, 91.9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Peto'mate-5EDB1D33-1CE0-4F89-BBC0-39E73947A4DD.ipa
+Supported variant descriptors: [device: iPad6,11, os-version: 14.0], [device: iPad5,1, os-version: 14.0], [device: iPad5,2, os-version: 13.0], [device: iPad5,1, os-version: 13.0], [device: iPad7,6, os-version: 14.0], [device: iPad6,12, os-version: 13.0], [device: iPad7,5, os-version: 14.0], [device: iPad7,12, os-version: 13.0], [device: iPad6,8, os-version: 13.0], [device: iPad7,11, os-version: 14.0], [device: iPad7,5, os-version: 13.0], [device: iPad7,12, os-version: 14.0], [device: iPad6,12, os-version: 14.0], [device: iPad5,2, os-version: 14.0], [device: iPad11,7, os-version: 14.0], [device: iPad6,11, os-version: 13.0], [device: iPad11,6, os-version: 14.0], [device: iPad6,8, os-version: 14.0], [device: iPad5,3, os-version: 14.0], [device: iPad7,6, os-version: 13.0], [device: iPad7,11, os-version: 13.0], [device: iPad6,7, os-version: 14.0], [device: iPad5,4, os-version: 14.0], [device: iPad6,7, os-version: 13.0], [device: iPad5,3, os-version: 13.0], and [device: iPad5,4, os-version: 13.0]
+App + On Demand Resources size: 47.3 MB compressed, 92.4 MB uncompressed
+App size: 47.3 MB compressed, 92.4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Peto'mate-AC1A5EF5-A06E-4C3B-848B-1C0468E6A000.ipa
+Supported variant descriptors: [device: iPad6,3, os-version: 13.0], [device: iPad8,5, os-version: 14.0], [device: iPad7,3, os-version: 14.0], [device: iPad7,1, os-version: 13.0], [device: iPad11,4, os-version: 13.0], [device: iPad8,3, os-version: 13.0], [device: iPad8,6, os-version: 13.0], [device: iPad8,8, os-version: 14.0], [device: iPad11,3, os-version: 13.0], [device: iPad8,6, os-version: 14.0], [device: iPad8,2, os-version: 14.0], [device: iPad8,4, os-version: 14.0], [device: iPad6,4, os-version: 14.0], [device: iPad8,1, os-version: 13.0], [device: iPad7,2, os-version: 14.0], [device: iPad8,12, os-version: 13.0], [device: iPad8,11, os-version: 13.0], [device: iPad13,9, os-version: 14.0], [device: iPad6,3, os-version: 14.0], [device: iPad7,4, os-version: 14.0], [device: iPad7,1, os-version: 14.0], [device: iPad8,9, os-version: 13.0], [device: iPad11,2, os-version: 13.0], [device: iPad8,12, os-version: 14.0], [device: iPad11,2, os-version: 14.0], [device: iPad13,6, os-version: 14.0], [device: iPad13,8, os-version: 14.0], [device: iPad13,10, os-version: 14.0], [device: iPad8,9, os-version: 14.0], [device: iPad13,7, os-version: 14.0], [device: iPad11,3, os-version: 14.0], [device: MacFamily20,1, os-version: 14.0], [device: iPad8,4, os-version: 13.0], [device: iPad8,8, os-version: 13.0], [device: iPad6,4, os-version: 13.0], [device: iPad8,7, os-version: 13.0], [device: iPad11,4, os-version: 14.0], [device: iPad7,2, os-version: 13.0], [device: iPad13,4, os-version: 14.0], [device: iPad8,2, os-version: 13.0], [device: iPad7,4, os-version: 13.0], [device: iPad8,10, os-version: 14.0], [device: iPad8,10, os-version: 13.0], [device: iPad11,1, os-version: 13.0], [device: iPad13,11, os-version: 14.0], [device: iPad8,5, os-version: 13.0], [device: iPad8,11, os-version: 14.0], [device: iPad7,3, os-version: 13.0], [device: iPad13,2, os-version: 14.0], [device: iPad8,1, os-version: 14.0], [device: iPad8,3, os-version: 14.0], [device: iPad11,1, os-version: 14.0], [device: iPad8,7, os-version: 14.0], [device: iPad13,1, os-version: 14.0], and [device: iPad13,5, os-version: 14.0]
+App + On Demand Resources size: 47.3 MB compressed, 92.4 MB uncompressed
+App size: 47.3 MB compressed, 92.4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Peto'mate-AE1917D3-0101-45DC-923D-12BC61C02C09.ipa
+Supported variant descriptors: [device: iPad5,4, os-version: 15.0], [device: iPad6,11, os-version: 15.0], [device: iPad13,18, os-version: 16.0], [device: iPad5,1, os-version: 15.0], [device: iPad7,12, os-version: 15.0], [device: iPad7,5, os-version: 16.0], [device: iPad7,11, os-version: 16.0], [device: iPad11,6, os-version: 15.0], [device: iPad7,12, os-version: 16.0], [device: iPad11,7, os-version: 16.0], [device: iPad12,2, os-version: 16.0], [device: iPad11,7, os-version: 15.0], [device: iPad12,2, os-version: 15.0], [device: iPad6,7, os-version: 16.0], [device: iPad13,19, os-version: 16.0], [device: iPad6,8, os-version: 16.0], [device: iPad5,2, os-version: 15.0], [device: iPad6,12, os-version: 15.0], [device: iPad7,5, os-version: 15.0], [device: iPad6,8, os-version: 15.0], [device: iPad7,11, os-version: 15.0], [device: iPad11,6, os-version: 16.0], [device: iPad12,1, os-version: 15.0], [device: iPad6,12, os-version: 16.0], [device: iPad6,7, os-version: 15.0], [device: iPad7,6, os-version: 15.0], [device: iPad6,11, os-version: 16.0], [device: iPad7,6, os-version: 16.0], [device: iPad5,3, os-version: 15.0], and [device: iPad12,1, os-version: 16.0]
+App + On Demand Resources size: 47.2 MB compressed, 91.9 MB uncompressed
+App size: 47.2 MB compressed, 91.9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Peto'mate-D6DA7200-A27A-43BF-9A03-421D4CD54970.ipa
+Supported variant descriptors: [device: iPhone12,5, os-version: 14.0], [device: iPhone11,6, os-version: 13.0], [device: iPhone10,2, os-version: 13.0], [device: iPhone10,5, os-version: 13.0], [device: iPhone12,3, os-version: 13.0], [device: iPhone11,6, os-version: 14.0], [device: iPhone11,4, os-version: 14.0], [device: iPhone10,3, os-version: 13.0], [device: iPhone10,5, os-version: 14.0], [device: iPhone11,2, os-version: 13.0], [device: iPhone9,4, os-version: 13.0], [device: iPhone12,3, os-version: 14.0], [device: iPhone10,2, os-version: 14.0], [device: iPhone10,3, os-version: 14.0], [device: iPhone12,5, os-version: 13.0], [device: iPhone10,6, os-version: 14.0], [device: iPhone9,4, os-version: 14.0], [device: iPhone11,2, os-version: 14.0], [device: iPhone13,3, os-version: 14.0], [device: iPhone9,2, os-version: 14.0], [device: iPhone13,2, os-version: 14.0], [device: iPhone13,1, os-version: 14.0], [device: iPhone11,4, os-version: 13.0], [device: iPhone13,4, os-version: 14.0], [device: iPhone9,2, os-version: 13.0], and [device: iPhone10,6, os-version: 13.0]
+App + On Demand Resources size: 47.3 MB compressed, 92.4 MB uncompressed
+App size: 47.3 MB compressed, 92.4 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Peto'mate-D7BC73DA-BCB3-4E61-A0CF-2C20B0F93427.ipa
+Supported variant descriptors: [device: iPhone8,4, os-version: 13.0], [device: iPod9,1, os-version: 14.0], [device: iPhone8,1, os-version: 13.0], [device: iPhone8,4, os-version: 14.0], [device: iPod9,1, os-version: 13.0], and [device: iPhone8,1, os-version: 14.0]
+App + On Demand Resources size: 47.3 MB compressed, 92.3 MB uncompressed
+App size: 47.3 MB compressed, 92.3 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Peto'mate-E51A0E8E-1CAD-4A37-A858-1C17731DB938.ipa
+Supported variant descriptors: [device: iPhone10,1, os-version: 15.0], [device: iPhone9,3, os-version: 15.0], [device: iPhone10,4, os-version: 16.0], [device: iPhone14,6, os-version: 16.0], [device: iPhone12,8, os-version: 16.0], [device: iPhone10,1, os-version: 16.0], [device: iPhone14,6, os-version: 15.0], [device: iPhone9,1, os-version: 15.0], [device: iPhone10,4, os-version: 15.0], and [device: iPhone12,8, os-version: 15.0]
+App + On Demand Resources size: 47.2 MB compressed, 91.9 MB uncompressed
+App size: 47.2 MB compressed, 91.9 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Peto'mate-FAD1ED64-DF3F-4124-913E-4DC882F70BF0.ipa
+Supported variant descriptors: [device: iPhone9,3, os-version: 13.0], [device: iPhone12,8, os-version: 13.0], [device: iPhone10,4, os-version: 13.0], [device: iPhone9,1, os-version: 13.0], [device: iPhone9,3, os-version: 14.0], [device: iPhone10,1, os-version: 14.0], [device: iPhone12,8, os-version: 14.0], [device: iPhone10,4, os-version: 14.0], [device: iPhone10,1, os-version: 13.0], and [device: iPhone9,1, os-version: 14.0]
+App + On Demand Resources size: 47.3 MB compressed, 92.3 MB uncompressed
+App size: 47.3 MB compressed, 92.3 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed
+
+
+Variant: Peto'mate.ipa
+Supported variant descriptors: Universal
+App + On Demand Resources size: 47.6 MB compressed, 92.6 MB uncompressed
+App size: 47.6 MB compressed, 92.6 MB uncompressed
+On Demand Resources size: Zero KB compressed, Zero KB uncompressed

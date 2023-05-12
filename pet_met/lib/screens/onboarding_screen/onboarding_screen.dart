@@ -190,7 +190,7 @@ class OnboardingScreen extends StatelessWidget {
                             controller.isLastPage ? "Start" : "Next",
                             style: TextStyle(
                               color: AppColors.whiteColor,
-                              fontSize: 15.sp,
+                              fontSize: 22,
                               fontWeight: FontWeight.w600,
                             ),
                           ),

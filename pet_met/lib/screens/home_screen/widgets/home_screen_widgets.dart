@@ -200,7 +200,7 @@ class PetTopListModule extends StatelessWidget {
                                   color: themeProvider.darkTheme
                                       ? AppColors.whiteColor.withOpacity(0.65)
                                       : AppColors.greyTextColor,
-                                  fontSize: 11.sp,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
@@ -1219,7 +1219,7 @@ class BannerModule extends StatelessWidget {
             return _imageModule(index);
           },
           options: CarouselOptions(
-            height: 165,
+            height: Get.height * 0.18,
             autoPlay: true,
             viewportFraction: 1,
             onPageChanged: (index, reason) {

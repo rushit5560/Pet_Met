@@ -371,10 +371,10 @@ class PayButtonModule extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              "Add To Cart",
+              "Pay",
               style: TextStyle(
                 color: AppColors.whiteColor,
-                fontSize: 15.sp,
+                fontSize: 18,
                 fontWeight: FontWeight.w600,
               ),
             ),
@@ -679,13 +679,14 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                "${screenController.shopData[0].shopename}",
+                "${screenController.shopData[0].displayName}",
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     color: AppColors.accentTextColor,
                     fontWeight: FontWeight.bold,
-                    fontSize: 18.sp),
+                  fontSize: 8.sp,
+                ),
               ),
               Container(
                 alignment: Alignment.centerLeft,
@@ -757,8 +758,8 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
             _makingPhoneCall(number);
           },
           child: Container(
-            height: screenController.size.width * 0.018.w,
-            width: screenController.size.width * 0.018.w,
+            height: screenController.size.width * 0.07,
+            width: screenController.size.width * 0.07,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               color: AppColors.accentColor,
@@ -951,8 +952,8 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
             }
           },
           child: Container(
-            height: screenController.size.width * 0.018.w,
-            width: screenController.size.width * 0.018.w,
+            height: screenController.size.width * 0.07,
+            width: screenController.size.width * 0.07,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               color: AppColors.accentColor,
@@ -1055,7 +1056,7 @@ class ShopPlaceTimePaymentModule extends StatelessWidget {
                         : AppColors.greyTextColor,
                     size: 20,
                   ),
-                  SizedBox(width: screenController.size.width * 0.008.w),
+                  SizedBox(width: screenController.size.width * 0.010),
                   Expanded(
                     child: Row(
                       children: [
@@ -1065,6 +1066,7 @@ class ShopPlaceTimePaymentModule extends StatelessWidget {
                             color: themeProvider.darkTheme
                                 ? AppColors.whiteColor
                                 : AppColors.blackTextColor,
+                            fontSize: 8.sp,
                           ),
                         ),
                         const SizedBox(width: 10),
@@ -1074,6 +1076,7 @@ class ShopPlaceTimePaymentModule extends StatelessWidget {
                             color: themeProvider.darkTheme
                                 ? AppColors.whiteColor
                                 : AppColors.blackTextColor,
+                            fontSize: 8.sp,
                           ),
                         ),
                       ],
@@ -1082,7 +1085,7 @@ class ShopPlaceTimePaymentModule extends StatelessWidget {
                 ],
               )
             : Container(),
-        SizedBox(height: screenController.size.height * 0.002.h),
+        SizedBox(height: screenController.size.height * 0.010),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -1094,7 +1097,7 @@ class ShopPlaceTimePaymentModule extends StatelessWidget {
                   ? AppColors.whiteColor
                   : AppColors.greyTextColor,
             ),
-            SizedBox(width: screenController.size.width * 0.008.w),
+            SizedBox(width: screenController.size.width * 0.010),
             Expanded(
               child: Text(
                 "${screenController.shopData[0].address}",
@@ -1102,6 +1105,7 @@ class ShopPlaceTimePaymentModule extends StatelessWidget {
                   color: themeProvider.darkTheme
                       ? AppColors.whiteColor
                       : AppColors.blackTextColor,
+                  fontSize: 8.sp,
                 ),
               ),
             ),
