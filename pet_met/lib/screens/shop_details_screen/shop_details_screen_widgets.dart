@@ -355,7 +355,7 @@ class PayButtonModule extends StatelessWidget {
           // screenController.openCheckout();
           // Fluttertoast.showToast(msg: 'Processing payment to trainer.');
           if (screenController.shopName == UserDetails.userName) {
-            Fluttertoast.showToast(msg: "Shop can't pay to itself.");
+            Fluttertoast.showToast(msg: "Shop can't pay to itself.",fontSize: 12.sp);
           } else {
             alertDialogBox(context);
           }
@@ -369,7 +369,7 @@ class PayButtonModule extends StatelessWidget {
               Radius.circular(12),
             ),
           ),
-          child: Center(
+          child: const Center(
             child: Text(
               "Pay",
               style: TextStyle(
@@ -436,7 +436,7 @@ class PayButtonModule extends StatelessWidget {
                         color: themeProvider.darkTheme
                             ? AppColors.whiteColor
                             : AppColors.blackTextColor,
-                        fontSize: 13.sp,
+                        fontSize: 12.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -777,7 +777,7 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
             final FirebaseDatabase firebaseDatabase = FirebaseDatabase();
 
             if (UserDetails.userEmail == screenController.shopEmail) {
-              Fluttertoast.showToast(msg: "User can't chat with itself.");
+              Fluttertoast.showToast(msg: "User can't chat with itself.",fontSize: 12.sp);
             } else {
               List<String> tempChatRoomIdList = [];
 
@@ -992,7 +992,7 @@ class ShopNameAndSocialMediaButtonModule extends StatelessWidget {
           content: Text("Unable to open whatsapp"),
         ),
       );
-      Fluttertoast.showToast(msg: "Unable to open whatsapp");
+      Fluttertoast.showToast(msg: "Unable to open whatsapp",fontSize: 12.sp);
     }
   }
 

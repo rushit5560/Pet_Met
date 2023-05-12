@@ -361,7 +361,7 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
         GestureDetector(
           onTap: () {
             if (screenController.vetsNgoDetailsData[0].instagram == "") {
-              Fluttertoast.showToast(msg: "Instagram link is not available!");
+              Fluttertoast.showToast(msg: "Instagram link is not available!",fontSize: 12.sp);
             } else {
               String url =
                   "${screenController.vetsNgoDetailsData[0].instagram}";
@@ -388,7 +388,7 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
         GestureDetector(
           onTap: () {
             if (screenController.vetsNgoDetailsData[0].facebook == "") {
-              Fluttertoast.showToast(msg: "Facebook link is not available!");
+              Fluttertoast.showToast(msg: "Facebook link is not available!",fontSize: 12.sp);
             } else {
               var fbUrl = "${screenController.vetsNgoDetailsData[0].facebook}";
               launchFacebook(fbUrl, fbUrl);
@@ -431,7 +431,7 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
         GestureDetector(
           onTap: () {
             if (screenController.vetsNgoDetailsData[0].phone == "") {
-              Fluttertoast.showToast(msg: "Number Not Available");
+              Fluttertoast.showToast(msg: "Number Not Available",fontSize: 12.sp);
             } else {
               String number = "${screenController.vetsNgoDetailsData[0].phone}";
               _makingPhoneCall(number);
@@ -459,7 +459,7 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
             final FirebaseDatabase firebaseDatabase = FirebaseDatabase();
 
             if (UserDetails.userEmail == screenController.vetAndNgoEmail) {
-              Fluttertoast.showToast(msg: "User can't chat with itself.");
+              Fluttertoast.showToast(msg: "User can't chat with itself.",fontSize: 12.sp);
             } else {
               List<String> tempChatRoomIdList = [];
 
@@ -691,7 +691,7 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
         log("Launched browser $launched");
       }
     } catch (e) {
-      Fluttertoast.showToast(msg: "Facebook link is not available!");
+      Fluttertoast.showToast(msg: "Facebook link is not available!",fontSize: 12.sp);
       await launch(fbWebUrl, forceSafariVC: false);
       log("Inside catch");
     }
@@ -705,7 +705,7 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
         // universalLinksOnly: true,
       );
     } else {
-      Fluttertoast.showToast(msg: "Instagram link is not available!");
+      Fluttertoast.showToast(msg: "Instagram link is not available!",fontSize: 12.sp);
       throw 'There was a problem to open the url: $url';
     }
   }

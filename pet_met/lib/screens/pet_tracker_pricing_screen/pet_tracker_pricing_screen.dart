@@ -217,7 +217,7 @@ class PetTrackerPriceModule extends StatelessWidget {
                       onPressed: () {
 
                         if(controller.planActivated == "true") {
-                          Fluttertoast.showToast(msg: 'Selected plan already activated.');
+                          Fluttertoast.showToast(msg: 'Selected plan already activated.',fontSize: 12.sp);
                         } else {
                           controller.openCheckout();
                         }

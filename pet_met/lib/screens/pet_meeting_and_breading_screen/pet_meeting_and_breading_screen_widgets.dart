@@ -462,7 +462,7 @@ class MeetYourLovedOneButtonModule extends StatelessWidget {
         } else {
           Fluttertoast.showToast(
             msg: "Please select category first!",
-            fontSize: 10.sp,
+            fontSize: 12.sp,
           );
         }
 

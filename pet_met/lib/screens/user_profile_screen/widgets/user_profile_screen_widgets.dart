@@ -248,7 +248,7 @@ class ProfileDetailsModule extends StatelessWidget {
                     if (UserDetails.selfId == controller.followUserId) {
                       log("users are same");
 
-                      Fluttertoast.showToast(msg: "User can't follow itself.");
+                      Fluttertoast.showToast(msg: "User can't follow itself.",fontSize: 12.sp);
                     } else {
                       log("Follow Status: ${controller.status.value}");
                       controller.status.value == true
@@ -402,7 +402,7 @@ class ContactInfoModule extends StatelessWidget {
             GestureDetector(
               onTap: () async {
                 if (UserDetails.userEmail == controller.userEmail) {
-                  Fluttertoast.showToast(msg: "User can't chat with itself.");
+                  Fluttertoast.showToast(msg: "User can't chat with itself.",fontSize: 12.sp,);
                 } else {
                   if (controller.status.value == false) {
                     List<String> tempChatRoomIdList = [];
@@ -677,7 +677,7 @@ class ContactInfoModule extends StatelessWidget {
 
                   /// When loggedIn user as a shop
                   else if (controller.status.value == true) {
-                    Fluttertoast.showToast(msg: 'First follow user');
+                    Fluttertoast.showToast(msg: 'First follow user',fontSize: 12.sp);
                   }
                 }
               },
@@ -737,7 +737,7 @@ class ContactInfoModule extends StatelessWidget {
 
     if (controller.userMobileNumber.isEmpty &&
         controller.shopMobileNumber.isEmpty) {
-      Fluttertoast.showToast(msg: "Person has not provided his mobile number.");
+      Fluttertoast.showToast(msg: "Person has not provided his mobile number.",fontSize: 12.sp);
     } else if (await canLaunchUrl(url)) {
       await launchUrl(url);
     } else {

@@ -145,7 +145,7 @@ class SubmitButtonModule extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: 60,
-        margin: EdgeInsets.symmetric(horizontal: 20),
+        margin:const EdgeInsets.symmetric(horizontal: 20),
         decoration: const BoxDecoration(
           color: AppColors.accentColor,
           borderRadius: BorderRadius.all(

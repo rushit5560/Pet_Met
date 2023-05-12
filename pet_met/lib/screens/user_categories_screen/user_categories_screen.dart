@@ -11,8 +11,6 @@ import '../../utils/app_colors.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 import '../../utils/common_widgets/custom_appbar.dart';
 
-
-
 class UserCategoriesScreen extends StatefulWidget {
   const UserCategoriesScreen({Key? key}) : super(key: key);
 
@@ -298,7 +296,9 @@ class _UserCategoriesScreenState extends State<UserCategoriesScreen> {
                                                       .value ==
                                                   false) {
                                             Fluttertoast.showToast(
-                                                msg: "Please select category!");
+                                              msg: "Please select category!",
+                                              fontSize: 12.sp,
+                                            );
                                           } else {
                                             await controller.setRoleIdInPrefs();
                                           }

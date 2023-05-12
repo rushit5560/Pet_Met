@@ -650,7 +650,7 @@ class UserProfileController extends GetxController {
       isSuccessStatus = petAddOrderModel.success.obs;
 
       if (isSuccessStatus.value) {
-        Fluttertoast.showToast(msg: petAddOrderModel.message);
+        Fluttertoast.showToast(msg: petAddOrderModel.message,fontSize: 12.sp);
         meetingStatus.value = true;
       } else {
         log("Pet Add Order Api Else Else");

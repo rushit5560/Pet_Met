@@ -2076,7 +2076,7 @@ class GetVerifiedInfo extends StatelessWidget {
                   onTap: () {
                     Clipboard.setData(
                         const ClipboardData(text: "info@petomate.com"));
-                    Fluttertoast.showToast(msg: "Copied", fontSize: 10.sp);
+                    Fluttertoast.showToast(msg: "Copied", fontSize: 12.sp);
                   },
                   child: Text(
                     "Mail it on : info@petomate.com",
