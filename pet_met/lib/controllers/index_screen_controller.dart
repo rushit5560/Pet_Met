@@ -20,6 +20,7 @@ import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 import 'package:http/http.dart' as http;
+import 'package:sizer/sizer.dart';
 import '../models/delete_account_screen_model/delete_account_screen_model.dart';
 import '../screens/chat_screen/chat_screen.dart';
 
@@ -100,10 +101,10 @@ class IndexScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         //addressController.clear();
-        Fluttertoast.showToast(msg: deleteAccountModel.message);
+        Fluttertoast.showToast(msg: deleteAccountModel.message,fontSize: 12.sp);
         Get.off(() => const UserCategoriesScreen());
       } else {
-        Fluttertoast.showToast(msg: deleteAccountModel.message);
+        Fluttertoast.showToast(msg: deleteAccountModel.message,fontSize: 12.sp);
       }
     } catch (e) {
       log('Delete Account Api Error ::: $e');

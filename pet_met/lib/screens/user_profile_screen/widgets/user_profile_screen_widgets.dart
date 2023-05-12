@@ -149,13 +149,13 @@ class ProfileDetailsModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 90,
+      // height: 90,
       width: double.infinity,
       decoration: BoxDecoration(
         color: themeProvider.darkTheme
             ? AppColors.darkThemeColor
             : AppColors.whiteColor,
-        borderRadius: BorderRadius.all(
+        borderRadius:const BorderRadius.all(
           Radius.circular(12),
         ),
         boxShadow: [
@@ -1032,7 +1032,7 @@ class AboutModule extends StatelessWidget {
         color: themeProvider.darkTheme
             ? AppColors.darkThemeBoxColor
             : AppColors.whiteColor,
-        borderRadius: BorderRadius.all(
+        borderRadius:const BorderRadius.all(
           Radius.circular(12),
         ),
         boxShadow: [

@@ -11,8 +11,6 @@ import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import 'pet_meeting_and_breading_screen_widgets.dart';
 
-
-
 class PetMeetingAndBreadingScreen extends StatelessWidget {
   PetMeetingAndBreadingScreen({Key? key}) : super(key: key);
   final petMeetingAndBreadingScreenController =

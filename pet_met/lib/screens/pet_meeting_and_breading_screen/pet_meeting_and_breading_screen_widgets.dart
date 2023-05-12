@@ -14,8 +14,6 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
 
-
-
 class MeetingAndBreadingSearchFieldModule extends StatelessWidget {
   MeetingAndBreadingSearchFieldModule({Key? key}) : super(key: key);
   final screenController = Get.find<PetMeetingAndBreadingScreenController>();
@@ -97,12 +95,15 @@ class MeetingAndBreadingSearchFieldModule extends StatelessWidget {
                 screenController.isLoading(false);
               },
               child: Container(
+                height: 4.h,
+                width: 4.h,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: AppColors.accentTextColor),
-                child: const Icon(
+                child: Icon(
                   Icons.search_rounded,
                   color: Colors.white,
+                  size: 3.h,
                 ).commonAllSidePadding(padding: 5),
               ).commonAllSidePadding(padding: 8),
             ),
@@ -191,6 +192,7 @@ class PetCategoriesSearchListModule extends StatelessWidget {
             },
           ),
         ),
+        const SizedBox(width: 10),
         Text(
           singleItem.categoryName,
           maxLines: 2,
@@ -199,6 +201,7 @@ class PetCategoriesSearchListModule extends StatelessWidget {
             color: themeProvider.darkTheme
                 ? AppColors.whiteColor
                 : AppColors.blackTextColor,
+            fontSize: 13.sp,
           ),
         ),
       ],
@@ -250,7 +253,7 @@ class PetCategoriesListModule extends StatelessWidget {
         header: Text(
           singleItem.mainCategoryId.categoryName,
           style: TextStyle(
-            fontSize: 13.sp,
+            fontSize: 12.sp,
             color: themeProvider.darkTheme
                 ? AppColors.whiteColor
                 : AppColors.blackTextColor,
@@ -405,6 +408,7 @@ class PetCategoriesListModule extends StatelessWidget {
                     color: themeProvider.darkTheme
                         ? AppColors.whiteColor
                         : AppColors.blackTextColor,
+                    fontSize: 10.sp,
                   ),
                 ),
               ],
@@ -456,7 +460,10 @@ class MeetYourLovedOneButtonModule extends StatelessWidget {
           // remove selected subCat value
           screenController.selectedSubCatId = "";
         } else {
-          Fluttertoast.showToast(msg: "Please select category first!");
+          Fluttertoast.showToast(
+            msg: "Please select category first!",
+            fontSize: 10.sp,
+          );
         }
 
         /*await screenController.getSearchCategoryAndSubCategoryFunction().then((value) {
@@ -468,7 +475,7 @@ class MeetYourLovedOneButtonModule extends StatelessWidget {
       },
       child: Container(
         width: double.infinity,
-        height: 50,
+        // height: 50,
         decoration: const BoxDecoration(
           color: AppColors.accentColor,
           borderRadius: BorderRadius.all(
@@ -487,12 +494,13 @@ class MeetYourLovedOneButtonModule extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 12),
-            const Icon(
+            Icon(
               Icons.favorite_rounded,
               color: AppColors.whiteColor,
+              size: 3.h,
             ),
           ],
-        ),
+        ).commonSymmetricPadding(vertical: 10),
       ),
     );
   }

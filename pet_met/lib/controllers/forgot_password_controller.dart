@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:http/http.dart' as http;
+import 'package:sizer/sizer.dart';
 
 
 
@@ -41,9 +42,9 @@ class ForgotPasswordController extends GetxController {
 
 
       if(response.statusCode == 200) {
-        Fluttertoast.showToast(msg: "Please check your mail!");
+        Fluttertoast.showToast(msg: "Please check your mail!",fontSize: 12.sp);
       } else {
-        Fluttertoast.showToast(msg: "Please try again!");
+        Fluttertoast.showToast(msg: "Please try again!",fontSize: 12.sp);
       }
 
     } catch(e) {

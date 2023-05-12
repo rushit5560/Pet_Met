@@ -11,8 +11,6 @@ import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import 'pet_trainers_details_screen_widgets.dart';
 
-
-
 class PetTrainersDetailsScreen extends StatelessWidget {
   PetTrainersDetailsScreen({Key? key}) : super(key: key);
   final petTrainersDetailsScreenController =
@@ -24,7 +22,7 @@ class PetTrainersDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: PayButtonModule(),
+      // bottomNavigationBar: PayButtonModule(),
       body: SafeArea(
         child: Stack(
           children: [
@@ -74,6 +72,12 @@ class PetTrainersDetailsScreen extends StatelessWidget {
                                 //     : Container(),
                                 const SizedBox(height: 10),
                                 PetTrainerOverViewModule(),
+                                SizedBox(
+                                    height: petTrainersDetailsScreenController
+                                            .size.height *
+                                        0.002.w),
+
+                                PayButtonModule()
                               ],
                             ).commonSymmetricPadding(horizontal: 5),
                           ),

@@ -654,15 +654,17 @@ class AddShopOffersListModule extends StatelessWidget {
                                       height: 65,
                                       fit: BoxFit.fill,
                                       errorBuilder: (context, er, st) {
-                                        return const Icon(
+                                        return Icon(
                                           Icons.add,
                                           color: AppColors.accentTextColor,
+                                          size: 3.h,
                                         );
                                       },
                                     )
-                                  : const Icon(
+                                  : Icon(
                                       Icons.add,
                                       color: AppColors.accentTextColor,
+                                      size: 3.h,
                                     )
                           : index == 1
                               ? screenController.shopOfferFile2 != null
@@ -677,15 +679,17 @@ class AddShopOffersListModule extends StatelessWidget {
                                           height: 65,
                                           fit: BoxFit.fill,
                                           errorBuilder: (context, er, st) {
-                                            return const Icon(
+                                            return Icon(
                                               Icons.add,
                                               color: AppColors.accentTextColor,
+                                              size: 3.h,
                                             );
                                           },
                                         )
-                                      : const Icon(
+                                      : Icon(
                                           Icons.add,
                                           color: AppColors.accentTextColor,
+                                          size: 3.h,
                                         )
                               : index == 2
                                   ? screenController.shopOfferFile3 != null
@@ -700,16 +704,18 @@ class AddShopOffersListModule extends StatelessWidget {
                                               height: 65,
                                               fit: BoxFit.fill,
                                               errorBuilder: (context, er, st) {
-                                                return const Icon(
+                                                return Icon(
                                                   Icons.add,
                                                   color:
                                                       AppColors.accentTextColor,
+                                                  size: 3.h,
                                                 );
                                               },
                                             )
-                                          : const Icon(
+                                          : Icon(
                                               Icons.add,
                                               color: AppColors.accentTextColor,
+                                              size: 3.h,
                                             )
                                   : index == 3
                                       ? screenController.shopOfferFile4 != null
@@ -725,17 +731,19 @@ class AddShopOffersListModule extends StatelessWidget {
                                                   fit: BoxFit.fill,
                                                   errorBuilder:
                                                       (context, er, st) {
-                                                    return const Icon(
+                                                    return Icon(
                                                       Icons.add,
                                                       color: AppColors
                                                           .accentTextColor,
+                                                      size: 3.h,
                                                     );
                                                   },
                                                 )
-                                              : const Icon(
+                                              : Icon(
                                                   Icons.add,
                                                   color:
                                                       AppColors.accentTextColor,
+                                                  size: 3.h,
                                                 )
                                       : index == 4
                                           ? screenController.shopOfferFile5 !=
@@ -755,17 +763,19 @@ class AddShopOffersListModule extends StatelessWidget {
                                                       fit: BoxFit.fill,
                                                       errorBuilder:
                                                           (context, er, st) {
-                                                        return const Icon(
+                                                        return Icon(
                                                           Icons.add,
                                                           color: AppColors
                                                               .accentTextColor,
+                                                          size: 3.h,
                                                         );
                                                       },
                                                     )
-                                                  : const Icon(
+                                                  : Icon(
                                                       Icons.add,
                                                       color: AppColors
                                                           .accentTextColor,
+                                                      size: 3.h,
                                                     )
                                           : Container(),
                     ),
@@ -1301,10 +1311,10 @@ class MeetingAvailabilityModule extends StatelessWidget {
                     const BorderRadius.all(Radius.circular(8)),
                     child: Image.asset(AppImages.petMetLogoImg,
                         fit: BoxFit.cover))*/
-                          const Icon(
+                          Icon(
                         Icons.add,
                         color: AppColors.accentTextColor,
-                        size: 30,
+                        size: 3.h,
                       ),
                     ),
                   ),
@@ -1850,9 +1860,11 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                             // textAlign: TextAlign.center,
                             maxLines: 1,
                             style: TextStyle(
-                                color: themeProvider.darkTheme
-                                    ? AppColors.whiteColor
-                                    : AppColors.blackTextColor)),
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor,
+                              fontSize: 8.sp,
+                            )),
                       ),
                       IconButton(
                         icon: Icon(
@@ -1860,7 +1872,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                           color: themeProvider.darkTheme
                               ? AppColors.whiteColor
                               : AppColors.blackTextColor,
-                          size: 20,
+                          size: 2.9.h,
                         ),
                         tooltip: 'Open Time',
                         onPressed: () {
@@ -1887,9 +1899,10 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                     TextSpan(
                       text: '*',
                       style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.red),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red,
+                      ),
                     )
                   ])),
               const SizedBox(height: 8),
@@ -1935,9 +1948,11 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                             // textAlign: TextAlign.center,
                             maxLines: 1,
                             style: TextStyle(
-                                color: themeProvider.darkTheme
-                                    ? AppColors.whiteColor
-                                    : AppColors.blackTextColor)),
+                              color: themeProvider.darkTheme
+                                  ? AppColors.whiteColor
+                                  : AppColors.blackTextColor,
+                              fontSize: 8.sp,
+                            )),
                       ),
                       IconButton(
                         icon: Icon(
@@ -1945,7 +1960,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                           color: themeProvider.darkTheme
                               ? AppColors.whiteColor
                               : AppColors.blackTextColor,
-                          size: 20,
+                          size: 2.9.h,
                         ),
                         tooltip: 'Close Time',
                         onPressed: () {
@@ -2025,7 +2040,7 @@ class GetVerifiedInfo extends StatelessWidget {
                     Text(
                       "To get verify submit below documents",
                       style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 10.sp,
                         color: themeProvider.darkTheme
                             ? AppColors.whiteColor
                             : AppColors.darkThemeColor,
@@ -2038,7 +2053,7 @@ class GetVerifiedInfo extends StatelessWidget {
                 Text(
                   "1. Shop Registration certificate",
                   style: TextStyle(
-                    fontSize: 15,
+                    fontSize: 10.sp,
                     color: themeProvider.darkTheme
                         ? AppColors.whiteColor
                         : AppColors.darkThemeColor,
@@ -2049,7 +2064,7 @@ class GetVerifiedInfo extends StatelessWidget {
                 Text(
                   "2. Two pictures of your shop",
                   style: TextStyle(
-                    fontSize: 15,
+                    fontSize: 10.sp,
                     color: themeProvider.darkTheme
                         ? AppColors.whiteColor
                         : AppColors.darkThemeColor,
@@ -2061,12 +2076,12 @@ class GetVerifiedInfo extends StatelessWidget {
                   onTap: () {
                     Clipboard.setData(
                         const ClipboardData(text: "info@petomate.com"));
-                    Fluttertoast.showToast(msg: "Copied");
+                    Fluttertoast.showToast(msg: "Copied", fontSize: 10.sp);
                   },
                   child: Text(
                     "Mail it on : info@petomate.com",
                     style: TextStyle(
-                      fontSize: 15,
+                      fontSize: 10.sp,
                       color: themeProvider.darkTheme
                           ? AppColors.whiteColor
                           : AppColors.darkThemeColor,
@@ -2088,14 +2103,14 @@ class GetVerifiedInfo extends StatelessWidget {
               color: themeProvider.darkTheme
                   ? AppColors.whiteColor
                   : AppColors.darkThemeColor,
-              fontSize: 16,
+              fontSize: 10.sp,
               fontWeight: FontWeight.w400,
             ),
           ),
           Image.asset(
             AppIcons.verifiedSymbolImg,
-            width: 30,
-            height: 30,
+            width: 3.5.h,
+            height: 3.5.h,
           ),
           /* Icon(
             Icons.verified_outlined,
@@ -2121,9 +2136,11 @@ class SubmitButtonModule extends StatelessWidget {
       onTap: () async {
         if (screenController.formKey.currentState!.validate()) {
           if (screenController.selectedOpenTime!.value.isEmpty) {
-            Fluttertoast.showToast(msg: 'Please shop select open time');
+            Fluttertoast.showToast(
+                msg: 'Please shop select open time', fontSize: 12.sp);
           } else if (screenController.selectedCloseTime!.value.isEmpty) {
-            Fluttertoast.showToast(msg: 'Please shop select close time');
+            Fluttertoast.showToast(
+                msg: 'Please shop select close time', fontSize: 12.sp);
           } else {
             await screenController.updateShopProfileFunction();
           }
@@ -2132,7 +2149,7 @@ class SubmitButtonModule extends StatelessWidget {
       },
       child: Container(
         width: double.infinity,
-        height: 50,
+        // height: 50,
         decoration: const BoxDecoration(
           color: AppColors.accentColor,
           borderRadius: BorderRadius.all(

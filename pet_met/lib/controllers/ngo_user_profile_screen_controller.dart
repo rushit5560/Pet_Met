@@ -16,6 +16,7 @@ import 'package:http/http.dart' as http;
 import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
+import 'package:sizer/sizer.dart';
 
 
 
@@ -375,7 +376,7 @@ class NgoUserProfileScreenController extends GetxController {
             transition: Transition.native,
             duration: const Duration(milliseconds: 500));
       } else {
-        Fluttertoast.showToast(msg: loginModel.error);
+        Fluttertoast.showToast(msg: loginModel.error,fontSize: 12.sp);
       }
     } catch (e) {
       log('User Login Api Error ::: $e');
@@ -513,7 +514,7 @@ class NgoUserProfileScreenController extends GetxController {
           if (vetAndNgoUpdateProfileModel.message
               .contains("vet & ngo profile update successfully.")) {
             Fluttertoast.showToast(
-                msg: "Vet & Ngo profile update successfully.");
+                msg: "Vet & Ngo profile update successfully.",fontSize: 12.sp);
           }
           await getAllRoleProfileFunction(
               profileChangeOption: ProfileChangeOption.back);
@@ -1905,10 +1906,10 @@ class NgoUserProfileScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         //addressController.clear();
-        Fluttertoast.showToast(msg: deleteAccountModel.message);
+        Fluttertoast.showToast(msg: deleteAccountModel.message,fontSize: 12.sp);
         Get.off(() => const UserCategoriesScreen());
       } else {
-        Fluttertoast.showToast(msg: deleteAccountModel.message);
+        Fluttertoast.showToast(msg: deleteAccountModel.message,fontSize: 12.sp);
       }
     } catch (e) {
       log('Delete Account Api Error ::: $e');

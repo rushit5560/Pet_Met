@@ -11,8 +11,7 @@ import 'package:http/http.dart' as http;
 import 'package:pet_met/utils/razorpay_key.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
-
-
+import 'package:sizer/sizer.dart';
 
 class PetPricingController extends GetxController {
   final size = Get.size;
@@ -40,7 +39,6 @@ class PetPricingController extends GetxController {
 
   ApiHeader apiHeader = ApiHeader();
 
-
   String selectedPlanId = "";
   String selectedPlanPrice = "";
   String selectedPlanOverview = "";
@@ -48,7 +46,7 @@ class PetPricingController extends GetxController {
 
   List<PlanData> planData = [];
   RxBool status = false.obs;
- // AllPlanListModel plansList = AllPlanListModel();
+  // AllPlanListModel plansList = AllPlanListModel();
 
   Future<void> getAllPlansListFunction() async {
     isLoading(true);
@@ -59,15 +57,15 @@ class PetPricingController extends GetxController {
     try {
       Map<String, dynamic> bodyData = {
         "id": UserDetails.selfId,
-        "categoryID" : UserDetails.categoryId,
+        "categoryID": UserDetails.categoryId,
       };
       log("bodyData : $bodyData");
 
       Map<String, String> header = apiHeader.apiHeader();
       http.Response response = await http.post(
-          Uri.parse(url),
-          headers: header,
-          body: bodyData,
+        Uri.parse(url),
+        headers: header,
+        body: bodyData,
       );
       log("get all plan Api Response : ${response.body}");
       AllPlanListModel planListModel =
@@ -80,10 +78,9 @@ class PetPricingController extends GetxController {
         planData.clear();
 
         for (var element in planListModel.date) {
-          if(element.isActive == "0") {
+          if (element.isActive == "0") {
             planData.add(element);
           }
-
         }
         // planData = planListModel.date;
         status = planListModel.status.obs;
@@ -116,18 +113,17 @@ class PetPricingController extends GetxController {
       "categoryID": UserDetails.categoryId
     };
 
-
     try {
       Map<String, String> header = apiHeader.apiHeader();
       http.Response response =
-      await http.post(Uri.parse(url), body: data, headers: header);
+          await http.post(Uri.parse(url), body: data, headers: header);
       log("Add Order Api Response : ${response.body}");
       AddOrderModel addOrderModel =
-      AddOrderModel.fromJson(json.decode(response.body));
+          AddOrderModel.fromJson(json.decode(response.body));
       isSuccessStatus = addOrderModel.success.obs;
 
       if (isSuccessStatus.value) {
-        Fluttertoast.showToast(msg: addOrderModel.message);
+        Fluttertoast.showToast(msg: addOrderModel.message, fontSize: 12.sp);
         Get.back();
         // Get.back();
       } else {
@@ -184,13 +180,15 @@ class PetPricingController extends GetxController {
   void _handlePaymentSuccess(PaymentSuccessResponse response) async {
     log('Success Response: ${response.orderId}');
     await addOrderFunction(
-        orderId: response.orderId,
-        paymentId: response.paymentId!,
-        signature: response.signature,
+      orderId: response.orderId,
+      paymentId: response.paymentId!,
+      signature: response.signature,
     );
 
     Fluttertoast.showToast(
-        msg: "Payment Successful", toastLength: Toast.LENGTH_SHORT);
+        msg: "Payment Successful",
+        fontSize: 12.sp,
+        toastLength: Toast.LENGTH_SHORT);
     log(response.paymentId.toString());
     log(response.orderId.toString());
     log(response.signature.toString());
@@ -198,7 +196,8 @@ class PetPricingController extends GetxController {
 
   void _handlePaymentError(PaymentFailureResponse response) {
     log('Error Response: $response');
-    Fluttertoast.showToast(msg: 'Payment processing cancelled by user');
+    Fluttertoast.showToast(
+        msg: 'Payment processing cancelled by user', fontSize: 12.sp);
 
     log(response.message.toString());
     log(response.code.toString());
@@ -208,11 +207,8 @@ class PetPricingController extends GetxController {
     log('External SDK Response: $response');
     Fluttertoast.showToast(
         msg: "EXTERNAL_WALLET: " + response.walletName!,
+        fontSize: 12.sp,
         toastLength: Toast.LENGTH_SHORT);
     log("response Wallet : ${response.walletName}");
   }
 }
-
-
-
-

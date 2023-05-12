@@ -17,6 +17,7 @@ import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:sizer/sizer.dart';
 
 class RegisterController extends GetxController {
   RxBool isLoading = false.obs;
@@ -41,7 +42,7 @@ class RegisterController extends GetxController {
     if (formKey.currentState!.validate()) {
       if (selectedTerms.value == false) {
         Fluttertoast.showToast(
-            msg: "Please agree with terms and condition & privacy policy");
+            msg: "Please agree with terms and condition & privacy policy",fontSize: 12.sp);
       } else {
         try {
           await userRegisterFunction();
@@ -109,9 +110,9 @@ class RegisterController extends GetxController {
         if (registerModel.error
             .toString()
             .contains("The name has already been taken")) {
-          Fluttertoast.showToast(msg: "The name has already been taken");
+          Fluttertoast.showToast(msg: "The name has already been taken",fontSize: 12.sp);
         } else {
-          Fluttertoast.showToast(msg: "The email has already register");
+          Fluttertoast.showToast(msg: "The email has already register",fontSize: 12.sp);
         }
       }
     } catch (e) {

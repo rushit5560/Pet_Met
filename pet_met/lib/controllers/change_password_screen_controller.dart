@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:http/http.dart' as http;
+import 'package:sizer/sizer.dart';
 import '../models/change_password_screen_model/change_password_screen_model.dart';
 
 
@@ -51,12 +52,12 @@ class ChangePasswordScreenController extends GetxController{
 
       if (isSuccessStatus.value) {
 
-        Fluttertoast.showToast(msg: changePasswordScreenModel.message);
+        Fluttertoast.showToast(msg: changePasswordScreenModel.message,fontSize: 12.sp);
         currentPasswordController.clear();
         newPasswordController.clear();
         confirmPasswordController.clear();
       } else {
-        Fluttertoast.showToast(msg: changePasswordScreenModel.message);
+        Fluttertoast.showToast(msg: changePasswordScreenModel.message,fontSize: 12.sp);
       }
     } catch(e) {
       log('Change Password Api Error ::: $e');

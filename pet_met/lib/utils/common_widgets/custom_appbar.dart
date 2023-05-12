@@ -7,6 +7,7 @@ import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../controllers/index_screen_controller.dart';
 import '../../services/providers/dark_theme_provider.dart';
@@ -74,8 +75,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   widget.title,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 22,
+                  style:  TextStyle(
+                    fontSize: 13.sp,
                     color: AppColors.accentTextColor,
                     fontWeight: FontWeight.bold,
                   ),

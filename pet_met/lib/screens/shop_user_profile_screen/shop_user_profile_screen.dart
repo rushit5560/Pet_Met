@@ -41,9 +41,10 @@ class ShopUserProfileScreen extends StatelessWidget {
                     onTap: () {
                       modelBottomSheet(context);
                     },
-                    child: const Icon(
+                    child: Icon(
                       Icons.person,
                       color: AppColors.accentColor,
+                      size: 3.h,
                     ),
                   ),
                 ),
@@ -68,14 +69,14 @@ class ShopUserProfileScreen extends StatelessWidget {
                                           onPressed: () async {
                                             alertDialogModule.alertDialogBox(
                                                 yesClick: () async {
-                                                  await controller
-                                                      .deleteAccountFunction();
-                                                }
-                                            );
+                                              await controller
+                                                  .deleteAccountFunction();
+                                            });
                                           },
-                                          icon: const Icon(
+                                          icon: Icon(
                                             Icons.delete,
                                             color: Colors.red,
+                                            size: 3.h,
                                           ),
                                         ),
                                       ],
@@ -170,7 +171,7 @@ class ShopUserProfileScreen extends StatelessWidget {
                                             ? AppColors.whiteColor
                                             : AppColors.blackTextColor,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 17),
+                                        fontSize: 12.sp),
                                   ),
                                   const SizedBox(
                                       child: Divider(
@@ -183,11 +184,11 @@ class ShopUserProfileScreen extends StatelessWidget {
                                           child: Text(
                                             "User Name",
                                             style: TextStyle(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.blackTextColor,
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                                                color: themeProvider.darkTheme
+                                                    ? AppColors.whiteColor
+                                                    : AppColors.blackTextColor,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 10.sp),
                                           )),
                                       const SizedBox(width: 8),
                                       Expanded(
@@ -195,10 +196,10 @@ class ShopUserProfileScreen extends StatelessWidget {
                                           child: Text(
                                             controller.userName.value,
                                             style: TextStyle(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.blackTextColor,
-                                            ),
+                                                color: themeProvider.darkTheme
+                                                    ? AppColors.whiteColor
+                                                    : AppColors.blackTextColor,
+                                                fontSize: 10.sp),
                                           )),
                                     ],
                                   ),
@@ -210,11 +211,11 @@ class ShopUserProfileScreen extends StatelessWidget {
                                         child: Text(
                                           "Email",
                                           style: TextStyle(
-                                            color: themeProvider.darkTheme
-                                                ? AppColors.whiteColor
-                                                : AppColors.blackTextColor,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.blackTextColor,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 10.sp),
                                         ),
                                       ),
                                       const SizedBox(width: 8),
@@ -223,10 +224,10 @@ class ShopUserProfileScreen extends StatelessWidget {
                                           child: Text(
                                             controller.userEmail.value,
                                             style: TextStyle(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.blackTextColor,
-                                            ),
+                                                color: themeProvider.darkTheme
+                                                    ? AppColors.whiteColor
+                                                    : AppColors.blackTextColor,
+                                                fontSize: 10.sp),
                                           )),
                                     ],
                                   ),
@@ -269,11 +270,12 @@ class ShopUserProfileScreen extends StatelessWidget {
                                   Text(
                                     "Shop",
                                     style: TextStyle(
-                                        color: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.blackTextColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 17),
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor
+                                          : AppColors.blackTextColor,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12.sp,
+                                    ),
                                   ),
                                   const SizedBox(
                                       child: Divider(
@@ -289,6 +291,7 @@ class ShopUserProfileScreen extends StatelessWidget {
                                                 color: themeProvider.darkTheme
                                                     ? AppColors.whiteColor
                                                     : AppColors.blackTextColor,
+                                                fontSize: 10.sp,
                                                 fontWeight: FontWeight.bold),
                                           )),
                                       Expanded(
@@ -296,10 +299,10 @@ class ShopUserProfileScreen extends StatelessWidget {
                                           child: Text(
                                             controller.shopName.value,
                                             style: TextStyle(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.blackTextColor,
-                                            ),
+                                                color: themeProvider.darkTheme
+                                                    ? AppColors.whiteColor
+                                                    : AppColors.blackTextColor,
+                                                fontSize: 10.sp),
                                           )),
                                     ],
                                   ),
@@ -311,10 +314,12 @@ class ShopUserProfileScreen extends StatelessWidget {
                                           child: Text(
                                             "Email",
                                             style: TextStyle(
-                                                color: themeProvider.darkTheme
-                                                    ? AppColors.whiteColor
-                                                    : AppColors.blackTextColor,
-                                                fontWeight: FontWeight.bold),
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.blackTextColor,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 10.sp,
+                                            ),
                                           )),
                                       const SizedBox(width: 8),
                                       Expanded(
@@ -322,10 +327,10 @@ class ShopUserProfileScreen extends StatelessWidget {
                                           child: Text(
                                             controller.shopEmail.value,
                                             style: TextStyle(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.blackTextColor,
-                                            ),
+                                                color: themeProvider.darkTheme
+                                                    ? AppColors.whiteColor
+                                                    : AppColors.blackTextColor,
+                                                fontSize: 10.sp),
                                           )),
                                     ],
                                   ),
@@ -361,11 +366,12 @@ class ShopUserProfileScreen extends StatelessWidget {
                                   Text(
                                     "Vet & NGO",
                                     style: TextStyle(
-                                        color: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.blackTextColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 17),
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor
+                                          : AppColors.blackTextColor,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12.sp,
+                                    ),
                                   ),
                                   const SizedBox(
                                       child: Divider(
@@ -381,6 +387,7 @@ class ShopUserProfileScreen extends StatelessWidget {
                                               color: themeProvider.darkTheme
                                                   ? AppColors.whiteColor
                                                   : AppColors.blackTextColor,
+                                              fontSize: 10.sp,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           )),
@@ -390,10 +397,10 @@ class ShopUserProfileScreen extends StatelessWidget {
                                           child: Text(
                                             controller.ngoName.value,
                                             style: TextStyle(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.blackTextColor,
-                                            ),
+                                                color: themeProvider.darkTheme
+                                                    ? AppColors.whiteColor
+                                                    : AppColors.blackTextColor,
+                                                fontSize: 10.sp),
                                           )),
                                     ],
                                   ),
@@ -409,6 +416,7 @@ class ShopUserProfileScreen extends StatelessWidget {
                                                 ? AppColors.whiteColor
                                                 : AppColors.blackTextColor,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 10.sp,
                                           ),
                                         ),
                                       ),
@@ -418,10 +426,10 @@ class ShopUserProfileScreen extends StatelessWidget {
                                           child: Text(
                                             controller.ngoEmail.value,
                                             style: TextStyle(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.blackTextColor,
-                                            ),
+                                                color: themeProvider.darkTheme
+                                                    ? AppColors.whiteColor
+                                                    : AppColors.blackTextColor,
+                                                fontSize: 10.sp),
                                           )),
                                     ],
                                   ),
@@ -457,11 +465,12 @@ class ShopUserProfileScreen extends StatelessWidget {
                                   Text(
                                     "Trainer",
                                     style: TextStyle(
-                                        color: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.blackTextColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 17),
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor
+                                          : AppColors.blackTextColor,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12.sp,
+                                    ),
                                   ),
                                   const SizedBox(
                                       child: Divider(
@@ -477,7 +486,8 @@ class ShopUserProfileScreen extends StatelessWidget {
                                                 color: themeProvider.darkTheme
                                                     ? AppColors.whiteColor
                                                     : AppColors.blackTextColor,
-                                                fontWeight: FontWeight.bold),
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 10.sp),
                                           )),
                                       const SizedBox(width: 8),
                                       Expanded(
@@ -485,10 +495,10 @@ class ShopUserProfileScreen extends StatelessWidget {
                                           child: Text(
                                             controller.trainerName.value,
                                             style: TextStyle(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.blackTextColor,
-                                            ),
+                                                color: themeProvider.darkTheme
+                                                    ? AppColors.whiteColor
+                                                    : AppColors.blackTextColor,
+                                                fontSize: 10.sp),
                                           )),
                                     ],
                                   ),
@@ -503,7 +513,8 @@ class ShopUserProfileScreen extends StatelessWidget {
                                                 color: themeProvider.darkTheme
                                                     ? AppColors.whiteColor
                                                     : AppColors.blackTextColor,
-                                                fontWeight: FontWeight.bold),
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 10.sp),
                                           )),
                                       const SizedBox(width: 8),
                                       Expanded(
@@ -511,10 +522,10 @@ class ShopUserProfileScreen extends StatelessWidget {
                                           child: Text(
                                             controller.trainerEmail.value,
                                             style: TextStyle(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.blackTextColor,
-                                            ),
+                                                color: themeProvider.darkTheme
+                                                    ? AppColors.whiteColor
+                                                    : AppColors.blackTextColor,
+                                                fontSize: 10.sp),
                                           )),
                                     ],
                                   ),

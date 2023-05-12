@@ -14,6 +14,7 @@ import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 import '../../utils/app_colors.dart';
 import '../../utils/common_widgets/background_widgets.dart';
 import '../../utils/common_widgets/custom_appbar.dart';
@@ -67,11 +68,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   title: "User Categories",
                   appBarOption: AppBarOption.drawerButtonOption,
                   isTitleText: false,
-                  centerWidget: const Text(
+                  centerWidget:  Text(
                     "Peto'Mate",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 13.sp,
                       color: AppColors.accentTextColor,
                       fontWeight: FontWeight.w600,
                     ),
@@ -155,14 +156,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                 borderRadius: BorderRadius.circular(30),
                                 child: Image.network(
                                   controller.userprofile.value,
-                                  width: 55,
-                                  height: 55,
+                                  width: 15.w,
+                                  height: 15.w,
                                   // fit: BoxFit.cover,
                                   errorBuilder: (context, st, ob) {
                                     return Image.asset(
                                       AppImages.petMetLogoImg,
-                                      width: 55,
-                                      height: 55,
+                                      width: 15.w,
+                                      height: 15.w,
                                       // fit: BoxFit.cover,
                                     );
                                   },
@@ -174,14 +175,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                     borderRadius: BorderRadius.circular(30),
                                     child: Image.network(
                                       controller.shopProfile.value,
-                                      width: 50,
-                                      height: 50,
+                                      width: 15.w,
+                                      height: 15.w,
                                       // fit: BoxFit.cover,
                                       errorBuilder: (context, st, ob) {
                                         return Image.asset(
                                           AppImages.petMetLogoImg,
-                                          width: 50,
-                                          height: 50,
+                                          width: 15.w,
+                                          height: 15.w,
                                           // fit: BoxFit.cover,
                                         );
                                       },
@@ -193,14 +194,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         borderRadius: BorderRadius.circular(30),
                                         child: Image.network(
                                           controller.ngoProfile.value,
-                                          width: 50,
-                                          height: 50,
+                                          width: 15.w,
+                                          height: 15.w,
                                           // fit: BoxFit.cover,
                                           errorBuilder: (context, st, ob) {
                                             return Image.asset(
                                                 AppImages.petMetLogoImg,
-                                                width: 50,
-                                                height: 50,
+                                              width: 15.w,
+                                              height: 15.w,
                                                 // fit: BoxFit.cover,
                                             );
                                           },
@@ -213,14 +214,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 BorderRadius.circular(30),
                                             child: Image.network(
                                               controller.trainerProfile.value,
-                                              width: 50,
-                                              height: 50,
+                                              width: 15.w,
+                                              height: 15.w,
                                               // fit: BoxFit.cover,
                                               errorBuilder: (context, st, ob) {
                                                 return Image.asset(
                                                     AppImages.petMetLogoImg,
-                                                    width: 50,
-                                                    height: 50,
+                                                  width: 15.w,
+                                                  height: 15.w,
                                                     // fit: BoxFit.cover,
                                                 );
                                               },
@@ -276,7 +277,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 color: themeProvider.darkTheme
                                                     ? AppColors.whiteColor
                                                     : AppColors.accentTextColor,
-                                                fontSize: 12,
+                                                fontSize: 8.sp,
                                                 fontWeight: FontWeight.w400,
                                               ),
                                             ),

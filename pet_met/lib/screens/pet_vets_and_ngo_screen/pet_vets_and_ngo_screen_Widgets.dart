@@ -98,12 +98,15 @@ class SearchVetAndNgoTextFieldModule extends StatelessWidget {
                   screenController.isLoading(false);
                 },
                 child: Container(
+                  height: 4.h,
+                  width: 4.h,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: AppColors.accentTextColor),
-                  child: const Icon(
+                  child: Icon(
                     Icons.search_rounded,
                     color: Colors.white,
+                    size: 3.h,
                   ).commonAllSidePadding(padding: 5),
                 ).commonAllSidePadding(padding: 8),
               ),
@@ -251,6 +254,7 @@ class VetsAndNgoListModule extends StatelessWidget {
                           color: themeProvider.darkTheme
                               ? AppColors.whiteColor
                               : AppColors.blackTextColor,
+                          fontSize: 10.sp,
                         ),
                       ),
                     ],
@@ -261,8 +265,8 @@ class VetsAndNgoListModule extends StatelessWidget {
             vetAndNgoData.isVerified == "1"
                 ? Image.asset(
                     AppIcons.verifiedSymbolImg,
-                    width: 25,
-                    height: 25,
+                    width: 3.5.h,
+                    height: 3.5.h,
                   )
                 : Container(),
           ],
@@ -376,6 +380,7 @@ class VetsAndNgoListModule extends StatelessWidget {
                           color: themeProvider.darkTheme
                               ? AppColors.whiteColor
                               : AppColors.blackTextColor,
+                          fontSize: 10.sp,
                         ),
                       ),
                     ],
@@ -386,8 +391,8 @@ class VetsAndNgoListModule extends StatelessWidget {
             searchVetAndNgoData.isVerified == "1"
                 ? Image.asset(
                     AppIcons.verifiedSymbolImg,
-                    width: 25,
-                    height: 25,
+                    width: 3.5.h,
+                    height: 3.5.h,
                   )
                 : Container(),
           ],

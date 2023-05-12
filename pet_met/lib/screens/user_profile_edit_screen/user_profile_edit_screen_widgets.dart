@@ -1004,79 +1004,80 @@ class BirthDateModule extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 8),
-        Container(
-          height: controller.size.height * 0.08,
-          width: double.infinity,
-          //padding: const EdgeInsets.only(left: 15, right: 15),
-          decoration: BoxDecoration(
-            color: Colors.transparent,
-            borderRadius: BorderRadius.all(
-              Radius.circular(15),
-            ),
+        // Container(
+        //   // height: controller.size.height * 0.08,
+        //   width: double.infinity,
+        //   //padding: const EdgeInsets.only(left: 15, right: 15),
+        //   decoration: const BoxDecoration(
+        //     color: Colors.transparent,
+        //     borderRadius: BorderRadius.all(
+        //       Radius.circular(15),
+        //     ),
+        //   ),
+        //   child:
+        DropdownDatePicker(
+          boxDecoration: BoxDecoration(
+            // border: Border.,
+            color: themeProvider.darkTheme
+                ? AppColors.darkThemeBoxColor
+                : AppColors.whiteColor,
+            borderRadius: BorderRadius.circular(5),
+            boxShadow: [
+              BoxShadow(
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor.withOpacity(0.05)
+                    : AppColors.greyTextColor.withOpacity(0.5),
+                blurRadius: 10,
+                spreadRadius: 0.5,
+                offset: const Offset(0, 0),
+              ),
+            ],
           ),
-          child: DropdownDatePicker(
-            boxDecoration: BoxDecoration(
-              // border: Border.,
-              color: themeProvider.darkTheme
-                  ? AppColors.darkThemeBoxColor
-                  : AppColors.whiteColor,
-              borderRadius: BorderRadius.circular(5),
-              boxShadow: [
-                BoxShadow(
-                  color: themeProvider.darkTheme
-                      ? AppColors.whiteColor.withOpacity(0.05)
-                      : AppColors.greyTextColor.withOpacity(0.5),
-                  blurRadius: 10,
-                  spreadRadius: 0.5,
-                  offset: const Offset(0, 0),
-                ),
-              ],
-            ),
-            // optional
-            dayFlex: 3,
-            monthFlex: 5,
-            yearFlex: 3,
-            textStyle: TextStyle(
-              color: themeProvider.darkTheme
-                  ? AppColors.whiteColor
-                  : AppColors.blackTextColor,
-              fontSize: 12.sp,
-              fontWeight: FontWeight.w400,
-            ),
-            icon: Icon(
-              Icons.keyboard_arrow_down_rounded,
-              color: themeProvider.darkTheme
-                  ? AppColors.whiteColor
-                  : AppColors.greyTextColor,
-            ),
-            isDropdownHideUnderline: false,
-            // optional
-            isFormValidator: true,
-            // optional
-            // startYear: 1900, // optional
-            // endYear: 2020, // optional
-            // width: 10,
+          // optional
+          dayFlex: 3,
+          monthFlex: 5,
+          yearFlex: 3,
+          textStyle: TextStyle(
+            color: themeProvider.darkTheme
+                ? AppColors.whiteColor
+                : AppColors.blackTextColor,
+            fontSize: 12.sp,
+            fontWeight: FontWeight.w400,
+          ),
+          icon: Icon(
+            Icons.keyboard_arrow_down_rounded,
+            color: themeProvider.darkTheme
+                ? AppColors.whiteColor
+                : AppColors.greyTextColor,
+          ),
+          isDropdownHideUnderline: false,
+          // optional
+          isFormValidator: true,
+          // optional
+          // startYear: 1900, // optional
+          // endYear: 2020, // optional
+          // width: 10,
 
-            selectedDay: int.parse(controller.day),
-            selectedMonth: int.parse(controller.month),
-            selectedYear: int.parse(controller.year),
-            onChangedDay: (value) {
-              controller.day = value!;
-              log('onChangedDay: ${controller.day}');
-            },
-            onChangedMonth: (value) {
-              controller.month = value!;
-              log('onChangedMonth: ${controller.month}');
-            },
-            onChangedYear: (value) {
-              controller.year = value!;
-              log('onChangedYear: ${controller.year}');
-            },
-            // showDay: false,// optional
-            // dayFlex: 2,// optional
-            // locale: "zh_CN",// optional
-          ),
+          selectedDay: int.parse(controller.day),
+          selectedMonth: int.parse(controller.month),
+          selectedYear: int.parse(controller.year),
+          onChangedDay: (value) {
+            controller.day = value!;
+            log('onChangedDay: ${controller.day}');
+          },
+          onChangedMonth: (value) {
+            controller.month = value!;
+            log('onChangedMonth: ${controller.month}');
+          },
+          onChangedYear: (value) {
+            controller.year = value!;
+            log('onChangedYear: ${controller.year}');
+          },
+          // showDay: false,// optional
+          // dayFlex: 2,// optional
+          // locale: "zh_CN",// optional
         ),
+        // ),
       ],
     );
   }
@@ -1098,7 +1099,7 @@ class SubmitButton extends StatelessWidget {
       },
       child: Container(
         width: double.infinity,
-        height: 50,
+        // height: 50,
         decoration: const BoxDecoration(
           color: AppColors.accentColor,
           borderRadius: BorderRadius.all(
@@ -1114,7 +1115,7 @@ class SubmitButton extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-        ),
+        ).commonSymmetricPadding(vertical: 10),
       ),
     );
   }

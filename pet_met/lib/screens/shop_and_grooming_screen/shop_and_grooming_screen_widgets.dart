@@ -31,8 +31,8 @@ class ShopAndGroomingScreenAppBar extends StatelessWidget {
           GestureDetector(
             onTap: () => Get.back(),
             child: SizedBox(
-              height: 25,
-              width: 25,
+              height: 4.h,
+              width: 4.h,
               child: Image.asset(
                 AppIcons.backButtonImg,
               ),
@@ -42,14 +42,14 @@ class ShopAndGroomingScreenAppBar extends StatelessWidget {
           // Title Text Module
           /*Expanded(
             child:*/
-          const Expanded(
+           Expanded(
             child: Text(
               'Pet Shops, Cafe & Grooming',
               maxLines: 1,
               // textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                fontSize: 22,
+                fontSize: 13.sp,
                 color: AppColors.accentTextColor,
                 fontWeight: FontWeight.bold,
               ),
@@ -153,12 +153,15 @@ class SearchShopTextFieldModule extends StatelessWidget {
                   screenController.isLoading(false);
                 },
                 child: Container(
+                  height: 4.h,
+                  width: 4.h,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: AppColors.accentTextColor),
-                  child: const Icon(
+                  child:  Icon(
                     Icons.search_rounded,
                     color: Colors.white,
+                    size: 3.h,
                   ).commonAllSidePadding(padding: 5),
                 ).commonAllSidePadding(padding: 8),
               ),
@@ -283,6 +286,7 @@ class ShopListModule extends StatelessWidget {
                           color: themeProvider.darkTheme
                               ? AppColors.whiteColor
                               : AppColors.blackTextColor,
+                          fontSize: 10.sp
                         ),
                       ),
                     ],
@@ -293,10 +297,12 @@ class ShopListModule extends StatelessWidget {
             shopSingleItem.isVerified.toString() == "1"
                 ? Image.asset(
                     AppIcons.verifiedSymbolImg,
-                    width: 25,
-                    height: 25,
+              width: 3.5.w,
+              height: 3.5.h,
                   )
-                : Container(),
+                : Container(
+
+            ),
           ],
         ).commonAllSidePadding(padding: 2.w),
       ).commonAllSidePadding(padding: 10),
@@ -380,9 +386,11 @@ class ShopListModule extends StatelessWidget {
                           color: themeProvider.darkTheme
                               ? AppColors.whiteColor
                               : AppColors.blackTextColor,
+                          fontSize: 10.sp
                         ),
                       ),
                     ],
+
                   ),
                 ),
               ],
@@ -390,10 +398,10 @@ class ShopListModule extends StatelessWidget {
             searchShopItem.isVerified == "1"
                 ? Image.asset(
                     AppIcons.verifiedSymbolImg,
-                    width: 25,
-                    height: 25,
+              width: 3.5.w,
+              height: 3.5.h,
                   )
-                : Container(),
+                : Container()
           ],
         ).commonAllSidePadding(padding: 2.w),
       ).commonAllSidePadding(padding: 10),

@@ -18,6 +18,7 @@ import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:sizer/sizer.dart';
 import '../screens/index_screen/index_screen.dart';
 
 class LoginController extends GetxController {
@@ -103,19 +104,19 @@ class LoginController extends GetxController {
       } else {
         //Fluttertoast.showToast(msg: loginModel.error);
         if (loginModel.error.contains('password don\'t match')) {
-          Fluttertoast.showToast(msg: "Invalid password");
+          Fluttertoast.showToast(msg: "Invalid password",fontSize: 12.sp);
         }
         if (loginModel.error.contains('Email don\'t match')) {
-          Fluttertoast.showToast(msg: "Invalid email");
+          Fluttertoast.showToast(msg: "Invalid email",fontSize: 12.sp);
         }
 
         if (loginModel.messege.contains('User account is deleted')) {
-          Fluttertoast.showToast(msg: loginModel.messege);
+          Fluttertoast.showToast(msg: loginModel.messege,fontSize: 12.sp);
         }
         if (loginModel.messege.contains("This user is unauthorized")) {
           Fluttertoast.showToast(
               msg:
-                  "This user is unauthorized for selected category! Please try again");
+                  "This user is unauthorized for selected category! Please try again",fontSize: 12.sp);
         }
       }
     } catch (e) {

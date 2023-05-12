@@ -119,9 +119,10 @@ class _PetNameAndSocialMediaButtonModuleState
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
-                color: AppColors.accentTextColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 18.sp),
+              color: AppColors.accentTextColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 14.sp,
+            ),
           ),
         ),
         // GestureDetector(
@@ -164,16 +165,16 @@ class _PetNameAndSocialMediaButtonModuleState
             children: [
               Text(
                 screenController.petOwnerUserName,
-                style: const TextStyle(
+                style: TextStyle(
                   color: AppColors.accentTextColor,
-                  fontSize: 12,
+                  fontSize: 9.sp,
                   fontWeight: FontWeight.w600,
                 ),
               ),
               const SizedBox(width: 8),
               Container(
-                height: 25,
-                width: 25,
+                height: 3.5.h,
+                width: 3.5.h,
                 decoration: BoxDecoration(
                   // color: AppColors.greyColor,
                   shape: BoxShape.circle,
@@ -417,6 +418,7 @@ class PetPlaceTimePaymentModule extends StatelessWidget {
                 color: themeProvider.darkTheme
                     ? AppColors.whiteColor
                     : AppColors.blackTextColor,
+                fontSize: 10.sp,
               ),
             ),
             SizedBox(width: screenController.size.width * 0.008.w),
@@ -428,6 +430,7 @@ class PetPlaceTimePaymentModule extends StatelessWidget {
                   color: themeProvider.darkTheme
                       ? AppColors.whiteColor
                       : AppColors.blackTextColor,
+                  fontSize: 10.sp,
                 ),
               ),
             ),
@@ -444,6 +447,7 @@ class PetPlaceTimePaymentModule extends StatelessWidget {
                 color: themeProvider.darkTheme
                     ? AppColors.whiteColor
                     : AppColors.blackTextColor,
+                fontSize: 10.sp,
               ),
             ),
             SizedBox(width: screenController.size.width * 0.008.w),
@@ -457,6 +461,7 @@ class PetPlaceTimePaymentModule extends StatelessWidget {
                   color: themeProvider.darkTheme
                       ? AppColors.whiteColor
                       : AppColors.blackTextColor,
+                  fontSize: 10.sp,
                 ),
               ),
             ),
@@ -532,21 +537,21 @@ class PetMeetingOverViewModule extends StatelessWidget {
               color: themeProvider.darkTheme
                   ? AppColors.whiteColor
                   : AppColors.blackTextColor,
-              // fontSize: FontSize(15.0),
+              fontSize: FontSize(10.sp),
               // fontWeight: FontWeight.w500,
             ),
             "b": Style(
               color: themeProvider.darkTheme
                   ? AppColors.whiteColor
                   : AppColors.blackTextColor,
-              fontSize: const FontSize(15.0),
+              fontSize: FontSize(10.sp),
               fontWeight: FontWeight.w500,
             ),
             "span": Style(
               color: themeProvider.darkTheme
                   ? AppColors.whiteColor
                   : AppColors.blackTextColor,
-              fontSize: const FontSize(15.0),
+              fontSize: FontSize(10.sp),
               fontWeight: FontWeight.w500,
             ),
           },

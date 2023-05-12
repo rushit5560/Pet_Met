@@ -8,6 +8,7 @@ import 'package:pet_met/models/get_payment_list_screen_model/get_payment_list_sc
 import 'package:pet_met/utils/api_url.dart';
 import 'package:http/http.dart' as http;
 import 'package:pet_met/utils/user_details.dart';
+import 'package:sizer/sizer.dart';
 
 
 
@@ -58,7 +59,7 @@ class AddNewPaymentScreenController extends GetxController{
 
       if (isSuccessStatus.value) {
         //await getPaymentListFunction();
-        Fluttertoast.showToast(msg: addNewPaymentModel.message);
+        Fluttertoast.showToast(msg: addNewPaymentModel.message,fontSize: 12.sp);
         cardNumberController.clear();
         nameOnCardController.clear();
         expiryDateController.clear();

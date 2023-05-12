@@ -9,6 +9,7 @@ import 'package:pet_met/screens/address_screen/address_screen_widgets.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 import '../../models/user_chat_list_screen_model/user_chat_list_screen_model.dart';
 import '../../services/providers/dark_theme_provider.dart';
 
@@ -83,7 +84,7 @@ class SingleMessageBubble extends StatelessWidget {
                       Text(
                         singleMsg.message,
                         style: TextStyle(
-                          fontSize: 13,
+                          fontSize: 12.sp,
                           color: isSendByMe
                               ? AppColors.whiteColor
                               : themeProvider.darkTheme
@@ -98,9 +99,9 @@ class SingleMessageBubble extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 "$msgSentDay at $msgSentHourTime:$msgSentMinTime",
-                style: const TextStyle(
+                style: TextStyle(
                   color: Colors.grey,
-                  fontSize: 10,
+                  fontSize: 8.sp,
                 ),
               ),
             ],
@@ -183,9 +184,11 @@ class MessageWriteTextFieldModule extends StatelessWidget {
                   .requestFocus(screenController.msgFocusField);
             }
           },
+          // cursorHeight: 2.h,
+          style: TextStyle(fontSize: 8.sp),
           decoration: InputDecoration(
             hintText: 'Type something...',
-            hintStyle: const TextStyle(color: Colors.grey),
+            hintStyle: TextStyle(color: Colors.grey, fontSize: 8.sp),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(28),
               borderSide: const BorderSide(color: Colors.transparent),

@@ -37,7 +37,7 @@ class UserConversationScreen extends StatelessWidget {
                         builder: (context, snapshot) {
                           if (snapshot.hasError) {
                             return Text(
-                                "Something went wrong! ${snapshot.error}");
+                                "Something went wrong! ${snapshot.error}",style: const TextStyle(fontSize: 10),);
                           } else if (snapshot.hasData) {
                             final chatList = snapshot.data;
                             log('chatList: ${chatList!.length}');

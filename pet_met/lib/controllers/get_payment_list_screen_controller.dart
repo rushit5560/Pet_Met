@@ -7,6 +7,7 @@ import 'package:pet_met/models/get_payment_list_screen_model/get_payment_list_sc
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:http/http.dart' as http;
+import 'package:sizer/sizer.dart';
 
 class GetPaymentListScreenController extends GetxController {
   final size = Get.size;
@@ -71,7 +72,7 @@ class GetPaymentListScreenController extends GetxController {
       if (isSuccessStatus.value) {
         // getAllAddressList = getAllAddressModel.data;
         log('is active Payment call : ${paymentList[0].cardName}');
-        Fluttertoast.showToast(msg: activePaymentModel.message);
+        Fluttertoast.showToast(msg: activePaymentModel.message,fontSize: 12.sp);
       } else {}
     } catch (e) {
       log('Active Payment Api Error ::: $e');

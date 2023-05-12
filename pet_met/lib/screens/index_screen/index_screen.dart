@@ -8,6 +8,7 @@ import 'package:pet_met/controllers/index_screen_controller.dart';
 import 'package:pet_met/screens/index_screen/widgets/index_screen_widgets.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 import '../../../utils/app_colors.dart';
 import '../../services/providers/dark_theme_provider.dart';
 
@@ -84,7 +85,6 @@ class IndexScreenState extends State<IndexScreen> {
                   : Colors
                       .black12, //optional, uses theme color if not specified
               tilesPadding: const EdgeInsets.symmetric(vertical: 8),
-
               items: <BubbleBottomBarItem>[
                 BubbleBottomBarItem(
                   backgroundColor: themeProvider.darkTheme
@@ -93,18 +93,18 @@ class IndexScreenState extends State<IndexScreen> {
                   icon: Image.asset(
                     AppIcons.bottomBar1Img,
                     color: AppColors.whiteColor,
-                    width: 40,
-                    height: 40,
+                    width: 4.5.h,
+                    height: 4.5.h,
                   ),
                   activeIcon: Image.asset(
                     AppIcons.bottomBar1Img,
                     color: AppColors.whiteColor,
-                    width: 40,
-                    height: 40,
+                    width: 4.h,
+                    height: 4.h,
                   ),
-                  title: const Text(
+                  title:  Text(
                     "Meet",
-                    style: TextStyle(color: AppColors.whiteColor),
+                    style: TextStyle(color: AppColors.whiteColor,fontSize: 10.sp),
                   ),
                 ),
                 BubbleBottomBarItem(
@@ -114,19 +114,20 @@ class IndexScreenState extends State<IndexScreen> {
                   icon: Image.asset(
                     AppIcons.bottomBar2Img,
                     color: AppColors.whiteColor,
-                    width: 28,
-                    height: 28,
+                    width: 3.5.h,
+                    height: 3.5.h,
                   ),
                   activeIcon: Image.asset(
                     AppIcons.bottomBar2Img,
                     color: AppColors.whiteColor,
-                    width: 28,
-                    height: 28,
+                    width: 3.5.h,
+                    height: 3.5.h,
                   ),
-                  title: const Text(
+                  title:  Text(
                     "Trainer",
                     style: TextStyle(
                       color: AppColors.whiteColor,
+                      fontSize: 10.sp,
                     ),
                   ),
                 ),
@@ -137,18 +138,18 @@ class IndexScreenState extends State<IndexScreen> {
                   icon: Image.asset(
                     AppIcons.bottomBar3Img,
                     color: AppColors.whiteColor,
-                    width: 28,
-                    height: 28,
+                    width: 3.5.h,
+                    height: 3.5.h,
                   ),
                   activeIcon: Image.asset(
                     AppIcons.bottomBar3Img,
                     color: AppColors.whiteColor,
-                    width: 28,
-                    height: 28,
+                    width: 3.5.h,
+                    height: 3.5.h,
                   ),
-                  title: const Text(
+                  title: Text(
                     "Home",
-                    style: TextStyle(color: AppColors.whiteColor),
+                    style: TextStyle(color: AppColors.whiteColor,fontSize: 10.sp),
                   ),
                 ),
                 BubbleBottomBarItem(
@@ -158,18 +159,18 @@ class IndexScreenState extends State<IndexScreen> {
                   icon: Image.asset(
                     AppIcons.chatIconImg,
                     color: AppColors.whiteColor,
-                    width: 28,
-                    height: 28,
+                    width: 3.5.h,
+                    height: 3.5.h,
                   ),
                   activeIcon: Image.asset(
                     AppIcons.chatIconImg,
                     color: AppColors.whiteColor,
-                    width: 28,
-                    height: 28,
+                    width: 3.5.h,
+                    height: 3.5.h,
                   ),
-                  title: const Text(
+                  title: Text(
                     "Chat",
-                    style: TextStyle(color: AppColors.whiteColor),
+                    style: TextStyle(color: AppColors.whiteColor,fontSize: 10.sp),
                   ),
                 ),
                 BubbleBottomBarItem(
@@ -179,21 +180,22 @@ class IndexScreenState extends State<IndexScreen> {
                   icon: Image.asset(
                     AppIcons.bottomBar5Img,
                     color: AppColors.whiteColor,
-                    width: 28,
-                    height: 28,
+                    width: 3.5.h,
+                    height: 3.5.h,
                   ),
                   activeIcon: Image.asset(
                     AppIcons.bottomBar5Img,
                     color: AppColors.whiteColor,
-                    width: 28,
-                    height: 28,
+                    width: 3.5.h,
+                    height: 3.5.h,
                   ),
-                  title: const Text(
+                  title: Text(
                     "Doctor",
-                    style: TextStyle(color: AppColors.whiteColor),
+                    style: TextStyle(color: AppColors.whiteColor,fontSize: 10.sp),
                   ),
                 ),
               ],
+
             ),
             body: Stack(
               alignment: Alignment.topCenter,

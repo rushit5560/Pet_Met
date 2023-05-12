@@ -127,9 +127,9 @@ class PetTopListModule extends StatelessWidget {
                                 homeController.petTopList[i].data.petName,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   color: AppColors.accentTextColor,
-                                  fontSize: 14,
+                                  fontSize: 10.sp,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
@@ -146,7 +146,7 @@ class PetTopListModule extends StatelessWidget {
                                           ? AppColors.whiteColor
                                           : AppColors.blackTextColor
                                               .withOpacity(0.6),
-                                      fontSize: const FontSize(14.0),
+                                      fontSize: FontSize(10.sp),
                                       fontWeight: FontWeight.w500,
                                       maxLines: 2,
                                       textOverflow: TextOverflow.ellipsis,
@@ -156,7 +156,7 @@ class PetTopListModule extends StatelessWidget {
                                           ? AppColors.whiteColor
                                           : AppColors.blackTextColor
                                               .withOpacity(0.6),
-                                      fontSize: const FontSize(14.0),
+                                      fontSize: FontSize(10.sp),
                                       fontWeight: FontWeight.w500,
                                       maxLines: 2,
                                       textOverflow: TextOverflow.ellipsis,
@@ -165,7 +165,7 @@ class PetTopListModule extends StatelessWidget {
                                       color: themeProvider.darkTheme
                                           ? AppColors.whiteColor
                                           : AppColors.blackTextColor,
-                                      fontSize: const FontSize(14.0),
+                                      fontSize: FontSize(10.sp),
                                       fontWeight: FontWeight.w500,
                                       maxLines: 2,
                                       textOverflow: TextOverflow.ellipsis,
@@ -174,7 +174,7 @@ class PetTopListModule extends StatelessWidget {
                                       color: themeProvider.darkTheme
                                           ? AppColors.whiteColor
                                           : AppColors.blackTextColor,
-                                      fontSize: const FontSize(14.0),
+                                      fontSize: FontSize(10.sp),
                                       fontWeight: FontWeight.w500,
                                       maxLines: 2,
                                       textOverflow: TextOverflow.ellipsis,
@@ -200,7 +200,7 @@ class PetTopListModule extends StatelessWidget {
                                   color: themeProvider.darkTheme
                                       ? AppColors.whiteColor.withOpacity(0.65)
                                       : AppColors.greyTextColor,
-                                  fontSize: 14,
+                                  fontSize: 10.sp,
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
@@ -270,16 +270,16 @@ class PetTopListModule extends StatelessWidget {
                                   Text(
                                     homeController
                                         .petTopList[i].name.displayName,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       color: AppColors.accentTextColor,
-                                      fontSize: 12,
+                                      fontSize: 8.sp,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                   const SizedBox(width: 8),
                                   Container(
-                                    height: 26,
-                                    width: 26,
+                                    height: 3.5.h,
+                                    width: 3.5.h,
                                     decoration: BoxDecoration(
                                       // color: AppColors.greyColor,
                                       shape: BoxShape.circle,
@@ -331,7 +331,7 @@ class PetTopListModule extends StatelessWidget {
                     color: themeProvider.darkTheme
                         ? AppColors.whiteColor
                         : AppColors.blackTextColor.withOpacity(0.6),
-                    fontSize: 15,
+                    fontSize: 10.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ));
@@ -790,8 +790,10 @@ class PetListModule extends StatelessWidget {
                     }
                   },
                   child: Container(
-                    height: controller.size.width * 0.145,
-                    width: controller.size.width * 0.145,
+                    // height: controller.size.width * 0.145,
+                    // width: controller.size.width * 0.145,
+                    height: 6.h,
+                    width: 6.h,
                     margin: const EdgeInsets.only(bottom: 5, right: 5),
                     decoration: BoxDecoration(
                       // image: DecorationImage(
@@ -883,8 +885,8 @@ class PetListModule extends StatelessWidget {
                       modelBottomSheet(context);
                     },
                     child: Container(
-                      height: 17,
-                      width: 17,
+                      height: 2.h,
+                      width: 2.h,
                       decoration: const BoxDecoration(
                           color: AppColors.accentColor, shape: BoxShape.circle),
                       child: const Icon(
@@ -1337,7 +1339,7 @@ class PetShopAndGroomingText extends StatelessWidget {
             );
           },
           child: Container(
-            height: 35,
+            // height: 35,
             // width: controller.size.width * 0.40,
             padding: const EdgeInsets.symmetric(horizontal: 12),
             decoration: BoxDecoration(
@@ -1352,8 +1354,8 @@ class PetShopAndGroomingText extends StatelessWidget {
               children: [
                 Image.asset(
                   AppIcons.shopImg,
-                  width: 15,
-                  height: 15,
+                  width: 4.w,
+                  height: 4.w,
                   color: themeProvider.darkTheme
                       ? AppColors.whiteColor
                       : AppColors.accentTextColor,
@@ -1365,12 +1367,12 @@ class PetShopAndGroomingText extends StatelessWidget {
                     color: themeProvider.darkTheme
                         ? AppColors.whiteColor
                         : AppColors.accentTextColor,
-                    fontSize: 12,
+                    fontSize: 8.sp,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
               ],
-            ),
+            ).commonSymmetricPadding(horizontal: 8, vertical: 10),
           ),
         ),
       ],

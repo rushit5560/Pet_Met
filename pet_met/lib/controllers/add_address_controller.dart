@@ -9,6 +9,7 @@ import 'package:pet_met/models/add_address_screen_model/add_address_screen_model
 import 'package:pet_met/utils/api_url.dart';
 import 'package:http/http.dart' as http;
 import 'package:pet_met/utils/user_details.dart';
+import 'package:sizer/sizer.dart';
 
 
 
@@ -55,9 +56,9 @@ class AddAddressController extends GetxController {
       if (isSuccessStatus.value) {
         addressController.clear();
         Get.back();
-        Fluttertoast.showToast(msg: addAddressModel.message);
+        Fluttertoast.showToast(msg: addAddressModel.message,fontSize: 12.sp);
       } else {
-        Fluttertoast.showToast(msg: addAddressModel.message);
+        Fluttertoast.showToast(msg: addAddressModel.message,fontSize: 12.sp);
       }
     } catch(e) {
       log('User Add Address Api Error ::: $e');

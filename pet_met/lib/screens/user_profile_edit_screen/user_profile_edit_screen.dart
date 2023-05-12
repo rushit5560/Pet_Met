@@ -62,9 +62,10 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                             onTap: () {
                               modelBottomSheet(context);
                             },
-                            child: const Icon(
+                            child: Icon(
                               Icons.person,
                               color: AppColors.accentColor,
+                              size: 3.h,
                             ),
                           ),
                         ),
@@ -100,24 +101,25 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                           children: [
                                             /// Delete Account Button Hide
                                             Row(
-                                              mainAxisAlignment: MainAxisAlignment.end,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
                                               children: [
                                                 IconButton(
                                                   onPressed: () async {
-
-                                                    alertDialogModule.alertDialogBox(
-                                                      yesClick: () async {
-                                                        await controller
-                                                            .deleteAccountFunction();
-                                                      }
-                                                    );
+                                                    alertDialogModule
+                                                        .alertDialogBox(
+                                                            yesClick: () async {
+                                                      await controller
+                                                          .deleteAccountFunction();
+                                                    });
 
                                                     // Fluttertoast.showToast(
                                                     //     msg: "Account delete");
                                                   },
-                                                  icon: const Icon(
+                                                  icon: Icon(
                                                     Icons.delete,
                                                     color: Colors.red,
+                                                    size: 3.h,
                                                   ),
                                                 ),
                                               ],

@@ -9,6 +9,7 @@ import 'package:pet_met/models/add_order_screen_model/add_order_screen_model.dar
 import 'package:pet_met/models/get_plan_details_model/get_plan_details_model.dart';
 import 'package:pet_met/utils/razorpay_key.dart';
 import 'package:pet_met/utils/user_details.dart';
+import 'package:sizer/sizer.dart';
 import '../utils/api_url.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
@@ -126,7 +127,7 @@ class PetTrackerPricingController extends GetxController {
       isSuccessStatus = addOrderModel.success.obs;
 
       if (isSuccessStatus.value) {
-        Fluttertoast.showToast(msg: addOrderModel.message);
+        Fluttertoast.showToast(msg: addOrderModel.message,fontSize: 12.sp);
         Get.back();
         Get.back();
       } else {
@@ -188,7 +189,9 @@ class PetTrackerPricingController extends GetxController {
         signature: response.signature);
 
     Fluttertoast.showToast(
-        msg: "Payment Successful", toastLength: Toast.LENGTH_SHORT);
+        msg: "Payment Successful"
+        ,fontSize: 12.sp,
+         toastLength: Toast.LENGTH_SHORT);
     log(response.paymentId.toString());
     log(response.orderId.toString());
     log(response.signature.toString());
@@ -196,7 +199,7 @@ class PetTrackerPricingController extends GetxController {
 
   void _handlePaymentError(PaymentFailureResponse response) {
     print('Error Response: $response');
-    Fluttertoast.showToast(msg: 'Payment processing cancelled by user');
+    Fluttertoast.showToast(msg: 'Payment processing cancelled by user',fontSize: 12.sp);
 
     log(response.message.toString());
     log(response.code.toString());
@@ -206,7 +209,7 @@ class PetTrackerPricingController extends GetxController {
     print('External SDK Response: $response');
     Fluttertoast.showToast(
         msg: "EXTERNAL_WALLET: " + response.walletName!,
-        toastLength: Toast.LENGTH_SHORT);
+        toastLength: Toast.LENGTH_SHORT,fontSize: 12.sp);
     log("response Wallet : ${response.walletName}");
   }
 }

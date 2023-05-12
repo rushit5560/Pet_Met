@@ -13,8 +13,6 @@ import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/app_images.dart';
 
-
-
 class PetMeetingListModule extends StatelessWidget {
   PetMeetingListModule({Key? key}) : super(key: key);
   final screenController = Get.find<PetMeetingListScreenController>();
@@ -32,7 +30,7 @@ class PetMeetingListModule extends StatelessWidget {
                 color: themeProvider.darkTheme
                     ? AppColors.whiteColor
                     : AppColors.greyTextColor,
-                fontSize: 17,
+                fontSize: 12.sp,
               ),
             ),
           )
@@ -140,25 +138,24 @@ class PetMeetingListModule extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: Get.height * 0.08,
+                          // height: Get.height * 0.08,
                           child: Html(
-                            data: screenController.subCatPetList[i].data.details,
+                            data:
+                                screenController.subCatPetList[i].data.details,
                             style: {
                               "body": Style(
                                 color: themeProvider.darkTheme
                                     ? AppColors.whiteColor
-                                    : AppColors.blackTextColor
-                                    .withOpacity(0.6),
-                                fontSize: const FontSize(15.0),
+                                    : AppColors.blackTextColor.withOpacity(0.6),
+                                fontSize: FontSize(10.sp),
                                 fontWeight: FontWeight.w500,
                                 maxLines: 2,
                               ),
                               "p": Style(
                                 color: themeProvider.darkTheme
                                     ? AppColors.whiteColor
-                                    : AppColors.blackTextColor
-                                    .withOpacity(0.6),
-                                fontSize: const FontSize(15.0),
+                                    : AppColors.blackTextColor.withOpacity(0.6),
+                                fontSize: FontSize(10.sp),
                                 fontWeight: FontWeight.w500,
                                 maxLines: 2,
                               ),
@@ -166,7 +163,7 @@ class PetMeetingListModule extends StatelessWidget {
                                 color: themeProvider.darkTheme
                                     ? AppColors.whiteColor
                                     : AppColors.blackTextColor,
-                                fontSize: const FontSize(15.0),
+                                fontSize: FontSize(10.sp),
                                 fontWeight: FontWeight.w500,
                                 maxLines: 2,
                               ),
@@ -174,7 +171,7 @@ class PetMeetingListModule extends StatelessWidget {
                                 color: themeProvider.darkTheme
                                     ? AppColors.whiteColor
                                     : AppColors.blackTextColor,
-                                fontSize: const FontSize(15.0),
+                                fontSize: FontSize(10.sp),
                                 fontWeight: FontWeight.w500,
                                 maxLines: 2,
                               ),
@@ -251,16 +248,16 @@ class PetMeetingListModule extends StatelessWidget {
                           children: [
                             Text(
                               screenController.subCatPetList[i].name.name,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 color: AppColors.accentTextColor,
-                                fontSize: 12,
+                                fontSize: 10.sp,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
                             const SizedBox(width: 8),
                             Container(
-                              height: 23,
-                              width: 23,
+                              height: 3.5.h,
+                              width: 3.5.h,
                               decoration: BoxDecoration(
                                   // color: AppColors.greyColor,
                                   // shape: BoxShape.circle,
@@ -292,5 +289,4 @@ class PetMeetingListModule extends StatelessWidget {
       ],
     ).commonAllSidePadding(padding: 10);
   }
-
 }

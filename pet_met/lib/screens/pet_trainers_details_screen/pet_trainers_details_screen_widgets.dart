@@ -107,6 +107,7 @@ class PetTrainerPicturesModule extends StatelessWidget {
                       color: themeProvider.darkTheme
                           ? AppColors.whiteColor.withOpacity(0.4)
                           : AppColors.blackTextColor,
+                      fontSize: 10.sp,
                     ),
                   ),
                 )
@@ -322,13 +323,19 @@ class PetTrainerPicturesModule extends StatelessWidget {
 
   imageAlertDialog(BuildContext context, index) {
     Widget cancelButton = TextButton(
-      child: const Text("No, cancel"),
+      child: Text(
+        "No, cancel",
+        style: TextStyle(fontSize: 8.sp),
+      ),
       onPressed: () {
         Get.back();
       },
     );
     Widget continueButton = TextButton(
-      child: const Text("Yes, delete it"),
+      child: Text(
+        "Yes, delete it",
+        style: TextStyle(fontSize: 8.sp),
+      ),
       onPressed: () async {
         Get.back();
       },
@@ -398,15 +405,16 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                    color: AppColors.accentTextColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18.sp),
+                  color: AppColors.accentTextColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.sp,
+                ),
               ),
               screenController.isVerified == true
                   ? Image.asset(
                       AppIcons.verifiedSymbolImg,
-                      width: 25,
-                      height: 25,
+                      width: 3.5.h,
+                      height: 3.5.h,
                     )
                   : Container(),
             ],
@@ -759,13 +767,13 @@ class PetTrainerPlaceTimePaymentModule extends StatelessWidget {
           children: [
             Image.asset(
               AppIcons.locationImg,
-              height: 20,
-              width: 20,
+              height: 2.8.h,
+              width: 2.8.h,
               color: themeProvider.darkTheme
                   ? AppColors.whiteColor
                   : AppColors.blackTextColor,
             ),
-            SizedBox(width: screenController.size.width * 0.008.w),
+            const SizedBox(width: 20),
             Expanded(
               child: Text(
                 screenController.trainerDetails[0].address,
@@ -773,6 +781,7 @@ class PetTrainerPlaceTimePaymentModule extends StatelessWidget {
                   color: themeProvider.darkTheme
                       ? AppColors.whiteColor
                       : AppColors.blackTextColor,
+                  fontSize: 10.sp,
                 ),
               ),
             ),
@@ -797,9 +806,9 @@ class PetTrainerPlaceTimePaymentModule extends StatelessWidget {
               color: themeProvider.darkTheme
                   ? AppColors.whiteColor
                   : AppColors.blackTextColor,
-              size: 20,
+              size: 2.8.h,
             ),
-            SizedBox(width: screenController.size.width * 0.008.w),
+            const SizedBox(width: 20),
             Expanded(
               child: Row(
                 children: [
@@ -809,6 +818,7 @@ class PetTrainerPlaceTimePaymentModule extends StatelessWidget {
                       color: themeProvider.darkTheme
                           ? AppColors.whiteColor
                           : AppColors.blackTextColor,
+                      fontSize: 10.sp,
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -818,6 +828,7 @@ class PetTrainerPlaceTimePaymentModule extends StatelessWidget {
                       color: themeProvider.darkTheme
                           ? AppColors.whiteColor
                           : AppColors.blackTextColor,
+                      fontSize: 10.sp,
                     ),
                   ),
                 ],
@@ -862,22 +873,24 @@ class PetTrainerOverViewModule extends StatelessWidget {
         Text(
           "Overview",
           style: TextStyle(
-              color: AppColors.accentTextColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 12.sp),
+            color: AppColors.accentTextColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 12.sp,
+          ),
         ),
         SizedBox(height: screenController.size.height * 0.003.h),
         Html(
           data: screenController.trainerDetails[0].fullText,
           style: {
             "p": Style(
-                // fontSize: const FontSize(18.0),
-                fontWeight: FontWeight.bold,
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor
-                    : AppColors.blackTextColor),
+              fontSize: FontSize(10.sp),
+              fontWeight: FontWeight.bold,
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.blackTextColor,
+            ),
             "body": Style(
-              // fontSize: const FontSize(18.0),
+              fontSize: FontSize(10.sp),
               fontWeight: FontWeight.bold,
               color: themeProvider.darkTheme
                   ? AppColors.whiteColor
@@ -922,7 +935,7 @@ class PayButtonModule extends StatelessWidget {
         },
         child: Container(
           width: double.infinity,
-          height: 50,
+          // height: 50,
           decoration: const BoxDecoration(
             color: AppColors.accentColor,
             borderRadius: BorderRadius.all(
@@ -938,7 +951,7 @@ class PayButtonModule extends StatelessWidget {
                 fontWeight: FontWeight.w600,
               ),
             ),
-          ),
+          ).commonSymmetricPadding(vertical: 10),
         ),
       ),
     );
@@ -1095,7 +1108,7 @@ class PayButtonModule extends StatelessWidget {
                       },
                       child: Container(
                         //width: double.infinity,
-                        height: 35,
+                        // height: 35,
                         decoration: const BoxDecoration(
                           color: AppColors.accentColor,
                           borderRadius: BorderRadius.all(
@@ -1124,7 +1137,7 @@ class PayButtonModule extends StatelessWidget {
                       },
                       child: Container(
                         //width: double.infinity,
-                        height: 35,
+                        // height: 35,
                         decoration: const BoxDecoration(
                           color: AppColors.greyTextColor,
                           borderRadius: BorderRadius.all(

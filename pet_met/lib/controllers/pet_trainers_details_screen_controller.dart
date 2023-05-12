@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 import 'package:pet_met/utils/razorpay_key.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:sizer/sizer.dart';
 
 
 
@@ -128,14 +129,14 @@ class PetTrainersDetailsScreenController extends GetxController {
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
-    Fluttertoast.showToast(msg: 'Payment processing cancelled by user');
+    Fluttertoast.showToast(msg: 'Payment processing cancelled by user',fontSize: 12.sp);
   }
 
   void _handleExternalWallet(ExternalWalletResponse response) {
     print('External SDK Response: $response');
     Fluttertoast.showToast(
         msg: "EXTERNAL_WALLET: " + response.walletName!,
-        toastLength: Toast.LENGTH_SHORT);
+        toastLength: Toast.LENGTH_SHORT,fontSize: 12.sp,);
     log("response Wallet : ${response.walletName}");
   }
 
@@ -173,7 +174,9 @@ class PetTrainersDetailsScreenController extends GetxController {
       if (isSuccessStatus.value) {
         priceController.clear();
         Fluttertoast.showToast(
-            msg: "Payment Successful.", toastLength: Toast.LENGTH_LONG);
+            msg: "Payment Successful."
+            ,fontSize: 12.sp,
+             toastLength: Toast.LENGTH_LONG);
       } else {
         log("Pet Add Order Api Else Else");
       }

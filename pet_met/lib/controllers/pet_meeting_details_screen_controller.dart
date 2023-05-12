@@ -10,6 +10,7 @@ import 'package:http/http.dart' as http;
 import 'package:pet_met/utils/razorpay_key.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:sizer/sizer.dart';
 
 
 
@@ -159,7 +160,7 @@ class PetMeetingDetailsScreenController extends GetxController {
       isSuccessStatus = petAddOrderModel.success.obs;
 
       if (isSuccessStatus.value) {
-        Fluttertoast.showToast(msg: petAddOrderModel.message);
+        Fluttertoast.showToast(msg: petAddOrderModel.message,fontSize: 12.sp);
         meetingStatus.value = true;
       } else {
         log("Pet Add Order Api Else Else");

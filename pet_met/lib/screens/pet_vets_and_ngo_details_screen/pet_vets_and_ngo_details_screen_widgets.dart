@@ -157,7 +157,7 @@ class NgoAchivementPictureListModule extends StatelessWidget {
                     )),
               screenController.vetsNgoDetailsData[0].image2 == null
                   ? Container()
-                  : SizedBox(width: 10),
+                  : const SizedBox(width: 10),
               screenController.vetsNgoDetailsData[0].image3 == null
                   ? Container()
                   : Expanded(
@@ -190,7 +190,7 @@ class NgoAchivementPictureListModule extends StatelessWidget {
                     )),
               screenController.vetsNgoDetailsData[0].image3 == null
                   ? Container()
-                  : SizedBox(width: 10),
+                  : const SizedBox(width: 10),
               screenController.vetsNgoDetailsData[0].image4 == null
                   ? Container()
                   : Expanded(
@@ -222,7 +222,7 @@ class NgoAchivementPictureListModule extends StatelessWidget {
                     )),
               screenController.vetsNgoDetailsData[0].image4 == null
                   ? Container()
-                  : SizedBox(width: 10),
+                  : const SizedBox(width: 10),
               screenController.vetsNgoDetailsData[0].image5 == null
                   ? Container()
                   : Expanded(
@@ -261,13 +261,19 @@ class NgoAchivementPictureListModule extends StatelessWidget {
 
   imageAlertDialog(BuildContext context, index) {
     Widget cancelButton = TextButton(
-      child: Text("No, cancel"),
+      child: Text(
+        "No, cancel",
+        style: TextStyle(fontSize: 8.h),
+      ),
       onPressed: () {
         Get.back();
       },
     );
     Widget continueButton = TextButton(
-      child: Text("Yes, delete it"),
+      child: Text(
+        "Yes, delete it",
+        style: TextStyle(fontSize: 8.h),
+      ),
       onPressed: () async {
         Get.back();
       },
@@ -337,15 +343,16 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
-                    color: AppColors.accentTextColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18.sp),
+                  color: AppColors.accentTextColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.sp,
+                ),
               ),
               screenController.isVerified == true
                   ? Image.asset(
                       AppIcons.verifiedSymbolImg,
-                      width: 25,
-                      height: 25,
+                      width: 3.5.h,
+                      height: 3.5.h,
                     )
                   : Container(),
             ],
@@ -362,8 +369,10 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
             }
           },
           child: Container(
-            height: screenController.size.width * 0.018.w,
-            width: screenController.size.width * 0.018.w,
+            // height: screenController.size.width * 0.018.w,
+            // width: screenController.size.width * 0.018.w,
+            height: 4.h,
+            width: 4.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               color: AppColors.accentColor,
@@ -386,8 +395,10 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
             }
           },
           child: Container(
-            height: screenController.size.width * 0.018.w,
-            width: screenController.size.width * 0.018.w,
+            // height: screenController.size.width * 0.018.w,
+            // width: screenController.size.width * 0.018.w,
+            height: 4.h,
+            width: 4.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               color: AppColors.accentColor,
@@ -427,8 +438,10 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
             }
           },
           child: Container(
-            height: screenController.size.width * 0.018.w,
-            width: screenController.size.width * 0.018.w,
+            // height: screenController.size.width * 0.018.w,
+            // width: screenController.size.width * 0.018.w,
+            height: 4.h,
+            width: 4.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               color: AppColors.accentColor,
@@ -621,8 +634,10 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
             }
           },
           child: Container(
-            height: screenController.size.width * 0.018.w,
-            width: screenController.size.width * 0.018.w,
+            // height: screenController.size.width * 0.018.w,
+            // width: screenController.size.width * 0.018.w,
+            height: 4.h,
+            width: 4.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               color: AppColors.accentColor,
@@ -713,21 +728,21 @@ class VetAndNgoPlaceTimePaymentModule extends StatelessWidget {
           children: [
             Image.asset(
               AppIcons.locationImg,
-              height: 20,
-              width: 20,
+              height: 2.9.h,
+              width: 2.9.h,
               color: themeProvider.darkTheme
                   ? AppColors.whiteColor
                   : AppColors.blackTextColor,
             ),
-            SizedBox(width: screenController.size.width * 0.008.w),
+            const SizedBox(width: 20),
             Expanded(
               child: Text(
                 screenController.vetsNgoDetailsData[0].address!,
                 style: TextStyle(
-                  color: themeProvider.darkTheme
-                      ? AppColors.whiteColor
-                      : AppColors.blackTextColor,
-                ),
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.blackTextColor,
+                    fontSize: 10.sp),
               ),
             ),
           ],
@@ -751,9 +766,9 @@ class VetAndNgoPlaceTimePaymentModule extends StatelessWidget {
               color: themeProvider.darkTheme
                   ? AppColors.whiteColor
                   : AppColors.greyTextColor,
-              size: 20,
+              size: 2.9.h,
             ),
-            SizedBox(width: screenController.size.width * 0.008.w),
+            const SizedBox(width: 20),
             Expanded(
               child: Text(
                 "Opens : " +
@@ -762,10 +777,10 @@ class VetAndNgoPlaceTimePaymentModule extends StatelessWidget {
                         "Closes :" +
                     screenController.vetsNgoDetailsData[0].close!,
                 style: TextStyle(
-                  color: themeProvider.darkTheme
-                      ? AppColors.whiteColor
-                      : AppColors.blackTextColor,
-                ),
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.blackTextColor,
+                    fontSize: 10.sp),
               ),
             ),
           ],
@@ -795,7 +810,7 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
       },
       child: Container(
         // width: Get.width / 1.5,
-        height: 35,
+        // height: 35,
         decoration: const BoxDecoration(
           color: AppColors.accentTextColor,
           borderRadius: BorderRadius.all(
@@ -1049,7 +1064,7 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
                       },
                       child: Container(
                         //width: double.infinity,
-                        height: 35,
+                        // height: 35,
                         decoration: const BoxDecoration(
                           color: AppColors.accentColor,
                           borderRadius: BorderRadius.all(
@@ -1080,7 +1095,7 @@ class DonateForPetLoversButtonModule extends StatelessWidget {
                       },
                       child: Container(
                         //width: double.infinity,
-                        height: 35,
+                        // height: 35,
                         decoration: const BoxDecoration(
                           color: AppColors.greyTextColor,
                           borderRadius: BorderRadius.all(
@@ -1200,7 +1215,7 @@ class OverViewModule extends StatelessWidget {
               fontWeight: FontWeight.bold,
               fontSize: 12.sp),
         ),
-        SizedBox(height: 10),
+    const    SizedBox(height: 10),
         Html(
           data: screenController.vetsNgoDetailsData[0].fullText!,
           style: {
@@ -1208,14 +1223,14 @@ class OverViewModule extends StatelessWidget {
               color: themeProvider.darkTheme
                   ? AppColors.whiteColor
                   : AppColors.blackTextColor,
-              //fontSize: FontSize(15.0),
+              fontSize: FontSize(10.sp),
               // fontWeight: FontWeight.w500,
             ),
             "p": Style(
               color: themeProvider.darkTheme
                   ? AppColors.whiteColor
                   : AppColors.blackTextColor,
-              //fontSize: FontSize(15.0),
+              fontSize: FontSize(10.sp),
               // fontWeight: FontWeight.w500,
             ),
           },

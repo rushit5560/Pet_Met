@@ -18,6 +18,7 @@ import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/user_details.dart';
+import 'package:sizer/sizer.dart';
 import 'package:story_view/controller/story_controller.dart';
 import '../models/home_screen_models/show_banner_model.dart';
 
@@ -423,7 +424,7 @@ class HomeController extends GetxController {
         isSuccessStatus = addUserStoryModel.success.obs;
 
         if (isSuccessStatus.value) {
-          Fluttertoast.showToast(msg: addUserStoryModel.message);
+          Fluttertoast.showToast(msg: addUserStoryModel.message,fontSize: 12.sp);
           await getUserStory(storyOption: StoryOption.stay);
           Get.back();
         } else {

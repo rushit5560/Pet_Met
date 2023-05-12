@@ -12,13 +12,12 @@ import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/common_widgets/loader.dart';
 
-
-
 class ChatScreen extends StatefulWidget {
-  ChatScreen({Key? key}) : super(key: key);
+  const ChatScreen({Key? key}) : super(key: key);
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
@@ -145,10 +144,14 @@ class _ChatScreenState extends State<ChatScreen> {
                             builder: (context, snapshot) {
                               if (snapshot.hasError) {
                                 return Text(
-                                    "Something went wrong! ${snapshot.error}");
+                                  "Something went wrong! ${snapshot.error}",
+                                  style: TextStyle(fontSize: 8.sp),
+                                );
                               } else if (snapshot.hasData) {
                                 final chatList = snapshot.data;
-                                log('chatList length: ${chatList!.length}');
+                                log(
+                                  'chatList length: ${chatList!.length}',
+                                );
                                 return chatList.isEmpty
                                     ? Center(
                                         child: Text(
@@ -156,7 +159,8 @@ class _ChatScreenState extends State<ChatScreen> {
                                           style: TextStyle(
                                               color: themeProvider.darkTheme
                                                   ? AppColors.whiteColor
-                                                  : AppColors.darkThemeColor),
+                                                  : AppColors.darkThemeColor,
+                                              fontSize: 8.sp),
                                         ),
                                       )
                                     : Scrollbar(
@@ -333,8 +337,8 @@ class _ChatScreenState extends State<ChatScreen> {
                               receiverName,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                  fontSize: 16,
+                              style: TextStyle(
+                                  fontSize: 12.sp,
                                   fontWeight: FontWeight.bold,
                                   color: AppColors.accentColor),
                             ),

@@ -47,7 +47,7 @@ class PetMeetingDetailsScreen extends StatelessWidget {
                 Expanded(
                   child: Obx(
                     () => petMeetingDetailsScreenController.isLoading.value
-                        ? CustomAnimationLoader()
+                        ? const CustomAnimationLoader()
                         : SingleChildScrollView(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,

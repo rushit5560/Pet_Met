@@ -18,6 +18,7 @@ import 'package:pet_met/utils/razorpay_key.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:http/http.dart' as http;
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:sizer/sizer.dart';
 
 
 
@@ -611,7 +612,8 @@ class UserProfileController extends GetxController {
   void _handleExternalWallet(ExternalWalletResponse response) {
     print('External SDK Response: $response');
     Fluttertoast.showToast(
-        msg: "EXTERNAL_WALLET: " + response.walletName!,
+        msg: "EXTERNAL_WALLET: " + response.walletName!
+        ,fontSize: 12.sp,
         toastLength: Toast.LENGTH_SHORT);
     log("response Wallet : ${response.walletName}");
   }

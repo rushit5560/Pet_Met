@@ -10,6 +10,7 @@ import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/razorpay_key.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
+import 'package:sizer/sizer.dart';
 
 
 class PetVetsAndNgoDetailsScreenController extends GetxController {
@@ -140,13 +141,14 @@ class PetVetsAndNgoDetailsScreenController extends GetxController {
   }
 
   void _handlePaymentError(PaymentFailureResponse response) {
-    Fluttertoast.showToast(msg: 'Payment processing cancelled by user');
+    Fluttertoast.showToast(msg: 'Payment processing cancelled by user',fontSize: 12.sp);
   }
 
   void _handleExternalWallet(ExternalWalletResponse response) {
     print('External SDK Response: $response');
     Fluttertoast.showToast(
-        msg: "EXTERNAL_WALLET: " + response.walletName!,
+        msg: "EXTERNAL_WALLET: " + response.walletName!
+        ,fontSize: 12.sp,
         toastLength: Toast.LENGTH_SHORT);
     log("response Wallet : ${response.walletName}");
   }
@@ -185,7 +187,9 @@ class PetVetsAndNgoDetailsScreenController extends GetxController {
       if (isSuccessStatus.value) {
         priceController.clear();
         Fluttertoast.showToast(
-            msg: "Payment Successful.", toastLength: Toast.LENGTH_LONG);
+            msg: "Payment Successful."
+            ,fontSize: 12.sp,
+             toastLength: Toast.LENGTH_LONG);
       } else {
         log("Pet Add Order Api Else Else");
       }
