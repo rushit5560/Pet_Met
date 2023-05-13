@@ -947,7 +947,7 @@ class _BuildMenuState extends State<BuildMenu> {
                       primary: AppColors.accentColor,
                       minimumSize: Size(
                         controller.size.width * 0.25,
-                        30,
+                         30,
                       ),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16, vertical: 12),
