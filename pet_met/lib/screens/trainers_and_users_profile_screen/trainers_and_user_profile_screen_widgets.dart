@@ -10,6 +10,7 @@ import 'package:pet_met/screens/pet_pricing_screen/pet_pricing_screen.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
+import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:pet_met/utils/validations.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -158,7 +159,8 @@ class UploadImageModule extends StatelessWidget {
                                           ? AppImages.cameraPlaceHolderImgDark
                                           : AppImages.cameraPlaceHolderImglight,
                                       fit: BoxFit.fill,
-                                      height: screenController.size.height * 0.2,
+                                      height:
+                                          screenController.size.height * 0.2,
                                       width: screenController.size.width * 0.50,
                                     ),
                                     const SizedBox(height: 20),
@@ -208,7 +210,7 @@ class UploadImageModule extends StatelessWidget {
                           Text(
                             "Upload Image",
                             style: TextStyle(
-                            color: themeProvider.darkTheme
+                              color: themeProvider.darkTheme
                                   ? AppColors.whiteColor
                                   : AppColors.blackTextColor,
                               fontSize: 15.sp,
@@ -356,7 +358,7 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                 ? AppColors.whiteColor
                 : AppColors.blackTextColor,
             fontWeight: FontWeight.bold,
-            fontSize: 16,
+            fontSize: 10.sp,
           ),
         ),
         const SizedBox(height: 10),
@@ -633,12 +635,12 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                       margin: const EdgeInsets.only(bottom: 5, right: 5),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.all(
+                        borderRadius: const BorderRadius.all(
                           Radius.circular(8),
                         ),
                       ),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.all(
+                        borderRadius: const BorderRadius.all(
                           Radius.circular(8),
                         ),
                         child: index == 0
@@ -657,12 +659,14 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                                           return Icon(
                                             Icons.add,
                                             color: AppColors.accentTextColor,
+                                            size: 3.h,
                                           );
                                         },
                                       )
                                     : Icon(
                                         Icons.add,
                                         color: AppColors.accentTextColor,
+                                        size: 3.h,
                                       )
                             : index == 1
                                 ? screenController.trainerPictureFile2 != null
@@ -681,12 +685,14 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                                                 Icons.add,
                                                 color:
                                                     AppColors.accentTextColor,
+                                                size: 3.h,
                                               );
                                             },
                                           )
                                         : Icon(
                                             Icons.add,
                                             color: AppColors.accentTextColor,
+                                            size: 3.h,
                                           )
                                 : index == 2
                                     ? screenController.trainerPictureFile3 !=
@@ -708,6 +714,7 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                                                     Icons.add,
                                                     color: AppColors
                                                         .accentTextColor,
+                                                    size: 3.h,
                                                   );
                                                 },
                                               )
@@ -715,6 +722,7 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                                                 Icons.add,
                                                 color:
                                                     AppColors.accentTextColor,
+                                                size: 3.h,
                                               )
                                     : index == 3
                                         ? screenController
@@ -739,6 +747,7 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                                                         Icons.add,
                                                         color: AppColors
                                                             .accentTextColor,
+                                                        size: 3.h,
                                                       );
                                                     },
                                                   )
@@ -746,6 +755,7 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                                                     Icons.add,
                                                     color: AppColors
                                                         .accentTextColor,
+                                                    size: 3.h,
                                                   )
                                         : index == 4
                                             ? screenController
@@ -771,6 +781,7 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                                                             Icons.add,
                                                             color: AppColors
                                                                 .accentTextColor,
+                                                            size: 3.h,
                                                           );
                                                         },
                                                       )
@@ -778,6 +789,7 @@ class TrainersAchievmentPictureListModule extends StatelessWidget {
                                                         Icons.add,
                                                         color: AppColors
                                                             .accentTextColor,
+                                                        size: 3.h,
                                                       )
                                             : Container(),
                       ),
@@ -1623,7 +1635,7 @@ class GetVerifiedInfo extends StatelessWidget {
                   onTap: () {
                     Clipboard.setData(
                         const ClipboardData(text: "info@petomate.com"));
-                    Fluttertoast.showToast(msg: "Copied",fontSize: 12.sp);
+                    Fluttertoast.showToast(msg: "Copied", fontSize: 12.sp);
                   },
                   child: Text(
                     "Mail it on : info@petomate.com",
@@ -1650,14 +1662,14 @@ class GetVerifiedInfo extends StatelessWidget {
               color: themeProvider.darkTheme
                   ? AppColors.whiteColor
                   : AppColors.darkThemeColor,
-              fontSize: 16,
+              fontSize: 10.sp,
               fontWeight: FontWeight.w400,
             ),
           ),
           Image.asset(
             AppIcons.verifiedSymbolImg,
-            width: 30,
-            height: 30,
+            width: 3.5.h,
+            height: 3.5.h,
           ),
           /* Icon(
             Icons.verified_outlined,
@@ -1854,9 +1866,11 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                               // textAlign: TextAlign.center,
                               maxLines: 1,
                               style: TextStyle(
-                                  color: themeProvider.darkTheme
-                                      ? AppColors.whiteColor
-                                      : AppColors.darkThemeColor)),
+                                color: themeProvider.darkTheme
+                                    ? AppColors.whiteColor
+                                    : AppColors.darkThemeColor,
+                                fontSize: 10.sp,
+                              )),
                         ),
                         IconButton(
                           icon: Icon(
@@ -1864,7 +1878,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                             color: themeProvider.darkTheme
                                 ? AppColors.whiteColor
                                 : AppColors.darkThemeColor,
-                            size: 20,
+                            size: 2.9.h,
                           ),
                           tooltip: 'DOB',
                           onPressed: () {
@@ -1943,9 +1957,11 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                               // textAlign: TextAlign.center,
                               maxLines: 1,
                               style: TextStyle(
-                                  color: themeProvider.darkTheme
-                                      ? AppColors.whiteColor
-                                      : AppColors.darkThemeColor)),
+                                color: themeProvider.darkTheme
+                                    ? AppColors.whiteColor
+                                    : AppColors.darkThemeColor,
+                                fontSize: 10.sp,
+                              )),
                         ),
                         IconButton(
                           icon: Icon(
@@ -1953,7 +1969,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                             color: themeProvider.darkTheme
                                 ? AppColors.whiteColor
                                 : AppColors.darkThemeColor,
-                            size: 20,
+                            size: 2.9.h,
                           ),
                           tooltip: 'DOB',
                           onPressed: () {
@@ -2014,7 +2030,7 @@ class SubmitButtonModule extends StatelessWidget {
       },
       child: Container(
         width: double.infinity,
-        height: 50,
+        // height: 50,
         decoration: const BoxDecoration(
           color: AppColors.accentColor,
           borderRadius: BorderRadius.all(
@@ -2029,7 +2045,7 @@ class SubmitButtonModule extends StatelessWidget {
               fontSize: 15.sp,
               fontWeight: FontWeight.w600,
             ),
-          ),
+          ).commonSymmetricPadding(vertical: 10),
         ),
       ),
     );

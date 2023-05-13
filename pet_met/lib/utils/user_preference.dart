@@ -21,10 +21,11 @@ class UserPreference {
   String shopNameKey = "shopNameKey";
   String shopProfileImageKey = "shopProfileImageKey";
 
-  String userLatitudeKey = "userLatitudeKey";
-  String userLongitudeKey = "userLongitudeKey";
+ static String userLatitudeKey = "userLatitudeKey";
+  static String userLongitudeKey = "userLongitudeKey";
 
   String fcmTokenKey = "fcmTokenKey";
+
 
   /// Set Role Id Key
   Future<void> setRoleId(int value) async {
@@ -203,5 +204,11 @@ class UserPreference {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String token = prefs.getString(fcmTokenKey) ?? "";
     return token;
+  }
+
+  Future<String> getStringValueFromPrefs({required String key}) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String value = prefs.getString(key) ?? "";
+    return value;
   }
 }

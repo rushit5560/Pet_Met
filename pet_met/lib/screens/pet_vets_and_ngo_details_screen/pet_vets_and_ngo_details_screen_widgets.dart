@@ -339,7 +339,7 @@ class VetAndNgoNameAndSocialMediaButtonModule extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                screenController.vetsNgoDetailsData[0].name!,
+                screenController.vetsNgoDetailsData[0].displayName!,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(

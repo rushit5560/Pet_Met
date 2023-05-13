@@ -52,7 +52,7 @@ class AboutScreen extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 25, vertical: 10),
-                              child: Container(
+                              child: SizedBox(
                                 height: 86.h,
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,

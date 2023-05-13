@@ -80,14 +80,14 @@ class AboutUsModule extends StatelessWidget {
                   color: themeProvider.darkTheme
                       ? AppColors.whiteColor
                       : AppColors.blackTextColor,
-                  fontSize: const FontSize(15.0),
+                  fontSize: FontSize(10.sp),
                   fontWeight: FontWeight.w500,
                 ),
                 "p": Style(
                   color: themeProvider.darkTheme
                       ? AppColors.whiteColor
                       : AppColors.blackTextColor,
-                  fontSize: const FontSize(15.0),
+                  fontSize: FontSize(10.sp),
                   fontWeight: FontWeight.w500,
                 ),
               },

@@ -11,8 +11,6 @@ import '../../utils/common_widgets/custom_appbar.dart';
 import '../../utils/enums.dart';
 import 'pet_care_info_screen_widgets.dart';
 
-
-
 class PetCareInfoScreen extends StatelessWidget {
   PetCareInfoScreen({Key? key}) : super(key: key);
 

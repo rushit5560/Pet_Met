@@ -195,7 +195,7 @@ class AddNewPaymentButtonModule extends StatelessWidget {
                   width: 25,
                   decoration: BoxDecoration(
                     color: AppColors.accentColor,
-                    borderRadius: BorderRadius.all(
+                    borderRadius: const BorderRadius.all(
                       Radius.circular(8),
                     ),
                     boxShadow: [
@@ -211,6 +211,8 @@ class AddNewPaymentButtonModule extends StatelessWidget {
                     child: Icon(
                       Icons.add,
                       color: AppColors.whiteColor,
+                                      size: 3.h,
+
                     ),
                   ),
                 ),

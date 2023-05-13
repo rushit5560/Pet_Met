@@ -73,7 +73,9 @@ class PetMeetingListModule extends StatelessWidget {
                     screenController.subCatPetList[i].data.id,
                     screenController.subCatPetList[i].data.userid,
                     screenController.subCatPetList[i].data.categoryId,
-                    screenController.subCatPetList[i].name.name,
+                    // screenController.subCatPetList[i].name.name,
+                    screenController.subCatPetList[i].name.displayName,
+
                   ],
                 );
               },
@@ -116,7 +118,9 @@ class PetMeetingListModule extends StatelessWidget {
                     screenController.subCatPetList[i].data.id,
                     screenController.subCatPetList[i].data.userid,
                     screenController.subCatPetList[i].data.categoryId,
-                    screenController.subCatPetList[i].name.name,
+                    // screenController.subCatPetList[i].name.name,
+                    screenController.subCatPetList[i].name.displayName,
+
                   ],
                 );
               },
@@ -247,7 +251,7 @@ class PetMeetingListModule extends StatelessWidget {
                         child: Row(
                           children: [
                             Text(
-                              screenController.subCatPetList[i].name.name,
+                              screenController.subCatPetList[i].name.displayName,
                               style: TextStyle(
                                 color: AppColors.accentTextColor,
                                 fontSize: 10.sp,

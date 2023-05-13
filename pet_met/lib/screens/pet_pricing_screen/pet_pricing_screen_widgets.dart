@@ -5,11 +5,10 @@ import 'package:get/get.dart';
 import 'package:pet_met/controllers/pet_pricing_controller.dart';
 import 'package:pet_met/screens/pet_tracker_pricing_screen/pet_tracker_pricing_screen.dart';
 import 'package:pet_met/utils/app_colors.dart';
+import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
-
-
 
 class PetTrackerPriceModule extends StatelessWidget {
   PetTrackerPriceModule({
@@ -41,12 +40,12 @@ class PetTrackerPriceModule extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Get.to(
-              () => PetTrackerPricingScreen(),
+          () => PetTrackerPricingScreen(),
           transition: Transition.native,
           duration: const Duration(milliseconds: 500),
           arguments: [
             controller.planData[index].id,
-          controller.planData[index].palnactive
+            controller.planData[index].palnactive
           ],
         );
       },
@@ -118,7 +117,6 @@ class PetTrackerPriceModule extends StatelessWidget {
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-
                           Html(
                             data: overviewText,
                             style: {
@@ -166,60 +164,65 @@ class PetTrackerPriceModule extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {
-
-                          controller.selectedPlanId = controller.planData[index].id;
-                          controller.selectedPlanPrice = controller.planData[index].rs;
-                          controller.selectedPlanOverview = controller.planData[index].overview;
-                          controller.selectedPlanName = controller.planData[index].name;
-                          /*log('selectedPlanId : ${controller.selectedPlanId}');
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      controller.selectedPlanId = controller.planData[index].id;
+                      controller.selectedPlanPrice =
+                          controller.planData[index].rs;
+                      controller.selectedPlanOverview =
+                          controller.planData[index].overview;
+                      controller.selectedPlanName =
+                          controller.planData[index].name;
+                      /*log('selectedPlanId : ${controller.selectedPlanId}');
                           log('selectedPlanPrice : ${controller.selectedPlanPrice}');
                           log('selectedPlanOverview : ${controller.selectedPlanOverview}');
                           log('selectedPlanName : ${controller.selectedPlanName}');*/
 
-                          if(controller.planData[index].palnactive == "true") {
-                            Fluttertoast.showToast(msg: 'Selected plan already activated.',fontSize: 12.sp);
-                          } else {
-                            controller.openCheckout();
-                          }
-                        },
-                        style: ElevatedButton.styleFrom(
-                          primary: themeProvider.darkTheme
-                              ? AppColors.whiteColor
-                              : AppColors.accentColor,
-                          fixedSize: Size(Get.size.width * 0.32, 35),
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(12),
-                            ),
-                          ),
+                      if (controller.planData[index].palnactive == "true") {
+                        Fluttertoast.showToast(
+                          msg: 'Selected plan already activated.',
+                          fontSize: 12.sp,
+                        );
+                      } else {
+                        controller.openCheckout();
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.accentColor,
+                      // fixedSize: Size(Get.size.width * 0.32),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(12),
                         ),
-                        child: Center(
-                          child: Text(
-                            controller.planData[index].palnactive == "true"
-                                ? "Activated"
-                                : "Buy",
-                            /*controller.planData[index].isActive
+                      ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        controller.planData[index].palnactive == "true"
+                            ? "Activated"
+                            : "Buy",
+                        /*controller.planData[index].isActive
                                     .toString()
                                     .contains("0")
                                 ? "Buy"
                                 : "Purchased",*/
-                            style: TextStyle(
-                              color: themeProvider.darkTheme
-                                  ? AppColors.accentColor
-                                  : AppColors.whiteColor,
-                              fontSize: 12.sp,
-                            ),
-                          ),
+                        style: TextStyle(
+                          color: themeProvider.darkTheme
+                              ? AppColors.accentColor
+                              : AppColors.whiteColor,
+                          fontSize: 12.sp,
                         ),
-                      ),
-                    ],
-                  ),
+                      ).commonSymmetricPadding(vertical: 5),
+                    ),
+                  ).commonSymmetricPadding(horizontal: 50),
                 ],
+                //   ),
+                // ],
               ),
             ),
           ),

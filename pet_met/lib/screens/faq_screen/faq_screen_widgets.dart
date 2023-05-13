@@ -10,7 +10,6 @@ import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import '../../utils/app_images.dart';
 
-
 class BackgroundCurve extends StatelessWidget {
   BackgroundCurve({Key? key}) : super(key: key);
 
@@ -87,25 +86,25 @@ class FaqListModule extends StatelessWidget {
                 data: controller.faqList[index].answer,
                 style: {
                   "body": Style(
-                    fontSize: const FontSize(15),
+                    fontSize: FontSize(10.sp),
                     color: themeProvider.darkTheme
                         ? AppColors.whiteColor
                         : AppColors.greyTextColor,
                   ),
                   "p": Style(
-                    fontSize: const FontSize(15),
+                    fontSize: FontSize(10.sp),
                     color: themeProvider.darkTheme
                         ? AppColors.whiteColor
                         : AppColors.greyTextColor,
                   ),
                   "b": Style(
-                    fontSize: const FontSize(15),
+                    fontSize: FontSize(10.sp),
                     color: themeProvider.darkTheme
                         ? AppColors.whiteColor
                         : AppColors.greyTextColor,
                   ),
                   "span": Style(
-                    fontSize: const FontSize(15),
+                    fontSize: FontSize(10.sp),
                     color: themeProvider.darkTheme
                         ? AppColors.whiteColor
                         : AppColors.greyTextColor,

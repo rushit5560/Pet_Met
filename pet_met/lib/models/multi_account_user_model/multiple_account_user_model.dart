@@ -195,9 +195,11 @@ class VetNgo {
 
 import 'dart:convert';
 
-MultiAccountUserModel multiAccountUserModelFromJson(String str) => MultiAccountUserModel.fromJson(json.decode(str));
+MultiAccountUserModel multiAccountUserModelFromJson(String str) =>
+    MultiAccountUserModel.fromJson(json.decode(str));
 
-String multiAccountUserModelToJson(MultiAccountUserModel data) => json.encode(data.toJson());
+String multiAccountUserModelToJson(MultiAccountUserModel data) =>
+    json.encode(data.toJson());
 
 class MultiAccountUserModel {
   MultiAccountUserModel({
@@ -210,17 +212,18 @@ class MultiAccountUserModel {
   String messege;
   Data data;
 
-  factory MultiAccountUserModel.fromJson(Map<String, dynamic> json) => MultiAccountUserModel(
-    success: json["success"] ?? false,
-    messege: json["messege"] ?? "",
-    data: Data.fromJson(json["data"] ?? {}),
-  );
+  factory MultiAccountUserModel.fromJson(Map<String, dynamic> json) =>
+      MultiAccountUserModel(
+        success: json["success"] ?? false,
+        messege: json["messege"] ?? "",
+        data: Data.fromJson(json["data"] ?? {}),
+      );
 
   Map<String, dynamic> toJson() => {
-    "success": success,
-    "messege": messege,
-    "data": data.toJson(),
-  };
+        "success": success,
+        "messege": messege,
+        "data": data.toJson(),
+      };
 }
 
 class Data {
@@ -239,26 +242,26 @@ class Data {
   Trainer trainer;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    // userdata: UserData.fromJson(json["userdata"] ?? {}),
-    user: User.fromJson(json["user"] ?? {}),
-    shop: Shop.fromJson(json["shop"] ?? {}),
-    vetNgo: VetNgo.fromJson(json["vet_ngo"] ?? {}),
-    trainer: Trainer.fromJson(json["trainer"] ?? {}),
-    //shop: Map.from(json["shop"]).map((k, v) => MapEntry<String, String>(k, v == null ? null : v)),
-    //vetNgo: Map.from(json["vet_ngo"]).map((k, v) => MapEntry<String, String>(k, v == null ? null : v)),
-    //trainer: Map.from(json["trainer"]).map((k, v) => MapEntry<String, String>(k, v == null ? null : v)),
-  );
+        // userdata: UserData.fromJson(json["userdata"] ?? {}),
+        user: User.fromJson(json["user"] ?? {}),
+        shop: Shop.fromJson(json["shop"] ?? {}),
+        vetNgo: VetNgo.fromJson(json["vet_ngo"] ?? {}),
+        trainer: Trainer.fromJson(json["trainer"] ?? {}),
+        //shop: Map.from(json["shop"]).map((k, v) => MapEntry<String, String>(k, v == null ? null : v)),
+        //vetNgo: Map.from(json["vet_ngo"]).map((k, v) => MapEntry<String, String>(k, v == null ? null : v)),
+        //trainer: Map.from(json["trainer"]).map((k, v) => MapEntry<String, String>(k, v == null ? null : v)),
+      );
 
   Map<String, dynamic> toJson() => {
-    // "userdata": userdata.toJson(),
-    "user": user.toJson(),
-    "shop": shop.toJson(),
-    "vet_ngo": vetNgo.toJson(),
-    "trainer": trainer.toJson(),
-    //"shop": Map.from(shop).map((k, v) => MapEntry<String, dynamic>(k, v == null ? null : v)),
-    //"vet_ngo": Map.from(vetNgo).map((k, v) => MapEntry<String, dynamic>(k, v == null ? null : v)),
-    //"trainer": Map.from(trainer).map((k, v) => MapEntry<String, dynamic>(k, v == null ? null : v)),
-  };
+        // "userdata": userdata.toJson(),
+        "user": user.toJson(),
+        "shop": shop.toJson(),
+        "vet_ngo": vetNgo.toJson(),
+        "trainer": trainer.toJson(),
+        //"shop": Map.from(shop).map((k, v) => MapEntry<String, dynamic>(k, v == null ? null : v)),
+        //"vet_ngo": Map.from(vetNgo).map((k, v) => MapEntry<String, dynamic>(k, v == null ? null : v)),
+        //"trainer": Map.from(trainer).map((k, v) => MapEntry<String, dynamic>(k, v == null ? null : v)),
+      };
 }
 
 class UserData {
@@ -266,6 +269,7 @@ class UserData {
     //this.uid,
     required this.id,
     required this.name,
+    required this.displayName,
     required this.email,
     required this.emailVerifiedAt,
     required this.password,
@@ -290,6 +294,7 @@ class UserData {
   //String uid;
   String id;
   String name;
+  String displayName;
   String email;
   String emailVerifiedAt;
   String password;
@@ -311,54 +316,56 @@ class UserData {
   String enddate;
 
   factory UserData.fromJson(Map<String, dynamic> json) => UserData(
-    //uid: json["uid"] == null ? null : json["uid"],
-    id: json["id"] ?? "",
-    name: json["name"] ?? "",
-    email: json["email"] ?? "",
-    emailVerifiedAt: json["email_verified_at"] ?? "",
-    password: json["password"] ?? "",
-    rememberToken: json["remember_token"] ?? "",
-    image: json["image"] ?? "",
-    country: json["country"] ?? "",
-    state: json["state"] ?? "",
-    city: json["city"] ?? "",
-    categoryId: json["categoryID"] ?? "",
-    forgotpasswordToken: json["forgotpassword_token"] ?? "",
-    createdAt: json["created_at"] ?? "",
-    updatedAt: json["updated_at"] ?? "",
-    bod: json["bod"] ?? "",
-    phone: json["phone"] ?? "",
-    gender: json["gender"] ?? "",
-    isActive: json["is_active"] ?? "",
-    isVerified: json["is_verified"] ?? "",
-    startdate: json["startdate"] ?? "",
-    enddate: json["enddate"] ?? "",
-  );
+        //uid: json["uid"] == null ? null : json["uid"],
+        id: json["id"] ?? "",
+        name: json["name"] ?? "",
+        displayName: json["display_name"] ?? "",
+
+        email: json["email"] ?? "",
+        emailVerifiedAt: json["email_verified_at"] ?? "",
+        password: json["password"] ?? "",
+        rememberToken: json["remember_token"] ?? "",
+        image: json["image"] ?? "",
+        country: json["country"] ?? "",
+        state: json["state"] ?? "",
+        city: json["city"] ?? "",
+        categoryId: json["categoryID"] ?? "",
+        forgotpasswordToken: json["forgotpassword_token"] ?? "",
+        createdAt: json["created_at"] ?? "",
+        updatedAt: json["updated_at"] ?? "",
+        bod: json["bod"] ?? "",
+        phone: json["phone"] ?? "",
+        gender: json["gender"] ?? "",
+        isActive: json["is_active"] ?? "",
+        isVerified: json["is_verified"] ?? "",
+        startdate: json["startdate"] ?? "",
+        enddate: json["enddate"] ?? "",
+      );
 
   Map<String, dynamic> toJson() => {
-    //"uid": uid == null ? null : uid,
-    "id": id,
-    "name": name,
-    "email": email,
-    "email_verified_at": emailVerifiedAt,
-    "password": password,
-    "remember_token": rememberToken,
-    "image": image,
-    "country": country,
-    "state": state,
-    "city": city,
-    "categoryID": categoryId,
-    "forgotpassword_token": forgotpasswordToken,
-    "created_at": createdAt,
-    "updated_at": updatedAt,
-    "bod": bod,
-    "phone": phone,
-    "gender": gender,
-    "is_active": isActive,
-    "is_verified": isVerified,
-    "startdate": startdate,
-    "enddate": enddate,
-  };
+        //"uid": uid == null ? null : uid,
+        "id": id,
+        "name": name,
+        "email": email,
+        "email_verified_at": emailVerifiedAt,
+        "password": password,
+        "remember_token": rememberToken,
+        "image": image,
+        "country": country,
+        "state": state,
+        "city": city,
+        "categoryID": categoryId,
+        "forgotpassword_token": forgotpasswordToken,
+        "created_at": createdAt,
+        "updated_at": updatedAt,
+        "bod": bod,
+        "phone": phone,
+        "gender": gender,
+        "is_active": isActive,
+        "is_verified": isVerified,
+        "startdate": startdate,
+        "enddate": enddate,
+      };
 }
 
 class User {
@@ -366,6 +373,7 @@ class User {
     required this.uid,
     required this.id,
     required this.name,
+    required this.displayName,
     required this.email,
     required this.emailVerifiedAt,
     required this.password,
@@ -391,6 +399,8 @@ class User {
   String id;
   String name;
   String email;
+
+  String displayName;
   String emailVerifiedAt;
   String password;
   String rememberToken;
@@ -411,153 +421,158 @@ class User {
   String enddate;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-    uid: json["uid"] ?? "",
-    id: json["id"] ?? "",
-    name: json["name"] ?? "",
-    email: json["email"] ?? "",
-    emailVerifiedAt: json["email_verified_at"] ?? "",
-    password: json["password"] ?? "",
-    rememberToken: json["remember_token"] ?? "",
-    image: json["image"] ?? "",
-    country: json["country"] ?? "",
-    state: json["state"] ?? "",
-    city: json["city"] ?? "",
-    categoryID: json["categoryID"] ?? "",
-    forgotpasswordToken: json["forgotpassword_token"] ?? "",
-    createdAt: json["created_at"] ?? "",
-    updatedAt: json["updated_at"] ?? "",
-    bod: json["bod"] ?? "",
-    phone: json["phone"] ?? "",
-    gender: json["gender"] ?? "",
-    isActive: json["is_active"] ?? "",
-    isVerified: json["is_verified"] ?? "",
-    startdate: json["startdate"] ?? "",
-    enddate: json["enddate"] ?? "",
-  );
+        uid: json["uid"] ?? "",
+        id: json["id"] ?? "",
+        name: json["name"] ?? "",
+        displayName: json["display_name"] ?? "",
+        email: json["email"] ?? "",
+        emailVerifiedAt: json["email_verified_at"] ?? "",
+        password: json["password"] ?? "",
+        rememberToken: json["remember_token"] ?? "",
+        image: json["image"] ?? "",
+        country: json["country"] ?? "",
+        state: json["state"] ?? "",
+        city: json["city"] ?? "",
+        categoryID: json["categoryID"] ?? "",
+        forgotpasswordToken: json["forgotpassword_token"] ?? "",
+        createdAt: json["created_at"] ?? "",
+        updatedAt: json["updated_at"] ?? "",
+        bod: json["bod"] ?? "",
+        phone: json["phone"] ?? "",
+        gender: json["gender"] ?? "",
+        isActive: json["is_active"] ?? "",
+        isVerified: json["is_verified"] ?? "",
+        startdate: json["startdate"] ?? "",
+        enddate: json["enddate"] ?? "",
+      );
 
   Map<String, dynamic> toJson() => {
-    "uid": uid,
-    "id": id,
-    "name": name,
-    "email": email,
-    "email_verified_at": emailVerifiedAt,
-    "password": password,
-    "remember_token": rememberToken,
-    "image": image,
-    "country": country,
-    "state": state,
-    "city": city,
-    "categoryID": categoryID,
-    "forgotpassword_token": forgotpasswordToken,
-    "created_at": createdAt,
-    "updated_at": updatedAt,
-    "bod": bod,
-    "phone": phone,
-    "gender": gender,
-    "is_active": isActive,
-    "is_verified": isVerified,
-    "startdate": startdate,
-    "enddate": enddate,
-  };
+        "uid": uid,
+        "id": id,
+        "name": name,
+        "email": email,
+        "email_verified_at": emailVerifiedAt,
+        "password": password,
+        "remember_token": rememberToken,
+        "image": image,
+        "country": country,
+        "state": state,
+        "city": city,
+        "categoryID": categoryID,
+        "forgotpassword_token": forgotpasswordToken,
+        "created_at": createdAt,
+        "updated_at": updatedAt,
+        "bod": bod,
+        "phone": phone,
+        "gender": gender,
+        "is_active": isActive,
+        "is_verified": isVerified,
+        "startdate": startdate,
+        "enddate": enddate,
+      };
 }
 
 class Shop {
-  String ? uid;
-  String ? id;
-  String ? name;
-  String ? address;
-  String ? phonenumber;
-  String ? shopopen;
-  String ? shopclose;
-  String ? fullText;
-  String ? instagram;
-  String ? facebook;
-  String ? showimg;
-  String ? offersimages;
-  String ? image1;
-  String ? image2;
-  String ? image3;
-  String ? image4;
-  String ? image5;
-  String ? meetingimages;
-  String ? sortorder;
-  String ? status;
-  String ? userid;
-  String ? isActive;
-  String ? categoryID;
-  String ? createdBy;
-  String ? modifiedBy;
-  String ? createdDate;
-  String ? modifiedDate;
-  String ? rememberToken;
-  String ? isVerified;
-  String ? startdate;
-  String ? enddate;
-  String ? email;
-  String ? emailVerifiedAt;
-  String ? password;
-  String ? image;
-  String ? country;
-  String ? state;
-  String ? city;
-  String ? forgotpasswordToken;
-  String ? createdAt;
-  String ? updatedAt;
-  String ? bod;
-  String ? phone;
-  String ? gender;
+  String? uid;
+  String? id;
+  String? name;
+  String? displayName;
+  String? address;
+  String? phonenumber;
+  String? shopopen;
+  String? shopclose;
+  String? fullText;
+  String? instagram;
+  String? facebook;
+  String? showimg;
+  String? offersimages;
+  String? image1;
+  String? image2;
+  String? image3;
+  String? image4;
+  String? image5;
+  String? meetingimages;
+  String? sortorder;
+  String? status;
+  String? userid;
+  String? isActive;
+  String? categoryID;
+  String? createdBy;
+  String? modifiedBy;
+  String? createdDate;
+  String? modifiedDate;
+  String? rememberToken;
+  String? isVerified;
+  String? startdate;
+  String? enddate;
+  String? email;
+  String? emailVerifiedAt;
+  String? password;
+  String? image;
+  String? country;
+  String? state;
+  String? city;
+  String? forgotpasswordToken;
+  String? createdAt;
+  String? updatedAt;
+  String? bod;
+  String? phone;
+  String? gender;
 
   Shop(
-      {
-        this.uid,
-        this.id,
-        this.name,
-        this.address,
-        this.phonenumber,
-        this.shopopen,
-        this.shopclose,
-        this.fullText,
-        this.instagram,
-        this.facebook,
-        this.showimg,
-        this.offersimages,
-        this.image1,
-        this.image2,
-        this.image3,
-        this.image4,
-        this.image5,
-        this.meetingimages,
-        this.sortorder,
-        this.status,
-        this.userid,
-        this.isActive,
-        this.categoryID,
-        this.createdBy,
-        this.modifiedBy,
-        this.createdDate,
-        this.modifiedDate,
-        this.rememberToken,
-        this.isVerified,
-        this.startdate,
-        this.enddate,
-        this.email,
-        this.emailVerifiedAt,
-        this.password,
-        this.image,
-        this.country,
-        this.state,
-        this.city,
-        this.forgotpasswordToken,
-        this.createdAt,
-        this.updatedAt,
-        this.bod,
-        this.phone,
-        this.gender});
+      {this.uid,
+      this.id,
+      this.name,
+      this.displayName,
+      this.address,
+      this.phonenumber,
+      this.shopopen,
+      this.shopclose,
+      this.fullText,
+      this.instagram,
+      this.facebook,
+      this.showimg,
+      this.offersimages,
+      this.image1,
+      this.image2,
+      this.image3,
+      this.image4,
+      this.image5,
+      this.meetingimages,
+      this.sortorder,
+      this.status,
+      this.userid,
+      this.isActive,
+      this.categoryID,
+      this.createdBy,
+      this.modifiedBy,
+      this.createdDate,
+      this.modifiedDate,
+      this.rememberToken,
+      this.isVerified,
+      this.startdate,
+      this.enddate,
+      this.email,
+      this.emailVerifiedAt,
+      this.password,
+      this.image,
+      this.country,
+      this.state,
+      this.city,
+      this.forgotpasswordToken,
+      this.createdAt,
+      this.updatedAt,
+      this.bod,
+      this.phone,
+      this.gender});
 
   Shop.fromJson(Map<String, dynamic> json) {
     uid = json['uid'] ?? "";
     id = json['id'] ?? "";
     name = json['name'] ?? "";
+
+    displayName = json["display_name"] ?? "";
+
     address = json['address'] ?? "";
     phonenumber = json['phonenumber'] ?? "";
     shopopen = json['shopopen'] ?? "";
@@ -838,6 +853,7 @@ class VetNgo {
     required this.uid,
     required this.id,
     required this.name,
+    required this.displayName,
     required this.address,
     required this.phone,
     required this.open,
@@ -882,6 +898,7 @@ class VetNgo {
   String uid;
   String id;
   String name;
+  String displayName;
   String address;
   String phone;
   String open;
@@ -923,185 +940,190 @@ class VetNgo {
   String gender;
 
   factory VetNgo.fromJson(Map<String, dynamic> json) => VetNgo(
-    uid: json["uid"] ?? "",
-    id: json["id"] ?? "",
-    name: json["name"] ?? "",
-    address: json["address"] ?? "",
-    phone: json["phone"] ?? "",
-    open: json["open"] ?? "",
-    close: json["close"] ?? "",
-    fullText: json["full_text"] ?? "",
-    instagram: json["instagram"] ?? "",
-    facebook: json["facebook"] ?? "",
-    image: json["image"] ?? "",
-    vetNgoimages: json["vet_ngoimages"] ?? "",
-    image1: json["image1"] ?? "",
-    image2: json["image2"] ?? "",
-    image3: json["image3"] ?? "",
-    image4: json["image4"] ?? "",
-    image5: json["image5"] ?? "",
-    meetingimages: json["meetingimages"] ?? "",
-    isActive: json["is_active"] ?? "",
-    ifscCode: json["ifsc_code"] ?? "",
-    accountCode: json["account_code"] ?? "",
-    userid: json["userid"] ?? "",
-    categoryID: json["categoryID"] ?? "",
-    // createdBy: json["created_by"],
-    // modifiedBy: json["modified_by"],
-    // createdDate: json["created_date"],
-    // modifiedDate: json["modified_date"],
-    rememberToken: json["remember_token"] ?? "",
-    isVerified: json["is_verified"] ?? "",
-    startdate: json["startdate"] ?? "",
-    enddate: json["enddate"] ?? "",
-    email: json["email"] ?? "",
-    emailVerifiedAt: json["email_verified_at"] ?? "",
-    password: json["password"] ?? "",
-    country: json["country"] ?? "",
-    state: json["state"] ?? "",
-    city: json["city"] ?? "",
-    forgotpasswordToken: json["forgotpassword_token"] ?? "",
-    // createdAt: json["created_at"],
-    // updatedAt: json["updated_at"],
-    bod: json["bod"] ?? "",
-    gender: json["gender"] ?? "",
-  );
+        uid: json["uid"] ?? "",
+        id: json["id"] ?? "",
+        name: json["name"] ?? "",
+        displayName: json["display_name"] ?? "",
+
+        address: json["address"] ?? "",
+        phone: json["phone"] ?? "",
+        open: json["open"] ?? "",
+        close: json["close"] ?? "",
+        fullText: json["full_text"] ?? "",
+        instagram: json["instagram"] ?? "",
+        facebook: json["facebook"] ?? "",
+        image: json["image"] ?? "",
+        vetNgoimages: json["vet_ngoimages"] ?? "",
+        image1: json["image1"] ?? "",
+        image2: json["image2"] ?? "",
+        image3: json["image3"] ?? "",
+        image4: json["image4"] ?? "",
+        image5: json["image5"] ?? "",
+        meetingimages: json["meetingimages"] ?? "",
+        isActive: json["is_active"] ?? "",
+        ifscCode: json["ifsc_code"] ?? "",
+        accountCode: json["account_code"] ?? "",
+        userid: json["userid"] ?? "",
+        categoryID: json["categoryID"] ?? "",
+        // createdBy: json["created_by"],
+        // modifiedBy: json["modified_by"],
+        // createdDate: json["created_date"],
+        // modifiedDate: json["modified_date"],
+        rememberToken: json["remember_token"] ?? "",
+        isVerified: json["is_verified"] ?? "",
+        startdate: json["startdate"] ?? "",
+        enddate: json["enddate"] ?? "",
+        email: json["email"] ?? "",
+        emailVerifiedAt: json["email_verified_at"] ?? "",
+        password: json["password"] ?? "",
+        country: json["country"] ?? "",
+        state: json["state"] ?? "",
+        city: json["city"] ?? "",
+        forgotpasswordToken: json["forgotpassword_token"] ?? "",
+        // createdAt: json["created_at"],
+        // updatedAt: json["updated_at"],
+        bod: json["bod"] ?? "",
+        gender: json["gender"] ?? "",
+      );
 
   Map<String, dynamic> toJson() => {
-    "uid": uid,
-    "id": id,
-    "name": name,
-    "address": address,
-    "phone": phone,
-    "open": open,
-    "close": close,
-    "full_text": fullText,
-    "instagram": instagram,
-    "facebook": facebook,
-    "image": image,
-    "vet_ngoimages": vetNgoimages,
-    "image1": image1,
-    "image2": image2,
-    "image3": image3,
-    "image4": image4,
-    "image5": image5,
-    "meetingimages": meetingimages,
-    "is_active": isActive,
-    "ifsc_code": ifscCode,
-    "account_code": accountCode,
-    "userid": userid,
-    "categoryID": categoryID,
-    // "created_by": createdBy,
-    // "modified_by": modifiedBy,
-    // "created_date": createdDate,
-    // "modified_date": modifiedDate,
-    "remember_token": rememberToken,
-    "is_verified": isVerified,
-    "startdate": startdate,
-    "enddate": enddate,
-    "email": email,
-    "email_verified_at": emailVerifiedAt,
-    "password": password,
-    "country": country,
-    "state": state,
-    "city": city,
-    "forgotpassword_token": forgotpasswordToken,
-    // "created_at": createdAt,
-    // "updated_at": updatedAt,
-    "bod": bod,
-    "gender": gender,
-  };
+        "uid": uid,
+        "id": id,
+        "name": name,
+        "address": address,
+        "phone": phone,
+        "open": open,
+        "close": close,
+        "full_text": fullText,
+        "instagram": instagram,
+        "facebook": facebook,
+        "image": image,
+        "vet_ngoimages": vetNgoimages,
+        "image1": image1,
+        "image2": image2,
+        "image3": image3,
+        "image4": image4,
+        "image5": image5,
+        "meetingimages": meetingimages,
+        "is_active": isActive,
+        "ifsc_code": ifscCode,
+        "account_code": accountCode,
+        "userid": userid,
+        "categoryID": categoryID,
+        // "created_by": createdBy,
+        // "modified_by": modifiedBy,
+        // "created_date": createdDate,
+        // "modified_date": modifiedDate,
+        "remember_token": rememberToken,
+        "is_verified": isVerified,
+        "startdate": startdate,
+        "enddate": enddate,
+        "email": email,
+        "email_verified_at": emailVerifiedAt,
+        "password": password,
+        "country": country,
+        "state": state,
+        "city": city,
+        "forgotpassword_token": forgotpasswordToken,
+        // "created_at": createdAt,
+        // "updated_at": updatedAt,
+        "bod": bod,
+        "gender": gender,
+      };
 }
 
 class Trainer {
-  String ? uid;
-  String ? id;
-  String ? name;
-  String ? address;
-  String ? phone;
-  String ? open;
-  String ? close;
-  String ? fullText;
-  String ? instagram;
-  String ? facebook;
-  String ? image;
-  String ? trainerimages;
-  String ? image1;
-  String ? image2;
-  String ? image3;
-  String ? image4;
-  String ? image5;
-  String ? meetingimages;
-  String ? isActive;
-  String ? userid;
-  String ? categoryID;
-  String ? createdBy;
-  String ? modifiedBy;
-  String ? createdDate;
-  String ? modifiedDate;
-  String ? rememberToken;
-  String ? isVerified;
-  String ? startdate;
-  String ? enddate;
-  String ? email;
-  String ? emailVerifiedAt;
-  String ? password;
-  String ? country;
-  String ? state;
-  String ? city;
-  String ? forgotpasswordToken;
-  String ? createdAt;
-  String ? updatedAt;
-  String ? bod;
-  String ? gender;
+  String? uid;
+  String? id;
+  String? name;
+  String? displayName;
+  String? address;
+  String? phone;
+  String? open;
+  String? close;
+  String? fullText;
+  String? instagram;
+  String? facebook;
+  String? image;
+  String? trainerimages;
+  String? image1;
+  String? image2;
+  String? image3;
+  String? image4;
+  String? image5;
+  String? meetingimages;
+  String? isActive;
+  String? userid;
+  String? categoryID;
+  String? createdBy;
+  String? modifiedBy;
+  String? createdDate;
+  String? modifiedDate;
+  String? rememberToken;
+  String? isVerified;
+  String? startdate;
+  String? enddate;
+  String? email;
+  String? emailVerifiedAt;
+  String? password;
+  String? country;
+  String? state;
+  String? city;
+  String? forgotpasswordToken;
+  String? createdAt;
+  String? updatedAt;
+  String? bod;
+  String? gender;
 
   Trainer(
-      {
-        this.uid,
-        this.id,
-        this.name,
-        this.address,
-        this.phone,
-        this.open,
-        this.close,
-        this.fullText,
-        this.instagram,
-        this.facebook,
-        this.image,
-        this.trainerimages,
-        this.image1,
-        this.image2,
-        this.image3,
-        this.image4,
-        this.image5,
-        this.meetingimages,
-        this.isActive,
-        this.userid,
-        this.categoryID,
-        this.createdBy,
-        this.modifiedBy,
-        this.createdDate,
-        this.modifiedDate,
-        this.rememberToken,
-        this.isVerified,
-        this.startdate,
-        this.enddate,
-        this.email,
-        this.emailVerifiedAt,
-        this.password,
-        this.country,
-        this.state,
-        this.city,
-        this.forgotpasswordToken,
-        this.createdAt,
-        this.updatedAt,
-        this.bod,
-        this.gender});
+      {this.uid,
+      this.id,
+      this.name,
+      this.displayName,
+      this.address,
+      this.phone,
+      this.open,
+      this.close,
+      this.fullText,
+      this.instagram,
+      this.facebook,
+      this.image,
+      this.trainerimages,
+      this.image1,
+      this.image2,
+      this.image3,
+      this.image4,
+      this.image5,
+      this.meetingimages,
+      this.isActive,
+      this.userid,
+      this.categoryID,
+      this.createdBy,
+      this.modifiedBy,
+      this.createdDate,
+      this.modifiedDate,
+      this.rememberToken,
+      this.isVerified,
+      this.startdate,
+      this.enddate,
+      this.email,
+      this.emailVerifiedAt,
+      this.password,
+      this.country,
+      this.state,
+      this.city,
+      this.forgotpasswordToken,
+      this.createdAt,
+      this.updatedAt,
+      this.bod,
+      this.gender});
 
   Trainer.fromJson(Map<String, dynamic> json) {
     uid = json['uid'] ?? "";
     id = json['id'] ?? "";
     name = json['name'] ?? "";
+    displayName = json["display_name"] ?? "";
+
     address = json['address'] ?? "";
     phone = json['phone'] ?? "";
     open = json['open'] ?? "";

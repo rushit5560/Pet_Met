@@ -74,7 +74,8 @@ class UploadImageModule extends StatelessWidget {
                     themeProvider.darkTheme
                         ? controller.imageFile!
                         : controller.imageFile!,
-                    width: double.infinity,
+                    // width: double.infinity,
+                      width: controller.size.width * 0.50,
                     height: controller.size.height * 0.2,
                     fit: BoxFit.fill,
                   ),
@@ -88,8 +89,10 @@ class UploadImageModule extends StatelessWidget {
                         themeProvider.darkTheme
                             ? controller.userProfile
                             : controller.userProfile,
-                        width: double.infinity,
+                        // width: double.infinity,
+                          width: controller.size.width * 0.50,
                         height: controller.size.height * 0.2,
+                        
                         fit: BoxFit.fill,
                         errorBuilder: (context, er, bt) {
                           //return Image.asset(AppImages.petMetLogoImg, height: 65);
@@ -376,10 +379,10 @@ class UserPetListModule extends StatelessWidget {
                       const BorderRadius.all(Radius.circular(8)),
                       child: Image.asset(AppImages.petMetLogoImg,
                           fit: BoxFit.cover))*/
-                        const Icon(
+                         Icon(
                       Icons.add,
                       color: AppColors.accentTextColor,
-                      size: 30,
+                      size: 3.h,
                     ),
                   ),
                 ),
@@ -996,88 +999,88 @@ class BirthDateModule extends StatelessWidget {
                   TextSpan(
                     text: '*',
                     style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.red),
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red,
+                    ),
                   )
                 ])),
           ],
         ),
         const SizedBox(height: 8),
-        // Container(
-        //   // height: controller.size.height * 0.08,
-        //   width: double.infinity,
-        //   //padding: const EdgeInsets.only(left: 15, right: 15),
-        //   decoration: const BoxDecoration(
-        //     color: Colors.transparent,
-        //     borderRadius: BorderRadius.all(
-        //       Radius.circular(15),
-        //     ),
-        //   ),
-        //   child:
-        DropdownDatePicker(
-          boxDecoration: BoxDecoration(
-            // border: Border.,
-            color: themeProvider.darkTheme
-                ? AppColors.darkThemeBoxColor
-                : AppColors.whiteColor,
-            borderRadius: BorderRadius.circular(5),
-            boxShadow: [
-              BoxShadow(
-                color: themeProvider.darkTheme
-                    ? AppColors.whiteColor.withOpacity(0.05)
-                    : AppColors.greyTextColor.withOpacity(0.5),
-                blurRadius: 10,
-                spreadRadius: 0.5,
-                offset: const Offset(0, 0),
-              ),
-            ],
+        Container(
+          // height: controller.size.height * 0.08,
+          width: double.infinity,
+          //padding: const EdgeInsets.only(left: 15, right: 15),
+          decoration: const BoxDecoration(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.all(
+              Radius.circular(15),
+            ),
           ),
-          // optional
-          dayFlex: 3,
-          monthFlex: 5,
-          yearFlex: 3,
-          textStyle: TextStyle(
-            color: themeProvider.darkTheme
-                ? AppColors.whiteColor
-                : AppColors.blackTextColor,
-            fontSize: 12.sp,
-            fontWeight: FontWeight.w400,
-          ),
-          icon: Icon(
-            Icons.keyboard_arrow_down_rounded,
-            color: themeProvider.darkTheme
-                ? AppColors.whiteColor
-                : AppColors.greyTextColor,
-          ),
-          isDropdownHideUnderline: false,
-          // optional
-          isFormValidator: true,
-          // optional
-          // startYear: 1900, // optional
-          // endYear: 2020, // optional
-          // width: 10,
+          child: DropdownDatePicker(
+            boxDecoration: BoxDecoration(
+              // border: Border.,
+              color: themeProvider.darkTheme
+                  ? AppColors.darkThemeBoxColor
+                  : AppColors.whiteColor,
+              borderRadius: BorderRadius.circular(5),
+              boxShadow: [
+                BoxShadow(
+                  color: themeProvider.darkTheme
+                      ? AppColors.whiteColor.withOpacity(0.05)
+                      : AppColors.greyTextColor.withOpacity(0.5),
+                  blurRadius: 10,
+                  spreadRadius: 0.5,
+                  offset: const Offset(0, 0),
+                ),
+              ],
+            ),
+            // optional
+            dayFlex: 3,
+            monthFlex: 5,
+            yearFlex: 3,
+            textStyle: TextStyle(
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.blackTextColor,
+              fontSize: 12.sp,
+              fontWeight: FontWeight.w400,
+            ),
+            icon: Icon(
+              Icons.keyboard_arrow_down_rounded,
+              color: themeProvider.darkTheme
+                  ? AppColors.whiteColor
+                  : AppColors.greyTextColor,
+            ),
+            isDropdownHideUnderline: false,
+            // optional
+            isFormValidator: true,
+            // optional
+            // startYear: 1900, // optional
+            // endYear: 2020, // optional
+            // width: 10,
 
-          selectedDay: int.parse(controller.day),
-          selectedMonth: int.parse(controller.month),
-          selectedYear: int.parse(controller.year),
-          onChangedDay: (value) {
-            controller.day = value!;
-            log('onChangedDay: ${controller.day}');
-          },
-          onChangedMonth: (value) {
-            controller.month = value!;
-            log('onChangedMonth: ${controller.month}');
-          },
-          onChangedYear: (value) {
-            controller.year = value!;
-            log('onChangedYear: ${controller.year}');
-          },
-          // showDay: false,// optional
-          // dayFlex: 2,// optional
-          // locale: "zh_CN",// optional
+            selectedDay: int.parse(controller.day),
+            selectedMonth: int.parse(controller.month),
+            selectedYear: int.parse(controller.year),
+            onChangedDay: (value) {
+              controller.day = value!;
+              log('onChangedDay: ${controller.day}');
+            },
+            onChangedMonth: (value) {
+              controller.month = value!;
+              log('onChangedMonth: ${controller.month}');
+            },
+            onChangedYear: (value) {
+              controller.year = value!;
+              log('onChangedYear: ${controller.year}');
+            },
+            // showDay: false,// optional
+            // dayFlex: 2,// optional
+            // locale: "zh_CN",// optional
+          ),
         ),
-        // ),
       ],
     );
   }

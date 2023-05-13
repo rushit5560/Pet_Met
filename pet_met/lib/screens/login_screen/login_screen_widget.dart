@@ -7,13 +7,12 @@ import 'package:pet_met/screens/forgot_password_screen/forgot_password_screen.da
 import 'package:pet_met/screens/register_screen/register_screen.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
+import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:pet_met/utils/validations.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
 import 'dart:io' show Platform;
-
-
 
 // ignore: must_be_immutable
 class BackgroundImage extends StatelessWidget {
@@ -224,7 +223,8 @@ class LoginModule extends StatelessWidget {
                         child: GestureDetector(
                           onTap: () async {
                             // await controller.facebookLogin();
-                            Fluttertoast.showToast(msg: 'Coming soon',fontSize: 12.sp);
+                            Fluttertoast.showToast(
+                                msg: 'Coming soon', fontSize: 12.sp);
                           },
                           child: Container(
                             height: controller.size.height * 0.065,
@@ -277,7 +277,7 @@ class LoginModule extends StatelessWidget {
                           // Fluttertoast.showToast(msg: 'This feature is coming soon');
                         },
                         child: Container(
-                          height: 40,
+                          height: 4.h,
                           decoration: BoxDecoration(
                             color: themeProvider.darkTheme
                                 ? AppColors.darkThemeColor
@@ -296,7 +296,7 @@ class LoginModule extends StatelessWidget {
                           ),
                           child: Image.asset(
                             AppImages.googleImg,
-                            height: 25,
+                            // height: 25,
                           ),
                         ),
                       ),
@@ -308,7 +308,7 @@ class LoginModule extends StatelessWidget {
                           // Fluttertoast.showToast(msg: 'This feature is coming soon');
                         },
                         child: Container(
-                          height: 40,
+                          height: 4.h,
                           decoration: BoxDecoration(
                             color: Colors.white,
                             // color: themeProvider.darkTheme
@@ -325,19 +325,23 @@ class LoginModule extends StatelessWidget {
                               ),
                             ],
                           ),
-                          child: Image.asset(AppImages.appleImg,
-                              height: 25, color: AppColors.darkThemeColor),
+                          child: Image.asset(
+                            AppImages.appleImg,
+                            // height: 25,
+                            color: AppColors.darkThemeColor,
+                          ),
                         ),
                       ),
                       const SizedBox(width: 15),
                       GestureDetector(
                         onTap: () async {
-                          Fluttertoast.showToast(msg: 'Coming soon',fontSize: 12.sp);
+                          Fluttertoast.showToast(
+                              msg: 'Coming soon', fontSize: 12.sp);
 
                           // Fluttertoast.showToast(msg: 'This feature is coming soon');
                         },
                         child: Container(
-                          height: 40,
+                          height: 4.h,
                           decoration: BoxDecoration(
                             color: themeProvider.darkTheme
                                 ? AppColors.darkThemeColor
@@ -356,7 +360,7 @@ class LoginModule extends StatelessWidget {
                           ),
                           child: Image.asset(
                             AppImages.facebookImg,
-                            height: 25,
+                            // height: 25,
                           ),
                         ),
                       ),
@@ -415,22 +419,22 @@ class LoginModule extends StatelessWidget {
                       },
                       child: Container(
                         width: double.infinity,
-                        height: 60,
+                        // height: 60,
                         decoration: const BoxDecoration(
                           color: AppColors.accentColor,
                           borderRadius: BorderRadius.all(
                             Radius.circular(12),
                           ),
                         ),
-                        child: const Center(
+                        child: Center(
                           child: Text(
                             "Login",
                             style: TextStyle(
                               color: AppColors.whiteColor,
-                              fontSize: 22,
+                              fontSize: 15.sp,
                               fontWeight: FontWeight.w600,
                             ),
-                          ),
+                          ).commonSymmetricPadding(vertical: 10),
                         ),
                       ),
                     ),

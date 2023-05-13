@@ -9,9 +9,8 @@ import 'package:pet_met/utils/common_widgets/loader.dart';
 import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
-
-
 
 class PrivacyPolicyScreen extends StatelessWidget {
   PrivacyPolicyScreen({Key? key}) : super(key: key);
@@ -75,7 +74,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
                                         color: themeProvider.darkTheme
                                             ? AppColors.whiteColor
                                             : AppColors.blackTextColor,
-                                        fontSize: const FontSize(15.0),
+                                        fontSize: FontSize(10.sp),
                                         fontWeight: FontWeight.w500,
                                       ),
                                       "body": Style(

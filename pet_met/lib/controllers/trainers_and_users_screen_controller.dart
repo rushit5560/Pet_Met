@@ -16,6 +16,7 @@ import 'package:pet_met/utils/enums.dart';
 import 'package:pet_met/utils/user_details.dart';
 import 'package:http/http.dart' as http;
 import 'package:pet_met/utils/user_preference.dart';
+import 'package:sizer/sizer.dart';
 
 
 
@@ -505,7 +506,7 @@ class TrainersAndUsersScreenController extends GetxController {
         isSuccessStatus = updateTrainersProfileModel.success.obs;
 
         if (isSuccessStatus.value) {
-          Fluttertoast.showToast(msg: updateTrainersProfileModel.message);
+          Fluttertoast.showToast(msg: updateTrainersProfileModel.message,fontSize: 10.sp);
           await getAllRoleProfileFunction(
               profileChangeOption: ProfileChangeOption.stay);
           Get.back();

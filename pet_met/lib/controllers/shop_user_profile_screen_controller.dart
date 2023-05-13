@@ -18,6 +18,7 @@ import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:http/http.dart' as http;
+import 'package:sizer/sizer.dart';
 
 class ShopUserProfileScreenController extends GetxController {
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -36,6 +37,8 @@ class ShopUserProfileScreenController extends GetxController {
   String? offerImage4;
   File? shopOfferFile5;
   String? offerImage5;
+  String userLatitude = "";
+  String userLongitude = "";
 
   final formKey = GlobalKey<FormState>();
   final loginFormKey = GlobalKey<FormState>();
@@ -255,28 +258,28 @@ class ShopUserProfileScreenController extends GetxController {
         // if(userAvail == true) {
         //   userProfile = true;
         userEmail.value = multiAccountUserModel.data.user.email;
-        userName.value = multiAccountUserModel.data.user.name;
+        userName.value = multiAccountUserModel.data.user.displayName;
         // }
         //
         // bool shopAvail = multiAccountUserModel.data.shope.isEmpty ? false : true;
         // if(shopAvail == true) {
         //   shopProfile = true;
         shopEmail.value = "${multiAccountUserModel.data.shop.email}";
-        shopName.value = "${multiAccountUserModel.data.shop.name}";
+        shopName.value = "${multiAccountUserModel.data.shop.displayName}";
         // }
         //
         // bool vetNgoAvail = multiAccountUserModel.data.vetNgo.isEmpty ? false : true;
         // if(vetNgoAvail == true) {
         //   vetNgoProfile = true;
         ngoEmail.value = multiAccountUserModel.data.vetNgo.email;
-        ngoName.value = multiAccountUserModel.data.vetNgo.name;
+        ngoName.value = multiAccountUserModel.data.vetNgo.displayName;
         // }
         //
         // bool trainerAvail = multiAccountUserModel.data.trainer.isEmpty ? false : true;
         // if(trainerAvail == true) {
         //   trainerProfile = true;
         trainerEmail.value = "${multiAccountUserModel.data.trainer.email}";
-        trainerName.value = "${multiAccountUserModel.data.trainer.name}";
+        trainerName.value = "${multiAccountUserModel.data.trainer.displayName}";
         // }
 
       } else {
@@ -403,8 +406,8 @@ class ShopUserProfileScreenController extends GetxController {
       request.fields['full_text'] = detailsController.text.trim();
       request.fields['instagram'] = "instagram.com";
       request.fields['facebook'] = "facebook.com";
-      request.fields['longitude'] = UserDetails.liveLongitude;
-      request.fields['latitude'] = UserDetails.liveLatitude;
+      request.fields['longitude'] = userLongitude;
+      request.fields['latitude'] = userLatitude;
       request.fields['gpayupi'] = gPayController.text.trim();
       request.fields['display_name'] = displayNameController.text.trim();
       log("UserDetails.liveLongitude ${UserDetails.liveLongitude}");
@@ -420,7 +423,10 @@ class ShopUserProfileScreenController extends GetxController {
         isSuccessStatus = shopProfileModel.success.obs;
 
         if (isSuccessStatus.value) {
-          Fluttertoast.showToast(msg: shopProfileModel.message);
+          Fluttertoast.showToast(
+            msg: shopProfileModel.message,
+            fontSize: 12.sp,
+          );
 
           await getAllRoleProfileFunction(
               profileChangeOption: ProfileChangeOption.back);
@@ -1929,10 +1935,20 @@ class ShopUserProfileScreenController extends GetxController {
     // TODO: implement onInit
     super.onInit();
     await getAllRoleProfileFunction();
+    getUserLatLngFunction();
     _razorpay = Razorpay();
     _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
     _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
     _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+  }
+
+  getUserLatLngFunction() async {
+    userLatitude = await userPreference.getStringValueFromPrefs(
+        key: UserPreference.userLatitudeKey);
+    userLongitude = await userPreference.getStringValueFromPrefs(
+        key: UserPreference.userLongitudeKey);
+    log('init userLatitude :$userLatitude');
+    log('init userLongitude :$userLongitude');
   }
 
   @override

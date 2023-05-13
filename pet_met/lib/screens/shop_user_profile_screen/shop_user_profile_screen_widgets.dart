@@ -14,6 +14,7 @@ import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/common_widgets/custom_light_textfield.dart';
 import 'package:pet_met/utils/enums.dart';
+import 'package:pet_met/utils/extension_methods/extension_methods.dart';
 import 'package:pet_met/utils/validations.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
@@ -114,9 +115,10 @@ class UploadImageModule extends StatelessWidget {
                           themeProvider.darkTheme
                               ? screenController.imageFile!
                               : screenController.imageFile!,
-                          width: double.infinity,
+                          // width: double.infinity,
+                            width: screenController.size.width * 0.50,
                           height: screenController.size.height * 0.2,
-                          fit: BoxFit.fill),
+                          fit: BoxFit.fill,),
                     ),
 
                     //),
@@ -148,7 +150,8 @@ class UploadImageModule extends StatelessWidget {
                                       screenController.shopImage
                                   : ApiUrl.apiImagePath +
                                       screenController.shopImage,
-                              width: double.infinity,
+                              // width: double.infinity,
+                                width: screenController.size.width * 0.50,
                               height: screenController.size.height * 0.2,
                               // fit: BoxFit.fill,
                               errorBuilder: (context, er, st) {
@@ -2164,7 +2167,7 @@ class SubmitButtonModule extends StatelessWidget {
               fontSize: 15.sp,
               fontWeight: FontWeight.w600,
             ),
-          ),
+          ).commonSymmetricPadding(vertical: 10),
         ),
       ),
     );

@@ -4,9 +4,11 @@
 
 import 'dart:convert';
 
-GetShopProfileModel getShopProfileModelFromJson(String str) => GetShopProfileModel.fromJson(json.decode(str));
+GetShopProfileModel getShopProfileModelFromJson(String str) =>
+    GetShopProfileModel.fromJson(json.decode(str));
 
-String getShopProfileModelToJson(GetShopProfileModel data) => json.encode(data.toJson());
+String getShopProfileModelToJson(GetShopProfileModel data) =>
+    json.encode(data.toJson());
 
 class GetShopProfileModel {
   GetShopProfileModel({
@@ -19,17 +21,18 @@ class GetShopProfileModel {
   GetShopProfileModelData data;
   String message;
 
-  factory GetShopProfileModel.fromJson(Map<String, dynamic> json) => GetShopProfileModel(
-    success: json["success"] ?? false,
-    data: GetShopProfileModelData.fromJson(json["data"] ?? {}),
-    message: json["message"] ?? "",
-  );
+  factory GetShopProfileModel.fromJson(Map<String, dynamic> json) =>
+      GetShopProfileModel(
+        success: json["success"] ?? false,
+        data: GetShopProfileModelData.fromJson(json["data"] ?? {}),
+        message: json["message"] ?? "",
+      );
 
   Map<String, dynamic> toJson() => {
-    "success": success,
-    "data": data.toJson(),
-    "message": message,
-  };
+        "success": success,
+        "data": data.toJson(),
+        "message": message,
+      };
 }
 
 /*class GetShopProfileModelData {
@@ -67,23 +70,27 @@ class GetShopProfileModelData {
   List<ShopPet> petdata;
   bool showstatus;
 
-  factory GetShopProfileModelData.fromJson(Map<String, dynamic> json) => GetShopProfileModelData(
-    data: List<DataData>.from(json["data"].map((x) => DataData.fromJson(x)) ?? {}),
-    petdata: List<ShopPet>.from(json["petdata"].map((x) => ShopPet.fromJson(x)) ?? {}),
-    showstatus: json["showstatus"] ?? false,
-  );
+  factory GetShopProfileModelData.fromJson(Map<String, dynamic> json) =>
+      GetShopProfileModelData(
+        data: List<DataData>.from(
+            json["data"].map((x) => DataData.fromJson(x)) ?? {}),
+        petdata: List<ShopPet>.from(
+            json["petdata"].map((x) => ShopPet.fromJson(x)) ?? {}),
+        showstatus: json["showstatus"] ?? false,
+      );
 
   Map<String, dynamic> toJson() => {
-    "data": List<dynamic>.from(data.map((x) => x.toJson())),
-    "petdata": List<dynamic>.from(petdata.map((x) => x.toJson())),
-    "showstatus": showstatus,
-  };
+        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+        "petdata": List<dynamic>.from(petdata.map((x) => x.toJson())),
+        "showstatus": showstatus,
+      };
 }
 
 class DataData {
   DataData({
     required this.id,
     required this.shopename,
+    required this.displayName,
     required this.email,
     required this.address,
     required this.phonenumber,
@@ -110,11 +117,12 @@ class DataData {
     required this.longitude,
     required this.latitude,
     required this.gpayupi,
-    required this.displayName,
   });
 
   String id;
   String shopename;
+  String displayName;
+
   String email;
   String address;
   String phonenumber;
@@ -141,76 +149,78 @@ class DataData {
   String longitude;
   String latitude;
   String gpayupi;
-  String displayName;
 
   factory DataData.fromJson(Map<String, dynamic> json) => DataData(
-    id: json["id"] ?? "",
-    shopename: json["name"] ?? "",
-    email: json["email"] ?? "",
-    address: json["address"] ?? "",
-    phonenumber: json["phonenumber"] ?? "",
-    shopopen: json["shopopen"] ?? "",
-    shopclose: json["shopclose"] ?? "",
-    fullText: json["full_text"] ?? "",
-    instagram: json["instagram"] ?? "",
-    facebook: json["facebook"] ?? "",
-    showimg: json["showimg"] ?? "",
-    offersimages: List<String>.from(json["offersimages"].map((x) => x) ?? {}),
-    meetingimages: List<String>.from(json["meetingimages"].map((x) => x) ?? {}),
-    image1: json["image1"] ?? "",
-    image2: json["image2"] ?? "",
-    image3: json["image3"] ?? "",
-    image4: json["image4"] ?? "",
-    image5: json["image5"] ?? "",
-    sortorder: json["sortorder"] ?? "",
-    status: json["status"] ?? "",
-    userid: json["userid"] ?? "",
-    createdBy: json["created_by"] ?? "",
-    modifiedBy: json["modified_by"] ?? "",
-    createdDate:json["created_date"] ?? "",
-    modifiedDate: json["modified_date"] ?? "",
-    longitude: json["longitude"] ?? "",
-    latitude: json["latitude"] ?? "",
-    gpayupi: json["gpayupi"] ?? "",
-      displayName: json["display_name"] ?? ""
-  );
+        id: json["id"] ?? "",
+        shopename: json["name"] ?? "",
+        displayName: json["display_name"] ?? "",
+        email: json["email"] ?? "",
+        address: json["address"] ?? "",
+        phonenumber: json["phonenumber"] ?? "",
+        shopopen: json["shopopen"] ?? "",
+        shopclose: json["shopclose"] ?? "",
+        fullText: json["full_text"] ?? "",
+        instagram: json["instagram"] ?? "",
+        facebook: json["facebook"] ?? "",
+        showimg: json["showimg"] ?? "",
+        offersimages:
+            List<String>.from(json["offersimages"].map((x) => x) ?? {}),
+        meetingimages:
+            List<String>.from(json["meetingimages"].map((x) => x) ?? {}),
+        image1: json["image1"] ?? "",
+        image2: json["image2"] ?? "",
+        image3: json["image3"] ?? "",
+        image4: json["image4"] ?? "",
+        image5: json["image5"] ?? "",
+        sortorder: json["sortorder"] ?? "",
+        status: json["status"] ?? "",
+        userid: json["userid"] ?? "",
+        createdBy: json["created_by"] ?? "",
+        modifiedBy: json["modified_by"] ?? "",
+        createdDate: json["created_date"] ?? "",
+        modifiedDate: json["modified_date"] ?? "",
+        longitude: json["longitude"] ?? "",
+        latitude: json["latitude"] ?? "",
+        gpayupi: json["gpayupi"] ?? "",
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": shopename,
-    "email": email,
-    "address": address,
-    "phonenumber": phonenumber,
-    "shopopen": shopopen,
-    "shopclose": shopclose,
-    "full_text": fullText,
-    "instagram": instagram,
-    "facebook": facebook,
-    "showimg": showimg,
-    "offersimages": List<dynamic>.from(offersimages.map((x) => x)),
-    "meetingimages": List<dynamic>.from(meetingimages.map((x) => x)),
-    "image1": image1,
-    "image2": image2,
-    "image3": image3,
-    "image4": image4,
-    "image5": image5,
-    "sortorder": sortorder,
-    "status": status,
-    "userid": userid,
-    "created_by": createdBy,
-    "modified_by": modifiedBy,
-    "created_date": createdDate,
-    "modified_date": modifiedDate,
-    "longitude": longitude,
-    "latitude": latitude,
-    "gpayupi": gpayupi,
-  };
+        "id": id,
+        "name": shopename,
+        "email": email,
+        "address": address,
+        "phonenumber": phonenumber,
+        "shopopen": shopopen,
+        "shopclose": shopclose,
+        "full_text": fullText,
+        "instagram": instagram,
+        "facebook": facebook,
+        "showimg": showimg,
+        "offersimages": List<dynamic>.from(offersimages.map((x) => x)),
+        "meetingimages": List<dynamic>.from(meetingimages.map((x) => x)),
+        "image1": image1,
+        "image2": image2,
+        "image3": image3,
+        "image4": image4,
+        "image5": image5,
+        "sortorder": sortorder,
+        "status": status,
+        "userid": userid,
+        "created_by": createdBy,
+        "modified_by": modifiedBy,
+        "created_date": createdDate,
+        "modified_date": modifiedDate,
+        "longitude": longitude,
+        "latitude": latitude,
+        "gpayupi": gpayupi,
+      };
 }
 
 class ShopPet {
   ShopPet({
     required this.id,
     required this.image,
+    required this.displayName,
     required this.petName,
     required this.mainCategory,
     required this.subCategory,
@@ -231,6 +241,7 @@ class ShopPet {
   String id;
   String image;
   String petName;
+  String displayName;
   String mainCategory;
   String subCategory;
   String dob;
@@ -247,44 +258,45 @@ class ShopPet {
   String modifiedBy;
 
   factory ShopPet.fromJson(Map<String, dynamic> json) => ShopPet(
-    id: json["id"] ?? "",
-    image: json["image"] ?? "",
-    petName: json["pet_name"] ?? "",
-    mainCategory: json["main_category"] ?? "",
-    subCategory: json["sub_category"] ?? "",
-    dob: json["dob"] ?? "",
-    weight: json["weight"] ?? "",
-    details: json["details"] ?? "",
-    imageList: json["image_list"] ?? "",
-    meetingAvailability: json["meeting_availability"] ?? "",
-    gender: json["gender"] ?? "",
-    isActive: json["is_active"] ?? "",
-    userid: json["userid"] ?? "",
-    createdBy: json["created_by"] ?? "",
-    createdDate: json["created_date"] ?? "",
-    updatedDate: json["updated_date"] ?? "",
-    modifiedBy: json["modified_by"] ?? "",
-  );
+        id: json["id"] ?? "",
+        image: json["image"] ?? "",
+        petName: json["pet_name"] ?? "",
+        displayName: json["display_name"] ?? "",
+        mainCategory: json["main_category"] ?? "",
+        subCategory: json["sub_category"] ?? "",
+        dob: json["dob"] ?? "",
+        weight: json["weight"] ?? "",
+        details: json["details"] ?? "",
+        imageList: json["image_list"] ?? "",
+        meetingAvailability: json["meeting_availability"] ?? "",
+        gender: json["gender"] ?? "",
+        isActive: json["is_active"] ?? "",
+        userid: json["userid"] ?? "",
+        createdBy: json["created_by"] ?? "",
+        createdDate: json["created_date"] ?? "",
+        updatedDate: json["updated_date"] ?? "",
+        modifiedBy: json["modified_by"] ?? "",
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "image": image,
-    "pet_name": petName,
-    "main_category": mainCategory,
-    "sub_category": subCategory,
-    "dob": dob,
-    "weight": weight,
-    "details": details,
-    "image_list": imageList,
-    "meeting_availability": meetingAvailability,
-    "gender": gender,
-    "is_active": isActive,
-    "userid": userid,
-    "created_by": createdBy,
-    "created_date": createdDate,
-    "updated_date": updatedDate,
-    "modified_by": modifiedBy,
-  };
+        "id": id,
+        "image": image,
+        "pet_name": petName,
+        "main_category": mainCategory,
+        "sub_category": subCategory,
+        "dob": dob,
+        "weight": weight,
+        "details": details,
+        "image_list": imageList,
+        "meeting_availability": meetingAvailability,
+        "gender": gender,
+        "is_active": isActive,
+        "userid": userid,
+        "created_by": createdBy,
+        "created_date": createdDate,
+        "updated_date": updatedDate,
+        "modified_by": modifiedBy,
+      };
 }
 
 /*class Profiledatum {

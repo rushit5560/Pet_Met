@@ -13,8 +13,6 @@ import '../../utils/common_widgets/background_widgets.dart';
 import '../../utils/common_widgets/custom_appbar.dart';
 import '../../utils/enums.dart';
 
-
-
 class SupportScreen extends StatelessWidget {
   SupportScreen({Key? key}) : super(key: key);
 
@@ -94,21 +92,21 @@ class SupportScreen extends StatelessWidget {
                                         color: themeProvider.darkTheme
                                             ? AppColors.whiteColor
                                             : AppColors.blackTextColor,
-                                        fontSize: const FontSize(20.0),
+                                        fontSize: FontSize(10.sp),
                                         fontWeight: FontWeight.w500,
                                       ),
                                       "b": Style(
                                         color: themeProvider.darkTheme
                                             ? AppColors.whiteColor
                                             : AppColors.blackTextColor,
-                                        fontSize: const FontSize(15.0),
+                                        fontSize: FontSize(10.sp),
                                         fontWeight: FontWeight.w500,
                                       ),
                                       "span": Style(
                                         color: themeProvider.darkTheme
                                             ? AppColors.whiteColor
                                             : AppColors.blackTextColor,
-                                        fontSize: const FontSize(15.0),
+                                        fontSize: FontSize(10.sp),
                                         fontWeight: FontWeight.w500,
                                       ),
                                     },

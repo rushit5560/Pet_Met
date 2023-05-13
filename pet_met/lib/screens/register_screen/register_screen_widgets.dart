@@ -7,8 +7,6 @@ import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 import '../../services/providers/dark_theme_provider.dart';
 
-
-
 class EmailTextFieldModule extends StatelessWidget {
   EmailTextFieldModule({Key? key}) : super(key: key);
 
@@ -206,43 +204,43 @@ class PasswordTextFieldModule extends StatelessWidget {
               decoration: TextDecoration.none,
             ),
             decoration: InputDecoration(
-                fillColor: themeProvider.darkTheme
-                    ? AppColors.darkThemeBoxColor
-                    : AppColors.whiteColor,
-                filled: true,
-                contentPadding: const EdgeInsets.symmetric(horizontal: 15),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide:
-                      const BorderSide(width: 0, style: BorderStyle.none),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide:
-                      const BorderSide(width: 0, style: BorderStyle.none),
-                ),
-                hintText: "Password",
-                hintStyle: TextStyle(
-                  color: themeProvider.darkTheme
-                      ? AppColors.whiteColor
-                      : AppColors.greyTextColor,
-                  fontSize: 13.sp,
-                  fontWeight: FontWeight.w400,
-                ),
-                suffixIcon: Obx(
-                  () => GestureDetector(
-                    onTap: () {
-                      controller.isPasswordVisible.value =
-                          !controller.isPasswordVisible.value;
-                    },
-                    child: Icon(
-                        controller.isPasswordVisible.value
-                            ? Icons.visibility_off_rounded
-                            : Icons.visibility_rounded,
-                        size: 20,
-                        color: Colors.grey),
+              fillColor: themeProvider.darkTheme
+                  ? AppColors.darkThemeBoxColor
+                  : AppColors.whiteColor,
+              filled: true,
+              contentPadding: const EdgeInsets.symmetric(horizontal: 15),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+              ),
+              hintText: "Password",
+              hintStyle: TextStyle(
+                color: themeProvider.darkTheme
+                    ? AppColors.whiteColor
+                    : AppColors.greyTextColor,
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w400,
+              ),
+              suffixIcon: Obx(
+                () => GestureDetector(
+                  onTap: () {
+                    controller.isPasswordVisible.value =
+                        !controller.isPasswordVisible.value;
+                  },
+                  child: Icon(
+                    controller.isPasswordVisible.value
+                        ? Icons.visibility_off_rounded
+                        : Icons.visibility_rounded,
+                    size: 2.5.h,
+                    color: Colors.grey,
                   ),
-                ),),
+                ),
+              ),
+            ),
           ),
         ],
       ),

@@ -240,7 +240,7 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                             ? AppColors.whiteColor
                                             : AppColors.blackTextColor,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 17),
+                                        fontSize: 12.sp),
                                   ),
                                   const SizedBox(
                                       child: Divider(
@@ -253,11 +253,11 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                           child: Text(
                                             "User Name",
                                             style: TextStyle(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.blackTextColor,
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                                                color: themeProvider.darkTheme
+                                                    ? AppColors.whiteColor
+                                                    : AppColors.blackTextColor,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 10.sp),
                                           )),
                                       const SizedBox(width: 8),
                                       Expanded(
@@ -265,10 +265,10 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                           child: Text(
                                             controller.userName.value,
                                             style: TextStyle(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.blackTextColor,
-                                            ),
+                                                color: themeProvider.darkTheme
+                                                    ? AppColors.whiteColor
+                                                    : AppColors.blackTextColor,
+                                                fontSize: 10.sp),
                                           )),
                                     ],
                                   ),
@@ -280,11 +280,11 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                         child: Text(
                                           "Email",
                                           style: TextStyle(
-                                            color: themeProvider.darkTheme
-                                                ? AppColors.whiteColor
-                                                : AppColors.blackTextColor,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.blackTextColor,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 10.sp),
                                         ),
                                       ),
                                       const SizedBox(width: 8),
@@ -293,10 +293,10 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                           child: Text(
                                             controller.userEmail.value,
                                             style: TextStyle(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.blackTextColor,
-                                            ),
+                                                color: themeProvider.darkTheme
+                                                    ? AppColors.whiteColor
+                                                    : AppColors.blackTextColor,
+                                                fontSize: 10.sp),
                                           )),
                                     ],
                                   ),
@@ -336,7 +336,7 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                             ? AppColors.whiteColor
                                             : AppColors.blackTextColor,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 17),
+                                        fontSize: 12.sp),
                                   ),
                                   const SizedBox(
                                       child: Divider(
@@ -349,10 +349,12 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                           child: Text(
                                             "Shop Name",
                                             style: TextStyle(
-                                                color: themeProvider.darkTheme
-                                                    ? AppColors.whiteColor
-                                                    : AppColors.blackTextColor,
-                                                fontWeight: FontWeight.bold),
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.blackTextColor,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 10.sp,
+                                            ),
                                           )),
                                       Expanded(
                                           flex: 70,
@@ -362,6 +364,7 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                               color: themeProvider.darkTheme
                                                   ? AppColors.whiteColor
                                                   : AppColors.blackTextColor,
+                                              fontSize: 10.sp,
                                             ),
                                           )),
                                     ],
@@ -374,10 +377,12 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                           child: Text(
                                             "Email",
                                             style: TextStyle(
-                                                color: themeProvider.darkTheme
-                                                    ? AppColors.whiteColor
-                                                    : AppColors.blackTextColor,
-                                                fontWeight: FontWeight.bold),
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.blackTextColor,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 10.sp,
+                                            ),
                                           )),
                                       const SizedBox(width: 8),
                                       Expanded(
@@ -388,6 +393,7 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                               color: themeProvider.darkTheme
                                                   ? AppColors.whiteColor
                                                   : AppColors.blackTextColor,
+                                              fontSize: 10.sp,
                                             ),
                                           )),
                                     ],
@@ -424,11 +430,12 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                   Text(
                                     "Vet & NGO",
                                     style: TextStyle(
-                                        color: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.blackTextColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 17),
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor
+                                          : AppColors.blackTextColor,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12.sp,
+                                    ),
                                   ),
                                   const SizedBox(
                                       child: Divider(
@@ -441,11 +448,11 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                           child: Text(
                                             "Vet/Ngo Name",
                                             style: TextStyle(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.blackTextColor,
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                                                color: themeProvider.darkTheme
+                                                    ? AppColors.whiteColor
+                                                    : AppColors.blackTextColor,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 10.sp),
                                           )),
                                       const SizedBox(width: 8),
                                       Expanded(
@@ -453,10 +460,10 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                           child: Text(
                                             controller.ngoName.value,
                                             style: TextStyle(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.blackTextColor,
-                                            ),
+                                                color: themeProvider.darkTheme
+                                                    ? AppColors.whiteColor
+                                                    : AppColors.blackTextColor,
+                                                fontSize: 10.sp),
                                           )),
                                     ],
                                   ),
@@ -468,11 +475,11 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                         child: Text(
                                           "Email",
                                           style: TextStyle(
-                                            color: themeProvider.darkTheme
-                                                ? AppColors.whiteColor
-                                                : AppColors.blackTextColor,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.blackTextColor,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 10.sp),
                                         ),
                                       ),
                                       const SizedBox(width: 8),
@@ -481,10 +488,10 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                           child: Text(
                                             controller.ngoEmail.value,
                                             style: TextStyle(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.blackTextColor,
-                                            ),
+                                                color: themeProvider.darkTheme
+                                                    ? AppColors.whiteColor
+                                                    : AppColors.blackTextColor,
+                                                fontSize: 10.sp),
                                           )),
                                     ],
                                   ),
@@ -520,11 +527,12 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                   Text(
                                     "Trainer",
                                     style: TextStyle(
-                                        color: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.blackTextColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 17),
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor
+                                          : AppColors.blackTextColor,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12.sp,
+                                    ),
                                   ),
                                   const SizedBox(
                                       child: Divider(
@@ -537,10 +545,12 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                           child: Text(
                                             "Trainer Name",
                                             style: TextStyle(
-                                                color: themeProvider.darkTheme
-                                                    ? AppColors.whiteColor
-                                                    : AppColors.blackTextColor,
-                                                fontWeight: FontWeight.bold),
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.blackTextColor,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 10.sp,
+                                            ),
                                           )),
                                       const SizedBox(width: 8),
                                       Expanded(
@@ -548,10 +558,10 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                           child: Text(
                                             controller.trainerName.value,
                                             style: TextStyle(
-                                              color: themeProvider.darkTheme
-                                                  ? AppColors.whiteColor
-                                                  : AppColors.blackTextColor,
-                                            ),
+                                                color: themeProvider.darkTheme
+                                                    ? AppColors.whiteColor
+                                                    : AppColors.blackTextColor,
+                                                fontSize: 10.sp),
                                           )),
                                     ],
                                   ),
@@ -563,10 +573,12 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                           child: Text(
                                             "Email",
                                             style: TextStyle(
-                                                color: themeProvider.darkTheme
-                                                    ? AppColors.whiteColor
-                                                    : AppColors.blackTextColor,
-                                                fontWeight: FontWeight.bold),
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.blackTextColor,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 10.sp,
+                                            ),
                                           )),
                                       const SizedBox(width: 8),
                                       Expanded(
@@ -752,7 +764,7 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                   color: themeProvider.darkTheme
                       ? AppColors.whiteColor
                       : AppColors.darkThemeColor,
-                  fontSize: 16,
+                  fontSize: 12.sp,
                   fontWeight: FontWeight.w500,
                 ),
               ),

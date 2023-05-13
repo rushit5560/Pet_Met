@@ -7,7 +7,7 @@ import 'package:sizer/sizer.dart';
 
 class AlertDialogModule {
   DarkThemeProvider themeProvider =
-      Provider.of<DarkThemeProvider>(Get.context!);
+      Provider.of<DarkThemeProvider>(Get.context!); 
 
   alertDialogBox({required Function() yesClick}) {
     return showDialog(

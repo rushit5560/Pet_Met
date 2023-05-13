@@ -24,7 +24,7 @@ class VetsAndNgoDetailsModel {
 class VetNgoData {
   String? id;
   String? name;
-
+  String? displayName;
   String? password;
   String? address;
   String? phone;
@@ -58,6 +58,7 @@ class VetNgoData {
   VetNgoData({
     this.id,
     this.name,
+    this.displayName,
     this.email,
     this.password,
     this.address,
@@ -91,6 +92,7 @@ class VetNgoData {
   factory VetNgoData.fromJson(Map<String, dynamic> json) => VetNgoData(
         id: json["id"] ?? "",
         name: json["name"] ?? "",
+        displayName: json["display_name"] ?? "",
         email: json["email"] ?? "",
         password: json["password"] ?? "",
         address: json["address"] ?? "",

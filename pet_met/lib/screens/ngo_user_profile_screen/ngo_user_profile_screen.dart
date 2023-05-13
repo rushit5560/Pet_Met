@@ -44,9 +44,10 @@ class NgoUserProfileScreen extends StatelessWidget {
                     onTap: () {
                       modelBottomSheet(context);
                     },
-                    child: const Icon(
+                    child: Icon(
                       Icons.person,
                       color: AppColors.accentColor,
+                      size: 3.h,
                     ),
                     // Image.asset(
                     //   AppImages.multiUserSwitchIcon,
@@ -75,16 +76,16 @@ class NgoUserProfileScreen extends StatelessWidget {
                                             onPressed: () async {
                                               alertDialogModule.alertDialogBox(
                                                   yesClick: () async {
-                                                    await controller
-                                                        .deleteAccountFunction();
-                                                  }
-                                              );
+                                                await controller
+                                                    .deleteAccountFunction();
+                                              });
                                               // await controller
                                               //     .deleteAccountFunction();
                                             },
-                                            icon: const Icon(
+                                            icon: Icon(
                                               Icons.delete,
                                               color: Colors.red,
+                                              size: 3.h,
                                             ))
                                       ],
                                     ),
@@ -203,11 +204,12 @@ class NgoUserProfileScreen extends StatelessWidget {
                                   Text(
                                     "User",
                                     style: TextStyle(
-                                        color: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.blackTextColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 17),
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor
+                                          : AppColors.blackTextColor,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12.sp,
+                                    ),
                                   ),
                                   const SizedBox(
                                       child: Divider(
@@ -224,6 +226,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                                                   ? AppColors.whiteColor
                                                   : AppColors.blackTextColor,
                                               fontWeight: FontWeight.bold,
+                                              fontSize: 10.sp,
                                             ),
                                           )),
                                       const SizedBox(width: 8),
@@ -235,6 +238,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                                               color: themeProvider.darkTheme
                                                   ? AppColors.whiteColor
                                                   : AppColors.blackTextColor,
+                                              fontSize: 10.sp,
                                             ),
                                           )),
                                     ],
@@ -251,6 +255,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                                                 ? AppColors.whiteColor
                                                 : AppColors.blackTextColor,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 10.sp,
                                           ),
                                         ),
                                       ),
@@ -263,6 +268,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                                               color: themeProvider.darkTheme
                                                   ? AppColors.whiteColor
                                                   : AppColors.blackTextColor,
+                                              fontSize: 10.sp,
                                             ),
                                           )),
                                     ],
@@ -299,11 +305,12 @@ class NgoUserProfileScreen extends StatelessWidget {
                                   Text(
                                     "Shop",
                                     style: TextStyle(
-                                        color: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.blackTextColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 17),
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor
+                                          : AppColors.blackTextColor,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12.sp,
+                                    ),
                                   ),
                                   const SizedBox(
                                       child: Divider(
@@ -316,10 +323,12 @@ class NgoUserProfileScreen extends StatelessWidget {
                                           child: Text(
                                             "Shop Name",
                                             style: TextStyle(
-                                                color: themeProvider.darkTheme
-                                                    ? AppColors.whiteColor
-                                                    : AppColors.blackTextColor,
-                                                fontWeight: FontWeight.bold),
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.blackTextColor,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 10.sp,
+                                            ),
                                           )),
                                       Expanded(
                                           flex: 70,
@@ -329,6 +338,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                                               color: themeProvider.darkTheme
                                                   ? AppColors.whiteColor
                                                   : AppColors.blackTextColor,
+                                              fontSize: 10.sp,
                                             ),
                                           )),
                                     ],
@@ -341,10 +351,12 @@ class NgoUserProfileScreen extends StatelessWidget {
                                           child: Text(
                                             "Email",
                                             style: TextStyle(
-                                                color: themeProvider.darkTheme
-                                                    ? AppColors.whiteColor
-                                                    : AppColors.blackTextColor,
-                                                fontWeight: FontWeight.bold),
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.blackTextColor,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 10.sp,
+                                            ),
                                           )),
                                       const SizedBox(width: 8),
                                       Expanded(
@@ -355,6 +367,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                                               color: themeProvider.darkTheme
                                                   ? AppColors.whiteColor
                                                   : AppColors.blackTextColor,
+                                              fontSize: 10.sp,
                                             ),
                                           )),
                                     ],
@@ -397,11 +410,12 @@ class NgoUserProfileScreen extends StatelessWidget {
                                   Text(
                                     "Vet & NGO",
                                     style: TextStyle(
-                                        color: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.blackTextColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 17),
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor
+                                          : AppColors.blackTextColor,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12.sp,
+                                    ),
                                   ),
                                   const SizedBox(
                                       child: Divider(
@@ -418,6 +432,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                                                   ? AppColors.whiteColor
                                                   : AppColors.blackTextColor,
                                               fontWeight: FontWeight.bold,
+                                              fontSize: 10.sp,
                                             ),
                                           )),
                                       const SizedBox(width: 8),
@@ -429,6 +444,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                                               color: themeProvider.darkTheme
                                                   ? AppColors.whiteColor
                                                   : AppColors.blackTextColor,
+                                              fontSize: 10.sp,
                                             ),
                                           )),
                                     ],
@@ -445,6 +461,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                                                 ? AppColors.whiteColor
                                                 : AppColors.blackTextColor,
                                             fontWeight: FontWeight.bold,
+                                            fontSize: 10.sp,
                                           ),
                                         ),
                                       ),
@@ -457,6 +474,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                                               color: themeProvider.darkTheme
                                                   ? AppColors.whiteColor
                                                   : AppColors.blackTextColor,
+                                              fontSize: 10.sp,
                                             ),
                                           )),
                                     ],
@@ -493,11 +511,12 @@ class NgoUserProfileScreen extends StatelessWidget {
                                   Text(
                                     "Trainer",
                                     style: TextStyle(
-                                        color: themeProvider.darkTheme
-                                            ? AppColors.whiteColor
-                                            : AppColors.blackTextColor,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 17),
+                                      color: themeProvider.darkTheme
+                                          ? AppColors.whiteColor
+                                          : AppColors.blackTextColor,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12.sp,
+                                    ),
                                   ),
                                   const SizedBox(
                                       child: Divider(
@@ -510,10 +529,12 @@ class NgoUserProfileScreen extends StatelessWidget {
                                           child: Text(
                                             "Trainer Name",
                                             style: TextStyle(
-                                                color: themeProvider.darkTheme
-                                                    ? AppColors.whiteColor
-                                                    : AppColors.blackTextColor,
-                                                fontWeight: FontWeight.bold),
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.blackTextColor,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 10.sp,
+                                            ),
                                           )),
                                       const SizedBox(width: 8),
                                       Expanded(
@@ -524,6 +545,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                                               color: themeProvider.darkTheme
                                                   ? AppColors.whiteColor
                                                   : AppColors.blackTextColor,
+                                              fontSize: 10.sp,
                                             ),
                                           )),
                                     ],
@@ -536,10 +558,12 @@ class NgoUserProfileScreen extends StatelessWidget {
                                           child: Text(
                                             "Email",
                                             style: TextStyle(
-                                                color: themeProvider.darkTheme
-                                                    ? AppColors.whiteColor
-                                                    : AppColors.blackTextColor,
-                                                fontWeight: FontWeight.bold),
+                                              color: themeProvider.darkTheme
+                                                  ? AppColors.whiteColor
+                                                  : AppColors.blackTextColor,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 10.sp,
+                                            ),
                                           )),
                                       const SizedBox(width: 8),
                                       Expanded(
@@ -550,6 +574,7 @@ class NgoUserProfileScreen extends StatelessWidget {
                                               color: themeProvider.darkTheme
                                                   ? AppColors.whiteColor
                                                   : AppColors.blackTextColor,
+                                              fontSize: 10.sp,
                                             ),
                                           )),
                                     ],
@@ -582,9 +607,9 @@ class NgoUserProfileScreen extends StatelessWidget {
                           ),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(25),
-                            child: const Icon(
+                            child:  Icon(
                               Icons.add,
-                              size: 28,
+                              size: 3.h,
                             ),
                           ),
                         ),
