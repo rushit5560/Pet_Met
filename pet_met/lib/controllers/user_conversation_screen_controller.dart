@@ -100,31 +100,35 @@ class UserConversationScreenController extends GetxController {
     required String body,
   }) async {
     try {
-      http.Response response = await http.post(Uri.parse("https://fcm.googleapis.com/fcm/send"),
-          headers: <String, String>{
-            'Content-Type': 'application/json',
-            'Authorization':
-                'key=AAAA8bBUIwY:APA91bG12B9sECzxamPgdtkucbTWTAaRbxbOhCwwvdJwMQNDUeR0iiQi1YUGrf4FO1gruIcaoE3kxTvSEtMrhz_Py5Uo-t1lNzd1g1HGTjmAbOtcZeeyz7xDHEaTzrQHZId9NL1cV_Ey'
-          },
-          body: jsonEncode({
-            'priority': 'high',
-            'data': {
-              'click_action': 'FLUTTER_NOTIFICATION_CLICK',
-              'status': 'done',
-              'body': body,
-              'title': title
-            },
-            'notification': {
-              'title': title,
-              'body': body,
-              'android_channel_id': 'petomate'
-            },
-            "to": opponentToken,
-          }));
+      http.Response response =
+          await http.post(Uri.parse("https://fcm.googleapis.com/fcm/send"),
+              headers: <String, String>{
+                'Content-Type': 'application/json',
+                'Authorization':
+                    'key=AAAA8bBUIwY:APA91bG12B9sECzxamPgdtkucbTWTAaRbxbOhCwwvdJwMQNDUeR0iiQi1YUGrf4FO1gruIcaoE3kxTvSEtMrhz_Py5Uo-t1lNzd1g1HGTjmAbOtcZeeyz7xDHEaTzrQHZId9NL1cV_Ey'
+              },
+              body: jsonEncode({
+                'priority': 'high',
+                'data': {
+                  'click_action': 'FLUTTER_NOTIFICATION_CLICK',
+                  'status': 'done',
+                  'body': body,
+                  'title': title
+                },
+                'notification': {
+                  'title': title,
+                  'body': body,
+                  'android_channel_id': 'petomate'
+                },
+                "to": opponentToken,
+              }));
 
       log('PushNotification Response : $response');
       // NotificationModel notificationModel = NotificationModel.fromJson(json.decode(response.body));
-      // Fluttertoast.showToast(msg: "Notification : ${notificationModel.success.toString()}");
+      // Fluttertoast.showToast(
+      //   msg: "Notification : ${messageFieldController.text.trim()}",
+
+      // );
     } catch (e) {
       log('sendGeneralNotification Error :$e');
       rethrow;

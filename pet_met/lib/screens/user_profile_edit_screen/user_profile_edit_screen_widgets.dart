@@ -75,7 +75,7 @@ class UploadImageModule extends StatelessWidget {
                         ? controller.imageFile!
                         : controller.imageFile!,
                     // width: double.infinity,
-                      width: controller.size.width * 0.50,
+                    width: controller.size.width * 0.50,
                     height: controller.size.height * 0.2,
                     fit: BoxFit.fill,
                   ),
@@ -90,9 +90,9 @@ class UploadImageModule extends StatelessWidget {
                             ? controller.userProfile
                             : controller.userProfile,
                         // width: double.infinity,
-                          width: controller.size.width * 0.50,
+                        width: controller.size.width * 0.50,
                         height: controller.size.height * 0.2,
-                        
+
                         fit: BoxFit.fill,
                         errorBuilder: (context, er, bt) {
                           //return Image.asset(AppImages.petMetLogoImg, height: 65);
@@ -379,7 +379,7 @@ class UserPetListModule extends StatelessWidget {
                       const BorderRadius.all(Radius.circular(8)),
                       child: Image.asset(AppImages.petMetLogoImg,
                           fit: BoxFit.cover))*/
-                         Icon(
+                        Icon(
                       Icons.add,
                       color: AppColors.accentTextColor,
                       size: 3.h,
@@ -616,7 +616,7 @@ class DisplayNameTextFieldModule extends StatelessWidget {
           height: controller.size.height * 0.05,
           width: double.infinity,
           hintText: "Display Name",
-          maxLength: 10,
+          // maxLength: 10,
           textInputAction: TextInputAction.next,
           textInputType: TextInputType.text,
           validator: (val) => Validations().validateDisplayName(val!),

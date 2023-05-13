@@ -1467,7 +1467,7 @@ class DisplayNameTextFieldModule extends StatelessWidget {
           height: controller.size.height * 0.05,
           width: double.infinity,
           hintText: "Display Name",
-          maxLength: 10,
+          // maxLength: 10,
           textInputAction: TextInputAction.next,
           textInputType: TextInputType.text,
           validator: (val) => Validations().validateDisplayName(val!),
