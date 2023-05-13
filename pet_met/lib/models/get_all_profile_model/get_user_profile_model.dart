@@ -165,6 +165,7 @@ class Petdatum {
     required this.id,
     required this.image,
     required this.petName,
+    required this.displayName,
     required this.mainCategory,
     required this.subCategory,
     required this.dob,
@@ -183,6 +184,7 @@ class Petdatum {
 
   String id;
   String image;
+  String displayName;
   String petName;
   String mainCategory;
   String subCategory;
@@ -203,7 +205,9 @@ class Petdatum {
         id: json["id"] ?? "",
         image: json["image"] ?? "",
         petName: json["pet_name"] ?? "",
-        mainCategory: json["main_category"] ?? "",
+    displayName: json["display_name"] ?? "",
+
+    mainCategory: json["main_category"] ?? "",
         subCategory: json["sub_category"] ?? "",
         dob: json["dob"] ?? "",
         weight: json["weight"] ?? "",
