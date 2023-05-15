@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 // import 'package:flutter_login_facebook/flutter_login_facebook.dart';
@@ -104,19 +105,20 @@ class LoginController extends GetxController {
       } else {
         //Fluttertoast.showToast(msg: loginModel.error);
         if (loginModel.error.contains('password don\'t match')) {
-          Fluttertoast.showToast(msg: "Invalid password",fontSize: 12.sp);
+          Fluttertoast.showToast(msg: "Invalid password", fontSize: 12.sp);
         }
         if (loginModel.error.contains('Email don\'t match')) {
-          Fluttertoast.showToast(msg: "Invalid email",fontSize: 12.sp);
+          Fluttertoast.showToast(msg: "Invalid email", fontSize: 12.sp);
         }
 
         if (loginModel.messege.contains('User account is deleted')) {
-          Fluttertoast.showToast(msg: loginModel.messege,fontSize: 12.sp);
+          Fluttertoast.showToast(msg: loginModel.messege, fontSize: 12.sp);
         }
         if (loginModel.messege.contains("This user is unauthorized")) {
           Fluttertoast.showToast(
               msg:
-                  "This user is unauthorized for selected category! Please try again",fontSize: 12.sp);
+                  "This user is unauthorized for selected category! Please try again",
+              fontSize: 12.sp);
         }
       }
     } catch (e) {
@@ -236,7 +238,10 @@ class LoginController extends GetxController {
           AppleIDAuthorizationScopes.fullName,
         ],
       );
-      // log('credential : $credential');
+
+      // log('credential.familyName : ${credential.familyName}');
+      // log('credential.givenName : ${credential.givenName}');
+      // log('credential.email : ${credential.email}');
 
       final oAuthProvider = OAuthProvider('apple.com');
       // oAuthProvider.addScope(credential.email.toString());
@@ -259,20 +264,30 @@ class LoginController extends GetxController {
       log("result $result");
 
       // await auth.currentUser;
-      if (auth.currentUser != null) {
+      if (auth.currentUser!.providerData != null) {
         log("auth.currentUser!");
-        await socialMediaRegisterFunction(
-            userName: auth.currentUser!.providerData[0].displayName.toString(),
-            userEmail: auth.currentUser!.providerData[0].email.toString(),
-            userId: auth.currentUser!.providerData[0].uid.toString(),
-            displayName:
-                auth.currentUser!.providerData[0].displayName.toString());
         log("auth.currentUser!.providerData[0].displayName ${auth.currentUser!.providerData[0].displayName}");
-        log("auth.currentUser ${auth.currentUser}");
+        final name =
+            auth.currentUser!.providerData[0].email.toString().split("@");
+        log("name 1111 : $name");
+        await socialMediaRegisterFunction(
+          userName: name[0],
+          userEmail: auth.currentUser!.providerData[0].email.toString(),
+          userId: auth.currentUser!.providerData[0].uid.toString(),
+          displayName: name[0],
+        );
+        log("auth.currentUser!.email ${auth.currentUser!.email}");
+        log("auth.currentUser!.name ${auth.currentUser!.displayName}");
+
+        log("auth.currentUser!.providerData ${auth.currentUser!.providerData}");
+
+        log("auth.currentUser! ${auth.currentUser}");
       } else if (result != null) {
         log("result");
+        final name =
+        credential.email.toString().split("@");
         await socialMediaRegisterFunction(
-          userName: credential.givenName! + credential.familyName!,
+          userName: name[0],
           userEmail: credential.email!,
           userId: credential.authorizationCode,
           displayName: credential.givenName! + credential.familyName!,
