@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+// import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -208,10 +209,10 @@ class SplashController extends GetxController {
     // permissionServices();
 
     // requestPermission();
-    // notificationServices.firebaseNotificationGetInActiveState();
+    notificationServices.firebaseNotificationGetInActiveState();
 
-    final IOSInitializationSettings initializationSettingsIOS =
-        IOSInitializationSettings(
+    final DarwinInitializationSettings initializationSettingsIOS =
+    DarwinInitializationSettings(
       requestSoundPermission: true,
       requestBadgePermission: true,
       requestAlertPermission: true,
@@ -222,9 +223,12 @@ class SplashController extends GetxController {
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('ic_launcher');
     var initializationSettings = InitializationSettings(
-        iOS: initializationSettingsIOS, android: initializationSettingsAndroid);
+        iOS: initializationSettingsIOS,
+        android: initializationSettingsAndroid
+    );
     notifications.initialize(initializationSettings,
-        onSelectNotification: onSelectNotification);
+        // onSelectNotification: onSelectNotification
+    );
     FirebaseMessaging.onMessage.listen(
       (RemoteMessage message) async {
         RemoteNotification? notification = message.notification;
@@ -245,9 +249,10 @@ class SplashController extends GetxController {
             notification.hashCode,
             notification.title,
             notification.body,
-            NotificationDetails(
+            const NotificationDetails(
               android: AndroidNotificationDetails(
-                  '1', 'User Activity', "petomate",
+                  '1', 'User Activity',
+                  channelDescription: "petomate",
                   importance: Importance.max,
                   priority: Priority.high,
                   ticker: 'ticker',
@@ -262,21 +267,21 @@ class SplashController extends GetxController {
           print('NOTIFICATION INIT ANDROID');
         }
 
-        // notification_type = message.data['notification_type'];
-        // if (notification_type == 3) {
-        //   Get.offAll(() => BottomBarView());
-        // } else if (notification_type == 1) {
-        //   Get.offAll(
-        //         () => BottomBarView(),
-        //     arguments: {
-        //       'index': 4,
-        //       'user_id': 39,
-        //     },
-        //   );
-        // }
+        /*notification_type = message.data['notification_type'];
+        if (notification_type == 3) {
+          Get.offAll(() => BottomBarView());
+        } else if (notification_type == 1) {
+          Get.offAll(
+                () => BottomBarView(),
+            arguments: {
+              'index': 4,
+              'user_id': 39,
+            },
+          );
+        }*/
       },
     );
-    // FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
       print(message.data);

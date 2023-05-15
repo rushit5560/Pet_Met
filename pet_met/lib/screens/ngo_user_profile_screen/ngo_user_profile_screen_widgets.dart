@@ -1804,7 +1804,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
-                          color: Colors.red),
+                          color: Colors.red,),
                     )
                   ])),
               const SizedBox(height: 8),
@@ -2031,6 +2031,8 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                                 color: themeProvider.darkTheme
                                     ? AppColors.whiteColor
                                     : AppColors.darkThemeColor,
+                                fontSize: 10.sp,
+
                               )),
                         ),
                         IconButton(

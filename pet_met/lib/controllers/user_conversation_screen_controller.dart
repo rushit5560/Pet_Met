@@ -34,6 +34,8 @@ class UserConversationScreenController extends GetxController {
         .set(sendMsg.toJson())
         .then((value) async => await chatListPositionupdate(sendMsg.roomId));
     log("receiverName $receiverName");
+
+    // Get Opponent user fcm token for send notification
     DocumentSnapshot snap = await FirebaseFirestore.instance
         .collection("Users")
         .doc(receiverName)
