@@ -219,7 +219,7 @@ class RegisterScreen extends StatelessWidget {
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                  )
+                                  ) 
                                 ],
                               )
                             ],

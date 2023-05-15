@@ -1576,9 +1576,157 @@ class GetVerifiedInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: () {
-        screenController.scaffoldKey.currentState!.showBottomSheet((context) {
+
+        Get.bottomSheet(Container(
+          height: Get.size.height * 0.25,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: themeProvider.darkTheme
+                ? AppColors.darkThemeColor
+                : AppColors.whiteColor,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "To get verify submit below documents",
+                    style: TextStyle(
+                      fontSize: 10.sp,
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.darkThemeColor,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Text(
+                "1. Trainer certificate",
+                style: TextStyle(
+                  fontSize: 10.sp,
+                  color: themeProvider.darkTheme
+                      ? AppColors.whiteColor
+                      : AppColors.darkThemeColor,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(
+                "2. Two pictures of your",
+                style: TextStyle(
+                  fontSize: 10.sp,
+                  color: themeProvider.darkTheme
+                      ? AppColors.whiteColor
+                      : AppColors.darkThemeColor,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(height: 20),
+              GestureDetector(
+                onTap: () {
+                  Clipboard.setData(
+                      const ClipboardData(text: "info@petomate.com"));
+                  Fluttertoast.showToast(msg: "Copied", fontSize: 12.sp);
+                },
+                child: Text(
+                  "Mail it on : info@petomate.com",
+                  style: TextStyle(
+                    fontSize: 10.sp,
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.darkThemeColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ));
+
+       /* screenController.trainerScaffoldKey.currentState!.showBottomSheet((context) {
+          return Container(
+            height: Get.size.height * 0.25,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: themeProvider.darkTheme
+                  ? AppColors.darkThemeColor
+                  : AppColors.whiteColor,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      "To get verify submit below documents",
+                      style: TextStyle(
+                        fontSize: 10.sp,
+                        color: themeProvider.darkTheme
+                            ? AppColors.whiteColor
+                            : AppColors.darkThemeColor,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Text(
+                  "1. Shop Registration certificate",
+                  style: TextStyle(
+                    fontSize: 10.sp,
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.darkThemeColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  "2. Two pictures of your shop",
+                  style: TextStyle(
+                    fontSize: 10.sp,
+                    color: themeProvider.darkTheme
+                        ? AppColors.whiteColor
+                        : AppColors.darkThemeColor,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                GestureDetector(
+                  onTap: () {
+                    Clipboard.setData(
+                        const ClipboardData(text: "info@petomate.com"));
+                    Fluttertoast.showToast(msg: "Copied", fontSize: 12.sp);
+                  },
+                  child: Text(
+                    "Mail it on : info@petomate.com",
+                    style: TextStyle(
+                      fontSize: 10.sp,
+                      color: themeProvider.darkTheme
+                          ? AppColors.whiteColor
+                          : AppColors.darkThemeColor,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        });*/
+        /*screenController.scaffoldKey.currentState!.showBottomSheet((context) {
           return Container(
             height: Get.size.height * 0.25,
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -1651,7 +1799,7 @@ class GetVerifiedInfo extends StatelessWidget {
               ],
             ),
           );
-        });
+        });*/
       },
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

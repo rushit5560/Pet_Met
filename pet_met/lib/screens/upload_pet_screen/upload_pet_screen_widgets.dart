@@ -131,7 +131,7 @@ class _UploadImageModuleState extends State<UploadImageModule> {
                               : controller.imageFile!,
                           height: controller.size.height * 0.2,
                           // width: double.infinity,
-                            width: controller.size.width * 0.50,
+                          width: controller.size.width * 0.50,
                           fit: BoxFit.fill,
                         ),
                       ),
@@ -146,7 +146,7 @@ class _UploadImageModuleState extends State<UploadImageModule> {
                                   : controller.petImage!,
                               height: controller.size.height * 0.2,
 
-                                width: controller.size.width * 0.50,
+                              width: controller.size.width * 0.50,
                               // width: double.infinity,
                               fit: BoxFit.fill,
                               errorBuilder: (context, er, st) {
@@ -793,7 +793,7 @@ class _MeetingAvailabilityDropDownState
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
-              "Meeting Availability",
+              "Availability",
               style: TextStyle(
                 color: themeProvider.darkTheme
                     ? AppColors.whiteColor

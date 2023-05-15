@@ -209,7 +209,7 @@ class SplashController extends GetxController {
     // permissionServices();
 
     // requestPermission();
-    notificationServices.firebaseNotificationGetInActiveState();
+    // notificationServices.firebaseNotificationGetInActiveState();
 
     final DarwinInitializationSettings initializationSettingsIOS =
     DarwinInitializationSettings(
@@ -237,6 +237,14 @@ class SplashController extends GetxController {
         if (notification != null && ios != null) {
           NotificationSettings settings = await messaging.requestPermission(
               alert: true, badge: true, provisional: true, sound: true);
+
+          // Get.snackbar(notification.title!, notification.body!);
+          notifications.show(
+            1,
+              notification.title!,
+              notification.body!,
+              const NotificationDetails(),
+          );
 
           print('NOTIFICATION INIT IOS');
           print(message.data);
@@ -281,7 +289,7 @@ class SplashController extends GetxController {
         }*/
       },
     );
-    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+    // FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
       print(message.data);
@@ -299,7 +307,7 @@ class SplashController extends GetxController {
 
     // FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
 
-    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
+    /*FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) async {
       print(message.data);
       print('onMessageOpenedApp event was published!');
     });
@@ -311,7 +319,7 @@ class SplashController extends GetxController {
         print(message.data);
         print('getInitialMessage event was published!');
       }
-    });
+    });*/
 
     redirectNextScreen();
   }

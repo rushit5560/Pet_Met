@@ -485,8 +485,10 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
             _makingPhoneCall(number);
           },
           child: Container(
-            height: screenController.size.width * 0.018.w,
-            width: screenController.size.width * 0.018.w,
+            // height: screenController.size.width * 0.018.w,
+            // width: screenController.size.width * 0.018.w,
+            height: 4.h,
+            width: 4.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               color: AppColors.accentColor,
@@ -679,8 +681,10 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
             }
           },
           child: Container(
-            height: screenController.size.width * 0.018.w,
-            width: screenController.size.width * 0.018.w,
+            // height: screenController.size.width * 0.018.w,
+            // width: screenController.size.width * 0.018.w,
+            height: 4.h,
+            width: 4.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               color: AppColors.accentColor,

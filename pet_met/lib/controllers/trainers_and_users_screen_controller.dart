@@ -56,7 +56,7 @@ class TrainersAndUsersScreenController extends GetxController {
 
   RxBool isPasswordVisible = true.obs;
 
-  final scaffoldKey = GlobalKey<ScaffoldState>();
+  final trainerScaffoldKey = GlobalKey<ScaffoldState>();
 
   var passwordController = TextEditingController();
   UserPreference userPreference = UserPreference();

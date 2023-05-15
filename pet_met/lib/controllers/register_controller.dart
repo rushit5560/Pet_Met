@@ -243,49 +243,62 @@ class RegisterController extends GetxController {
     // isLoading(true);
     try {
       log("apple login 11");
-
       final credential = await SignInWithApple.getAppleIDCredential(
         scopes: [
           AppleIDAuthorizationScopes.email,
           AppleIDAuthorizationScopes.fullName,
         ],
       );
-      log('credential : $credential');
+
+      // log('credential.familyName : ${credential.familyName}');
+      // log('credential.givenName : ${credential.givenName}');
+      // log('credential.email : ${credential.email}');
 
       final oAuthProvider = OAuthProvider('apple.com');
-      oAuthProvider.addScope(credential.email.toString());
-      oAuthProvider.addScope(credential.familyName.toString());
-      log("oAuthProvider$oAuthProvider");
-      auth.signInWithEmailAndPassword(
-          email: credential.email.toString(),
-          password: credential.familyName.toString());
-      log("apple login email are :: ${credential.email}");
-      log("apple login givenName are :: ${credential.givenName}");
+      // oAuthProvider.addScope(credential.email.toString());
+      // oAuthProvider.addScope(credential.familyName.toString());
+      // log("oAuthProvider$oAuthProvider");
+      // auth.signInWithEmailAndPassword(
+      //     email: credential.email.toString(),
+      //     password: credential.familyName.toString());
+      // log("apple login email are :: ${credential.email}");
+      // log("apple login givenName are :: ${credential.givenName}");
       final AuthCredential authCredential = oAuthProvider.credential(
         idToken: credential.identityToken,
         accessToken: credential.authorizationCode,
       );
-
       UserCredential result = await auth.signInWithCredential(authCredential);
       log("apple login 22");
-      log("authCredential $authCredential");
-      log("apple login email are :: ${credential.email}");
-      log("apple login givenName are :: ${credential.givenName}");
+      // log("authCredential $authCredential");
+      // log("apple login email are :: ${credential.email}");
+      // log("apple login givenName are :: ${credential.givenName}");
       log("result $result");
 
       // await auth.currentUser;
-      if (auth.currentUser != null) {
+      if (auth.currentUser!.providerData != null) {
         log("auth.currentUser!");
+        log("auth.currentUser!.providerData[0].displayName ${auth.currentUser!.providerData[0].displayName}");
+        final name =
+        auth.currentUser!.providerData[0].email.toString().split("@");
+        log("name 1111 : $name");
         await socialMediaRegisterFunction(
-            userName: auth.currentUser!.providerData[0].displayName.toString(),
-            userEmail: auth.currentUser!.providerData[0].email.toString(),
-            userId: auth.currentUser!.providerData[0].uid.toString(),
-            displayName:
-                auth.currentUser!.providerData[0].displayName.toString());
+          userName: name[0],
+          userEmail: auth.currentUser!.providerData[0].email.toString(),
+          userId: auth.currentUser!.providerData[0].uid.toString(),
+          displayName: name[0],
+        );
+        log("auth.currentUser!.email ${auth.currentUser!.email}");
+        log("auth.currentUser!.name ${auth.currentUser!.displayName}");
+
+        log("auth.currentUser!.providerData ${auth.currentUser!.providerData}");
+
+        log("auth.currentUser! ${auth.currentUser}");
       } else if (result != null) {
         log("result");
+        final name =
+        credential.email.toString().split("@");
         await socialMediaRegisterFunction(
-          userName: credential.givenName! + credential.familyName!,
+          userName: name[0],
           userEmail: credential.email!,
           userId: credential.authorizationCode,
           displayName: credential.givenName! + credential.familyName!,

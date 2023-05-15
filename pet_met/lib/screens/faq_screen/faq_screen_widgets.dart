@@ -65,7 +65,7 @@ class FaqListModule extends StatelessWidget {
             child: Text(
               controller.faqList[index].question,
               style: TextStyle(
-                  fontSize: 14.sp,
+                  fontSize: 12.sp,
                   color: themeProvider.darkTheme
                       ? AppColors.whiteColor
                       : AppColors.blackTextColor,
