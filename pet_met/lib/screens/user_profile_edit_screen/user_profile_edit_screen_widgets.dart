@@ -751,7 +751,7 @@ class DetailsTextFieldModule extends StatelessWidget {
           hintText: "Details",
           textInputAction: TextInputAction.next,
           textInputType: TextInputType.text,
-          //validator: (val) => Validations().validateDetails(val!),
+          validator: (val) => Validations().validateDetails(val!),
         ),
       ],
     );
