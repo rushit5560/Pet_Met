@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:datepicker_dropdown/datepicker_dropdown.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pet_met/controllers/user_profile_edit_controller.dart';
@@ -1095,8 +1096,30 @@ class SubmitButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () async {
+        int daysBetween(DateTime from, DateTime to) {
+          from = DateTime(from.year, from.month, from.day);
+          to = DateTime(to.year, to.month, to.day);
+          return (to.difference(from).inHours / 24).round();
+        }
+
+        int year = int.parse(controller.year);
+        int month = int.parse(controller.month);
+        int day = int.parse(controller.day);
+
+        final selectedDOB = DateTime(year, month, day);
+        DateTime todayDate = DateTime.now();
+
+        final difference = daysBetween(selectedDOB, todayDate);
+
+        log('Date difference :$difference');
+
         if (controller.formKey.currentState!.validate()) {
-          await controller.updateUserProfileFunction();
+          if (difference < 0) {
+            //todo
+            Fluttertoast.showToast(msg: 'Please select correct date');
+          } else {
+            await controller.updateUserProfileFunction();
+          }
         }
         //controller.submitLoginForm();
       },

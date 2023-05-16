@@ -10,7 +10,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../services/notification_services.dart';
 import '../utils/user_details.dart';
 
-
 class UserCategoriesController extends GetxController {
   final size = Get.size;
   RxBool isLoading = false.obs;
@@ -32,8 +31,7 @@ class UserCategoriesController extends GetxController {
     //Get.offNamed(AppRouteNames.loginRoute);
     Get.to(() => LoginScreen(),
         transition: Transition.native,
-        duration: const Duration(milliseconds: 500)
-    );
+        duration: const Duration(milliseconds: 500));
   }
 
   var boolsList = [];
@@ -59,13 +57,12 @@ class UserCategoriesController extends GetxController {
     initMethod();
   }
 
-
   Future<void> initMethod() async {
-    await getLocationFunction();
     await requestPermission();
+    await getLocationFunction();
+
     notificationServices.firebaseNotificationGetInActiveState();
   }
-
 
   /// Get User Location Permission
   getLocationFunction() async {
@@ -178,7 +175,6 @@ class UserCategoriesController extends GetxController {
     }
   }
 
-
   /// Firebase notification Service
   Future<void> requestPermission() async {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
@@ -202,6 +198,4 @@ class UserCategoriesController extends GetxController {
       log('User declined or has not accepted permission');
     }
   }
-
-
 }
