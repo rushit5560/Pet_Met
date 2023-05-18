@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 // import 'package:firebase_messaging/firebase_messaging.dart';
@@ -8,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/screens/splash_screen/splash_screen.dart';
 import 'package:pet_met/services/providers/dark_theme_provider.dart';
-
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/styles.dart';
 import 'package:provider/provider.dart';

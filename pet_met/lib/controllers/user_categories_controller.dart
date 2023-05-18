@@ -16,7 +16,7 @@ class UserCategoriesController extends GetxController {
 
   UserPreference userPreference = UserPreference();
 
-  NotificationServices notificationServices = NotificationServices();
+  // NotificationServices notificationServices = NotificationServices();
 
   RxBool individualPetBool = false.obs;
   RxBool petShoopsGroomingBool = false.obs;

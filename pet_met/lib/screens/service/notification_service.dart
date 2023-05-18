@@ -6,21 +6,23 @@ class LocalNotificationService {
       FlutterLocalNotificationsPlugin();
 
   static void initilize() {
+    var initializationSettingsAndroid =
+     AndroidInitializationSettings('ic_launcher');
     final InitializationSettings initializationSettings =
         InitializationSettings(
             android: AndroidInitializationSettings("@mipmap/ic_launcher"));
-    _notificationsPlugin.initialize(initializationSettings,
-    //     onSelectNotification: (String? payload) {
-    //   print(payload);
-    // }
-    
+    _notificationsPlugin.initialize(
+      initializationSettings,
+      //     onSelectNotification: (String? payload) {
+      //   print(payload);
+      // }
     );
   }
 
   static void showNotificationOnForeground(RemoteMessage message) {
     final notificationDetail = NotificationDetails(
         android: AndroidNotificationDetails(
-            "com.example.firebase_push_notification", "com.myjeweller.olocker",
+            "com.example.firebase_push_notification", "com.petomate.community",
             importance: Importance.max, priority: Priority.high));
 
     _notificationsPlugin.show(

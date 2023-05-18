@@ -20,7 +20,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   final controller = Get.put(SplashController());
-@override
+  @override
   void initState() {
     LocalNotificationService.initilize();
     // trminated state
@@ -36,7 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
 //forground state
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       LocalNotificationService.showNotificationOnForeground(message);
-  
+
       setState(() {
         message.notification!.hashCode;
         message.notification!.title;
@@ -55,6 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     DarkThemeProvider themeProvider = Provider.of<DarkThemeProvider>(context);

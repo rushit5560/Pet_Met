@@ -26,7 +26,7 @@ class SplashController extends GetxController {
 
   RxDouble imageHeight = (Get.height / 3.5).obs;
 
-  NotificationServices notificationServices = NotificationServices();
+  // NotificationServices notificationServices = NotificationServices();
 
   void animateImage() {
     Future.delayed(const Duration(seconds: 1), () {
@@ -204,7 +204,6 @@ class SplashController extends GetxController {
     //   );
     // }
 
-
     // getLocationFunction();
     // permissionServices();
 
@@ -212,7 +211,7 @@ class SplashController extends GetxController {
     // notificationServices.firebaseNotificationGetInActiveState();
 
     final DarwinInitializationSettings initializationSettingsIOS =
-    DarwinInitializationSettings(
+        DarwinInitializationSettings(
       requestSoundPermission: true,
       requestBadgePermission: true,
       requestAlertPermission: true,
@@ -223,11 +222,10 @@ class SplashController extends GetxController {
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('ic_launcher');
     var initializationSettings = InitializationSettings(
-        iOS: initializationSettingsIOS,
-        android: initializationSettingsAndroid
-    );
-    notifications.initialize(initializationSettings,
-        // onSelectNotification: onSelectNotification
+        iOS: initializationSettingsIOS, android: initializationSettingsAndroid);
+    notifications.initialize(
+      initializationSettings,
+      // onSelectNotification: onSelectNotification
     );
     FirebaseMessaging.onMessage.listen(
       (RemoteMessage message) async {
@@ -241,9 +239,9 @@ class SplashController extends GetxController {
           // Get.snackbar(notification.title!, notification.body!);
           notifications.show(
             1,
-              notification.title!,
-              notification.body!,
-              const NotificationDetails(),
+            notification.title!,
+            notification.body!,
+            const NotificationDetails(),
           );
 
           print('NOTIFICATION INIT IOS');
@@ -258,8 +256,7 @@ class SplashController extends GetxController {
             notification.title,
             notification.body,
             const NotificationDetails(
-              android: AndroidNotificationDetails(
-                  '1', 'User Activity',
+              android: AndroidNotificationDetails('1', 'User Activity',
                   channelDescription: "petomate",
                   importance: Importance.max,
                   priority: Priority.high,
@@ -274,8 +271,6 @@ class SplashController extends GetxController {
           print(message.data);
           print('NOTIFICATION INIT ANDROID');
         }
-
-       
       },
     );
     // FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
