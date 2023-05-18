@@ -110,7 +110,7 @@ class UploadImageModule extends StatelessWidget {
                               ? screenController.imageFile!
                               : screenController.imageFile!,
                           // width: double.infinity,
-                            width: screenController.size.width * 0.50,
+                          width: screenController.size.width * 0.50,
                           height: screenController.size.height * 0.2,
 
                           fit: BoxFit.fill,
@@ -147,7 +147,7 @@ class UploadImageModule extends StatelessWidget {
                                   : ApiUrl.apiImagePath +
                                       screenController.ngoProfile,
                               // width: double.infinity,
-                                width: screenController.size.width * 0.50,
+                              width: screenController.size.width * 0.50,
                               height: screenController.size.height * 0.2,
 
                               // fit: BoxFit.fill,
@@ -655,17 +655,17 @@ class NameOfNgoListModule extends StatelessWidget {
                                           width: 50,
                                           fit: BoxFit.fill,
                                           errorBuilder: (context, er, st) {
-                                            return  Icon(
+                                            return Icon(
                                               Icons.add,
                                               color: AppColors.accentTextColor,
-                                      size: 3.h,
-
+                                              size: 3.h,
                                             );
                                           },
                                         )
-                                      :  Icon(
+                                      : Icon(
                                           Icons.add,
-                                          color: AppColors.accentTextColor,size: 3.h,
+                                          color: AppColors.accentTextColor,
+                                          size: 3.h,
                                         )
                               : index == 1
                                   ? screenController.ngoPictureFile2 != null
@@ -681,18 +681,18 @@ class NameOfNgoListModule extends StatelessWidget {
                                               width: 50,
                                               fit: BoxFit.fill,
                                               errorBuilder: (context, er, st) {
-                                                return  Icon(
+                                                return Icon(
                                                   Icons.add,
                                                   color:
-                                                      AppColors.accentTextColor,size: 3.h,
+                                                      AppColors.accentTextColor,
+                                                  size: 3.h,
                                                 );
                                               },
                                             )
-                                          :  Icon(
+                                          : Icon(
                                               Icons.add,
                                               color: AppColors.accentTextColor,
-                                      size: 3.h,
-
+                                              size: 3.h,
                                             )
                                   : index == 2
                                       ? screenController.ngoPictureFile3 != null
@@ -708,17 +708,19 @@ class NameOfNgoListModule extends StatelessWidget {
                                                   fit: BoxFit.fill,
                                                   errorBuilder:
                                                       (context, er, st) {
-                                                    return  Icon(
+                                                    return Icon(
                                                       Icons.add,
                                                       color: AppColors
-                                                          .accentTextColor,size: 3.h,
+                                                          .accentTextColor,
+                                                      size: 3.h,
                                                     );
                                                   },
                                                 )
-                                              :  Icon(
+                                              : Icon(
                                                   Icons.add,
                                                   color:
-                                                      AppColors.accentTextColor,size: 3.h,
+                                                      AppColors.accentTextColor,
+                                                  size: 3.h,
                                                 )
                                       : index == 3
                                           ? screenController.ngoPictureFile4 !=
@@ -739,17 +741,19 @@ class NameOfNgoListModule extends StatelessWidget {
                                                       fit: BoxFit.fill,
                                                       errorBuilder:
                                                           (context, er, st) {
-                                                        return  Icon(
+                                                        return Icon(
                                                           Icons.add,
                                                           color: AppColors
-                                                              .accentTextColor,size: 3.h,
+                                                              .accentTextColor,
+                                                          size: 3.h,
                                                         );
                                                       },
                                                     )
-                                                  :  Icon(
+                                                  : Icon(
                                                       Icons.add,
                                                       color: AppColors
-                                                          .accentTextColor,size: 3.h,
+                                                          .accentTextColor,
+                                                      size: 3.h,
                                                     )
                                           : index == 4
                                               ? screenController
@@ -773,17 +777,19 @@ class NameOfNgoListModule extends StatelessWidget {
                                                           errorBuilder:
                                                               (context, er,
                                                                   st) {
-                                                            return  Icon(
+                                                            return Icon(
                                                               Icons.add,
                                                               color: AppColors
-                                                                  .accentTextColor,size: 3.h,
+                                                                  .accentTextColor,
+                                                              size: 3.h,
                                                             );
                                                           },
                                                         )
-                                                      :  Icon(
+                                                      : Icon(
                                                           Icons.add,
                                                           color: AppColors
-                                                              .accentTextColor,size: 3.h,
+                                                              .accentTextColor,
+                                                          size: 3.h,
                                                         )
                                               : Container(),
                         ),
@@ -987,10 +993,10 @@ class NgoBankNameModule extends StatelessWidget {
                       width: 15,
                       decoration: const BoxDecoration(
                           color: AppColors.accentColor, shape: BoxShape.circle),
-                      child:  Icon(
+                      child: Icon(
                         Icons.add,
                         color: AppColors.whiteColor,
-                      size: 3.h,
+                        size: 3.h,
                       ),
                     ),
                   )
@@ -1802,9 +1808,10 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                     TextSpan(
                       text: '*',
                       style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.red,),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red,
+                      ),
                     )
                   ])),
               const SizedBox(height: 8),
@@ -1897,7 +1904,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                                 color: themeProvider.darkTheme
                                     ? AppColors.whiteColor
                                     : AppColors.darkThemeColor,
-                                fontSize: 10.sp,
+                                fontSize: 11.sp,
                               )),
                         ),
                         IconButton(
@@ -2031,8 +2038,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                                 color: themeProvider.darkTheme
                                     ? AppColors.whiteColor
                                     : AppColors.darkThemeColor,
-                                fontSize: 10.sp,
-
+                                fontSize: 11.sp,
                               )),
                         ),
                         IconButton(

@@ -589,6 +589,7 @@ class _UserProfileEditScreenState extends State<UserProfileEditScreen> {
                                               color: themeProvider.darkTheme
                                                   ? AppColors.whiteColor
                                                   : AppColors.blackTextColor,
+                                              fontSize: 10.sp,
                                             ),
                                           )),
                                     ],

@@ -58,10 +58,10 @@ class UserCategoriesController extends GetxController {
   }
 
   Future<void> initMethod() async {
-    await requestPermission();
+    await requestNotificationPermission();
     await getLocationFunction();
 
-    notificationServices.firebaseNotificationGetInActiveState();
+    // notificationServices.firebaseNotificationGetInActiveState();
   }
 
   /// Get User Location Permission
@@ -176,7 +176,7 @@ class UserCategoriesController extends GetxController {
   }
 
   /// Firebase notification Service
-  Future<void> requestPermission() async {
+  Future<void> requestNotificationPermission() async {
     FirebaseMessaging messaging = FirebaseMessaging.instance;
 
     NotificationSettings settings = await messaging.requestPermission(

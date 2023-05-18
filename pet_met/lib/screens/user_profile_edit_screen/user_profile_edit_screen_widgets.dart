@@ -1116,7 +1116,8 @@ class SubmitButton extends StatelessWidget {
         if (controller.formKey.currentState!.validate()) {
           if (difference < 0) {
             //todo
-            Fluttertoast.showToast(msg: 'Please select correct date');
+            Fluttertoast.showToast(
+                msg: 'Please select correct date', fontSize: 12.sp);
           } else {
             await controller.updateUserProfileFunction();
           }

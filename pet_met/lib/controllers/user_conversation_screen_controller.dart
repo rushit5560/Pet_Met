@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:pet_met/models/receive_message_model/receive_message_mdel.dart';
@@ -59,6 +61,7 @@ class UserConversationScreenController extends GetxController {
       body: messageFieldController.text.trim(),
       // type: 0,
     );
+
     //       : const FirebaseOptions(
     //   apiKey:
     //       'key=AAAA8bBUIwY:APA91bG12B9sECzxamPgdtkucbTWTAaRbxbOhCwwvdJwMQNDUeR0iiQi1YUGrf4FO1gruIcaoE3kxTvSEtMrhz_Py5Uo-t1lNzd1g1HGTjmAbOtcZeeyz7xDHEaTzrQHZId9NL1cV_Ey',
@@ -135,6 +138,8 @@ class UserConversationScreenController extends GetxController {
       log('sendGeneralNotification Error :$e');
       rethrow;
     }
+
+    
   }
 
   /// Get All Messages From Firebase -> Return Chat List
@@ -155,5 +160,36 @@ class UserConversationScreenController extends GetxController {
   loadUI() {
     isLoading(true);
     isLoading(false);
+  }
+}
+
+class LocalNotificationService {
+  static final FlutterLocalNotificationsPlugin _notificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+
+  static void initilize() {
+    final InitializationSettings initializationSettings =
+        InitializationSettings(
+            android: AndroidInitializationSettings("@mipmap/ic_launcher"));
+    _notificationsPlugin.initialize(
+      initializationSettings,
+      //     onSelectNotification: (String? payload) {
+      //   print(payload);
+      // }
+    );
+  }
+
+  static void showNotificationOnForeground(RemoteMessage message) {
+    final notificationDetail = NotificationDetails(
+        android: AndroidNotificationDetails(
+            "com.petomate.community", "com.petomate.community",
+            importance: Importance.max, priority: Priority.high));
+
+    _notificationsPlugin.show(
+        DateTime.now().microsecond,
+        message.notification!.title,
+        message.notification!.body,
+        notificationDetail,
+        payload: message.data["message"]);
   }
 }

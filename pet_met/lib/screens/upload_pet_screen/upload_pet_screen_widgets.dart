@@ -1306,16 +1306,16 @@ class PetSubmitButton extends StatelessWidget {
         if (controller.updatePetFormKey.currentState!.validate()) {
           if (controller.petCategoryDropDownValue.categoryName ==
               "Select Category") {
-            Fluttertoast.showToast(msg: 'Please select category');
+            Fluttertoast.showToast(msg: 'Please select category',fontSize: 12.sp);
           } else if (controller.petSubCategoryDropDownValue.categoryName ==
               "Select Sub Category") {
-            Fluttertoast.showToast(msg: 'Please select sub category');
+            Fluttertoast.showToast(msg: 'Please select sub category',fontSize: 12.sp);
           } else if (difference < 0) {
             //todo
-            Fluttertoast.showToast(msg: 'Please select correct date');
+            Fluttertoast.showToast(msg: 'Please select correct date',fontSize: 12.sp);
           } else if (controller.petOption == PetOption.addOption) {
             if (controller.imageFile == null) {
-              Fluttertoast.showToast(msg: 'Please select image');
+              Fluttertoast.showToast(msg: 'Please select image',fontSize: 12.sp);
             }
             if (controller.imageFile != null) {
               // Add Pet Api Call

@@ -112,13 +112,14 @@ class UploadImageModule extends StatelessWidget {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(15),
                       child: Image.file(
-                          themeProvider.darkTheme
-                              ? screenController.imageFile!
-                              : screenController.imageFile!,
-                          // width: double.infinity,
-                            width: screenController.size.width * 0.50,
-                          height: screenController.size.height * 0.2,
-                          fit: BoxFit.fill,),
+                        themeProvider.darkTheme
+                            ? screenController.imageFile!
+                            : screenController.imageFile!,
+                        // width: double.infinity,
+                        width: screenController.size.width * 0.50,
+                        height: screenController.size.height * 0.2,
+                        fit: BoxFit.fill,
+                      ),
                     ),
 
                     //),
@@ -151,7 +152,7 @@ class UploadImageModule extends StatelessWidget {
                                   : ApiUrl.apiImagePath +
                                       screenController.shopImage,
                               // width: double.infinity,
-                                width: screenController.size.width * 0.50,
+                              width: screenController.size.width * 0.50,
                               height: screenController.size.height * 0.2,
                               // fit: BoxFit.fill,
                               errorBuilder: (context, er, st) {
@@ -1866,7 +1867,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                               color: themeProvider.darkTheme
                                   ? AppColors.whiteColor
                                   : AppColors.blackTextColor,
-                              fontSize: 8.sp,
+                              fontSize:11.sp,
                             )),
                       ),
                       IconButton(
@@ -1954,7 +1955,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                               color: themeProvider.darkTheme
                                   ? AppColors.whiteColor
                                   : AppColors.blackTextColor,
-                              fontSize: 8.sp,
+                              fontSize: 11.sp,
                             )),
                       ),
                       IconButton(

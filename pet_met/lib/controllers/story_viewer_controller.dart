@@ -30,7 +30,7 @@ class StoryViewerController extends GetxController {
     try {
       http.Response response =
           await http.get(Uri.parse(url));
-      log("Get All USer Story Api response : ${response.body}");
+      log("Get All USer Story Api response 111: ${response.body}");
 
       GetUserStoryModel getUserStoryModel = GetUserStoryModel.fromJson(json.decode(response.body));
       isSuccessStatus = getUserStoryModel.success.obs;

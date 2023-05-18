@@ -1578,7 +1578,6 @@ class GetVerifiedInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-
         Get.bottomSheet(Container(
           height: Get.size.height * 0.25,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -1652,7 +1651,7 @@ class GetVerifiedInfo extends StatelessWidget {
           ),
         ));
 
-       /* screenController.trainerScaffoldKey.currentState!.showBottomSheet((context) {
+        /* screenController.trainerScaffoldKey.currentState!.showBottomSheet((context) {
           return Container(
             height: Get.size.height * 0.25,
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -2017,7 +2016,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                                 color: themeProvider.darkTheme
                                     ? AppColors.whiteColor
                                     : AppColors.darkThemeColor,
-                                fontSize: 10.sp,
+                                fontSize: 11.sp,
                               )),
                         ),
                         IconButton(
@@ -2108,7 +2107,7 @@ class OpenAndCloseShopTimeModule extends StatelessWidget {
                                 color: themeProvider.darkTheme
                                     ? AppColors.whiteColor
                                     : AppColors.darkThemeColor,
-                                fontSize: 10.sp,
+                                fontSize: 11.sp,
                               )),
                         ),
                         IconButton(

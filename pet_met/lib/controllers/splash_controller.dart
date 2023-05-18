@@ -252,7 +252,7 @@ class SplashController extends GetxController {
         AndroidNotification? android = message.notification?.android;
         if (notification != null && android != null) {
           print(notification.body);
-          print("fjiefbjk");
+          log("android");
           notifications.show(
             notification.hashCode,
             notification.title,
@@ -275,18 +275,7 @@ class SplashController extends GetxController {
           print('NOTIFICATION INIT ANDROID');
         }
 
-        /*notification_type = message.data['notification_type'];
-        if (notification_type == 3) {
-          Get.offAll(() => BottomBarView());
-        } else if (notification_type == 1) {
-          Get.offAll(
-                () => BottomBarView(),
-            arguments: {
-              'index': 4,
-              'user_id': 39,
-            },
-          );
-        }*/
+       
       },
     );
     // FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);

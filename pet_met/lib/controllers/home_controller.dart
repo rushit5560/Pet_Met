@@ -303,10 +303,10 @@ class HomeController extends GetxController {
     log("Get User story Api Url : $url");
 
     try {
-      Map<String, String> header = apiHeader.apiHeader();
-      log("header : $header");
+      // Map<String, String> header = apiHeader.apiHeader();
+      // log("header 1111: $header");
 
-      http.Response response = await http.get(Uri.parse(url), headers: header);
+      http.Response response = await http.get(Uri.parse(url));
       log("Get All USer Story Api response : ${response.body}");
 
       GetUserStoryModel getUserStoryModel =
