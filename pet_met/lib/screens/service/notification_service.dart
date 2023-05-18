@@ -19,11 +19,36 @@ class LocalNotificationService {
     );
   }
 
-  static void showNotificationOnForeground(RemoteMessage message) {
+  static void showNotificationOnForeground(RemoteMessage message) async{
     final notificationDetail = NotificationDetails(
         android: AndroidNotificationDetails(
             "com.example.firebase_push_notification", "com.petomate.community",
-            importance: Importance.max, priority: Priority.high));
+            importance: Importance.max, priority: Priority.high),
+      iOS: DarwinNotificationDetails(
+        presentAlert: true,
+        presentSound: true,
+        presentBadge: true,
+        threadIdentifier: "com.petomate.community"
+      ),
+    );
+
+    var android = AndroidInitializationSettings('logo_rs');
+    // var initiallizationSettingsIOS = IOSInitializationSettings();
+    final DarwinInitializationSettings initializationSettingsIOS =
+    DarwinInitializationSettings(
+      requestSoundPermission: true,
+      requestBadgePermission: true,
+      requestAlertPermission: true,
+      defaultPresentAlert: true,
+      defaultPresentBadge: true,
+      defaultPresentSound: true,
+    );
+
+
+
+    var initialSetting =  InitializationSettings(android: android, iOS: initializationSettingsIOS);
+    final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+    flutterLocalNotificationsPlugin.initialize(initialSetting);
 
     _notificationsPlugin.show(
         DateTime.now().microsecond,
