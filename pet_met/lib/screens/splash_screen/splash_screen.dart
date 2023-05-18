@@ -1,6 +1,8 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pet_met/screens/service/notification_service.dart';
 import 'package:pet_met/utils/app_colors.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:pet_met/utils/extension_methods/extension_methods.dart';
@@ -9,11 +11,50 @@ import 'package:sizer/sizer.dart';
 import '../../controllers/splash_controller.dart';
 import '../../services/providers/dark_theme_provider.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   SplashScreen({Key? key}) : super(key: key);
 
-  final controller = Get.put(SplashController());
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
 
+class _SplashScreenState extends State<SplashScreen> {
+  final controller = Get.put(SplashController());
+@override
+  void initState() {
+    LocalNotificationService.initilize();
+    // trminated state
+    FirebaseMessaging.instance.getInitialMessage().then((message) {
+      if (message != null) {
+        setState(() {
+          message.notification!.hashCode;
+          message.notification!.title;
+          message.notification!.body;
+        });
+      }
+    });
+//forground state
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      LocalNotificationService.showNotificationOnForeground(message);
+  
+      setState(() {
+        message.notification!.hashCode;
+        message.notification!.title;
+        message.notification!.body;
+      });
+    });
+
+    //background state
+    FirebaseMessaging.onMessageOpenedApp.listen((message) {
+      setState(() {
+        message.notification!.hashCode;
+        message.notification!.title;
+        message.notification!.body;
+      });
+    });
+
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     DarkThemeProvider themeProvider = Provider.of<DarkThemeProvider>(context);
