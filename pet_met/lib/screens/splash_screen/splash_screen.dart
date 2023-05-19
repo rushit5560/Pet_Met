@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -35,13 +37,21 @@ class _SplashScreenState extends State<SplashScreen> {
     });
 //forground state
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      LocalNotificationService.showNotificationOnForeground(message);
-
-      setState(() {
-        message.notification!.hashCode;
-        message.notification!.title;
-        message.notification!.body;
-      });
+      if (Platform.isIOS) {
+        LocalNotificationService.forgroundMessage(message);
+        setState(() {
+          message.notification!.hashCode;
+          message.notification!.title;
+          message.notification!.body;
+        });
+      } else if (Platform.isAndroid) {
+        LocalNotificationService.showNotificationOnForeground(message);
+        setState(() {
+          message.notification!.hashCode;
+          message.notification!.title;
+          message.notification!.body;
+        });
+      }
     });
 
     //background state
