@@ -95,11 +95,11 @@ class LocalNotificationService {
       sound: true,
     );
 
-    _notificationsPlugin.show(
-        DateTime.now().microsecond,
-        message.notification!.title,
-        message.notification!.body,
-        notificationDetail,
-        payload: message.data["message"]);
+    // _notificationsPlugin.show(
+    //     DateTime.now().microsecond,
+    //     message.notification!.title,
+    //     message.notification!.body,
+    //     notificationDetail,
+    //     payload: message.data["message"]);
   }
 }

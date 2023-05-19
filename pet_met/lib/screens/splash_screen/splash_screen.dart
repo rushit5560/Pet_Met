@@ -39,11 +39,11 @@ class _SplashScreenState extends State<SplashScreen> {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       if (Platform.isIOS) {
         LocalNotificationService.forgroundMessage(message);
-        setState(() {
-          message.notification!.hashCode;
-          message.notification!.title;
-          message.notification!.body;
-        });
+        // setState(() {
+        //   message.notification!.hashCode;
+        //   message.notification!.title;
+        //   message.notification!.body;
+        // });
       } else if (Platform.isAndroid) {
         LocalNotificationService.showNotificationOnForeground(message);
         setState(() {
