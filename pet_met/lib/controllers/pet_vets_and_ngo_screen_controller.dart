@@ -7,11 +7,15 @@ import 'package:pet_met/models/pet_vets_and_ngo_screen_models.dart';
 import 'package:pet_met/utils/api_url.dart';
 import 'package:pet_met/utils/user_details.dart';
 
+import '../utils/user_preference.dart';
 
 class PetVetsAndNgoScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isSuccessStatus = false.obs;
   final size = Get.size;
+   String userLatitude = "";
+  String userLongitude = "";
+  UserPreference userPreference = UserPreference();
 
   ApiHeader apiHeader = ApiHeader();
 
@@ -28,11 +32,10 @@ class PetVetsAndNgoScreenController extends GetxController {
 
     try {
       Map<String, dynamic> bodyData = {
-        "latitude": UserDetails.liveLatitude,
-        "longitude": UserDetails.liveLongitude
+        "latitude": userLatitude,
+        "longitude": userLongitude
       };
       log('Vet & Ngo bodyData : $bodyData');
-
 
       // Map<String, String> header = apiHeader.apiHeader();
       http.Response response = await http.post(
@@ -63,9 +66,19 @@ class PetVetsAndNgoScreenController extends GetxController {
     }
   }
 
+  getUserLatLngFunction() async {
+    userLatitude = await userPreference.getStringValueFromPrefs(
+        key: UserPreference.userLatitudeKey);
+    userLongitude = await userPreference.getStringValueFromPrefs(
+        key: UserPreference.userLongitudeKey);
+    log('init userLatitude :$userLatitude');
+    log('init userLongitude :$userLongitude');
+  }
+
   @override
   void onInit() {
     getAllVetAndNgoFunction();
+    getUserLatLngFunction();
     super.onInit();
   }
 }

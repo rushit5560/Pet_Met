@@ -46,11 +46,11 @@ class _SplashScreenState extends State<SplashScreen> {
         // });
       } else if (Platform.isAndroid) {
         LocalNotificationService.showNotificationOnForeground(message);
-        setState(() {
-          message.notification!.hashCode;
-          message.notification!.title;
-          message.notification!.body;
-        });
+        // setState(() {
+        //   message.notification!.hashCode;
+        //   message.notification!.title;
+        //   message.notification!.body;
+        // });
       }
     });
 

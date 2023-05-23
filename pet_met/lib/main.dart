@@ -12,7 +12,6 @@ import 'package:pet_met/utils/styles.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-
 Future<void> backroundHandler(RemoteMessage message) async {
   log(" This is message from background");
   log("message.notification!.title ${message.notification!.title}");
@@ -22,8 +21,7 @@ Future<void> backroundHandler(RemoteMessage message) async {
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  FirebaseMessaging.onBackgroundMessage(backroundHandler);
-  
+  // FirebaseMessaging.onBackgroundMessage(backroundHandler);
 
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(

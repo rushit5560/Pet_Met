@@ -158,10 +158,8 @@ class UploadImageModule extends StatelessWidget {
                                       themeProvider.darkTheme
                                           ? AppImages.cameraPlaceHolderImgDark
                                           : AppImages.cameraPlaceHolderImglight,
+                                      height: 65,
                                       fit: BoxFit.fill,
-                                      height:
-                                          screenController.size.height * 0.2,
-                                      width: screenController.size.width * 0.50,
                                     ),
                                     const SizedBox(height: 20),
                                     Text(

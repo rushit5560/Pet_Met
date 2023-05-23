@@ -18,8 +18,6 @@ import 'package:http/http.dart' as http;
 import 'package:pet_met/utils/user_preference.dart';
 import 'package:sizer/sizer.dart';
 
-
-
 class TrainersAndUsersScreenController extends GetxController {
   final size = Get.size;
   File? imageFile;
@@ -39,7 +37,8 @@ class TrainersAndUsersScreenController extends GetxController {
 
   final formKey = GlobalKey<FormState>();
   GlobalKey<FormState> loginPasswordForm = GlobalKey<FormState>();
-
+  String userLatitude = "";
+  String userLongitude = "";
   RxString userEmail = "".obs;
   RxString userName = "".obs;
   RxString shopEmail = "".obs;
@@ -124,15 +123,18 @@ class TrainersAndUsersScreenController extends GetxController {
       if (isSuccessStatus.value) {
         emailController.text = getTrainersProfileModel.data.data[0].email;
         nameController.text = getTrainersProfileModel.data.data[0].name;
-        displayNameController.text = getTrainersProfileModel.data.data[0].displayName;
+        displayNameController.text =
+            getTrainersProfileModel.data.data[0].displayName;
         contactNumber.text = getTrainersProfileModel.data.data[0].phone;
         addressController.text = getTrainersProfileModel.data.data[0].address;
         detailsController.text = getTrainersProfileModel.data.data[0].fullText;
-        if(getTrainersProfileModel.data.data[0].image != "asset/uploads/product/petmet_logo.png") {
+        if (getTrainersProfileModel.data.data[0].image !=
+            "asset/uploads/product/petmet_logo.png") {
           trainersProfile =
               ApiUrl.apiImagePath + getTrainersProfileModel.data.data[0].image;
         }
         log("trainersProfile : $trainersProfile");
+        log("getTrainersProfileModel.data.data[0].displayName ${getTrainersProfileModel.data.data[0].displayName}");
         // activeController.text = getTrainersProfileModel.data.data[0].isActive;
         selectedOpenTime!.value = getTrainersProfileModel.data.data[0].open;
         selectedCloseTime!.value = getTrainersProfileModel.data.data[0].close;
@@ -356,7 +358,7 @@ class TrainersAndUsersScreenController extends GetxController {
           selfId: loginModel.data.uid,
           userId: loginModel.data.id,
           userName: loginModel.data.name,
-          displayname:loginModel.data.displayName ,
+          displayname: loginModel.data.displayName,
           userEmail: loginModel.data.email,
           userProfileImage: loginModel.data.image,
           token: loginModel.data.rememberToken,
@@ -491,8 +493,8 @@ class TrainersAndUsersScreenController extends GetxController {
       request.fields['is_active'] = trainerStatus;
       request.fields['userid'] = UserDetails.userId;
       request.fields['uid'] = UserDetails.selfId;
-      request.fields['longitude'] = UserDetails.liveLongitude;
-      request.fields['latitude'] = UserDetails.liveLatitude;
+      request.fields['longitude'] = userLongitude;
+      request.fields['latitude'] = userLatitude;
       request.fields['gpayupi'] = gPayController.text.trim();
       request.fields['display_name'] = displayNameController.text.trim();
 
@@ -506,7 +508,8 @@ class TrainersAndUsersScreenController extends GetxController {
         isSuccessStatus = updateTrainersProfileModel.success.obs;
 
         if (isSuccessStatus.value) {
-          Fluttertoast.showToast(msg: updateTrainersProfileModel.message,fontSize: 10.sp);
+          Fluttertoast.showToast(
+              msg: updateTrainersProfileModel.message, fontSize: 10.sp);
           await getAllRoleProfileFunction(
               profileChangeOption: ProfileChangeOption.stay);
           Get.back();
@@ -537,7 +540,7 @@ class TrainersAndUsersScreenController extends GetxController {
       log("Delete Account Api Response : ${response.body}");
 
       DeleteAccountModel deleteAccountModel =
-      DeleteAccountModel.fromJson(json.decode(response.body));
+          DeleteAccountModel.fromJson(json.decode(response.body));
       isSuccessStatus = deleteAccountModel.success.obs;
 
       if (isSuccessStatus.value) {
@@ -559,9 +562,19 @@ class TrainersAndUsersScreenController extends GetxController {
     isLoading(false);
   }
 
+  getUserLatLngFunction() async {
+    userLatitude = await userPreference.getStringValueFromPrefs(
+        key: UserPreference.userLatitudeKey);
+    userLongitude = await userPreference.getStringValueFromPrefs(
+        key: UserPreference.userLongitudeKey);
+    log('init userLatitude :$userLatitude');
+    log('init userLongitude :$userLongitude');
+  }
+
   @override
   void onInit() {
     super.onInit();
     getAllRoleProfileFunction();
+    getUserLatLngFunction();
   }
 }
