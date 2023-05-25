@@ -803,7 +803,7 @@ PODS:
     - AppAuth/Core (~> 1.6)
     - GTMSessionFetcher/Core (< 3.0, >= 1.5)
   - GTMSessionFetcher/Core (2.1.0)
-  - image_gallery_saver (1.5.0):
+  - image_gallery_saver (1.7.1):
     - Flutter
   - image_picker_ios (0.0.1):
     - Flutter

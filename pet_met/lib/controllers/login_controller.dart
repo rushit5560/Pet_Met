@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+// import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 // import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 // import 'package:flutter_login_facebook/flutter_login_facebook.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -402,28 +402,28 @@ class LoginController extends GetxController {
   // }
 
   // new
-  facebookLogin() async {
-    try {
-      final result = await FacebookAuth.i.login(permissions: ['email']);
-      if (result.status == LoginStatus.success) {
-        final userData = await FacebookAuth.i.getUserData();
-        log("$userData");
-
-        // String userName = userData[''];
-        // String email = email;
-        // String fbKeyId = fbKeyId;
-
-        // await socialMediaRegisterFunction(
-        //             userName: userName,
-        //             userEmail: email,
-        //             userId: fbKeyId,
-        //           );
-
-      }
-    } catch (error) {
-      log("$error");
-    }
-  }
+  // facebookLogin() async {
+  //   try {
+  //     final result = await FacebookAuth.i.login(permissions: ['email']);
+  //     if (result.status == LoginStatus.success) {
+  //       final userData = await FacebookAuth.i.getUserData();
+  //       log("$userData");
+  //
+  //       // String userName = userData[''];
+  //       // String email = email;
+  //       // String fbKeyId = fbKeyId;
+  //
+  //       // await socialMediaRegisterFunction(
+  //       //             userName: userName,
+  //       //             userEmail: email,
+  //       //             userId: fbKeyId,
+  //       //           );
+  //
+  //     }
+  //   } catch (error) {
+  //     log("$error");
+  //   }
+  // }
 
   Future<void> socialMediaRegisterFunction({
     required String userName,

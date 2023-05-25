@@ -1,4 +1,4 @@
-import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
+// import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
@@ -8,6 +8,7 @@ import 'package:pet_met/controllers/index_screen_controller.dart';
 import 'package:pet_met/screens/index_screen/widgets/index_screen_widgets.dart';
 import 'package:pet_met/utils/app_images.dart';
 import 'package:provider/provider.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:sizer/sizer.dart';
 import '../../../utils/app_colors.dart';
 import '../../services/providers/dark_theme_provider.dart';
@@ -63,7 +64,135 @@ class IndexScreenState extends State<IndexScreen> {
           child: Scaffold(
             resizeToAvoidBottomInset: false,
             // backgroundColor: AppColors.whiteColor,
-            bottomNavigationBar: BubbleBottomBar(
+            bottomNavigationBar: SalomonBottomBar(
+              currentIndex: controller.selectedBottomIndex.value,
+              onTap: (ind) {
+                setState(() {
+                  controller.selectedBottomIndex.value = ind;
+                });
+              },
+              items: [
+                SalomonBottomBarItem(
+                  selectedColor: AppColors.accentTextColor.withOpacity(0.2),
+                  icon: Image.asset(
+                    AppIcons.bottomBar1Img,
+                    color: AppColors.whiteColor,
+                    width: 4.5.h,
+                    height: 4.5.h,
+                  ),
+                  title: Text(
+                    "Meet",
+                    style:
+                        TextStyle(color: AppColors.whiteColor, fontSize: 10.sp),
+                  ),
+                  activeIcon: Image.asset(
+                    AppIcons.bottomBar1Img,
+                    color: AppColors.whiteColor,
+                    width: 4.h,
+                    height: 4.h,
+                  ),
+                ),
+
+                SalomonBottomBarItem(
+                  selectedColor: AppColors.accentTextColor.withOpacity(0.2),
+                  // backgroundColor: themeProvider.darkTheme
+                  //     ? AppColors.accentTextColor.withOpacity(0.2)
+                  //     : AppColors.blackTextColor,
+                  icon: Image.asset(
+                    AppIcons.bottomBar2Img,
+                    color: AppColors.whiteColor,
+                    width: 3.5.h,
+                    height: 3.5.h,
+                  ),
+                  activeIcon: Image.asset(
+                    AppIcons.bottomBar2Img,
+                    color: AppColors.whiteColor,
+                    width: 3.5.h,
+                    height: 3.5.h,
+                  ),
+                  title:  Text(
+                    "Trainer",
+                    style: TextStyle(
+                      color: AppColors.whiteColor,
+                      fontSize: 10.sp,
+                    ),
+                  ),
+                ),
+
+                SalomonBottomBarItem(
+                  // badge: Badge(),
+                  // backgroundColor: themeProvider.darkTheme
+                  //     ? AppColors.accentTextColor.withOpacity(0.2)
+                  //     : AppColors.blackTextColor,
+                  icon: Image.asset(
+                    AppIcons.bottomBar3Img,
+                    color: AppColors.whiteColor,
+                    width: 3.5.h,
+                    height: 3.5.h,
+                  ),
+                  selectedColor: AppColors.accentTextColor.withOpacity(0.2),
+                  activeIcon: Image.asset(
+                    AppIcons.bottomBar3Img,
+                    color: AppColors.whiteColor,
+                    width: 3.5.h,
+                    height: 3.5.h,
+                  ),
+                  title: Text(
+                    "Home",
+                    style: TextStyle(color: AppColors.whiteColor,fontSize: 10.sp),
+                  ),
+                ),
+
+                SalomonBottomBarItem(
+                  selectedColor: AppColors.accentTextColor.withOpacity(0.2),
+                  // badge: Badge(),
+                  // backgroundColor: themeProvider.darkTheme
+                  //     ? AppColors.accentTextColor.withOpacity(0.2)
+                  //     : AppColors.blackTextColor,
+                  icon: Image.asset(
+                    AppIcons.chatIconImg,
+                    color: AppColors.whiteColor,
+                    width: 3.5.h,
+                    height: 3.5.h,
+                  ),
+                  activeIcon: Image.asset(
+                    AppIcons.chatIconImg,
+                    color: AppColors.whiteColor,
+                    width: 3.5.h,
+                    height: 3.5.h,
+                  ),
+                  title: Text(
+                    "Chat",
+                    style: TextStyle(color: AppColors.whiteColor,fontSize: 10.sp),
+                  ),
+                ),
+
+                SalomonBottomBarItem(
+                  selectedColor: AppColors.accentTextColor.withOpacity(0.2),
+                  // badge: Badge(),
+                  // backgroundColor: themeProvider.darkTheme
+                  //     ? AppColors.accentTextColor.withOpacity(0.2)
+                  //     : AppColors.blackTextColor,
+                  icon: Image.asset(
+                    AppIcons.bottomBar5Img,
+                    color: AppColors.whiteColor,
+                    width: 3.5.h,
+                    height: 3.5.h,
+                  ),
+                  activeIcon: Image.asset(
+                    AppIcons.bottomBar5Img,
+                    color: AppColors.whiteColor,
+                    width: 3.5.h,
+                    height: 3.5.h,
+                  ),
+                  title: Text(
+                    "Doctor",
+                    style: TextStyle(color: AppColors.whiteColor,fontSize: 10.sp),
+                  ),
+                ),
+              ],
+            ),
+            /*bottomNavigationBar: BubbleBottomBar(
               opacity: 0.2,
               currentIndex: controller.selectedBottomIndex.value,
               onTap: (ind) {
@@ -87,6 +216,7 @@ class IndexScreenState extends State<IndexScreen> {
               tilesPadding: const EdgeInsets.symmetric(vertical: 8),
               items: <BubbleBottomBarItem>[
                 BubbleBottomBarItem(
+                  badge: Badge(),
                   backgroundColor: themeProvider.darkTheme
                       ? AppColors.accentTextColor.withOpacity(0.2)
                       : AppColors.blackTextColor,
@@ -108,6 +238,7 @@ class IndexScreenState extends State<IndexScreen> {
                   ),
                 ),
                 BubbleBottomBarItem(
+                  badge: Badge(),
                   backgroundColor: themeProvider.darkTheme
                       ? AppColors.accentTextColor.withOpacity(0.2)
                       : AppColors.blackTextColor,
@@ -132,6 +263,7 @@ class IndexScreenState extends State<IndexScreen> {
                   ),
                 ),
                 BubbleBottomBarItem(
+                  badge: Badge(),
                   backgroundColor: themeProvider.darkTheme
                       ? AppColors.accentTextColor.withOpacity(0.2)
                       : AppColors.blackTextColor,
@@ -153,6 +285,7 @@ class IndexScreenState extends State<IndexScreen> {
                   ),
                 ),
                 BubbleBottomBarItem(
+                  badge: Badge(),
                   backgroundColor: themeProvider.darkTheme
                       ? AppColors.accentTextColor.withOpacity(0.2)
                       : AppColors.blackTextColor,
@@ -174,6 +307,7 @@ class IndexScreenState extends State<IndexScreen> {
                   ),
                 ),
                 BubbleBottomBarItem(
+                  badge: Badge(),
                   backgroundColor: themeProvider.darkTheme
                       ? AppColors.accentTextColor.withOpacity(0.2)
                       : AppColors.blackTextColor,
@@ -196,7 +330,7 @@ class IndexScreenState extends State<IndexScreen> {
                 ),
               ],
 
-            ),
+            ),*/
             body: Stack(
               alignment: Alignment.topCenter,
               children: [

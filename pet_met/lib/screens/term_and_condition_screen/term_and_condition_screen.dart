@@ -62,28 +62,28 @@ class TermAndConditionScreen extends StatelessWidget {
                                   color: themeProvider.darkTheme
                                       ? AppColors.whiteColor
                                       : AppColors.blackTextColor,
-                                  fontSize: const FontSize(15.0),
+                                  fontSize:  FontSize(15.0),
                                   fontWeight: FontWeight.w500,
                                 ),
                                 "body": Style(
                                   color: themeProvider.darkTheme
                                       ? AppColors.whiteColor
                                       : AppColors.blackTextColor,
-                                  fontSize: const FontSize(15.0),
+                                  fontSize:  FontSize(15.0),
                                   fontWeight: FontWeight.w500,
                                 ),
                                 "b": Style(
                                   color: themeProvider.darkTheme
                                       ? AppColors.whiteColor
                                       : AppColors.blackTextColor,
-                                  fontSize: const FontSize(15.0),
+                                  fontSize:  FontSize(15.0),
                                   fontWeight: FontWeight.w500,
                                 ),
                                 "span": Style(
                                   color: themeProvider.darkTheme
                                       ? AppColors.whiteColor
                                       : AppColors.blackTextColor,
-                                  fontSize: const FontSize(15.0),
+                                  fontSize:  FontSize(15.0),
                                   fontWeight: FontWeight.w500,
                                 ),
 
