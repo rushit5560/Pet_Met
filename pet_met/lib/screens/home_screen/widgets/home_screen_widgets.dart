@@ -50,7 +50,7 @@ class PetTopListModule extends StatelessWidget {
                   width: homeController.size.width * 0.45,
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(
-                      Radius.circular(12),
+                      Radius.circular(12)
                     ),
                     color: themeProvider.darkTheme
                         ? AppColors.darkThemeBoxColor
@@ -340,6 +340,7 @@ class PetTopListModule extends StatelessWidget {
     );
   }
 }
+
 
 /*class PetTopListModule extends StatefulWidget {
   const PetTopListModule({Key? key}) : super(key: key);

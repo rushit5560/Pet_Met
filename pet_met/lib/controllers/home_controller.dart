@@ -345,12 +345,7 @@ class HomeController extends GetxController {
       }
     } catch (e) {
       log("Get All USer Story Api Error ::: $e");
-    } /*finally {
-      // isLoading(false);
-      //await getUserStory();
-      await getAllIncrementPetFunction();
-    }*/
-
+    }
     log('storyOption1212 : $storyOption');
     if (storyOption == StoryOption.moveForward) {
       hasMore = true;
