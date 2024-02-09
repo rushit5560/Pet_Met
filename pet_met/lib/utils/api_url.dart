@@ -1,7 +1,8 @@
 import 'package:pet_met/utils/user_details.dart';
 
 class ApiUrl {
-  static const apiMainPath = "https://petomate.com/api";
+  static const apiMainPath = "https://peto.omtecweb.com/api";
+  // static const apiMainPath = "https://petomate.com/api";
   // static const apiMainPath = "http://petomate.omdemo.co.in/api";
 
   static const apiImagePath = "https://petomate.com/";

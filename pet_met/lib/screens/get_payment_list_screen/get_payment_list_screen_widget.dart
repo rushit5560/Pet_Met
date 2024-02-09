@@ -68,7 +68,7 @@ class PaymentListModule extends StatelessWidget {
               color: AppColors.greyTextColor.withOpacity(0.25),
               blurRadius: 35,
               spreadRadius: 1,
-              offset: const Offset(0, 0),
+              offset:  Offset(0, 0),
             ),
           ],
         ),
@@ -122,7 +122,7 @@ class PaymentListModule extends StatelessWidget {
                     return AppColors.greyTextColor; // Use the default value.
                   },
                 ),
-                shape: const RoundedRectangleBorder(
+                shape:  RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(4))),
                 value: controller.paymentList[index].isActive,
                 onChanged: (val) {
@@ -171,7 +171,7 @@ class AddNewPaymentButtonModule extends StatelessWidget {
                 color: AppColors.greyTextColor.withOpacity(0.25),
                 blurRadius: 35,
                 spreadRadius: 1,
-                offset: const Offset(0, 0),
+                offset:  Offset(0, 0),
               ),
             ],
           ),
@@ -203,7 +203,7 @@ class AddNewPaymentButtonModule extends StatelessWidget {
                         color: AppColors.accentColor.withOpacity(0.25),
                         blurRadius: 35,
                         spreadRadius: 1,
-                        offset: const Offset(0, 0),
+                        offset:  Offset(0, 0),
                       ),
                     ],
                   ),

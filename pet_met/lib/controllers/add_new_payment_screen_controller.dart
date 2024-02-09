@@ -32,48 +32,48 @@ class AddNewPaymentScreenController extends GetxController{
 
 
   /// Add New Payment
-  Future<void> addNewPaymentFunction() async {
-    isLoading(true);
-    String url = ApiUrl.addNewPaymentApi;
-    log("Add New Payment List Api Url : $url");
-
-    try {
-      Map<String, dynamic> data = {
-        "userid": "${UserDetails.userId}",
-        "card_number": cardNumberController.text.trim(),
-        "card_name": nameOnCardController.text.trim(),
-        "expiry_date": expiryDateController.text.trim(),
-        "cvv": cvvTextFieldController.text.trim()
-      };
-
-      log("data : $data");
-      Map<String, String> header = apiHeader.apiHeader();
-      log("header : $header");
-
-      http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
-      log("Add New Payment Api Response : ${response.body}");
-
-      AddNewPaymentModel addNewPaymentModel =
-      AddNewPaymentModel.fromJson(json.decode(response.body));
-      isSuccessStatus = addNewPaymentModel.success.obs;
-
-      if (isSuccessStatus.value) {
-        //await getPaymentListFunction();
-        Fluttertoast.showToast(msg: addNewPaymentModel.message,fontSize: 12.sp);
-        cardNumberController.clear();
-        nameOnCardController.clear();
-        expiryDateController.clear();
-        cvvTextFieldController.clear();
-      } else {
-        log("Add New payment List Api Else");
-      }
-    } catch (e) {
-      log("Add new Payment Api Error ::: $e");
-    } finally {
-      isLoading(false);
-      //await getAllPetFunction();
-    }
-  }
+  // Future<void> addNewPaymentFunction() async {
+  //   isLoading(true);
+  //   String url = ApiUrl.addNewPaymentApi;
+  //   log("Add New Payment List Api Url : $url");
+  //
+  //   try {
+  //     Map<String, dynamic> data = {
+  //       "userid": UserDetails.userId,
+  //       "card_number": cardNumberController.text.trim(),
+  //       "card_name": nameOnCardController.text.trim(),
+  //       "expiry_date": expiryDateController.text.trim(),
+  //       "cvv": cvvTextFieldController.text.trim()
+  //     };
+  //
+  //     log("data : $data");
+  //     Map<String, String> header = apiHeader.apiHeader();
+  //     log("header : $header");
+  //
+  //     http.Response response = await http.post(Uri.parse(url),body: data, headers: header);
+  //     log("Add New Payment Api Response : ${response.body}");
+  //
+  //     AddNewPaymentModel addNewPaymentModel =
+  //     AddNewPaymentModel.fromJson(json.decode(response.body));
+  //     isSuccessStatus = addNewPaymentModel.success.obs;
+  //
+  //     if (isSuccessStatus.value) {
+  //       //await getPaymentListFunction();
+  //       Fluttertoast.showToast(msg: addNewPaymentModel.message,fontSize: 12.sp);
+  //       cardNumberController.clear();
+  //       nameOnCardController.clear();
+  //       expiryDateController.clear();
+  //       cvvTextFieldController.clear();
+  //     } else {
+  //       log("Add New payment List Api Else");
+  //     }
+  //   } catch (e) {
+  //     log("Add new Payment Api Error ::: $e");
+  //   } finally {
+  //     isLoading(false);
+  //     //await getAllPetFunction();
+  //   }
+  // }
 
   /// Get Payment List
   /*Future<void> getPaymentListFunction() async {

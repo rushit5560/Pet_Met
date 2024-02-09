@@ -67,7 +67,7 @@ class CardNumberTextField extends StatelessWidget {
                             : AppColors.greyTextColor.withOpacity(0.5),
                         blurRadius: 10,
                         spreadRadius: 0.1,
-                        offset: const Offset(0, 0),
+                        offset:  Offset(0, 0),
                       ),
                     ],
                   ),
@@ -158,7 +158,7 @@ class NameOnCardTextField extends StatelessWidget {
                         : AppColors.greyTextColor.withOpacity(0.5),
                     blurRadius: 10,
                     spreadRadius: 0.1,
-                    offset: const Offset(0, 0),
+                    offset:  Offset(0, 0),
                   ),
                 ],
               ),
@@ -249,7 +249,7 @@ class ExpiryDateTextField extends StatelessWidget {
                         : AppColors.greyTextColor.withOpacity(0.5),
                     blurRadius: 10,
                     spreadRadius: 0.1,
-                    offset: const Offset(0, 0),
+                    offset:  Offset(0, 0),
                   ),
                 ],
               ),
@@ -340,7 +340,7 @@ class CvvTextField extends StatelessWidget {
                         : AppColors.greyTextColor.withOpacity(0.5),
                     blurRadius: 10,
                     spreadRadius: 0.1,
-                    offset: const Offset(0, 0),
+                    offset:  Offset(0, 0),
                   ),
                 ],
               ),
@@ -415,7 +415,7 @@ class SaveButton extends StatelessWidget {
         onTap: () {
           // controller.submitLoginForm();
           if(screenController.formKey.currentState!.validate()){
-            screenController.addNewPaymentFunction();
+            // screenController.addNewPaymentFunction();
           }
 
         },
