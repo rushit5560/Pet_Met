@@ -28,15 +28,15 @@ class SplashController extends GetxController {
 
   // NotificationServices notificationServices = NotificationServices();
 
-  void animateImage() {
-    Future.delayed(const Duration(seconds: 1), () {
-      Timer.periodic(const Duration(seconds: 2), (timer) {
-        imageHeight = (Get.height / 3.5).obs;
-        // log('imageHeight : $imageHeight');
-        animateImage();
-      });
-    });
-  }
+  // void animateImage() {
+  //   Future.delayed(const Duration(seconds: 1), () {
+  //     Timer.periodic(const Duration(seconds: 2), (timer) {
+  //       imageHeight = (Get.height / 3.5).obs;
+  //       // log('imageHeight : $imageHeight');
+  //       animateImage();
+  //     });
+  //   });
+  // }
 
   final notifications = FlutterLocalNotificationsPlugin();
   late AndroidNotificationChannel channel;

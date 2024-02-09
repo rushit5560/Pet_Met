@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+// import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 // import 'package:flutter_login_facebook/flutter_login_facebook.dart';
@@ -17,7 +17,7 @@ import 'package:pet_met/utils/api_url.dart';
 import 'package:http/http.dart' as http;
 import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:sizer/sizer.dart';
 import '../screens/index_screen/index_screen.dart';
@@ -32,7 +32,7 @@ class LoginController extends GetxController {
   var mailController = TextEditingController();
   var passController = TextEditingController();
   var selectedPageIndex = 0.obs;
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  // final FirebaseAuth _auth = FirebaseAuth.instance;
 
   UserPreference userPreference = UserPreference();
 
@@ -134,7 +134,7 @@ class LoginController extends GetxController {
   Future signInWithGoogleFunction() async {
     // isLoading(true);
 
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
 
     final FirebaseAuth auth = FirebaseAuth.instance;
     final GoogleSignIn googleSignIn = GoogleSignIn();
@@ -156,7 +156,7 @@ class LoginController extends GetxController {
         String userName = result.user!.displayName!;
         String email = result.user!.email!;
         String googleKeyId = result.user!.uid;
-
+ 
         log("Username : $userName");
         log("email : $email");
         log("googleKeyId : $googleKeyId");
@@ -624,7 +624,7 @@ class LoginController extends GetxController {
     final FirebaseMessaging _fcm = FirebaseMessaging.instance;
     final token = await _fcm.getToken();
     deviceTokenToSendPushNotification = token.toString();
-    log("Token Value 111: $deviceTokenToSendPushNotification");
+    log("FCM Token Value 111: $deviceTokenToSendPushNotification");
     await userPreference.setFcmInPrefs(deviceTokenToSendPushNotification);
   }
 }
