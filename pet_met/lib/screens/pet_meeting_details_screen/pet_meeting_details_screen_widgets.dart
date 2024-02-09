@@ -155,9 +155,9 @@ class _PetNameAndSocialMediaButtonModuleState
               transition: Transition.native,
               duration: const Duration(milliseconds: 500),
               arguments: [
-                screenController.petUserId,
-                screenController.petUserCatId,
-                screenController.petId,
+                screenController.petUserId.toString(),
+                screenController.petUserCatId.toString(),
+                screenController.petId.toString(),
               ],
             );
           },

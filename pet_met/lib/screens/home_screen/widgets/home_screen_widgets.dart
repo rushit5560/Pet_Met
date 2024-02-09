@@ -62,9 +62,9 @@ class PetTopListModule extends StatelessWidget {
                       Get.to(
                         () => PetMeetingDetailsScreen(),
                         arguments: [
-                          homeController.petTopList[i].data.id,
-                          homeController.petTopList[i].data.userid,
-                          homeController.petTopList[i].data.categoryId,
+                          homeController.petTopList[i].data.id.toString(),
+                          homeController.petTopList[i].data.userid.toString(),
+                          homeController.petTopList[i].data.categoryId.toString(),
                           homeController.petTopList[i].name.displayName,
                           // homeController.petTopList[i].name.displayName,
                         ],
@@ -106,9 +106,9 @@ class PetTopListModule extends StatelessWidget {
                       Get.to(
                         () => PetMeetingDetailsScreen(),
                         arguments: [
-                          homeController.petTopList[i].data.id,
-                          homeController.petTopList[i].data.userid,
-                          homeController.petTopList[i].data.categoryId,
+                          homeController.petTopList[i].data.id.toString(),
+                          homeController.petTopList[i].data.userid.toString(),
+                          homeController.petTopList[i].data.categoryId.toString(),
                           homeController.petTopList[i].name.displayName,
                           // homeController.petTopList[i].name.displayName
                         ],
@@ -258,10 +258,10 @@ class PetTopListModule extends StatelessWidget {
                                             const Duration(milliseconds: 500),
                                         arguments: [
                                           homeController
-                                              .petTopList[i].data.userid,
+                                              .petTopList[i].data.userid.toString(),
                                           homeController
-                                              .petTopList[i].data.categoryId,
-                                          homeController.petTopList[i].data.id,
+                                              .petTopList[i].data.categoryId.toString(),
+                                          homeController.petTopList[i].data.id.toString(),
                                         ],
                                       );
                               },

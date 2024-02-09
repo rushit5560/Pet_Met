@@ -22,7 +22,7 @@ class VetsAndNgoDetailsModel {
 }
 
 class VetNgoData {
-  String? id;
+  int? id;
   String? name;
   String? displayName;
   String? password;
@@ -44,9 +44,9 @@ class VetNgoData {
   String? isActive;
   String? ifscCode;
   String? accountCode;
-  String? userid;
-  String? categoryId;
-  String? createdBy;
+  int? userid;
+  int? categoryId;
+  int? createdBy;
   String? modifiedBy;
   String? createdDate;
   String? modifiedDate;
@@ -90,7 +90,7 @@ class VetNgoData {
   });
 
   factory VetNgoData.fromJson(Map<String, dynamic> json) => VetNgoData(
-        id: json["id"] ?? "",
+        id: json["id"] ?? 0,
         name: json["name"] ?? "",
         displayName: json["display_name"] ?? "",
         email: json["email"] ?? "",
@@ -113,9 +113,9 @@ class VetNgoData {
         isActive: json["is_active"] ?? "",
         ifscCode: json["ifsc_code"] ?? "",
         accountCode: json["account_code"] ?? "",
-        userid: json["userid"] ?? "",
-        categoryId: json["categoryID"] ?? "",
-        createdBy: json["created_by"] ?? "",
+        userid: json["userid"] ?? 0,
+        categoryId: json["categoryID"] ?? 0,
+        createdBy: json["created_by"] ?? 0,
         modifiedBy: json["modified_by"] ?? "",
         createdDate: json["created_date"] ?? "",
         modifiedDate: json["modified_date"] ?? "",

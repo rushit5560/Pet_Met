@@ -163,7 +163,7 @@ class PetTrainerListModule extends StatelessWidget {
         Get.to(() => PetTrainersDetailsScreen(),
             transition: Transition.native,
             duration: const Duration(milliseconds: 500),
-            arguments: trainerSingleItem.id);
+            arguments: trainerSingleItem.id.toString());
       },
       child: Container(
         decoration: BoxDecoration(
@@ -265,7 +265,7 @@ class PetTrainerListModule extends StatelessWidget {
         Get.to(() => PetTrainersDetailsScreen(),
             transition: Transition.native,
             duration: const Duration(milliseconds: 500),
-            arguments: searchTrainerSingleItem.id);
+            arguments: searchTrainerSingleItem.id.toString());
       },
       child: Container(
         decoration: BoxDecoration(

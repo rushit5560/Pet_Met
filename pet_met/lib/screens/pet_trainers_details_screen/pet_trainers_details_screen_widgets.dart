@@ -574,7 +574,7 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
                 Get.to(
                   () => UserConversationScreen(),
                   arguments: [
-                    chatRoomId,
+                    chatRoomId.toString(),
                     screenController.trainerName,
                     screenController.trainerName,
                     UserDetails.userEmail,
@@ -657,7 +657,7 @@ class PetTrainerNameAndSocialMediaButtonModule extends StatelessWidget {
                   Get.to(
                     () => UserConversationScreen(),
                     arguments: [
-                      chatRoomId2,
+                      chatRoomId2.toString(),
                       screenController.trainerName,
                       screenController.trainerName,
                       UserDetails.userEmail,

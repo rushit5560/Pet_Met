@@ -49,7 +49,7 @@ class PetCategory {
     this.modifiedBy,
   });
 
-  String ? categoryId;
+  int ? categoryId;
   String ? categoryName;
   String ? categoryMetaTitle;
   String ? categoryMetaDescrtiption;
@@ -57,14 +57,14 @@ class PetCategory {
   String ? categoryImage;
   String ? parent;
   String ? sortOrder;
-  String ? isActive;
+  int ? isActive;
   String ? createdDate;
   String ? updatedDate;
-  String ? createdBy;
-  String ? modifiedBy;
+  int ? createdBy;
+  int ? modifiedBy;
 
   factory PetCategory.fromJson(Map<String, dynamic> json) => PetCategory(
-    categoryId: json["categoryID"] ?? "",
+    categoryId: json["categoryID"] ?? 0,
     categoryName: json["categoryName"] ?? "",
     categoryMetaTitle: json["categoryMetaTitle"] ?? "",
     categoryMetaDescrtiption: json["categoryMetaDescrtiption"] ?? "",
@@ -72,11 +72,11 @@ class PetCategory {
     categoryImage: json["categoryImage"] ?? "",
     parent: json["parent"] ?? "",
     sortOrder: json["sort_order"] ?? "",
-    isActive: json["is_active"] ?? "",
+    isActive: json["is_active"] ?? 0,
     createdDate: json["created_date"] ?? "",
     updatedDate: json["updated_date"] ?? "",
-    createdBy: json["created_by"] ?? "",
-    modifiedBy: json["modified_by"] ?? "",
+    createdBy: json["created_by"] ?? 0,
+    modifiedBy: json["modified_by"] ?? 0,
   );
 
   Map<String, dynamic> toJson() => {

@@ -165,7 +165,7 @@ class VetsAndNgoListModule extends StatelessWidget {
           () => PetVetsAndNgoDetailsScreen(),
           transition: Transition.native,
           duration: const Duration(milliseconds: 500),
-          arguments: vetAndNgoData.id,
+          arguments: vetAndNgoData.id.toString(),
         );
       },
       child: Container(
@@ -286,7 +286,8 @@ class VetsAndNgoListModule extends StatelessWidget {
           () => PetVetsAndNgoDetailsScreen(),
           transition: Transition.native,
           duration: const Duration(milliseconds: 500),
-          arguments: searchVetAndNgoData.id,
+          arguments: searchVetAndNgoData.id.toString()
+          ,
         );
       },
       child: Container(

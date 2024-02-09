@@ -138,7 +138,7 @@ class HomeController extends GetxController {
             bannerList1.add(
               SingleBannerModel(
                 img: bannerModel.data[i].image1,
-                id: bannerModel.data[i].id,
+                id: bannerModel.data[i].id.toString(),
               ),
             );
           }
@@ -345,6 +345,7 @@ class HomeController extends GetxController {
       }
     } catch (e) {
       log("Get All USer Story Api Error ::: $e");
+      rethrow;
     }
     log('storyOption1212 : $storyOption');
     if (storyOption == StoryOption.moveForward) {
@@ -577,6 +578,7 @@ class HomeController extends GetxController {
       }
     } catch (e) {
       log("All Role Profile Api Error ::: $e");
+      rethrow;
     } finally {
       //isLoading(false);
       await getAllBannerFunction();
@@ -629,6 +631,7 @@ class HomeController extends GetxController {
       }
     } catch (e) {
       log("All Role Profile Api Error ::: $e");
+      rethrow;
     }
     await getAllBannerFunction();
   }

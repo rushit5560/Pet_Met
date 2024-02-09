@@ -77,10 +77,10 @@ class UserData {
     required this.isVerified,
   });
 
-  String id;
+  int id;
   String name;
   String email;
-  String uid;
+  int uid;
   String emailVerifiedAt;
   String password;
   String rememberToken;
@@ -88,7 +88,7 @@ class UserData {
   String country;
   String state;
   String city;
-  String categoryId;
+  int categoryId;
   String forgotpasswordToken;
   String createdAt;
   String updatedAt;
@@ -169,20 +169,20 @@ class Petdatum1 {
     required this.modifiedBy,
   });
 
-  String id;
+  int id;
   String image;
   String petName;
-  String mainCategory;
-  String subCategory;
+  int mainCategory;
+  int subCategory;
   String dob;
-  String weight;
+  int weight;
   String details;
   String imageList;
   String meetingAvailability;
   String gender;
   String isActive;
   String userid;
-  String createdBy;
+  int createdBy;
   String createdDate;
   String updatedDate;
   String modifiedBy;

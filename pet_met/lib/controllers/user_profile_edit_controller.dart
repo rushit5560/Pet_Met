@@ -247,6 +247,7 @@ class UserProfileEditController extends GetxController {
       }
     } catch (e) {
       log("All Multi Account Api Error ::: $e");
+      rethrow;
     } finally {
       isLoading(false);
       //await followStatus();

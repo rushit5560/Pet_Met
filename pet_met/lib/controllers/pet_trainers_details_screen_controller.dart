@@ -58,9 +58,9 @@ class PetTrainersDetailsScreenController extends GetxController {
 
         isShowStatus = trainerDetailsModel.showstatus.obs;
 
-        trainerCatId = trainerDetailsModel.data[0].categoryId;
+        trainerCatId = trainerDetailsModel.data[0].categoryId.toString();
         trainerName = trainerDetailsModel.data[0].name;
-        trainerId = trainerDetailsModel.data[0].id;
+        trainerId = trainerDetailsModel.data[0].id.toString();
         trainerEmail = trainerDetailsModel.data[0].email;
         trainerUpi = trainerDetailsModel.data[0].gpayupi;
         String isVerify = trainerDetailsModel.data[0].isVerified;
@@ -74,6 +74,7 @@ class PetTrainersDetailsScreenController extends GetxController {
       }
     } catch (e) {
       log("Trainer Details Api Error ::: $e");
+      rethrow;
     } finally {
       isLoading(false);
     }
@@ -182,6 +183,7 @@ class PetTrainersDetailsScreenController extends GetxController {
       }
     } catch (e) {
       log("Pet Add Order Error ::: $e");
+      rethrow;
     } finally {
       isLoading(false);
     }

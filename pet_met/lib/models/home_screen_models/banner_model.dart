@@ -147,7 +147,7 @@ class Datum {
   String image3;
   String image4;
   String image5;
-  String id;
+  int id;
 
   factory Datum.fromJson(Map<String, dynamic> json) =>
       Datum(
@@ -156,7 +156,7 @@ class Datum {
         image3: json["image3"] ?? "",
         image4: json["image4"] ?? "",
         image5: json["image5"] ?? "",
-        id: json["id"] ?? "",
+        id: json["id"] ?? 0,
       );
 
   Map<String, dynamic> toJson() =>

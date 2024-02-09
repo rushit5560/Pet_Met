@@ -205,6 +205,7 @@ class UploadPetController extends GetxController {
       }
     } catch (e) {
       log("Pet Category Api Error ::: $e");
+      rethrow;
     } finally {
       if (petOption == PetOption.addOption) {
         isLoading(false);
@@ -255,6 +256,7 @@ class UploadPetController extends GetxController {
       }
     } catch (e) {
       log('getSubCategoryUsingCategoryId Error : $e');
+      rethrow;
     } finally {
       isLoading(false);
       //await getAllRoleProfileFunction();

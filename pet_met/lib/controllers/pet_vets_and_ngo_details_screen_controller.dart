@@ -71,6 +71,7 @@ class PetVetsAndNgoDetailsScreenController extends GetxController {
       }
     } catch (e) {
       log("Vet And Ngo Details Error ::: $e");
+      rethrow;
     } finally {
       isLoading(false);
     }
@@ -195,6 +196,7 @@ class PetVetsAndNgoDetailsScreenController extends GetxController {
       }
     } catch (e) {
       log("Pet Add Order Error ::: $e");
+      rethrow;
     } finally {
       isLoading(false);
     }

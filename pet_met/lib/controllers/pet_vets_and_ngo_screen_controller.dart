@@ -61,6 +61,7 @@ class PetVetsAndNgoScreenController extends GetxController {
       }
     } catch (e) {
       log("Vet And Ngo Function Error : $e");
+      rethrow;
     } finally {
       isLoading(false);
     }

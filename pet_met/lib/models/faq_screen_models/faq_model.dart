@@ -37,13 +37,13 @@ class FaqData {
     required this.isActive,
   });
 
-  String id;
+  int id;
   String question;
   String answer;
   String isActive;
 
   factory FaqData.fromJson(Map<String, dynamic> json) => FaqData(
-        id: json["id"] ?? "",
+        id: json["id"] ?? 0,
         question: json["question"] ?? "",
         answer: json["answer"] ?? "",
         isActive: json["is_active"] ?? "",

@@ -56,7 +56,7 @@ class Trainers {
     required this.isVerified,
   });
 
-  String id;
+  int id;
   String name;
   String displayName;
   String address;
@@ -70,15 +70,15 @@ class Trainers {
   List<String> trainerimages;
   List<String> meetingimages;
   String isActive;
-  String userid;
-  String createdBy;
+  int userid;
+  int createdBy;
   String modifiedBy;
   String createdDate;
   String modifiedDate;
   String isVerified;
 
   factory Trainers.fromJson(Map<String, dynamic> json) => Trainers(
-        id: (json["id"] ?? 0).toString(),
+        id: json["id"] ?? 0,
         name: json["name"] ?? "",
         displayName: json["display_name"] ?? "",
         address: json["address"] ?? "",
@@ -94,8 +94,8 @@ class Trainers {
         meetingimages:
             List<String>.from(json["meetingimages"].map((x) => x) ?? {}),
         isActive: json["is_active"] ?? "",
-        userid: json["userid"] ?? "",
-        createdBy: json["created_by"] ?? "",
+        userid: json["userid"] ?? 0,
+        createdBy: json["created_by"] ?? 0,
         modifiedBy: json["modified_by"] ?? "",
         createdDate: json["created_date"] ?? "",
         modifiedDate: json["modified_date"] ?? "",

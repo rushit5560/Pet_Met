@@ -171,17 +171,15 @@ class UserProfileController extends GetxController {
         petList.addAll(getUserProfileModel.data.petdata);
 
         meetingStatus = getUserProfileModel.data.meettingstatus.obs;
-        userCategoryId = getUserProfileModel.data.data[0].categoryId;
-        userprofile = ApiUrl.apiImagePath +
-            "asset/uploads/product/" +
-            getUserProfileModel.data.data[0].image;
+        userCategoryId = getUserProfileModel.data.data[0].categoryId.toString();
+        userprofile = "${ApiUrl.apiImagePath}asset/uploads/product/${getUserProfileModel.data.data[0].image}";
         userName = getUserProfileModel.data.data[0].name;
         userEmail = getUserProfileModel.data.data[0].email;
         userMobileNumber = getUserProfileModel.data.data[0].phone;
         userDescription = getUserProfileModel.data.data[0].fullText;
 
-        chatUid = getUserProfileModel.data.data[0].uid;
-        chatCategoryId = getUserProfileModel.data.data[0].categoryId;
+        chatUid = getUserProfileModel.data.data[0].uid.toString();
+        chatCategoryId = getUserProfileModel.data.data[0].categoryId.toString();
 
         log('userDescription: $userDescription');
 
@@ -191,6 +189,7 @@ class UserProfileController extends GetxController {
       }
     } catch (e) {
       log("All Role Profile Api Error ::: $e");
+      rethrow;
     } finally {
       //isLoading(false);
       await followStatus();
@@ -230,7 +229,7 @@ class UserProfileController extends GetxController {
         shopPetList.clear();
         shopPetList.addAll(petShopProfileModel.data.petdata);
         shopMeetingStatus = petShopProfileModel.data.meettingstatus.obs;
-        userCategoryId = petShopProfileModel.data.data[0].categoryId;
+        userCategoryId = petShopProfileModel.data.data[0].categoryId.toString();
         shopProfile =
             ApiUrl.apiImagePath + petShopProfileModel.data.data[0].showimg;
         shopName = petShopProfileModel.data.data[0].shopename;
@@ -242,11 +241,11 @@ class UserProfileController extends GetxController {
         shopMobileNumber = petShopProfileModel.data.data[0].phonenumber;
         shopFacebookLink = petShopProfileModel.data.data[0].facebook;
         shopInstaLink = petShopProfileModel.data.data[0].instagram;
-        shopId = petShopProfileModel.data.data[0].id;
-        followShopUserId = petShopProfileModel.data.data[0].userid;
+        shopId = petShopProfileModel.data.data[0].id.toString();
+        followShopUserId = petShopProfileModel.data.data[0].userid.toString();
 
-        chatUid = petShopProfileModel.data.data[0].uid;
-        chatCategoryId = petShopProfileModel.data.data[0].categoryId;
+        chatUid = petShopProfileModel.data.data[0].uid.toString();
+        chatCategoryId = petShopProfileModel.data.data[0].categoryId.toString();
         log("petList Length : ${petList.length}");
         log('shopDescription: $shopDescription');
       } else {
@@ -254,6 +253,7 @@ class UserProfileController extends GetxController {
       }
     } catch (e) {
       log("All Role Profile Api Error ::: $e");
+      rethrow;
     } finally {
       //isLoading(false);
       await followStatus();
@@ -612,7 +612,7 @@ class UserProfileController extends GetxController {
   void _handleExternalWallet(ExternalWalletResponse response) {
     print('External SDK Response: $response');
     Fluttertoast.showToast(
-        msg: "EXTERNAL_WALLET: " + response.walletName!
+        msg: "EXTERNAL_WALLET: ${response.walletName!}"
         ,fontSize: 12.sp,
         toastLength: Toast.LENGTH_SHORT);
     log("response Wallet : ${response.walletName}");
@@ -657,6 +657,7 @@ class UserProfileController extends GetxController {
       }
     } catch (e) {
       log("Pet Add Order Error ::: $e");
+      rethrow;
     } finally {
       isLoading(false);
     }

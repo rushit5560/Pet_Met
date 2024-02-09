@@ -84,7 +84,7 @@ class UserData {
     required this.displayName,
   });
 
-  String id;
+  int id;
   String name;
   String email;
   String emailVerifiedAt;
@@ -109,7 +109,7 @@ class UserData {
   String displayName;
 
   factory UserData.fromJson(Map<String, dynamic> json) => UserData(
-        id: (json["id"] ?? 0).toString(),
+        id: json["id"] ?? 0,
         name: json["name"] ?? "",
         email: json["email"] ?? "",
         emailVerifiedAt: json["email_verified_at"] ?? "",

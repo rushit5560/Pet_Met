@@ -58,7 +58,7 @@ class VetAndNgoData {
     required this.isVerified,
   });
 
-  String id;
+  int id;
   String name;
   String displayName;
   String address;
@@ -74,15 +74,15 @@ class VetAndNgoData {
   String isActive;
   String ifscCode;
   String accountCode;
-  String userid;
-  String createdBy;
+  int userid;
+  int createdBy;
   String modifiedBy;
   String createdDate;
   String modifiedDate;
   String isVerified;
 
   factory VetAndNgoData.fromJson(Map<String, dynamic> json) => VetAndNgoData(
-        id: json["id"] ?? "",
+        id: json["id"] ??0,
         name: json["name"] ?? "",
         displayName: json["display_name"] ?? "",
         address: json["address"] ?? "",
@@ -98,8 +98,8 @@ class VetAndNgoData {
         isActive: json["is_active"] ?? "",
         ifscCode: json["ifsc_code"] ?? "",
         accountCode: json["account_code"] ?? "",
-        userid: json["userid"] ?? "",
-        createdBy: json["created_by"] ?? "",
+        userid: json["userid"] ?? 0,
+        createdBy: json["created_by"] ?? 0,
         modifiedBy: json["modified_by"] ?? "",
         createdDate: json["created_date"] ?? "",
         modifiedDate: json["modified_date"] ?? "",

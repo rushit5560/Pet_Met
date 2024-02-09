@@ -119,7 +119,7 @@ class DataData {
     required this.gpayupi,
   });
 
-  String id;
+  int id;
   String shopename;
   String displayName;
 
@@ -141,8 +141,8 @@ class DataData {
   String image5;
   String sortorder;
   String status;
-  String userid;
-  String createdBy;
+  int userid;
+  int createdBy;
   String modifiedBy;
   String createdDate;
   String modifiedDate;
@@ -151,7 +151,7 @@ class DataData {
   String gpayupi;
 
   factory DataData.fromJson(Map<String, dynamic> json) => DataData(
-        id: json["id"] ?? "",
+        id: json["id"] ?? 0,
         shopename: json["name"] ?? "",
         displayName: json["display_name"] ?? "",
         email: json["email"] ?? "",
@@ -174,8 +174,8 @@ class DataData {
         image5: json["image5"] ?? "",
         sortorder: json["sortorder"] ?? "",
         status: json["status"] ?? "",
-        userid: json["userid"] ?? "",
-        createdBy: json["created_by"] ?? "",
+        userid: json["userid"] ?? 0,
+        createdBy: json["created_by"] ?? 0,
         modifiedBy: json["modified_by"] ?? "",
         createdDate: json["created_date"] ?? "",
         modifiedDate: json["modified_date"] ?? "",

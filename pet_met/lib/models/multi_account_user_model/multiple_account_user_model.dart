@@ -395,20 +395,19 @@ class User {
     required this.enddate,
   });
 
-  String uid;
-  String id;
+  int uid;
+  int id;
   String name;
   String email;
-
   String displayName;
   String emailVerifiedAt;
   String password;
   String rememberToken;
   String image;
-  String country;
-  String state;
-  String city;
-  String categoryID;
+  int country;
+  int state;
+  int city;
+  int categoryID;
   String forgotpasswordToken;
   String createdAt;
   String updatedAt;
@@ -421,8 +420,8 @@ class User {
   String enddate;
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-        uid: json["uid"] ?? "",
-        id: json["id"] ?? "",
+        uid: json["uid"] ?? 0,
+        id: json["id"] ?? 0,
         name: json["name"] ?? "",
         displayName: json["display_name"] ?? "",
         email: json["email"] ?? "",
@@ -430,10 +429,10 @@ class User {
         password: json["password"] ?? "",
         rememberToken: json["remember_token"] ?? "",
         image: json["image"] ?? "",
-        country: json["country"] ?? "",
-        state: json["state"] ?? "",
-        city: json["city"] ?? "",
-        categoryID: json["categoryID"] ?? "",
+        country: json["country"] ?? 0,
+        state: json["state"] ?? 0,
+        city: json["city"] ??0,
+        categoryID: json["categoryID"] ?? 0,
         forgotpasswordToken: json["forgotpassword_token"] ?? "",
         createdAt: json["created_at"] ?? "",
         updatedAt: json["updated_at"] ?? "",
@@ -473,8 +472,8 @@ class User {
 }
 
 class Shop {
-  String? uid;
-  String? id;
+  int? uid;
+  int? id;
   String? name;
   String? displayName;
   String? address;
@@ -494,10 +493,10 @@ class Shop {
   String? meetingimages;
   String? sortorder;
   String? status;
-  String? userid;
+  int? userid;
   String? isActive;
-  String? categoryID;
-  String? createdBy;
+  int? categoryID;
+  int? createdBy;
   String? modifiedBy;
   String? createdDate;
   String? modifiedDate;
@@ -509,9 +508,9 @@ class Shop {
   String? emailVerifiedAt;
   String? password;
   String? image;
-  String? country;
-  String? state;
-  String? city;
+  int? country;
+  int? state;
+  int? city;
   String? forgotpasswordToken;
   String? createdAt;
   String? updatedAt;
@@ -567,8 +566,8 @@ class Shop {
       this.gender});
 
   Shop.fromJson(Map<String, dynamic> json) {
-    uid = json['uid'] ?? "";
-    id = json['id'] ?? "";
+    uid = json['uid'] ?? 0;
+    id = json['id'] ?? 0;
     name = json['name'] ?? "";
 
     displayName = json["display_name"] ?? "";
@@ -590,10 +589,10 @@ class Shop {
     meetingimages = json['meetingimages'] ?? "";
     sortorder = json['sortorder'] ?? "";
     status = json['status'] ?? "";
-    userid = json['userid'] ?? "";
+    userid = json['userid'] ?? 0;
     isActive = json['is_active'] ?? "";
-    categoryID = json['categoryID'] ?? "";
-    createdBy = json['created_by'] ?? "";
+    categoryID = json['categoryID'] ?? 0;
+    createdBy = json['created_by'] ?? 0;
     modifiedBy = json['modified_by'] ?? "";
     createdDate = json['created_date'] ?? "";
     modifiedDate = json['modified_date'] ?? "";
@@ -605,9 +604,9 @@ class Shop {
     emailVerifiedAt = json['email_verified_at'] ?? "";
     password = json['password'] ?? "";
     image = json['image'] ?? "";
-    country = json['country'] ?? "";
-    state = json['state'] ?? "";
-    city = json['city'] ?? "";
+    country = json['country'] ?? 0;
+    state = json['state'] ?? 0;
+    city = json['city'] ?? 0;
     forgotpasswordToken = json['forgotpassword_token'] ?? "";
     createdAt = json['created_at'] ?? "";
     updatedAt = json['updated_at'] ?? "";
@@ -895,8 +894,8 @@ class VetNgo {
     required this.gender,
   });
 
-  String uid;
-  String id;
+  int uid;
+  int id;
   String name;
   String displayName;
   String address;
@@ -917,8 +916,8 @@ class VetNgo {
   String isActive;
   String ifscCode;
   String accountCode;
-  String userid;
-  String categoryID;
+  int userid;
+  int categoryID;
   // String createdBy;
   // String modifiedBy;
   // String createdDate;
@@ -930,9 +929,9 @@ class VetNgo {
   String email;
   String emailVerifiedAt;
   String password;
-  String country;
-  String state;
-  String city;
+  int country;
+  int state;
+  int city;
   String forgotpasswordToken;
   // String createdAt;
   // String updatedAt;
@@ -940,8 +939,8 @@ class VetNgo {
   String gender;
 
   factory VetNgo.fromJson(Map<String, dynamic> json) => VetNgo(
-        uid: json["uid"] ?? "",
-        id: json["id"] ?? "",
+        uid: json["uid"] ?? 0,
+        id: json["id"] ?? 0,
         name: json["name"] ?? "",
         displayName: json["display_name"] ?? "",
 
@@ -963,8 +962,8 @@ class VetNgo {
         isActive: json["is_active"] ?? "",
         ifscCode: json["ifsc_code"] ?? "",
         accountCode: json["account_code"] ?? "",
-        userid: json["userid"] ?? "",
-        categoryID: json["categoryID"] ?? "",
+        userid: json["userid"] ?? 0,
+        categoryID: json["categoryID"] ?? 0,
         // createdBy: json["created_by"],
         // modifiedBy: json["modified_by"],
         // createdDate: json["created_date"],
@@ -976,9 +975,9 @@ class VetNgo {
         email: json["email"] ?? "",
         emailVerifiedAt: json["email_verified_at"] ?? "",
         password: json["password"] ?? "",
-        country: json["country"] ?? "",
-        state: json["state"] ?? "",
-        city: json["city"] ?? "",
+        country: json["country"] ?? 0,
+        state: json["state"] ?? 0,
+        city: json["city"] ?? 0,
         forgotpasswordToken: json["forgotpassword_token"] ?? "",
         // createdAt: json["created_at"],
         // updatedAt: json["updated_at"],
@@ -1033,8 +1032,8 @@ class VetNgo {
 }
 
 class Trainer {
-  String? uid;
-  String? id;
+  int? uid;
+  int? id;
   String? name;
   String? displayName;
   String? address;
@@ -1053,9 +1052,9 @@ class Trainer {
   String? image5;
   String? meetingimages;
   String? isActive;
-  String? userid;
-  String? categoryID;
-  String? createdBy;
+  int? userid;
+  int? categoryID;
+  int? createdBy;
   String? modifiedBy;
   String? createdDate;
   String? modifiedDate;
@@ -1066,9 +1065,9 @@ class Trainer {
   String? email;
   String? emailVerifiedAt;
   String? password;
-  String? country;
-  String? state;
-  String? city;
+  int? country;
+  int? state;
+  int? city;
   String? forgotpasswordToken;
   String? createdAt;
   String? updatedAt;
@@ -1119,8 +1118,8 @@ class Trainer {
       this.gender});
 
   Trainer.fromJson(Map<String, dynamic> json) {
-    uid = json['uid'] ?? "";
-    id = json['id'] ?? "";
+    uid = json['uid'] ?? 0;
+    id = json['id'] ?? 0;
     name = json['name'] ?? "";
     displayName = json["display_name"] ?? "";
 
@@ -1140,9 +1139,9 @@ class Trainer {
     image5 = json['image5'] ?? "";
     meetingimages = json['meetingimages'] ?? "";
     isActive = json['is_active'] ?? "";
-    userid = json['userid'] ?? "";
-    categoryID = json['categoryID'] ?? "";
-    createdBy = json['created_by'] ?? "";
+    userid = json['userid'] ?? 0;
+    categoryID = json['categoryID'] ?? 0;
+    createdBy = json['created_by'] ?? 0;
     modifiedBy = json['modified_by'] ?? "";
     createdDate = json['created_date'] ?? "";
     modifiedDate = json['modified_date'] ?? "";
@@ -1153,9 +1152,9 @@ class Trainer {
     email = json['email'] ?? "";
     emailVerifiedAt = json['email_verified_at'] ?? "";
     password = json['password'] ?? "";
-    country = json['country'] ?? "";
-    state = json['state'] ?? "";
-    city = json['city'] ?? "";
+    country = json['country'] ?? 0;
+    state = json['state'] ?? 0;
+    city = json['city'] ?? 0;
     forgotpasswordToken = json['forgotpassword_token'] ?? "";
     createdAt = json['created_at'] ?? "";
     updatedAt = json['updated_at'] ?? "";

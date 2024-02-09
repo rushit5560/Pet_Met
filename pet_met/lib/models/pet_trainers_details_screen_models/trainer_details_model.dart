@@ -68,7 +68,7 @@ class TrainerData {
     required this.email,
   });
 
-  String id;
+  int id;
   String name;
   String displayName;
   String address;
@@ -87,9 +87,9 @@ class TrainerData {
   String image5;
   // List<String> meetingimages;
   String isActive;
-  String userid;
-  String categoryId;
-  String createdBy;
+  int userid;
+  int categoryId;
+  int createdBy;
   String modifiedBy;
   String createdDate;
   String modifiedDate;
@@ -117,9 +117,9 @@ class TrainerData {
         image5: json["image5"] ?? "",
         // meetingimages: List<String>.from(json["meetingimages"].map((x) => x) ?? {}),
         isActive: json["is_active"] ?? "",
-        userid: json["userid"] ?? "",
-        categoryId: json["categoryId"] ?? "",
-        createdBy: json["created_by"] ?? "",
+        userid: json["userid"] ?? 0,
+        categoryId: json["categoryId"] ?? 0,
+        createdBy: json["created_by"] ?? 0,
         modifiedBy: json["modified_by"] ?? "",
         createdDate: json["created_date"] ?? "",
         modifiedDate: json["modified_date"] ?? "",

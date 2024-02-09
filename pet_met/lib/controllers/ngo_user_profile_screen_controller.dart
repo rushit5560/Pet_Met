@@ -18,8 +18,6 @@ import 'package:pet_met/utils/user_details.dart';
 import 'package:pet_met/utils/user_preference.dart';
 import 'package:sizer/sizer.dart';
 
-
-
 class NgoUserProfileScreenController extends GetxController {
   final size = Get.size;
   File? imageFile;
@@ -126,7 +124,8 @@ class NgoUserProfileScreenController extends GetxController {
       if (isSuccessStatus.value) {
         emailController.text = allRoleProfileModel.data.data[0].email;
         nameController.text = allRoleProfileModel.data.data[0].name;
-        displayNameController.text = allRoleProfileModel.data.data[0].displayName;
+        displayNameController.text =
+            allRoleProfileModel.data.data[0].displayName;
         detailsController.text = allRoleProfileModel.data.data[0].fullText;
         instagramController.text = allRoleProfileModel.data.data[0].instagram;
         facebookController.text = allRoleProfileModel.data.data[0].facebook;
@@ -140,7 +139,8 @@ class NgoUserProfileScreenController extends GetxController {
         ifscCodeController.text = allRoleProfileModel.data.data[0].ifscCode;
         addressController.text = allRoleProfileModel.data.data[0].address;
         contactController.text = allRoleProfileModel.data.data[0].phone;
-        if(allRoleProfileModel.data.data[0].image.toLowerCase() != "asset/uploads/product/petmet_logo.png") {
+        if (allRoleProfileModel.data.data[0].image.toLowerCase() !=
+            "asset/uploads/product/petmet_logo.png") {
           ngoProfile = allRoleProfileModel.data.data[0].image;
         }
         ngoImage1 = ApiUrl.apiImagePath +
@@ -208,6 +208,7 @@ class NgoUserProfileScreenController extends GetxController {
       }
     } catch (e) {
       log("All Role Profile Api Error ::: $e");
+      rethrow;
     } finally {
       //isLoading(false);
       await multiAccountFunction();
@@ -275,7 +276,6 @@ class NgoUserProfileScreenController extends GetxController {
         trainerEmail.value = "${multiAccountUserModel.data.trainer.email}";
         trainerName.value = "${multiAccountUserModel.data.trainer.name}";
         // }
-
       } else {
         log("Get Multi Account Api Else");
         //await unfollowUserFunction();
@@ -376,7 +376,7 @@ class NgoUserProfileScreenController extends GetxController {
             transition: Transition.native,
             duration: const Duration(milliseconds: 500));
       } else {
-        Fluttertoast.showToast(msg: loginModel.error,fontSize: 12.sp);
+        Fluttertoast.showToast(msg: loginModel.error, fontSize: 12.sp);
       }
     } catch (e) {
       log('User Login Api Error ::: $e');
@@ -514,7 +514,7 @@ class NgoUserProfileScreenController extends GetxController {
           if (vetAndNgoUpdateProfileModel.message
               .contains("vet & ngo profile update successfully.")) {
             Fluttertoast.showToast(
-                msg: "Vet & Ngo profile update successfully.",fontSize: 12.sp);
+                msg: "Vet & Ngo profile update successfully.", fontSize: 12.sp);
           }
           await getAllRoleProfileFunction(
               profileChangeOption: ProfileChangeOption.back);
@@ -1884,7 +1884,6 @@ class NgoUserProfileScreenController extends GetxController {
     }
   }
 
-
   Future<void> deleteAccountFunction() async {
     // isLoading(true);
 
@@ -1906,10 +1905,12 @@ class NgoUserProfileScreenController extends GetxController {
 
       if (isSuccessStatus.value) {
         //addressController.clear();
-        Fluttertoast.showToast(msg: deleteAccountModel.message,fontSize: 12.sp);
+        Fluttertoast.showToast(
+            msg: deleteAccountModel.message, fontSize: 12.sp);
         Get.off(() => const UserCategoriesScreen());
       } else {
-        Fluttertoast.showToast(msg: deleteAccountModel.message,fontSize: 12.sp);
+        Fluttertoast.showToast(
+            msg: deleteAccountModel.message, fontSize: 12.sp);
       }
     } catch (e) {
       log('Delete Account Api Error ::: $e');

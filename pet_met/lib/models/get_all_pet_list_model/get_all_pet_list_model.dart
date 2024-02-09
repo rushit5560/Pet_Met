@@ -21,7 +21,10 @@ class GetPetTopListModel {
       GetPetTopListModel(
         success: json["success"] ?? false,
         data: List<PetDatum>.from(
-            (json["data"] ?? []).map((x) => PetDatum.fromJson(x ?? {}))),
+          (json["data"] ?? []).map(
+            (x) => PetDatum.fromJson(x ?? {}),
+          ),
+        ),
         message: json["message"] ?? "",
       );
 
@@ -75,38 +78,38 @@ class PetList {
     required this.categoryId,
   });
 
-  String id;
+  int id;
   String image;
   String petName;
   String displayName;
-  String mainCategory;
-  String subCategory;
+  int mainCategory;
+  int subCategory;
   String dob;
-  String weight;
+  int weight;
   String details;
   String imageList;
   String meetingAvailability;
   String gender;
   String isActive;
-  String userid;
-  String categoryId;
+  int userid;
+  int categoryId;
 
   factory PetList.fromJson(Map<String, dynamic> json) => PetList(
-        id: (json["id"] ?? 0).toString(),
+        id: json["id"] ?? 0,
         image: json["image"] ?? "",
         petName: json["pet_name"] ?? "",
         displayName: json["display_name"] ?? "",
-        mainCategory: (json["main_category"] ?? 0).toString(),
-        subCategory: (json["sub_category"] ?? 0).toString(),
+        mainCategory: json["main_category"] ?? 0,
+        subCategory: json["sub_category"] ?? 0,
         dob: json["dob"] ?? "",
-        weight: (json["weight"] ?? 0).toString(),
+        weight: json["weight"] ?? 0,
         details: json["details"] ?? "",
         imageList: json["image_list"] ?? "",
         meetingAvailability: json["meeting_availability"] ?? "",
         gender: json["gender"] ?? "",
         isActive: json["is_active"] ?? "",
-        userid: json["userid"] ?? "",
-        categoryId: (json["categoryID"] ?? 0).toString(),
+        userid: json["userid"] ?? 0,
+        categoryId: json["categoryID"] ?? 0,
       );
 
   Map<String, dynamic> toJson() => {

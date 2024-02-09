@@ -41,6 +41,7 @@ class PrivacyPolicyScreenController extends GetxController {
       }
     } catch (e) {
       log("Privacy policy api error ::: $e");
+      rethrow;
     } finally {
       isLoading(false);
     }

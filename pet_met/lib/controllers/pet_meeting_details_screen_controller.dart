@@ -76,7 +76,7 @@ class PetMeetingDetailsScreenController extends GetxController {
       if (isSuccessStatus.value) {
 
          getProfile = getPetProfileModel.date[0];
-         meetingPetId = getPetProfileModel.date[0].id!;
+         meetingPetId = getPetProfileModel.date[0].id!.toString();
 
          image = getPetProfileModel.date[0].image!;
          petName = getProfile.petName!;

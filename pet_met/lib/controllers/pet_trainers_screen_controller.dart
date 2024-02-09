@@ -65,6 +65,7 @@ class PetTrainersScreenController extends GetxController {
       }
     } catch (e) {
       log("Get All Trainers Api Error ::: $e");
+      rethrow;
     } finally {
       isLoading(false);
     }

@@ -59,22 +59,22 @@ class PetData {
     this.modifiedBy,
   });
 
-  String? id;
+  int? id;
   String? image;
   String? petName;
-  String? mainCategory;
-  String? subCategory;
+  int? mainCategory;
+  int? subCategory;
   String? dob;
-  String? weight;
+  int? weight;
   String? details;
   // dynamic imageList;
   String? meetingAvailability;
   String? gender;
   String? isActive;
   String? isVerified;
-  String? categoryId;
-  String? userid;
-  String? createdBy;
+  int? categoryId;
+  int? userid;
+  int? createdBy;
   String? createdDate;
   String? updatedDate;
   String? modifiedBy;
@@ -150,7 +150,7 @@ class User {
     // required this.enddate,
   });
 
-  String id;
+  int id;
   String name;
   String showimg;
   // String email;

@@ -36,7 +36,9 @@ class TermAndConditionScreenController extends GetxController {
         log("Privacy Policy Function Else");
       }
     } catch (e) {
+
       log("Privacy policy api error ::: $e");
+      rethrow;
     }
     isLoading(false);
   }

@@ -93,7 +93,7 @@ class Datum {
     required this.uid,
   });
 
-  String id;
+  int id;
   String shopename;
   String email;
   String password;
@@ -114,10 +114,10 @@ class Datum {
   List<String> meetingimages;
   String sortorder;
   String status;
-  String userid;
+  int userid;
   String isActive;
-  String categoryId;
-  String createdBy;
+  int categoryId;
+  int createdBy;
   String modifiedBy;
   String createdDate;
   String modifiedDate;
@@ -125,10 +125,10 @@ class Datum {
   String isVerified;
   String startdate;
   String enddate;
-  String uid;
+  int uid;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-    id: json["id"] ?? "",
+    id: json["id"] ?? 0,
     shopename: json["name"] ?? "",
     email: json["email"] ?? "",
     password: json["password"] ?? "",
@@ -151,8 +151,8 @@ class Datum {
     status: json["status"] ?? "",
     userid: json["userid"] ?? "",
     isActive: json["is_active"] ?? "",
-    categoryId: json["categoryID"] ?? "",
-    createdBy: json["created_by"] ?? "",
+    categoryId: json["categoryID"] ?? 0,
+    createdBy: json["created_by"] ?? 0,
     modifiedBy: json["modified_by"] ?? "",
     createdDate: json["created_date"] ?? "",
     modifiedDate: json["modified_date"] ?? "",
@@ -160,7 +160,7 @@ class Datum {
     isVerified: json["is_verified"] ?? "",
     startdate: json["startdate"] ?? "",
     enddate: json["enddate"] ?? "",
-    uid: json["uid"] ?? "",
+    uid: json["uid"] ?? 0,
   );
 
   Map<String, dynamic> toJson() => {
@@ -220,39 +220,39 @@ class ShopPetdatum {
     required this.modifiedBy,
   });
 
-  String id;
+  int id;
   String image;
   String petName;
-  String mainCategory;
-  String subCategory;
+  int mainCategory;
+  int subCategory;
   String dob;
-  String weight;
+  int weight;
   String details;
   String imageList;
   String meetingAvailability;
   String gender;
   String isActive;
-  String userid;
-  String createdBy;
+  int userid;
+  int createdBy;
   String createdDate;
   String updatedDate;
   String modifiedBy;
 
   factory ShopPetdatum.fromJson(Map<String, dynamic> json) => ShopPetdatum(
-    id: json["id"] ?? "",
+    id: json["id"] ?? 0,
     image: json["image"] ?? "",
     petName: json["pet_name"] ?? "",
-    mainCategory: json["main_category"] ?? "",
-    subCategory: json["sub_category"] ?? "",
+    mainCategory: json["main_category"] ?? 0,
+    subCategory: json["sub_category"] ?? 0,
     dob: json["dob"] ?? "",
-    weight: json["weight"] ?? "",
+    weight: json["weight"] ?? 0,
     details: json["details"] ?? "",
     imageList: json["image_list"] ?? "",
     meetingAvailability: json["meeting_availability"] ?? "",
     gender: json["gender"] ?? "",
     isActive: json["is_active"] ?? "",
-    userid: json["userid"] ?? "",
-    createdBy: json["created_by"] ?? "",
+    userid: json["userid"] ?? 0,
+    createdBy: json["created_by"] ?? 0,
     createdDate: json["created_date"] ?? "",
     updatedDate: json["updated_date"] ?? "",
     modifiedBy: json["modified_by"] ?? "",

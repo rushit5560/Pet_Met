@@ -796,9 +796,9 @@ class DogOwnerListModule extends StatelessWidget {
                                     Get.to(
                                       () => PetMeetingDetailsScreen(),
                                       arguments: [
-                                        controller.petList[index].id,
-                                        controller.followUserId,
-                                        controller.followCategoryId,
+                                        controller.petList[index].id.toString(),
+                                        controller.followUserId.toString(),
+                                        controller.followCategoryId.toString(),
                                         controller.userName,
                                       ],
                                     );
@@ -854,10 +854,10 @@ class DogOwnerListModule extends StatelessWidget {
                                         //     ]);
                                         Get.to(() => PetMeetingDetailsScreen(),
                                             arguments: [
-                                              controller.shopPetList[index].id,
+                                              controller.shopPetList[index].id.toString(),
                                               controller
-                                                  .shopPetList[index].userid,
-                                              controller.userCategoryId,
+                                                  .shopPetList[index].userid.toString(),
+                                              controller.userCategoryId.toString(),
                                               controller.userName,
                                             ]);
                                       },

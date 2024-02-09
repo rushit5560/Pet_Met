@@ -45,7 +45,7 @@ class SupportData {
     // required this.updatedAt,
   });
 
-  String? id;
+  int? id;
   String? title;
   String? content;
   String? isActive;
@@ -58,7 +58,7 @@ class SupportData {
   // DateTime updatedAt;
 
   factory SupportData.fromJson(Map<String, dynamic> json) => SupportData(
-        id: json["id"] ?? "",
+        id: json["id"] ?? 0,
         title: json["title"] ?? "",
         content: json["content"] ?? "",
         isActive: json["is_active"] ?? "",

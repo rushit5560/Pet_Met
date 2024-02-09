@@ -70,9 +70,9 @@ class PetMeetingListModule extends StatelessWidget {
                 Get.to(
                   () => PetMeetingDetailsScreen(),
                   arguments: [
-                    screenController.subCatPetList[i].data.id,
-                    screenController.subCatPetList[i].data.userid,
-                    screenController.subCatPetList[i].data.categoryId,
+                    screenController.subCatPetList[i].data.id.toString(),
+                    screenController.subCatPetList[i].data.userid.toString(),
+                    screenController.subCatPetList[i].data.categoryId.toString(),
                     // screenController.subCatPetList[i].name.name,
                     screenController.subCatPetList[i].name.displayName,
 
@@ -115,9 +115,9 @@ class PetMeetingListModule extends StatelessWidget {
                 Get.to(
                   () => PetMeetingDetailsScreen(),
                   arguments: [
-                    screenController.subCatPetList[i].data.id,
-                    screenController.subCatPetList[i].data.userid,
-                    screenController.subCatPetList[i].data.categoryId,
+                    screenController.subCatPetList[i].data.id.toString(),
+                    screenController.subCatPetList[i].data.userid.toString(),
+                    screenController.subCatPetList[i].data.categoryId.toString(),
                     // screenController.subCatPetList[i].name.name,
                     screenController.subCatPetList[i].name.displayName,
 
@@ -242,10 +242,10 @@ class PetMeetingListModule extends StatelessWidget {
                               transition: Transition.native,
                               duration: const Duration(milliseconds: 500),
                               arguments: [
-                                screenController.subCatPetList[i].data.userid,
+                                screenController.subCatPetList[i].data.userid.toString(),
                                 screenController
-                                    .subCatPetList[i].data.categoryId,
-                                screenController.subCatPetList[i].data.id,
+                                    .subCatPetList[i].data.categoryId.toString(),
+                                screenController.subCatPetList[i].data.id.toString(),
                               ]);
                         },
                         child: Row(

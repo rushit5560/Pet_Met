@@ -181,6 +181,7 @@ class ShopDetailsScreenController extends GetxController {
       }
     } catch (e) {
       log("Pet Add Order Error ::: $e");
+      rethrow;
     } finally {
       isLoading(false);
     }

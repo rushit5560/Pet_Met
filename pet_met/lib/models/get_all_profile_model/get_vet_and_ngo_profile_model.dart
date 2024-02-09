@@ -90,7 +90,7 @@ class NgoData {
     required this.displayName,
   });
 
-  String id;
+  int id;
   String name;
   String email;
   String password;
@@ -112,9 +112,9 @@ class NgoData {
   String isActive;
   String ifscCode;
   String accountCode;
-  String userid;
-  String categoryId;
-  String createdBy;
+  int userid;
+  int categoryId;
+  int createdBy;
   String modifiedBy;
   String createdDate;
   String modifiedDate;
@@ -126,7 +126,7 @@ class NgoData {
   String displayName;
 
   factory NgoData.fromJson(Map<String, dynamic> json) => NgoData(
-    id: json["id"] ?? "",
+    id: json["id"] ?? 0,
     name: json["name"] ?? "",
     email: json["email"] ?? "",
     password: json["password"] ?? "",
@@ -149,8 +149,8 @@ class NgoData {
     ifscCode: json["ifsc_code"] ?? "",
     accountCode: json["account_code"] ?? "",
     userid: json["userid"] ?? "",
-    categoryId: json["categoryID"] ?? "",
-    createdBy: json["created_by"] ?? "",
+    categoryId: json["categoryID"] ?? 0,
+    createdBy: json["created_by"] ?? 0,
     modifiedBy: json["modified_by"] ?? "",
     createdDate: json["created_date"] ?? "",
     modifiedDate: json["modified_date"] ?? "",

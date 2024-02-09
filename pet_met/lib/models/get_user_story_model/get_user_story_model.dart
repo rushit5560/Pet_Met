@@ -201,22 +201,22 @@ class Userstory {
     required this.uid,
   });
 
-  String id;
-  String userid;
+  int id;
+  int userid;
   String image;
   String starttime;
   String endtime;
-  String categoryId;
-  String uid;
+  int categoryId;
+  int uid;
 
   factory Userstory.fromJson(Map<String, dynamic> json) => Userstory(
-    id: json["id"] ?? "",
-    userid: json["userid"] ?? "",
+    id: json["id"] ?? 0,
+    userid: json["userid"] ?? 0,
     image: json["image"] ?? "",
     starttime: json["starttime"] ?? "",
     endtime: json["endtime"] ?? "",
-    categoryId: json["categoryID"] ?? "",
-    uid: json["uid"] ?? "",
+    categoryId: json["categoryID"] ?? 0,
+    uid: json["uid"] ?? 0,
   );
 
   Map<String, dynamic> toJson() => {

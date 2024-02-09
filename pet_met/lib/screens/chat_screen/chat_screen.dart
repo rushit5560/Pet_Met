@@ -240,7 +240,7 @@ class _ChatScreenState extends State<ChatScreen> {
           //log('singleMsg.peerId: ${singleMsg.peerId}');
           // log('singleMsg.roomId: ${singleMsg.roomId}');
           Get.to(() => UserConversationScreen(), arguments: [
-            singleMsg.chatRoomId,
+            singleMsg.chatRoomId.toString(),
             receiverName,
             UserDetails.roleId == 1
                 ? singleMsg.peerName
